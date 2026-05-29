@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { useAuth } from "./AuthContext";
@@ -227,6 +227,7 @@ export default function TribeChallenge() {
   // ── ALL state declarations must be before any conditional returns ──
   const [onboarded, setOnboarded] = useState(null);
   const [earnedBadges, setEarnedBadges] = useState(new Set());
+  const sessionEarnedRef = useRef(null); // badges already in Firestore before this session
   const [badgeQueue, setBadgeQueue] = useState([]);
   const [tab, setTab] = useState("home");
   const [pendingJoinCode, setPendingJoinCode] = useState(() => {
@@ -242,7 +243,10 @@ export default function TribeChallenge() {
   // ── ALL effects must be before any conditional returns ──
   useEffect(() => {
     if (!user) return;
-    loadEarnedBadges(user.uid).then(setEarnedBadges);
+    loadEarnedBadges(user.uid).then(loaded => {
+      sessionEarnedRef.current = loaded; // snapshot of what was earned before this session
+      setEarnedBadges(loaded);
+    });
   }, [user?.uid]);
 
   useEffect(() => {
@@ -346,11 +350,17 @@ export default function TribeChallenge() {
 
   const triggerBadgeCheck = (history, cStats) => {
     const stats = buildStats(history, cStats);
-    const newIds = checkBadges(stats, earnedBadges);
+    // Use union of pre-session + in-session earned to avoid re-awarding
+    const alreadyEarned = new Set([...(sessionEarnedRef.current || new Set()), ...earnedBadges]);
+    const newIds = checkBadges(stats, alreadyEarned);
     if (!newIds.length) return;
-    const newSet = new Set([...earnedBadges, ...newIds]);
+    const newSet = new Set([...alreadyEarned, ...newIds]);
     setEarnedBadges(newSet);
-    setBadgeQueue(q => [...q, ...newIds.map(id => BADGES.find(b => b.id === id)).filter(Boolean)]);
+    // Only queue overlay for badges not earned before this session started
+    const overlayIds = newIds.filter(id => !sessionEarnedRef.current?.has(id));
+    if (overlayIds.length) {
+      setBadgeQueue(q => [...q, ...overlayIds.map(id => BADGES.find(b => b.id === id)).filter(Boolean)]);
+    }
     awardBadges(user.uid, newIds).catch(console.error);
   };
 
