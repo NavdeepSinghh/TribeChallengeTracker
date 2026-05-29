@@ -6,7 +6,7 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import { auth, googleProvider, appleProvider } from './firebase';
+import { auth, googleProvider } from './firebase';
 
 const input = {
   width: '100%', padding: '13px 16px', borderRadius: 12,
@@ -136,10 +136,6 @@ export default function AuthScreen() {
           <button onClick={() => handleSocial(googleProvider)} disabled={loading} style={socialBtn}>
             <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'serif' }}>G</span>
             Continue with Google
-          </button>
-          <button onClick={() => handleSocial(appleProvider)} disabled={loading} style={socialBtn}>
-            <span style={{ fontSize: 18 }}></span>
-            Continue with Apple
           </button>
         </div>
 
