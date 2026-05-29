@@ -302,10 +302,56 @@ function ProgressTab({ challenge, memberData }) {
     return '1px solid rgba(255,215,0,0.3)';
   };
 
+  const startDate  = new Date(challenge.startDate);
+  const endDate    = new Date(challenge.endDate);
+  const daysLeft   = Math.max(0, Math.ceil((endDate - new Date()) / 86400000));
+  const dayNum     = Math.min(challenge.duration, Math.max(1, Math.floor((new Date() - startDate) / 86400000) + 1));
+  const pctDone    = Math.round((dayNum / challenge.duration) * 100);
+
+  const fmtDate = (d) => d.toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric' });
+
   return (
     <div style={{ padding: '20px 20px 100px' }}>
+
+      {/* Challenge date context banner */}
+      <div style={{
+        marginBottom: 20, padding: '14px 16px', borderRadius: 14,
+        background: `${challenge.color}0d`, border: `1px solid ${challenge.color}33`,
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
+          <div>
+            <p style={{ margin: '0 0 2px', fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>STARTED</p>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#ccc' }}>{fmtDate(startDate)}</p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <p style={{ margin: '0 0 2px', fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>TODAY</p>
+            <p style={{ margin: 0, fontSize: 16, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: challenge.color }}>
+              DAY {dayNum}
+            </p>
+            <p style={{ margin: '1px 0 0', fontSize: 9, color: '#555', fontFamily: 'monospace' }}>OF {challenge.duration}</p>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <p style={{ margin: '0 0 2px', fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>ENDS</p>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#ccc' }}>{fmtDate(endDate)}</p>
+          </div>
+        </div>
+        {/* Progress bar */}
+        <div style={{ height: 5, background: 'rgba(255,255,255,0.07)', borderRadius: 3, overflow: 'hidden' }}>
+          <div style={{
+            height: '100%', borderRadius: 3,
+            width: `${pctDone}%`,
+            background: `linear-gradient(90deg, ${challenge.color}88, ${challenge.color})`,
+            boxShadow: `0 0 8px ${challenge.color}66`,
+            transition: 'width 0.6s ease',
+          }} />
+        </div>
+        <p style={{ margin: '6px 0 0', fontSize: 9, color: '#555', fontFamily: 'monospace', textAlign: 'right' }}>
+          {daysLeft === 0 ? 'CHALLENGE ENDS TODAY' : `${daysLeft} DAYS REMAINING`}
+        </p>
+      </div>
+
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 20 }}>
         {[
           { label: 'POINTS',   value: memberData?.totalPoints   || 0, color: GOLD  },
           { label: 'DAYS',     value: memberData?.daysCompleted || 0, color: '#34D399' },
@@ -322,7 +368,7 @@ function ProgressTab({ challenge, memberData }) {
       </div>
 
       {/* Legend */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 12 }}>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 10 }}>
         {[
           { color: 'rgba(52,211,153,0.35)',  label: 'Full day' },
           { color: 'rgba(255,215,0,0.25)',   label: 'Partial' },
@@ -336,22 +382,40 @@ function ProgressTab({ challenge, memberData }) {
         ))}
       </div>
 
-      {/* Calendar grid */}
+      {/* Calendar grid — shows day number + actual date */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 5 }}>
-        {days.map(day => (
-          <div key={day.dateStr} title={`Day ${day.dayNum} · ${day.dateStr}${day.log ? ` · ${day.log.points}pts` : ''}`}
-            style={{
-              aspectRatio: '1', borderRadius: 8,
-              background: dayColor(day),
-              border: dayBorder(day),
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-            }}>
-            <span style={{ fontSize: 9, color: day.isToday ? '#fff' : '#555', fontFamily: 'monospace', fontWeight: day.isToday ? 700 : 400 }}>
-              {day.dayNum}
-            </span>
-          </div>
-        ))}
+        {days.map(day => {
+          const d = new Date(day.dateStr);
+          const monthDay = d.getDate();
+          const monthLabel = d.toLocaleDateString('en', { month: 'short' });
+          const isFirstOfMonth = monthDay === 1;
+          return (
+            <div key={day.dateStr}
+              title={`Day ${day.dayNum} · ${d.toLocaleDateString('en', { weekday: 'short', day: 'numeric', month: 'short' })}${day.log ? ` · ${day.log.points} pts` : ''}`}
+              style={{
+                aspectRatio: '1', borderRadius: 8, position: 'relative',
+                background: dayColor(day),
+                border: dayBorder(day),
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center', gap: 1,
+              }}>
+              <span style={{ fontSize: 10, color: day.isToday ? '#fff' : '#666', fontFamily: 'monospace', fontWeight: day.isToday ? 900 : 500, lineHeight: 1 }}>
+                {day.dayNum}
+              </span>
+              <span style={{ fontSize: 7, color: '#444', fontFamily: 'monospace', lineHeight: 1 }}>
+                {isFirstOfMonth ? monthLabel : monthDay}
+              </span>
+              {/* Today indicator dot */}
+              {day.isToday && (
+                <div style={{
+                  position: 'absolute', bottom: 3, left: '50%', transform: 'translateX(-50%)',
+                  width: 4, height: 4, borderRadius: '50%',
+                  background: challenge.color,
+                }} />
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <p style={{ color: '#444', fontSize: 10, fontFamily: 'monospace', textAlign: 'center', marginTop: 14 }}>

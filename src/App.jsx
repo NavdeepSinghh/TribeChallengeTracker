@@ -5,6 +5,7 @@ import { Capacitor } from "@capacitor/core";
 import { healthAvailable, requestHealthPerms, getTodayWorkouts, openHealthSettings } from "./healthService";
 import { useAuth } from "./AuthContext";
 import { saveOnboarding, getUserProfile, saveActivity, getActivityLog } from "./userService";
+import { getUserChallenges } from "./challengeService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import ChallengesTab from "./ChallengesTab";
@@ -69,28 +70,49 @@ function Avatar({ emoji, size = 40 }) {
 }
 
 
-function CalendarGrid({ history }) {
-  const days = getCalendarDays(history);
+function CalendarGrid({ history, challenges = [] }) {
+  const days   = getCalendarDays(history);
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
-  const weeks = [];
+  const weeks  = [];
   for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
 
+  // Window boundaries for the 28-day grid
+  const windowStart = new Date(today); windowStart.setDate(today.getDate() - 27); windowStart.setHours(0,0,0,0);
+  const windowEnd   = new Date(today); windowEnd.setHours(23,59,59,999);
+
+  // Pre-compute per-day challenge start markers: { [dateStr]: challenge }
+  const challengeStartMap = {};
+  challenges.forEach(c => {
+    if (c.startDate >= formatDate(windowStart) && c.startDate <= formatDate(today)) {
+      challengeStartMap[c.startDate] = c;
+    }
+  });
+
+  // Active challenges overlapping the window (for timeline bars)
+  const activeChallenges = challenges.filter(c =>
+    c.startDate <= formatDate(today) && c.endDate >= formatDate(windowStart)
+  );
+
   return (
-    <div style={{ overflowX: "auto" }}>
+    <div>
+      {/* Day-of-week header */}
       <div style={{ display: "flex", gap: 4, marginBottom: 6 }}>
         {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(w => (
           <div key={w} style={{ width: 36, textAlign: "center", fontSize: 9, color: "#555", fontWeight: 700, letterSpacing: 0.5, fontFamily: "monospace" }}>{w}</div>
         ))}
       </div>
+
+      {/* Calendar cells */}
       {weeks.map((week, wi) => (
         <div key={wi} style={{ display: "flex", gap: 4, marginBottom: 4 }}>
           {week.map((d, di) => {
-            const entry = d.activity;
-            const acts = getEntryActivities(entry);
+            const entry    = d.activity;
+            const acts     = getEntryActivities(entry);
             const firstAct = acts[0] || null;
-            const aInfo = firstAct ? actMap[firstAct.type] : null;
-            const count = acts.length;
-            const isToday = d.date === formatDate(today);
+            const aInfo    = firstAct ? actMap[firstAct.type] : null;
+            const count    = acts.length;
+            const isToday  = d.date === formatDate(today);
+            const startChallenge = challengeStartMap[d.date];
             const totalDayPts = acts.reduce((s, a) => s + (a.points || 0), 0);
             const tip = count === 0 ? d.date
               : acts.map(a => `${actMap[a.type]?.icon} ${a.value}${actMap[a.type]?.unit}`).join(' · ')
@@ -107,6 +129,7 @@ function CalendarGrid({ history }) {
                 }}>
                 <span style={{ fontSize: 14 }}>{firstAct ? aInfo?.icon : ""}</span>
                 <span style={{ fontSize: 8, color: "#666", fontFamily: "monospace" }}>{d.day}</span>
+                {/* Multi-activity badge */}
                 {count > 1 && (
                   <div style={{
                     position: "absolute", top: -5, right: -5,
@@ -116,11 +139,83 @@ function CalendarGrid({ history }) {
                     fontSize: 8, fontWeight: 900, color: "#fff", fontFamily: "monospace", lineHeight: 1,
                   }}>{count}</div>
                 )}
+                {/* Challenge start-date flag */}
+                {startChallenge && (
+                  <div title={`${startChallenge.name} started`} style={{
+                    position: "absolute", bottom: -1, left: "50%", transform: "translateX(-50%)",
+                    width: 6, height: 6, borderRadius: "50%",
+                    background: startChallenge.color,
+                    border: "1.5px solid #080808",
+                    boxShadow: `0 0 4px ${startChallenge.color}`,
+                  }} />
+                )}
               </div>
             );
           })}
         </div>
       ))}
+
+      {/* Challenge timeline bars */}
+      {activeChallenges.length > 0 && (
+        <div style={{ marginTop: 16, borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 14 }}>
+          <p style={{ color: "#444", fontSize: 9, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>CHALLENGE TIMELINE</p>
+          {activeChallenges.map(c => {
+            const cStart   = new Date(c.startDate); cStart.setHours(0,0,0,0);
+            const cEnd     = new Date(c.endDate);   cEnd.setHours(23,59,59,999);
+            const daysLeft = Math.max(0, Math.ceil((cEnd - new Date()) / 86400000));
+            const dayNum   = Math.min(c.duration, Math.max(1, Math.floor((new Date() - cStart) / 86400000) + 1));
+
+            // Pixel positions relative to 28-day window (total width = 28 cells + gaps)
+            const totalDays = 27; // index 0..27
+            const barStartDay = Math.max(0, Math.floor((cStart - windowStart) / 86400000));
+            const barEndDay   = Math.min(totalDays, Math.floor((cEnd   - windowStart) / 86400000));
+            const leftPct     = (barStartDay / totalDays) * 100;
+            const widthPct    = Math.max(2, ((barEndDay - barStartDay + 1) / totalDays) * 100);
+            // "today" marker within the bar
+            const todayDay    = totalDays; // today is always index 27 (rightmost)
+            const todayPct    = Math.min(100, Math.max(0, ((todayDay - barStartDay) / Math.max(1, barEndDay - barStartDay + 1)) * 100));
+
+            return (
+              <div key={c.id} style={{ marginBottom: 12 }}>
+                {/* Label row */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: "#ccc" }}>
+                    {c.emoji} {c.name}
+                  </span>
+                  <span style={{ fontSize: 9, color: "#555", fontFamily: "monospace", fontWeight: 700 }}>
+                    DAY {dayNum}/{c.duration} · {daysLeft === 0 ? "ENDS TODAY" : `${daysLeft}d LEFT`}
+                  </span>
+                </div>
+                {/* Bar track */}
+                <div style={{ position: "relative", height: 6, background: "rgba(255,255,255,0.06)", borderRadius: 3 }}>
+                  {/* Challenge fill */}
+                  <div style={{
+                    position: "absolute", top: 0, height: "100%",
+                    left: `${leftPct}%`, width: `${widthPct}%`,
+                    background: `${c.color}55`, borderRadius: 3,
+                  }} />
+                  {/* Completed portion (up to today) */}
+                  <div style={{
+                    position: "absolute", top: 0, height: "100%",
+                    left: `${leftPct}%`, width: `${(widthPct * todayPct) / 100}%`,
+                    background: c.color, borderRadius: 3,
+                    boxShadow: `0 0 6px ${c.color}88`,
+                  }} />
+                </div>
+                {/* Date labels */}
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 3 }}>
+                  <span style={{ fontSize: 8, color: "#444", fontFamily: "monospace" }}>
+                    {new Date(c.startDate).toLocaleDateString("en", { day: "numeric", month: "short" })}
+                  </span>
+                  <span style={{ fontSize: 8, color: "#444", fontFamily: "monospace" }}>
+                    {new Date(c.endDate).toLocaleDateString("en", { day: "numeric", month: "short" })}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -181,9 +276,14 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
       <div style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: loggedActivities.length ? 16 : 24 }}>
-          <h3 style={{ color: "#fff", fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 20, margin: 0 }}>Log Activity</h3>
-          <button onClick={onClose} style={{ background: "none", border: "none", color: "#666", fontSize: 24, cursor: "pointer" }}>×</button>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: loggedActivities.length ? 16 : 24 }}>
+          <div>
+            <h3 style={{ color: "#fff", fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 20, margin: "0 0 3px" }}>Log Activity</h3>
+            <p style={{ margin: 0, fontSize: 10, color: "#555", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>
+              FOR · {today.toLocaleDateString("en", { weekday: "long", day: "numeric", month: "long" }).toUpperCase()}
+            </p>
+          </div>
+          <button onClick={onClose} style={{ background: "none", border: "none", color: "#666", fontSize: 24, cursor: "pointer", marginTop: -2 }}>×</button>
         </div>
 
         {/* Today's logged activities — grows as user adds more */}
@@ -460,6 +560,7 @@ export default function TribeChallenge() {
     return params.get("join") || sessionStorage.getItem("pendingJoinCode") || null;
   });
   const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
+  const [myChallenges, setMyChallenges]     = useState([]);
   const [showLog, setShowLog] = useState(false);
   const [myHistory, setMyHistory] = useState({});
   const [toast, setToast] = useState(null);
@@ -496,7 +597,7 @@ export default function TribeChallenge() {
   }, [pendingJoinCode]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) { setMyChallenges([]); return; }
     getUserProfile(user.uid).then(p => {
       // Fall back to the old flat literal-dot field name in case the
       // migration in createUserIfNew hasn't run for this account yet.
@@ -504,6 +605,9 @@ export default function TribeChallenge() {
         joined: (p?.stats?.challengesJoined ?? p?.['stats.challengesJoined']) || 0,
         owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || 0,
       });
+      const ids = p?.joinedChallengeIds || [];
+      if (ids.length) getUserChallenges(ids).then(setMyChallenges);
+      else setMyChallenges([]);
     });
   }, [user?.uid]);
 
@@ -760,7 +864,7 @@ export default function TribeChallenge() {
           <div style={{ padding: "0 20px 24px" }}>
             <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>28-DAY CALENDAR</p>
             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 16, padding: 16, border: "1px solid rgba(255,255,255,0.06)" }}>
-              <CalendarGrid history={myHistory} />
+              <CalendarGrid history={myHistory} challenges={myChallenges} />
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
                 {ACTIVITY_TYPES.map(a => (
                   <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 4 }}>
