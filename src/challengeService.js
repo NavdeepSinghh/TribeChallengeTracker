@@ -1,5 +1,5 @@
 import {
-  collection, doc, setDoc, getDoc, getDocs,
+  collection, doc, setDoc, getDoc, getDocs, updateDoc,
   query, where, serverTimestamp, increment, arrayUnion,
 } from 'firebase/firestore';
 import { db } from './firebase';
@@ -156,11 +156,11 @@ export async function createChallenge(uid, template, customName, startDateStr, i
     daysCompleted: 0,
     lastLogDate:   null,
   });
-  await setDoc(doc(db, 'users', uid), {
+  await updateDoc(doc(db, 'users', uid), {
     joinedChallengeIds:       arrayUnion(ref.id),
     'stats.challengesJoined': increment(1),
     'stats.challengesOwned':  increment(1),
-  }, { merge: true });
+  });
 
   return data;
 }
@@ -185,10 +185,10 @@ export async function joinChallenge(uid, challengeId) {
     lastLogDate:   null,
   });
   await setDoc(doc(db, 'challenges', challengeId), { memberCount: increment(1) }, { merge: true });
-  await setDoc(doc(db, 'users', uid), {
+  await updateDoc(doc(db, 'users', uid), {
     joinedChallengeIds:       arrayUnion(challengeId),
     'stats.challengesJoined': increment(1),
-  }, { merge: true });
+  });
 }
 
 export async function isMember(uid, challengeId) {

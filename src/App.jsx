@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
+import { Capacitor } from "@capacitor/core";
+import { healthAvailable, requestHealthPerms, getTodayWorkouts, openHealthSettings } from "./healthService";
 import { useAuth } from "./AuthContext";
-import { saveOnboarding, getUserProfile } from "./userService";
+import { saveOnboarding, getUserProfile, saveActivity, getActivityLog } from "./userService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import ChallengesTab from "./ChallengesTab";
@@ -30,7 +32,10 @@ const getStreak = (history) => {
   let streak = 0;
   let d = new Date(today);
   while (true) {
-    if (history[formatDate(d)]) streak++;
+    const entry = history[formatDate(d)];
+    // Works for both old single-entry format and new activities-array format
+    const hasActivity = entry?.activities ? entry.activities.length > 0 : !!entry?.type;
+    if (hasActivity) streak++;
     else break;
     d.setDate(d.getDate() - 1);
   }
@@ -47,6 +52,11 @@ const getCalendarDays = (history) => {
   }
   return days;
 };
+
+// Returns activities array for a day entry — handles both old (single object)
+// and new (activities array) Firestore formats for backward compatibility.
+const getEntryActivities = (entry) =>
+  entry?.activities ?? (entry?.type ? [entry] : []);
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 
@@ -75,21 +85,37 @@ function CalendarGrid({ history }) {
       {weeks.map((week, wi) => (
         <div key={wi} style={{ display: "flex", gap: 4, marginBottom: 4 }}>
           {week.map((d, di) => {
-            const act = d.activity;
-            const aInfo = act ? actMap[act.type] : null;
+            const entry = d.activity;
+            const acts = getEntryActivities(entry);
+            const firstAct = acts[0] || null;
+            const aInfo = firstAct ? actMap[firstAct.type] : null;
+            const count = acts.length;
             const isToday = d.date === formatDate(today);
+            const totalDayPts = acts.reduce((s, a) => s + (a.points || 0), 0);
+            const tip = count === 0 ? d.date
+              : acts.map(a => `${actMap[a.type]?.icon} ${a.value}${actMap[a.type]?.unit}`).join(' · ')
+                + ` · ${totalDayPts} pts`;
             return (
-              <div key={di} title={act ? `${aInfo?.icon} ${act.value}${aInfo?.unit} · ${act.points}pts` : d.date}
+              <div key={di} title={tip}
                 style={{
-                  width: 36, height: 36, borderRadius: 8,
-                  background: act ? `${aInfo?.color}33` : "rgba(255,255,255,0.04)",
-                  border: `1.5px solid ${isToday ? "#fff" : act ? aInfo?.color : "rgba(255,255,255,0.06)"}`,
+                  width: 36, height: 36, borderRadius: 8, position: "relative",
+                  background: firstAct ? `${aInfo?.color}33` : "rgba(255,255,255,0.04)",
+                  border: `1.5px solid ${isToday ? "#fff" : firstAct ? aInfo?.color : "rgba(255,255,255,0.06)"}`,
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
                   cursor: "default", transition: "all .2s",
-                  boxShadow: act ? `0 0 8px ${aInfo?.color}44` : "none",
+                  boxShadow: firstAct ? `0 0 8px ${aInfo?.color}44` : "none",
                 }}>
-                <span style={{ fontSize: 14 }}>{act ? aInfo?.icon : ""}</span>
+                <span style={{ fontSize: 14 }}>{firstAct ? aInfo?.icon : ""}</span>
                 <span style={{ fontSize: 8, color: "#666", fontFamily: "monospace" }}>{d.day}</span>
+                {count > 1 && (
+                  <div style={{
+                    position: "absolute", top: -5, right: -5,
+                    width: 14, height: 14, borderRadius: "50%",
+                    background: "#FF6B35", border: "2px solid #080808",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 8, fontWeight: 900, color: "#fff", fontFamily: "monospace", lineHeight: 1,
+                  }}>{count}</div>
+                )}
               </div>
             );
           })}
@@ -99,25 +125,94 @@ function CalendarGrid({ history }) {
   );
 }
 
-function LogModal({ onClose, onLog }) {
-  const [type, setType] = useState("run");
-  const [value, setValue] = useState("");
-  const [note, setNote] = useState("");
-  const actInfo = ACTIVITY_TYPES.find(a => a.id === type);
+function LogModal({ onClose, onLog, todayActivities = [] }) {
+  const [type, setType]             = useState("run");
+  const [value, setValue]           = useState("");
+  const [note, setNote]             = useState("");
+  // Running list of activities logged this modal session (pre-seeded with what's already saved today)
+  const [loggedActivities, setLoggedActivities] = useState(todayActivities);
+  // Wearable sync state
+  const [syncState, setSyncState]   = useState("idle"); // idle | loading | picking | error | unavailable
+  const [syncWorkouts, setSyncWorkouts] = useState([]);
+  const [syncError, setSyncError]   = useState("");
 
+  const actInfo = ACTIVITY_TYPES.find(a => a.id === type);
+  const isNative = Capacitor.isNativePlatform();
+  const platform = Capacitor.getPlatform(); // 'ios' | 'android' | 'web'
+
+  // Add activity without closing the modal
   const handle = () => {
     if (!value) return;
-    onLog({ type, value: parseFloat(value), note, points: Math.floor(parseFloat(value) * 2 + 5) });
-    onClose();
+    const entry = { type, value: parseFloat(value), note, points: Math.floor(parseFloat(value) * 2 + 5) };
+    onLog(entry);
+    setLoggedActivities(prev => [...prev, entry]);
+    setValue("");
+    setNote("");
+    // keep type selected — user may want to log same type again
+  };
+
+  const handleSync = async () => {
+    setSyncState("loading");
+    try {
+      const available = await healthAvailable();
+      if (!available) { setSyncState("unavailable"); return; }
+      await requestHealthPerms();
+      const workouts = await getTodayWorkouts();
+      if (!workouts.length) {
+        setSyncError("No workouts found for today. Finish a workout on your watch, then try again.");
+        setSyncState("error");
+        return;
+      }
+      setSyncWorkouts(workouts);
+      setSyncState("picking");
+    } catch (e) {
+      setSyncError(e.message || "Could not read health data.");
+      setSyncState("error");
+    }
+  };
+
+  const applyWorkout = (w) => {
+    setType(w.type);
+    setValue(String(w.value));
+    setNote(`Synced from ${w.source}${w.calories ? ` · ${w.calories} cal` : ""}`);
+    setSyncState("idle");
   };
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
-      <div style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24, padding: 28, width: "100%", maxWidth: 380 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+      <div style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: loggedActivities.length ? 16 : 24 }}>
           <h3 style={{ color: "#fff", fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 20, margin: 0 }}>Log Activity</h3>
           <button onClick={onClose} style={{ background: "none", border: "none", color: "#666", fontSize: 24, cursor: "pointer" }}>×</button>
         </div>
+
+        {/* Today's logged activities — grows as user adds more */}
+        {loggedActivities.length > 0 && (
+          <div style={{ marginBottom: 20, padding: "12px 14px", borderRadius: 12, background: "rgba(52,211,153,0.05)", border: "1px solid rgba(52,211,153,0.15)" }}>
+            <p style={{ color: "#34D399", fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 8px" }}>
+              TODAY — {loggedActivities.length} {loggedActivities.length === 1 ? "ACTIVITY" : "ACTIVITIES"} LOGGED
+            </p>
+            {loggedActivities.map((a, i) => {
+              const ai = ACTIVITY_TYPES.find(x => x.id === a.type);
+              return (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 0", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.05)" }}>
+                  <span style={{ fontSize: 15 }}>{ai?.icon}</span>
+                  <span style={{ flex: 1, fontSize: 12, color: "#ccc", fontWeight: 600 }}>
+                    {ai?.label} · {a.value} {ai?.unit}
+                    {a.note ? <span style={{ color: "#555", fontWeight: 400 }}> · {a.note}</span> : null}
+                  </span>
+                  <span style={{ fontSize: 11, color: ai?.color, fontFamily: "monospace", fontWeight: 700 }}>+{a.points} pts</span>
+                </div>
+              );
+            })}
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 10, color: "#555", fontFamily: "monospace", letterSpacing: 0.5 }}>TOTAL TODAY</span>
+              <span style={{ fontSize: 13, color: "#FFD700", fontFamily: "monospace", fontWeight: 800 }}>
+                +{loggedActivities.reduce((s, a) => s + (a.points || 0), 0)} pts
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Activity type picker */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 20 }}>
@@ -148,30 +243,159 @@ function LogModal({ onClose, onLog }) {
             style={{ width: "100%", padding: "12px 16px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)", color: "#fff", fontSize: 14, fontFamily: "'Space Grotesk', sans-serif", boxSizing: "border-box", outline: "none" }} />
         </div>
 
-        {/* Sync options */}
-        <div style={{ marginBottom: 20, padding: "12px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 8px" }}>SYNC FROM WEARABLE</p>
-          <div style={{ display: "flex", gap: 8 }}>
-            {[
-              { label: "Apple Watch", icon: "⌚", color: "#fff" },
-              { label: "Galaxy Watch", icon: "⌚", color: "#1DB954" },
-            ].map(w => (
-              <button key={w.label} style={{ flex: 1, padding: "8px 6px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)", color: "#888", cursor: "pointer", fontSize: 10, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif" }}>
-                {w.icon} {w.label}
+        {/* ── Wearable sync section ── */}
+        <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>SYNC FROM WEARABLE</p>
+
+          {/* ─ idle: show device buttons ─ */}
+          {syncState === "idle" && (
+            <>
+              <div style={{ display: "flex", gap: 8, marginBottom: 7 }}>
+                {[
+                  { label: "Apple Watch",   icon: "⌚", activePlatform: "ios"     },
+                  { label: "Galaxy Watch",  icon: "⌚", activePlatform: "android" },
+                ].map(w => {
+                  const isActive = isNative && platform === w.activePlatform;
+                  return (
+                    <button key={w.label} onClick={handleSync} style={{
+                      flex: 1, padding: "9px 6px", borderRadius: 10, cursor: "pointer",
+                      border: `1px solid ${isActive ? "rgba(255,107,53,0.4)" : "rgba(255,255,255,0.08)"}`,
+                      background: isActive ? "rgba(255,107,53,0.1)" : "rgba(255,255,255,0.04)",
+                      color: isActive ? "#FF6B35" : "#777",
+                      fontSize: 10, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif",
+                      transition: "all .2s",
+                    }}>
+                      {w.icon} {w.label}
+                    </button>
+                  );
+                })}
+              </div>
+              <p style={{ color: "#444", fontSize: 10, margin: 0, fontFamily: "monospace" }}>
+                {isNative
+                  ? "Tap to import today's workouts from Health"
+                  : "Available in the iOS & Android app"}
+              </p>
+            </>
+          )}
+
+          {/* ─ loading ─ */}
+          {syncState === "loading" && (
+            <div style={{ textAlign: "center", padding: "10px 0" }}>
+              <p style={{ margin: 0, fontSize: 13, color: "#888" }}>⏳  Fetching workouts…</p>
+            </div>
+          )}
+
+          {/* ─ workout picker ─ */}
+          {syncState === "picking" && (
+            <div>
+              <p style={{ color: "#555", fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 8px" }}>
+                TODAY'S WORKOUTS — TAP TO IMPORT
+              </p>
+              {syncWorkouts.map((w, i) => {
+                const ai = ACTIVITY_TYPES.find(a => a.id === w.type);
+                const pts = Math.floor(w.value * 2 + 5);
+                return (
+                  <button key={i} onClick={() => applyWorkout(w)} style={{
+                    width: "100%", display: "flex", alignItems: "center", gap: 10,
+                    padding: "11px 12px", borderRadius: 12, marginBottom: 7,
+                    background: `${ai?.color || "#FF6B35"}12`,
+                    border: `1.5px solid ${ai?.color || "#FF6B35"}44`,
+                    cursor: "pointer", textAlign: "left", transition: "all .15s",
+                  }}>
+                    <span style={{ fontSize: 20 }}>{ai?.icon}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>
+                        {ai?.label} · {w.value} {w.unit}
+                      </div>
+                      <div style={{ fontSize: 10, color: "#555", fontFamily: "monospace", marginTop: 2 }}>
+                        {w.durMin} min{w.calories ? ` · ${w.calories} cal` : ""} · {w.source}
+                      </div>
+                    </div>
+                    <span style={{ fontSize: 11, color: ai?.color, fontFamily: "monospace", fontWeight: 700, flexShrink: 0 }}>
+                      +{pts} pts →
+                    </span>
+                  </button>
+                );
+              })}
+              <button onClick={() => setSyncState("idle")} style={{
+                width: "100%", padding: "7px", borderRadius: 8,
+                background: "none", border: "1px solid rgba(255,255,255,0.07)",
+                color: "#555", fontSize: 11, fontFamily: "monospace", cursor: "pointer", marginTop: 2,
+              }}>
+                ← Cancel
               </button>
-            ))}
-          </div>
-          <p style={{ color: "#444", fontSize: 10, margin: "8px 0 0", fontFamily: "monospace" }}>Connect via Health/Fit app to auto-sync</p>
+            </div>
+          )}
+
+          {/* ─ error ─ */}
+          {syncState === "error" && (
+            <div>
+              <p style={{ margin: "0 0 10px", fontSize: 12, color: "#888", lineHeight: 1.5 }}>{syncError}</p>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={() => setSyncState("idle")} style={{
+                  flex: 1, padding: "7px", borderRadius: 8,
+                  background: "none", border: "1px solid rgba(255,255,255,0.07)",
+                  color: "#555", fontSize: 11, fontFamily: "monospace", cursor: "pointer",
+                }}>← Back</button>
+                <button onClick={handleSync} style={{
+                  flex: 1, padding: "7px", borderRadius: 8,
+                  background: "rgba(255,107,53,0.1)", border: "1px solid rgba(255,107,53,0.3)",
+                  color: "#FF6B35", fontSize: 11, fontFamily: "monospace", cursor: "pointer",
+                }}>Retry</button>
+              </div>
+            </div>
+          )}
+
+          {/* ─ health API unavailable (Health Connect not installed etc.) ─ */}
+          {syncState === "unavailable" && (
+            <div>
+              <p style={{ margin: "0 0 10px", fontSize: 12, color: "#888", lineHeight: 1.5 }}>
+                {isNative
+                  ? "Health Connect isn't available on this device. Install it from the Play Store to enable sync."
+                  : "Wearable sync runs inside the native iOS & Android app."}
+              </p>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={() => setSyncState("idle")} style={{
+                  flex: 1, padding: "7px", borderRadius: 8,
+                  background: "none", border: "1px solid rgba(255,255,255,0.07)",
+                  color: "#555", fontSize: 11, fontFamily: "monospace", cursor: "pointer",
+                }}>← Back</button>
+                {isNative && platform === "android" && (
+                  <button onClick={openHealthSettings} style={{
+                    flex: 1, padding: "7px", borderRadius: 8,
+                    background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.3)",
+                    color: "#34D399", fontSize: 11, fontFamily: "monospace", cursor: "pointer",
+                  }}>Open Settings</button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
-        <button onClick={handle} style={{
+        <button onClick={handle} disabled={!value} style={{
           width: "100%", padding: "14px", borderRadius: 14, border: "none",
-          background: actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : "#333",
-          color: "#fff", fontSize: 15, fontWeight: 800, cursor: "pointer",
+          background: value && actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : "rgba(255,255,255,0.07)",
+          color: value ? "#fff" : "#555", fontSize: 15, fontWeight: 800, cursor: value ? "pointer" : "default",
           fontFamily: "'Syne', sans-serif", letterSpacing: 0.5,
-          boxShadow: actInfo ? `0 4px 20px ${actInfo.color}55` : "none",
+          boxShadow: value && actInfo ? `0 4px 20px ${actInfo.color}55` : "none",
+          transition: "all .2s",
         }}>
-          LOG {actInfo?.icon} +{value ? Math.floor(parseFloat(value || 0) * 2 + 5) : "?"} pts
+          {actInfo?.icon} Add Activity{value ? ` · +${Math.floor(parseFloat(value || 0) * 2 + 5)} pts` : ""}
+        </button>
+
+        {/* Done — only appears once at least one activity is logged */}
+        <button onClick={onClose} style={{
+          width: "100%", marginTop: 10, padding: "13px", borderRadius: 14,
+          border: `1px solid ${loggedActivities.length ? "rgba(52,211,153,0.3)" : "rgba(255,255,255,0.07)"}`,
+          background: "none",
+          color: loggedActivities.length ? "#34D399" : "#444",
+          fontSize: 14, fontWeight: 700, cursor: "pointer",
+          fontFamily: "'Space Grotesk', sans-serif",
+          transition: "all .2s",
+        }}>
+          {loggedActivities.length
+            ? `✓ Done — ${loggedActivities.length} ${loggedActivities.length === 1 ? "activity" : "activities"} logged`
+            : "Cancel"}
         </button>
       </div>
     </div>
@@ -274,11 +498,19 @@ export default function TribeChallenge() {
   useEffect(() => {
     if (!user) return;
     getUserProfile(user.uid).then(p => {
+      // Fall back to the old flat literal-dot field name in case the
+      // migration in createUserIfNew hasn't run for this account yet.
       setChallengeStats({
-        joined: p?.stats?.challengesJoined || 0,
-        owned:  p?.stats?.challengesOwned  || 0,
+        joined: (p?.stats?.challengesJoined ?? p?.['stats.challengesJoined']) || 0,
+        owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || 0,
       });
     });
+  }, [user?.uid]);
+
+  // Load persisted activity history from Firestore on sign-in
+  useEffect(() => {
+    if (!user) { setMyHistory({}); return; }
+    getActivityLog(user.uid).then(log => setMyHistory(log));
   }, [user?.uid]);
 
   // ── conditional returns (no hooks below this line) ──
@@ -310,30 +542,37 @@ export default function TribeChallenge() {
   }
 
   const streak = getStreak(myHistory);
-  const totalPts = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
+  // Flatten all activities across all days for counts and totals
+  const allActivities = Object.values(myHistory).flatMap(entry => getEntryActivities(entry));
+  const totalPts = allActivities.reduce((s, a) => s + (a.points || 0), 0);
   const actCounts = ACTIVITY_TYPES.reduce((acc, a) => {
-    acc[a.id] = Object.values(myHistory).filter(h => h.type === a.id).length;
+    acc[a.id] = allActivities.filter(h => h.type === a.id).length;
     return acc;
   }, {});
 
   const buildStats = (history, cStats) => {
-    const entries = Object.entries(history);
+    // Flatten all individual activity sessions across all days
+    const allActs = Object.values(history).flatMap(entry => getEntryActivities(entry));
+    // Days that have at least one activity
+    const activeDates = Object.keys(history).filter(
+      date => getEntryActivities(history[date]).length > 0
+    );
     const ac = ACTIVITY_TYPES.reduce((acc, a) => {
-      acc[a.id] = entries.filter(([, h]) => h.type === a.id).length;
+      acc[a.id] = allActs.filter(h => h.type === a.id).length;
       return acc;
     }, {});
-    const runKm   = entries.filter(([, h]) => h.type === "run").reduce((s, [, h]) => s + (h.value || 0), 0);
-    const cycleKm = entries.filter(([, h]) => h.type === "cycle").reduce((s, [, h]) => s + (h.value || 0), 0);
-    const walkKm  = entries.filter(([, h]) => h.type === "walk").reduce((s, [, h]) => s + (h.value || 0), 0);
-    const sortedDates = Object.keys(history).sort();
+    const runKm   = allActs.filter(h => h.type === "run").reduce((s, h) => s + (h.value || 0), 0);
+    const cycleKm = allActs.filter(h => h.type === "cycle").reduce((s, h) => s + (h.value || 0), 0);
+    const walkKm  = allActs.filter(h => h.type === "walk").reduce((s, h) => s + (h.value || 0), 0);
+    const sortedDates = activeDates.sort();
     const weekStart = new Date(today);
     weekStart.setDate(today.getDate() - today.getDay());
     weekStart.setHours(0, 0, 0, 0);
     return {
-      totalLogs: entries.length,
+      totalLogs: allActs.length,                      // total individual sessions
       streak: getStreak(history),
-      totalPts: entries.reduce((s, [, a]) => s + (a.points || 0), 0),
-      daysActive: entries.length,
+      totalPts: allActs.reduce((s, a) => s + (a.points || 0), 0),
+      daysActive: activeDates.length,                  // unique days with activity
       runKm, cycleKm, walkKm,
       actCounts: ac,
       uniqueTypes: Object.values(ac).filter(v => v > 0).length,
@@ -345,7 +584,7 @@ export default function TribeChallenge() {
         const d = new Date(date);
         if (d.getDay() !== 6) return false;
         const sun = new Date(d); sun.setDate(d.getDate() + 1);
-        return !!history[formatDate(sun)];
+        return getEntryActivities(history[formatDate(sun)]).length > 0;
       }),
       comeback: sortedDates.some((date, i) => i > 0 &&
         (new Date(date) - new Date(sortedDates[i - 1])) / 86400000 >= 3),
@@ -372,8 +611,16 @@ export default function TribeChallenge() {
 
   const handleLog = (entry) => {
     const key = formatDate(today);
-    const updated = { ...myHistory, [key]: entry };
+    // Accumulate: append to existing activities for the day (backward-compat with old single-entry format)
+    const existingActivities = getEntryActivities(myHistory[key]);
+    const activities = [...existingActivities, entry];
+    const dayEntry = {
+      activities,
+      points: activities.reduce((s, a) => s + (a.points || 0), 0),
+    };
+    const updated = { ...myHistory, [key]: dayEntry };
     setMyHistory(updated);
+    saveActivity(user.uid, key, dayEntry).catch(console.error);
     showToast(`${ACTIVITY_TYPES.find(a => a.id === entry.type)?.icon} +${entry.points} pts logged!`);
     triggerBadgeCheck(updated, challengeStats);
   };
@@ -422,7 +669,13 @@ export default function TribeChallenge() {
         }}>{toast}</div>
       )}
 
-      {showLog && <LogModal onClose={() => setShowLog(false)} onLog={handleLog} />}
+      {showLog && (
+        <LogModal
+          onClose={() => setShowLog(false)}
+          onLog={handleLog}
+          todayActivities={getEntryActivities(myHistory[formatDate(today)])}
+        />
+      )}
 
       {/* ── HOME TAB ── */}
       {tab === "home" && (
@@ -459,7 +712,7 @@ export default function TribeChallenge() {
             {[
               { label: "STREAK", value: streak, suffix: "🔥", color: "#FF6B35" },
               { label: "POINTS", value: totalPts, suffix: "pts", color: "#FFD700" },
-              { label: "DAYS ACTIVE", value: Object.keys(myHistory).length, suffix: "", color: "#34D399" },
+              { label: "DAYS ACTIVE", value: Object.keys(myHistory).filter(d => getEntryActivities(myHistory[d]).length > 0).length, suffix: "", color: "#34D399" },
             ].map(s => (
               <div key={s.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "14px 12px", border: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
                 <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: s.color }}>{s.value}<span style={{ fontSize: 14 }}>{s.suffix}</span></div>
@@ -579,8 +832,8 @@ export default function TribeChallenge() {
             {[
               { label: "TOTAL POINTS", value: totalPts, suffix: " pts", color: "#FFD700", icon: "⭐" },
               { label: "CURRENT STREAK", value: streak, suffix: " days", color: "#FF6B35", icon: "🔥" },
-              { label: "DAYS ACTIVE", value: Object.keys(myHistory).length, suffix: " days", color: "#34D399", icon: "📅" },
-              { label: "ACTIVITIES", value: Object.values(actCounts).reduce((s, v) => s + v, 0), suffix: " total", color: "#60A5FA", icon: "💪" },
+              { label: "DAYS ACTIVE", value: Object.keys(myHistory).filter(d => getEntryActivities(myHistory[d]).length > 0).length, suffix: " days", color: "#34D399", icon: "📅" },
+              { label: "ACTIVITIES", value: allActivities.length, suffix: " total", color: "#60A5FA", icon: "💪" },
             ].map(s => (
               <div key={s.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "16px", border: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
                 <div style={{ fontSize: 26, marginBottom: 6 }}>{s.icon}</div>
@@ -810,8 +1063,8 @@ export default function TribeChallenge() {
           onStatsChanged={() => {
             getUserProfile(user.uid).then(p => {
               const newStats = {
-                joined: p?.stats?.challengesJoined || 0,
-                owned:  p?.stats?.challengesOwned  || 0,
+                joined: (p?.stats?.challengesJoined ?? p?.['stats.challengesJoined']) || 0,
+                owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || 0,
               };
               setChallengeStats(newStats);
               triggerBadgeCheck(myHistory, newStats);
@@ -822,8 +1075,8 @@ export default function TribeChallenge() {
             sessionStorage.removeItem("pendingJoinCode");
             getUserProfile(user.uid).then(p => {
               const newStats = {
-                joined: p?.stats?.challengesJoined || 0,
-                owned:  p?.stats?.challengesOwned  || 0,
+                joined: (p?.stats?.challengesJoined ?? p?.['stats.challengesJoined']) || 0,
+                owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || 0,
               };
               setChallengeStats(newStats);
               triggerBadgeCheck(myHistory, newStats);

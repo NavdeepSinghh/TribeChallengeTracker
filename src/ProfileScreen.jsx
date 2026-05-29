@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase';
 import { BADGES, calcBadgeXP, getTribeRank } from './badgeService';
-import { getUserProfile } from './userService';
+import { getUserProfile, getUserChallengePoints } from './userService';
 
 const ACCENT = '#FF6B35';
 const GOLD   = '#FFD700';
@@ -20,19 +20,31 @@ const FREQ_LABELS = {
 };
 
 export default function ProfileScreen({ user, earnedBadges, myHistory, challengeStats, onClose }) {
-  const [profile, setProfile] = useState(null);
-  const [visible, setVisible] = useState(false);
+  const [profile, setProfile]                 = useState(null);
+  const [visible, setVisible]                 = useState(false);
+  const [challengePoints, setChallengePoints] = useState([]);
+  const [showBreakdown, setShowBreakdown]     = useState(false);
 
   useEffect(() => {
-    getUserProfile(user.uid).then(p => { setProfile(p); });
+    getUserProfile(user.uid).then(p => {
+      setProfile(p);
+      const ids = p?.joinedChallengeIds || [];
+      if (ids.length) {
+        getUserChallengePoints(user.uid, ids).then(setChallengePoints);
+      }
+    });
     setTimeout(() => setVisible(true), 40);
   }, [user.uid]);
 
-  const badgeXP   = calcBadgeXP(earnedBadges);
-  const rank      = getTribeRank(badgeXP);
-  const totalPts  = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
-  const daysActive = Object.keys(myHistory).length;
-  const onb = profile?.onboarding;
+  const badgeXP    = calcBadgeXP(earnedBadges);
+  const rank       = getTribeRank(badgeXP);
+  // Count days that have at least one activity (handles both old single-entry and new activities-array format)
+  const daysActive = Object.values(myHistory).filter(e =>
+    e?.activities ? e.activities.length > 0 : !!e?.type
+  ).length;
+  const onb        = profile?.onboarding;
+
+  const totalChallengePoints = challengePoints.reduce((s, c) => s + (c.totalPoints || 0), 0);
 
   const rankedPct = rank.next
     ? Math.min(100, ((badgeXP - rank.min) / (rank.next.min - rank.min)) * 100)
@@ -45,14 +57,17 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
     { label: 'CHALLENGES STARTED', value: profile?.stats?.challengesOwned  ?? challengeStats.owned,  icon: '🏆', color: GOLD },
     { label: 'BADGES EARNED',      value: earnedBadges.size, icon: '⭐', color: '#A78BFA' },
     { label: 'TOTAL XP',           value: badgeXP,           icon: rank.icon, color: rank.color },
-    { label: 'TOTAL POINTS',       value: totalPts,          icon: '💎', color: '#34D399' },
-    { label: 'DAYS ACTIVE',        value: daysActive,        icon: '📅', color: '#60A5FA' },
+    {
+      label: 'CHALLENGE PTS', value: totalChallengePoints, icon: '🏅', color: '#34D399',
+      onClick: () => setShowBreakdown(true),
+    },
+    { label: 'DAYS ACTIVE', value: daysActive, icon: '📅', color: '#60A5FA' },
   ];
 
   const prefRows = [
-    onb?.goal      && { label: 'GOAL',      value: GOAL_LABELS[onb.goal]  || onb.goal },
-    onb?.level     && { label: 'LEVEL',     value: LEVEL_LABELS[onb.level] || onb.level },
-    onb?.frequency && { label: 'FREQUENCY', value: FREQ_LABELS[onb.frequency] || onb.frequency },
+    onb?.goal       && { label: 'GOAL',      value: GOAL_LABELS[onb.goal]      || onb.goal },
+    onb?.level      && { label: 'LEVEL',     value: LEVEL_LABELS[onb.level]    || onb.level },
+    onb?.frequency  && { label: 'FREQUENCY', value: FREQ_LABELS[onb.frequency] || onb.frequency },
     onb?.motivation && { label: 'DRIVEN BY', value: onb.motivation.replace('_', ' ').toUpperCase() },
   ].filter(Boolean);
 
@@ -79,9 +94,7 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         borderBottom: '1px solid rgba(255,255,255,0.05)',
       }}>
-        <div>
-          <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 2 }}>YOUR PROFILE</p>
-        </div>
+        <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 2 }}>YOUR PROFILE</p>
         <button onClick={onClose} style={{
           background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
           color: '#888', borderRadius: 20, width: 32, height: 32,
@@ -100,8 +113,7 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         }}>
           <div style={{
             width: 68, height: 68, borderRadius: 20, flexShrink: 0,
-            background: `${rank.color}22`,
-            border: `2px solid ${rank.color}55`,
+            background: `${rank.color}22`, border: `2px solid ${rank.color}55`,
             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 34,
             boxShadow: `0 0 24px ${rank.color}22`,
           }}>
@@ -152,10 +164,15 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 2, fontFamily: 'monospace', margin: '0 0 12px' }}>STATS</p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 24 }}>
           {statsGrid.map(s => (
-            <div key={s.label} style={{
+            <div key={s.label} onClick={s.onClick} style={{
               background: 'rgba(255,255,255,0.03)', borderRadius: 16, padding: '14px 16px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: `1px solid ${s.onClick ? s.color + '44' : 'rgba(255,255,255,0.06)'}`,
+              cursor: s.onClick ? 'pointer' : 'default',
+              position: 'relative', transition: 'border-color .2s',
             }}>
+              {s.onClick && (
+                <span style={{ position: 'absolute', top: 10, right: 12, fontSize: 11, color: s.color, opacity: 0.7, fontFamily: 'monospace' }}>→</span>
+              )}
               <div style={{ fontSize: 22, marginBottom: 6 }}>{s.icon}</div>
               <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: s.color }}>
                 {s.value ?? 0}
@@ -163,6 +180,11 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
               <div style={{ fontSize: 9, color: '#555', fontWeight: 700, letterSpacing: 1, fontFamily: 'monospace', marginTop: 2 }}>
                 {s.label}
               </div>
+              {s.onClick && (
+                <div style={{ fontSize: 8, color: s.color, fontFamily: 'monospace', marginTop: 4, opacity: 0.6 }}>
+                  TAP FOR BREAKDOWN
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -217,8 +239,8 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
           borderRadius: 16, padding: '0 16px 4px',
         }}>
           {[
-            { label: 'EMAIL', value: user.email || '—' },
-            { label: 'USER ID', value: user.uid?.slice(0, 12) + '…' },
+            { label: 'EMAIL',   value: user.email || '—' },
+            { label: 'USER ID', value: (user.uid?.slice(0, 12) || '') + '…' },
           ].map((row, i) => (
             <div key={row.label} style={{
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -235,7 +257,8 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         <button
           onClick={() => signOut(auth)}
           style={{
-            width: '100%', marginTop: 24, padding: '14px', borderRadius: 14, border: '1px solid rgba(255,255,255,0.08)',
+            width: '100%', marginTop: 24, padding: '14px', borderRadius: 14,
+            border: '1px solid rgba(255,255,255,0.08)',
             background: 'rgba(255,255,255,0.04)', color: '#666',
             fontSize: 14, fontWeight: 700, cursor: 'pointer',
             fontFamily: "'Space Grotesk', sans-serif", letterSpacing: 0.5,
@@ -246,6 +269,113 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         </button>
 
       </div>
+
+      {/* ── Challenge points breakdown bottom sheet ── */}
+      {showBreakdown && (
+        <div
+          onClick={() => setShowBreakdown(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 350,
+            background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              width: '100%', maxWidth: 430,
+              background: '#111',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '24px 24px 0 0',
+              padding: '20px 24px 52px',
+              maxHeight: '72vh', overflowY: 'auto',
+            }}
+          >
+            {/* Drag handle */}
+            <div style={{ width: 36, height: 4, background: 'rgba(255,255,255,0.12)', borderRadius: 4, margin: '0 auto 20px' }} />
+
+            {/* Sheet header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+              <div>
+                <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 2 }}>PER CHALLENGE</p>
+                <h3 style={{ margin: '4px 0 0', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#fff' }}>
+                  Points Breakdown
+                </h3>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 28, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#34D399' }}>
+                  {totalChallengePoints}
+                </div>
+                <div style={{ fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700 }}>TOTAL PTS</div>
+              </div>
+            </div>
+
+            {challengePoints.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '32px 0' }}>
+                <div style={{ fontSize: 40, marginBottom: 12 }}>🏅</div>
+                <p style={{ margin: 0, fontSize: 14, color: '#555' }}>No challenge points yet</p>
+                <p style={{ margin: '6px 0 0', fontSize: 12, color: '#444' }}>
+                  Log daily tasks inside a challenge to earn points
+                </p>
+              </div>
+            ) : (
+              <>
+                {challengePoints
+                  .slice()
+                  .sort((a, b) => b.totalPoints - a.totalPoints)
+                  .map((c, i, arr) => (
+                    <div key={c.challengeId} style={{
+                      display: 'flex', alignItems: 'center', gap: 14,
+                      padding: '14px 0',
+                      borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                    }}>
+                      <div style={{
+                        width: 46, height: 46, borderRadius: 14, flexShrink: 0,
+                        background: `${c.color}22`, border: `1.5px solid ${c.color}55`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 22, boxShadow: `0 0 10px ${c.color}22`,
+                      }}>
+                        {c.emoji}
+                      </div>
+
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {c.name}
+                        </div>
+                        <div style={{ fontSize: 10, color: '#555', fontFamily: 'monospace', marginTop: 3 }}>
+                          {c.daysCompleted} day{c.daysCompleted !== 1 ? 's' : ''} logged
+                          {c.currentStreak > 0 ? ` · ${c.currentStreak}🔥 streak` : ''}
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                        <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: c.color }}>
+                          {c.totalPoints}
+                        </div>
+                        <div style={{ fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700 }}>PTS</div>
+                      </div>
+                    </div>
+                  ))
+                }
+
+                {/* Grand total row */}
+                <div style={{
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  marginTop: 16, padding: '12px 16px', borderRadius: 14,
+                  background: 'rgba(52,211,153,0.06)', border: '1px solid rgba(52,211,153,0.2)',
+                }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#888', fontFamily: 'monospace', letterSpacing: 0.5 }}>
+                    TOTAL ACROSS ALL CHALLENGES
+                  </span>
+                  <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#34D399' }}>
+                    {totalChallengePoints}
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
