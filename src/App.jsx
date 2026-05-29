@@ -223,10 +223,23 @@ function BadgeUnlockOverlay({ badge, onDismiss }) {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function TribeChallenge() {
   const { user } = useAuth();
-  const [onboarded, setOnboarded] = useState(null); // null = checking
-  const [earnedBadges, setEarnedBadges] = useState(new Set());
-  const [badgeQueue, setBadgeQueue] = useState([]); // badges waiting to animate
 
+  // ── ALL state declarations must be before any conditional returns ──
+  const [onboarded, setOnboarded] = useState(null);
+  const [earnedBadges, setEarnedBadges] = useState(new Set());
+  const [badgeQueue, setBadgeQueue] = useState([]);
+  const [tab, setTab] = useState("home");
+  const [pendingJoinCode, setPendingJoinCode] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("join") || sessionStorage.getItem("pendingJoinCode") || null;
+  });
+  const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
+  const [showLog, setShowLog] = useState(false);
+  const [myHistory, setMyHistory] = useState({});
+  const [toast, setToast] = useState(null);
+  const [badgeCat, setBadgeCat] = useState("all");
+
+  // ── ALL effects must be before any conditional returns ──
   useEffect(() => {
     if (!user) return;
     loadEarnedBadges(user.uid).then(setEarnedBadges);
@@ -234,10 +247,8 @@ export default function TribeChallenge() {
 
   useEffect(() => {
     if (!user) { setOnboarded(null); return; }
-    // Fast path: localStorage cache
     const cached = localStorage.getItem("onboarding_" + user.uid);
     if (cached) { setOnboarded(true); return; }
-    // Source of truth: Firestore (handles new devices / cleared cache)
     getUserProfile(user.uid).then(profile => {
       if (profile?.onboarding) {
         localStorage.setItem("onboarding_" + user.uid, JSON.stringify(profile.onboarding));
@@ -248,6 +259,23 @@ export default function TribeChallenge() {
     });
   }, [user?.uid]);
 
+  useEffect(() => {
+    if (!pendingJoinCode) return;
+    sessionStorage.setItem("pendingJoinCode", pendingJoinCode);
+    setTab("challenges");
+  }, [pendingJoinCode]);
+
+  useEffect(() => {
+    if (!user) return;
+    getUserProfile(user.uid).then(p => {
+      setChallengeStats({
+        joined: p?.stats?.challengesJoined || 0,
+        owned:  p?.stats?.challengesOwned  || 0,
+      });
+    });
+  }, [user?.uid]);
+
+  // ── conditional returns (no hooks below this line) ──
   if (user === undefined || (user && onboarded === null)) {
     return (
       <div style={{ minHeight: "100vh", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -270,35 +298,6 @@ export default function TribeChallenge() {
       />
     );
   }
-
-  const [tab, setTab] = useState("home");
-  const [pendingJoinCode, setPendingJoinCode] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("join") || sessionStorage.getItem("pendingJoinCode") || null;
-  });
-  const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
-  const [showLog, setShowLog] = useState(false);
-  const [myHistory, setMyHistory] = useState({});
-  const [toast, setToast] = useState(null);
-  const [badgeCat, setBadgeCat] = useState("all");
-
-  // If there's an invite code, store it and switch to challenges tab
-  useEffect(() => {
-    if (pendingJoinCode) {
-      sessionStorage.setItem("pendingJoinCode", pendingJoinCode);
-      setTab("challenges");
-    }
-  }, [pendingJoinCode]);
-
-  // Load challenge stats for the home screen
-  useEffect(() => {
-    getUserProfile(user.uid).then(p => {
-      setChallengeStats({
-        joined: p?.stats?.challengesJoined || 0,
-        owned:  p?.stats?.challengesOwned  || 0,
-      });
-    });
-  }, [user.uid]);
 
   const streak = getStreak(myHistory);
   const totalPts = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
