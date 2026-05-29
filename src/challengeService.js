@@ -130,7 +130,16 @@ export async function createChallenge(uid, template, customName, startDateStr) {
 
   await setDoc(ref, data);
   await setDoc(doc(db, 'challenges', ref.id, 'members', uid), {
-    uid, role: 'admin', joinedAt: serverTimestamp(), status: 'active',
+    uid,
+    role:          'admin',
+    displayName:   creator.displayName || '',
+    joinedAt:      serverTimestamp(),
+    status:        'active',
+    totalPoints:   0,
+    currentStreak: 0,
+    longestStreak: 0,
+    daysCompleted: 0,
+    lastLogDate:   null,
   });
   await setDoc(doc(db, 'users', uid), {
     joinedChallengeIds:       arrayUnion(ref.id),
@@ -145,8 +154,20 @@ export async function joinChallenge(uid, challengeId) {
   const memberRef = doc(db, 'challenges', challengeId, 'members', uid);
   if ((await getDoc(memberRef)).exists()) return; // already joined
 
+  const userSnap = await getDoc(doc(db, 'users', uid));
+  const userData = userSnap.data() || {};
+
   await setDoc(memberRef, {
-    uid, role: 'member', joinedAt: serverTimestamp(), status: 'active',
+    uid,
+    role:          'member',
+    displayName:   userData.displayName || '',
+    joinedAt:      serverTimestamp(),
+    status:        'active',
+    totalPoints:   0,
+    currentStreak: 0,
+    longestStreak: 0,
+    daysCompleted: 0,
+    lastLogDate:   null,
   });
   await setDoc(doc(db, 'challenges', challengeId), { memberCount: increment(1) }, { merge: true });
   await setDoc(doc(db, 'users', uid), {

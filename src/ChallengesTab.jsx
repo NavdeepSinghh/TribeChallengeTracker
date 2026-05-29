@@ -4,6 +4,7 @@ import {
   CHALLENGE_TEMPLATES, createChallenge, joinChallenge,
   isMember, getChallenge, getChallengeByInviteCode, getUserChallenges,
 } from './challengeService';
+import ChallengeTrackerScreen from './ChallengeTrackerScreen';
 
 const ACCENT = '#FF6B35';
 const GOLD   = '#FFD700';
@@ -410,18 +411,22 @@ function CreateChallenge({ onBack, onCreate }) {
 
 // ─── MAIN CHALLENGES TAB ──────────────────────────────────────────────────────
 export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
-  const { user }                          = useAuth();
-  const [view, setView]                   = useState('list');
-  const [myChallenges, setMyChallenges]   = useState([]);
+  const { user }                              = useAuth();
+  const [view, setView]                       = useState('list');
+  const [myChallenges, setMyChallenges]       = useState([]);
+  const [joinedIds, setJoinedIds]             = useState(new Set());
   const [detailChallenge, setDetailChallenge] = useState(null);
-  const [loading, setLoading]             = useState(true);
+  const [trackerChallenge, setTrackerChallenge] = useState(null);
+  const [loading, setLoading]                 = useState(true);
   const [pendingChallenge, setPendingChallenge] = useState(null);
 
   const load = async () => {
-    const profile = (await import('./userService')).then(m => m.getUserProfile(user.uid));
-    const p = await profile;
-    const challenges = await getUserChallenges(p?.joinedChallengeIds || []);
+    const { getUserProfile } = await import('./userService');
+    const p = await getUserProfile(user.uid);
+    const ids = p?.joinedChallengeIds || [];
+    const challenges = await getUserChallenges(ids);
     setMyChallenges(challenges);
+    setJoinedIds(new Set(ids));
     setLoading(false);
   };
 
@@ -431,15 +436,20 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
   useEffect(() => {
     if (!pendingJoinCode) return;
     getChallengeByInviteCode(pendingJoinCode).then(c => {
-      if (c) { setPendingChallenge(c); setDetailChallenge(c); setView('detail'); }
+      if (c) { setPendingChallenge(c); setDetailChallenge(c); setView(joinedIds.has(c.id) ? 'tracker' : 'detail'); if (joinedIds.has(c.id)) setTrackerChallenge(c); }
       onJoinHandled?.();
       window.history.replaceState({}, '', window.location.pathname);
     });
   }, [pendingJoinCode]);
 
-  const openDetail = async (challengeId) => {
+  const openChallenge = async (challengeId) => {
     const c = await getChallenge(challengeId);
-    if (c) { setDetailChallenge(c); setView('detail'); }
+    if (!c) return;
+    if (joinedIds.has(challengeId)) {
+      setTrackerChallenge(c); setView('tracker');
+    } else {
+      setDetailChallenge(c); setView('detail');
+    }
   };
 
   if (loading) {
@@ -493,7 +503,7 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
                   key={c.id}
                   challenge={c}
                   isOwner={c.createdBy === user.uid}
-                  onClick={() => openDetail(c.id)}
+                  onClick={() => openChallenge(c.id)}
                 />
               ))}
             </div>
@@ -512,8 +522,17 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
         <ChallengeDetail
           challenge={detailChallenge}
           onBack={() => { setView('list'); load(); }}
-          onJoined={load}
+          onJoined={() => { load(); openChallenge(detailChallenge.id); }}
         />
+      )}
+
+      {view === 'tracker' && trackerChallenge && (
+        <div style={{ padding: 0 }}>
+          <ChallengeTrackerScreen
+            challenge={trackerChallenge}
+            onBack={() => { setView('list'); load(); }}
+          />
+        </div>
       )}
     </div>
   );
