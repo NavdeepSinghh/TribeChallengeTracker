@@ -6,6 +6,7 @@ import { saveOnboarding, getUserProfile } from "./userService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import ChallengesTab from "./ChallengesTab";
+import ProfileScreen from "./ProfileScreen";
 import {
   BADGES, BADGE_CATEGORIES, TRIBE_RANKS,
   checkBadges, getBadgeProgress, awardBadges, loadEarnedBadges,
@@ -239,6 +240,7 @@ export default function TribeChallenge() {
   const [myHistory, setMyHistory] = useState({});
   const [toast, setToast] = useState(null);
   const [badgeCat, setBadgeCat] = useState("all");
+  const [showProfile, setShowProfile] = useState(false);
 
   // ── ALL effects must be before any conditional returns ──
   useEffect(() => {
@@ -394,6 +396,17 @@ export default function TribeChallenge() {
         />
       )}
 
+      {/* Profile screen */}
+      {showProfile && (
+        <ProfileScreen
+          user={user}
+          earnedBadges={earnedBadges}
+          myHistory={myHistory}
+          challengeStats={challengeStats}
+          onClose={() => setShowProfile(false)}
+        />
+      )}
+
       {/* Toast */}
       {toast && (
         <div style={{
@@ -420,13 +433,14 @@ export default function TribeChallenge() {
                 </h1>
               </div>
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-                <button onClick={() => signOut(auth)} style={{
-                  background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-                  color: "#555", borderRadius: 20, padding: "4px 12px",
-                  fontSize: 10, fontWeight: 700, fontFamily: "monospace",
-                  cursor: "pointer", letterSpacing: 0.5,
+                <button onClick={() => setShowProfile(true)} style={{
+                  width: 38, height: 38, borderRadius: "50%", flexShrink: 0,
+                  background: `${getTribeRank(calcBadgeXP(earnedBadges)).color}22`,
+                  border: `2px solid ${getTribeRank(calcBadgeXP(earnedBadges)).color}55`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 18, cursor: "pointer",
                 }}>
-                  SIGN OUT
+                  {getTribeRank(calcBadgeXP(earnedBadges)).icon}
                 </button>
                 <div>
                   <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>POINTS</div>

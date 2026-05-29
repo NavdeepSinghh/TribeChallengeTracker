@@ -95,7 +95,22 @@ export const CHALLENGE_TEMPLATES = [
 const genInviteCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
 
 // ─── SERVICE FUNCTIONS ────────────────────────────────────────────────────────
-export async function createChallenge(uid, template, customName, startDateStr) {
+export async function searchPublicChallenges(term = '') {
+  const snap = await getDocs(
+    query(collection(db, 'challenges'), where('isPublic', '==', true))
+  );
+  const all = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+    .filter(c => c.status === 'active');
+  if (!term.trim()) return all.slice(0, 30);
+  const t = term.toLowerCase();
+  return all.filter(c =>
+    c.name?.toLowerCase().includes(t) ||
+    c.tagline?.toLowerCase().includes(t) ||
+    c.creatorName?.toLowerCase().includes(t)
+  );
+}
+
+export async function createChallenge(uid, template, customName, startDateStr, isPublic = true) {
   const ref  = doc(collection(db, 'challenges'));
   const end  = new Date(startDateStr);
   end.setDate(end.getDate() + template.duration);
@@ -124,7 +139,7 @@ export async function createChallenge(uid, template, customName, startDateStr) {
     endDate:       end.toISOString().split('T')[0],
     inviteCode:    genInviteCode(),
     memberCount:   1,
-    isPublic:      true,
+    isPublic,
     status:        'active',   // active | completed | cancelled
   };
 

@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from './AuthContext';
 import {
   CHALLENGE_TEMPLATES, createChallenge, joinChallenge,
   isMember, getChallenge, getChallengeByInviteCode, getUserChallenges,
+  searchPublicChallenges,
 } from './challengeService';
 import ChallengeTrackerScreen from './ChallengeTrackerScreen';
 
@@ -48,8 +49,13 @@ function ChallengeCard({ challenge, isOwner, onClick }) {
             </span>
           )}
         </div>
-        <div style={{ fontSize: 11, color: '#555', fontFamily: 'monospace' }}>
-          {challenge.duration} days · {challenge.memberCount} member{challenge.memberCount !== 1 ? 's' : ''}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
+          <span style={{ fontSize: 11, color: '#555', fontFamily: 'monospace' }}>
+            {challenge.duration} days · {challenge.memberCount} member{challenge.memberCount !== 1 ? 's' : ''}
+          </span>
+          <span style={{ fontSize: 9, fontFamily: 'monospace', fontWeight: 700, color: challenge.isPublic ? '#34D399' : '#888', background: challenge.isPublic ? 'rgba(52,211,153,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${challenge.isPublic ? 'rgba(52,211,153,0.25)' : 'rgba(255,255,255,0.08)'}`, borderRadius: 5, padding: '1px 5px' }}>
+            {challenge.isPublic ? '🌐 PUBLIC' : '🔒 PRIVATE'}
+          </span>
         </div>
       </div>
       <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -218,6 +224,7 @@ function CreateChallenge({ onBack, onCreate }) {
   const [template, setTemplate]     = useState(null);
   const [customName, setCustomName] = useState('');
   const [startDate, setStartDate]   = useState(todayStr());
+  const [isPublic, setIsPublic]     = useState(true);
   const [loading, setLoading]       = useState(false);
   const [created, setCreated]       = useState(null);
   const [copied, setCopied]         = useState(false);
@@ -226,7 +233,7 @@ function CreateChallenge({ onBack, onCreate }) {
 
   const handleCreate = async () => {
     setLoading(true);
-    const c = await createChallenge(user.uid, template, customName, startDate);
+    const c = await createChallenge(user.uid, template, customName, startDate, isPublic);
     setCreated(c);
     setStep(3);
     onCreate?.();
@@ -306,7 +313,7 @@ function CreateChallenge({ onBack, onCreate }) {
             }} />
           </div>
 
-          <div style={{ marginBottom: 22 }}>
+          <div style={{ marginBottom: 14 }}>
             <label style={{ color: '#555', fontSize: 10, fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1, display: 'block', marginBottom: 6 }}>START DATE</label>
             <input type="date" value={startDate} min={todayStr()} onChange={e => setStartDate(e.target.value)} style={{
               width: '100%', padding: '13px 16px', borderRadius: 12,
@@ -314,6 +321,28 @@ function CreateChallenge({ onBack, onCreate }) {
               color: '#fff', fontSize: 14, fontFamily: "'Space Grotesk', sans-serif",
               boxSizing: 'border-box', outline: 'none', colorScheme: 'dark',
             }} />
+          </div>
+
+          {/* Public / Private toggle */}
+          <div style={{ marginBottom: 22 }}>
+            <label style={{ color: '#555', fontSize: 10, fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1, display: 'block', marginBottom: 8 }}>VISIBILITY</label>
+            <div style={{ display: 'flex', gap: 10 }}>
+              {[
+                { val: true,  icon: '🌐', label: 'Public', desc: 'Discoverable by anyone' },
+                { val: false, icon: '🔒', label: 'Private', desc: 'Invite link only' },
+              ].map(opt => (
+                <button key={String(opt.val)} onClick={() => setIsPublic(opt.val)} style={{
+                  flex: 1, padding: '12px 10px', borderRadius: 14, cursor: 'pointer', textAlign: 'center',
+                  border: `1.5px solid ${isPublic === opt.val ? ACCENT : 'rgba(255,255,255,0.08)'}`,
+                  background: isPublic === opt.val ? 'rgba(255,107,53,0.1)' : 'rgba(255,255,255,0.03)',
+                  transition: 'all .2s',
+                }}>
+                  <div style={{ fontSize: 20, marginBottom: 4 }}>{opt.icon}</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: isPublic === opt.val ? '#fff' : '#666' }}>{opt.label}</div>
+                  <div style={{ fontSize: 9, color: '#555', fontFamily: 'monospace', marginTop: 2 }}>{opt.desc}</div>
+                </button>
+              ))}
+            </div>
           </div>
 
           {template.rules.length > 0 && (
@@ -419,6 +448,10 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
   const [trackerChallenge, setTrackerChallenge] = useState(null);
   const [loading, setLoading]                 = useState(true);
   const [pendingChallenge, setPendingChallenge] = useState(null);
+  const [searchQuery, setSearchQuery]         = useState('');
+  const [searchResults, setSearchResults]     = useState([]);
+  const [searching, setSearching]             = useState(false);
+  const searchTimer                           = useRef(null);
 
   const load = async () => {
     const { getUserProfile } = await import('./userService');
@@ -431,6 +464,18 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
   };
 
   useEffect(() => { load(); }, [user?.uid]);
+
+  const handleSearch = (q) => {
+    setSearchQuery(q);
+    clearTimeout(searchTimer.current);
+    if (!q.trim()) { setSearchResults([]); setSearching(false); return; }
+    setSearching(true);
+    searchTimer.current = setTimeout(async () => {
+      const results = await searchPublicChallenges(q);
+      setSearchResults(results.filter(c => !joinedIds.has(c.id)));
+      setSearching(false);
+    }, 350);
+  };
 
   // Handle invite link
   useEffect(() => {
@@ -486,15 +531,15 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
 
           {/* My challenges */}
           {myChallenges.length === 0 ? (
-            <div style={{ ...card, textAlign: 'center', padding: '36px 24px' }}>
+            <div style={{ ...card, textAlign: 'center', padding: '36px 24px', marginBottom: 24 }}>
               <div style={{ fontSize: 40, marginBottom: 12 }}>🎯</div>
               <p style={{ color: '#fff', fontWeight: 700, margin: '0 0 6px' }}>No challenges yet</p>
               <p style={{ color: '#555', fontSize: 13, margin: 0 }}>
-                Create one or ask a friend to share their invite link
+                Create one or search below to join a public challenge
               </p>
             </div>
           ) : (
-            <div>
+            <div style={{ marginBottom: 24 }}>
               <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: 'monospace', margin: '0 0 12px' }}>
                 MY CHALLENGES ({myChallenges.length})
               </p>
@@ -508,6 +553,62 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
               ))}
             </div>
           )}
+
+          {/* Discover public challenges */}
+          <div>
+            <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: 'monospace', margin: '0 0 10px' }}>
+              DISCOVER CHALLENGES 🔍
+            </p>
+            <div style={{ position: 'relative', marginBottom: 14 }}>
+              <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', fontSize: 14, pointerEvents: 'none' }}>🔍</span>
+              <input
+                value={searchQuery}
+                onChange={e => handleSearch(e.target.value)}
+                placeholder="Search public challenges…"
+                style={{
+                  width: '100%', padding: '12px 16px 12px 38px',
+                  borderRadius: 14, border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(255,255,255,0.05)', color: '#fff',
+                  fontSize: 14, fontFamily: "'Space Grotesk', sans-serif",
+                  boxSizing: 'border-box', outline: 'none',
+                }}
+              />
+              {searching && (
+                <span style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', fontSize: 12 }}>⏳</span>
+              )}
+            </div>
+
+            {searchQuery.trim() && !searching && searchResults.length === 0 && (
+              <div style={{ ...card, textAlign: 'center', padding: '24px' }}>
+                <p style={{ margin: 0, fontSize: 13, color: '#555' }}>No public challenges found for "{searchQuery}"</p>
+              </div>
+            )}
+
+            {searchResults.length > 0 && (
+              <div>
+                <p style={{ color: '#444', fontSize: 9, fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1, margin: '0 0 10px' }}>
+                  {searchResults.length} RESULT{searchResults.length !== 1 ? 'S' : ''}
+                </p>
+                {searchResults.map(c => (
+                  <ChallengeCard
+                    key={c.id}
+                    challenge={c}
+                    isOwner={false}
+                    onClick={() => { setDetailChallenge(c); setView('detail'); }}
+                  />
+                ))}
+              </div>
+            )}
+
+            {!searchQuery.trim() && (
+              <div style={{ ...card, padding: '20px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <p style={{ margin: '0 0 4px', fontSize: 13, fontWeight: 700, color: '#ccc' }}>Find your next challenge</p>
+                <p style={{ margin: 0, fontSize: 12, color: '#555' }}>
+                  Search by name to discover public challenges from the community. Private challenges require an invite link.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
