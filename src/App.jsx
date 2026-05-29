@@ -31,31 +31,6 @@ const ACTIVITY_TYPES = [
 const today = new Date();
 const formatDate = (d) => d.toISOString().split("T")[0];
 
-// seed 14 days of mock activity for "you"
-const genHistory = () => {
-  const h = {};
-  for (let i = 0; i < 30; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() - i);
-    const key = formatDate(d);
-    if (Math.random() > 0.35) {
-      const act = ACTIVITY_TYPES[Math.floor(Math.random() * ACTIVITY_TYPES.length)];
-      h[key] = { type: act.id, value: Math.round((Math.random() * 60 + 10) * 10) / 10, points: Math.floor(Math.random() * 20 + 5) };
-    }
-  }
-  return h;
-};
-
-const LEADERBOARD_SEEDS = [
-  { id: "you",     name: "You",          handle: "@risewiththetribe", avatar: "🧡", pts: 0, history: null },
-  { id: "sam",     name: "Sam K.",        handle: "@samfit",           avatar: "💚", pts: 184, history: genHistory() },
-  { id: "priya",   name: "Priya M.",      handle: "@priyamoves",       avatar: "💜", pts: 171, history: genHistory() },
-  { id: "jake",    name: "Jake T.",       handle: "@jaketribe",        avatar: "💙", pts: 156, history: genHistory() },
-  { id: "lena",    name: "Lena R.",       handle: "@lenarun",          avatar: "🩷", pts: 143, history: genHistory() },
-  { id: "omar",    name: "Omar H.",       handle: "@omarhustle",       avatar: "🧡", pts: 122, history: genHistory() },
-  { id: "mia",     name: "Mia Z.",        handle: "@miazest",          avatar: "💛", pts: 109, history: genHistory() },
-];
-
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 const getStreak = (history) => {
   let streak = 0;
@@ -281,8 +256,7 @@ export default function TribeChallenge() {
   });
   const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
   const [showLog, setShowLog] = useState(false);
-  const [myHistory, setMyHistory] = useState(genHistory());
-  const [leaderboard, setLeaderboard] = useState(null);
+  const [myHistory, setMyHistory] = useState({});
   const [toast, setToast] = useState(null);
 
   // If there's an invite code, store it and switch to challenges tab
@@ -302,13 +276,6 @@ export default function TribeChallenge() {
       });
     });
   }, [user.uid]);
-
-  useEffect(() => {
-    const myPts = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
-    const lb = LEADERBOARD_SEEDS.map(u => u.id === "you" ? { ...u, pts: myPts, history: myHistory } : u);
-    lb.sort((a, b) => b.pts - a.pts);
-    setLeaderboard(lb);
-  }, [myHistory]);
 
   const streak = getStreak(myHistory);
   const totalPts = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
@@ -338,8 +305,6 @@ export default function TribeChallenge() {
     setToast(msg);
     setTimeout(() => setToast(null), 3000);
   };
-
-  const myRank = leaderboard ? leaderboard.findIndex(u => u.id === "you") + 1 : "-";
 
   return (
     <div style={{
@@ -385,8 +350,8 @@ export default function TribeChallenge() {
                   SIGN OUT
                 </button>
                 <div>
-                  <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>RANK</div>
-                  <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: myRank <= 3 ? "#FFD700" : "#fff" }}>#{myRank}</div>
+                  <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>POINTS</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#FFD700" }}>{totalPts}</div>
                 </div>
               </div>
             </div>
@@ -506,67 +471,61 @@ export default function TribeChallenge() {
         </div>
       )}
 
-      {/* ── LEADERBOARD TAB ── */}
-      {tab === "board" && leaderboard && (
+      {/* ── BOARD TAB ── */}
+      {tab === "board" && (
         <div style={{ padding: "52px 20px 20px" }}>
-          <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>CHALLENGE STANDINGS</p>
-          <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>Leaderboard 🏆</h2>
+          <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>YOUR STATS</p>
+          <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>Performance 📊</h2>
 
-          {leaderboard.map((user, i) => {
-            const isMe = user.id === "you";
-            const rank = i + 1;
-            const rankEmoji = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`;
-            const userStreak = user.history ? getStreak(user.history) : 0;
+          {/* Stats grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
+            {[
+              { label: "TOTAL POINTS", value: totalPts, suffix: " pts", color: "#FFD700", icon: "⭐" },
+              { label: "CURRENT STREAK", value: streak, suffix: " days", color: "#FF6B35", icon: "🔥" },
+              { label: "DAYS ACTIVE", value: Object.keys(myHistory).length, suffix: " days", color: "#34D399", icon: "📅" },
+              { label: "ACTIVITIES", value: Object.values(actCounts).reduce((s, v) => s + v, 0), suffix: " total", color: "#60A5FA", icon: "💪" },
+            ].map(s => (
+              <div key={s.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "16px", border: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
+                <div style={{ fontSize: 26, marginBottom: 6 }}>{s.icon}</div>
+                <div style={{ fontSize: 24, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: s.color }}>{s.value}<span style={{ fontSize: 13 }}>{s.suffix}</span></div>
+                <div style={{ fontSize: 9, color: "#555", fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", marginTop: 2 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
 
-            return (
-              <div key={user.id} style={{
-                marginBottom: 10, padding: "16px", borderRadius: 18,
-                background: isMe ? "linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,215,0,0.08))" : "rgba(255,255,255,0.03)",
-                border: `1.5px solid ${isMe ? "rgba(255,107,53,0.4)" : "rgba(255,255,255,0.06)"}`,
-                display: "flex", alignItems: "center", gap: 14,
-                transition: "all .2s",
-              }}>
-                <div style={{ fontSize: 22, width: 32, textAlign: "center", fontFamily: "'Syne', sans-serif", fontWeight: 800 }}>
-                  {rankEmoji}
-                </div>
-                <Avatar emoji={user.avatar} size={42} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: isMe ? "#FFD700" : "#fff" }}>{user.name}</span>
-                    {userStreak >= 3 && <span title={`${userStreak} day streak`} style={{ fontSize: 12 }}>🔥</span>}
+          {/* Challenge leaderboards CTA */}
+          <div style={{ padding: "20px", borderRadius: 18, background: "linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,215,0,0.08))", border: "1px solid rgba(255,107,53,0.2)", marginBottom: 24 }}>
+            <p style={{ margin: "0 0 6px", fontSize: 14, fontWeight: 800, color: "#FFD700", fontFamily: "'Syne', sans-serif" }}>Challenge Leaderboards 🏆</p>
+            <p style={{ margin: "0 0 14px", fontSize: 12, color: "#888" }}>Join or create a challenge to compete with the tribe and climb the leaderboard.</p>
+            <button onClick={() => setTab("challenges")} style={{ padding: "10px 18px", borderRadius: 12, background: "linear-gradient(135deg, #FF6B35, #FFD700)", border: "none", color: "#000", fontSize: 13, fontWeight: 800, cursor: "pointer", fontFamily: "'Syne', sans-serif" }}>
+              View Challenges →
+            </button>
+          </div>
+
+          {/* Activity breakdown */}
+          <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>ACTIVITY BREAKDOWN</p>
+          {Object.values(actCounts).some(v => v > 0) ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {ACTIVITY_TYPES.filter(a => actCounts[a.id] > 0).map(a => (
+                <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", background: "rgba(255,255,255,0.03)", borderRadius: 14, border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <span style={{ fontSize: 22 }}>{a.icon}</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "#ccc" }}>{a.label}</span>
+                      <span style={{ fontSize: 11, color: "#666", fontFamily: "monospace" }}>{actCounts[a.id]}x</span>
+                    </div>
+                    <div style={{ height: 4, background: "rgba(255,255,255,0.06)", borderRadius: 4 }}>
+                      <div style={{ height: "100%", borderRadius: 4, background: a.color, width: `${Math.min(100, (actCounts[a.id] / 15) * 100)}%` }} />
+                    </div>
                   </div>
-                  <span style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>{user.handle}</span>
                 </div>
-                <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: rank === 1 ? "#FFD700" : "#fff" }}>{user.pts}</div>
-                  <div style={{ fontSize: 9, color: "#555", fontFamily: "monospace", fontWeight: 700 }}>PTS</div>
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Progress to next rank */}
-          {leaderboard && (() => {
-            const myIdx = leaderboard.findIndex(u => u.id === "you");
-            const me = leaderboard[myIdx];
-            const above = leaderboard[myIdx - 1];
-            if (!above) return (
-              <div style={{ margin: "16px 0", padding: 16, borderRadius: 16, background: "rgba(255,215,0,0.08)", border: "1px solid rgba(255,215,0,0.2)", textAlign: "center" }}>
-                <p style={{ margin: 0, color: "#FFD700", fontWeight: 800, fontFamily: "'Syne', sans-serif" }}>🏆 You're leading the tribe!</p>
-              </div>
-            );
-            const gap = above.pts - me.pts;
-            return (
-              <div style={{ margin: "16px 0", padding: 16, borderRadius: 16, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <p style={{ margin: "0 0 8px", fontSize: 12, color: "#888", fontFamily: "monospace" }}>
-                  <span style={{ color: "#FF6B35", fontWeight: 700 }}>{gap} pts</span> behind {above.name}
-                </p>
-                <div style={{ height: 6, background: "rgba(255,255,255,0.06)", borderRadius: 6 }}>
-                  <div style={{ height: "100%", borderRadius: 6, background: "linear-gradient(90deg, #FF6B35, #FFD700)", width: `${Math.min(100, (me.pts / above.pts) * 100)}%` }} />
-                </div>
-              </div>
-            );
-          })()}
+              ))}
+            </div>
+          ) : (
+            <div style={{ padding: "32px 20px", borderRadius: 16, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
+              <p style={{ margin: 0, fontSize: 13, color: "#555" }}>No activities logged yet.<br />Tap <span style={{ color: "#FF6B35", fontWeight: 700 }}>Log Today's Activity</span> to get started!</p>
+            </div>
+          )}
         </div>
       )}
 
