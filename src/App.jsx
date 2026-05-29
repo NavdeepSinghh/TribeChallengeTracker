@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { useAuth } from "./AuthContext";
+import { saveOnboarding, getUserProfile } from "./userService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 
@@ -235,8 +236,18 @@ export default function TribeChallenge() {
 
   useEffect(() => {
     if (!user) { setOnboarded(null); return; }
-    const done = localStorage.getItem("onboarding_" + user.uid);
-    setOnboarded(!!done);
+    // Fast path: localStorage cache
+    const cached = localStorage.getItem("onboarding_" + user.uid);
+    if (cached) { setOnboarded(true); return; }
+    // Source of truth: Firestore (handles new devices / cleared cache)
+    getUserProfile(user.uid).then(profile => {
+      if (profile?.onboarding) {
+        localStorage.setItem("onboarding_" + user.uid, JSON.stringify(profile.onboarding));
+        setOnboarded(true);
+      } else {
+        setOnboarded(false);
+      }
+    });
   }, [user?.uid]);
 
   if (user === undefined || (user && onboarded === null)) {
@@ -253,7 +264,8 @@ export default function TribeChallenge() {
     return (
       <OnboardingScreen
         userName={user.displayName}
-        onComplete={(answers) => {
+        onComplete={async (answers) => {
+          await saveOnboarding(user.uid, answers);
           localStorage.setItem("onboarding_" + user.uid, JSON.stringify(answers));
           setOnboarded(true);
         }}
