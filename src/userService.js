@@ -12,6 +12,13 @@ export async function createUserIfNew(user) {
       displayName: user.displayName || '',
       createdAt:   serverTimestamp(),
     });
+    return;
+  }
+  // One-time migration: established accounts (have challenge history) that are
+  // missing the onboardingDone flag get it back-filled so they skip re-onboarding.
+  const data = snap.data();
+  if (!data.onboardingDone && !data.onboarding && (data.joinedChallengeIds?.length > 0 || data.stats?.challengesJoined > 0)) {
+    await setDoc(ref, { onboardingDone: true }, { merge: true });
   }
 }
 
@@ -20,6 +27,7 @@ export async function saveOnboarding(uid, answers) {
   const ref = doc(db, 'users', uid);
   await setDoc(ref, {
     onboarding: { ...answers, completedAt: serverTimestamp() },
+    onboardingDone: true,
   }, { merge: true });
 }
 

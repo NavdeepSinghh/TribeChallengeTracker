@@ -256,8 +256,8 @@ export default function TribeChallenge() {
     const cached = localStorage.getItem("onboarding_" + user.uid);
     if (cached) { setOnboarded(true); return; }
     getUserProfile(user.uid).then(profile => {
-      if (profile?.onboarding) {
-        localStorage.setItem("onboarding_" + user.uid, JSON.stringify(profile.onboarding));
+      if (profile?.onboarding || profile?.onboardingDone) {
+        localStorage.setItem("onboarding_" + user.uid, "1");
         setOnboarded(true);
       } else {
         setOnboarded(false);
@@ -297,8 +297,12 @@ export default function TribeChallenge() {
       <OnboardingScreen
         userName={user.displayName}
         onComplete={async (answers) => {
-          await saveOnboarding(user.uid, answers);
-          localStorage.setItem("onboarding_" + user.uid, JSON.stringify(answers));
+          try {
+            await saveOnboarding(user.uid, answers);
+          } catch (e) {
+            console.error("saveOnboarding failed:", e);
+          }
+          localStorage.setItem("onboarding_" + user.uid, "1");
           setOnboarded(true);
         }}
       />
