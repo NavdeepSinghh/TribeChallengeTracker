@@ -1,8 +1,29 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Users can only read/write their own profile
     match /users/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Challenges — any authenticated user can read; only creator can update/delete
+    match /challenges/{challengeId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        request.auth.uid == resource.data.createdBy ||
+        // allow memberCount increment on join
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberCount'])
+      );
+      allow delete: if request.auth != null && request.auth.uid == resource.data.createdBy;
+
+      // Members subcollection — users can join (write own doc), anyone authenticated can read
+      match /members/{uid} {
+        allow read: if request.auth != null;
+        allow create, update: if request.auth != null && request.auth.uid == uid;
+        allow delete: if request.auth != null && request.auth.uid == uid;
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ import { useAuth } from "./AuthContext";
 import { saveOnboarding, getUserProfile } from "./userService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
+import ChallengesTab from "./ChallengesTab";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const BADGES = [
@@ -274,10 +275,33 @@ export default function TribeChallenge() {
   }
 
   const [tab, setTab] = useState("home");
+  const [pendingJoinCode, setPendingJoinCode] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("join") || sessionStorage.getItem("pendingJoinCode") || null;
+  });
+  const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
   const [showLog, setShowLog] = useState(false);
   const [myHistory, setMyHistory] = useState(genHistory());
   const [leaderboard, setLeaderboard] = useState(null);
   const [toast, setToast] = useState(null);
+
+  // If there's an invite code, store it and switch to challenges tab
+  useEffect(() => {
+    if (pendingJoinCode) {
+      sessionStorage.setItem("pendingJoinCode", pendingJoinCode);
+      setTab("challenges");
+    }
+  }, [pendingJoinCode]);
+
+  // Load challenge stats for the home screen
+  useEffect(() => {
+    getUserProfile(user.uid).then(p => {
+      setChallengeStats({
+        joined: p?.stats?.challengesJoined || 0,
+        owned:  p?.stats?.challengesOwned  || 0,
+      });
+    });
+  }, [user.uid]);
 
   useEffect(() => {
     const myPts = Object.values(myHistory).reduce((s, a) => s + (a.points || 0), 0);
@@ -433,6 +457,29 @@ export default function TribeChallenge() {
             </div>
           </div>
 
+          {/* Challenge stats */}
+          <div style={{ padding: "0 20px 20px" }}>
+            <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>YOUR CHALLENGES</p>
+            <button onClick={() => setTab("challenges")} style={{
+              width: "100%", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,107,53,0.2)",
+              borderRadius: 16, padding: "16px 20px", cursor: "pointer", textAlign: "left",
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+            }}>
+              <div style={{ display: "flex", gap: 24 }}>
+                {[
+                  { label: "JOINED", value: challengeStats.joined },
+                  { label: "STARTED", value: challengeStats.owned },
+                ].map(s => (
+                  <div key={s.label}>
+                    <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#FF6B35" }}>{s.value}</div>
+                    <div style={{ fontSize: 9, color: "#555", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+              <span style={{ color: "#FF6B35", fontSize: 14, fontFamily: "monospace", fontWeight: 700 }}>VIEW →</span>
+            </button>
+          </div>
+
           {/* Share card */}
           <div style={{ padding: "0 20px" }}>
             <div style={{
@@ -568,6 +615,21 @@ export default function TribeChallenge() {
         </div>
       )}
 
+      {/* ── CHALLENGES TAB ── */}
+      {tab === "challenges" && (
+        <ChallengesTab
+          pendingJoinCode={pendingJoinCode}
+          onJoinHandled={() => {
+            setPendingJoinCode(null);
+            sessionStorage.removeItem("pendingJoinCode");
+            getUserProfile(user.uid).then(p => setChallengeStats({
+              joined: p?.stats?.challengesJoined || 0,
+              owned:  p?.stats?.challengesOwned  || 0,
+            }));
+          }}
+        />
+      )}
+
       {/* ── NAV ── */}
       <div style={{
         position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)",
@@ -576,9 +638,10 @@ export default function TribeChallenge() {
         display: "flex", padding: "10px 0 20px",
       }}>
         {[
-          { id: "home",   icon: "🏠", label: "Home" },
-          { id: "board",  icon: "🏆", label: "Board" },
-          { id: "badges", icon: "⭐", label: "Badges" },
+          { id: "home",       icon: "🏠", label: "Home" },
+          { id: "challenges", icon: "🎯", label: "Challenges" },
+          { id: "board",      icon: "🏆", label: "Board" },
+          { id: "badges",     icon: "⭐", label: "Badges" },
         ].map(n => (
           <button key={n.id} onClick={() => setTab(n.id)} style={{
             flex: 1, background: "none", border: "none", color: tab === n.id ? "#FF6B35" : "#444",
