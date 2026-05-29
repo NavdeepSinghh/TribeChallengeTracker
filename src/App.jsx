@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase";
+import { useAuth } from "./AuthContext";
+import AuthScreen from "./AuthScreen";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const BADGES = [
@@ -225,6 +229,17 @@ function LogModal({ onClose, onLog }) {
 
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function TribeChallenge() {
+  const { user } = useAuth();
+
+  if (user === undefined) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ fontSize: 32 }}>🏃</span>
+      </div>
+    );
+  }
+
+  if (!user) return <AuthScreen />;
   const [tab, setTab] = useState("home");
   const [showLog, setShowLog] = useState(false);
   const [myHistory, setMyHistory] = useState(genHistory());
@@ -303,9 +318,19 @@ export default function TribeChallenge() {
                   30-Day<br /><span style={{ background: "linear-gradient(90deg, #FF6B35, #FFD700)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Challenge</span>
                 </h1>
               </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>RANK</div>
-                <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: myRank <= 3 ? "#FFD700" : "#fff" }}>#{myRank}</div>
+              <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
+                <button onClick={() => signOut(auth)} style={{
+                  background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
+                  color: "#555", borderRadius: 20, padding: "4px 12px",
+                  fontSize: 10, fontWeight: 700, fontFamily: "monospace",
+                  cursor: "pointer", letterSpacing: 0.5,
+                }}>
+                  SIGN OUT
+                </button>
+                <div>
+                  <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>RANK</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: myRank <= 3 ? "#FFD700" : "#fff" }}>#{myRank}</div>
+                </div>
               </div>
             </div>
           </div>
