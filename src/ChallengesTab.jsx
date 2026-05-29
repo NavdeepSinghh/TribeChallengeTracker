@@ -82,7 +82,7 @@ function ChallengeDetail({ challenge, onBack, onJoined }) {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(shareLink);
+    navigator.clipboard.writeText(shareLink).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -234,7 +234,7 @@ function CreateChallenge({ onBack, onCreate }) {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(shareLink);
+    navigator.clipboard.writeText(shareLink).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -385,7 +385,7 @@ function CreateChallenge({ onBack, onCreate }) {
 
           <div style={{ display: 'flex', gap: 10 }}>
             {['WhatsApp', 'Instagram', 'Messages'].map(app => (
-              <button key={app} onClick={() => navigator.clipboard.writeText(shareLink)} style={{
+              <button key={app} onClick={() => navigator.clipboard.writeText(shareLink).catch(() => {})} style={{
                 flex: 1, padding: '10px 6px', borderRadius: 10, cursor: 'pointer',
                 background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
                 color: '#666', fontSize: 10, fontFamily: 'monospace', fontWeight: 700,
