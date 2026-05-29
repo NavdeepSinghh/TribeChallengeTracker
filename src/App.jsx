@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { useAuth } from "./AuthContext";
 import AuthScreen from "./AuthScreen";
+import OnboardingScreen from "./OnboardingScreen";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const BADGES = [
@@ -230,8 +231,15 @@ function LogModal({ onClose, onLog }) {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function TribeChallenge() {
   const { user } = useAuth();
+  const [onboarded, setOnboarded] = useState(null); // null = checking
 
-  if (user === undefined) {
+  useEffect(() => {
+    if (!user) { setOnboarded(null); return; }
+    const done = localStorage.getItem("onboarding_" + user.uid);
+    setOnboarded(!!done);
+  }, [user?.uid]);
+
+  if (user === undefined || (user && onboarded === null)) {
     return (
       <div style={{ minHeight: "100vh", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <span style={{ fontSize: 32 }}>🏃</span>
@@ -240,6 +248,19 @@ export default function TribeChallenge() {
   }
 
   if (!user) return <AuthScreen />;
+
+  if (!onboarded) {
+    return (
+      <OnboardingScreen
+        userName={user.displayName}
+        onComplete={(answers) => {
+          localStorage.setItem("onboarding_" + user.uid, JSON.stringify(answers));
+          setOnboarded(true);
+        }}
+      />
+    );
+  }
+
   const [tab, setTab] = useState("home");
   const [showLog, setShowLog] = useState(false);
   const [myHistory, setMyHistory] = useState(genHistory());
