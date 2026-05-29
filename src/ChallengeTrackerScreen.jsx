@@ -4,6 +4,7 @@ import {
   getTodayLog, logDay, getAllProgress,
   getMemberData, getChallengeLeaderboard, calcPoints,
 } from './trackingService';
+import { leaveChallenge } from './challengeService';
 
 const ACCENT = '#FF6B35';
 const GOLD   = '#FFD700';
@@ -360,17 +361,111 @@ function ProgressTab({ challenge, memberData }) {
   );
 }
 
+// ─── LEAVE CONFIRMATION DIALOG ────────────────────────────────────────────────
+function LeaveDialog({ challenge, memberData, onConfirm, onCancel, leaving }) {
+  const isAdmin      = memberData?.role === 'admin';
+  const isOnlyMember = (challenge.memberCount || 1) <= 1;
+
+  let title, body, confirmLabel, confirmColor;
+
+  if (isAdmin && isOnlyMember) {
+    title        = 'Delete this challenge?';
+    body         = 'You\'re the only member. Leaving will permanently delete this challenge and all its data. This cannot be undone.';
+    confirmLabel = '🗑 Delete Challenge';
+    confirmColor = '#ef4444';
+  } else if (isAdmin) {
+    title        = 'Leave as admin?';
+    body         = 'You\'re the admin. The highest-scoring member will automatically be promoted to admin. Your points and streak in this challenge will be removed.';
+    confirmLabel = '🚪 Leave & Promote';
+    confirmColor = '#FF6B35';
+  } else {
+    title        = 'Leave this challenge?';
+    body         = 'Your points, streak, and progress in this challenge will be removed. You can rejoin later but will start from scratch.';
+    confirmLabel = '🚪 Leave Challenge';
+    confirmColor = '#FF6B35';
+  }
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 200,
+      background: 'rgba(0,0,0,0.85)',
+      display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+      padding: '0 0 0',
+    }}>
+      <div style={{
+        width: '100%', maxWidth: 430,
+        background: '#161616', borderRadius: '24px 24px 0 0',
+        border: '1px solid rgba(255,255,255,0.08)', borderBottom: 'none',
+        padding: '28px 24px 44px',
+      }}>
+        {/* Handle */}
+        <div style={{ width: 40, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.12)', margin: '0 auto 24px' }} />
+
+        <h3 style={{ margin: '0 0 12px', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#fff' }}>
+          {title}
+        </h3>
+        <p style={{ margin: '0 0 28px', fontSize: 13, color: '#888', lineHeight: 1.6 }}>
+          {body}
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <button
+            onClick={onConfirm}
+            disabled={leaving}
+            style={{
+              width: '100%', padding: '14px', borderRadius: 14, border: 'none',
+              background: leaving ? 'rgba(255,255,255,0.07)' : confirmColor,
+              color: '#fff', fontSize: 15, fontWeight: 800, cursor: leaving ? 'default' : 'pointer',
+              fontFamily: "'Syne', sans-serif", letterSpacing: 0.3,
+              opacity: leaving ? 0.7 : 1, transition: 'all .2s',
+            }}
+          >
+            {leaving ? '…' : confirmLabel}
+          </button>
+          <button
+            onClick={onCancel}
+            disabled={leaving}
+            style={{
+              width: '100%', padding: '13px', borderRadius: 14,
+              border: '1px solid rgba(255,255,255,0.09)', background: 'none',
+              color: '#888', fontSize: 14, fontWeight: 700, cursor: 'pointer',
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN TRACKER ─────────────────────────────────────────────────────────────
-export default function ChallengeTrackerScreen({ challenge, onBack }) {
-  const { user }                    = useAuth();
-  const [innerTab, setInnerTab]     = useState('today');
-  const [memberData, setMemberData] = useState(null);
+export default function ChallengeTrackerScreen({ challenge, onBack, onLeft }) {
+  const { user }                          = useAuth();
+  const [innerTab, setInnerTab]           = useState('today');
+  const [memberData, setMemberData]       = useState(null);
+  const [showLeaveDialog, setShowLeave]   = useState(false);
+  const [leaving, setLeaving]             = useState(false);
 
   const loadMember = useCallback(() => {
     getMemberData(user.uid, challenge.id).then(setMemberData);
   }, [user.uid, challenge.id]);
 
   useEffect(() => { loadMember(); }, [loadMember]);
+
+  const handleLeave = async () => {
+    setLeaving(true);
+    try {
+      await leaveChallenge(user.uid, challenge.id);
+      onLeft?.();   // refresh parent list + stats
+      onBack();     // navigate back to challenges list
+    } catch (e) {
+      console.error('[Leave]', e);
+      setLeaving(false);
+      setShowLeave(false);
+    }
+  };
 
   const TABS = [
     { id: 'today',       label: 'Today',       icon: '📋' },
@@ -382,11 +477,38 @@ export default function ChallengeTrackerScreen({ challenge, onBack }) {
     <div style={{ minHeight: '100vh', background: '#080808', fontFamily: "'Space Grotesk', sans-serif", color: '#fff', maxWidth: 430, margin: '0 auto' }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+      {/* Leave confirmation sheet */}
+      {showLeaveDialog && memberData && (
+        <LeaveDialog
+          challenge={challenge}
+          memberData={memberData}
+          leaving={leaving}
+          onConfirm={handleLeave}
+          onCancel={() => setShowLeave(false)}
+        />
+      )}
+
       {/* Header */}
       <div style={{ padding: '52px 20px 0', background: 'linear-gradient(180deg, #0f0f0f, #080808)' }}>
-        <button onClick={onBack} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: 13, fontFamily: 'monospace', fontWeight: 700, padding: '0 0 12px', display: 'flex', alignItems: 'center', gap: 6 }}>
-          ← CHALLENGES
-        </button>
+        {/* Back + Leave row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 12 }}>
+          <button onClick={onBack} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: 13, fontFamily: 'monospace', fontWeight: 700, padding: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
+            ← CHALLENGES
+          </button>
+          <button
+            onClick={() => setShowLeave(true)}
+            style={{
+              background: 'none', border: '1px solid rgba(239,68,68,0.25)',
+              borderRadius: 8, padding: '5px 12px', cursor: 'pointer',
+              color: 'rgba(239,68,68,0.7)', fontSize: 11,
+              fontFamily: 'monospace', fontWeight: 700, letterSpacing: 0.5,
+              transition: 'all .2s',
+            }}
+          >
+            LEAVE
+          </button>
+        </div>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 16 }}>
           <div style={{ width: 44, height: 44, borderRadius: 12, background: `${challenge.color}22`, border: `1.5px solid ${challenge.color}55`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>
             {challenge.emoji}

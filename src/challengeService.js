@@ -1,6 +1,6 @@
 import {
-  collection, doc, setDoc, getDoc, getDocs, updateDoc,
-  query, where, serverTimestamp, increment, arrayUnion,
+  collection, doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc,
+  query, where, serverTimestamp, increment, arrayUnion, arrayRemove,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -210,4 +210,84 @@ export async function getUserChallenges(ids = []) {
   if (!ids.length) return [];
   const results = await Promise.all(ids.map(getChallenge));
   return results.filter(Boolean);
+}
+
+/**
+ * Removes a user from a challenge, handling three scenarios:
+ *
+ * 1. Regular member  → delete member doc, decrement counts, remove from user profile.
+ * 2. Admin leaving, other members exist → auto-promote highest-points member to admin,
+ *    then leave as above (also decrements challengesOwned for the leaving user).
+ * 3. Admin is the only member → delete the challenge document entirely.
+ *
+ * Returns { deleted: true } when the whole challenge was removed, { deleted: false } otherwise.
+ */
+export async function leaveChallenge(uid, challengeId) {
+  const challengeRef = doc(db, 'challenges', challengeId);
+  const memberRef    = doc(db, 'challenges', challengeId, 'members', uid);
+
+  const [challengeSnap, memberSnap] = await Promise.all([
+    getDoc(challengeRef),
+    getDoc(memberRef),
+  ]);
+
+  if (!challengeSnap.exists() || !memberSnap.exists()) return { deleted: false };
+
+  const challenge = challengeSnap.data();
+  const member    = memberSnap.data();
+  const isAdmin   = member.role === 'admin';
+
+  // ── Scenario 3: admin is the only member → delete the challenge ──────────
+  if (isAdmin && (challenge.memberCount || 1) <= 1) {
+    await deleteDoc(memberRef);
+    await deleteDoc(challengeRef);
+    await updateDoc(doc(db, 'users', uid), {
+      joinedChallengeIds:       arrayRemove(challengeId),
+      'stats.challengesJoined': increment(-1),
+      'stats.challengesOwned':  increment(-1),
+    });
+    return { deleted: true };
+  }
+
+  // ── Scenario 2: admin leaving with other members → auto-promote ──────────
+  if (isAdmin) {
+    const membersSnap = await getDocs(
+      collection(db, 'challenges', challengeId, 'members')
+    );
+    const others = membersSnap.docs
+      .filter(d => d.id !== uid)
+      .map(d => ({ uid: d.id, ...d.data() }))
+      .sort((a, b) => (b.totalPoints || 0) - (a.totalPoints || 0));
+
+    if (others.length > 0) {
+      const newAdmin = others[0];
+      await updateDoc(
+        doc(db, 'challenges', challengeId, 'members', newAdmin.uid),
+        { role: 'admin' }
+      );
+      await updateDoc(challengeRef, {
+        createdBy:   newAdmin.uid,
+        creatorName: newAdmin.displayName || '',
+      });
+    }
+
+    // Remove leaving admin from user profile (joined + owned)
+    await updateDoc(doc(db, 'users', uid), {
+      joinedChallengeIds:       arrayRemove(challengeId),
+      'stats.challengesJoined': increment(-1),
+      'stats.challengesOwned':  increment(-1),
+    });
+  } else {
+    // ── Scenario 1: regular member ──────────────────────────────────────────
+    await updateDoc(doc(db, 'users', uid), {
+      joinedChallengeIds:       arrayRemove(challengeId),
+      'stats.challengesJoined': increment(-1),
+    });
+  }
+
+  // Common: remove member doc + decrement challenge member count
+  await deleteDoc(memberRef);
+  await updateDoc(challengeRef, { memberCount: increment(-1) });
+
+  return { deleted: false };
 }

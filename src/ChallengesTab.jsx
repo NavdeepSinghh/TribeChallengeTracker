@@ -632,6 +632,7 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled, onStatsC
           <ChallengeTrackerScreen
             challenge={trackerChallenge}
             onBack={() => { setView('list'); load(); }}
+            onLeft={() => { load(); onStatsChanged?.(); }}
           />
         </div>
       )}
