@@ -100,25 +100,32 @@ export async function createChallenge(uid, template, customName, startDateStr) {
   const end  = new Date(startDateStr);
   end.setDate(end.getDate() + template.duration);
 
+  // Fetch creator info for denormalisation (admin queries don't need a join)
+  const creatorSnap = await getDoc(doc(db, 'users', uid));
+  const creator = creatorSnap.data() || {};
+
   const data = {
-    id:          ref.id,
-    templateId:  template.id,
-    name:        customName.trim() || template.name,
-    emoji:       template.emoji,
-    color:       template.color,
-    duration:    template.duration,
-    tagline:     template.tagline,
-    difficulty:  template.difficulty,
-    rules:       template.rules,
-    tasks:       template.tasks,
-    disclaimer:  template.disclaimer,
-    createdBy:   uid,
-    createdAt:   serverTimestamp(),
-    startDate:   startDateStr,
-    endDate:     end.toISOString().split('T')[0],
-    inviteCode:  genInviteCode(),
-    memberCount: 1,
-    isPublic:    true,
+    id:            ref.id,
+    templateId:    template.id,
+    name:          customName.trim() || template.name,
+    emoji:         template.emoji,
+    color:         template.color,
+    duration:      template.duration,
+    tagline:       template.tagline,
+    difficulty:    template.difficulty,
+    rules:         template.rules,
+    tasks:         template.tasks,
+    disclaimer:    template.disclaimer,
+    createdBy:     uid,
+    creatorName:   creator.displayName || '',
+    creatorEmail:  creator.email || '',
+    createdAt:     serverTimestamp(),
+    startDate:     startDateStr,
+    endDate:       end.toISOString().split('T')[0],
+    inviteCode:    genInviteCode(),
+    memberCount:   1,
+    isPublic:      true,
+    status:        'active',   // active | completed | cancelled
   };
 
   await setDoc(ref, data);
