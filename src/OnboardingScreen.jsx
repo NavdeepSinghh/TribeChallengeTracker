@@ -337,7 +337,7 @@ function CompletionScreen({ answers, userName, onComplete }) {
         )}
       </div>
 
-      <button onClick={onComplete} style={{
+      <button onClick={() => onComplete(answers)} style={{
         width: '100%', padding: '16px', borderRadius: 14, border: 'none',
         background: `linear-gradient(135deg, ${ACCENT} 0%, ${GOLD} 100%)`,
         color: '#000', fontSize: 16, fontWeight: 800, cursor: 'pointer',
