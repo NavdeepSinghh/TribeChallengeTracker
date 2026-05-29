@@ -807,6 +807,16 @@ export default function TribeChallenge() {
       {tab === "challenges" && (
         <ChallengesTab
           pendingJoinCode={pendingJoinCode}
+          onStatsChanged={() => {
+            getUserProfile(user.uid).then(p => {
+              const newStats = {
+                joined: p?.stats?.challengesJoined || 0,
+                owned:  p?.stats?.challengesOwned  || 0,
+              };
+              setChallengeStats(newStats);
+              triggerBadgeCheck(myHistory, newStats);
+            });
+          }}
           onJoinHandled={() => {
             setPendingJoinCode(null);
             sessionStorage.removeItem("pendingJoinCode");

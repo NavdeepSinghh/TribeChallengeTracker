@@ -439,7 +439,7 @@ function CreateChallenge({ onBack, onCreate }) {
 }
 
 // ─── MAIN CHALLENGES TAB ──────────────────────────────────────────────────────
-export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
+export default function ChallengesTab({ pendingJoinCode, onJoinHandled, onStatsChanged }) {
   const { user }                              = useAuth();
   const [view, setView]                       = useState('list');
   const [myChallenges, setMyChallenges]       = useState([]);
@@ -615,7 +615,7 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
       {view === 'create' && (
         <CreateChallenge
           onBack={() => { setView('list'); load(); }}
-          onCreate={load}
+          onCreate={() => { load(); onStatsChanged?.(); }}
         />
       )}
 
@@ -623,7 +623,7 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled }) {
         <ChallengeDetail
           challenge={detailChallenge}
           onBack={() => { setView('list'); load(); }}
-          onJoined={() => { load(); openChallenge(detailChallenge.id); }}
+          onJoined={() => { load(); openChallenge(detailChallenge.id); onStatsChanged?.(); }}
         />
       )}
 
