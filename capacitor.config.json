@@ -3,6 +3,8 @@
   "appName": "Tribe Challenge",
   "webDir": "build",
   "server": {
+    "url": "http://192.168.1.113:3000",
+    "cleartext": true,
     "androidScheme": "https"
   },
   "plugins": {
@@ -15,6 +17,10 @@
     },
     "PushNotifications": {
       "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": ["google.com"]
     }
   }
 }
