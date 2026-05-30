@@ -7,6 +7,7 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth, googleProvider } from './firebase';
+import { isNative } from './platformService';
 
 const input = {
   width: '100%', padding: '13px 16px', borderRadius: 12,
@@ -135,10 +136,26 @@ export default function AuthScreen() {
 
         {/* Social buttons */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 22 }}>
-          <button onClick={() => handleSocial(googleProvider)} disabled={loading} style={socialBtn}>
-            <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'serif' }}>G</span>
-            Continue with Google
-          </button>
+          {isNative ? (
+            /* Google OAuth requires native plugin on iOS/Android — show a hint */
+            <div style={{
+              ...socialBtn, cursor: 'default', opacity: 0.45,
+              flexDirection: 'column', gap: 4, padding: '12px',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'serif' }}>G</span>
+                <span>Continue with Google</span>
+              </div>
+              <span style={{ fontSize: 10, color: '#666', fontFamily: 'monospace', fontWeight: 700 }}>
+                USE EMAIL & PASSWORD ON MOBILE
+              </span>
+            </div>
+          ) : (
+            <button onClick={() => handleSocial(googleProvider)} disabled={loading} style={socialBtn}>
+              <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'serif' }}>G</span>
+              Continue with Google
+            </button>
+          )}
         </div>
 
         {/* Divider */}
