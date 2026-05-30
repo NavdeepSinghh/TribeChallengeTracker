@@ -20,6 +20,18 @@ service cloud.firestore {
     match /users/{uid} {
       allow read:  if request.auth != null && (request.auth.uid == uid || isAdmin());
       allow write: if request.auth != null && request.auth.uid == uid;
+
+      // Activity log — one doc per day, written and read only by the owner.
+      // FIX: was missing, causing getActivityLog / saveActivity to fail.
+      match /activityLog/{dateStr} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Earned badges — set when badges are awarded; read by the owner.
+      // FIX: was missing, causing loadEarnedBadges / awardBadges to fail.
+      match /earnedBadges/{badgeId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
     }
 
     // ── Challenges ────────────────────────────────────────────────────────────
@@ -39,11 +51,26 @@ service cloud.firestore {
 
       // Members subcollection
       match /members/{uid} {
-        allow read:           if request.auth != null;
-        allow create, update: if request.auth != null && request.auth.uid == uid;
-        allow delete:         if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow read:   if request.auth != null;
+        allow create: if request.auth != null && request.auth.uid == uid;
 
-        // Daily progress logs — only the member writes; anyone in the challenge can read
+        // FIX: split create and update so we can add the admin-promotion rule.
+        // A member can always update their own doc.
+        // The challenge creator can also update another member's doc, but only
+        // to change the 'role' field — used when promoting a new admin on leave.
+        allow update: if request.auth != null && (
+          request.auth.uid == uid ||
+          (
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role']) &&
+            get(/databases/$(database)/documents/challenges/$(challengeId)).data.createdBy == request.auth.uid
+          )
+        );
+
+        allow delete: if request.auth != null && (
+          request.auth.uid == uid || isAdmin()
+        );
+
+        // Daily progress logs — only the member writes; anyone authenticated can read
         match /dailyLogs/{date} {
           allow read:  if request.auth != null;
           allow write: if request.auth != null && request.auth.uid == uid;
