@@ -899,7 +899,10 @@ export default function TribeChallenge() {
       minHeight: "100vh", background: "#080808",
       fontFamily: "'Space Grotesk', sans-serif",
       color: "#fff", maxWidth: 430, margin: "0 auto", position: "relative",
-      paddingBottom: 80,
+      paddingTop: "env(safe-area-inset-top)",
+      paddingBottom: "calc(80px + env(safe-area-inset-bottom))",
+      paddingLeft: "env(safe-area-inset-left)",
+      paddingRight: "env(safe-area-inset-right)",
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -1407,7 +1410,8 @@ export default function TribeChallenge() {
         position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)",
         width: "100%", maxWidth: 430, background: "rgba(8,8,8,0.95)",
         backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.06)",
-        display: "flex", padding: "10px 0 20px",
+        display: "flex", padding: "10px 0",
+        paddingBottom: "max(env(safe-area-inset-bottom), 16px)",
       }}>
         {[
           { id: "home",       icon: "🏠", label: "Home" },

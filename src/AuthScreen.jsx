@@ -86,23 +86,25 @@ export default function AuthScreen() {
       minHeight: '100vh', background: '#080808',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
-      padding: '40px 20px',
+      padding: 'max(env(safe-area-inset-top), 40px) max(env(safe-area-inset-right), 20px) max(env(safe-area-inset-bottom), 40px) max(env(safe-area-inset-left), 20px)',
       fontFamily: "'Space Grotesk', sans-serif",
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* Logo */}
-      <div style={{ textAlign: 'center', marginBottom: 36 }}>
-        <div style={{ fontSize: 52, marginBottom: 10 }}>🏃</div>
-        <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 2, margin: '0 0 6px', fontFamily: 'monospace' }}>
-          RISE WITH THE TRIBE
-        </p>
-        <h1 style={{ margin: 0, fontSize: 30, fontWeight: 900, fontFamily: "'Syne', sans-serif", lineHeight: 1.15, color: '#fff' }}>
-          30-Day{' '}
-          <span style={{ background: 'linear-gradient(90deg, #FF6B35, #FFD700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            Challenge
-          </span>
+      {/* Brand */}
+      <div style={{ textAlign: 'center', marginBottom: 28 }}>
+        <div style={{ fontSize: 42, marginBottom: 10, lineHeight: 1 }}>⚡</div>
+        <h1 style={{
+          margin: '0 0 6px', fontSize: 'clamp(18px, 7vw, 30px)', fontWeight: 900,
+          fontFamily: "'Syne', sans-serif", lineHeight: 1.15,
+          background: 'linear-gradient(90deg, #FF6B35, #FFD700)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+        }}>
+          RISE WITH<br />THE TRIBE
         </h1>
+        <p style={{ margin: 0, color: '#555', fontSize: 11, fontWeight: 700, letterSpacing: 2, fontFamily: 'monospace' }}>
+          BUILD HABITS · TOGETHER
+        </p>
       </div>
 
       {/* Card */}
