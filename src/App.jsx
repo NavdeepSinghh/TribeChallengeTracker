@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
-import { Capacitor } from "@capacitor/core";
 import { healthAvailable, requestHealthPerms, getTodayWorkouts, openHealthSettings } from "./healthService";
+import { platform, isNative, isIOS, isAndroid, isWeb, canSyncHealth, WATCH_OPTIONS, syncHintText } from "./platformService";
 import { useAuth } from "./AuthContext";
 import { saveOnboarding, getUserProfile, saveActivity, getActivityLog } from "./userService";
 import { getUserChallenges } from "./challengeService";
@@ -232,8 +232,6 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
   const [syncError, setSyncError]   = useState("");
 
   const actInfo = ACTIVITY_TYPES.find(a => a.id === type);
-  const isNative = Capacitor.isNativePlatform();
-  const platform = Capacitor.getPlatform(); // 'ios' | 'android' | 'web'
 
   // Add activity without closing the modal
   const handle = () => {
@@ -347,46 +345,92 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
         <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>SYNC FROM WEARABLE</p>
 
-          {/* ─ idle: show device buttons ─ */}
-          {syncState === "idle" && (
-            <>
-              <div style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-                {[
-                  { label: "Apple Watch",   icon: "⌚", activePlatform: "ios"     },
-                  { label: "Galaxy Watch",  icon: "⌚", activePlatform: "android" },
-                ].map(w => {
-                  const isActive = isNative && platform === w.activePlatform;
-                  return (
-                    <button key={w.label} onClick={handleSync} style={{
-                      flex: 1, padding: "9px 6px", borderRadius: 10, cursor: "pointer",
-                      border: `1px solid ${isActive ? "rgba(255,107,53,0.4)" : "rgba(255,255,255,0.08)"}`,
-                      background: isActive ? "rgba(255,107,53,0.1)" : "rgba(255,255,255,0.04)",
-                      color: isActive ? "#FF6B35" : "#777",
-                      fontSize: 10, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif",
-                      transition: "all .2s",
-                    }}>
-                      {w.icon} {w.label}
-                    </button>
-                  );
-                })}
+          {/* ─ WEB: informational panel — no sync available ─ */}
+          {isWeb && (
+            <div>
+              <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+                {WATCH_OPTIONS.map(w => (
+                  <div key={w.id} style={{
+                    flex: 1, padding: "10px 6px", borderRadius: 10,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "rgba(255,255,255,0.02)",
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+                  }}>
+                    <span style={{ fontSize: 20, opacity: 0.3 }}>{w.icon}</span>
+                    <span style={{ fontSize: 9, color: "#555", fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif" }}>{w.label}</span>
+                    <span style={{
+                      fontSize: 8, color: "#444", fontFamily: "monospace",
+                      background: "rgba(255,255,255,0.05)", padding: "1px 6px", borderRadius: 4,
+                    }}>{w.platformLabel}</span>
+                  </div>
+                ))}
               </div>
-              <p style={{ color: "#444", fontSize: 10, margin: 0, fontFamily: "monospace" }}>
-                {isNative
-                  ? "Tap to import today's workouts from Health"
-                  : "Available in the iOS & Android app"}
-              </p>
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 12px", borderRadius: 10, background: "rgba(255,107,53,0.06)", border: "1px solid rgba(255,107,53,0.15)" }}>
+                <span style={{ fontSize: 18, flexShrink: 0 }}>📱</span>
+                <div>
+                  <p style={{ margin: "0 0 3px", fontSize: 11, fontWeight: 700, color: "#FF6B35" }}>Available on iOS &amp; Android</p>
+                  <p style={{ margin: 0, fontSize: 10, color: "#666", lineHeight: 1.5 }}>
+                    The mobile app auto-imports workouts from Apple Health (iPhone) and Health Connect (Android) so you never log manually again.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ─ NATIVE IDLE: show platform-specific watch buttons ─ */}
+          {isNative && syncState === "idle" && (
+            <>
+              <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+                {WATCH_OPTIONS.map(w => (
+                  w.isActive ? (
+                    // Active platform button — tappable, triggers sync
+                    <button key={w.id} onClick={handleSync} style={{
+                      flex: 1, padding: "10px 6px", borderRadius: 10, cursor: "pointer",
+                      border: "1px solid rgba(255,107,53,0.45)",
+                      background: "rgba(255,107,53,0.1)",
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+                      transition: "all .2s",
+                      boxShadow: "0 0 10px rgba(255,107,53,0.2)",
+                    }}>
+                      <span style={{ fontSize: 20 }}>{w.icon}</span>
+                      <span style={{ fontSize: 9, color: "#FF6B35", fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif" }}>{w.label}</span>
+                      <span style={{ fontSize: 8, color: "#FF6B3599", fontFamily: "monospace" }}>TAP TO SYNC</span>
+                    </button>
+                  ) : (
+                    // Inactive platform — shown grayed out with platform label
+                    <div key={w.id} style={{
+                      flex: 1, padding: "10px 6px", borderRadius: 10,
+                      border: "1px solid rgba(255,255,255,0.05)",
+                      background: "rgba(255,255,255,0.02)",
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+                    }}>
+                      <span style={{ fontSize: 20, opacity: 0.25 }}>{w.icon}</span>
+                      <span style={{ fontSize: 9, color: "#444", fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif" }}>{w.label}</span>
+                      <span style={{
+                        fontSize: 8, color: "#444", fontFamily: "monospace",
+                        background: "rgba(255,255,255,0.04)", padding: "1px 6px", borderRadius: 4,
+                      }}>{w.platformLabel} only</span>
+                    </div>
+                  )
+                ))}
+              </div>
+              {syncHintText && (
+                <p style={{ color: "#444", fontSize: 10, margin: 0, fontFamily: "monospace" }}>
+                  {syncHintText}
+                </p>
+              )}
             </>
           )}
 
           {/* ─ loading ─ */}
-          {syncState === "loading" && (
+          {isNative && syncState === "loading" && (
             <div style={{ textAlign: "center", padding: "10px 0" }}>
               <p style={{ margin: 0, fontSize: 13, color: "#888" }}>⏳  Fetching workouts…</p>
             </div>
           )}
 
           {/* ─ workout picker ─ */}
-          {syncState === "picking" && (
+          {isNative && syncState === "picking" && (
             <div>
               <p style={{ color: "#555", fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 8px" }}>
                 TODAY'S WORKOUTS — TAP TO IMPORT
@@ -428,7 +472,7 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
           )}
 
           {/* ─ error ─ */}
-          {syncState === "error" && (
+          {isNative && syncState === "error" && (
             <div>
               <p style={{ margin: "0 0 10px", fontSize: 12, color: "#888", lineHeight: 1.5 }}>{syncError}</p>
               <div style={{ display: "flex", gap: 8 }}>
@@ -447,12 +491,12 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
           )}
 
           {/* ─ health API unavailable (Health Connect not installed etc.) ─ */}
-          {syncState === "unavailable" && (
+          {isNative && syncState === "unavailable" && (
             <div>
               <p style={{ margin: "0 0 10px", fontSize: 12, color: "#888", lineHeight: 1.5 }}>
-                {isNative
-                  ? "Health Connect isn't available on this device. Install it from the Play Store to enable sync."
-                  : "Wearable sync runs inside the native iOS & Android app."}
+                {isAndroid
+                  ? "Health Connect isn't installed on this device. Get it from the Play Store to enable sync."
+                  : "Health data isn't available. Check your Health app permissions in Settings."}
               </p>
               <div style={{ display: "flex", gap: 8 }}>
                 <button onClick={() => setSyncState("idle")} style={{
@@ -460,7 +504,7 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
                   background: "none", border: "1px solid rgba(255,255,255,0.07)",
                   color: "#555", fontSize: 11, fontFamily: "monospace", cursor: "pointer",
                 }}>← Back</button>
-                {isNative && platform === "android" && (
+                {isAndroid && (
                   <button onClick={openHealthSettings} style={{
                     flex: 1, padding: "7px", borderRadius: 8,
                     background: "rgba(52,211,153,0.1)", border: "1px solid rgba(52,211,153,0.3)",
@@ -922,6 +966,26 @@ export default function TribeChallenge() {
               </div>
             </div>
           </div>
+
+          {/* Mobile app nudge — web only */}
+          {isWeb && (
+            <div style={{ padding: "16px 20px 0" }}>
+              <div style={{
+                borderRadius: 16, padding: "14px 16px",
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.06)",
+                display: "flex", gap: 14, alignItems: "center",
+              }}>
+                <span style={{ fontSize: 30, flexShrink: 0 }}>📱</span>
+                <div>
+                  <p style={{ margin: "0 0 3px", fontSize: 12, fontWeight: 700, color: "#666" }}>More on the mobile app</p>
+                  <p style={{ margin: 0, fontSize: 11, color: "#444", lineHeight: 1.5 }}>
+                    Auto-sync from <span style={{ color: "#666" }}>Apple Watch</span> &amp; <span style={{ color: "#666" }}>Galaxy Watch</span>, push notifications for challenges and more — iOS &amp; Android coming soon.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
