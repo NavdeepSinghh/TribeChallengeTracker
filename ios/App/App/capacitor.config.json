@@ -1,0 +1,41 @@
+{
+	"appId": "com.risewiththetribe.challengetracker",
+	"appName": "Tribe Challenge",
+	"webDir": "build",
+	"server": {
+		"url": "http://192.168.1.113:3000",
+		"cleartext": true,
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"StatusBar": {
+			"style": "Dark",
+			"backgroundColor": "#080808"
+		},
+		"SplashScreen": {
+			"launchShowDuration": 0
+		},
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
+		},
+		"FirebaseAuthentication": {
+			"skipNativeAuth": false,
+			"providers": [
+				"google.com"
+			]
+		}
+	},
+	"packageClassList": [
+		"GoogleSignInPlugin",
+		"FirebaseAuthenticationPlugin",
+		"AppPlugin",
+		"HapticsPlugin",
+		"PushNotificationsPlugin",
+		"StatusBarPlugin",
+		"HealthPlugin"
+	]
+}

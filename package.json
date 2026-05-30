@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cap:sync": "npm run build && npx cap sync",
-    "cap:ios": "npm run build && npx cap sync ios && npx cap open ios",
+    "cap:sync": "npm run build && npx cap sync && node scripts/patch-native-plugins.js",
+    "cap:ios": "npm run build && npx cap sync ios && node scripts/patch-native-plugins.js && npx cap open ios",
     "cap:android": "npm run build && npx cap sync android && npx cap open android"
   },
   "browserslist": {
