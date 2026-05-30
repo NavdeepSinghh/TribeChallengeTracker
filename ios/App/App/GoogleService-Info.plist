@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1045104267271-4cnodb3nv8g1qcskno1503h6v288v72f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1045104267271-4cnodb3nv8g1qcskno1503h6v288v72f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC135v6pF868bNoTqdr_Sa_gIs_DeEl6wI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1045104267271</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.risewiththetribe.challengetracker</string>
+	<key>PROJECT_ID</key>
+	<string>tribechallengetracker</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tribechallengetracker.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1045104267271:ios:917265718ce67492f61aa2</string>
+</dict>
+</plist>
