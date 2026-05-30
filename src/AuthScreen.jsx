@@ -2,9 +2,9 @@ import { useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signInWithCredential,
   GoogleAuthProvider,
+  signInWithPopup,
   updateProfile,
   sendPasswordResetEmail,
 } from 'firebase/auth';
@@ -33,16 +33,14 @@ function cleanFirebaseError(msg) {
   return msg.replace('Firebase: ', '').replace(/\s*\(auth\/[^)]*\)\.?/, '').trim();
 }
 
-/** Sign in with Google using the native Capacitor Firebase plugin (iOS/Android). */
+/** Sign in with Google using our custom native plugin (iOS/Android). */
 async function nativeGoogleSignIn() {
-  const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication');
-  // Trigger native Google sign-in sheet — returns idToken + accessToken
-  const result = await FirebaseAuthentication.signInWithGoogle();
-  const credential = GoogleAuthProvider.credential(
-    result.credential?.idToken,
-    result.credential?.accessToken,
-  );
-  // Exchange the native credential for a Firebase Web SDK session
+  const { registerPlugin } = await import('@capacitor/core');
+  const GoogleSignInPlugin = registerPlugin('GoogleSignInPlugin');
+  // Opens native Google account picker → returns idToken + accessToken
+  const { idToken, accessToken } = await GoogleSignInPlugin.signIn();
+  const credential = GoogleAuthProvider.credential(idToken, accessToken);
+  // Exchange for a Firebase Web SDK session
   return signInWithCredential(auth, credential);
 }
 
