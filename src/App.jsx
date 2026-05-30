@@ -831,11 +831,35 @@ export default function TribeChallenge() {
           {/* Header */}
           <div style={{ padding: "52px 24px 20px", background: "linear-gradient(180deg, #0f0f0f 0%, #080808 100%)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 4px", fontFamily: "monospace" }}>RISE WITH THE TRIBE</p>
-                <h1 style={{ margin: 0, fontSize: 28, fontWeight: 900, fontFamily: "'Syne', sans-serif", lineHeight: 1.1 }}>
-                  30-Day<br /><span style={{ background: "linear-gradient(90deg, #FF6B35, #FFD700)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Challenge</span>
-                </h1>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 8px", fontFamily: "monospace" }}>RISE WITH THE TRIBE</p>
+                {/* Rank + name */}
+                {(() => {
+                  const rank = getTribeRank(calcBadgeXP(earnedBadges));
+                  const motivator = (() => {
+                    if (streak === 0) return "Start your streak today 💪";
+                    if (streak === 1) return "Great start — build on it 🔥";
+                    if (streak <= 3)  return `${streak} days strong. Keep pushing 🔥`;
+                    if (streak <= 6)  return `${streak}-day streak! You're on fire 🔥`;
+                    if (streak <= 13) return `${streak} days in. The habit is forming ⚡`;
+                    if (streak <= 20) return `${streak}-day streak. You're unstoppable ⚡`;
+                    if (streak <= 29) return `${streak} days! Elite consistency 💫`;
+                    return `${streak} days. Tribe God level dedication 👑`;
+                  })();
+                  return (
+                    <>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                        <span style={{ fontSize: 32, lineHeight: 1 }}>{rank.icon}</span>
+                        <h1 style={{ margin: 0, fontSize: 30, fontWeight: 900, fontFamily: "'Syne', sans-serif", lineHeight: 1, color: rank.color }}>
+                          {rank.label}
+                        </h1>
+                      </div>
+                      <p style={{ margin: 0, fontSize: 13, color: "#777", fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, lineHeight: 1.4 }}>
+                        {motivator}
+                      </p>
+                    </>
+                  );
+                })()}
               </div>
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
                 <button onClick={() => setShowProfile(true)} style={{
