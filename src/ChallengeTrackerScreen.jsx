@@ -12,26 +12,35 @@ const GOLD   = '#FFD700';
 const AVATARS = ['🧡', '💚', '💜', '💙', '🩷', '💛', '🤍', '🖤'];
 const avatar  = uid => AVATARS[(uid.charCodeAt(0) + (uid.charCodeAt(1) || 0)) % AVATARS.length];
 
-const todayStr = () => new Date().toISOString().split('T')[0];
+// Timezone-safe local date string: YYYY-MM-DD
+const localDateStr = (d = new Date()) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+};
+
+const todayStr = () => localDateStr();
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
-function dayNumber(joinedAt) {
-  const joined = joinedAt?.toDate ? joinedAt.toDate() : new Date(joinedAt || Date.now());
-  joined.setHours(0, 0, 0, 0);
-  const now = new Date(); now.setHours(0, 0, 0, 0);
-  return Math.max(1, Math.floor((now - joined) / 86400000) + 1);
+function dayNumber(challengeStartDate) {
+  // Day number based on challenge startDate string, e.g. '2026-05-25'
+  const [y, mo, d] = challengeStartDate.split('-').map(Number);
+  const start = new Date(y, mo - 1, d);           // local midnight
+  const now   = new Date(); now.setHours(0, 0, 0, 0);
+  return Math.max(1, Math.floor((now - start) / 86400000) + 1);
 }
 
-function buildCalendarDays(challenge, joinedAt, progress) {
-  const start = joinedAt?.toDate ? joinedAt.toDate() : new Date(joinedAt || Date.now());
-  start.setHours(0, 0, 0, 0);
+function buildCalendarDays(challenge, _joinedAt, progress) {
+  // Build from challenge.startDate so every member sees the same grid
+  const [y, mo, d] = challenge.startDate.split('-').map(Number);
   const today = todayStr();
   return Array.from({ length: challenge.duration }, (_, i) => {
-    const d = new Date(start); d.setDate(d.getDate() + i);
-    const dateStr = d.toISOString().split('T')[0];
+    const date    = new Date(y, mo - 1, d + i);   // local date arithmetic
+    const dateStr = localDateStr(date);
     return {
       dateStr, dayNum: i + 1,
-      log: progress[dateStr] || null,
+      log:     progress[dateStr] || null,
       isToday: dateStr === today,
       isPast:  dateStr <  today,
     };
@@ -79,7 +88,7 @@ function TodayTab({ challenge, memberData, onLogged }) {
 
   if (loading) return <div style={{ padding: 40, textAlign: 'center', color: '#555' }}>Loading…</div>;
 
-  const dayNum    = dayNumber(memberData?.joinedAt);
+  const dayNum    = dayNumber(challenge.startDate);
   const preview   = calcPoints(checked.size, challenge.tasks.length);
   const allDone   = todayLog?.allComplete;
 
@@ -302,10 +311,14 @@ function ProgressTab({ challenge, memberData }) {
     return '1px solid rgba(255,215,0,0.3)';
   };
 
-  const startDate  = new Date(challenge.startDate);
-  const endDate    = new Date(challenge.endDate);
-  const daysLeft   = Math.max(0, Math.ceil((endDate - new Date()) / 86400000));
-  const dayNum     = Math.min(challenge.duration, Math.max(1, Math.floor((new Date() - startDate) / 86400000) + 1));
+  // Parse dates as local midnight to avoid UTC offset shifting day by 1
+  const [sy, sm, sd] = challenge.startDate.split('-').map(Number);
+  const [ey, em, ed] = challenge.endDate.split('-').map(Number);
+  const startDate  = new Date(sy, sm - 1, sd);
+  const endDate    = new Date(ey, em - 1, ed);
+  const todayMid   = new Date(); todayMid.setHours(0, 0, 0, 0);
+  const daysLeft   = Math.max(0, Math.ceil((endDate - todayMid) / 86400000));
+  const dayNum     = Math.min(challenge.duration, Math.max(1, Math.floor((todayMid - startDate) / 86400000) + 1));
   const pctDone    = Math.round((dayNum / challenge.duration) * 100);
 
   const fmtDate = (d) => d.toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric' });
