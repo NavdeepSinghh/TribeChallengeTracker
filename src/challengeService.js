@@ -96,18 +96,24 @@ const genInviteCode = () => Math.random().toString(36).substring(2, 8).toUpperCa
 
 // ─── SERVICE FUNCTIONS ────────────────────────────────────────────────────────
 export async function searchPublicChallenges(term = '') {
-  const snap = await getDocs(
-    query(collection(db, 'challenges'), where('isPublic', '==', true))
-  );
-  const all = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-    .filter(c => c.status === 'active');
-  if (!term.trim()) return all.slice(0, 30);
-  const t = term.toLowerCase();
-  return all.filter(c =>
-    c.name?.toLowerCase().includes(t) ||
-    c.tagline?.toLowerCase().includes(t) ||
-    c.creatorName?.toLowerCase().includes(t)
-  );
+  try {
+    const snap = await getDocs(
+      query(collection(db, 'challenges'), where('isPublic', '==', true))
+    );
+    // Exclude only explicitly cancelled challenges; treat missing status as active
+    const all = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .filter(c => c.status !== 'cancelled');
+    if (!term.trim()) return all.slice(0, 30);
+    const t = term.toLowerCase();
+    return all.filter(c =>
+      c.name?.toLowerCase().includes(t) ||
+      c.tagline?.toLowerCase().includes(t) ||
+      c.creatorName?.toLowerCase().includes(t)
+    );
+  } catch (e) {
+    console.error('searchPublicChallenges error:', e);
+    return [];
+  }
 }
 
 export async function createChallenge(uid, template, customName, startDateStr, isPublic = true) {

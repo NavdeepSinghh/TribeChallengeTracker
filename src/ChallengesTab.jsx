@@ -20,7 +20,7 @@ const card = {
 };
 
 // ─── CHALLENGE CARD (list item) ───────────────────────────────────────────────
-function ChallengeCard({ challenge, isOwner, onClick }) {
+function ChallengeCard({ challenge, isOwner, onClick, alreadyJoined }) {
   const daysLeft = Math.max(0, Math.ceil(
     (new Date(challenge.endDate) - new Date()) / (1000 * 60 * 60 * 24)
   ));
@@ -46,6 +46,11 @@ function ChallengeCard({ challenge, isOwner, onClick }) {
           {isOwner && (
             <span style={{ fontSize: 9, fontFamily: 'monospace', fontWeight: 700, color: GOLD, background: 'rgba(255,215,0,0.1)', border: '1px solid rgba(255,215,0,0.2)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
               ADMIN
+            </span>
+          )}
+          {alreadyJoined && !isOwner && (
+            <span style={{ fontSize: 9, fontFamily: 'monospace', fontWeight: 700, color: '#34D399', background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.25)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
+              ✓ JOINED
             </span>
           )}
         </div>
@@ -472,7 +477,8 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled, onStatsC
     setSearching(true);
     searchTimer.current = setTimeout(async () => {
       const results = await searchPublicChallenges(q);
-      setSearchResults(results.filter(c => !joinedIds.has(c.id)));
+      // Keep all results; mark joined ones so the card can show it
+      setSearchResults(results.map(c => ({ ...c, alreadyJoined: joinedIds.has(c.id) })));
       setSearching(false);
     }, 350);
   };
@@ -593,8 +599,9 @@ export default function ChallengesTab({ pendingJoinCode, onJoinHandled, onStatsC
                   <ChallengeCard
                     key={c.id}
                     challenge={c}
-                    isOwner={false}
-                    onClick={() => { setDetailChallenge(c); setView('detail'); }}
+                    isOwner={c.createdBy === user.uid}
+                    alreadyJoined={c.alreadyJoined}
+                    onClick={() => { setDetailChallenge(c); setView(c.alreadyJoined ? 'tracker' : 'detail'); if (c.alreadyJoined) setTrackerChallenge(c); }}
                   />
                 ))}
               </div>
