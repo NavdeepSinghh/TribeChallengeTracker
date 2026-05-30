@@ -70,7 +70,7 @@ function Avatar({ emoji, size = 40 }) {
 }
 
 
-function CalendarGrid({ history, challenges = [] }) {
+function CalendarGrid({ history, challenges = [], onDayClick }) {
   const days   = getCalendarDays(history);
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
   const weeks  = [];
@@ -117,14 +117,16 @@ function CalendarGrid({ history, challenges = [] }) {
             const tip = count === 0 ? d.date
               : acts.map(a => `${actMap[a.type]?.icon} ${a.value}${actMap[a.type]?.unit}`).join(' · ')
                 + ` · ${totalDayPts} pts`;
+            const clickable = !!(firstAct || d.date <= formatDate(today));
             return (
               <div key={di} title={tip}
+                onClick={() => onDayClick && clickable && onDayClick(d)}
                 style={{
                   width: 36, height: 36, borderRadius: 8, position: "relative",
                   background: firstAct ? `${aInfo?.color}33` : "rgba(255,255,255,0.04)",
                   border: `1.5px solid ${isToday ? "#fff" : firstAct ? aInfo?.color : "rgba(255,255,255,0.06)"}`,
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                  cursor: "default", transition: "all .2s",
+                  cursor: clickable ? "pointer" : "default", transition: "all .2s",
                   boxShadow: firstAct ? `0 0 8px ${aInfo?.color}44` : "none",
                 }}>
                 <span style={{ fontSize: 14 }}>{firstAct ? aInfo?.icon : ""}</span>
@@ -546,6 +548,119 @@ function LogModal({ onClose, onLog, todayActivities = [] }) {
   );
 }
 
+// ─── DAY DETAIL SHEET ────────────────────────────────────────────────────────
+function DayDetailSheet({ day, onClose, onLogMore }) {
+  const actMap  = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
+  const acts    = getEntryActivities(day.activity);
+  const total   = acts.reduce((s, a) => s + (a.points || 0), 0);
+  const dateObj = new Date(day.date + "T12:00:00"); // noon local — avoids midnight UTC shift
+  const label   = dateObj.toLocaleDateString("en", { weekday: "long", day: "numeric", month: "long" });
+  const isToday = day.date === formatDate(today);
+  const isPast  = day.date < formatDate(today);
+
+  return (
+    // Backdrop
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 200,
+      background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
+      display: "flex", flexDirection: "column", justifyContent: "flex-end",
+    }}>
+      {/* Sheet */}
+      <div onClick={e => e.stopPropagation()} style={{
+        background: "#111", borderRadius: "24px 24px 0 0",
+        padding: "28px 24px 40px",
+        boxShadow: "0 -10px 60px rgba(0,0,0,0.8)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        maxHeight: "75vh", overflowY: "auto",
+      }}>
+        {/* Handle */}
+        <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.15)", margin: "0 auto 20px" }} />
+
+        {/* Date header */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+          <div>
+            <p style={{ margin: "0 0 4px", fontSize: 10, color: "#555", fontWeight: 700, letterSpacing: 2, fontFamily: "monospace" }}>
+              {isToday ? "TODAY" : isPast ? "PAST DAY" : "UPCOMING"}
+            </p>
+            <h2 style={{ margin: 0, fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#fff" }}>{label}</h2>
+          </div>
+          <button onClick={onClose} style={{ background: "none", border: "none", color: "#555", fontSize: 22, cursor: "pointer", padding: 4 }}>×</button>
+        </div>
+
+        {acts.length === 0 ? (
+          // Empty state
+          <div style={{ textAlign: "center", padding: "32px 0 24px" }}>
+            <div style={{ fontSize: 36, marginBottom: 12 }}>😴</div>
+            <p style={{ margin: "0 0 6px", fontSize: 15, fontWeight: 700, color: "#fff" }}>No activity logged</p>
+            <p style={{ margin: "0 0 24px", fontSize: 12, color: "#555", fontFamily: "monospace" }}>
+              {isToday ? "Log today's workout below" : "Rest day or missed — that's ok"}
+            </p>
+            {(isToday || isPast) && (
+              <button onClick={onLogMore} style={{
+                padding: "12px 28px", borderRadius: 14, border: "none",
+                background: "linear-gradient(135deg, #FF6B35, #FFD700)",
+                color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer",
+                fontFamily: "'Syne', sans-serif",
+              }}>
+                {isToday ? "Log Today's Activity" : "Log for This Day"}
+              </button>
+            )}
+          </div>
+        ) : (
+          <>
+            {/* Activity rows */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
+              {acts.map((act, i) => {
+                const info = actMap[act.type] || {};
+                return (
+                  <div key={i} style={{
+                    background: `${info.color || "#fff"}11`,
+                    border: `1px solid ${info.color || "#fff"}33`,
+                    borderRadius: 14, padding: "14px 16px",
+                    display: "flex", alignItems: "center", gap: 14,
+                  }}>
+                    <span style={{ fontSize: 28 }}>{info.icon || "🏃"}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
+                        <span style={{ fontSize: 15, fontWeight: 800, color: "#fff", fontFamily: "'Syne', sans-serif" }}>{info.label || act.type}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: info.color || "#FFD700", fontFamily: "monospace" }}>+{act.points || 0} pts</span>
+                      </div>
+                      <div style={{ fontSize: 12, color: "#777", fontFamily: "monospace" }}>
+                        {act.value}{info.unit || ""}{act.note ? ` · "${act.note}"` : ""}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Total bar */}
+            <div style={{
+              background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: "12px 16px",
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              border: "1px solid rgba(255,255,255,0.06)", marginBottom: 20,
+            }}>
+              <span style={{ fontSize: 11, color: "#555", fontWeight: 700, letterSpacing: 1, fontFamily: "monospace" }}>TOTAL POINTS TODAY</span>
+              <span style={{ fontSize: 20, fontWeight: 900, color: "#FFD700", fontFamily: "'Syne', sans-serif" }}>{total} pts</span>
+            </div>
+
+            {/* Add more button */}
+            {(isToday || isPast) && (
+              <button onClick={onLogMore} style={{
+                width: "100%", padding: "13px", borderRadius: 14, border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.05)", color: "#ccc", fontSize: 13, fontWeight: 700,
+                cursor: "pointer", fontFamily: "'Space Grotesk', sans-serif",
+              }}>
+                + Add another activity
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function BadgeUnlockOverlay({ badge, onDismiss }) {
   useEffect(() => {
     const t = setTimeout(onDismiss, 3800);
@@ -610,6 +725,7 @@ export default function TribeChallenge() {
   const [toast, setToast] = useState(null);
   const [badgeCat, setBadgeCat] = useState("all");
   const [showProfile, setShowProfile] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null); // { date, activity } for day detail sheet
 
   // ── ALL effects must be before any conditional returns ──
   useEffect(() => {
@@ -787,6 +903,15 @@ export default function TribeChallenge() {
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+      {/* Day detail sheet — tapping a calendar cell */}
+      {selectedDay && (
+        <DayDetailSheet
+          day={selectedDay}
+          onClose={() => setSelectedDay(null)}
+          onLogMore={() => { setSelectedDay(null); setShowLog(true); }}
+        />
+      )}
+
       {/* Badge unlock overlay — shows queued badges one at a time */}
       {badgeQueue[0] && (
         <BadgeUnlockOverlay
@@ -932,7 +1057,7 @@ export default function TribeChallenge() {
           <div style={{ padding: "0 20px 24px" }}>
             <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>28-DAY CALENDAR</p>
             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 16, padding: 16, border: "1px solid rgba(255,255,255,0.06)" }}>
-              <CalendarGrid history={myHistory} challenges={myChallenges} />
+              <CalendarGrid history={myHistory} challenges={myChallenges} onDayClick={setSelectedDay} />
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
                 {ACTIVITY_TYPES.map(a => (
                   <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 4 }}>
