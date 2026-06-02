@@ -10,6 +10,7 @@ import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import ChallengesTab from "./ChallengesTab";
 import ProfileScreen from "./ProfileScreen";
+import { startDailyReminderLoop } from "./reminderService";
 import {
   BADGES, BADGE_CATEGORIES, TRIBE_RANKS,
   checkBadges, getBadgeProgress, awardBadges, loadEarnedBadges,
@@ -725,9 +726,15 @@ export default function TribeChallenge() {
   const [toast, setToast] = useState(null);
   const [badgeCat, setBadgeCat] = useState("all");
   const [showProfile, setShowProfile] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null); // { date, activity } for day detail sheet
 
   // ── ALL effects must be before any conditional returns ──
+  useEffect(() => {
+    if (!user) return;
+    startDailyReminderLoop();
+  }, [user?.uid]);
+
   useEffect(() => {
     if (!user) return;
     loadEarnedBadges(user.uid).then(loaded => {
@@ -757,8 +764,9 @@ export default function TribeChallenge() {
   }, [pendingJoinCode]);
 
   useEffect(() => {
-    if (!user) { setMyChallenges([]); return; }
+    if (!user) { setMyChallenges([]); setUserProfile(null); return; }
     getUserProfile(user.uid).then(p => {
+      setUserProfile(p);
       // Fall back to the old flat literal-dot field name in case the
       // migration in createUserIfNew hasn't run for this account yet.
       setChallengeStats({
@@ -930,6 +938,7 @@ export default function TribeChallenge() {
           earnedBadges={earnedBadges}
           myHistory={myHistory}
           challengeStats={challengeStats}
+          onProfileUpdated={setUserProfile}
           onClose={() => setShowProfile(false)}
         />
       )}
@@ -992,12 +1001,18 @@ export default function TribeChallenge() {
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
                 <button onClick={() => setShowProfile(true)} style={{
                   width: 38, height: 38, borderRadius: "50%", flexShrink: 0,
-                  background: `${getTribeRank(calcBadgeXP(earnedBadges)).color}22`,
-                  border: `2px solid ${getTribeRank(calcBadgeXP(earnedBadges)).color}55`,
+                  background: `${userProfile?.avatarColor || getTribeRank(calcBadgeXP(earnedBadges)).color}22`,
+                  border: `2px solid ${userProfile?.avatarColor || getTribeRank(calcBadgeXP(earnedBadges)).color}55`,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 18, cursor: "pointer",
+                  fontSize: 18, cursor: "pointer", overflow: "hidden", padding: 0,
                 }}>
-                  {getTribeRank(calcBadgeXP(earnedBadges)).icon}
+                  {userProfile?.profileImageData ? (
+                    <img
+                      src={`data:image/jpeg;base64,${userProfile.profileImageData}`}
+                      alt="Profile"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  ) : (userProfile?.avatarEmoji || getTribeRank(calcBadgeXP(earnedBadges)).icon)}
                 </button>
                 <div>
                   <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>POINTS</div>

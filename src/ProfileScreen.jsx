@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase';
 import { BADGES, calcBadgeXP, getTribeRank } from './badgeService';
-import { getUserProfile, getUserChallengePoints } from './userService';
+import { getUserProfile, getUserChallengePoints, saveProfileAppearance } from './userService';
+import { cancelDailyReminder, getDailyReminderLabel, setDailyReminder } from './reminderService';
 
 const ACCENT = '#FF6B35';
 const GOLD   = '#FFD700';
@@ -19,11 +20,63 @@ const FREQ_LABELS = {
   '2_3': '2–3× / week', '4_5': '4–5× / week', daily: 'Every day 🔥', flexible: 'Flexible 🎯',
 };
 
-export default function ProfileScreen({ user, earnedBadges, myHistory, challengeStats, onClose }) {
+const AVATAR_OPTIONS = [
+  ['🔥', '#FF6B35'], ['⚡', '#FFD700'], ['💪', '#F59E0B'], ['🌱', '#34D399'],
+  ['🏃', '#34D399'], ['🧘', '#A78BFA'], ['🚴', '#60A5FA'], ['🏊', '#38BDF8'],
+  ['👑', '#C084FC'], ['💎', '#38BDF8'], ['🌈', '#C084FC'], ['✨', '#FFD700'],
+];
+
+const reminderButtonStyle = (background, color) => ({
+  border: 'none',
+  borderRadius: 12,
+  background,
+  color,
+  fontSize: 12,
+  fontWeight: 800,
+  padding: '10px 8px',
+  cursor: 'pointer',
+});
+
+async function resizeImageToBase64(file, maxDimension = 384, quality = 0.68) {
+  const dataUrl = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  const image = await new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
+
+  const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(image.width * scale);
+  canvas.height = Math.round(image.height * scale);
+  canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+  let currentQuality = quality;
+  let base64 = canvas.toDataURL('image/jpeg', currentQuality).split(',')[1];
+  while (base64.length > 700000 && currentQuality > 0.35) {
+    currentQuality -= 0.1;
+    base64 = canvas.toDataURL('image/jpeg', currentQuality).split(',')[1];
+  }
+  return base64;
+}
+
+export default function ProfileScreen({ user, earnedBadges, myHistory, challengeStats, onProfileUpdated, onClose }) {
   const [profile, setProfile]                 = useState(null);
   const [visible, setVisible]                 = useState(false);
   const [challengePoints, setChallengePoints] = useState([]);
   const [showBreakdown, setShowBreakdown]     = useState(false);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [isSavingAppearance, setIsSavingAppearance] = useState(false);
+  const [appearanceError, setAppearanceError] = useState('');
+  const [reminderLabel, setReminderLabel] = useState(getDailyReminderLabel());
+  const [reminderError, setReminderError] = useState('');
+  const fileInputRef = useRef(`profile-photo-${user.uid}`);
 
   useEffect(() => {
     getUserProfile(user.uid).then(p => {
@@ -51,6 +104,59 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
     : 100;
 
   const memberYear = profile?.createdAt?.toDate?.()?.getFullYear?.() || new Date().getFullYear();
+  const avatarEmoji = profile?.avatarEmoji || rank.icon;
+  const avatarColor = profile?.avatarColor || rank.color;
+  const profileImageSrc = profile?.profileImageData ? `data:image/jpeg;base64,${profile.profileImageData}` : null;
+
+  const persistAppearance = async ({ profileImageData = profile?.profileImageData, avatarEmoji: emoji = avatarEmoji, avatarColor: color = avatarColor }) => {
+    setIsSavingAppearance(true);
+    setAppearanceError('');
+    try {
+      await saveProfileAppearance(user.uid, { profileImageData, avatarEmoji: emoji, avatarColor: color });
+      const nextProfile = {
+        ...(profile || {}),
+        profileImageData: profileImageData || null,
+        avatarEmoji: emoji,
+        avatarColor: color,
+      };
+      setProfile(p => ({
+        ...(p || {}),
+        profileImageData: profileImageData || null,
+        avatarEmoji: emoji,
+        avatarColor: color,
+      }));
+      onProfileUpdated?.(nextProfile);
+    } catch (err) {
+      setAppearanceError(err?.message || 'Could not save profile appearance.');
+    } finally {
+      setIsSavingAppearance(false);
+    }
+  };
+
+  const handlePhotoUpload = async e => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    setIsSavingAppearance(true);
+    setAppearanceError('');
+    try {
+      const profileImageData = await resizeImageToBase64(file);
+      if (profileImageData.length > 900000) {
+        throw new Error('Photo is too large. Try a smaller image.');
+      }
+      await saveProfileAppearance(user.uid, {
+        profileImageData,
+        avatarEmoji,
+        avatarColor,
+      });
+      setProfile(p => ({ ...(p || {}), profileImageData, avatarEmoji, avatarColor }));
+      onProfileUpdated?.({ ...(profile || {}), profileImageData, avatarEmoji, avatarColor });
+    } catch (err) {
+      setAppearanceError(err?.message || 'Could not upload that photo.');
+    } finally {
+      setIsSavingAppearance(false);
+    }
+  };
 
   const statsGrid = [
     { label: 'CHALLENGES JOINED',  value: profile?.stats?.challengesJoined ?? challengeStats.joined, icon: '🎯', color: ACCENT },
@@ -73,6 +179,22 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
 
   const earnedList = BADGES.filter(b => earnedBadges.has(b.id));
 
+  const handleReminder = async (hour, minute) => {
+    setReminderError('');
+    try {
+      const label = await setDailyReminder(hour, minute);
+      setReminderLabel(label);
+    } catch (err) {
+      setReminderError(err?.message || 'Could not set reminder.');
+    }
+  };
+
+  const disableReminder = () => {
+    cancelDailyReminder();
+    setReminderLabel(getDailyReminderLabel());
+    setReminderError('');
+  };
+
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 250,
@@ -85,6 +207,7 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
       transition: 'opacity .3s ease, transform .3s ease',
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
 
       {/* Top bar */}
       <div style={{
@@ -111,13 +234,43 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
           background: `linear-gradient(135deg, ${rank.color}12, rgba(255,255,255,0.02))`,
           border: `1px solid ${rank.color}33`,
         }}>
-          <div style={{
-            width: 68, height: 68, borderRadius: 20, flexShrink: 0,
-            background: `${rank.color}22`, border: `2px solid ${rank.color}55`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 34,
-            boxShadow: `0 0 24px ${rank.color}22`,
-          }}>
-            {rank.icon}
+          <input
+            id={fileInputRef.current}
+            type="file"
+            accept="image/*"
+            onChange={handlePhotoUpload}
+            style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', width: 1, height: 1 }}
+          />
+          <div style={{ position: 'relative', flexShrink: 0 }}>
+            <button
+              onClick={() => setShowAvatarPicker(true)}
+              title="Edit profile picture"
+              style={{
+                width: 68, height: 68, borderRadius: 20,
+                background: `${avatarColor}22`, border: `2px solid ${avatarColor}55`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 34,
+                boxShadow: `0 0 24px ${avatarColor}22`,
+                overflow: 'hidden', cursor: 'pointer', padding: 0,
+              }}
+            >
+              {profileImageSrc ? (
+                <img src={profileImageSrc} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : avatarEmoji}
+            </button>
+            <label
+              htmlFor={fileInputRef.current}
+              title="Upload photo"
+              style={{
+                position: 'absolute', right: -5, bottom: -5,
+                width: 26, height: 26, borderRadius: 999,
+                border: '1px solid rgba(0,0,0,0.25)', background: ACCENT,
+                color: '#111', fontSize: 12, fontWeight: 900,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              📷
+            </label>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <h2 style={{ margin: '0 0 4px', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -134,7 +287,24 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
               Member since {memberYear}
             </p>
           </div>
+          {isSavingAppearance && (
+            <div style={{
+              width: 18, height: 18, borderRadius: '50%',
+              border: `2px solid ${ACCENT}55`, borderTopColor: ACCENT,
+              animation: 'spin .8s linear infinite',
+            }} />
+          )}
         </div>
+        {appearanceError && (
+          <div style={{
+            margin: '-8px 0 18px', padding: '10px 12px',
+            borderRadius: 12, border: '1px solid rgba(255,107,53,0.28)',
+            background: 'rgba(255,107,53,0.08)', color: '#ffb199',
+            fontSize: 12, fontWeight: 700,
+          }}>
+            {appearanceError}
+          </div>
+        )}
 
         {/* Rank progress bar */}
         {rank.next && (
@@ -232,6 +402,30 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
           </>
         )}
 
+        {/* Daily reminder */}
+        <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 2, fontFamily: 'monospace', margin: '0 0 12px' }}>DAILY REMINDER</p>
+        <div style={{
+          background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+          borderRadius: 16, padding: 16, marginBottom: 24,
+        }}>
+          <div style={{ fontSize: 16, color: '#fff', fontWeight: 900, fontFamily: "'Syne', sans-serif", marginBottom: 4 }}>
+            {reminderLabel === 'Off' ? 'Reminders are off' : `Reminder set for ${reminderLabel}`}
+          </div>
+          <div style={{ fontSize: 12, color: '#777', lineHeight: 1.45, marginBottom: 12 }}>
+            Browser reminders work while the web app is open. Use the mobile apps for background reminders.
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+            <button onClick={() => handleReminder(8, 0)} style={reminderButtonStyle(ACCENT, '#111')}>Morning</button>
+            <button onClick={() => handleReminder(20, 0)} style={reminderButtonStyle(GOLD, '#111')}>Evening</button>
+            <button onClick={disableReminder} style={reminderButtonStyle('rgba(255,255,255,0.07)', '#fff')}>Off</button>
+          </div>
+          {reminderError && (
+            <div style={{ marginTop: 10, color: '#ffb199', fontSize: 11, fontWeight: 700 }}>
+              {reminderError}
+            </div>
+          )}
+        </div>
+
         {/* Account info */}
         <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 2, fontFamily: 'monospace', margin: '0 0 12px' }}>ACCOUNT</p>
         <div style={{
@@ -269,6 +463,100 @@ export default function ProfileScreen({ user, earnedBadges, myHistory, challenge
         </button>
 
       </div>
+
+      {/* ── Avatar picker bottom sheet ── */}
+      {showAvatarPicker && (
+        <div
+          onClick={() => setShowAvatarPicker(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 340,
+            background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              width: '100%', maxWidth: 430,
+              background: '#111',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '24px 24px 0 0',
+              padding: '20px 24px calc(28px + env(safe-area-inset-bottom))',
+              maxHeight: 'calc(100dvh - 20px)',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            <div style={{ width: 36, height: 4, background: 'rgba(255,255,255,0.12)', borderRadius: 4, margin: '0 auto 20px' }} />
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 18 }}>
+              <div>
+                <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 2 }}>CREATE AVATAR</p>
+                <h3 style={{ margin: '4px 0 0', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#fff' }}>
+                  Choose Your Look
+                </h3>
+              </div>
+              <button onClick={() => setShowAvatarPicker(false)} style={{
+                width: 32, height: 32, borderRadius: 999,
+                border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.04)',
+                color: '#777', cursor: 'pointer', fontSize: 18,
+              }}>×</button>
+            </div>
+
+            <label
+              htmlFor={fileInputRef.current}
+              style={{
+                width: '100%', minHeight: 46, marginBottom: 16,
+                borderRadius: 14, border: `1px solid ${ACCENT}55`,
+                background: `${ACCENT}18`, color: ACCENT,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                gap: 8, fontSize: 13, fontWeight: 800, cursor: 'pointer',
+              }}
+            >
+              <span>📷</span>
+              Upload Photo
+            </label>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+              {AVATAR_OPTIONS.map(([emoji, color]) => (
+                <button
+                  key={`${emoji}-${color}`}
+                  onClick={() => {
+                    persistAppearance({ profileImageData: null, avatarEmoji: emoji, avatarColor: color });
+                    setShowAvatarPicker(false);
+                  }}
+                  style={{
+                    border: `1.5px solid ${color}55`, borderRadius: 18,
+                    background: `${color}22`, height: 70,
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                    gap: 5, cursor: 'pointer',
+                  }}
+                >
+                  <span style={{ fontSize: 28 }}>{emoji}</span>
+                  <span style={{ width: 9, height: 9, borderRadius: 999, background: color }} />
+                </button>
+              ))}
+            </div>
+
+            {profileImageSrc && (
+              <button
+                onClick={() => {
+                  persistAppearance({ profileImageData: null, avatarEmoji, avatarColor });
+                  setShowAvatarPicker(false);
+                }}
+                style={{
+                  width: '100%', marginTop: 16, padding: '12px',
+                  borderRadius: 14, border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'rgba(255,255,255,0.04)', color: '#888',
+                  fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                Remove Uploaded Photo
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ── Challenge points breakdown bottom sheet ── */}
       {showBreakdown && (

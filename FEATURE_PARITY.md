@@ -50,5 +50,14 @@ If a feature is intentionally platform-specific, document the reason and the equ
 ## Platform-Specific Caveats
 
 - Apple Health / Watch sync requires HealthKit entitlement and Apple Developer App ID HealthKit capability.
+- Android Health Connect auto-sync requires Health Connect permissions and uses periodic WorkManager background sync.
+- Daily reminders use local notifications on native iOS/Android. Web reminders use browser notifications while the web app is open; reliable closed-browser reminders require a push/service-worker backend.
 - Direct Instagram Story sharing requires a Meta/Facebook App ID passed as `source_application`.
 - WhatsApp Status does not expose a direct public iOS handoff API; use the native share sheet with a generated story image.
+
+## Current Cross-Platform Feature Status
+
+| Feature | Web | iOS | Android |
+|---|---|---|---|
+| Daily log reminders | Browser notification reminder while app is open | Local morning/evening/off reminders | Local morning/evening/off reminders |
+| Wearable health sync | Native wrapper only when running via Capacitor | Apple Health manual import + HealthKit auto-import observer | Health Connect manual import + opt-in WorkManager auto-sync |
