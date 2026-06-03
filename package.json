@@ -25,6 +25,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test:release": "node scripts/verify-release.js",
+    "release:check": "npm test -- --watchAll=false && npm run build && npm run test:release",
+    "release:check:all": "npm run release:check && xcodebuild -project ../TribeChallengeTrackerIOS/TribeChallenge.xcodeproj -scheme TribeChallenge -destination 'platform=iOS Simulator,OS=18.2,name=iPhone 16' build && cd ../TribeChallengeTrackerAndroid && JAVA_HOME=\"/Applications/Android Studio.app/Contents/jbr/Contents/Home\" ./gradlew assembleDebug",
+    "app-links:android": "node scripts/write-assetlinks.js",
+    "hosting:release": "npm run app-links:android && npm run build && firebase deploy --only hosting",
     "cap:sync": "npm run build && npx cap sync && node scripts/patch-native-plugins.js",
     "cap:ios": "npm run build && npx cap sync ios && node scripts/patch-native-plugins.js && npx cap open ios",
     "cap:android": "npm run build && npx cap sync android && npx cap open android"

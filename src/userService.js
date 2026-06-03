@@ -1,6 +1,6 @@
 import {
   doc, setDoc, getDoc, getDocs, updateDoc,
-  serverTimestamp, collection,
+  serverTimestamp, collection, deleteField,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -14,6 +14,8 @@ export async function createUserIfNew(user) {
       email:       user.email,
       displayName: user.displayName || '',
       createdAt:   serverTimestamp(),
+      avatarEmoji: '✨',
+      avatarColor: '#FFD700',
     });
     return;
   }
@@ -51,6 +53,22 @@ export async function saveOnboarding(uid, answers) {
 export async function getUserProfile(uid) {
   const snap = await getDoc(doc(db, 'users', uid));
   return snap.exists() ? snap.data() : null;
+}
+
+export async function saveProfileAppearance(uid, { profileImageData, avatarEmoji, avatarColor }) {
+  const payload = {
+    avatarEmoji: avatarEmoji || '✨',
+    avatarColor: avatarColor || '#FFD700',
+    profileImageData: profileImageData || deleteField(),
+  };
+  const userRef = doc(db, 'users', uid);
+  await setDoc(userRef, payload, { merge: true });
+
+  const snap = await getDoc(userRef);
+  const joinedChallengeIds = snap.data()?.joinedChallengeIds || [];
+  await Promise.all(joinedChallengeIds.map(challengeId =>
+    setDoc(doc(db, 'challenges', challengeId, 'members', uid), payload, { merge: true })
+  ));
 }
 
 // ── Activity log persistence ───────────────────────────────────────────────────

@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "69JKTAE887.com.risewiththetribe.challengetracker"
+        ],
+        "components": [
+          {
+            "/": "/",
+            "?": {
+              "join": "*"
+            },
+            "comment": "Challenge invite links, e.g. https://risewiththetribe.app?join=ABC123"
+          }
+        ]
+      }
+    ]
+  }
+}

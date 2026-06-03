@@ -12,6 +12,27 @@ const GOLD   = '#FFD700';
 const AVATARS = ['🧡', '💚', '💜', '💙', '🩷', '💛', '🤍', '🖤'];
 const avatar  = uid => AVATARS[(uid.charCodeAt(0) + (uid.charCodeAt(1) || 0)) % AVATARS.length];
 
+function MemberAvatar({ member, size = 38 }) {
+  const color = member.avatarColor || 'rgba(255,255,255,0.12)';
+  const image = member.profileImageData;
+  return (
+    <div style={{
+      width: size, height: size, borderRadius: '50%', overflow: 'hidden',
+      background: `${color}22`, border: `1.5px solid ${color}55`,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontSize: Math.round(size * 0.47), flexShrink: 0,
+    }}>
+      {image ? (
+        <img
+          src={`data:image/jpeg;base64,${image}`}
+          alt=""
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      ) : (member.avatarEmoji || avatar(member.uid || 'x'))}
+    </div>
+  );
+}
+
 // Timezone-safe local date string: YYYY-MM-DD
 const localDateStr = (d = new Date()) => {
   const y = d.getFullYear();
@@ -250,14 +271,7 @@ function LeaderboardTab({ challenge, currentUid }) {
             <div style={{ fontSize: 20, width: 30, textAlign: 'center', fontFamily: "'Syne', sans-serif", fontWeight: 800 }}>
               {medal}
             </div>
-            <div style={{
-              width: 38, height: 38, borderRadius: '50%',
-              background: 'rgba(255,255,255,0.07)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 18, flexShrink: 0,
-            }}>
-              {avatar(m.uid)}
-            </div>
+            <MemberAvatar member={m} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: isMe ? GOLD : '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
