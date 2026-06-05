@@ -1,6 +1,5 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
         "appIDs": [
@@ -12,7 +11,23 @@
             "?": {
               "join": "*"
             },
-            "comment": "Challenge invite links, e.g. https://risewiththetribe.app?join=ABC123"
+            "comment": "Allow challenge invite links such as https://risewiththetribe.app?join=CODE"
+          },
+          {
+            "/": "/privacy.html",
+            "comment": "Allow app policy links to open consistently."
+          },
+          {
+            "/": "/terms.html",
+            "comment": "Allow app terms links to open consistently."
+          },
+          {
+            "/": "/support.html",
+            "comment": "Allow app support links to open consistently."
+          },
+          {
+            "/": "/data-deletion.html",
+            "comment": "Allow app data deletion links to open consistently."
           }
         ]
       }

@@ -15,12 +15,23 @@ const avatar  = uid => AVATARS[(uid.charCodeAt(0) + (uid.charCodeAt(1) || 0)) % 
 function MemberAvatar({ member, size = 38 }) {
   const color = member.avatarColor || 'rgba(255,255,255,0.12)';
   const image = member.profileImageData;
+  const frame = {
+    ember: ['#FF6B35', '#FFD700'],
+    gold: ['#FFD700', '#F59E0B'],
+    neon: ['#34D399', '#60A5FA'],
+  }[member.profileFrameId];
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%', overflow: 'hidden',
-      background: `${color}22`, border: `1.5px solid ${color}55`,
+      background: `${color}22`, border: '1.5px solid transparent',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontSize: Math.round(size * 0.47), flexShrink: 0,
+      boxShadow: frame ? `0 0 18px ${frame[0]}33` : undefined,
+      backgroundImage: frame
+        ? `linear-gradient(#111,#111), linear-gradient(135deg, ${frame[0]}, ${frame[1]})`
+        : `linear-gradient(#111,#111), linear-gradient(135deg, ${color}55, ${color}55)`,
+      backgroundOrigin: 'border-box',
+      backgroundClip: 'padding-box, border-box',
     }}>
       {image ? (
         <img
@@ -334,8 +345,20 @@ function ProgressTab({ challenge, memberData }) {
   const daysLeft   = Math.max(0, Math.ceil((endDate - todayMid) / 86400000));
   const dayNum     = Math.min(challenge.duration, Math.max(1, Math.floor((todayMid - startDate) / 86400000) + 1));
   const pctDone    = Math.round((dayNum / challenge.duration) * 100);
+  const completedDays = memberData?.daysCompleted || 0;
+  const isComplete = completedDays >= challenge.duration;
+  const completionLabel = challenge.isPremium && challenge.packLabel ? challenge.packLabel : 'Challenge complete';
 
   const fmtDate = (d) => d.toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric' });
+  const shareCompletion = async () => {
+    const packText = challenge.isPremium && challenge.packLabel ? `${challenge.packLabel} · ` : '';
+    const text = `I completed ${packText}${challenge.name} on Rise With The Tribe: ${memberData?.totalPoints || 0} pts · ${completedDays}/${challenge.duration} days · ${memberData?.currentStreak || 0} day streak.\nTag @risewiththetribe and join the next challenge.`;
+    if (navigator.share) {
+      await navigator.share({ text });
+    } else {
+      await navigator.clipboard?.writeText(text);
+    }
+  };
 
   return (
     <div style={{ padding: '20px 20px 100px' }}>
@@ -393,6 +416,48 @@ function ProgressTab({ challenge, memberData }) {
           </div>
         ))}
       </div>
+
+      {isComplete && (
+        <div style={{
+          marginBottom: 20, padding: '16px', borderRadius: 16,
+          background: 'linear-gradient(135deg, rgba(52,211,153,0.12), rgba(255,215,0,0.07))',
+          border: '1px solid rgba(52,211,153,0.28)',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start', marginBottom: 12 }}>
+            <div>
+              <p style={{ margin: 0, color: '#fff', fontSize: 15, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>
+                {completionLabel}
+              </p>
+              <p style={{ margin: '4px 0 0', color: '#777', fontSize: 10, fontFamily: 'monospace' }}>
+                {challenge.isPremium ? 'Premium pack recap ready to share' : 'Completion recap ready to share'}
+              </p>
+            </div>
+            <span style={{ color: '#34D399', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>DONE</span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 12 }}>
+            {[
+              ['PTS', memberData?.totalPoints || 0],
+              ['DAYS', `${completedDays}/${challenge.duration}`],
+              ['STREAK', memberData?.currentStreak || 0],
+            ].map(([label, value]) => (
+              <div key={label} style={{
+                textAlign: 'center', borderRadius: 10, padding: '9px 6px',
+                background: 'rgba(0,0,0,0.18)', border: '1px solid rgba(255,255,255,0.06)',
+              }}>
+                <p style={{ margin: 0, color: '#fff', fontSize: 16, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>{value}</p>
+                <p style={{ margin: '3px 0 0', color: '#777', fontSize: 8, fontWeight: 800, fontFamily: 'monospace' }}>{label}</p>
+              </div>
+            ))}
+          </div>
+          <button onClick={shareCompletion} style={{
+            width: '100%', border: 'none', borderRadius: 12, padding: '12px',
+            background: '#34D399', color: '#06130D', fontSize: 12, fontWeight: 900,
+            cursor: 'pointer',
+          }}>
+            Share Completion Recap
+          </button>
+        </div>
+      )}
 
       {/* Legend */}
       <div style={{ display: 'flex', gap: 16, marginBottom: 10 }}>

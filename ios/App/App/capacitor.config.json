@@ -30,7 +30,6 @@
 		}
 	},
 	"packageClassList": [
-		"GoogleSignInPlugin",
 		"FirebaseAuthenticationPlugin",
 		"AppPlugin",
 		"HapticsPlugin",

@@ -10,7 +10,7 @@ export const BADGE_CATEGORIES = [
   { id: "special",   label: "Special",    icon: "👑" },
 ];
 
-// 30 badges across 5 categories. xp = badge XP value contributing to Tribe Rank.
+// 36 badges across 5 categories. xp = badge XP value contributing to Tribe Rank.
 export const BADGES = [
   // ── STREAK ────────────────────────────────────────────────────────────────────
   { id: "first_log",  cat: "streak",    icon: "🌱", label: "First Step",        desc: "Log your very first activity",                color: "#34D399", xp: 10  },
@@ -40,6 +40,9 @@ export const BADGES = [
   { id: "first_join", cat: "challenge", icon: "🤝", label: "Tribe Member",       desc: "Join your first challenge",                   color: "#60A5FA", xp: 30  },
   { id: "creator",    cat: "challenge", icon: "🎯", label: "Challenge Creator",  desc: "Create your first challenge",                 color: "#FF6B35", xp: 50  },
   { id: "squad",      cat: "challenge", icon: "👥", label: "Squad Goals",        desc: "Join 3 different challenges",                 color: "#A78BFA", xp: 75  },
+  { id: "connector",  cat: "challenge", icon: "📣", label: "Connector",          desc: "Bring 1 friend into a challenge",             color: "#34D399", xp: 50  },
+  { id: "tribe_builder", cat: "challenge", icon: "🤝", label: "Tribe Builder",   desc: "Bring 5 friends into challenges",             color: "#FF6B35", xp: 150 },
+  { id: "community_captain", cat: "challenge", icon: "🌟", label: "Community Captain", desc: "Bring 10 friends into challenges",      color: "#FFD700", xp: 300 },
   { id: "finisher",   cat: "challenge", icon: "✅", label: "Finisher",           desc: "Complete a full challenge",                   color: "#34D399", xp: 200 },
   { id: "champion",   cat: "challenge", icon: "🥇", label: "Champion",           desc: "Finish #1 on a challenge leaderboard",        color: "#FFD700", xp: 300 },
   // ── SPECIAL ───────────────────────────────────────────────────────────────────
@@ -47,6 +50,9 @@ export const BADGES = [
   { id: "comeback",   cat: "special",   icon: "🦾", label: "Comeback King",      desc: "Log after a 3+ day gap — never quit",         color: "#F59E0B", xp: 50  },
   { id: "weekend_w",  cat: "special",   icon: "🎉", label: "Weekend Warrior",    desc: "Log on both Saturday and Sunday",             color: "#C084FC", xp: 40  },
   { id: "no_excuses", cat: "special",   icon: "🧱", label: "No Excuses",         desc: "Log 5 sessions in a single week",             color: "#38BDF8", xp: 60  },
+  { id: "pro_weekly_report", cat: "special", icon: "📈", label: "Pro Weekly Report", desc: "Tribe Pro: hit 5 active logs in a week",   color: "#A78BFA", xp: 120 },
+  { id: "pro_streak_saver",  cat: "special", icon: "🛡️", label: "Streak Saver",      desc: "Tribe Pro: use a streak recovery credit",  color: "#34D399", xp: 90  },
+  { id: "pro_finisher",      cat: "special", icon: "🏁", label: "Pro Finisher",       desc: "Tribe Pro: complete a full challenge",     color: "#FFD700", xp: 180 },
 ];
 
 export const TRIBE_RANKS = [
@@ -102,6 +108,9 @@ export function checkBadges(stats, currentEarned) {
   check('first_join', stats.challengesJoined >= 1);
   check('creator',    stats.challengesOwned >= 1);
   check('squad',      stats.challengesJoined >= 3);
+  check('connector',  (stats.referralJoins || 0) >= 1);
+  check('tribe_builder', (stats.referralJoins || 0) >= 5);
+  check('community_captain', (stats.referralJoins || 0) >= 10);
   check('finisher',   (stats.challengesCompleted || 0) >= 1);
   check('champion',   (stats.top1Finishes || 0) >= 1);
 
@@ -109,6 +118,9 @@ export function checkBadges(stats, currentEarned) {
   check('comeback',   stats.comeback);
   check('weekend_w',  stats.weekendWarrior);
   check('no_excuses', stats.weeklyLogs >= 5);
+  check('pro_weekly_report', stats.proActive && stats.weeklyLogs >= 5);
+  check('pro_streak_saver', stats.proActive && (stats.streakRecoveryCredits || 0) >= 1);
+  check('pro_finisher', stats.proActive && (stats.challengesCompleted || 0) >= 1);
 
   return out;
 }
@@ -140,12 +152,18 @@ export function getBadgeProgress(badgeId, stats) {
     first_join: { current: stats.challengesJoined,          target: 1,    label: "challenge" },
     creator:    { current: stats.challengesOwned,           target: 1,    label: "challenge" },
     squad:      { current: stats.challengesJoined,          target: 3,    label: "challenges" },
+    connector:  { current: stats.referralJoins || 0,        target: 1,    label: "referral join" },
+    tribe_builder: { current: stats.referralJoins || 0,     target: 5,    label: "referral joins" },
+    community_captain: { current: stats.referralJoins || 0, target: 10,   label: "referral joins" },
     finisher:   { current: stats.challengesCompleted || 0,  target: 1,    label: "completed" },
     champion:   { current: stats.top1Finishes || 0,         target: 1,    label: "#1 finish" },
     og_tribe:   { current: stats.isOG ? 1 : 0,             target: 1,    label: "member" },
     comeback:   { current: stats.comeback ? 1 : 0,         target: 1,    label: "comeback" },
     weekend_w:  { current: stats.weekendWarrior ? 1 : 0,   target: 1,    label: "weekend" },
     no_excuses: { current: stats.weeklyLogs || 0,           target: 5,    label: "sessions" },
+    pro_weekly_report: { current: stats.proActive ? (stats.weeklyLogs || 0) : 0, target: 5, label: "Pro weekly logs" },
+    pro_streak_saver:  { current: stats.proActive ? (stats.streakRecoveryCredits || 0) : 0, target: 1, label: "Pro recovery" },
+    pro_finisher:      { current: stats.proActive ? (stats.challengesCompleted || 0) : 0, target: 1, label: "Pro completed" },
   };
   return map[badgeId] || { current: 0, target: 1, label: "" };
 }

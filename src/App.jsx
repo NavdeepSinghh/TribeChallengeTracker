@@ -4,8 +4,8 @@ import { auth } from "./firebase";
 import { healthAvailable, requestHealthPerms, getTodayWorkouts, openHealthSettings } from "./healthService";
 import { platform, isNative, isIOS, isAndroid, isWeb, canSyncHealth, WATCH_OPTIONS, syncHintText } from "./platformService";
 import { useAuth } from "./AuthContext";
-import { saveOnboarding, getUserProfile, saveActivity, getActivityLog } from "./userService";
-import { getUserChallenges } from "./challengeService";
+import { saveOnboarding, getUserProfile, saveActivity, getActivityLog, saveSharePreferences } from "./userService";
+import { getUserChallenges, getUserChallengeBadgeStats } from "./challengeService";
 import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import ChallengesTab from "./ChallengesTab";
@@ -26,30 +26,44 @@ const ACTIVITY_TYPES = [
   { id: "walk",  label: "Walk",      icon: "🚶", unit: "km",  color: "#4ADE80" },
 ];
 
+const SHARE_TEMPLATES = [
+  { id: "classic", label: "Classic", pro: false },
+  { id: "gold", label: "Gold", pro: true },
+  { id: "neon", label: "Neon", pro: true },
+];
+
 const today = new Date();
 const formatDate = (d) => d.toISOString().split("T")[0];
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
-const progressShareText = ({ totalPts, streak, daysActive }) =>
-  `Rise With The Tribe: ${totalPts} pts · ${streak}-day streak · ${daysActive} days active`;
+const progressShareText = ({ totalPts, streak, daysActive, instagramHandle }) => {
+  const userTag = instagramHandle ? ` @${instagramHandle.replace(/^@+/, "")}` : "";
+  return `Rise With The Tribe: ${totalPts} pts · ${streak}-day streak · ${daysActive} days active${userTag}\nTag @risewiththetribe and join the next challenge.`;
+};
 
-const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank }) => new Promise((resolve) => {
+const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank, templateId = "classic" }) => new Promise((resolve) => {
   const canvas = document.createElement("canvas");
   canvas.width = 1080;
   canvas.height = 1920;
   const ctx = canvas.getContext("2d");
+  const palettes = {
+    classic: { bg0: "#080808", bg1: "#18110d", bg2: "#0d1511", primary: "#FF6B35", secondary: "#FFD700", third: "#34D399", card: "rgba(255,255,255,0.07)" },
+    gold: { bg0: "#110d05", bg1: "#20180a", bg2: "#0e1110", primary: "#FFD700", secondary: "#FF6B35", third: "#FDE68A", card: "rgba(255,215,0,0.1)" },
+    neon: { bg0: "#05070d", bg1: "#111827", bg2: "#071611", primary: "#34D399", secondary: "#60A5FA", third: "#A78BFA", card: "rgba(52,211,153,0.09)" },
+  };
+  const palette = palettes[templateId] || palettes.classic;
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, "#080808");
-  gradient.addColorStop(0.5, "#18110d");
-  gradient.addColorStop(1, "#0d1511");
+  gradient.addColorStop(0, palette.bg0);
+  gradient.addColorStop(0.5, palette.bg1);
+  gradient.addColorStop(1, palette.bg2);
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = "rgba(255,107,53,0.24)";
+  ctx.fillStyle = templateId === "neon" ? "rgba(52,211,153,0.24)" : "rgba(255,107,53,0.24)";
   ctx.beginPath();
   ctx.arc(930, 160, 270, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "rgba(255,215,0,0.18)";
+  ctx.fillStyle = templateId === "neon" ? "rgba(96,165,250,0.18)" : "rgba(255,215,0,0.18)";
   ctx.beginPath();
   ctx.arc(140, 1770, 290, 0, Math.PI * 2);
   ctx.fill();
@@ -57,18 +71,21 @@ const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank }) => n
   ctx.fillStyle = "#FFFFFF";
   ctx.font = "900 82px Arial";
   ctx.fillText("Rise With The Tribe", 96, 210);
-  ctx.fillStyle = rank.color || "#FFD700";
+  ctx.fillStyle = palette.primary;
+  ctx.font = "700 34px Arial";
+  ctx.fillText("@risewiththetribe", 96, 260);
+  ctx.fillStyle = templateId === "classic" ? (rank.color || "#FFD700") : palette.secondary;
   ctx.font = "900 64px Arial";
-  ctx.fillText(`${rank.icon || "🌱"} ${rank.label || "Rookie"}`, 96, 315);
+  ctx.fillText(`${rank.icon || "🌱"} ${rank.label || "Rookie"}`, 96, 350);
 
   const stats = [
-    ["STREAK", `${streak}d`, "#FF6B35"],
-    ["POINTS", `${totalPts}`, "#FFD700"],
-    ["DAYS ACTIVE", `${daysActive}`, "#34D399"],
+    ["STREAK", `${streak}d`, palette.primary],
+    ["POINTS", `${totalPts}`, palette.secondary],
+    ["DAYS ACTIVE", `${daysActive}`, palette.third],
   ];
   stats.forEach(([label, value, color], index) => {
     const y = 520 + index * 300;
-    ctx.fillStyle = "rgba(255,255,255,0.07)";
+    ctx.fillStyle = palette.card;
     roundRect(ctx, 96, y, 888, 220, 34);
     ctx.fill();
     ctx.fillStyle = color;
@@ -82,9 +99,12 @@ const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank }) => n
   ctx.fillStyle = "rgba(255,255,255,0.72)";
   ctx.font = "700 36px Arial";
   ctx.fillText("Built one log at a time.", 96, 1640);
-  ctx.fillStyle = "#FFD700";
+  ctx.fillStyle = palette.primary;
+  ctx.font = "800 34px Arial";
+  ctx.fillText("Tag @risewiththetribe", 96, 1698);
+  ctx.fillStyle = palette.secondary;
   ctx.font = "900 42px Arial";
-  ctx.fillText("rise-with-the-tribe.app", 96, 1710);
+  ctx.fillText("risewiththetribe.app", 96, 1760);
 
   canvas.toBlob(resolve, "image/png", 0.94);
 });
@@ -792,6 +812,10 @@ export default function TribeChallenge() {
     const params = new URLSearchParams(window.location.search);
     return params.get("join") || sessionStorage.getItem("pendingJoinCode") || null;
   });
+  const [pendingReferralUid, setPendingReferralUid] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("ref") || sessionStorage.getItem("pendingReferralUid") || null;
+  });
   const [challengeStats, setChallengeStats] = useState({ joined: 0, owned: 0 });
   const [myChallenges, setMyChallenges]     = useState([]);
   const [showLog, setShowLog] = useState(false);
@@ -800,6 +824,7 @@ export default function TribeChallenge() {
   const [badgeCat, setBadgeCat] = useState("all");
   const [showProfile, setShowProfile] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
+  const [savingShareTemplate, setSavingShareTemplate] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null); // { date, activity } for day detail sheet
 
   // ── ALL effects must be before any conditional returns ──
@@ -833,8 +858,9 @@ export default function TribeChallenge() {
   useEffect(() => {
     if (!pendingJoinCode) return;
     sessionStorage.setItem("pendingJoinCode", pendingJoinCode);
+    if (pendingReferralUid) sessionStorage.setItem("pendingReferralUid", pendingReferralUid);
     setTab("challenges");
-  }, [pendingJoinCode]);
+  }, [pendingJoinCode, pendingReferralUid]);
 
   useEffect(() => {
     if (!user) { setMyChallenges([]); setUserProfile(null); return; }
@@ -847,8 +873,20 @@ export default function TribeChallenge() {
         owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || 0,
       });
       const ids = p?.joinedChallengeIds || [];
-      if (ids.length) getUserChallenges(ids).then(setMyChallenges);
-      else setMyChallenges([]);
+      if (ids.length) {
+        getUserChallenges(ids).then(async challenges => {
+          setMyChallenges(challenges);
+          const badgeStats = await getUserChallengeBadgeStats(user.uid, challenges);
+          setChallengeStats({
+            joined: (p?.stats?.challengesJoined ?? p?.['stats.challengesJoined']) || challenges.length,
+            owned:  (p?.stats?.challengesOwned  ?? p?.['stats.challengesOwned'])  || challenges.filter(c => c.createdBy === user.uid).length,
+            completed: badgeStats.completed,
+            top1: badgeStats.top1,
+          });
+        });
+      } else {
+        setMyChallenges([]);
+      }
     });
   }, [user?.uid]);
 
@@ -895,7 +933,29 @@ export default function TribeChallenge() {
     acc[a.id] = allActivities.filter(h => h.type === a.id).length;
     return acc;
   }, {});
-  const shareStats = { totalPts, streak, daysActive, rank: getTribeRank(calcBadgeXP(earnedBadges)) };
+  const hasActivePro = userProfile?.entitlements?.pro?.active === true;
+  const shareTemplateId = userProfile?.sharePreferences?.templateId || "classic";
+  const shareStats = { totalPts, streak, daysActive, rank: getTribeRank(calcBadgeXP(earnedBadges)), instagramHandle: userProfile?.instagramHandle, templateId: shareTemplateId };
+
+  const handleShareTemplateSelect = async (templateId) => {
+    const template = SHARE_TEMPLATES.find(t => t.id === templateId) || SHARE_TEMPLATES[0];
+    if (template.pro && !hasActivePro) {
+      showToast("Tribe Pro unlocks premium share templates");
+      return;
+    }
+    if (!user || template.id === shareTemplateId || savingShareTemplate) return;
+    setSavingShareTemplate(true);
+    try {
+      const sharePreferences = await saveSharePreferences(user.uid, { templateId: template.id });
+      setUserProfile(prev => ({ ...(prev || {}), sharePreferences }));
+      showToast(`${template.label} share template saved`);
+    } catch (e) {
+      console.error("[Share templates]", e);
+      showToast("Could not save share template");
+    } finally {
+      setSavingShareTemplate(false);
+    }
+  };
 
   const handleProgressShare = async (target) => {
     const text = progressShareText(shareStats);
@@ -944,6 +1004,7 @@ export default function TribeChallenge() {
   const buildStats = (history, cStats) => {
     // Flatten all individual activity sessions across all days
     const allActs = Object.values(history).flatMap(entry => getEntryActivities(entry));
+    const streakRecoveryCredits = allActs.filter(a => a.recoveredByPro || a.activityId === 'streak_recovery' || a.type === 'streak_recovery').length;
     // Days that have at least one activity
     const activeDates = Object.keys(history).filter(
       date => getEntryActivities(history[date]).length > 0
@@ -969,6 +1030,7 @@ export default function TribeChallenge() {
       uniqueTypes: Object.values(ac).filter(v => v > 0).length,
       challengesJoined: cStats.joined,
       challengesOwned: cStats.owned,
+      referralJoins: userProfile?.stats?.referralJoins || 0,
       challengesCompleted: cStats.completed || 0,
       top1Finishes: cStats.top1 || 0,
       weekendWarrior: sortedDates.some(date => {
@@ -980,6 +1042,8 @@ export default function TribeChallenge() {
       comeback: sortedDates.some((date, i) => i > 0 &&
         (new Date(date) - new Date(sortedDates[i - 1])) / 86400000 >= 3),
       weeklyLogs: sortedDates.filter(d => new Date(d) >= weekStart).length,
+      proActive: userProfile?.entitlements?.pro?.active === true,
+      streakRecoveryCredits,
       isOG: true, // beta: all early members get OG status
     };
   };
@@ -1058,6 +1122,10 @@ export default function TribeChallenge() {
           myHistory={myHistory}
           challengeStats={challengeStats}
           onProfileUpdated={setUserProfile}
+          onHistoryUpdated={updated => {
+            setMyHistory(updated);
+            triggerBadgeCheck(updated, challengeStats);
+          }}
           onClose={() => setShowProfile(false)}
         />
       )}
@@ -1118,12 +1186,25 @@ export default function TribeChallenge() {
                 })()}
               </div>
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
+                {(() => {
+                  const avatarColor = userProfile?.avatarColor || getTribeRank(calcBadgeXP(earnedBadges)).color;
+                  const frameId = userProfile?.cosmetics?.profileFrameId || 'none';
+                  const frame = {
+                    ember: ['#FF6B35', '#FFD700'],
+                    gold: ['#FFD700', '#F59E0B'],
+                    neon: ['#34D399', '#60A5FA'],
+                  }[frameId];
+                  return (
                 <button onClick={() => setShowProfile(true)} style={{
                   width: 38, height: 38, borderRadius: "50%", flexShrink: 0,
-                  background: `${userProfile?.avatarColor || getTribeRank(calcBadgeXP(earnedBadges)).color}22`,
-                  border: `2px solid ${userProfile?.avatarColor || getTribeRank(calcBadgeXP(earnedBadges)).color}55`,
+                  background: `${avatarColor}22`,
+                  border: "2px solid transparent",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 18, cursor: "pointer", overflow: "hidden", padding: 0,
+                  boxShadow: frame ? `0 0 18px ${frame[0]}33` : undefined,
+                  backgroundImage: frame ? `linear-gradient(#111,#111), linear-gradient(135deg, ${frame[0]}, ${frame[1]})` : `linear-gradient(#111,#111), linear-gradient(135deg, ${avatarColor}55, ${avatarColor}55)`,
+                  backgroundOrigin: "border-box",
+                  backgroundClip: "padding-box, border-box",
                 }}>
                   {userProfile?.profileImageData ? (
                     <img
@@ -1133,6 +1214,8 @@ export default function TribeChallenge() {
                     />
                   ) : (userProfile?.avatarEmoji || getTribeRank(calcBadgeXP(earnedBadges)).icon)}
                 </button>
+                  );
+                })()}
                 <div>
                   <div style={{ fontSize: 11, color: "#444", fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>POINTS</div>
                   <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#FFD700" }}>{totalPts}</div>
@@ -1239,6 +1322,32 @@ export default function TribeChallenge() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <span style={{ fontSize: 13, fontWeight: 700, color: "#FFD700" }}>Share Your Progress</span>
                 <span style={{ fontSize: 18 }}>📤</span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 12 }}>
+                {SHARE_TEMPLATES.map(template => {
+                  const locked = template.pro && !hasActivePro;
+                  const active = shareTemplateId === template.id;
+                  return (
+                    <button
+                      key={template.id}
+                      onClick={() => handleShareTemplateSelect(template.id)}
+                      disabled={savingShareTemplate}
+                      style={{
+                        padding: "8px 6px",
+                        borderRadius: 10,
+                        background: active ? "rgba(255,215,0,0.16)" : "rgba(255,255,255,0.05)",
+                        border: active ? "1px solid rgba(255,215,0,0.55)" : "1px solid rgba(255,255,255,0.08)",
+                        color: locked ? "#777" : "#fff",
+                        fontSize: 9,
+                        fontWeight: 900,
+                        fontFamily: "monospace",
+                        cursor: savingShareTemplate ? "default" : "pointer",
+                      }}
+                    >
+                      {locked ? "🔒 " : ""}{template.label}
+                    </button>
+                  );
+                })}
               </div>
               <div style={{ display: "flex", gap: 8 }}>
                 {[
@@ -1518,6 +1627,7 @@ export default function TribeChallenge() {
       {tab === "challenges" && (
         <ChallengesTab
           pendingJoinCode={pendingJoinCode}
+          pendingReferralUid={pendingReferralUid}
           onStatsChanged={() => {
             getUserProfile(user.uid).then(p => {
               const newStats = {
@@ -1530,6 +1640,7 @@ export default function TribeChallenge() {
           }}
           onJoinHandled={() => {
             setPendingJoinCode(null);
+            setPendingReferralUid(null);
             sessionStorage.removeItem("pendingJoinCode");
             getUserProfile(user.uid).then(p => {
               const newStats = {

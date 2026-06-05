@@ -30,17 +30,20 @@ const baseStats = {
   uniqueTypes: 0,
   challengesJoined: 0,
   challengesOwned: 0,
+  referralJoins: 0,
   challengesCompleted: 0,
   top1Finishes: 0,
   weeklyLogs: 0,
+  proActive: false,
+  streakRecoveryCredits: 0,
   isOG: false,
   comeback: false,
   weekendWarrior: false,
 };
 
 describe("badge service", () => {
-  it("keeps the shared badge catalog at 30 badges across the expected categories", () => {
-    expect(BADGES).toHaveLength(30);
+  it("keeps the shared badge catalog at 36 badges across the expected categories", () => {
+    expect(BADGES).toHaveLength(36);
     expect(BADGE_CATEGORIES.map((category) => category.id)).toEqual([
       "all",
       "streak",
@@ -50,6 +53,18 @@ describe("badge service", () => {
       "special",
     ]);
     expect(new Set(BADGES.map((badge) => badge.id)).size).toBe(BADGES.length);
+  });
+
+  it("gates premium badges behind active Pro entitlement", () => {
+    expect(checkBadges(
+      { ...baseStats, weeklyLogs: 5, streakRecoveryCredits: 1, challengesCompleted: 1, proActive: false },
+      new Set()
+    )).not.toEqual(expect.arrayContaining(["pro_weekly_report", "pro_streak_saver", "pro_finisher"]));
+
+    expect(checkBadges(
+      { ...baseStats, weeklyLogs: 5, streakRecoveryCredits: 1, challengesCompleted: 1, proActive: true },
+      new Set()
+    )).toEqual(expect.arrayContaining(["pro_weekly_report", "pro_streak_saver", "pro_finisher"]));
   });
 
   it("awards milestone, activity, challenge, and special badges from stats", () => {
@@ -67,6 +82,7 @@ describe("badge service", () => {
         uniqueTypes: 6,
         challengesJoined: 3,
         challengesOwned: 1,
+        referralJoins: 10,
         challengesCompleted: 1,
         top1Finishes: 1,
         weeklyLogs: 5,
@@ -91,6 +107,9 @@ describe("badge service", () => {
       "variety",
       "squad",
       "creator",
+      "connector",
+      "tribe_builder",
+      "community_captain",
       "finisher",
       "champion",
       "og_tribe",
@@ -119,6 +138,16 @@ describe("badge service", () => {
       current: 1,
       target: 1,
       label: "completed",
+    });
+    expect(getBadgeProgress("tribe_builder", { ...baseStats, referralJoins: 3 })).toEqual({
+      current: 3,
+      target: 5,
+      label: "referral joins",
+    });
+    expect(getBadgeProgress("pro_streak_saver", { ...baseStats, proActive: true, streakRecoveryCredits: 1 })).toEqual({
+      current: 1,
+      target: 1,
+      label: "Pro recovery",
     });
   });
 

@@ -16,10 +16,14 @@ service cloud.firestore {
     }
 
     // ── Users ─────────────────────────────────────────────────────────────────
-    // Users read/write their own doc; admins can read all.
+    // Users read/write their own doc; admins can read all and can update the
+    // mirrored accountDeletionRequest review status only.
     match /users/{uid} {
       allow read:  if request.auth != null && (request.auth.uid == uid || isAdmin());
       allow write: if request.auth != null && request.auth.uid == uid;
+      allow update: if request.auth != null
+        && isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["accountDeletionRequest"]);
 
       // Activity log — one doc per day, written and read only by the owner.
       // FIX: was missing, causing getActivityLog / saveActivity to fail.
@@ -32,6 +36,266 @@ service cloud.firestore {
       match /earnedBadges/{badgeId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;
       }
+    }
+
+    // ── Account deletion requests ────────────────────────────────────────────
+    // Users can record their own support-reviewed deletion request. Admins can
+    // use reviewAccountDeletionRequest to update reviewNote, reviewedBy,
+    // reviewedAt, and status. The app does not directly delete auth accounts,
+    // purchase records, subscriptions, refunds, or marketplace data.
+    match /accountDeletionRequests/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow create, update: if request.auth != null
+        && (
+          (
+            request.auth.uid == uid
+            && request.resource.data.uid == request.auth.uid
+            && request.resource.data.status == "requested"
+          )
+          || (
+            isAdmin()
+            && ["requested", "contacted", "verified", "blocked", "closed"].hasAny([request.resource.data.status])
+          )
+        );
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Support requests ─────────────────────────────────────────────────────
+    // Users can create support messages for their own account. Admins can use
+    // reviewSupportRequest to update reviewNote, reviewedBy, reviewedAt, and
+    // status outside destructive account, refund, subscription, or entitlement
+    // actions.
+    match /supportRequests/{requestId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "category", "message", "status"])
+        && ["general", "account", "billing", "bug", "safety"].hasAny([request.resource.data.category]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "waiting", "resolved", "closed"].hasAny([request.resource.data.status]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Entitlement recovery requests ───────────────────────────────────────
+    // Members can ask support to review missing purchase entitlements after
+    // restore/sync. Admins can use reviewEntitlementRecoveryRequest to update
+    // reviewNote, reviewedBy, reviewedAt, and status. This never grants access,
+    // refunds, subscriptions, purchase records, or marketplace bypasses.
+    match /entitlementRecoveryRequests/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow create: if request.auth != null && (
+          request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "productCount", "proActive", "packCount", "activePackCount", "reason", "status"])
+          && request.resource.data.productCount >= 0
+          && request.resource.data.packCount >= 0
+          && request.resource.data.activePackCount >= 0
+          && ["restore_sync_failed", "missing_pro", "missing_pack", "account_mismatch", "billing_question"].hasAny([request.resource.data.reason])
+      );
+      allow update: if request.auth != null && (
+        (
+          isAdmin()
+          && ["open", "waiting", "resolved", "closed"].hasAny([request.resource.data.status])
+        ) ||
+        (
+          request.auth.uid == uid
+          && resource.data.status == "open"
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "productCount", "proActive", "packCount", "activePackCount", "reason", "status"])
+          && request.resource.data.productCount >= 0
+          && request.resource.data.packCount >= 0
+          && request.resource.data.activePackCount >= 0
+          && ["restore_sync_failed", "missing_pro", "missing_pack", "account_mismatch", "billing_question"].hasAny([request.resource.data.reason])
+        )
+      );
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Store test purchase evidence ────────────────────────────────────────
+    // Admin-only sandbox/license-test QA evidence. Admins can use
+    // reviewStoreTestPurchaseEvidence to update reviewNote, reviewedBy,
+    // reviewedAt, result, and status. These records document store review
+    // readiness only and never grant paid access or process purchases.
+    match /storeTestPurchaseEvidence/{evidenceId} {
+      allow read, delete: if request.auth != null && isAdmin();
+      allow create: if request.auth != null
+        && isAdmin()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "recorded"
+        && request.resource.data.keys().hasAll(["uid", "platform", "productId", "testCase", "result", "status"])
+        && ["ios", "android"].hasAny([request.resource.data.platform])
+        && ["sandbox_purchase", "restore_sync", "negative_validation", "wrong_account"].hasAny([request.resource.data.testCase])
+        && ["passed", "needs_review", "failed"].hasAny([request.resource.data.result]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["verified", "needs_review", "failed"].hasAny([request.resource.data.result])
+        && ["recorded", "reviewed", "archived"].hasAny([request.resource.data.status]);
+    }
+
+    // ── Feature submissions ─────────────────────────────────────────────────
+    // Members can submit opt-in UGC for manual review. Featured submissions are
+    // readable to authenticated members for Community Highlights; pending and
+    // private submissions remain owner/admin only. Admin review only updates
+    // status and review metadata, and does not auto-post or override consent.
+    match /featureSubmissions/{submissionId} {
+      allow read: if request.auth != null && (
+        resource.data.uid == request.auth.uid ||
+        resource.data.status == "featured" ||
+        isAdmin()
+      );
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "pending"
+        && request.resource.data.consentToFeature == true
+        && request.resource.data.keys().hasAll(["uid", "displayName", "email", "instagramHandle", "category", "story", "consentToFeature", "status", "source"])
+        && ["streak_win", "challenge_completion", "comeback", "beginner_win", "transformation"].hasAny([request.resource.data.category])
+        && ["web", "ios", "android"].hasAny([request.resource.data.source])
+        && request.resource.data.story.size() >= 20
+        && request.resource.data.story.size() <= 900;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["pending", "approved", "featured", "declined"].hasAny([request.resource.data.status]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Referral reward claims ───────────────────────────────────────────────
+    // Users can request review for unlocked referral tiers. Admins can use
+    // reviewReferralRewardClaim to update reviewNote, reviewedBy, reviewedAt,
+    // and status after verifying real challenge joins before any manual
+    // community recognition or future perk.
+    match /referralRewardClaims/{claimId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "tierTarget", "tierLabel", "reward", "referralJoins", "status"])
+        && [1, 5, 10, 25].hasAny([request.resource.data.tierTarget])
+        && request.resource.data.referralJoins >= request.resource.data.tierTarget;
+      allow update: if request.auth != null && (
+        (
+          isAdmin()
+          && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        ) ||
+        (
+          resource.data.uid == request.auth.uid
+          && request.resource.data.uid == request.auth.uid
+          && resource.data.status == "open"
+          && request.resource.data.status == "open"
+          && [1, 5, 10, 25].hasAny([request.resource.data.tierTarget])
+          && request.resource.data.referralJoins >= request.resource.data.tierTarget
+        )
+      );
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Creator hosting applications ─────────────────────────────────────────
+    // Creators can request review for hosted challenge readiness. Admins can
+    // use reviewCreatorHostingApplication to update reviewNote, reviewedBy,
+    // reviewedAt, and status. This is a manual admin queue only: no contracts,
+    // payouts, purchases, revenue-share, paid-access claims, or entitlements.
+    match /creatorHostingApplications/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow create: if request.auth != null && (
+          request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "specialty", "bio", "hostedCount", "memberReach", "revenueReadyCount", "status"])
+          && request.resource.data.hostedCount >= 0
+          && request.resource.data.memberReach >= 0
+          && request.resource.data.revenueReadyCount >= 0
+      );
+      allow update: if request.auth != null && (
+        (
+          isAdmin()
+          && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        ) ||
+        (
+          request.auth.uid == uid
+          && resource.data.status == "open"
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "specialty", "bio", "hostedCount", "memberReach", "revenueReadyCount", "status"])
+          && request.resource.data.hostedCount >= 0
+          && request.resource.data.memberReach >= 0
+          && request.resource.data.revenueReadyCount >= 0
+        )
+      );
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Partner campaign applications ────────────────────────────────────────
+    // Members can request manual sponsor-pilot review from first-party demand.
+    // Admins can use reviewPartnerCampaignApplication to update reviewNote,
+    // reviewedBy, reviewedAt, and status. This queue does not create ads,
+    // tracking, partner links, purchases, or entitlements.
+    match /partnerCampaignApplications/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow create: if request.auth != null && (
+          request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "topPerkId", "topPerkLabel", "demandCount", "totalDemand", "campaignReach", "referralJoins", "status"])
+          && request.resource.data.demandCount >= 0
+          && request.resource.data.totalDemand >= 0
+          && request.resource.data.campaignReach >= 0
+          && request.resource.data.referralJoins >= 0
+      );
+      allow update: if request.auth != null && (
+        (
+          isAdmin()
+          && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        ) ||
+        (
+          request.auth.uid == uid
+          && resource.data.status == "open"
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "topPerkId", "topPerkLabel", "demandCount", "totalDemand", "campaignReach", "referralJoins", "status"])
+          && request.resource.data.demandCount >= 0
+          && request.resource.data.totalDemand >= 0
+          && request.resource.data.campaignReach >= 0
+          && request.resource.data.referralJoins >= 0
+        )
+      );
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Partner perk claims ─────────────────────────────────────────────────
+    // Eligible members can request manual perk review. Admins can use
+    // reviewPartnerPerkClaim to update review status plus reviewNote,
+    // reviewedBy, and reviewedAt. This queue does not create coupons, partner
+    // links, payouts, discounts, purchases, or entitlements.
+    match /partnerPerkClaims/{claimId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null && (
+          request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "perkId", "perkLabel", "current", "target", "status"])
+          && ["gear", "recovery", "nutrition"].hasAny([request.resource.data.perkId])
+          && request.resource.data.current >= request.resource.data.target
+          && request.resource.data.target > 0
+      );
+      allow update: if request.auth != null && (
+        (
+          isAdmin()
+          && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        ) ||
+        (
+          resource.data.uid == request.auth.uid
+          && resource.data.status == "open"
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == "open"
+          && request.resource.data.keys().hasAll(["uid", "perkId", "perkLabel", "current", "target", "status"])
+          && ["gear", "recovery", "nutrition"].hasAny([request.resource.data.perkId])
+          && request.resource.data.current >= request.resource.data.target
+          && request.resource.data.target > 0
+        )
+      );
+      allow delete: if request.auth != null && isAdmin();
     }
 
     // ── Challenges ────────────────────────────────────────────────────────────
