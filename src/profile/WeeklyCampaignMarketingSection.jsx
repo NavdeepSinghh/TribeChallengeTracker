@@ -3,6 +3,7 @@ import WeeklyCampaignDmKeywordSection from './WeeklyCampaignDmKeywordSection';
 import WeeklyCampaignInstagramCalendarSection from './WeeklyCampaignInstagramCalendarSection';
 import WeeklyCampaignLaunchCardSection from './WeeklyCampaignLaunchCardSection';
 import WeeklyCampaignMetricKitSection from './WeeklyCampaignMetricKitSection';
+import WeeklyCampaignOperatingSummaryCard from './WeeklyCampaignOperatingSummaryCard';
 import { buildWeeklyCampaignMarketingSectionData } from './weeklyCampaignMarketingSectionData';
 
 export default function WeeklyCampaignMarketingSection({
@@ -18,6 +19,7 @@ export default function WeeklyCampaignMarketingSection({
     dmKeywordSectionProps,
     instagramCalendarSectionProps,
     launchCardSectionProps,
+    operatingSummaryProps,
     simpleWeeklyCampaignCopyCards,
     weeklyCampaignCollabCopyCards,
     weeklyCampaignMetricKitSections,
@@ -25,6 +27,8 @@ export default function WeeklyCampaignMarketingSection({
 
   return (
     <>
+      <WeeklyCampaignOperatingSummaryCard {...operatingSummaryProps} />
+
       <WeeklyCampaignLaunchCardSection {...launchCardSectionProps} />
 
       {weeklyCampaignMetricKitSections.map(section => (

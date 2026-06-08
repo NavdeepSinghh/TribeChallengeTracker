@@ -1,5 +1,6 @@
 import { buildSimpleWeeklyCampaignCopyCards } from './weeklyCampaignCardCopy';
 import { buildWeeklyCampaignMetricKitSections } from './weeklyCampaignMetricKitSections';
+import { buildWeeklyCampaignOperatingSummary } from './weeklyCampaignOperatingSummary';
 
 export function buildWeeklyCampaignMarketingSectionData({
   campaignPerformanceSummary,
@@ -41,6 +42,13 @@ export function buildWeeklyCampaignMarketingSectionData({
       weeklyCampaignLaunchCardCopy,
       weeklyCampaignPrompt,
     },
+    operatingSummaryProps: buildWeeklyCampaignOperatingSummary({
+      campaignPerformanceSummary,
+      featureReviewQueue,
+      recommendedLaunchExperiment,
+      referralJoins,
+      weeklyCampaignPrompt,
+    }),
     simpleWeeklyCampaignCopyCards: buildSimpleWeeklyCampaignCopyCards({
       weeklyCampaignPrompt,
       weeklyCampaignCommentReplyCopy,

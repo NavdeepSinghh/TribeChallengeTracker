@@ -5,6 +5,9 @@ const {
   buildWeeklyCampaignMarketingProps,
 } = require("../profile/weeklyCampaignMarketingProps");
 const {
+  buildWeeklyCampaignMarketingSectionData,
+} = require("../profile/weeklyCampaignMarketingSectionData");
+const {
   buildWeeklyCampaignDerivedDataInput,
   weeklyCampaignPrompt,
 } = require("../testUtils/weeklyCampaignTestFixtures");
@@ -58,5 +61,37 @@ describe("Weekly Campaign marketing props", () => {
       "weeklyCampaignStoryboardCopy",
       "weeklyCampaignWeekendPushStoryCopy",
     ]);
+  });
+
+  it("builds an operator summary from first-party campaign signals", () => {
+    const data = buildProfileWeeklyCampaignDerivedData(buildWeeklyCampaignDerivedDataInput());
+    const sectionData = buildWeeklyCampaignMarketingSectionData({
+      ...buildWeeklyCampaignMarketingProps({
+        ...data,
+        campaignPerformanceSummary: buildWeeklyCampaignDerivedDataInput().campaignPerformanceSummary,
+        creatorEnabled: true,
+        featureReviewQueue: buildWeeklyCampaignDerivedDataInput().featureReviewQueue,
+        instagramContentCalendarCopy: "Rise With The Tribe Instagram Content Calendar",
+        isAdmin: true,
+        referralJoins: 5,
+        weeklyCampaignPrompt,
+      }),
+    });
+
+    expect(sectionData.operatingSummaryProps.title).toBe("Weekly Campaign Operator Summary");
+    expect(sectionData.operatingSummaryProps.status).toBe("READY");
+    expect(sectionData.operatingSummaryProps.metrics).toEqual([
+      ["Reach", 9],
+      ["Active", 2],
+      ["Referrals", 5],
+      ["UGC", 2],
+    ]);
+    expect(sectionData.operatingSummaryProps.actionLanes.map(lane => lane.label)).toEqual([
+      "READY",
+      "REVIEW UGC",
+      "REFERRAL SIGNAL",
+    ]);
+    expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
+    expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
   });
 });
