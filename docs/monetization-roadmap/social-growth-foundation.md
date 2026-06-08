@@ -1,0 +1,142 @@
+### Phase 1: Social Growth Foundation
+
+Status: foundation implemented across Web, iOS, and Android for the listed app surfaces. Weekly campaign operations, content publishing, and monthly optimization remain ongoing operating work.
+
+Features:
+
+- Instagram handle in profile.
+- Share copy/images that tag `@risewiththetribe`.
+- Branded progress sharing.
+- Weekly campaign challenge templates.
+- Campaign CTA/hashtag metadata on challenge docs.
+- Campaign invite copy for challenge sharing.
+- Feature submission flow for user stories and wins.
+- Referral-ready invite links that track challenge joins.
+- Referral join counter visible in profile.
+- User-facing feature submission status history.
+- User-generated win cards for social sharing and Instagram engagement.
+- Referral reward badges at 1, 5, and 10 attributed challenge joins.
+- Weekly 7-day recap sharing for recurring Instagram/story prompts.
+- Media upload and admin review tools for feature submissions.
+- Community Highlights gallery for admin-featured UGC and repost-ready Instagram captions.
+- Community Highlight Roundup Kit across Web, iOS, and Android with copy-ready weekly Instagram roundup text from featured submissions only.
+- UGC Consent Reminder Kit across Web, iOS, and Android with copy-ready consent, review, attribution, claim-safety, and private-detail checks before reposting member wins.
+- Instagram Weekly Prompt Kit across Web, iOS, and Android to turn the content cadence into copy-ready user/creator prompts.
+- Campaign Performance Board across Web, iOS, and Android to summarize weekly/seasonal campaign reach from challenge metadata.
+
+### Weekly Campaign Social Growth Operations Index
+
+The Weekly Campaign social-growth operations inventory now lives in `docs/monetization-roadmap/weekly-campaign-social-growth.md` so the Phase 1 foundation stays readable while include-aware roadmap checks preserve scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, re-invite, no-automation, no-tracking, consent, app-first, referral, and content-calendar sequencing evidence.
+
+<!-- include: weekly-campaign-social-growth.md -->
+
+- Referral Launch Kit across Web, iOS, and Android with copy-ready next-tier launch checklists, caption drafts, manual comment replies, app-link guidance, and first-party join review prompts.
+- Referral Story Sprint Kit across Web, iOS, and Android with copy-ready Story/Reel prompts that invite one accountability partner toward the next referral tier.
+- Referral Reward Social Proof Kit across Web, iOS, and Android with copy-ready Story/carousel celebration copy for unlocked referral progress.
+- Instagram Content Calendar across Web, iOS, and Android with a seven-day creator/admin cadence for weekly planning and copy export.
+- Launch Experiment Kit across Web, iOS, and Android with admin/creator copy-ready Pro, pack, referral, and partner experiment briefs derived from first-party signals.
+- Launch Experiment Scorecard across Web, iOS, and Android with manual first-party demand/reach/community-loop scoring for the next launch test.
+- Release QA Checklist across Web, iOS, and Android with copy-ready product ID, store test, entitlement, and social share guardrails before monetization or campaign launches.
+- Launch Retrospective Kit across Web, iOS, and Android with manual first-party review copy for challenge joins, referrals, feature submissions, share-card usage, and entitlement validation after a campaign push.
+- Revenue Pathway Planner across Web, iOS, and Android with admin/creator copy-ready ranking for Pro, paid packs, creator hosting, and partner campaigns from first-party signals.
+- Pricing Test Kit across Web, iOS, and Android with admin/creator copy-ready pricing-language validation for shared Pro and pack product IDs before store launch.
+- Founder Member Offer Kit across Web, iOS, and Android with admin/creator copy-ready early-member value validation that drives the free challenge loop before paid access.
+- Community Ambassador Kit across Web, iOS, and Android with admin/creator copy-ready referral, recognition, and challenge-leadership prompts before paid roles or payouts.
+- Community Event Interest Kit across Web, iOS, and Android with admin/creator copy-ready local meetup, milestone merch, studio pop-up, and finisher-moment validation from first-party app signals before tickets, orders, venues, partner links, payouts, or event promises exist.
+- Community Event Interest capture across Web, iOS, and Android with saved `communityEventInterest.selectedIds` and admin aggregate demand counts for local meetup, milestone merch, studio pop-up, and finisher-moment signals before any event commerce or partner operation exists.
+- Customer Value Delivery Checklist across Web, iOS, and Android with admin/creator copy-ready proof checks for free-loop consistency, paid accountability value, community proof, and support readiness before charging.
+- Value Proof Story Kit across Web, iOS, and Android with progress/report/campaign-based Instagram Story proof copy.
+- Story Posting Checklist Kit across Web, iOS, and Android with campaign/proof/comeback/referral/highlight prompts for manual Instagram Story sequences.
+- Streak Rescue Prompt Kit across Web, iOS, and Android with pressure-safe copy for missed-day comeback prompts.
+- Comeback Challenge Invite Kit across Web, iOS, and Android with missed-day restart copy tied to this week's campaign prompt.
+- Support and Refund Readiness Kit across Web, iOS, and Android with admin copy-ready restore, marketplace refund, entitlement recovery, and escalation handoff before paid launch.
+- Paid Launch Decision Gate across Web, iOS, and Android with admin go/no-go checks for product IDs, demand, support handoff, receipt-validation credentials, store test evidence coverage, and entitlement QA before paid access is promoted.
+- Store Listing Copy Kit across Web, iOS, and Android with admin copy-ready App Store / Play listing title, subtitle, short description, value points, launch positioning, and policy-safe paid-feature cautions.
+- Store Review Submission Kit across Web, iOS, and Android with admin copy-ready reviewer notes, demo-account checklist, permission explanations, support/privacy/data-deletion reminders, and policy-safe paid-access cautions.
+- Store Review Evidence Pack across Web, iOS, and Android with admin copy-ready store-test evidence counts, product IDs, policy/support links, permission notes, validation readiness, and launch gate status for reviewer-safe submission notes.
+- Policy and Support Link Hub across Web, iOS, and Android with hosted privacy, terms, support, and account/data deletion resources visible from profile surfaces.
+- Account Deletion Request and Review Queue flow across Web, iOS, and Android with `accountDeletionRequests/{uid}` writes, mirrored `users/{uid}.accountDeletionRequest` status, and admin-only pending request visibility for support-reviewed deletion operations.
+- Account Deletion Admin Review Updates across Web, iOS, and Android with verified/contacted/blocked/closed decisions, manual `reviewNote` capture, reviewer/timestamp metadata, and no automatic account deletion, data erasure, purchase cancellation, refund processing, or marketplace policy bypass.
+- Account Deletion Decision Reply Kit across Web, iOS, and Android with admin copy-ready verified/contacted/blocked/closed support replies before backend deletion work, data erasure, purchase cancellation, refund processing, entitlement writes, or marketplace-policy escalation.
+- Support Request and Review Queue flow across Web, iOS, and Android with `supportRequests` writes and admin-only open request visibility for account, billing, bug, safety, and general follow-up.
+- Support Request Admin Review Updates across Web, iOS, and Android with admin-only status updates (`waiting`, `resolved`, `closed`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `supportRequests` without resolving refunds, subscriptions, purchases, or entitlements from profile UI.
+- Support Decision Reply Kit across Web, iOS, and Android with admin copy-ready waiting/resolved/closed/marketplace escalation replies before refunds, subscription cancellation, purchase resolution, entitlement writes, account deletion, data erasure, or marketplace-policy escalation.
+- Referral Reward Claim and Review Queue flow across Web, iOS, and Android with `referralRewardClaims/{uid}_{tierTarget}` writes for unlocked 1/5/10/25 referral tiers, plus admin-only review visibility before any manual recognition or future perk fulfillment.
+- Referral Reward Admin Review Updates across Web, iOS, and Android with admin-only status updates (`approved`, `waiting`, `not_ready`, `declined`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `referralRewardClaims` without granting Pro, entitlements, discounts, payouts, purchases, affiliate rewards, or paid access from client code.
+- Data Safety Disclosure Kit across Web, iOS, and Android with admin copy-ready Play Data Safety and App Privacy disclosure notes for auth, profile, activity/health, UGC, purchase verification, notifications, support, and deletion resources.
+- Referral reward ladder at 1, 5, 10, and 25 attributed challenge joins.
+- Shareable generated challenge launch cards for Instagram/native share flows.
+- Referral analytics for earned tiers, joins remaining, and ladder completion.
+- Tribe Pro entitlement foundation and Pro analytics preview/report.
+- Tribe Pro Value Snapshot across checkout surfaces using existing progress and best-fit benefit copy.
+- Tribe Pro Trial Interest capture across Web, iOS, and Android to learn demand before live store trial configuration.
+- Pro Trial Objection Reply Kit across Web, iOS, and Android with admin manual replies for Pro questions based on aggregate first-party trial demand before store-backed trials are live.
+- Tribe Pro private challenge creation gate.
+- Tribe Pro custom weekly and streak goals.
+- Tribe Pro profile frames backed by `users/{uid}.cosmetics.profileFrameId`.
+- Tribe Pro share templates backed by `users/{uid}.sharePreferences.templateId` with free `classic` and Pro `gold` / `neon` generated-card palettes.
+- Creator / Coach Mode foundation backed by `users/{uid}.creatorProfile` for future hosted challenges, branded pages, and revenue-share.
+- Creator analytics foundation across Web, iOS, and Android using existing hosted challenge metrics.
+- Creator-branded challenge metadata across Web, iOS, and Android by denormalizing Coach Mode specialty, bio, and CTA link onto newly created challenges.
+- Creator revenue-share readiness across Web, iOS, and Android with a Pro-gated beta opt-in plus first-party paid-pack/ready hosted challenge metrics.
+- Creator Launch Kit across Web, iOS, and Android with generated Instagram/community copy for hosted challenge launches.
+- Creator Hosting Offer Kit across Web, iOS, and Android with a copy-only paid-hosting planning brief for creator focus, hosted reach, revenue-ready signals, policy, payout, and entitlement QA.
+- Creator Terms Readiness Kit across Web, iOS, and Android with a copy-only responsibilities and guardrails brief for creator conduct, moderation, payout readiness, marketplace alignment, and support handoff before paid hosting.
+- Creator Payout Readiness Kit across Web, iOS, and Android with a copy-only payout provider, tax, identity, refund, support, marketplace, and creator-claim checklist before revenue-share.
+- Creator Hosting Objection Reply Kit across Web, iOS, and Android with copy-only manual creator replies before revenue-share, payout operations, store validation, and entitlement QA are complete.
+- Partner Perks foundation across profile surfaces for future aligned brand offers without intrusive ads.
+- Partner Perk interest capture across Web, iOS, and Android to learn which aligned offers users actually want before negotiating partners.
+- Partner Pitch Kit across Web, iOS, and Android to turn first-party demand counts into sponsor outreach copy.
+- Partner Campaign Activation Kit across Web, iOS, and Android with copy-only sponsor-backed challenge pilot briefs from first-party perk demand, campaign reach, and referral signals.
+- Partner Terms Readiness Kit across Web, iOS, and Android with copy-only sponsor-pilot terms briefs for partner fit, disclosure, data boundaries, destination review, reporting, and support handoff.
+- Partner Contract Readiness Kit across Web, iOS, and Android with copy-only partner identity, support ownership, disclosure, fulfillment, privacy, reporting, and destination-review checks before sponsor/perk terms move forward.
+- Partner Campaign Objection Reply Kit across Web, iOS, and Android with copy-only manual sponsor-pilot replies from first-party demand, campaign reach, and referral signals before partner links, tracking, payouts, purchases, revenue-share, or entitlements exist.
+- Partner Campaign Application and Review Queue across Web, iOS, and Android with `partnerCampaignApplications/{uid}` writes for manual sponsor-pilot review before partner links, tracking, payouts, purchases, or entitlements exist.
+- Partner Campaign Application Admin Review Updates across Web, iOS, and Android with admin-only status updates (`approved`, `waiting`, `not_ready`, `declined`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `partnerCampaignApplications` before partner links, tracking pixels, ad targeting, affiliate payouts, purchases, entitlements, revenue-share, or paid-access claims exist.
+- Member perk eligibility progress across Web, iOS, and Android using first-party activity, challenge, and referral stats.
+- Partner Perk Claim and Review Queue across Web, iOS, and Android with `partnerPerkClaims/{uid}_{perkId}` writes for manual eligible-perk review before coupons, partner links, payouts, discounts, purchases, entitlements, or paid-access claims exist.
+- Partner Perk Claim Status History across Web, iOS, and Android with signed-in user `partnerPerkClaims` readback before coupons, partner links, payouts, discounts, purchases, entitlements, or paid-access claims exist.
+- Partner Perk Fulfillment Readiness Kit across Web, iOS, and Android with admin copy-ready claim-readiness checks before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, or fulfillment promises exist.
+- Partner Perk Fulfillment Handoff Kit across Web, iOS, and Android with admin copy-ready approved-claim handoff notes before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, payment collection, or fulfillment promises exist.
+- Partner Perk Handoff Audit Kit across Web, iOS, and Android with admin copy-ready aggregate support outcome checks after manual approved-claim handoff before refunds, coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, payment collection, or fulfillment promises exist.
+- Partner Perk Admin Decision Reply Kit across Web, iOS, and Android with admin copy-ready approved, waiting, not-ready, and declined claim replies before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, or fulfillment promises exist.
+- Partner Perk Claim Admin Review Updates across Web, iOS, and Android with admin-only status updates (`approved`, `waiting`, `not_ready`, `declined`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `partnerPerkClaims` before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, or fulfillment promises exist.
+- Pro weekly report scoring across Web, iOS, and Android using existing activity logs, challenge stats, current streaks, and custom goals.
+- Challenge completion recaps across Web, iOS, and Android for shareable community proof and future premium pack finish moments.
+- Premium badge foundation across Web, iOS, and Android with Pro-gated weekly report, streak recovery, and finisher badges.
+- Tribe Pro streak recovery credits backed by zero-point `streak_recovery` activity log entries.
+- Paid challenge pack foundation with a Pro-gated 21-Day Reset Pack template.
+- Paid challenge pack value preview across Web, iOS, and Android using existing template metadata and unlock state.
+- Paid challenge pack accountability prompts across Web, iOS, and Android tracker/detail surfaces.
+- Challenge Pack Launch Kit across Web, iOS, and Android with copy-ready paid-pack launch messaging using shared product IDs before store credentials are live.
+- Challenge Pack Objection Reply Kit across Web, iOS, and Android with manual pack-question replies that keep paid access, pricing, purchases, entitlements, and marketplace claims gated until validation is complete.
+- Shared store product catalog constants for Pro and the 21-Day Reset Pack.
+- Profile checkout UI wired to shared products, StoreKit product loading, and Play Billing product loading.
+- Server-side purchase entitlement writer for verified Pro and challenge-pack purchases, guarded behind receipt validation.
+- Purchase restore/sync actions across profile purchase cards, with native restore history replaying through backend verification.
+- Store Launch Readiness across Web, iOS, and Android to keep product IDs, credential setup, sandbox purchases, and entitlement write checks visible before paid access goes live.
+- Store Credential Setup Kit across Web, iOS, and Android with admin copy plus a read-only validation readiness probe for App Store Connect, Play Console, Firebase Functions secrets, sandbox/test purchase QA, and entitlement verification.
+- Sandbox Purchase Test Plan across Web, iOS, and Android with admin copy-ready App Store sandbox, Play license test, restore, negative QA, backend `verifyPurchase`, Firestore entitlement, and support escalation cases before paid access is promoted.
+- Subscription Management Guidance Kit across Web, iOS, and Android with admin copy-ready App Store / Google Play subscription management, cancellation, restore/sync, and support-boundary guidance before paid access is promoted.
+- Billing Support Escalation Kit across Web, iOS, and Android with admin copy-ready wrong-account, failed-renewal, duplicate-charge, cancellation-confusion, and missing-entitlement handoff guidance before paid access is promoted.
+- Renewal Recovery Kit across Web, iOS, and Android with admin copy-ready failed-renewal, grace-period, lapsed-access, restore/sync, and entitlement-recovery guidance before paid access is promoted.
+- Cancellation Feedback Kit across Web, iOS, and Android with admin copy-ready learn-only churn prompts tied to first-party monetization signals without blocking marketplace cancellation.
+- Lapsed Member Winback Kit across Web, iOS, and Android with admin copy-ready free-first comeback challenge prompts from campaign, streak, referral, and first-party demand signals.
+- Entitlement Recovery Request and Review Queue across Web, iOS, and Android with `entitlementRecoveryRequests/{uid}` writes for manual missing-purchase support after restore/sync, storing `productCount`, `proActive`, `packCount`, `activePackCount`, `reason` values such as `restore_sync_failed`, status, source, and timestamps without client-side entitlement writes, refunds, subscription cancellation, purchase creation, or marketplace bypass.
+- Entitlement Recovery Admin Review Updates across Web, iOS, and Android with admin-only status updates (`waiting`, `resolved`, `closed`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `entitlementRecoveryRequests` without client-side entitlement writes, refunds, subscription cancellation, purchase creation, or marketplace bypass.
+- Entitlement Recovery Decision Reply Kit across Web, iOS, and Android with admin copy-ready waiting/resolved/closed/marketplace escalation replies before entitlement writes, refunds, subscription cancellation, purchase creation, charge retries, payment collection, or marketplace-policy escalation.
+- Store Test Purchase Evidence Log across Web, iOS, and Android with admin-only `storeTestPurchaseEvidence` records for real App Store sandbox and Play license-test proof, storing platform, product ID, `sandbox_purchase`, `restore_sync`, `negative_validation`, or `wrong_account` test case, `needs_review`/passed/failed result, evidence note, status, source, and timestamps without writing entitlements, creating purchases, processing refunds, bypassing marketplace policy, or marking paid access live.
+- Store Test Purchase Evidence Review Updates across Web, iOS, and Android with admin-only verified/needs_review/failed/archived decisions plus `reviewNote`, `reviewedBy`, and `reviewedAt` without writing entitlements, creating purchases, processing refunds, bypassing marketplace policy, or marking paid access live.
+- Store Test Evidence Decision Reply Kit across Web, iOS, and Android with admin copy-ready verified/needs-more-evidence/failed/archived replies before entitlement writes, purchase creation, refund processing, marketplace bypass, store submission, paid-live flips, or sandbox/license-test claims.
+- Paid Launch Decision Reply Kit across Web, iOS, and Android with admin copy-ready ready/hold/blocked/review-note replies before paid-live flips, entitlement writes, purchase creation, payment/refund processing, marketplace bypass, store submission, or readiness announcements.
+- Store Launch Dry-Run Kit across Web, iOS, and Android with admin copy-ready release rehearsal reports from launch gate, validation readiness, store-test evidence, entitlement recovery, support queue, policy links, and revenue-path signals without paid-live side effects.
+- Store Demo Account Kit across Web, iOS, and Android with admin copy-ready reviewer-safe demo account notes, seeded free-flow guidance, permission explanations, policy links, and paid-access cautions without storing credentials or exposing real member data.
+- Store Review Pack across Web, iOS, and Android with admin copy-ready reviewer notes, policy evidence, permission explanations, data safety pointers, support/refund handoff, and paid-access readiness cautions without submitting review or exposing private credentials.
+- Feature Submission Review Notes across Web, iOS, and Android with admin-only approved/featured/declined decisions plus `reviewNote`, `reviewedBy`, and `reviewedAt` for manual UGC consent/content review without auto-posting, overriding consent, implying outcomes, or sharing unreviewed submissions.
+- Store Validation Credential Readiness across Web, iOS, Android, and Firebase Functions with `validation_configured` returned only when App Store / Play secrets are present, while sandbox/license-test purchases remain required before paid access is promoted.
+- Store Validation Credential Template with `functions/.env.example` placeholders for App Store Server API and Google Play Developer API keys so production secrets can be configured without committing private keys.
+- Store Test Purchase Runbook with `docs/STORE_TEST_PURCHASE_RUNBOOK.md` covering the real iOS sandbox and Android license-test evidence required before paid access can move to final launch review.
+
+Next candidates:
+
+- Configure App Store / Play credentials and run real store test purchases using `docs/STORE_TEST_PURCHASE_RUNBOOK.md`.

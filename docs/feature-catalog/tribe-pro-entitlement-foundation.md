@@ -1,0 +1,110 @@
+## Tribe Pro Entitlement Foundation
+
+Purpose: prepare the product for subscriptions without breaking the free habit loop.
+
+Shared behavior:
+
+- All platforms read `users/{uid}.entitlements.pro`.
+- Profile shows Pro active/inactive status from the shared entitlement.
+- The visible benefit list is consistent across Web, iOS, and Android.
+- Profile checkout surfaces include a Pro Value Snapshot from existing weekly score, 30-day active days, challenge points, and best-fit Pro benefit copy.
+- Profile checkout surfaces include Pro Trial Interest capture for first-party demand signals with allowed reasons `reports`, `challenge_packs`, and `creator_tools`.
+- Admin profiles include a Pro trial demand summary and Trial Launch Kit that count saved Pro Trial Interest reasons from first-party user profile data.
+- Admin profiles include a Pro Trial Objection Reply Kit that turns aggregate Pro Trial Interest demand into manual replies for Pro questions before store-backed trials are live.
+- Admin profiles include a Monetization Launch Board that combines aggregate Pro trial, creator beta, and partner perk demand signals.
+- Admin and enabled creator profiles include a Launch Experiment Kit that recommends copy-ready Pro trial, pack-drop, referral sprint, or partner-perk tests from first-party signals.
+- Admin and enabled creator profiles include a Launch Experiment Scorecard that scores the recommended test with first-party demand, campaign reach, and community-loop signals.
+- Admin and enabled creator profiles include a Release QA Checklist for product IDs, store test purchases, entitlement writes, feature parity docs, and social share checks before monetization or campaign launches.
+- Admin and enabled creator profiles include a Launch Retrospective Kit for manual first-party review after campaign pushes using challenge joins, referrals, feature submissions, share-card usage, and entitlement validation.
+- Admin and enabled creator profiles include a Revenue Pathway Planner that ranks Pro, paid packs, creator hosting, and partner campaigns from first-party demand, campaign, and referral signals.
+- Admin and enabled creator profiles include a Pricing Test Kit that exports safe pricing-language prompts for shared Pro and pack product IDs before store launch.
+- Admin and enabled creator profiles include a Founder Member Offer Kit that exports early-member value-validation copy for the free challenge loop before paid access.
+- Admin and enabled creator profiles include a Community Ambassador Kit that exports recognition-led referral and challenge-leadership prompts before paid roles or payouts.
+- Admin and enabled creator profiles include a Community Event Interest Kit that exports local meetup, milestone merch, studio pop-up, and finisher-moment validation copy from first-party app signals before tickets, orders, venues, partner links, payouts, or event promises exist.
+- Admin and enabled creator profiles let members save Community Event Interest options under `users/{uid}.communityEventInterest.selectedIds`; admin summaries count aggregate first-party local meetup, milestone merch, studio pop-up, and finisher-moment demand only.
+- Admin and enabled creator profiles include a Customer Value Checklist that exports free-loop, paid-value, community-proof, and support-readiness checks before charging users.
+- Admin profiles include a Support Refund Readiness Kit that exports restore, marketplace refund, entitlement recovery, and escalation handoff copy before paid launch.
+- Profile purchase cards include an Entitlement Recovery Request action that writes `entitlementRecoveryRequests/{uid}` for manual review when restore/sync does not match store purchase history.
+- Admin profiles include an Entitlement Recovery Review Queue for open `entitlementRecoveryRequests`.
+- Entitlement Recovery Admin Review Updates let admins mark recovery requests `waiting`, `resolved`, or `closed` while saving `reviewNote`, `reviewedBy`, and `reviewedAt`.
+- Admin profiles include an Entitlement Recovery Decision Reply Kit that copies waiting, resolved, closed, and marketplace escalation replies while keeping entitlement and billing actions manual.
+- Admin profiles include a Store Test Purchase Evidence Log that records `storeTestPurchaseEvidence` after manual App Store sandbox or Play license testing.
+- Admin profiles include a Paid Launch Decision Gate that exports go/no-go checks for product IDs, demand, support handoff, receipt-validation credentials, store test evidence, and entitlement QA before paid access is promoted.
+- Admin profiles include a Sandbox Purchase Test Plan that exports App Store sandbox, Play license test, restore, backend `verifyPurchase`, Firestore entitlement QA, support escalation, and negative-case checks before paid access is promoted.
+- `docs/STORE_TEST_PURCHASE_RUNBOOK.md` defines the external iOS sandbox and Android license-test evidence path required after `getPurchaseValidationReadiness` returns `validation_configured`.
+- Admin profiles include a Store Listing Copy Kit that exports App Store / Play listing title, subtitle, short description, value points, launch positioning, and policy-safe paid-feature cautions.
+- Admin profiles include a Store Review Submission Kit that exports App Store / Play reviewer notes, demo-account checklist, permission explanations, support/privacy/data-deletion reminders, and policy-safe paid-access cautions.
+- Admin profiles include a Store Review Evidence Pack that exports store-test evidence counts, product IDs, policy/support links, permission notes, validation readiness, and launch gate status for reviewer-safe submission notes.
+- Profile surfaces include a Policy and Support Link Hub that opens hosted privacy, terms, support, and account/data deletion resources for users and store reviewers.
+- Admin profiles include a Data Safety Disclosure Kit that exports Play Data Safety and App Privacy disclosure notes for auth, profile content, activity/health data, UGC, purchase verification, notifications, support, and deletion resources.
+- Profile includes a Pro-gated analytics/report surface. Free users see a locked preview; active Pro users see report metrics and insight copy.
+- Pro analytics reports use shared weekly and monthly report contracts: weekly score, 7-day consistency, monthly score, 30-day active days, 30-day points, challenge points, status labels, and next-best-action copy.
+- Weekly score is derived from current progress toward custom active-day, weekly-points, and streak goals; monthly score uses the same weekly goals scaled to four weeks and the same streak target. Neither report requires a new backend collection.
+- Active Pro users can share a 30-day recap prompt from the profile/report surface using the same monthly report data.
+- Profile includes a Pro-gated custom goals surface for weekly active days, weekly points, and streak target.
+- Profile includes a Pro-gated profile frame picker saved under `users/{uid}.cosmetics.profileFrameId`.
+- Saved profile frames render on profile avatars and challenge member avatars using denormalized `profileFrameId`.
+- Home share surfaces include a Pro-gated share template picker saved under `users/{uid}.sharePreferences.templateId`.
+- `classic` is free; `gold` and `neon` require active Pro and change the generated share-card palette.
+- Profile includes a Pro-gated Creator / Coach Mode foundation saved under `users/{uid}.creatorProfile`.
+- Creator profile fields currently include `enabled`, `specialty`, `bio`, `ctaUrl`, and `revenueShareInterest` for future hosted/branded challenge and paid-hosting surfaces.
+- Creator / Coach Mode includes a Pro-gated analytics foundation derived from challenge docs the creator already belongs to: hosted challenge count, member reach, active hosted challenges, and private hosted challenges.
+- Creator / Coach Mode includes revenue-share readiness metrics for hosted paid-pack challenges and hosted challenges with paid-pack metadata or at least five members.
+- Creator Launch Kit generates repost-ready creator launch copy from the next hosted challenge, invite code, creator specialty, creator bio, and `@risewiththetribe` tag.
+- Creator Challenge Template Draft Kit generates a copy-only reusable hosted challenge template checklist from creator focus, hosted reach, revenue-ready signals, and the next candidate challenge before any new creator template records or paid-hosting offers exist.
+- Creator Hosting Offer Kit generates a copy-only paid-hosting planning brief from creator focus, hosted challenge reach, revenue-ready signals, beta interest, and the next hosted challenge.
+- Creator Terms Readiness Kit generates a copy-only responsibilities and guardrails brief for creator conduct, moderation, payout readiness, marketplace alignment, and support handoff before paid hosting.
+- Creator Payout Readiness Kit generates a copy-only payout provider, tax, identity, refund, support, marketplace, and claim-safety checklist before revenue-share.
+- Creator Hosting Objection Reply Kit generates copy-only manual replies for creator paid-hosting questions before revenue-share, payout operations, store validation, and entitlement QA are complete.
+- Creator Hosting Application lets Pro creators with Coach Mode enabled request manual hosted-readiness review under `creatorHostingApplications/{uid}`.
+- Creator Hosting Application stores creator focus, hosted challenge count, member reach, revenue-ready count, revenue-share interest, status, source, and timestamps.
+- Admin profiles include a Creator Hosting Application Review Queue for open `creatorHostingApplications`.
+- Creator Hosting Application Admin Review Updates let admins mark applications `approved`, `waiting`, `not_ready`, or `declined` while saving `reviewNote`, `reviewedBy`, and `reviewedAt`.
+- Admin profiles include a Creator Hosting Decision Reply Kit that copies approved/waiting/not-ready/declined manual replies while contracts, payouts, purchases, entitlements, revenue-share, and paid-access claims remain off.
+- Admin profiles include a Creator demand summary that aggregates enabled creator profiles, future revenue-share beta opt-ins, and creator profiles with branding content.
+- New challenges created by active Pro users with Coach Mode enabled include denormalized creator specialty, bio, and CTA link fields so challenge detail screens can show a Coach Host block without extra profile reads.
+- Profile includes a Partner Perks foundation card for future aligned offers from gear, recovery, nutrition, studio, or wearable partners.
+- Users can save partner perk interest under `users/{uid}.partnerPerkInterest.selectedIds`.
+- Allowed partner perk interest ids are `gear`, `recovery`, and `nutrition`.
+- Partner perk interest is currently a first-party demand signal and must not add ad tracking, random offer placement, or third-party data sharing.
+- Partner perk cards show first-party member eligibility progress: Gear requires 14 active days, Recovery requires 7 challenge days, and Fuel requires 1 referral join.
+- Eligible members can request manual perk review under `partnerPerkClaims/{uid}_{perkId}`.
+- Partner Perk Claim stores `perkId`, `perkLabel`, `perkTitle`, current eligibility value, target, requirement, status, source, and timestamps.
+- Profiles show signed-in user Partner perk claim status history from `partnerPerkClaims`.
+- Admin profiles include a Partner Perk Claim Review Queue for open `partnerPerkClaims`.
+- Admin profiles include a Partner Perk Fulfillment Readiness Kit with Manual readiness checks, Open perk claims, `Verify the claim was written from first-party eligibility progress only`, support owner, and destination safety copy before any partner fulfillment exists.
+- Admin profiles include a Partner Perk Fulfillment Handoff Kit with manual approved-claim handoff notes before any partner fulfillment exists.
+- Admin profiles include a Partner Perk Handoff Audit Kit with aggregate-only support outcome checks after manual approved-claim handoff.
+- Admin profiles include a Partner Perk Admin Decision Reply Kit with approved, waiting, not-ready, and declined manual claim replies before any partner fulfillment exists.
+- Admin profiles can update partner perk claims to `approved`, `waiting`, `not_ready`, or `declined` with `reviewNote`, `reviewedBy`, and `reviewedAt`; member claim history shows the status and review note.
+- Admin profiles include a sponsor reporting foundation that counts saved partner perk interest by category.
+- Admin profiles include a Partner Pitch Kit that generates sponsor outreach copy from first-party partner demand counts.
+- Admin profiles include a Partner Campaign Activation Kit that generates a copy-only sponsor-backed challenge pilot brief from first-party perk demand, campaign reach, and referral signals.
+- Admin profiles include a Partner Terms Readiness Kit that generates a copy-only sponsor-pilot terms brief for partner fit, disclosure, data boundaries, destination review, reporting, and support handoff.
+- Admin profiles include a Partner Contract Readiness Kit that generates a copy-only checklist for partner identity, support ownership, disclosure, fulfillment, privacy, reporting, and destination review.
+- Admin profiles include a Partner Campaign Objection Reply Kit that generates copy-only manual replies for sponsor-pilot questions from first-party perk demand, campaign reach, and referral signals.
+- Partner Campaign Application lets users request manual sponsor-pilot review under `partnerCampaignApplications/{uid}` once they have saved at least one partner perk signal.
+- Partner Campaign Application stores the top perk, first-party demand count, total demand, campaign reach, referral joins, status, source, and timestamps.
+- Admin profiles include a Partner Campaign Application Review Queue for open `partnerCampaignApplications`.
+- Admin profiles can update partner campaign applications to `approved`, `waiting`, `not_ready`, or `declined` with `reviewNote`, `reviewedBy`, and `reviewedAt`.
+- Admin profiles include a Partner Campaign Decision Reply Kit with approved, waiting, not-ready, and declined manual sponsor-pilot replies before any partner links, tracking, payouts, purchases, entitlements, revenue-share, or fulfillment promises exist.
+- Challenge templates can include sponsored campaign metadata for future partner-backed challenges.
+- Sponsored challenge metadata currently uses the same challenge create/join/track backend and does not introduce ad targeting, tracking pixels, or random in-feed placement.
+- Admin profiles include a Campaign Performance Board that aggregates campaign-backed challenge count, active/public/premium/seasonal splits, and member reach.
+
+- Profile includes a Pro-gated streak recovery action that writes a zero-point `streak_recovery` activity for yesterday.
+- Private challenge creation is gated by the same Pro entitlement; public challenges remain free.
+- Private challenge create calls must fall back to public when the creator does not have active Pro.
+- Paid challenge pack templates are gated by the same Pro entitlement until store-specific purchase validation is live.
+- Paid challenge pack creation also accepts specific active pack entitlements at `users/{uid}.entitlements.packs.{packId}.active`, so future receipt validation can unlock one pack without granting full Pro.
+- Paid challenge packs can include accountability prompt arrays that are persisted onto challenge docs and rendered in tracker/detail surfaces.
+- Profile checkout surfaces show subscription products and challenge-pack products separately, including an `UNLOCKED` state when Pro or the specific pack entitlement is active.
+- The first premium pack foundation template is `21-Day Reset Pack` with `packId = 21_day_reset`.
+- Profile checkout buttons surface the shared Pro subscription products; entitlement unlock still waits for receipt validation credentials.
+- Admin profiles include Store Launch Readiness with product ID counts, credential setup reminders, sandbox/test purchase reminders, and entitlement write checks.
+
+## Tribe Pro Release Guardrails Index
+
+Tribe Pro release checks, Pro analytics gates, creator/coach safety rules, partner-perk safety rules, streak recovery constraints, challenge-pack creation gates, and future Pro-gated feature checks now live in `docs/feature-catalog/tribe-pro-release-guardrails.md` so this entitlement foundation stays readable while preserving the same paid-access safety contract.
+
+<!-- include: tribe-pro-release-guardrails.md -->

@@ -1,0 +1,78 @@
+import { useEffect } from "react";
+import { startDailyReminderLoop } from "../reminderService";
+import { buildAppActivitySummary } from "./appActivitySummary";
+import { buildAppAuthenticatedStateResult } from "./appAuthenticatedStateResult";
+import useActivityHistory from "./useActivityHistory";
+import useAppBadges from "./useAppBadges";
+import useAppShellState from "./useAppShellState";
+import useChallengeRefreshHandlers from "./useChallengeRefreshHandlers";
+import usePendingChallengeEntry from "./usePendingChallengeEntry";
+import useProgressShareActions from "./useProgressShareActions";
+import useUserChallengeData from "./useUserChallengeData";
+
+export default function useAppAuthenticatedState(user) {
+  const shellState = useAppShellState();
+  const { showToast, ...publicShellState } = shellState;
+  const { setTab } = publicShellState;
+  const pendingChallengeEntry = usePendingChallengeEntry(setTab);
+  const {
+    clearPendingChallengeEntry,
+  } = pendingChallengeEntry;
+  const userChallengeData = useUserChallengeData(user);
+  const {
+    challengeStats,
+    refreshChallengeStats,
+    setUserProfile,
+    userProfile,
+  } = userChallengeData;
+  const badgeState = useAppBadges({ user, userProfile });
+  const {
+    earnedBadges,
+    triggerBadgeCheck,
+  } = badgeState;
+  const logState = useActivityHistory({
+    challengeStats,
+    showToast,
+    triggerBadgeCheck,
+    user,
+  });
+  const {
+    myHistory,
+  } = logState;
+  const activitySummary = buildAppActivitySummary({ earnedBadges, myHistory, userProfile });
+  const {
+    hasActivePro,
+    shareStats,
+    shareTemplateId,
+  } = activitySummary;
+  const progressShareActions = useProgressShareActions({
+    hasActivePro,
+    setUserProfile,
+    shareStats,
+    shareTemplateId,
+    showToast,
+    user,
+  });
+
+  useEffect(() => {
+    startDailyReminderLoop();
+  }, [user.uid]);
+
+  const challengeRefreshHandlers = useChallengeRefreshHandlers({
+    clearPendingChallengeEntry,
+    myHistory,
+    refreshChallengeStats,
+    triggerBadgeCheck,
+  });
+
+  return buildAppAuthenticatedStateResult({
+    activitySummary,
+    badgeState,
+    challengeRefreshHandlers,
+    logState,
+    pendingChallengeEntry,
+    progressShareActions,
+    publicShellState,
+    userChallengeData,
+  });
+}

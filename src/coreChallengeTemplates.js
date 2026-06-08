@@ -1,0 +1,8 @@
+import { CORE_CAMPAIGN_CHALLENGE_TEMPLATES } from './coreCampaignChallengeTemplates';
+import { CORE_LONG_FORM_CHALLENGE_TEMPLATES } from './coreLongFormChallengeTemplates';
+
+export const CORE_CHALLENGE_TEMPLATES = [
+  ...CORE_CAMPAIGN_CHALLENGE_TEMPLATES.slice(0, 2),
+  ...CORE_LONG_FORM_CHALLENGE_TEMPLATES,
+  CORE_CAMPAIGN_CHALLENGE_TEMPLATES[2],
+];

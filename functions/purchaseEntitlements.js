@@ -1,4 +1,9 @@
-const crypto = require('crypto');
+const {
+  buildEntitlementData: buildEntitlementDataRecord,
+  buildPurchaseRecord,
+  hashForAudit,
+  purchaseRecordId,
+} = require('./purchaseEntitlementRecords');
 
 const PRODUCT_CATALOG = {
   'com.risewiththetribe.pro.monthly': {
@@ -61,12 +66,15 @@ function getValidationReadiness(platform, env = process.env) {
     };
   }
 
-  const missingConfigKeys = missingRequiredConfig(validationConfig?.requiredKeys || [], env);
+  const configReadiness = classifyRequiredConfig(validationConfig?.requiredKeys || [], env);
+  const missingConfigKeys = configReadiness.notReadyConfigKeys;
   const validationConfigured = missingConfigKeys.length === 0;
 
   return {
     validationConfig,
     missingConfigKeys,
+    missingConfigKeysOnly: configReadiness.missingConfigKeys,
+    placeholderConfigKeys: configReadiness.placeholderConfigKeys,
     validationConfigured,
     status: validationConfigured ? 'validation_configured' : 'validation_not_configured',
     message: validationConfigured
@@ -78,86 +86,46 @@ function getValidationReadiness(platform, env = process.env) {
   };
 }
 
-function buildEntitlementData({ product, productId, platform, transactionId = '', validationResult = {}, now }) {
-  const source = VALIDATION_CONFIG[platform]?.source || platform;
-  const baseEntitlement = {
-    active: true,
-    source,
-    productId,
-    transactionId,
-    updatedAt: now,
-  };
-
-  if (validationResult.expiresAt) {
-    baseEntitlement.expiresAt = validationResult.expiresAt;
-  }
-
-  if (product.kind === 'subscription') {
-    return {
-      entitlements: {
-        pro: {
-          ...baseEntitlement,
-          cadence: product.cadence || '',
-        },
-      },
-    };
-  }
-
-  return {
-    entitlements: {
-      packs: {
-        [product.packId]: {
-          ...baseEntitlement,
-          packId: product.packId,
-        },
-      },
-    },
-  };
-}
-
-function buildPurchaseRecord({
-  uid,
-  platform,
-  product,
-  productId,
-  transactionId = '',
-  purchaseToken = '',
-  environment = 'production',
-  status,
-  validationConfigured,
-  missingConfigKeys = [],
-  now,
-}) {
-  return {
-    uid,
-    platform,
-    productId,
-    productKind: product.kind,
-    entitlement: product.entitlement,
-    packId: product.packId || '',
-    cadence: product.cadence || '',
-    transactionId,
-    purchaseTokenHash: purchaseToken ? hashForAudit(purchaseToken) : '',
-    environment,
-    status,
-    validationConfigured,
-    missingConfigKeys,
-    updatedAt: now,
-    createdAt: now,
-  };
-}
-
-function purchaseRecordId({ platform, productId, transactionId = '', purchaseToken = '' }) {
-  const stableId = transactionId || hashForAudit(purchaseToken);
-  return `${platform}_${hashForAudit(`${productId}:${stableId}`)}`;
+function buildEntitlementData(args) {
+  return buildEntitlementDataRecord({
+    ...args,
+    validationConfigByPlatform: VALIDATION_CONFIG,
+  });
 }
 
 function missingRequiredConfig(keys, env = process.env) {
-  return keys.filter((key) => !env[key]);
+  return classifyRequiredConfig(keys, env).notReadyConfigKeys;
 }
 
-function hashForAudit(value) {
-  return crypto.createHash('sha256').update(String(value)).digest('hex');
+function classifyRequiredConfig(keys, env = process.env) {
+  const missingConfigKeys = [];
+  const placeholderConfigKeys = [];
+
+  keys.forEach((key) => {
+    if (!env[key]) {
+      missingConfigKeys.push(key);
+    } else if (isPlaceholderConfigValue(env[key])) {
+      placeholderConfigKeys.push(key);
+    }
+  });
+
+  return {
+    missingConfigKeys,
+    placeholderConfigKeys,
+    notReadyConfigKeys: [...missingConfigKeys, ...placeholderConfigKeys],
+  };
+}
+
+function isPlaceholderConfigValue(value) {
+  const normalized = String(value).trim();
+  return [
+    '00000000-0000-0000-0000-000000000000',
+    'ABC123DEFG',
+    'REPLACE_WITH_APP_STORE_CONNECT_PRIVATE_KEY',
+    'REPLACE_WITH_PLAY_SERVICE_ACCOUNT_PRIVATE_KEY',
+    'replace-me',
+    'play-validation@example.iam.gserviceaccount.com',
+  ].some((placeholder) => normalized.includes(placeholder));
 }
 
 module.exports = {
@@ -165,8 +133,10 @@ module.exports = {
   VALIDATION_CONFIG,
   buildEntitlementData,
   buildPurchaseRecord,
+  classifyRequiredConfig,
   getValidationReadiness,
   hashForAudit,
+  isPlaceholderConfigValue,
   missingRequiredConfig,
   purchaseRecordId,
 };

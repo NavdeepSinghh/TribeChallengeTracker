@@ -1,0 +1,68 @@
+import { useEffect, useState } from 'react';
+import { useAuth } from '../AuthContext';
+import { isMember, joinChallenge } from '../challengeService';
+import { buildChallengeShareLink, campaignShareText, shareChallengeLaunchCard } from './challengeShare';
+
+export default function useChallengeDetailActions({ challenge, onJoined, pendingReferralUid }) {
+  const { user } = useAuth();
+  const [joined, setJoined] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [launchCardMessage, setLaunchCardMessage] = useState('');
+  const shareLink = buildChallengeShareLink({ inviteCode: challenge.inviteCode, refUid: user.uid });
+
+  useEffect(() => {
+    isMember(user.uid, challenge.id).then(setJoined);
+  }, [challenge.id, user.uid]);
+
+  const handleJoin = async () => {
+    setLoading(true);
+    const referralUid = pendingReferralUid || sessionStorage.getItem('pendingReferralUid') || '';
+    await joinChallenge(user.uid, challenge.id, referralUid);
+    sessionStorage.removeItem('pendingReferralUid');
+    setJoined(true);
+    onJoined?.();
+    setLoading(false);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shareLink).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleLaunchCardShare = async () => {
+    const text = campaignShareText(challenge, shareLink);
+    setLaunchCardMessage('Preparing launch card...');
+    try {
+      const outcome = await shareChallengeLaunchCard({ challenge, shareLink, text });
+      if (outcome === 'launch-card-shared') {
+        setLaunchCardMessage('Launch card shared.');
+        return;
+      }
+      if (outcome === 'invite-shared') {
+        setLaunchCardMessage('Invite shared.');
+        return;
+      }
+      setLaunchCardMessage('Campaign copy copied.');
+    } catch (error) {
+      console.error('[Challenge launch card]', error);
+      setLaunchCardMessage('Could not share card. Invite copy copied instead.');
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+  };
+
+  return {
+    copied,
+    disclaimerOpen,
+    handleCopy,
+    handleJoin,
+    handleLaunchCardShare,
+    joined,
+    launchCardMessage,
+    loading,
+    setDisclaimerOpen,
+    shareLink,
+  };
+}

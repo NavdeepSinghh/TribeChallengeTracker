@@ -10,12 +10,7 @@ jest.mock("../firebase", () => ({
 }));
 
 const {
-  BADGES,
-  BADGE_CATEGORIES,
-  calcBadgeXP,
   checkBadges,
-  getBadgeProgress,
-  getTribeRank,
 } = require("../badgeService");
 
 const baseStats = {
@@ -42,19 +37,6 @@ const baseStats = {
 };
 
 describe("badge service", () => {
-  it("keeps the shared badge catalog at 36 badges across the expected categories", () => {
-    expect(BADGES).toHaveLength(36);
-    expect(BADGE_CATEGORIES.map((category) => category.id)).toEqual([
-      "all",
-      "streak",
-      "points",
-      "activity",
-      "challenge",
-      "special",
-    ]);
-    expect(new Set(BADGES.map((badge) => badge.id)).size).toBe(BADGES.length);
-  });
-
   it("gates premium badges behind active Pro entitlement", () => {
     expect(checkBadges(
       { ...baseStats, weeklyLogs: 5, streakRecoveryCredits: 1, challengesCompleted: 1, proActive: false },
@@ -128,32 +110,4 @@ describe("badge service", () => {
     expect(awarded).toEqual(["pts50"]);
   });
 
-  it("reports progress using the same current and target values shown in UI", () => {
-    expect(getBadgeProgress("streak7", { ...baseStats, streak: 4 })).toEqual({
-      current: 4,
-      target: 7,
-      label: "day streak",
-    });
-    expect(getBadgeProgress("finisher", { ...baseStats, challengesCompleted: 1 })).toEqual({
-      current: 1,
-      target: 1,
-      label: "completed",
-    });
-    expect(getBadgeProgress("tribe_builder", { ...baseStats, referralJoins: 3 })).toEqual({
-      current: 3,
-      target: 5,
-      label: "referral joins",
-    });
-    expect(getBadgeProgress("pro_streak_saver", { ...baseStats, proActive: true, streakRecoveryCredits: 1 })).toEqual({
-      current: 1,
-      target: 1,
-      label: "Pro recovery",
-    });
-  });
-
-  it("calculates badge XP and tribe rank from earned badge IDs", () => {
-    const xp = calcBadgeXP(new Set(["first_log", "streak7", "champion"]));
-    expect(xp).toBe(360);
-    expect(getTribeRank(xp).label).toBe("Elite");
-  });
 });

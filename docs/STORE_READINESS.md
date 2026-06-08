@@ -7,140 +7,58 @@ Use this guide before every App Store / Google Play release.
 Run from the web repo:
 
 ```bash
+nvm use
 npm run release:check:all
+```
+
+The web repo includes `.nvmrc` with Node 20. Use an LTS Node runtime from 18.x through 22.x before running the gate. Node 24 has been observed to hang while `react-scripts` loads its production webpack config; `npm run build` now fails fast with a runtime guard instead of silently stalling. The build also runs through `scripts/run-react-build-with-timeout.js`, which terminates a React production build after `BUILD_IDLE_TIMEOUT_MS` of no output so release checks fail loudly instead of hanging forever.
+
+To run the full gate and refresh the monetization release audit only after it passes:
+
+```bash
+nvm use
+npm run release:check:all:audit
 ```
 
 This verifies:
 
 - Web tests and production build.
 - Shared parity/release contracts.
-- iOS simulator build.
-- Android debug build.
+- iOS simulator build via `npm run native:ios:build`.
+- Android debug build via `npm run native:android:build`.
+- The generated audit in `docs/MONETIZATION_RELEASE_AUDIT.md` can be refreshed only after the full gate passes, without changing the external-store evidence status.
 
-## Android Google Play
+The iOS build command uses a generic simulator destination plus `/private/tmp/TribeChallengeDerivedData` and `/private/tmp/TribeChallengeSPM` so local Xcode cache state does not decide whether the release gate can run.
 
-Package name:
+After App Store / Play credentials are configured, use `docs/STORE_TEST_PURCHASE_RUNBOOK.md` to record the real sandbox/license-test purchase evidence required before any paid-access launch decision.
 
-```text
-com.risewiththetribe.challengetracker
-```
-
-Firebase setup:
-
-1. Firebase Console > Project settings > Your apps.
-2. Add/select Android app using the package name above.
-3. Add local debug SHA-1 for emulator testing:
-
-```text
-2D:07:3A:B0:18:8F:01:E6:28:72:41:B1:86:5F:F9:14:89:19:15:8A
-```
-
-4. Add release/upload SHA fingerprints once release signing is configured.
-5. Download the updated `google-services.json`.
-6. Place it at:
-
-```text
-/Users/navdeepsmacbook/Documents/TribeChallengeTrackerAndroid/app/google-services.json
-```
-
-Google sign-in notes:
-
-- A status-code 10 / OAuth error means the app package and signing SHA-1 do not match Firebase/Google Cloud OAuth setup.
-- The Android Gradle build reads `BuildConfig.GOOGLE_WEB_CLIENT_ID` from the Web OAuth client in `app/google-services.json` when the file exists.
-- Keep `app/google-services.json` current after adding debug, upload, or Play App Signing fingerprints.
-- The app shows a visible login-screen error instead of silently returning from Google Sign-In.
-- Emulator account selection may still require Google re-auth credentials before the app receives the final Firebase ID token.
-
-Play App Signing:
-
-1. Create the app in Google Play Console.
-2. Enable Play App Signing.
-3. Get the **Play App Signing SHA-256** from Play Console.
-4. Generate and deploy Android App Links:
+To inspect the current external store credential and evidence checklist without changing entitlements:
 
 ```bash
-ANDROID_APP_LINK_SHA256="PLAY_APP_SIGNING_SHA256" npm run hosting:release
+npm run store:readiness
 ```
 
-Android App Links:
+This command reads only local environment variables and the shared product catalog. It reports missing or placeholder App Store / Play validation keys, lists configured product IDs, and prints the required sandbox/license-test evidence matrix. Use `node scripts/check-store-launch-readiness.js --strict` only when credentials are expected to be configured and a missing or placeholder key should fail the check.
 
-- Manifest already handles `https://risewiththetribe.app?join=...`.
-- Domain verification requires `/.well-known/assetlinks.json` generated with the Play App Signing SHA-256.
+For automation or audit tooling, use:
 
-Play Billing receipt validation:
-
-- Create/choose a Google Cloud service account with access to the Play Developer API.
-- Grant the service account access to the app in Play Console.
-- Store the service account JSON as a Firebase Functions secret/env value named:
-
-```text
-PLAY_DEVELOPER_SERVICE_ACCOUNT_JSON
+```bash
+node scripts/check-store-launch-readiness.js --json
 ```
 
-- Store the package name as:
+The JSON output includes `launchReady`, per-platform readiness, configured products, required evidence cases, and the final decision string.
 
-```text
-PLAY_PACKAGE_NAME=com.risewiththetribe.challengetracker
-```
+## Android Google Play Index
 
-- Use `functions/.env.example` as the local/deployment template. Keep real service account JSON and private keys outside git.
-- Until these values are configured, `verifyPurchase` returns `validation_not_configured` and does not unlock entitlements.
-- When all values are configured, `getPurchaseValidationReadiness` returns `validation_configured`; this means the backend can call Google Play, not that paid launch QA has passed.
-- Once credentials are configured, `verifyPurchase` calls the Google Play Developer API. Only verified active subscriptions or purchased one-time products unlock access.
-- Verified Play purchases are idempotently merged into `users/{uid}.entitlements` and stored as audit-safe records in `purchaseEntitlements`.
+Android package, Firebase, Google Sign-In, App Links, and Play Billing validation setup now live in `docs/store-readiness/android-google-play.md` so this store readiness guide stays readable while preserving the same Play release contract.
 
-## iOS App Store
+<!-- include: store-readiness/android-google-play.md -->
 
-Bundle ID:
+## iOS App Store Index
 
-```text
-com.risewiththetribe.challengetracker
-```
+iOS bundle ID, Apple Developer capabilities, Universal Links, and App Store receipt-validation setup now live in `docs/store-readiness/ios-app-store.md` so this store readiness guide stays readable while preserving the same App Store release contract.
 
-Apple Developer setup:
-
-1. Create/select the App ID with the bundle ID above.
-2. Enable Associated Domains.
-3. Enable HealthKit.
-4. Confirm entitlements include:
-
-```text
-applinks:risewiththetribe.app
-com.apple.developer.healthkit
-```
-
-iOS Universal Links:
-
-- App handles `https://risewiththetribe.app?join=...`.
-- Domain verification requires:
-
-```text
-https://risewiththetribe.app/.well-known/apple-app-site-association
-```
-
-This file is in:
-
-```text
-public/.well-known/apple-app-site-association
-```
-
-App Store receipt validation:
-
-- Create an App Store Connect API key with access to purchase validation.
-- Configure Firebase Functions with:
-
-```text
-APP_STORE_ISSUER_ID
-APP_STORE_KEY_ID
-APP_STORE_PRIVATE_KEY
-APP_STORE_BUNDLE_ID=com.risewiththetribe.challengetracker
-```
-
-- Use `functions/.env.example` as the local/deployment template. Keep real App Store Connect private keys outside git.
-- Until these values are configured, `verifyPurchase` returns `validation_not_configured` and does not unlock entitlements.
-- When all values are configured, `getPurchaseValidationReadiness` returns `validation_configured`; this means the backend can call App Store Server API, not that paid launch QA has passed.
-- Once credentials are configured, `verifyPurchase` calls the App Store Server API transaction lookup. Only matching bundle ID, product ID, and transaction ID results unlock access.
-- Verified App Store purchases are idempotently merged into `users/{uid}.entitlements` and stored as audit-safe records in `purchaseEntitlements`.
+<!-- include: store-readiness/ios-app-store.md -->
 
 ## Web / Firebase Hosting
 
@@ -185,8 +103,9 @@ Store forms should state:
 
 ## Release Checklist
 
-- `npm run test:release` passes for static release contracts and focused cross-platform parity checks.
+- `npm run test:release` passes for static release contracts, focused store-readiness CLI, `purchase-entitlements` backend, badges, challenge-templates, campaign-share, profile-share, Weekly Campaign derived-data, monetization-model, engagement-copy, referral-copy, support-billing-copy, creator-partner-copy, build-wrapper, build-runtime guard, release-audit generator, and cross-platform parity suites.
 - `npm run release:check:all` passes before store submission.
+- `docs/STORE_TEST_PURCHASE_RUNBOOK.md` has been followed for real iOS sandbox and Android license-test evidence.
 - Android `google-services.json` is present for local/store builds.
 - Android debug/release SHA fingerprints are registered in Firebase.
 - Play App Signing SHA-256 is used to deploy `assetlinks.json`.
@@ -198,6 +117,7 @@ Store forms should state:
 - In-app support request flow writes `supportRequests`, admin profiles show the open support queue, and the hosted support page is deployed.
 - App Store / Play Billing products exist for `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, and `com.risewiththetribe.pack.summer_shred` before enabling checkout in production.
 - Firebase Functions purchase-validation config is present before expecting paid purchases to unlock Pro.
+- `getPurchaseValidationReadiness` returns `validation_configured` before running store test purchases, but paid launch still waits for recorded sandbox/license-test evidence.
 - `functions/.env.example` lists every required App Store and Play validation key with placeholders only.
 - Invite link opens Challenges join flow on iOS and Android.
 - Google Sign-In works on emulator and release-signed build.

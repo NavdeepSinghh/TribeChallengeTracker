@@ -1,0 +1,65 @@
+export function buildProfileStoreDerivedResult({
+  storeCatalogData,
+  storeMonetizationData,
+  storeReadinessData,
+  storeReviewSupportData,
+}) {
+  const {
+    activeChallengePackCount,
+    challengePackProducts,
+    challengePackTitle,
+    isPackUnlocked,
+    proActive,
+    proSource,
+    storeCatalog,
+    storePackCount,
+    storeSubscriptionCount,
+    storeTestEvidenceCases,
+  } = storeCatalogData;
+  const {
+    creatorRevenueSharePitchCopy,
+    monetizationLaunchCopy,
+    proTrialObjectionReplyCopy,
+    proTrialPitchCopy,
+    recommendedRevenuePath,
+    revenuePathways,
+    storeReadinessCopy,
+  } = storeMonetizationData;
+  const {
+    storeCredentialSetupCopy,
+    supportRefundReadinessCopy,
+    subscriptionManagementGuidanceCopy,
+    paidLaunchDecisionCopy,
+    paidLaunchDecisionReplyCopy,
+    paidLaunchDecisionStatus,
+    storeTestEvidenceDecisionReplyCopy,
+  } = storeReadinessData;
+
+  return {
+    activeChallengePackCount,
+    ...storeReviewSupportData,
+    challengePackProducts,
+    challengePackTitle,
+    creatorRevenueSharePitchCopy,
+    isPackUnlocked,
+    monetizationLaunchCopy,
+    paidLaunchDecisionCopy,
+    paidLaunchDecisionReplyCopy,
+    paidLaunchDecisionStatus,
+    proActive,
+    proSource,
+    proTrialObjectionReplyCopy,
+    proTrialPitchCopy,
+    recommendedRevenuePath,
+    revenuePathways,
+    storeCatalog,
+    storeCredentialSetupCopy,
+    storePackCount,
+    storeReadinessCopy,
+    storeSubscriptionCount,
+    storeTestEvidenceCases,
+    storeTestEvidenceDecisionReplyCopy,
+    subscriptionManagementGuidanceCopy,
+    supportRefundReadinessCopy,
+  };
+}

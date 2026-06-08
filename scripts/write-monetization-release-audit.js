@@ -1,0 +1,89 @@
+const fs = require("fs");
+const path = require("path");
+const {
+  renderLatestLocalRecheckItems,
+} = require("./monetization-release-audit-local-recheck-items");
+
+const repoRoot = path.resolve(__dirname, "..");
+const auditPath = path.join(repoRoot, "docs", "MONETIZATION_RELEASE_AUDIT.md");
+
+function buildMonetizationReleaseAudit({ auditDate = new Date().toISOString().slice(0, 10) } = {}) {
+  return `# Monetization Release Audit
+
+Date: ${auditDate}
+
+This audit records the current evidence for the monetization and engagement roadmap across Web, iOS, and Android. It is not a paid-launch approval; it separates code-side parity from external App Store / Google Play evidence.
+
+Build runtime note: the web production build should be run under the repo \`.nvmrc\` runtime. A later local attempt on Node 24.7.0 hung before CRA emitted build output while loading production webpack plugins, so the repo now guards \`npm run build\` to require an LTS Node runtime from 18.x through 22.x. The build also runs through \`scripts/run-react-build-with-timeout.js\`, which terminates a React production build after \`BUILD_IDLE_TIMEOUT_MS\` of no output so release checks fail loudly instead of hanging forever.
+
+## Current Evidence
+
+Command run:
+
+\`\`\`bash
+npm run release:check:all
+\`\`\`
+
+Result:
+
+- Web tests passed: 20 suites, 139 tests.
+- Web production build compiled successfully.
+- Static release verifier passed.
+- Focused cross-platform parity suites passed: 10 suites, 106 tests.
+- iOS simulator build passed with \`** BUILD SUCCEEDED **\`.
+- Android debug build passed with \`BUILD SUCCESSFUL\`.
+
+## Latest Local Recheck
+
+Additional local checks after the full-gate audit:
+
+${renderLatestLocalRecheckItems()}
+
+## Proven Code-Side Scope
+
+- Weekly Challenge Campaign Engine foundation is implemented across Web, iOS, and Android.
+- Campaign-branded challenge templates, campaign CTA/hashtag metadata, invite/referral hooks, referral join counting, and generated launch cards are covered by parity checks.
+- Web campaign sharing now has focused helper coverage for the referral invite URL contract, campaign copy contract, launch-card filename contract, native file-share outcome, native text-share fallback outcome, and clipboard fallback outcome.
+- Web profile sharing now has focused copy coverage for win-card, weekly recap, and monthly recap share text plus focused card-sharing coverage for native file-share, clipboard/download fallback, and caller-specific error-message contracts.
+- Weekly Campaign derived data now has focused coverage for core planning copy, experiment recommendation, story/engagement copy, collab cards, retention follow-up, re-invite copy, first-party signal wording, and no-automation/no-tracking boundaries.
+- Weekly Campaign marketing props now have focused adapter coverage for creator/admin flags, Instagram calendar copy, launch-card copy, collab cards, comment replies, and the complete prop key contract.
+- Weekly campaign planning, Story, DM/comment, collab, retention follow-up, re-invite, UGC consent, and Instagram content calendar kits are present across Web, iOS, and Android.
+- Pro, challenge-pack, creator, partner, support, account deletion, referral reward, store-readiness, and paid-launch decision surfaces are present as copy-only/manual or request/review flows with side-effect guardrails.
+- Release verification now scans split Web profile modules, iOS profile companion files, and Android profile companion files so decomposed feature code remains covered.
+- Store Test Purchase Runbook exists at \`docs/STORE_TEST_PURCHASE_RUNBOOK.md\` and is required by the release verifier.
+
+## Not Yet Proven
+
+The following remain external-state requirements and are not proven by a green build:
+
+- App Store Connect purchase-validation credentials are configured in Firebase Functions.
+- Google Play Developer API credentials are configured in Firebase Functions.
+- App Store products exist and are available to sandbox testers.
+- Play Billing products exist and are available to license testers.
+- iOS sandbox purchases verify through \`verifyPurchase\` and write Firestore entitlements.
+- Android license-test purchases verify through \`verifyPurchase\` and write Firestore entitlements.
+- Restore/sync evidence exists on both native platforms.
+- Negative validation evidence exists on both native platforms.
+- Paid Launch Decision Gate has all evidence checks ready.
+
+## Next Required Evidence
+
+1. Configure real store validation secrets outside git using \`functions/.env.example\`.
+2. Confirm \`getPurchaseValidationReadiness\` returns \`validation_configured\` for iOS and Android.
+3. Execute \`docs/STORE_TEST_PURCHASE_RUNBOOK.md\` with store tester accounts.
+4. Record each proof item in the admin Store Test Purchase Evidence Log.
+5. Re-run \`npm run release:check:all\` after evidence is recorded and before any paid-access promotion.
+
+## Decision
+
+Code-side roadmap parity is currently verified. Paid access must remain in review mode until the external store credential and real sandbox/license-test purchase evidence above is completed and reviewed.
+`;
+}
+
+if (require.main === module) {
+  const auditDate = process.env.RELEASE_AUDIT_DATE || new Date().toISOString().slice(0, 10);
+  fs.writeFileSync(auditPath, buildMonetizationReleaseAudit({ auditDate }));
+  console.log(`Wrote ${path.relative(repoRoot, auditPath)}`);
+}
+
+module.exports = { buildMonetizationReleaseAudit };

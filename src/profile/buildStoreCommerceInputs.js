@@ -1,0 +1,57 @@
+export function buildStoreCommerceInputs({ computedData, screenState, user }) {
+  const {
+    activeChallengePackCount,
+    challengePackProducts,
+    isAdmin,
+    proActive,
+  } = computedData;
+
+  const {
+    entitlementRecoveryReviewNotes,
+    isRequestingEntitlementRecovery,
+    profile,
+    recordingStoreTestEvidenceId,
+    reviewingEntitlementRecoveryRequestId,
+    reviewingStoreTestEvidenceId,
+    setCheckoutMessage,
+    setCheckoutProductId,
+    setEntitlementRecoveryMessage,
+    setEntitlementRecoveryReviewQueue,
+    setIsCheckingValidationReadiness,
+    setIsRequestingEntitlementRecovery,
+    setRecordingStoreTestEvidenceId,
+    setReviewingEntitlementRecoveryRequestId,
+    setReviewingStoreTestEvidenceId,
+    setStoreTestEvidenceLog,
+    setStoreTestEvidenceMessage,
+    setValidationReadinessMessage,
+    storeTestEvidenceReviewNotes,
+  } = screenState;
+
+  return {
+    activeChallengePackCount,
+    challengePackProducts,
+    entitlementRecoveryReviewNotes,
+    isAdmin,
+    isRequestingEntitlementRecovery,
+    profile,
+    proActive,
+    recordingStoreTestEvidenceId,
+    reviewingEntitlementRecoveryRequestId,
+    reviewingStoreTestEvidenceId,
+    setCheckoutMessage,
+    setCheckoutProductId,
+    setEntitlementRecoveryMessage,
+    setEntitlementRecoveryReviewQueue,
+    setIsCheckingValidationReadiness,
+    setIsRequestingEntitlementRecovery,
+    setRecordingStoreTestEvidenceId,
+    setReviewingEntitlementRecoveryRequestId,
+    setReviewingStoreTestEvidenceId,
+    setStoreTestEvidenceLog,
+    setStoreTestEvidenceMessage,
+    setValidationReadinessMessage,
+    storeTestEvidenceReviewNotes,
+    user,
+  };
+}

@@ -1,0 +1,70 @@
+import { buildMonetizationPreLaunchCopyKits } from './monetizationPreLaunchCopyKits';
+
+export function buildMonetizationPreLaunchSectionData({
+  campaignPerformanceSummary,
+  communityAmbassadorCopy,
+  communityEventInterestMessage,
+  communityEventInterestCopy,
+  communityEventInterestSummary,
+  creatorEnabled,
+  creatorRevenueShareTotal,
+  customerValueChecklistCopy,
+  daysActive,
+  founderMemberOfferCopy,
+  isAdmin,
+  isSavingCommunityEventInterest,
+  monetizationLaunchCopy,
+  monetizationSignalTotal,
+  onCommunityEventInterestToggle,
+  partnerDemandTotal,
+  pricingTestKitCopy,
+  proTrialDemandTotal,
+  recommendedRevenuePath,
+  referralJoins,
+  revenuePathwayPlannerCopy,
+  revenuePathways,
+  selectedCommunityEventInterestIds,
+  storePackCount,
+  storeSubscriptionCount,
+}) {
+  const copyKits = buildMonetizationPreLaunchCopyKits({
+    campaignPerformanceSummary,
+    communityAmbassadorCopy,
+    communityEventInterestCopy,
+    customerValueChecklistCopy,
+    daysActive,
+    founderMemberOfferCopy,
+    monetizationSignalTotal,
+    pricingTestKitCopy,
+    recommendedRevenuePath,
+    referralJoins,
+    storePackCount,
+    storeSubscriptionCount,
+  });
+
+  return {
+    canShowPlanningKits: isAdmin || creatorEnabled,
+    communityEventInterestSectionProps: {
+      communityEventInterestMessage,
+      communityEventInterestSummary,
+      isAdmin,
+      isSavingCommunityEventInterest,
+      onCommunityEventInterestToggle,
+      selectedCommunityEventInterestIds,
+    },
+    launchBoardProps: {
+      creatorRevenueShareTotal,
+      monetizationLaunchCopy,
+      monetizationSignalTotal,
+      partnerDemandTotal,
+      proTrialDemandTotal,
+    },
+    primaryCopyKit: copyKits[0],
+    followUpCopyKits: copyKits.slice(1),
+    revenuePathwayPlannerProps: {
+      recommendedRevenuePath,
+      revenuePathwayPlannerCopy,
+      revenuePathways,
+    },
+  };
+}

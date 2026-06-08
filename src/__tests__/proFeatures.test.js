@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { PRO_FEATURES, STORE_PRODUCT_IDS, STORE_PRODUCTS, canCreateChallengeTemplate, canUseProFeature, hasActiveChallengePack, hasActivePro } = require('../proFeatures');
+const { readMarkdownWithIncludes } = require('../../scripts/verify-release-utils');
 
 describe('Pro feature and store product catalog', () => {
   it('gates Pro features from the shared entitlement path', () => {
@@ -34,8 +35,8 @@ describe('Pro feature and store product catalog', () => {
       fs.readFileSync(path.resolve(__dirname, '../../functions/index.js'), 'utf8'),
       fs.readFileSync(path.resolve(__dirname, '../../functions/purchaseEntitlements.js'), 'utf8'),
     ].join('\n');
-    const storeReadiness = fs.readFileSync(path.resolve(__dirname, '../../docs/STORE_READINESS.md'), 'utf8');
-    const featureCatalog = fs.readFileSync(path.resolve(__dirname, '../../docs/FEATURE_CATALOG.md'), 'utf8');
+    const storeReadiness = readMarkdownWithIncludes(path.resolve(__dirname, '../../docs/STORE_READINESS.md'));
+    const featureCatalog = readMarkdownWithIncludes(path.resolve(__dirname, '../../docs/FEATURE_CATALOG.md'));
     STORE_PRODUCT_IDS.forEach(productId => {
       expect(functionsSource).toContain(productId);
       expect(storeReadiness).toContain(productId);

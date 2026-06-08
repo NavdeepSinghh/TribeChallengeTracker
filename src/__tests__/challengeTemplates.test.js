@@ -21,8 +21,38 @@ jest.mock("../firebase", () => ({
 const fs = require("fs");
 const path = require("path");
 const { CHALLENGE_TEMPLATES } = require("../challengeService");
+const { CORE_CHALLENGE_TEMPLATES } = require("../coreChallengeTemplates");
 
 describe("challenge templates", () => {
+  it("keeps core campaign and long-form challenge templates in stable order", () => {
+    expect(CORE_CHALLENGE_TEMPLATES.map(template => template.id)).toEqual([
+      "weekly_reset",
+      "comeback_week",
+      "75hard",
+      "75soft",
+      "30tribe",
+    ]);
+
+    const campaignTemplates = CORE_CHALLENGE_TEMPLATES.filter(template => template.campaignId);
+    expect(campaignTemplates.map(template => template.id)).toEqual([
+      "weekly_reset",
+      "comeback_week",
+      "30tribe",
+    ]);
+    expect(campaignTemplates).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        id: "weekly_reset",
+        campaignLabel: "Weekly Campaign",
+        campaignHashtag: "#RiseWithTheTribe",
+      }),
+      expect.objectContaining({
+        id: "30tribe",
+        campaignLabel: "Core Campaign",
+        campaignHashtag: "#30DayTribe",
+      }),
+    ]));
+  });
+
   it("keeps seasonal campaign drops available on all platforms", () => {
     const seasonalIds = ["seasonal_summer_shred", "seasonal_winter_base"];
     const webIds = CHALLENGE_TEMPLATES.map(template => template.id);

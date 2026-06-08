@@ -1,0 +1,58 @@
+export function buildCreatorHostingReplyCopyKits({
+  candidateChallengeLine,
+  creatorBetaInterestLine,
+  creatorFocusLine,
+  hostedChallengesLine,
+  memberReachLine,
+  openApplicationsLine,
+  revenueReadyLine,
+}) {
+  const creatorHostingObjectionReplyCopy = [
+    'Rise With The Tribe Creator Hosting Objection Reply Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Manual replies:',
+    'Q: Can creators earn money from hosted challenges yet?',
+    'A: Creator hosting is being prepared, but paid hosting, payout operations, creator terms, store validation, and entitlement QA need to be complete before revenue-share is promoted as live.',
+    '',
+    'Q: What should a creator do now?',
+    'A: Enable Creator / Coach Mode, host a useful free challenge, build member reach, save revenue-share beta interest, and apply for hosted review when the profile and challenge plan are ready.',
+    '',
+    'Q: What makes a hosted challenge worth reviewing?',
+    'A: A clear challenge promise, truthful coaching focus, safe community conduct, visible member reach, and a launch plan that sends people into the app challenge loop without medical claims or guaranteed outcomes.',
+    '',
+    'This is a manual creator hosting objection reply kit only. Do not claim paid creator hosting is live, quote unconfigured prices, collect payments, create purchases, create contracts, collect payout details, collect tax details, start revenue-share, write entitlements, process refunds, bypass marketplace policy, promise outcomes, imply medical results, scrape DMs, store inbound DMs, add tracking pixels, or pressure creators.',
+  ].join('\n');
+  const creatorHostingDecisionReplyCopy = [
+    'Rise With The Tribe Creator Hosting Decision Reply Kit:',
+    '',
+    openApplicationsLine,
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    '',
+    'Manual decision replies:',
+    'APPROVED FOR MANUAL FOLLOW-UP: Your creator hosting application is approved for manual follow-up. We are reviewing creator terms, moderation, support handoff, payout operations, marketplace alignment, and store validation before any paid hosting or revenue-share can be discussed as live.',
+    '',
+    'WAITING ON READINESS: Your application has useful signals, but we need more readiness detail before follow-up. Please keep hosting useful free challenges, clarify your creator focus, and keep audience movement inside the app challenge loop while terms, payouts, and support are reviewed.',
+    '',
+    'NOT READY YET: Your application is not ready for hosted follow-up yet. Build a clearer challenge plan, hosted reach, moderation approach, and truthful launch copy before applying again.',
+    '',
+    'DECLINED FOR NOW: We cannot move this creator hosting request forward right now. This may be due to audience fit, unclear challenge value, support risk, moderation risk, policy concerns, or claims that need to be safer.',
+    '',
+    'This is a manual creator hosting decision reply kit only. Do not create contracts, create payouts, collect payout details, collect tax details, create purchases, write entitlements, start revenue-share, grant paid access, promise approval, promise earnings, imply paid hosting is live, bypass marketplace policy, scrape DMs, store inbound replies, add tracking pixels, export private member activity, pressure creators, promise outcomes, or imply medical results.',
+  ].join('\n');
+
+  return {
+    creatorHostingDecisionReplyCopy,
+    creatorHostingObjectionReplyCopy,
+  };
+}

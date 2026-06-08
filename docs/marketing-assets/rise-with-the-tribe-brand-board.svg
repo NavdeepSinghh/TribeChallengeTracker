@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Rise With The Tribe brand mood board</title>
+  <desc id="desc">A dark, energetic brand mood board with teal, coral, amber, green, and bone-white accents.</desc>
+  <defs>
+    <linearGradient id="sunrise" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FFB33D"/>
+      <stop offset="1" stop-color="#FF4F45"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#12C7C1"/>
+      <stop offset="1" stop-color="#007E82"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#080808"/>
+  <rect x="52" y="52" width="1496" height="896" rx="42" fill="#151A1F" stroke="#26323A"/>
+
+  <text x="96" y="136" fill="#F6F2E8" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Rise With The Tribe</text>
+  <text x="98" y="184" fill="#9AA7A9" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">Disciplined community. Shared ascent. Progress-first energy.</text>
+
+  <g transform="translate(112 254)" filter="url(#softShadow)">
+    <rect width="470" height="470" rx="86" fill="#0D1115"/>
+    <circle cx="235" cy="186" r="112" fill="url(#sunrise)" opacity="0.96"/>
+    <path d="M76 338 C144 224 203 153 236 128 C272 154 329 225 394 338 L326 338 C289 270 257 223 235 199 C212 224 179 271 142 338 Z" fill="url(#teal)"/>
+    <path d="M235 164 C271 230 301 292 324 350 L146 350 C169 292 199 230 235 164 Z" fill="#F6F2E8"/>
+    <circle cx="235" cy="314" r="34" fill="#12C7C1"/>
+    <path d="M172 390 C200 350 220 332 235 332 C250 332 270 350 298 390 C254 374 216 374 172 390 Z" fill="#73D921"/>
+  </g>
+
+  <g transform="translate(660 270)">
+    <text x="0" y="0" fill="#F6F2E8" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800">Core Palette</text>
+    <g transform="translate(0 48)">
+      <rect width="138" height="120" rx="20" fill="#080808" stroke="#334047"/>
+      <rect x="158" width="138" height="120" rx="20" fill="#151A1F" stroke="#334047"/>
+      <rect x="316" width="138" height="120" rx="20" fill="#12C7C1"/>
+      <rect x="474" width="138" height="120" rx="20" fill="#007E82"/>
+      <rect x="632" width="138" height="120" rx="20" fill="#FF4F45"/>
+      <rect x="790" width="138" height="120" rx="20" fill="#FFB33D"/>
+      <rect x="948" width="138" height="120" rx="20" fill="#73D921"/>
+    </g>
+    <g fill="#D7E2E0" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">
+      <text x="0" y="198">Night</text>
+      <text x="158" y="198">Surface</text>
+      <text x="316" y="198">Tribe Teal</text>
+      <text x="474" y="198">Deep Teal</text>
+      <text x="632" y="198">Coral</text>
+      <text x="790" y="198">Amber</text>
+      <text x="948" y="198">Growth</text>
+    </g>
+  </g>
+
+  <g transform="translate(660 560)">
+    <text x="0" y="0" fill="#F6F2E8" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800">Content Feel</text>
+    <g font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">
+      <text x="0" y="68" fill="#12C7C1">Progress boards</text>
+      <text x="0" y="118" fill="#FFB33D">Challenge starts</text>
+      <text x="0" y="168" fill="#FF4F45">Urgent invites</text>
+      <text x="0" y="218" fill="#73D921">Completion wins</text>
+    </g>
+    <g transform="translate(430 30)" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M0 210 C92 150 155 76 240 0" stroke="#12C7C1" stroke-width="22"/>
+      <path d="M0 210 C90 188 176 183 278 132" stroke="#FF4F45" stroke-width="14" opacity="0.9"/>
+      <path d="M24 234 L122 234 L218 234 L318 234" stroke="#F6F2E8" stroke-width="8" opacity="0.35"/>
+      <circle cx="240" cy="0" r="24" fill="#FFB33D" stroke="none"/>
+      <circle cx="278" cy="132" r="18" fill="#73D921" stroke="none"/>
+    </g>
+  </g>
+
+  <text x="96" y="854" fill="#F6F2E8" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Rules</text>
+  <text x="96" y="900" fill="#9AA7A9" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">Dark base, teal action, coral/amber campaign energy, green only for real completion. No beige wellness, no purple tech haze, no tiny icon text.</text>
+</svg>

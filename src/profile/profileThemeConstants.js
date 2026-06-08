@@ -1,0 +1,45 @@
+export const ACCENT = '#FF6B35';
+export const GOLD = '#FFD700';
+
+export const POLICY_LINKS = [
+  { id: 'privacy', label: 'Privacy Policy', url: 'https://risewiththetribe.app/privacy.html' },
+  { id: 'terms', label: 'Terms of Use', url: 'https://risewiththetribe.app/terms.html' },
+  { id: 'support', label: 'Support', url: 'https://risewiththetribe.app/support.html' },
+  { id: 'data_deletion', label: 'Data Deletion', url: 'https://risewiththetribe.app/data-deletion.html' },
+];
+
+export const GOAL_LABELS = {
+  lose_weight: 'Lose Weight 🔥', build_muscle: 'Build Muscle 💪',
+  endurance: 'Endurance 🏃', stress: 'Reduce Stress 🧘', energy: 'Boost Energy ⚡',
+};
+export const LEVEL_LABELS = {
+  beginner: 'Just Starting 🌱', moderate: 'Somewhat Active 🚶',
+  fit: 'Pretty Fit 🏃', athlete: 'Very Athletic 🦅',
+};
+export const FREQ_LABELS = {
+  '2_3': '2–3× / week', '4_5': '4–5× / week', daily: 'Every day 🔥', flexible: 'Flexible 🎯',
+};
+
+export const AVATAR_OPTIONS = [
+  ['🔥', '#FF6B35'], ['⚡', '#FFD700'], ['💪', '#F59E0B'], ['🌱', '#34D399'],
+  ['🏃', '#34D399'], ['🧘', '#A78BFA'], ['🚴', '#60A5FA'], ['🏊', '#38BDF8'],
+  ['👑', '#C084FC'], ['💎', '#38BDF8'], ['🌈', '#C084FC'], ['✨', '#FFD700'],
+];
+
+export const PROFILE_FRAMES = [
+  { id: 'none', label: 'Clean', colors: ['rgba(255,255,255,0.18)', 'rgba(255,255,255,0.08)'] },
+  { id: 'ember', label: 'Ember', colors: ['#FF6B35', '#FFD700'] },
+  { id: 'gold', label: 'Gold', colors: ['#FFD700', '#F59E0B'] },
+  { id: 'neon', label: 'Neon', colors: ['#34D399', '#60A5FA'] },
+];
+
+export const reminderButtonStyle = (background, color) => ({
+  border: 'none',
+  borderRadius: 12,
+  background,
+  color,
+  fontSize: 12,
+  fontWeight: 800,
+  padding: '10px 8px',
+  cursor: 'pointer',
+});

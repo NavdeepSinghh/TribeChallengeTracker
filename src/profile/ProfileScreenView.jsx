@@ -1,0 +1,38 @@
+import ProfileMonetizationSections from './ProfileMonetizationSections';
+import ProfileScreenGrowthSections from './ProfileScreenGrowthSections';
+import ProfileScreenIdentityPanel from './ProfileScreenIdentityPanel';
+import ProfileScreenSheets from './ProfileScreenSheets';
+import ProfileScreenSupportSections from './ProfileScreenSupportSections';
+import ProfileTopBar from './ProfileTopBar';
+
+export default function ProfileScreenView({ model }) {
+  const { onClose, visible } = model;
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 250,
+      background: '#080808',
+      overflowY: 'auto',
+      maxWidth: 430, margin: '0 auto',
+      fontFamily: "'Space Grotesk', sans-serif",
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(30px)',
+      transition: 'opacity .3s ease, transform .3s ease',
+    }}>
+      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+
+      <ProfileTopBar onClose={onClose} />
+
+      <div style={{ padding: '24px 24px 60px' }}>
+        <ProfileScreenIdentityPanel model={model} />
+        <ProfileMonetizationSections model={model} mode="prelaunch" />
+        <ProfileScreenGrowthSections model={model} />
+        <ProfileMonetizationSections model={model} mode="commerce" />
+        <ProfileScreenSupportSections model={model} />
+      </div>
+
+      <ProfileScreenSheets model={model} />
+    </div>
+  );
+}

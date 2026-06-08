@@ -1,0 +1,38 @@
+export const WEEKLY_CAMPAIGN_LIVE_COPY_CARD_DEFINITIONS = [
+  {
+    title: 'Weekly Campaign Live Q&A Kit',
+    subtitle: 'Manual Live prompts from audience questions to app actions',
+    status: 'LIVE',
+    accent: '#F472B6',
+    body: 'Copy Live setup, question lanes, close copy, and first-party follow-up guardrails.',
+    buttonLabel: 'COPY LIVE Q&A',
+    copyKey: 'weeklyCampaignLiveQaCopy',
+  },
+  {
+    title: 'Weekly Campaign Live Recap Kit',
+    subtitle: 'Manual Live readback into first-party content decisions',
+    status: 'RECAP',
+    accent: '#FB7185',
+    body: 'Copy post-Live recap prompts, public summary copy, and app-signal review guardrails.',
+    buttonLabel: 'COPY LIVE RECAP',
+    copyKey: 'weeklyCampaignLiveRecapCopy',
+  },
+  {
+    title: 'Weekly Campaign FAQ Carousel Kit',
+    subtitle: 'Manual carousel outline from repeated audience questions',
+    status: 'FAQ',
+    accent: '#FACC15',
+    body: 'Copy a seven-slide FAQ carousel that answers common questions and routes action back into the app.',
+    buttonLabel: 'COPY FAQ CAROUSEL',
+    copyKey: 'weeklyCampaignFaqCarouselCopy',
+  },
+  {
+    title: 'Weekly Campaign Caption Bank Kit',
+    subtitle: 'Manual captions for Reels, Stories, carousels, and pinned comments',
+    status: 'COPY',
+    accent: '#22D3EE',
+    body: 'Copy weekly caption variants that route followers into first-party app actions without scheduling posts or collecting Instagram identities.',
+    buttonLabel: 'COPY CAPTION BANK',
+    copyKey: 'weeklyCampaignCaptionBankCopy',
+  },
+];

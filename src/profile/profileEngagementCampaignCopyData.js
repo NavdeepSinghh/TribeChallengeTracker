@@ -1,0 +1,47 @@
+import { buildEngagementCopy } from './engagementCopy';
+import { INSTAGRAM_WEEKLY_PROMPTS } from './profileConstants';
+
+export function buildProfileEngagementCampaignCopyData({
+  activeChallengePackCount,
+  challengePackProducts,
+  challengePackTitle,
+  communityHighlightRoundupCount,
+  currentStreak,
+  daysActive,
+  goalStreak,
+  instagramWeeklyPrompt,
+  monthlyRecap,
+  paidLaunchDecisionStatus,
+  proActive,
+  proValueFocus,
+  recommendedRevenuePath,
+  referralJoins,
+  totalChallengePoints,
+  totalWinPoints,
+  weeklyCampaignPrompt,
+  weeklyReport,
+  yesterdayRecovered,
+}) {
+  return buildEngagementCopy({
+    totalWinPoints,
+    currentStreak,
+    daysActive,
+    weeklyReport,
+    monthlyRecap,
+    totalChallengePoints,
+    weeklyCampaignPrompt,
+    proValueFocus,
+    referralJoins,
+    communityHighlightRoundupCount,
+    instagramWeeklyPrompt,
+    instagramWeeklyPrompts: INSTAGRAM_WEEKLY_PROMPTS,
+    challengePackProducts,
+    challengePackTitle,
+    activeChallengePackCount,
+    paidLaunchDecisionStatus,
+    recommendedRevenuePath,
+    goalStreak,
+    yesterdayRecovered,
+    proActive,
+  });
+}
