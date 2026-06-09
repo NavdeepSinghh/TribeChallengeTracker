@@ -18,6 +18,7 @@ export default function CreatorCoachMemberSection({
   creatorLaunchLink,
   creatorMessage,
   creatorPrivateInviteCopy,
+  creatorAgreementPrepCopy,
   creatorPayoutReadinessCopy,
   creatorRevenueShareInterest,
   creatorSpecialty,
@@ -45,6 +46,7 @@ export default function CreatorCoachMemberSection({
         creatorLaunchCopy={creatorLaunchCopy}
         creatorLaunchLink={creatorLaunchLink}
         creatorPrivateInviteCopy={creatorPrivateInviteCopy}
+        creatorAgreementPrepCopy={creatorAgreementPrepCopy}
         creatorPayoutReadinessCopy={creatorPayoutReadinessCopy}
         creatorRevenueShareInterest={creatorRevenueShareInterest}
         creatorTermsReadinessCopy={creatorTermsReadinessCopy}

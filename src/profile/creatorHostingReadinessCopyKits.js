@@ -111,6 +111,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator terms readiness brief only. Do not create contracts, collect payout details, collect tax details, start revenue-share, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise outcomes, imply medical results, or claim paid creator hosting is live.',
   ].join('\n');
+  const creatorAgreementPrepCopy = [
+    'Rise With The Tribe Creator Agreement Prep Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Agreement prep checklist:',
+    '- Confirm the creator identity, support owner, moderation owner, content boundaries, and takedown process before drafting terms',
+    '- Map marketplace alignment for App Store / Play paid access, receipt validation, restore flow, refunds, and entitlement QA',
+    '- Keep payout provider, tax collection, identity verification, and revenue-share language in reviewed legal and finance workflows',
+    '- Record creator claim rules: no medical claims, no guaranteed outcomes, no earnings promises, and no pressure language',
+    '- Keep the draft app-first and support-safe until paid-hosting policy, creator terms, payout operations, and store validation are approved',
+    '',
+    'This is a creator agreement prep kit only. Do not create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorPayoutReadinessCopy = [
     'Rise With The Tribe Creator Payout Readiness Kit:',
     '',
@@ -137,6 +156,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorProfileCompletionCopy,
     creatorHostingOfferCopy,
     creatorPrivateInviteCopy,
+    creatorAgreementPrepCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };
