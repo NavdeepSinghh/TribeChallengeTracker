@@ -3,5 +3,5 @@ import useProfileScreenController from './profile/useProfileScreenController';
 
 export default function ProfileScreen(props) {
   const model = useProfileScreenController(props);
-  return <ProfileScreenView model={model} />;
+  return <ProfileScreenView model={model} mode={props.mode || 'profile'} />;
 }

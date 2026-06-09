@@ -5,8 +5,9 @@ import ProfileScreenSheets from './ProfileScreenSheets';
 import ProfileScreenSupportSections from './ProfileScreenSupportSections';
 import ProfileTopBar from './ProfileTopBar';
 
-export default function ProfileScreenView({ model }) {
+export default function ProfileScreenView({ model, mode = 'profile' }) {
   const { onClose, visible } = model;
+  const isSettings = mode === 'settings';
 
   return (
     <div style={{
@@ -26,10 +27,16 @@ export default function ProfileScreenView({ model }) {
 
       <div style={{ padding: '24px 24px 60px' }}>
         <ProfileScreenIdentityPanel model={model} />
-        <ProfileMonetizationSections model={model} mode="prelaunch" />
-        <ProfileScreenGrowthSections model={model} />
-        <ProfileMonetizationSections model={model} mode="commerce" />
-        <ProfileScreenSupportSections model={model} />
+        {isSettings ? (
+          <>
+            <ProfileMonetizationSections model={model} mode="commerce" />
+            <ProfileScreenGrowthSections model={model} />
+            <ProfileMonetizationSections model={model} mode="prelaunch" />
+            <ProfileScreenSupportSections model={model} />
+          </>
+        ) : (
+          <ProfileScreenGrowthSections model={model} mode="profile" />
+        )}
       </div>
 
       <ProfileScreenSheets model={model} />

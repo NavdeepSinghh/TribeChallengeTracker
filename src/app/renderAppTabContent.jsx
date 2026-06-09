@@ -1,4 +1,5 @@
 import ChallengesTab from "../ChallengesTab";
+import ProfileScreen from "../ProfileScreen";
 import BadgesTab from "./BadgesTab";
 import BoardTab from "./BoardTab";
 import HomeTab from "./HomeTab";
@@ -26,6 +27,24 @@ export function renderAppTabContent({ tab, ...props }) {
 
   if (tab === "challenges") {
     return <ChallengesTab {...challengesTabProps} />;
+  }
+
+  if (tab === "settings") {
+    return (
+      <ProfileScreen
+        user={props.user}
+        earnedBadges={props.earnedBadges}
+        myHistory={props.myHistory}
+        challengeStats={props.challengeStats}
+        mode="settings"
+        onProfileUpdated={props.setUserProfile}
+        onHistoryUpdated={updated => {
+          props.setMyHistory(updated);
+          props.triggerBadgeCheck(updated, props.challengeStats);
+        }}
+        onClose={() => props.setTab("home")}
+      />
+    );
   }
 
   return null;

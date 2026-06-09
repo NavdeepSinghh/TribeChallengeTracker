@@ -33,6 +33,20 @@ describe('cross-platform weekly campaign core parity source checks', () => {
       expect(source).toContain('campaignPerformanceCopy');
       expect(source).toContain('COPY CAMPAIGN BOARD COPY');
       expect(source).toContain('weekly campaign engine summary');
+      expect(source).toContain('Weekly Campaign Operator Summary');
+      expect(source).toContain('COPY OPERATOR SUMMARY');
+      expect(source).toContain('weeklyCampaignOperatingSummary');
+      expect(source).toContain('Feature Me queue');
+      expect(source).toContain('Recommended review lens');
+      expect(source).toContain('keep CTA app-first');
+      expect(source).toContain('review first-party app movement only');
+      expect(source).toContain('aggregate campaign movement only');
+      expect(source).toContain('meaningful challenge joins');
+      expect(source).toContain('Do not auto-post');
+      expect(source).toContain('count link opens');
+      expect(source).toContain('grant rewards');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('imply paid access is live');
     });
   });
 

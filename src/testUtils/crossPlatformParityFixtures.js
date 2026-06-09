@@ -30,7 +30,12 @@ const webChallengesTab = [
 const iosChallengeModel = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Models/Challenge.swift'), 'utf8');
 const iosChallengeService = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Services/FirebaseService.swift'), 'utf8');
 const iosChallengeTracker = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/ChallengeTrackerView.swift'), 'utf8');
+const iosProfileViewModel = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/ViewModels/ProfileViewModel.swift'), 'utf8');
 const iosProfileView = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/ProfileView.swift'), 'utf8');
+const iosProfileSectionSources = fs.readdirSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/Profile'))
+  .filter(fileName => /\.swift$/.test(fileName))
+  .sort()
+  .map(fileName => fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/Profile', fileName), 'utf8'));
 const iosPartnerPerkAdminReviewSection = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/PartnerPerkAdminReviewSection.swift'), 'utf8');
 const iosProfileCopyModels = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/ProfileCopyModels.swift'), 'utf8');
 const iosWeeklyCampaignCopyKitCard = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/WeeklyCampaignCopyKitCard.swift'), 'utf8');
@@ -41,7 +46,7 @@ const iosCreatorProfileFormSection = fs.readFileSync(path.resolve(repoRoot, '../
 const iosCreatorProfileOverviewSection = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/CreatorProfileOverviewSection.swift'), 'utf8');
 const iosCreatorPlanningCopyKits = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/CreatorPlanningCopyKits.swift'), 'utf8');
 const iosCreatorPlanningCopyKitsSection = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/CreatorPlanningCopyKitsSection.swift'), 'utf8');
-const iosProfile = `${iosProfileView}\n${iosPartnerPerkAdminReviewSection}\n${iosProfileCopyModels}\n${iosWeeklyCampaignCopyKitCard}\n${iosCreatorLaunchKitSection}\n${iosCreatorHostingApplicationReviewRow}\n${iosCreatorHostingApplicationSection}\n${iosCreatorProfileFormSection}\n${iosCreatorProfileOverviewSection}\n${iosCreatorPlanningCopyKits}\n${iosCreatorPlanningCopyKitsSection}`;
+const iosProfile = `${iosProfileViewModel}\n${iosProfileView}\n${iosProfileSectionSources.join('\n')}\n${iosPartnerPerkAdminReviewSection}\n${iosProfileCopyModels}\n${iosWeeklyCampaignCopyKitCard}\n${iosCreatorLaunchKitSection}\n${iosCreatorHostingApplicationReviewRow}\n${iosCreatorHostingApplicationSection}\n${iosCreatorProfileFormSection}\n${iosCreatorProfileOverviewSection}\n${iosCreatorPlanningCopyKits}\n${iosCreatorPlanningCopyKitsSection}`;
 const iosUserProfile = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Models/UserProfile.swift'), 'utf8');
 
 const androidRepository = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerAndroid/app/src/main/java/com/risewiththetribe/challengetracker/data/TribeRepository.kt'), 'utf8');

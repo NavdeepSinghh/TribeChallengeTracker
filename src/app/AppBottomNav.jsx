@@ -3,6 +3,7 @@ const NAV_ITEMS = [
   { id: "challenges", icon: "🎯", label: "Challenges" },
   { id: "board", icon: "🏆", label: "Board" },
   { id: "badges", icon: "⭐", label: "Badges" },
+  { id: "settings", icon: "⚙️", label: "Settings" },
 ];
 
 export default function AppBottomNav({ setTab, tab }) {

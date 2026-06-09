@@ -50,7 +50,7 @@ export default function WeeklyCampaignOperatingSummaryCard({
           color: accent, fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
         }}
       >
-        Copy operator summary
+        COPY OPERATOR SUMMARY
       </button>
     </div>
   );
