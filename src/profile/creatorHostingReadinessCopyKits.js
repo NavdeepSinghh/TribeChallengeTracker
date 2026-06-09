@@ -207,6 +207,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator identity verification prep kit only. Do not verify identities from client code, collect government IDs, collect payout details, collect tax details, create contracts, collect signatures, start revenue-share, create payouts, process payments, create purchases, write entitlements, bypass marketplace policy, expose private member activity, add tracking pixels, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorModerationReadinessCopy = [
+    'Rise With The Tribe Creator Moderation Readiness Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Moderation readiness checklist:',
+    '- Define creator conduct rules, member safety rules, comment boundaries, removal criteria, and escalation owners before paid-hosting review',
+    '- Confirm takedown, harassment, privacy, account deletion, refund/restore, and support handoff paths before revenue-share is discussed',
+    '- Review hosted challenge copy, prompts, replies, and Feature Me requests for no medical claims, no guaranteed outcomes, no earnings promises, and no pressure language',
+    '- Keep creator moderation notes aggregate and first-party; route private member concerns through support review instead of creator DMs',
+    '- Pause paid-hosting review when identity, brand permission, support owner, or claim-safety issues need manual review',
+    '',
+    'This is a creator moderation readiness kit only. Do not auto-moderate, auto-message, scrape DMs, store inbound DMs, export private member activity, expose private member data, create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, bypass marketplace policy, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
 
   return {
     creatorBrandedPagePreviewCopy,
@@ -218,6 +237,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorSupportHandoffCopy,
     creatorPaidHostingPolicyCopy,
     creatorIdentityVerificationPrepCopy,
+    creatorModerationReadinessCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

@@ -71,6 +71,9 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorIdentityVerificationPrepCopy).toContain('Creator Identity Verification Prep Kit');
     expect(copy.creatorIdentityVerificationPrepCopy).toContain('Do not verify identities from client code');
     expect(copy.creatorIdentityVerificationPrepCopy).toContain('collect government IDs');
+    expect(copy.creatorModerationReadinessCopy).toContain('Creator Moderation Readiness Kit');
+    expect(copy.creatorModerationReadinessCopy).toContain('Do not auto-moderate');
+    expect(copy.creatorModerationReadinessCopy).toContain('export private member activity');
     expect(copy.creatorPayoutReadinessCopy).toContain('Creator Payout Readiness Kit');
     expect(copy.creatorPayoutReadinessCopy).toContain('Do not create payouts');
     expect(copy.creatorPayoutReadinessCopy).toContain('collect tax details');

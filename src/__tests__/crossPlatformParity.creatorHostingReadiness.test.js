@@ -95,4 +95,33 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
       expect(source).toContain('claim paid creator hosting is live');
     });
   });
+
+  it('keeps Creator Moderation Readiness Kit wired on all platforms without moderation side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR MODERATION READINESS KIT');
+      expect(source).toContain('COPY MODERATION KIT');
+      expect(source).toContain('creatorModerationReadinessCopy');
+      expect(source).toContain('Safety and takedown checks before paid hosting');
+      expect(source).toContain('Moderation readiness checklist');
+      expect(source).toContain('creator conduct rules');
+      expect(source).toContain('member safety rules');
+      expect(source).toContain('takedown');
+      expect(source).toContain('support handoff');
+      expect(source).toContain('claim-safety');
+      expect(source).toContain('creator moderation readiness kit only');
+      expect(source).toContain('Do not auto-moderate');
+      expect(source).toContain('auto-message');
+      expect(source).toContain('scrape DMs');
+      expect(source).toContain('store inbound DMs');
+      expect(source).toContain('export private member activity');
+      expect(source).toContain('expose private member data');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('claim paid creator hosting is live');
+    });
+  });
 });
