@@ -18,6 +18,8 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
     handleTemplateSelect,
     isPublic,
     loading,
+    publishedCreatorTemplateMessage,
+    publishedCreatorTemplates,
     proMessage,
     setCustomName,
     setIsPublic,
@@ -48,6 +50,8 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
         isPublic={isPublic}
         loading={loading}
         onBack={onBack}
+        publishedCreatorTemplateMessage={publishedCreatorTemplateMessage}
+        publishedCreatorTemplates={publishedCreatorTemplates}
         proMessage={proMessage}
         profile={profile}
         setCustomName={setCustomName}

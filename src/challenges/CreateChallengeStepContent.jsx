@@ -15,6 +15,8 @@ export default function CreateChallengeStepContent({
   isPublic,
   loading,
   onBack,
+  publishedCreatorTemplateMessage,
+  publishedCreatorTemplates,
   proMessage,
   profile,
   setCustomName,
@@ -30,6 +32,8 @@ export default function CreateChallengeStepContent({
     return (
       <CreateChallengeTemplateStep
         onTemplateSelect={handleTemplateSelect}
+        publishedCreatorTemplateMessage={publishedCreatorTemplateMessage}
+        publishedCreatorTemplates={publishedCreatorTemplates}
         proMessage={proMessage}
         profile={profile}
       />

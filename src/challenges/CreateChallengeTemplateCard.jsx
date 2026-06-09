@@ -28,8 +28,18 @@ export default function CreateChallengeTemplateCard({ onTemplateSelect, profile,
               {unlocked ? template.packLabel?.toUpperCase() || 'PREMIUM' : 'LOCKED'}
             </span>
           )}
+          {template.source === 'creatorChallengeTemplates' && (
+            <span style={{ fontSize: 9, fontFamily: 'monospace', fontWeight: 900, color: '#34D399', background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.28)', borderRadius: 5, padding: '2px 6px' }}>
+              CREATOR
+            </span>
+          )}
         </div>
         <div style={{ fontSize: 11, color: '#666' }}>{template.tagline}</div>
+        {template.source === 'creatorChallengeTemplates' && (
+          <div style={{ marginTop: 6, fontSize: 9, color: '#34D399', fontFamily: 'monospace', fontWeight: 800 }}>
+            FREE-FIRST · REVIEWED TEMPLATE
+          </div>
+        )}
         {template.campaignLabel && (
           <div style={{ marginTop: 6, fontSize: 9, color: template.color, fontFamily: 'monospace', fontWeight: 800 }}>
             📣 {template.campaignLabel.toUpperCase()} {template.campaignHashtag ? `· ${template.campaignHashtag}` : ''}

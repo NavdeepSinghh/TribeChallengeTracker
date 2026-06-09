@@ -188,6 +188,30 @@ describe('cross-platform creator hosting parity source checks', () => {
     expect(firestoreRules).toContain('["open", "approved", "published", "waiting", "not_ready", "declined"]');
   });
 
+  it('lets published Creator Challenge Templates feed the create picker without paid-hosting side effects', () => {
+    const iosCreateChallenge = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/CreateChallengeView.swift'), 'utf8');
+    const androidModelsAndCreate = `${androidModels}\n${androidApp}`;
+
+    [webChallengesTab, iosCreateChallenge, androidModelsAndCreate].forEach((source) => {
+      expect(source).toContain('PUBLISHED CREATOR TEMPLATES');
+      expect(source).toContain('creatorChallengeTemplates');
+      expect(source).toContain('FREE-FIRST');
+      expect(source).toContain('REVIEWED TEMPLATE');
+      expect(source).toContain('No paid hosting, revenue-share, or partner tracking is attached');
+    });
+    [webChallengeService, iosChallengeModel, iosChallengeService, androidModels, androidRepository].forEach((source) => {
+      expect(source).toContain('templateSource');
+      expect(source).toContain('creatorTemplateId');
+      expect(source).toContain('creatorTemplateDraftId');
+      expect(source).toContain('creatorTemplateOwnerUid');
+      expect(source).toContain('creatorTemplateOwnerName');
+    });
+    [webChallengesTab, iosCreateChallenge, androidModelsAndCreate].forEach((source) => {
+      expect(source).toContain('isPremium');
+      expect(source).toContain('false');
+    });
+  });
+
   it('keeps Creator Leaderboard Preview Kit wired on all platforms without records, private exports, or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {
