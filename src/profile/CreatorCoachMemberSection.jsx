@@ -6,6 +6,7 @@ export default function CreatorCoachMemberSection({
   creatorAnalytics,
   creatorBrandedPagePreviewCopy,
   creatorChallengeTemplateDraftCopy,
+  creatorProfileCompletionCopy,
   creatorBio,
   creatorCtaUrl,
   creatorEnabled,
@@ -36,6 +37,7 @@ export default function CreatorCoachMemberSection({
         creatorAnalytics={creatorAnalytics}
         creatorBrandedPagePreviewCopy={creatorBrandedPagePreviewCopy}
         creatorChallengeTemplateDraftCopy={creatorChallengeTemplateDraftCopy}
+        creatorProfileCompletionCopy={creatorProfileCompletionCopy}
         creatorEnabled={creatorEnabled}
         creatorHostingObjectionReplyCopy={creatorHostingObjectionReplyCopy}
         creatorHostingOfferCopy={creatorHostingOfferCopy}

@@ -76,6 +76,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Tribe Pro profile frames backed by `users/{uid}.cosmetics.profileFrameId`.
 - Tribe Pro share templates backed by `users/{uid}.sharePreferences.templateId` with free `classic` and Pro `gold` / `neon` generated-card palettes.
 - Creator / Coach Mode foundation backed by `users/{uid}.creatorProfile` for future hosted challenges, branded pages, and revenue-share.
+- Creator Profile Completion Kit across Web, iOS, and Android with copy-ready specialty, bio, CTA, Coach Host block, and app-first launch readiness guidance before creator terms, payouts, revenue-share, paid hosting, tracking, private exports, outcome promises, or medical claims.
 - Creator analytics foundation across Web, iOS, and Android using existing hosted challenge metrics.
 - Creator-branded challenge metadata across Web, iOS, and Android by denormalizing Coach Mode specialty, bio, and CTA link onto newly created challenges.
 - Creator revenue-share readiness across Web, iOS, and Android with a Pro-gated beta opt-in plus first-party paid-pack/ready hosted challenge metrics.

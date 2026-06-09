@@ -4,6 +4,7 @@ export function buildCreatorHostingCopy({
   creatorOwnedChallenges,
   creatorSpecialty,
   creatorBio,
+  creatorCtaUrl = '',
   creatorAnalytics,
   creatorRevenueShareInterest,
   creatorHostingApplicationReviewQueue,
@@ -24,6 +25,8 @@ export function buildCreatorHostingCopy({
     : 'Create your first hosted challenge, then copy a launch post here for Instagram and your community.';
   const creatorHostingCopyKits = buildCreatorHostingCopyKits({
     creatorAnalytics,
+    creatorBio,
+    creatorCtaUrl,
     creatorHostingApplicationReviewQueue,
     creatorLaunchChallenge,
     creatorRevenueShareInterest,

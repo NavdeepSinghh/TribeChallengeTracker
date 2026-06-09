@@ -1,11 +1,32 @@
 export function buildCreatorHostingReadinessCopyKits({
   candidateChallengeLine,
   creatorBetaInterestLine,
+  creatorBioLine = 'Creator bio: add a short proof-first bio before sharing',
+  creatorCtaLine = 'Creator CTA: add an app-first CTA link before sharing',
   creatorFocusLine,
   hostedChallengesLine,
   memberReachLine,
   revenueReadyLine,
 }) {
+  const creatorProfileCompletionCopy = [
+    'Rise With The Tribe Creator Profile Completion Kit:',
+    '',
+    creatorFocusLine,
+    creatorBioLine,
+    creatorCtaLine,
+    hostedChallengesLine,
+    memberReachLine,
+    candidateChallengeLine,
+    '',
+    'Profile completion checklist:',
+    '- Keep the specialty specific, truthful, and beginner-safe',
+    '- Keep the bio focused on accountability, challenge format, and community proof',
+    '- Use an app-first CTA link or hosted challenge invite path instead of off-platform payment language',
+    '- Confirm the Coach Host block, launch copy, and branded page preview match the saved profile',
+    '- Route paid-hosting interest through creator hosting review before discussing terms, payouts, or revenue-share',
+    '',
+    'This is a creator profile completion kit only. Do not create contracts, collect payments, create purchases, write entitlements, start revenue-share, create payouts, collect payout details, collect tax details, create partner links, add tracking pixels, export private member activity, scrape DMs, store inbound replies, promise earnings, imply paid hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorChallengeTemplateDraftCopy = [
     'Rise With The Tribe Creator Challenge Template Draft Kit:',
     '',
@@ -113,6 +134,7 @@ export function buildCreatorHostingReadinessCopyKits({
   return {
     creatorBrandedPagePreviewCopy,
     creatorChallengeTemplateDraftCopy,
+    creatorProfileCompletionCopy,
     creatorHostingOfferCopy,
     creatorPrivateInviteCopy,
     creatorPayoutReadinessCopy,

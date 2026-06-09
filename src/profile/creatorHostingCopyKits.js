@@ -3,6 +3,8 @@ import { buildCreatorHostingReplyCopyKits } from './creatorHostingReplyCopyKits'
 
 function buildCreatorHostingContext({
   creatorAnalytics,
+  creatorBio = '',
+  creatorCtaUrl = '',
   creatorHostingApplicationReviewQueue,
   creatorLaunchChallenge,
   creatorRevenueShareInterest,
@@ -13,6 +15,8 @@ function buildCreatorHostingContext({
       ? `Candidate challenge: ${creatorLaunchChallenge.name}`
       : 'Candidate challenge: create or choose a hosted challenge first',
     creatorBetaInterestLine: `Creator beta interest: ${creatorRevenueShareInterest ? 'opted in' : 'not opted in yet'}`,
+    creatorBioLine: `Creator bio: ${creatorBio || 'add a short proof-first bio before sharing'}`,
+    creatorCtaLine: `Creator CTA: ${creatorCtaUrl || 'add an app-first CTA link before sharing'}`,
     creatorFocusLine: `Creator focus: ${creatorSpecialty || 'Accountability challenge host'}`,
     hostedChallengesLine: `Hosted challenges: ${creatorAnalytics.hosted}`,
     memberReachLine: `Member reach: ${creatorAnalytics.members}`,
@@ -23,6 +27,8 @@ function buildCreatorHostingContext({
 
 export function buildCreatorHostingCopyKits({
   creatorAnalytics,
+  creatorBio = '',
+  creatorCtaUrl = '',
   creatorHostingApplicationReviewQueue,
   creatorLaunchChallenge,
   creatorRevenueShareInterest,
@@ -31,6 +37,8 @@ export function buildCreatorHostingCopyKits({
   const {
     candidateChallengeLine,
     creatorBetaInterestLine,
+    creatorBioLine,
+    creatorCtaLine,
     creatorFocusLine,
     hostedChallengesLine,
     memberReachLine,
@@ -38,6 +46,8 @@ export function buildCreatorHostingCopyKits({
     revenueReadyLine,
   } = buildCreatorHostingContext({
     creatorAnalytics,
+    creatorBio,
+    creatorCtaUrl,
     creatorHostingApplicationReviewQueue,
     creatorLaunchChallenge,
     creatorRevenueShareInterest,
@@ -47,6 +57,8 @@ export function buildCreatorHostingCopyKits({
   const creatorHostingReadinessCopyKits = buildCreatorHostingReadinessCopyKits({
     candidateChallengeLine,
     creatorBetaInterestLine,
+    creatorBioLine,
+    creatorCtaLine,
     creatorFocusLine,
     hostedChallengesLine,
     memberReachLine,

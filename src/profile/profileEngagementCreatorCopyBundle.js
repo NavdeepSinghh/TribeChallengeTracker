@@ -7,6 +7,7 @@ export function buildProfileEngagementCreatorCopyBundle({
   const {
     communityHighlightRoundupItems,
     creatorBio,
+    creatorCtaUrl,
     creatorHostingApplicationReviewQueue,
     creatorRevenueShareInterest,
     creatorSpecialty,
@@ -39,6 +40,7 @@ export function buildProfileEngagementCreatorCopyBundle({
     challengePackTitle,
     communityHighlightRoundupItems,
     creatorBio,
+    creatorCtaUrl,
     creatorHostingApplicationReviewQueue,
     creatorRevenueShareInterest,
     creatorSpecialty,

@@ -94,7 +94,7 @@ Features:
 
 Features:
 
-- Creator profiles.
+- Creator profiles. Status: Pro-gated Creator / Coach profile editor plus Creator Profile Completion Kit done across Web, iOS, and Android using saved specialty, bio, CTA, hosted reach, and app-first launch guidance without contracts, payouts, purchases, entitlements, revenue-share, tracking, private exports, paid-hosting-live claims, outcome promises, or medical implications.
 - Creator challenge templates. Status: Creator Challenge Template Draft Kit done across Web, iOS, and Android with reusable hosted challenge template planning, first-party app-signal review, and no template-record, contract, payment, purchase, entitlement, revenue-share, payout, partner-link, tracking, private-export, paid-hosting-live, outcome, or medical-claim side effects.
 - Branded challenge pages.
 - Private creator challenge links. Status: Private Creator Invite Kit done across Web, iOS, and Android with invite-only private challenge launch copy, app-link guidance, first-party join/log review prompts, and no auto-message, link-open counting, payment, payout, contract, revenue-share, purchase, entitlement, paid-access, tracking, or paid-hosting-live side effects.

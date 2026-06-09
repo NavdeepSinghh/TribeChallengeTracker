@@ -25,6 +25,11 @@ describe('creator hosting copy contracts', () => {
 
     expect(copy.creatorLaunchLink).toContain('join=RESET7');
     expect(copy.creatorLaunchLink).toContain('ref=coach-1');
+    expect(copy.creatorProfileCompletionCopy).toContain('Creator Profile Completion Kit');
+    expect(copy.creatorProfileCompletionCopy).toContain('Profile completion checklist');
+    expect(copy.creatorProfileCompletionCopy).toContain('Coach Host block');
+    expect(copy.creatorProfileCompletionCopy).toContain('Do not create contracts');
+    expect(copy.creatorProfileCompletionCopy).toContain('collect payout details');
     expect(copy.creatorBrandedPagePreviewCopy).toContain('Creator Branded Page Preview Kit');
     expect(copy.creatorBrandedPagePreviewCopy).toContain('Coach Host block');
     expect(copy.creatorBrandedPagePreviewCopy).toContain('creator specialty, bio, and CTA link');

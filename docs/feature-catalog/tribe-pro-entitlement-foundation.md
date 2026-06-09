@@ -48,6 +48,7 @@ Shared behavior:
 - `classic` is free; `gold` and `neon` require active Pro and change the generated share-card palette.
 - Profile includes a Pro-gated Creator / Coach Mode foundation saved under `users/{uid}.creatorProfile`.
 - Creator profile fields currently include `enabled`, `specialty`, `bio`, `ctaUrl`, and `revenueShareInterest` for future hosted/branded challenge and paid-hosting surfaces.
+- Creator / Coach Mode includes a Creator Profile Completion Kit that exports a copy-only specialty, bio, CTA, Coach Host block, and app-first launch readiness checklist before creator terms, payouts, revenue-share, paid-hosting-live claims, private exports, outcome promises, or medical implications.
 - Creator / Coach Mode includes a Pro-gated analytics foundation derived from challenge docs the creator already belongs to: hosted challenge count, member reach, active hosted challenges, and private hosted challenges.
 - Creator / Coach Mode includes revenue-share readiness metrics for hosted paid-pack challenges and hosted challenges with paid-pack metadata or at least five members.
 - Creator Launch Kit generates repost-ready creator launch copy from the next hosted challenge, invite code, creator specialty, creator bio, and `@risewiththetribe` tag.
