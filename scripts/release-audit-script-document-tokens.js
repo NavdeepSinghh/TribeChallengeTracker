@@ -162,7 +162,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "src/profile/partnerCampaignApplicationActionHandlers.js",
   "src/profile/partnerCampaignReviewActionHandlers.js",
   "same `usePartnerCampaignActions` return contract",
-  "src/__tests__/reactBuildTimeoutScript.test.js",
+  "scripts/verify-react-build-timeout.js",
   "src/__tests__/buildRuntimeGuard.test.js",
   "src/__tests__/monetizationReleaseAuditScript.test.js",
   "scripts/parity-test-contracts.js",

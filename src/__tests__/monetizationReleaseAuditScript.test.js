@@ -273,7 +273,7 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('same `PROFILE_PARITY_CONTRACT_LABELS` export');
     expect(content).toContain('crossPlatformParity.weeklyCampaignCollabLifecycle.test.js');
     expect(content).toContain('47 suites, 112 tests');
-    expect(content).toContain('src/__tests__/reactBuildTimeoutScript.test.js');
+    expect(content).toContain('scripts/verify-react-build-timeout.js');
     expect(content).toContain('src/__tests__/buildRuntimeGuard.test.js');
     expect(content).toContain('BUILD_IDLE_TIMEOUT_MS');
     expect(content).toContain('scripts/verify-instagram-campaign-contracts.js');

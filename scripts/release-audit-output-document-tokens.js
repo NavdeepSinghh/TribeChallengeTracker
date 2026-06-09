@@ -259,7 +259,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "same `buildProfileWeeklyCampaignDerivedData` return contract",
   "src/__tests__/weeklyCampaignMarketingProps.test.js",
   "Weekly Campaign marketing prop contract",
-  "src/__tests__/reactBuildTimeoutScript.test.js",
+  "scripts/verify-react-build-timeout.js",
   "src/__tests__/buildRuntimeGuard.test.js",
   "src/__tests__/monetizationReleaseAuditScript.test.js",
   "BUILD_IDLE_TIMEOUT_MS",

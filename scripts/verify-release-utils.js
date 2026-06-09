@@ -68,7 +68,16 @@ function challengeModulePaths(repoRoot) {
 
 function iosProfileContractPaths(iosRoot) {
   const viewsRoot = path.join(iosRoot, "TribeChallenge", "Views");
+  const splitProfileRoot = path.join(viewsRoot, "Profile");
+  const splitProfilePaths = exists(splitProfileRoot)
+    ? fs.readdirSync(splitProfileRoot)
+        .filter(fileName => /\.swift$/.test(fileName))
+        .sort()
+        .map(fileName => path.join(splitProfileRoot, fileName))
+    : [];
+
   return [
+    path.join(iosRoot, "TribeChallenge", "ViewModels", "ProfileViewModel.swift"),
     path.join(viewsRoot, "ProfileView.swift"),
     path.join(viewsRoot, "ProfileCopyModels.swift"),
     path.join(viewsRoot, "PartnerPerkAdminReviewSection.swift"),
@@ -80,6 +89,7 @@ function iosProfileContractPaths(iosRoot) {
     path.join(viewsRoot, "CreatorProfileOverviewSection.swift"),
     path.join(viewsRoot, "CreatorPlanningCopyKits.swift"),
     path.join(viewsRoot, "CreatorPlanningCopyKitsSection.swift"),
+    ...splitProfilePaths,
   ];
 }
 

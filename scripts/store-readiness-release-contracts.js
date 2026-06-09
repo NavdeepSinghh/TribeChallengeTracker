@@ -55,7 +55,7 @@ function verifyRequiredStoreReadinessFiles(repoRoot) {
     path.join(repoRoot, "src", "__tests__", "supportBillingCopy.test.js"),
     path.join(repoRoot, "src", "__tests__", "weeklyCampaignDerivedData.test.js"),
     path.join(repoRoot, "src", "__tests__", "weeklyCampaignMarketingProps.test.js"),
-    path.join(repoRoot, "src", "__tests__", "reactBuildTimeoutScript.test.js"),
+    path.join(repoRoot, "scripts", "verify-react-build-timeout.js"),
     path.join(repoRoot, "src", "__tests__", "buildRuntimeGuard.test.js"),
     path.join(repoRoot, "src", "__tests__", "monetizationReleaseAuditScript.test.js"),
     path.join(repoRoot, "docs", "MONETIZATION_RELEASE_AUDIT.md"),
@@ -83,7 +83,7 @@ function verifyReleaseScriptContracts(packageJson) {
   assert(packageJson.scripts?.["test:referral-copy"] === "react-scripts test --runTestsByPath src/__tests__/referralCopy.test.js src/__tests__/referralRewardSocialProofCopy.test.js src/__tests__/referralRewardDecisionCopy.test.js --watchAll=false --runInBand", "package.json must define test:referral-copy");
   assert(packageJson.scripts?.["test:support-billing-copy"] === "react-scripts test --runTestsByPath src/__tests__/supportBillingCopy.test.js src/__tests__/storeBillingSupportCopy.test.js src/__tests__/storeLifecycleCopy.test.js --watchAll=false --runInBand", "package.json must define test:support-billing-copy");
   assert(packageJson.scripts?.["test:weekly-campaign"] === "react-scripts test --runTestsByPath src/__tests__/weeklyCampaignDerivedData.test.js src/__tests__/weeklyCampaignMarketingProps.test.js --watchAll=false --runInBand", "package.json must define test:weekly-campaign");
-  assert(packageJson.scripts?.["test:build-wrapper"] === "react-scripts test --runTestsByPath src/__tests__/reactBuildTimeoutScript.test.js --watchAll=false --runInBand", "package.json must define test:build-wrapper");
+  assert(packageJson.scripts?.["test:build-wrapper"] === "node scripts/verify-react-build-timeout.js", "package.json must define test:build-wrapper");
   assert(packageJson.scripts?.["test:build-runtime"] === "react-scripts test --runTestsByPath src/__tests__/buildRuntimeGuard.test.js --watchAll=false --runInBand", "package.json must define test:build-runtime");
   assert(packageJson.scripts?.["test:release-audit"] === "react-scripts test --runTestsByPath src/__tests__/monetizationReleaseAuditScript.test.js --watchAll=false --runInBand", "package.json must define test:release-audit");
   assert(packageJson.scripts?.["test:parity"] === parityTestCommand(), "package.json must include every focused cross-platform parity suite in test:parity");
