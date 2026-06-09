@@ -121,6 +121,39 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps reviewable Creator Challenge Template Draft records wired on all platforms without publishing or paid side effects', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserServices = readWebUserServiceContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR TEMPLATE DRAFT RECORD');
+      expect(source).toContain('SAVE TEMPLATE DRAFT FOR REVIEW');
+      expect(source).toContain('creatorChallengeTemplateDrafts');
+      expect(source).toContain('manual admin review');
+      expect(source).toContain('does not publish templates');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('expose private member activity');
+      expect(source).toContain('CREATOR TEMPLATE DRAFT REVIEW QUEUE');
+    });
+    [webUserServices, iosChallengeService, androidRepository].forEach((source) => {
+      expect(source).toContain('creatorChallengeTemplateDrafts');
+      expect(source).toContain('submitCreatorChallengeTemplateDraft');
+      expect(source).toContain('getCreatorChallengeTemplateDraftReviewQueue');
+      expect(source).toContain('reviewCreatorChallengeTemplateDraft');
+      expect(source).toContain('candidateChallengeName');
+      expect(source).toContain('activeHostedCount');
+      expect(source).toContain('revenueReadyCount');
+      expect(source).toContain('status');
+      expect(source).toContain('reviewNote');
+      expect(source).toContain('reviewedBy');
+      expect(source).toContain('reviewedAt');
+      expect(source).toContain('updatedAt');
+    });
+  });
+
   it('keeps Creator Leaderboard Preview Kit wired on all platforms without records, private exports, or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

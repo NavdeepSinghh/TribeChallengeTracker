@@ -9,7 +9,7 @@ Purpose: expand beyond one audience by letting coaches and micro-creators run ch
 Candidate features:
 
 - Coach profile.
-- Creator challenge templates. Initial copy-only template draft kit is live across Web, iOS, and Android; real reusable template records remain pending.
+- Creator challenge templates. Initial copy kit plus reviewable `creatorChallengeTemplateDrafts` records are live across Web, iOS, and Android; public reusable template publishing remains pending.
 - Creator leaderboard. Initial copy-only leaderboard preview kit is live across Web, iOS, and Android using first-party hosted challenge movement only; public leaderboard records and paid-hosting ranking flows remain pending.
 - Private challenge invite links.
 - Branded challenge pages.

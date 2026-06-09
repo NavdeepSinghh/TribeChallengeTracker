@@ -1,4 +1,5 @@
 import CreatorDemandSummaryCard from './CreatorDemandSummaryCard';
+import CreatorChallengeTemplateDraftReviewQueueSection from './CreatorChallengeTemplateDraftReviewQueueSection';
 import CreatorHostingDecisionReplyCard from './CreatorHostingDecisionReplyCard';
 import CreatorHostingReviewQueueSection from './CreatorHostingReviewQueueSection';
 
@@ -7,12 +8,17 @@ export default function CreatorCoachAdminSection({
   creatorHostingApplicationReviewNotes,
   creatorHostingApplicationReviewQueue,
   creatorHostingDecisionReplyCopy,
+  creatorTemplateDraftReviewNotes,
+  creatorTemplateDraftReviewQueue,
   creatorRevenueSharePitchCopy,
   creatorRevenueShareSummary,
   creatorRevenueShareTotal,
   handleCreatorHostingApplicationReview,
+  handleCreatorTemplateDraftReview,
   reviewingCreatorHostingApplicationId,
+  reviewingCreatorTemplateDraftId,
   setCreatorHostingApplicationReviewNotes,
+  setCreatorTemplateDraftReviewNotes,
 }) {
   return (
     <>
@@ -27,6 +33,13 @@ export default function CreatorCoachAdminSection({
         handleCreatorHostingApplicationReview={handleCreatorHostingApplicationReview}
         reviewingCreatorHostingApplicationId={reviewingCreatorHostingApplicationId}
         setCreatorHostingApplicationReviewNotes={setCreatorHostingApplicationReviewNotes}
+      />
+      <CreatorChallengeTemplateDraftReviewQueueSection
+        creatorTemplateDraftReviewNotes={creatorTemplateDraftReviewNotes}
+        creatorTemplateDraftReviewQueue={creatorTemplateDraftReviewQueue}
+        handleCreatorTemplateDraftReview={handleCreatorTemplateDraftReview}
+        reviewingCreatorTemplateDraftId={reviewingCreatorTemplateDraftId}
+        setCreatorTemplateDraftReviewNotes={setCreatorTemplateDraftReviewNotes}
       />
       <CreatorHostingDecisionReplyCard
         creatorAnalytics={creatorAnalytics}

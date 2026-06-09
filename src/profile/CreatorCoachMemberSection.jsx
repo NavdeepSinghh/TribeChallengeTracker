@@ -1,4 +1,5 @@
 import CreatorHostingApplicationCard from './CreatorHostingApplicationCard';
+import CreatorChallengeTemplateDraftCard from './CreatorChallengeTemplateDraftCard';
 import CreatorPlanningCopyKits from './CreatorPlanningCopyKits';
 import CreatorProfileForm from './CreatorProfileForm';
 
@@ -23,6 +24,7 @@ export default function CreatorCoachMemberSection({
   creatorLaunchLink,
   creatorMessage,
   creatorPrivateInviteCopy,
+  creatorTemplateDraftMessage,
   creatorAgreementPrepCopy,
   creatorSupportHandoffCopy,
   creatorPaidHostingPolicyCopy,
@@ -31,9 +33,11 @@ export default function CreatorCoachMemberSection({
   creatorSpecialty,
   creatorTermsReadinessCopy,
   handleCreatorHostingApplication,
+  handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
   isSubmittingCreatorHostingApplication,
+  isSubmittingCreatorTemplateDraft,
   proActive,
   setCreatorBio,
   setCreatorCtaUrl,
@@ -71,6 +75,13 @@ export default function CreatorCoachMemberSection({
         creatorHostingApplicationMessage={creatorHostingApplicationMessage}
         handleCreatorHostingApplication={handleCreatorHostingApplication}
         isSubmittingCreatorHostingApplication={isSubmittingCreatorHostingApplication}
+        proActive={proActive}
+      />
+      <CreatorChallengeTemplateDraftCard
+        creatorEnabled={creatorEnabled}
+        creatorTemplateDraftMessage={creatorTemplateDraftMessage}
+        handleCreatorTemplateDraftSubmit={handleCreatorTemplateDraftSubmit}
+        isSubmittingCreatorTemplateDraft={isSubmittingCreatorTemplateDraft}
         proActive={proActive}
       />
       <CreatorProfileForm

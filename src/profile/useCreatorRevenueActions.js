@@ -1,4 +1,5 @@
 import { buildCreatorHostingApplicationActionHandlers } from './creatorHostingApplicationActionHandlers';
+import { buildCreatorChallengeTemplateDraftActionHandlers } from './creatorChallengeTemplateDraftActionHandlers';
 import { buildCreatorProfileActionHandlers } from './creatorProfileActionHandlers';
 
 export default function useCreatorRevenueActions({
@@ -7,20 +8,28 @@ export default function useCreatorRevenueActions({
   creatorCtaUrl,
   creatorEnabled,
   creatorHostingApplicationReviewNotes,
+  creatorLaunchChallenge,
   creatorRevenueShareInterest,
   creatorSpecialty,
+  creatorTemplateDraftReviewNotes,
   isAdmin,
   isSubmittingCreatorHostingApplication,
+  isSubmittingCreatorTemplateDraft,
   proActive,
   profile,
   reviewingCreatorHostingApplicationId,
+  reviewingCreatorTemplateDraftId,
   setCreatorHostingApplicationMessage,
   setCreatorHostingApplicationReviewQueue,
   setCreatorMessage,
+  setCreatorTemplateDraftMessage,
+  setCreatorTemplateDraftReviewQueue,
   setIsSavingCreator,
   setIsSubmittingCreatorHostingApplication,
+  setIsSubmittingCreatorTemplateDraft,
   setProfile,
   setReviewingCreatorHostingApplicationId,
+  setReviewingCreatorTemplateDraftId,
   user,
   onProfileUpdated,
 }) {
@@ -55,9 +64,26 @@ export default function useCreatorRevenueActions({
     setReviewingCreatorHostingApplicationId,
     user,
   });
+  const creatorTemplateDraftHandlers = buildCreatorChallengeTemplateDraftActionHandlers({
+    creatorAnalytics,
+    creatorEnabled,
+    creatorLaunchChallenge,
+    creatorTemplateDraftReviewNotes,
+    isAdmin,
+    isSubmittingCreatorTemplateDraft,
+    proActive,
+    profile,
+    reviewingCreatorTemplateDraftId,
+    setCreatorTemplateDraftMessage,
+    setCreatorTemplateDraftReviewQueue,
+    setIsSubmittingCreatorTemplateDraft,
+    setReviewingCreatorTemplateDraftId,
+    user,
+  });
 
   return {
     ...creatorHostingApplicationHandlers,
     ...creatorProfileHandlers,
+    ...creatorTemplateDraftHandlers,
   };
 }

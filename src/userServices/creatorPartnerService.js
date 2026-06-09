@@ -6,6 +6,11 @@ export {
   saveCreatorProfile,
 } from './creatorProfileService';
 export {
+  getCreatorChallengeTemplateDraftReviewQueue,
+  reviewCreatorChallengeTemplateDraft,
+  submitCreatorChallengeTemplateDraft,
+} from './creatorChallengeTemplateDraftService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,

@@ -14,6 +14,11 @@ export default function useCreatorRevenueState() {
   const [isSubmittingCreatorHostingApplication, setIsSubmittingCreatorHostingApplication] = useState(false);
   const [creatorHostingApplicationReviewNotes, setCreatorHostingApplicationReviewNotes] = useState({});
   const [reviewingCreatorHostingApplicationId, setReviewingCreatorHostingApplicationId] = useState('');
+  const [creatorTemplateDraftReviewQueue, setCreatorTemplateDraftReviewQueue] = useState([]);
+  const [creatorTemplateDraftMessage, setCreatorTemplateDraftMessage] = useState('');
+  const [isSubmittingCreatorTemplateDraft, setIsSubmittingCreatorTemplateDraft] = useState(false);
+  const [creatorTemplateDraftReviewNotes, setCreatorTemplateDraftReviewNotes] = useState({});
+  const [reviewingCreatorTemplateDraftId, setReviewingCreatorTemplateDraftId] = useState('');
 
   return {
     creatorBio,
@@ -26,9 +31,14 @@ export default function useCreatorRevenueState() {
     creatorRevenueShareInterest,
     creatorRevenueShareSummary,
     creatorSpecialty,
+    creatorTemplateDraftMessage,
+    creatorTemplateDraftReviewNotes,
+    creatorTemplateDraftReviewQueue,
     isSavingCreator,
     isSubmittingCreatorHostingApplication,
+    isSubmittingCreatorTemplateDraft,
     reviewingCreatorHostingApplicationId,
+    reviewingCreatorTemplateDraftId,
     setCreatorBio,
     setCreatorCtaUrl,
     setCreatorEnabled,
@@ -39,8 +49,13 @@ export default function useCreatorRevenueState() {
     setCreatorRevenueShareInterest,
     setCreatorRevenueShareSummary,
     setCreatorSpecialty,
+    setCreatorTemplateDraftMessage,
+    setCreatorTemplateDraftReviewNotes,
+    setCreatorTemplateDraftReviewQueue,
     setIsSavingCreator,
     setIsSubmittingCreatorHostingApplication,
+    setIsSubmittingCreatorTemplateDraft,
     setReviewingCreatorHostingApplicationId,
+    setReviewingCreatorTemplateDraftId,
   };
 }

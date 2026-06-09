@@ -22,6 +22,7 @@ export {
   claimPartnerPerk,
   getCampaignPerformanceSummary,
   getCommunityEventInterestSummary,
+  getCreatorChallengeTemplateDraftReviewQueue,
   getCreatorHostingApplicationReviewQueue,
   getCreatorRevenueShareSummary,
   getPartnerCampaignApplicationReviewQueue,
@@ -29,6 +30,7 @@ export {
   getPartnerPerkClaims,
   getPartnerPerkInterestSummary,
   getProTrialInterestSummary,
+  reviewCreatorChallengeTemplateDraft,
   reviewCreatorHostingApplication,
   reviewPartnerCampaignApplication,
   reviewPartnerPerkClaim,
@@ -36,6 +38,7 @@ export {
   saveCreatorProfile,
   savePartnerPerkInterest,
   saveProTrialInterest,
+  submitCreatorChallengeTemplateDraft,
   submitCreatorHostingApplication,
   submitPartnerCampaignApplication,
 } from './userServices/creatorPartnerService';
