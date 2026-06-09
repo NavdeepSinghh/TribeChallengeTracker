@@ -22,6 +22,7 @@ export function buildProfileScreenLoadTargets({
     setCreatorRevenueShareSummary: revenueState.setCreatorRevenueShareSummary,
     setCreatorSpecialty: revenueState.setCreatorSpecialty,
     setCreatorTemplateDraftReviewQueue: revenueState.setCreatorTemplateDraftReviewQueue,
+    setPublishedCreatorChallengeTemplates: revenueState.setPublishedCreatorChallengeTemplates,
     setEntitlementRecoveryReviewQueue: storeState.setEntitlementRecoveryReviewQueue,
     setFeatureReviewQueue: engagementState.setFeatureReviewQueue,
     setFeatureSubmissions: engagementState.setFeatureSubmissions,

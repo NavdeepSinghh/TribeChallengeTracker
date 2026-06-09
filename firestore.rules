@@ -227,6 +227,37 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    // ── Creator challenge template drafts and published templates ───────────
+    // Creator drafts are manual review records. Admins can publish a sanitized
+    // free creator template into creatorChallengeTemplates; this does not create
+    // contracts, payouts, purchases, entitlements, revenue-share, or paid-hosting
+    // claims.
+    match /creatorChallengeTemplateDrafts/{draftId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "candidateChallengeName", "hostedCount", "activeHostedCount", "memberReach", "revenueReadyCount", "status"])
+        && request.resource.data.hostedCount >= 0
+        && request.resource.data.activeHostedCount >= 0
+        && request.resource.data.memberReach >= 0
+        && request.resource.data.revenueReadyCount >= 0;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "published", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    match /creatorChallengeTemplates/{templateId} {
+      allow read: if request.auth != null && resource.data.status == "published" && resource.data.isPublic == true;
+      allow create, update, delete: if request.auth != null
+        && isAdmin()
+        && request.resource.data.status == "published"
+        && request.resource.data.isPublic == true
+        && request.resource.data.isPremium == false
+        && request.resource.data.keys().hasAll(["id", "draftId", "uid", "name", "duration", "difficulty", "rules", "tasks", "disclaimer", "status", "isPublic", "isPremium"]);
+    }
+
     // ── Partner campaign applications ────────────────────────────────────────
     // Members can request manual sponsor-pilot review from first-party demand.
     // Admins can use reviewPartnerCampaignApplication to update reviewNote,

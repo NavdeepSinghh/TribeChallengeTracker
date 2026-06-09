@@ -2,6 +2,7 @@ import CreatorDemandSummaryCard from './CreatorDemandSummaryCard';
 import CreatorChallengeTemplateDraftReviewQueueSection from './CreatorChallengeTemplateDraftReviewQueueSection';
 import CreatorHostingDecisionReplyCard from './CreatorHostingDecisionReplyCard';
 import CreatorHostingReviewQueueSection from './CreatorHostingReviewQueueSection';
+import PublishedCreatorChallengeTemplateCatalogSection from './PublishedCreatorChallengeTemplateCatalogSection';
 
 export default function CreatorCoachAdminSection({
   creatorAnalytics,
@@ -15,6 +16,7 @@ export default function CreatorCoachAdminSection({
   creatorRevenueShareTotal,
   handleCreatorHostingApplicationReview,
   handleCreatorTemplateDraftReview,
+  publishedCreatorChallengeTemplates,
   reviewingCreatorHostingApplicationId,
   reviewingCreatorTemplateDraftId,
   setCreatorHostingApplicationReviewNotes,
@@ -40,6 +42,9 @@ export default function CreatorCoachAdminSection({
         handleCreatorTemplateDraftReview={handleCreatorTemplateDraftReview}
         reviewingCreatorTemplateDraftId={reviewingCreatorTemplateDraftId}
         setCreatorTemplateDraftReviewNotes={setCreatorTemplateDraftReviewNotes}
+      />
+      <PublishedCreatorChallengeTemplateCatalogSection
+        publishedCreatorChallengeTemplates={publishedCreatorChallengeTemplates}
       />
       <CreatorHostingDecisionReplyCard
         creatorAnalytics={creatorAnalytics}

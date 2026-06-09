@@ -154,6 +154,40 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps published Creator Challenge Template catalog wired on all platforms without paid-hosting side effects', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserServices = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PUBLISHED CREATOR TEMPLATE CATALOG');
+      expect(source).toContain('creatorChallengeTemplates');
+      expect(source).toContain('free-first');
+      expect(source).toContain('do not create contracts');
+      expect(source).toContain('payouts');
+      expect(source).toContain('purchases');
+      expect(source).toContain('entitlements');
+      expect(source).toContain('revenue-share');
+      expect(source).toContain('tracking');
+      expect(source).toContain('paid-hosting claims');
+    });
+    [webUserServices, iosChallengeService, androidRepository].forEach((source) => {
+      expect(source).toContain('creatorChallengeTemplates');
+      expect(source).toContain('getPublishedCreatorChallengeTemplates');
+      expect(source).toContain('published');
+      expect(source).toContain('isPublic');
+      expect(source).toContain('isPremium');
+      expect(source).toContain('source');
+      expect(source).toContain('creator_template_draft');
+      expect(source).toContain('publishedAt');
+      expect(source).toContain('publishedBy');
+    });
+    expect(firestoreRules).toContain('match /creatorChallengeTemplateDrafts/{draftId}');
+    expect(firestoreRules).toContain('match /creatorChallengeTemplates/{templateId}');
+    expect(firestoreRules).toContain('request.resource.data.isPremium == false');
+    expect(firestoreRules).toContain('["open", "approved", "published", "waiting", "not_ready", "declined"]');
+  });
+
   it('keeps Creator Leaderboard Preview Kit wired on all platforms without records, private exports, or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

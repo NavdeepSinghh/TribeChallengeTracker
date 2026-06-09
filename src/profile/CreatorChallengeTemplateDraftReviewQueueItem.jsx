@@ -1,4 +1,10 @@
-import { CREATOR_HOSTING_REVIEW_STATUS_OPTIONS } from './creatorHostingReviewStatusOptions';
+const CREATOR_TEMPLATE_DRAFT_STATUS_OPTIONS = [
+  ['published', 'PUBLISH'],
+  ['approved', 'APPROVE'],
+  ['waiting', 'WAIT'],
+  ['not_ready', 'NOT READY'],
+  ['declined', 'DECLINE'],
+];
 
 export default function CreatorChallengeTemplateDraftReviewQueueItem({
   creatorTemplateDraftReviewNotes,
@@ -22,15 +28,15 @@ export default function CreatorChallengeTemplateDraftReviewQueueItem({
       <textarea
         value={creatorTemplateDraftReviewNotes[draft.id] || ''}
         onChange={event => setCreatorTemplateDraftReviewNotes(notes => ({ ...notes, [draft.id]: event.target.value.slice(0, 500) }))}
-        placeholder="Manual template review note: reusable format, rules, prompts, safety, moderation, support boundaries..."
+        placeholder="Manual template review note: reusable format, rules, prompts, safety, moderation, support boundaries; publish only free reviewed creator templates..."
         style={{
           marginTop: 8, width: '100%', minHeight: 54, borderRadius: 10, padding: 8,
           border: '1px solid rgba(16,185,129,0.18)', background: 'rgba(0,0,0,0.24)',
           color: '#fff', fontSize: 10, lineHeight: 1.35, resize: 'vertical',
         }}
       />
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 6, marginTop: 7 }}>
-        {CREATOR_HOSTING_REVIEW_STATUS_OPTIONS.map(([status, label]) => (
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))', gap: 6, marginTop: 7 }}>
+        {CREATOR_TEMPLATE_DRAFT_STATUS_OPTIONS.map(([status, label]) => (
           <button
             key={status}
             onClick={() => handleCreatorTemplateDraftReview(draft.id, status)}

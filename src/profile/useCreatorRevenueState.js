@@ -15,6 +15,7 @@ export default function useCreatorRevenueState() {
   const [creatorHostingApplicationReviewNotes, setCreatorHostingApplicationReviewNotes] = useState({});
   const [reviewingCreatorHostingApplicationId, setReviewingCreatorHostingApplicationId] = useState('');
   const [creatorTemplateDraftReviewQueue, setCreatorTemplateDraftReviewQueue] = useState([]);
+  const [publishedCreatorChallengeTemplates, setPublishedCreatorChallengeTemplates] = useState([]);
   const [creatorTemplateDraftMessage, setCreatorTemplateDraftMessage] = useState('');
   const [isSubmittingCreatorTemplateDraft, setIsSubmittingCreatorTemplateDraft] = useState(false);
   const [creatorTemplateDraftReviewNotes, setCreatorTemplateDraftReviewNotes] = useState({});
@@ -34,6 +35,7 @@ export default function useCreatorRevenueState() {
     creatorTemplateDraftMessage,
     creatorTemplateDraftReviewNotes,
     creatorTemplateDraftReviewQueue,
+    publishedCreatorChallengeTemplates,
     isSavingCreator,
     isSubmittingCreatorHostingApplication,
     isSubmittingCreatorTemplateDraft,
@@ -52,6 +54,7 @@ export default function useCreatorRevenueState() {
     setCreatorTemplateDraftMessage,
     setCreatorTemplateDraftReviewNotes,
     setCreatorTemplateDraftReviewQueue,
+    setPublishedCreatorChallengeTemplates,
     setIsSavingCreator,
     setIsSubmittingCreatorHostingApplication,
     setIsSubmittingCreatorTemplateDraft,

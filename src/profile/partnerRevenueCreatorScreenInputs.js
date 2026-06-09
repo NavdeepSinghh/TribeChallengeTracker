@@ -10,6 +10,7 @@ export function buildPartnerRevenueCreatorScreenInputs(screenState) {
     isSubmittingCreatorHostingApplication,
     isSubmittingCreatorTemplateDraft,
     profile,
+    setPublishedCreatorChallengeTemplates,
     reviewingCreatorHostingApplicationId,
     reviewingCreatorTemplateDraftId,
     setCreatorHostingApplicationMessage,
@@ -21,6 +22,7 @@ export function buildPartnerRevenueCreatorScreenInputs(screenState) {
     setIsSubmittingCreatorHostingApplication,
     setIsSubmittingCreatorTemplateDraft,
     setProfile,
+    setPublishedCreatorChallengeTemplates,
     setReviewingCreatorHostingApplicationId,
     setReviewingCreatorTemplateDraftId,
   } = screenState;

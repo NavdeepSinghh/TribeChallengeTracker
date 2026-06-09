@@ -14,6 +14,7 @@ import {
   getPartnerPerkClaimReviewQueue,
   getPartnerPerkClaims,
   getPartnerPerkInterestSummary,
+  getPublishedCreatorChallengeTemplates,
   getProTrialInterestSummary,
   getReferralRewardReviewQueue,
   getStoreTestPurchaseEvidenceLog,
@@ -57,6 +58,7 @@ export function loadProfileScreenData(userUid, setters) {
       getProTrialInterestSummary().then(setters.setProTrialSummary).catch(() => setters.setProTrialSummary({}));
       getCreatorRevenueShareSummary().then(setters.setCreatorRevenueShareSummary).catch(() => setters.setCreatorRevenueShareSummary({}));
       getCreatorChallengeTemplateDraftReviewQueue().then(setters.setCreatorTemplateDraftReviewQueue).catch(() => setters.setCreatorTemplateDraftReviewQueue([]));
+      getPublishedCreatorChallengeTemplates().then(setters.setPublishedCreatorChallengeTemplates).catch(() => setters.setPublishedCreatorChallengeTemplates([]));
       getCreatorHostingApplicationReviewQueue().then(setters.setCreatorHostingApplicationReviewQueue).catch(() => setters.setCreatorHostingApplicationReviewQueue([]));
       getPartnerCampaignApplicationReviewQueue().then(setters.setPartnerCampaignApplicationReviewQueue).catch(() => setters.setPartnerCampaignApplicationReviewQueue([]));
       getPartnerPerkClaimReviewQueue().then(setters.setPartnerPerkClaimReviewQueue).catch(() => setters.setPartnerPerkClaimReviewQueue([]));

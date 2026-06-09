@@ -6,6 +6,7 @@ export {
   saveCreatorProfile,
 } from './creatorProfileService';
 export {
+  getPublishedCreatorChallengeTemplates,
   getCreatorChallengeTemplateDraftReviewQueue,
   reviewCreatorChallengeTemplateDraft,
   submitCreatorChallengeTemplateDraft,

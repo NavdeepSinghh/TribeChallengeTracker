@@ -1,5 +1,6 @@
 import {
   getCreatorChallengeTemplateDraftReviewQueue,
+  getPublishedCreatorChallengeTemplates,
   reviewCreatorChallengeTemplateDraft,
   submitCreatorChallengeTemplateDraft,
 } from '../userService';
@@ -16,6 +17,7 @@ export function buildCreatorChallengeTemplateDraftActionHandlers({
   reviewingCreatorTemplateDraftId,
   setCreatorTemplateDraftMessage,
   setCreatorTemplateDraftReviewQueue,
+  setPublishedCreatorChallengeTemplates,
   setIsSubmittingCreatorTemplateDraft,
   setReviewingCreatorTemplateDraftId,
   user,
@@ -56,8 +58,15 @@ export function buildCreatorChallengeTemplateDraftActionHandlers({
         reviewNote: creatorTemplateDraftReviewNotes[draftId] || '',
         reviewedBy: profile?.displayName || profile?.email || 'admin',
       });
-      setCreatorTemplateDraftMessage(`Creator template draft marked ${status}. Manual review note saved without publishing templates, creating contracts, purchases, entitlements, revenue-share, tracking, or paid-access claims.`);
+      setCreatorTemplateDraftMessage(
+        status === 'published'
+          ? 'Creator template draft published to the reviewed creatorChallengeTemplates catalog without contracts, payouts, purchases, entitlements, revenue-share, tracking, or paid-hosting claims.'
+          : `Creator template draft marked ${status}. Manual review note saved without publishing templates, creating contracts, purchases, entitlements, revenue-share, tracking, or paid-access claims.`
+      );
       getCreatorChallengeTemplateDraftReviewQueue().then(setCreatorTemplateDraftReviewQueue).catch(() => setCreatorTemplateDraftReviewQueue([]));
+      if (status === 'published' && setPublishedCreatorChallengeTemplates) {
+        getPublishedCreatorChallengeTemplates().then(setPublishedCreatorChallengeTemplates).catch(() => setPublishedCreatorChallengeTemplates([]));
+      }
     } catch (err) {
       setCreatorTemplateDraftMessage(err?.message || 'Could not update creator template draft review.');
     } finally {
