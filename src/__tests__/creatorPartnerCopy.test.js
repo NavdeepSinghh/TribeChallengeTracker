@@ -77,6 +77,11 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorPaidHostingLaunchGateCopy).toContain('Creator Paid Hosting Launch Gate Kit');
     expect(copy.creatorPaidHostingLaunchGateCopy).toContain('Gate result: keep paid creator hosting in review');
     expect(copy.creatorPaidHostingLaunchGateCopy).toContain('Do not approve paid hosting');
+    expect(copy.creatorPaidHostingHoldPlanCopy).toContain('Creator Paid Hosting Hold Plan Kit');
+    expect(copy.creatorPaidHostingHoldPlanCopy).toContain('Hold plan triggers');
+    expect(copy.creatorPaidHostingHoldPlanCopy).toContain('Keep the creator in free hosted challenge mode');
+    expect(copy.creatorPaidHostingHoldPlanCopy).toContain('Do not approve paid hosting');
+    expect(copy.creatorPaidHostingHoldPlanCopy).toContain('grant paid access');
     expect(copy.creatorPayoutReadinessCopy).toContain('Creator Payout Readiness Kit');
     expect(copy.creatorPayoutReadinessCopy).toContain('Do not create payouts');
     expect(copy.creatorPayoutReadinessCopy).toContain('collect tax details');

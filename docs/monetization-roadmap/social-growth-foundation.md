@@ -89,6 +89,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Creator Identity Verification Prep Kit across Web, iOS, and Android with a copy-only creator identity, content ownership, brand permission, support owner, moderation owner, and claim-safety checklist before creator terms, payout operations, or revenue-share.
 - Creator Moderation Readiness Kit across Web, iOS, and Android with a copy-only creator conduct, member safety, takedown, support handoff, privacy, escalation, and claim-review checklist before paid-hosting review.
 - Creator Paid Hosting Launch Gate Kit across Web, iOS, and Android with a copy-only final go/no-go checklist for profile, agreement, identity, moderation, support, payout, marketplace, store-test evidence, and entitlement QA before paid hosting is promoted.
+- Creator Paid Hosting Hold Plan Kit across Web, iOS, and Android with copy-only hold triggers and response copy when launch-gate evidence, store QA, payout/tax, moderation, support, or marketplace checks are not ready.
 - Creator Payout Readiness Kit across Web, iOS, and Android with a copy-only payout provider, tax, identity, refund, support, marketplace, and creator-claim checklist before revenue-share.
 - Creator Hosting Objection Reply Kit across Web, iOS, and Android with copy-only manual creator replies before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Partner Perks foundation across profile surfaces for future aligned brand offers without intrusive ads.

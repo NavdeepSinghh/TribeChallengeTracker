@@ -62,6 +62,7 @@ Shared behavior:
 - Creator Identity Verification Prep Kit generates a copy-only creator identity, content ownership, brand permission, support owner, moderation owner, and claim-safety checklist before creator terms, payout operations, or revenue-share.
 - Creator Moderation Readiness Kit generates a copy-only creator conduct, member safety, takedown, support handoff, privacy, escalation, and claim-review checklist before paid-hosting review.
 - Creator Paid Hosting Launch Gate Kit generates a copy-only final go/no-go checklist for profile, agreement, identity, moderation, support, payout, marketplace, store-test evidence, and entitlement QA before paid hosting is promoted.
+- Creator Paid Hosting Hold Plan Kit generates copy-only hold triggers and response copy when launch-gate evidence, store QA, payout/tax, moderation, support, or marketplace checks are not ready.
 - Creator Payout Readiness Kit generates a copy-only payout provider, tax, identity, refund, support, marketplace, and claim-safety checklist before revenue-share.
 - Creator Hosting Objection Reply Kit generates copy-only manual replies for creator paid-hosting questions before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Creator Hosting Application lets Pro creators with Coach Mode enabled request manual hosted-readiness review under `creatorHostingApplications/{uid}`.

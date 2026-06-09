@@ -247,6 +247,30 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator paid hosting launch gate kit only. Do not approve paid hosting, create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, grant paid access, bypass marketplace policy, submit store review, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorPaidHostingHoldPlanCopy = [
+    'Rise With The Tribe Creator Paid Hosting Hold Plan Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Hold plan triggers:',
+    '- Launch gate evidence is incomplete, stale, disputed, or missing owner sign-off',
+    '- Store products, receipt validation, restore flow, entitlement QA, or store-test evidence fail review',
+    '- Creator agreement, identity/brand review, payout/tax workflow, moderation, support, or marketplace checks need rework',
+    '- Member-facing copy risks medical claims, guaranteed outcomes, earnings promises, off-store payment language, or pressure',
+    '',
+    'Hold response:',
+    '- Keep the creator in free hosted challenge mode while review items are repaired',
+    '- Send creators a clear manual update that paid hosting is still in review and no payout, revenue-share, or paid access is live',
+    '- Route member questions to the free challenge loop, support, restore, or marketplace policy paths until evidence is approved',
+    '- Re-run the launch gate only after owners attach updated evidence for every failed check',
+    '',
+    'This is a creator paid hosting hold plan kit only. Do not approve paid hosting, create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, grant paid access, bypass marketplace policy, submit store review, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
 
   return {
     creatorBrandedPagePreviewCopy,
@@ -260,6 +284,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorIdentityVerificationPrepCopy,
     creatorModerationReadinessCopy,
     creatorPaidHostingLaunchGateCopy,
+    creatorPaidHostingHoldPlanCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

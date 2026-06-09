@@ -148,4 +148,27 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
       expect(source).toContain('claim paid creator hosting is live');
     });
   });
+
+  it('keeps Creator Paid Hosting Hold Plan Kit wired on all platforms without launch side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAID HOSTING HOLD PLAN KIT');
+      expect(source).toContain('COPY CREATOR HOLD PLAN');
+      expect(source).toContain('creatorPaidHostingHoldPlanCopy');
+      expect(source).toContain('Pause criteria when the launch gate fails');
+      expect(source).toContain('Hold plan triggers');
+      expect(source).toContain('Keep the creator in free hosted challenge mode');
+      expect(source).toContain('creator paid hosting hold plan kit only');
+      expect(source).toContain('Do not approve paid hosting');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect signatures');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('grant paid access');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('submit store review');
+      expect(source).toContain('claim paid creator hosting is live');
+    });
+  });
 });
