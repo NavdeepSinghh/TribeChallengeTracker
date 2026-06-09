@@ -26,6 +26,7 @@ function verifyRoadmapFeatureDocs({ parityPath, catalogPath, roadmapPath }) {
     "Creator Payout Readiness Kit",
     "Creator Identity Verification Prep Kit",
     "Creator Moderation Readiness Kit",
+    "Creator Paid Hosting Launch Gate Kit",
     "Creator Hosting Decision Reply Kit",
     "Partner Campaign Decision Reply Kit",
     "Referral Reward Decision Reply Kit",

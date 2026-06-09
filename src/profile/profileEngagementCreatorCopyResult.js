@@ -38,6 +38,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorHostingDecisionReplyCopy,
     creatorIdentityVerificationPrepCopy,
     creatorModerationReadinessCopy,
+    creatorPaidHostingLaunchGateCopy,
   } = creatorHostingCopyData;
 
   return {
@@ -51,6 +52,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorHostingDecisionReplyCopy,
     creatorIdentityVerificationPrepCopy,
     creatorModerationReadinessCopy,
+    creatorPaidHostingLaunchGateCopy,
     creatorHostingObjectionReplyCopy,
     creatorHostingOfferCopy,
     creatorLaunchChallenge,

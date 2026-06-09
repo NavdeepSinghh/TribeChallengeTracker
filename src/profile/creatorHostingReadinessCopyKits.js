@@ -226,6 +226,27 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator moderation readiness kit only. Do not auto-moderate, auto-message, scrape DMs, store inbound DMs, export private member activity, expose private member data, create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, bypass marketplace policy, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorPaidHostingLaunchGateCopy = [
+    'Rise With The Tribe Creator Paid Hosting Launch Gate Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Launch gate checks:',
+    '- Creator profile, branded page preview, and challenge template draft are reviewed for truthful, beginner-safe copy',
+    '- Creator agreement prep, identity/brand review, moderation readiness, and support handoff have named owners',
+    '- Payout provider, tax workflow, refund responsibility, and revenue-share terms are approved outside profile UI',
+    '- App Store / Play products, receipt validation, restore flow, entitlement QA, and store-test evidence are reviewed before paid access is promoted',
+    '- Member-facing launch copy has no medical claims, guaranteed outcomes, earnings promises, pressure language, or off-store payment language',
+    '',
+    'Gate result: keep paid creator hosting in review until every check above has reviewed evidence.',
+    '',
+    'This is a creator paid hosting launch gate kit only. Do not approve paid hosting, create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, grant paid access, bypass marketplace policy, submit store review, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
 
   return {
     creatorBrandedPagePreviewCopy,
@@ -238,6 +259,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorPaidHostingPolicyCopy,
     creatorIdentityVerificationPrepCopy,
     creatorModerationReadinessCopy,
+    creatorPaidHostingLaunchGateCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

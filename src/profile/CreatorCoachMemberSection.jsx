@@ -15,6 +15,7 @@ export default function CreatorCoachMemberSection({
   creatorHostingOfferCopy,
   creatorIdentityVerificationPrepCopy,
   creatorModerationReadinessCopy,
+  creatorPaidHostingLaunchGateCopy,
   creatorLaunchChallenge,
   creatorLaunchCopy,
   creatorLaunchLink,
@@ -48,6 +49,7 @@ export default function CreatorCoachMemberSection({
         creatorHostingOfferCopy={creatorHostingOfferCopy}
         creatorIdentityVerificationPrepCopy={creatorIdentityVerificationPrepCopy}
         creatorModerationReadinessCopy={creatorModerationReadinessCopy}
+        creatorPaidHostingLaunchGateCopy={creatorPaidHostingLaunchGateCopy}
         creatorLaunchChallenge={creatorLaunchChallenge}
         creatorLaunchCopy={creatorLaunchCopy}
         creatorLaunchLink={creatorLaunchLink}

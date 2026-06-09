@@ -124,4 +124,28 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
       expect(source).toContain('claim paid creator hosting is live');
     });
   });
+
+  it('keeps Creator Paid Hosting Launch Gate Kit wired on all platforms without launch side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAID HOSTING LAUNCH GATE KIT');
+      expect(source).toContain('COPY CREATOR LAUNCH GATE');
+      expect(source).toContain('creatorPaidHostingLaunchGateCopy');
+      expect(source).toContain('Go/no-go checks before paid hosting');
+      expect(source).toContain('Launch gate checks');
+      expect(source).toContain('store-test evidence');
+      expect(source).toContain('Gate result: keep paid creator hosting in review');
+      expect(source).toContain('creator paid hosting launch gate kit only');
+      expect(source).toContain('Do not approve paid hosting');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect signatures');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('grant paid access');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('submit store review');
+      expect(source).toContain('claim paid creator hosting is live');
+    });
+  });
 });
