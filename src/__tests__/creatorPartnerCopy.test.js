@@ -58,6 +58,11 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorAgreementPrepCopy).toContain('support owner');
     expect(copy.creatorAgreementPrepCopy).toContain('Do not create contracts');
     expect(copy.creatorAgreementPrepCopy).toContain('collect signatures');
+    expect(copy.creatorSupportHandoffCopy).toContain('Creator Support Handoff Kit');
+    expect(copy.creatorSupportHandoffCopy).toContain('Support handoff checklist');
+    expect(copy.creatorSupportHandoffCopy).toContain('app support owner');
+    expect(copy.creatorSupportHandoffCopy).toContain('Do not process refunds');
+    expect(copy.creatorSupportHandoffCopy).toContain('expose private member data');
     expect(copy.creatorPayoutReadinessCopy).toContain('Creator Payout Readiness Kit');
     expect(copy.creatorPayoutReadinessCopy).toContain('Do not create payouts');
     expect(copy.creatorPayoutReadinessCopy).toContain('collect tax details');

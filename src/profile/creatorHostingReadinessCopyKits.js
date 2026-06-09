@@ -130,6 +130,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator agreement prep kit only. Do not create contracts, collect signatures, collect payout details, collect tax details, start revenue-share, create payouts, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorSupportHandoffCopy = [
+    'Rise With The Tribe Creator Support Handoff Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Support handoff checklist:',
+    '- Name the app support owner, creator support owner, moderation owner, and escalation path before any paid hosting review',
+    '- Route purchase, refund, cancellation, restore, and entitlement questions to marketplace/backend support instead of creator DMs',
+    '- Keep community safety, takedowns, account deletion, privacy, and data requests owned by the app support path',
+    '- Give creators approved reply boundaries for medical claims, outcome claims, harassment, refunds, privacy, and paid-access questions',
+    '- Keep support notes aggregate and first-party; do not export private member logs or scrape off-platform messages',
+    '',
+    'This is a creator support handoff kit only. Do not process refunds, cancel subscriptions, create purchases, write entitlements, collect payments, collect payout details, collect tax details, create contracts, start revenue-share, create payouts, bypass marketplace policy, expose private member data, scrape DMs, store inbound DMs, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorPayoutReadinessCopy = [
     'Rise With The Tribe Creator Payout Readiness Kit:',
     '',
@@ -157,6 +176,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorHostingOfferCopy,
     creatorPrivateInviteCopy,
     creatorAgreementPrepCopy,
+    creatorSupportHandoffCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

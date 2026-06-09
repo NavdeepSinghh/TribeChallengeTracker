@@ -84,6 +84,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Creator Hosting Offer Kit across Web, iOS, and Android with a copy-only paid-hosting planning brief for creator focus, hosted reach, revenue-ready signals, policy, payout, and entitlement QA.
 - Creator Terms Readiness Kit across Web, iOS, and Android with a copy-only responsibilities and guardrails brief for creator conduct, moderation, payout readiness, marketplace alignment, and support handoff before paid hosting.
 - Creator Agreement Prep Kit across Web, iOS, and Android with a copy-only identity, support owner, moderation owner, marketplace alignment, payout/tax workflow, and claim-rule checklist before legal terms, signatures, payouts, purchases, entitlements, revenue-share, or paid-hosting-live claims exist.
+- Creator Support Handoff Kit across Web, iOS, and Android with a copy-only app support, creator support, moderation, refund/restore, privacy, account deletion, and escalation boundary checklist before paid hosting is reviewed.
 - Creator Payout Readiness Kit across Web, iOS, and Android with a copy-only payout provider, tax, identity, refund, support, marketplace, and creator-claim checklist before revenue-share.
 - Creator Hosting Objection Reply Kit across Web, iOS, and Android with copy-only manual creator replies before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Partner Perks foundation across profile surfaces for future aligned brand offers without intrusive ads.
