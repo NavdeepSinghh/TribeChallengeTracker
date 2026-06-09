@@ -39,7 +39,7 @@ describe('monetization launch evidence model', () => {
         platform: 'ios',
         productId: 'com.risewiththetribe.pro.monthly',
         testCase: 'wrong_account',
-        result: 'verified',
+        result: 'verified_safe_denial',
         reviewNote: 'Checked entitlements.pro and pack entitlement paths; did not unlock any Pro or pack access.',
       },
       {
@@ -57,8 +57,10 @@ describe('monetization launch evidence model', () => {
     expect(status.ready).toBe(true);
     expect(status.verifiedCaseCount).toBe(10);
     expect(summary.minimumEvidence.ready).toBe(true);
-    expect(summary.verified).toBe(9);
+    expect(summary.verified).toBe(8);
+    expect(summary.verified_safe_denial).toBe(1);
     expect(summary.failed).toBe(1);
+    expect(summary.safe_denial).toBe(2);
   });
 
   it('does not accept a verified negative record unless it documents safe denial', () => {

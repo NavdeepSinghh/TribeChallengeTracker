@@ -26,6 +26,7 @@ const SUPPORT_STORE_PROFILE_COPY_TOKENS = [
   "storeTestEvidenceDecisionReplyCopy",
   "Manual sandbox/license-test evidence replies",
   "VERIFIED FOR LAUNCH REVIEW",
+  "VERIFIED SAFE DENIAL",
   "NEEDS MORE EVIDENCE",
   "claim sandbox/license-test purchases passed without evidence",
   "PAID LAUNCH DECISION REPLY KIT",

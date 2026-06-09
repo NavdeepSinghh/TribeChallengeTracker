@@ -22,7 +22,9 @@ export default function StoreTestEvidenceReviewList({
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
             {[
               ['verified', 'VERIFIED', '#34D399'],
+              ['verified_safe_denial', 'SAFE DENIAL', '#38BDF8'],
               ['needs_review', 'NEEDS REVIEW', '#FBBF24'],
+              ['failed', 'FAILED', '#F87171'],
             ].map(([result, label, color]) => (
               <button
                 key={result}

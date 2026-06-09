@@ -20,7 +20,7 @@ export async function recordStoreTestPurchaseEvidence(uid, {
   const cleanTestCase = ['sandbox_purchase', 'restore_sync', 'negative_validation', 'wrong_account'].includes(testCase)
     ? testCase
     : 'sandbox_purchase';
-  const cleanResult = ['passed', 'needs_review', 'failed'].includes(result) ? result : 'needs_review';
+  const cleanResult = ['passed', 'needs_review', 'failed', 'verified_safe_denial'].includes(result) ? result : 'needs_review';
   const cleanProductId = String(productId || '').trim().slice(0, 120);
   if (!cleanProductId) {
     throw new Error('Choose a product before recording store test evidence.');
@@ -58,7 +58,7 @@ export async function reviewStoreTestPurchaseEvidence(evidenceId, {
   reviewNote = '',
   reviewedBy = 'admin',
 } = {}) {
-  const cleanResult = ['verified', 'needs_review', 'failed'].includes(result) ? result : 'needs_review';
+  const cleanResult = ['verified', 'verified_safe_denial', 'needs_review', 'failed'].includes(result) ? result : 'needs_review';
   const cleanStatus = ['recorded', 'reviewed', 'archived'].includes(status) ? status : 'reviewed';
   await updateDoc(doc(db, 'storeTestPurchaseEvidence', evidenceId), {
     result: cleanResult,

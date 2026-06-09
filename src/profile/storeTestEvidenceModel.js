@@ -20,6 +20,7 @@ function isVerifiedPurchaseEvidence(item) {
 function isSafeDenialEvidence(item) {
   if (!['negative_validation', 'wrong_account'].includes(item.testCase)) return false;
   if (item.result === 'failed') return true;
+  if (item.result === 'verified_safe_denial') return true;
   if (item.result !== 'verified') return false;
   const note = evidenceNoteText(item);
   return note.includes('entitlement') && (
@@ -54,7 +55,7 @@ export function summarizeStoreTestEvidence(storeTestEvidenceLog) {
   const minimumEvidence = getMinimumStoreTestEvidenceStatus(storeTestEvidenceLog);
   return storeTestEvidenceLog.reduce((summary, item) => {
     const platform = item.platform === 'android' ? 'android' : 'ios';
-    const result = ['verified', 'passed', 'failed', 'needs_review'].includes(item.result) ? item.result : 'needs_review';
+    const result = ['verified', 'verified_safe_denial', 'passed', 'failed', 'needs_review'].includes(item.result) ? item.result : 'needs_review';
     const safeDenial = isSafeDenialEvidence(item);
     summary.total += 1;
     summary[platform] += 1;
@@ -67,6 +68,7 @@ export function summarizeStoreTestEvidence(storeTestEvidenceLog) {
     ios: 0,
     android: 0,
     verified: 0,
+    verified_safe_denial: 0,
     passed: 0,
     needs_review: 0,
     failed: 0,
