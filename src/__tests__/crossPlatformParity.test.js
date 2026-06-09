@@ -11,7 +11,8 @@ const paritySuites = [
       "keeps Sandbox Purchase Test Plan wired without live charge or entitlement side effects",
       "keeps Store Listing Copy Kit wired without paid-live or policy side effects",
       "keeps Store Review Submission Kit wired without reviewer or entitlement side effects",
-      "keeps Store Review Evidence Pack copy-only across platforms"
+      "keeps Store Review Evidence Pack copy-only across platforms",
+      "keeps Store Review Response Kit copy-only across platforms"
     ]
   },
   {

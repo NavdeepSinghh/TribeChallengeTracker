@@ -46,6 +46,7 @@ export function buildProfileStoreSupportCardData({
     storeTestPurchaseSessionPrepCopy,
     storeDemoAccountCopy,
     storeReviewPackCopy,
+    storeReviewResponseCopy,
   } = buildProfileStoreLifecycleSupportData({
     activeChallengePackCount,
     challengePackCount,
@@ -75,6 +76,7 @@ export function buildProfileStoreSupportCardData({
     storeTestPurchaseSessionPrepCopy,
     storeDemoAccountCopy,
     storeReviewPackCopy,
+    storeReviewResponseCopy,
   });
 
   return {

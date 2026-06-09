@@ -69,4 +69,27 @@ describe('cross-platform store review planning parity source checks', () => {
       expect(source).toContain('claim review readiness');
     });
   });
+
+  it('keeps Store Review Response Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE REVIEW RESPONSE KIT');
+      expect(source).toContain('COPY REVIEW RESPONSE');
+      expect(source).toContain('storeReviewResponseCopy');
+      expect(source).toContain('Reviewer follow-up and rejection reply checklist');
+      expect(source).toContain('Reviewer follow-up checklist');
+      expect(source).toContain('If rejected, record the rejection reason');
+      expect(source).toContain('This is a manual Store Review Response Kit only');
+      expect(source).toContain('Do not submit store review');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('expose private user data');
+      expect(source).toContain('include passwords or secret keys');
+      expect(source).toContain('unlock paid access');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('claim review approval');
+      expect(source).toContain('mark paid access live');
+    });
+  });
 });

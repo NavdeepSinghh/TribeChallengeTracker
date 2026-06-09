@@ -8,6 +8,7 @@ export function buildStoreSupportCopyCards({
   storeTestPurchaseSessionPrepCopy,
   storeDemoAccountCopy,
   storeReviewPackCopy,
+  storeReviewResponseCopy,
 }) {
   return [
     {
@@ -90,6 +91,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy store review prep notes without submitting store review, storing credentials, exposing member data, or claiming paid access readiness.',
       buttonLabel: 'COPY STORE REVIEW PACK',
       copyText: storeReviewPackCopy,
+    },
+    {
+      title: 'STORE REVIEW RESPONSE KIT',
+      subtitle: 'Reviewer follow-up and rejection reply checklist',
+      status: 'RESPONSE READY',
+      accent: '#F97316',
+      body: 'Copy reviewer follow-up replies without resubmitting, exposing private data, changing purchases, writing entitlements, or claiming paid access is live.',
+      buttonLabel: 'COPY REVIEW RESPONSE',
+      copyText: storeReviewResponseCopy,
     },
   ];
 }

@@ -82,6 +82,11 @@ const SUPPORT_STORE_PROFILE_COPY_TOKENS = [
   "storeReviewPackCopy",
   "Reviewer notes and policy evidence",
   "Do not submit store review",
+  "STORE REVIEW RESPONSE KIT",
+  "COPY REVIEW RESPONSE",
+  "storeReviewResponseCopy",
+  "Reviewer follow-up and rejection reply checklist",
+  "include passwords or secret keys",
 ];
 
 module.exports = { SUPPORT_STORE_PROFILE_COPY_TOKENS };
