@@ -41,6 +41,7 @@ const paritySuites = [
       "keeps Creator Hosting Offer Kit wired on all platforms without paid-hosting side effects",
       "keeps Creator Terms Readiness Kit wired on all platforms without payout or contract side effects",
       "keeps Creator Payout Readiness Kit wired on all platforms without payout side effects",
+      "keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects",
       "keeps Creator Hosting Objection Reply Kit wired on all platforms without paid-hosting side effects",
       "keeps Creator Hosting Decision Reply Kit copy-only across platforms",
       "keeps Creator Hosting Application review wired across platforms without paid-hosting side effects"

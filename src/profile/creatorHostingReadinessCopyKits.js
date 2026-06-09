@@ -187,6 +187,26 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator payout readiness brief only. Do not create payouts, collect payout details, collect tax details, create contracts, start revenue-share, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise outcomes, imply medical results, or claim paid creator hosting is live.',
   ].join('\n');
+  const creatorIdentityVerificationPrepCopy = [
+    'Rise With The Tribe Creator Identity Verification Prep Kit:',
+    '',
+    creatorFocusLine,
+    creatorBioLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Identity verification prep checklist:',
+    '- Confirm the saved creator name, specialty, bio, and CTA describe the same person or organization before any paid-hosting review',
+    '- Prepare a manual review path for identity, content ownership, brand permission, support owner, and moderation owner',
+    '- Keep payout, tax, legal, and identity-provider workflows outside profile UI until approved operations exist',
+    '- Review creator claims for no medical outcomes, no guaranteed fitness results, no earnings promises, and no pressure language',
+    '- Route identity concerns, impersonation concerns, and brand-permission questions through support review before creator terms or revenue-share',
+    '',
+    'This is a creator identity verification prep kit only. Do not verify identities from client code, collect government IDs, collect payout details, collect tax details, create contracts, collect signatures, start revenue-share, create payouts, process payments, create purchases, write entitlements, bypass marketplace policy, expose private member activity, add tracking pixels, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
 
   return {
     creatorBrandedPagePreviewCopy,
@@ -197,6 +217,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorAgreementPrepCopy,
     creatorSupportHandoffCopy,
     creatorPaidHostingPolicyCopy,
+    creatorIdentityVerificationPrepCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

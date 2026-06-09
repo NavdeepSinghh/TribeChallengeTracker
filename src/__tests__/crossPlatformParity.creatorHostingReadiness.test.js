@@ -69,4 +69,30 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
       expect(source).toContain('claim paid creator hosting is live');
     });
   });
+
+  it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR IDENTITY VERIFICATION PREP KIT');
+      expect(source).toContain('COPY IDENTITY PREP KIT');
+      expect(source).toContain('creatorIdentityVerificationPrepCopy');
+      expect(source).toContain('Identity and brand checks before paid hosting');
+      expect(source).toContain('Identity verification prep checklist');
+      expect(source).toContain('content ownership');
+      expect(source).toContain('brand permission');
+      expect(source).toContain('support owner');
+      expect(source).toContain('moderation owner');
+      expect(source).toContain('creator identity verification prep kit only');
+      expect(source).toContain('Do not verify identities from client code');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('claim paid creator hosting is live');
+    });
+  });
 });
