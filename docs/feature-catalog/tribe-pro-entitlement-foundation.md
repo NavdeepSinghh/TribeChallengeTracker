@@ -31,6 +31,7 @@ Shared behavior:
 - Admin profiles include a Store Test Purchase Evidence Log that records `storeTestPurchaseEvidence` after manual App Store sandbox or Play license testing.
 - Admin profiles include a Paid Launch Decision Gate that exports go/no-go checks for product IDs, demand, support handoff, receipt-validation credentials, store test evidence, and entitlement QA before paid access is promoted.
 - Admin profiles include a Sandbox Purchase Test Plan that exports App Store sandbox, Play license test, restore, backend `verifyPurchase`, Firestore entitlement QA, support escalation, and negative-case checks before paid access is promoted.
+- Admin profiles include a Store Test Purchase Session Prep Kit that exports sandbox/license-test session checks for validation readiness, exact product IDs, tester-account handling, restore/sync, negative validation, and safe evidence-note capture before real store test evidence is recorded.
 - `docs/STORE_TEST_PURCHASE_RUNBOOK.md` defines the external iOS sandbox and Android license-test evidence path required after `getPurchaseValidationReadiness` returns `validation_configured`.
 - Admin profiles include a Store Listing Copy Kit that exports App Store / Play listing title, subtitle, short description, value points, launch positioning, and policy-safe paid-feature cautions.
 - Admin profiles include a Store Review Submission Kit that exports App Store / Play reviewer notes, demo-account checklist, permission explanations, support/privacy/data-deletion reminders, and policy-safe paid-access cautions.

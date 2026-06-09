@@ -5,6 +5,7 @@ export function buildStoreSupportCopyCards({
   cancellationFeedbackCopy,
   lapsedMemberWinbackCopy,
   storeLaunchDryRunCopy,
+  storeTestPurchaseSessionPrepCopy,
   storeDemoAccountCopy,
   storeReviewPackCopy,
 }) {
@@ -62,6 +63,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a release dry-run script that rehearses auth, challenge, logging, sharing, support, restore, and store evidence paths without paid-live side effects.',
       buttonLabel: 'COPY STORE DRY RUN',
       copyText: storeLaunchDryRunCopy,
+    },
+    {
+      title: 'STORE TEST PURCHASE SESSION PREP KIT',
+      subtitle: 'Sandbox and license-test evidence rehearsal',
+      status: 'TEST PREP',
+      accent: '#F59E0B',
+      body: 'Copy the external store-test session checklist without creating fake evidence, storing credentials, or marking paid access live.',
+      buttonLabel: 'COPY TEST SESSION PREP',
+      copyText: storeTestPurchaseSessionPrepCopy,
     },
     {
       title: 'STORE DEMO ACCOUNT KIT',

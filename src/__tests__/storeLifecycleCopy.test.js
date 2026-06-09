@@ -5,6 +5,7 @@ import {
   STORE_DEMO_ACCOUNT_ITEMS,
   STORE_LAUNCH_DRY_RUN_ITEMS,
   STORE_REVIEW_PACK_ITEMS,
+  STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from '../profile/profileStoreConstants';
 import { buildStoreLifecycleCopy } from '../profile/storeLifecycleCopy';
 import { buildStoreSupportCopyCards } from '../profile/storeSupportCopyCards';
@@ -45,6 +46,7 @@ describe('store lifecycle copy contracts', () => {
       storeDemoAccountItems: STORE_DEMO_ACCOUNT_ITEMS,
       storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
+      storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
       storeTestEvidenceSummary,
       supportReviewCount: 1,
       validationReadinessConfirmed: false,
@@ -62,6 +64,7 @@ describe('store lifecycle copy contracts', () => {
       storeDemoAccountCopy: lifecycleCopy.storeDemoAccountCopy,
       storeLaunchDryRunCopy: lifecycleCopy.storeLaunchDryRunCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
+      storeTestPurchaseSessionPrepCopy: lifecycleCopy.storeTestPurchaseSessionPrepCopy,
       subscriptionManagementGuidanceCopy: 'subscription',
     });
 
@@ -75,6 +78,10 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.lapsedMemberWinbackCopy).toContain('Do not auto-message users');
     expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Store Launch Dry-Run Kit');
     expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Do not flip paid access live');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Store Test Purchase Session Prep Kit');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('getPurchaseValidationReadiness returns validation_configured');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Do not create fake purchase evidence');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('store raw purchase tokens');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Do not submit store review');
     expect(cards.map(card => card.title)).toEqual([
@@ -84,6 +91,7 @@ describe('store lifecycle copy contracts', () => {
       'CANCELLATION FEEDBACK KIT',
       'LAPSED MEMBER WINBACK KIT',
       'STORE LAUNCH DRY-RUN KIT',
+      'STORE TEST PURCHASE SESSION PREP KIT',
       'STORE DEMO ACCOUNT KIT',
       'STORE REVIEW PACK',
     ]);

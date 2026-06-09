@@ -55,6 +55,13 @@ export const STORE_LAUNCH_DRY_RUN_ITEMS = [
   'Record any missing evidence, failed checks, confusing copy, or support handoff gaps before paid access is promoted',
   'Keep the report copy-only until real App Store sandbox and Play license-test purchases prove the flow end to end',
 ];
+export const STORE_TEST_PURCHASE_SESSION_PREP_ITEMS = [
+  'Confirm getPurchaseValidationReadiness returns validation_configured for iOS and Android before any sandbox/license-test run',
+  'Prepare one App Store sandbox tester and one Play license-test account outside git, screenshots, and public notes',
+  'Run Pro monthly, Pro yearly, pack purchase, restore/sync, wrong-account, duplicate-restore, and negative-validation cases',
+  'Record only reviewed evidence notes in storeTestPurchaseEvidence; never store raw purchase tokens, passwords, service account JSON, or private keys',
+  'Keep paid access in review mode until evidence, entitlement writes, support handoff, and paid launch decision gate are reviewed',
+];
 export const STORE_DEMO_ACCOUNT_ITEMS = [
   'Prepare one reviewer-safe demo account with onboarding complete, profile appearance set, and no personal member data',
   'Seed visible free flows: joined campaign challenge, activity history, badges, calendar history, share cards, support links, and Feature Me consent example',

@@ -67,6 +67,28 @@ describe('cross-platform store review and evidence parity source checks', () => 
     });
   });
 
+  it('keeps Store Test Purchase Session Prep Kit evidence-safe across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE TEST PURCHASE SESSION PREP KIT');
+      expect(source).toContain('COPY TEST SESSION PREP');
+      expect(source).toContain('storeTestPurchaseSessionPrepCopy');
+      expect(source).toContain('Sandbox and license-test evidence rehearsal');
+      expect(source).toContain('getPurchaseValidationReadiness returns validation_configured');
+      expect(source).toContain('storeTestPurchaseEvidence');
+      expect(source).toContain('Do not create fake purchase evidence');
+      expect(source).toContain('store raw purchase tokens');
+      expect(source).toContain('store tester passwords');
+      expect(source).toContain('store private keys');
+      expect(source).toContain('store service account JSON');
+      expect(source).toContain('write entitlements from the client');
+      expect(source).toContain('create purchases outside StoreKit or Play Billing');
+      expect(source).toContain('mark validation complete without credentials');
+      expect(source).toContain('mark paid access live');
+      expect(source).toContain('submit store review');
+    });
+  });
+
   it('keeps Store Review Pack prep-only across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

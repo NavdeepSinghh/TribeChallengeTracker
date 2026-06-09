@@ -78,6 +78,7 @@ Features:
 - Cancellation Feedback Kit. Status: admin-only copy-ready churn learning prompts done across Web, iOS, and Android while cancellation, billing changes, refunds, discounts, purchase creation, and entitlement changes remain marketplace/backend support responsibilities.
 - Lapsed Member Winback Kit. Status: admin-only copy-ready free-first comeback prompts done across Web, iOS, and Android while messaging automation, tracking, discounts, charges, purchases, entitlements, and paid-access claims remain out of scope.
 - Store Launch Dry-Run Kit. Status: admin-only copy-ready release rehearsal report done across Web, iOS, and Android before paid access is promoted.
+- Store Test Purchase Session Prep Kit. Status: admin-only copy-ready sandbox/license-test run checklist done across Web, iOS, and Android before real store test evidence is recorded.
 - Store Demo Account Kit. Status: admin-only copy-ready reviewer-safe demo account notes done across Web, iOS, and Android before store submission.
 - Store Review Pack. Status: admin-only copy-ready store-review prep notes and policy evidence done across Web, iOS, and Android before store submission.
 - Entitlement Recovery Request and Review Queue. Status: member request action and admin review queue done across Web, iOS, and Android for Pro and challenge-pack restore/support mismatches, with no client-side purchase or entitlement side effects.
