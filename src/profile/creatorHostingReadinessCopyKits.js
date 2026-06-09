@@ -149,6 +149,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator support handoff kit only. Do not process refunds, cancel subscriptions, create purchases, write entitlements, collect payments, collect payout details, collect tax details, create contracts, start revenue-share, create payouts, bypass marketplace policy, expose private member data, scrape DMs, store inbound DMs, promise earnings, imply paid creator hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorPaidHostingPolicyCopy = [
+    'Rise With The Tribe Creator Paid Hosting Policy Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Paid-hosting policy checklist:',
+    '- Define which hosted challenge formats are eligible before any paid hosting review',
+    '- Confirm creator conduct, moderation, safety, support owner, takedown, refund, restore, and account deletion boundaries',
+    '- Require marketplace alignment: configured App Store / Play products, receipt validation, restore flow, entitlement QA, and support escalation',
+    '- Require creator agreement, payout provider, tax workflow, identity verification, and claim review before revenue-share language appears',
+    '- Keep member-facing copy app-first, beginner-safe, no medical claims, no guaranteed outcomes, no earnings promises, and no pressure',
+    '',
+    'This is a creator paid-hosting policy kit only. Do not approve paid hosting, create contracts, collect signatures, collect payout details, collect tax details, create payouts, start revenue-share, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorPayoutReadinessCopy = [
     'Rise With The Tribe Creator Payout Readiness Kit:',
     '',
@@ -177,6 +196,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorPrivateInviteCopy,
     creatorAgreementPrepCopy,
     creatorSupportHandoffCopy,
+    creatorPaidHostingPolicyCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,
   };

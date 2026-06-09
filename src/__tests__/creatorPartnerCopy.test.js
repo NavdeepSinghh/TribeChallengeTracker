@@ -63,6 +63,11 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorSupportHandoffCopy).toContain('app support owner');
     expect(copy.creatorSupportHandoffCopy).toContain('Do not process refunds');
     expect(copy.creatorSupportHandoffCopy).toContain('expose private member data');
+    expect(copy.creatorPaidHostingPolicyCopy).toContain('Creator Paid Hosting Policy Kit');
+    expect(copy.creatorPaidHostingPolicyCopy).toContain('Paid-hosting policy checklist');
+    expect(copy.creatorPaidHostingPolicyCopy).toContain('marketplace alignment');
+    expect(copy.creatorPaidHostingPolicyCopy).toContain('Do not approve paid hosting');
+    expect(copy.creatorPaidHostingPolicyCopy).toContain('write entitlements');
     expect(copy.creatorPayoutReadinessCopy).toContain('Creator Payout Readiness Kit');
     expect(copy.creatorPayoutReadinessCopy).toContain('Do not create payouts');
     expect(copy.creatorPayoutReadinessCopy).toContain('collect tax details');

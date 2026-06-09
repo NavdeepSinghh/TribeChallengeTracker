@@ -57,6 +57,7 @@ Shared behavior:
 - Creator Terms Readiness Kit generates a copy-only responsibilities and guardrails brief for creator conduct, moderation, payout readiness, marketplace alignment, and support handoff before paid hosting.
 - Creator Agreement Prep Kit generates a copy-only creator identity, support owner, moderation owner, marketplace alignment, payout/tax workflow, and claim-rule checklist before legal terms, signatures, payouts, purchases, entitlements, revenue-share, or paid-hosting-live claims exist.
 - Creator Support Handoff Kit generates a copy-only app support, creator support, moderation, refund/restore, privacy, account deletion, and escalation boundary checklist before paid hosting is reviewed.
+- Creator Paid Hosting Policy Kit generates a copy-only eligible-format, creator conduct, moderation, support, marketplace alignment, creator agreement, payout/tax workflow, identity verification, and claim-rule checklist before paid hosting is approved.
 - Creator Payout Readiness Kit generates a copy-only payout provider, tax, identity, refund, support, marketplace, and claim-safety checklist before revenue-share.
 - Creator Hosting Objection Reply Kit generates copy-only manual replies for creator paid-hosting questions before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Creator Hosting Application lets Pro creators with Coach Mode enabled request manual hosted-readiness review under `creatorHostingApplications/{uid}`.
