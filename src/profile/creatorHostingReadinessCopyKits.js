@@ -45,6 +45,24 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator challenge template draft kit only. Do not create template records, create contracts, collect payments, create purchases, write entitlements, start revenue-share, create payouts, create partner links, add tracking pixels, export private member activity, scrape DMs, store inbound replies, promise earnings, imply paid hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorLeaderboardPreviewCopy = [
+    'Rise With The Tribe Creator Leaderboard Preview Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    candidateChallengeLine,
+    '',
+    'Leaderboard preview checklist:',
+    '- Rank only first-party hosted challenge movement: active members, logged sessions, challenge points, referrals, and consent-cleared Feature Me submissions',
+    '- Keep the preview aggregate-first until creator moderation, privacy, support handoff, and claim rules are reviewed',
+    '- Use the leaderboard to spot community momentum, not to promise earnings, outcomes, or paid hosting access',
+    '- Route member disputes, privacy concerns, and safety flags through support review before any public creator leaderboard launch',
+    '- Keep paid-hosting and revenue-share decisions behind creator hosting review, marketplace validation, payout operations, and entitlement QA',
+    '',
+    'This is a creator leaderboard preview kit only. Do not create leaderboard records, expose private member activity, export per-user logs, create contracts, collect payments, create purchases, write entitlements, start revenue-share, create payouts, create partner links, add tracking pixels, scrape DMs, store inbound replies, promise earnings, imply paid hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorBrandedPagePreviewCopy = [
     'Rise With The Tribe Creator Branded Page Preview Kit:',
     '',
@@ -275,6 +293,7 @@ export function buildCreatorHostingReadinessCopyKits({
   return {
     creatorBrandedPagePreviewCopy,
     creatorChallengeTemplateDraftCopy,
+    creatorLeaderboardPreviewCopy,
     creatorProfileCompletionCopy,
     creatorHostingOfferCopy,
     creatorPrivateInviteCopy,

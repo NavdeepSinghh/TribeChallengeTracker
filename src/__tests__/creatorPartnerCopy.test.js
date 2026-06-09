@@ -42,6 +42,14 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorChallengeTemplateDraftCopy).toContain('reusable for free hosted challenges first');
     expect(copy.creatorChallengeTemplateDraftCopy).toContain('Do not create template records');
     expect(copy.creatorChallengeTemplateDraftCopy).toContain('create partner links');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('Creator Leaderboard Preview Kit');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('Leaderboard preview checklist');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('first-party hosted challenge movement');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('active members, logged sessions, challenge points, referrals');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('consent-cleared Feature Me submissions');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('Do not create leaderboard records');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('export per-user logs');
+    expect(copy.creatorLeaderboardPreviewCopy).toContain('imply paid hosting is live');
     expect(copy.creatorPrivateInviteCopy).toContain('Private Creator Invite Kit');
     expect(copy.creatorPrivateInviteCopy).toContain('private Pro Coach Mode challenge');
     expect(copy.creatorPrivateInviteCopy).toContain('first-party challenge joins');

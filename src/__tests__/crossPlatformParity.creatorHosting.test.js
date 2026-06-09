@@ -121,6 +121,36 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps Creator Leaderboard Preview Kit wired on all platforms without records, private exports, or paid-hosting side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR LEADERBOARD PREVIEW KIT');
+      expect(source).toContain('COPY LEADERBOARD PREVIEW KIT');
+      expect(source).toContain('First-party creator ranking readiness');
+      expect(source).toContain('Leaderboard preview checklist');
+      expect(source).toContain('first-party hosted challenge movement');
+      expect(source).toContain('active members, logged sessions, challenge points, referrals');
+      expect(source).toContain('consent-cleared Feature Me submissions');
+      expect(source).toContain('aggregate-first');
+      expect(source).toContain('member disputes, privacy concerns, and safety flags');
+      expect(source).toContain('creator leaderboard preview kit only');
+      expect(source).toContain('Do not create leaderboard records');
+      expect(source).toContain('expose private member activity');
+      expect(source).toContain('export per-user logs');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape DMs');
+      expect(source).toContain('store inbound replies');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid hosting is live');
+    });
+  });
+
   it('keeps Private Creator Invite Kit wired on all platforms without invite or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {
