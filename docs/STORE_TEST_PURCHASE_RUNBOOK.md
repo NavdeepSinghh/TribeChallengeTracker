@@ -40,7 +40,7 @@ Record each proof item in the admin Store Test Purchase Evidence Log, not in sou
 - Platform: `ios` or `android`.
 - Product ID.
 - Test case: `sandbox_purchase`, `restore_sync`, `negative_validation`, or `wrong_account`.
-- Result: `verified`, `needs_review`, `failed`, or `archived`.
+- Result: `verified`, `verified_safe_denial`, `needs_review`, `failed`, or `archived`.
 - Evidence note with tester account alias, timestamp, receipt-validation result, Firestore entitlement path checked, restore/sync result, and any support handoff note.
 
 Never paste raw purchase tokens, App Store transaction payloads, Play purchase tokens, private keys, service account JSON, tester passwords, or personal user data into docs, commits, screenshots, or public review notes.
@@ -55,14 +55,14 @@ Before a paid launch review, the admin Store Test Purchase Evidence Log should c
 | iOS | `com.risewiththetribe.pro.monthly` | `restore_sync` | `verified` |
 | iOS | `com.risewiththetribe.pack.21_day_reset` | `sandbox_purchase` | `verified` |
 | iOS | `com.risewiththetribe.pack.summer_shred` | `sandbox_purchase` | `verified` |
-| iOS | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified` safe-denial note |
+| iOS | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified_safe_denial` |
 | Android | `com.risewiththetribe.pro.monthly` | `sandbox_purchase` | `verified` |
 | Android | `com.risewiththetribe.pro.monthly` | `restore_sync` | `verified` |
 | Android | `com.risewiththetribe.pack.21_day_reset` | `sandbox_purchase` | `verified` |
 | Android | `com.risewiththetribe.pack.summer_shred` | `sandbox_purchase` | `verified` |
-| Android | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified` safe-denial note |
+| Android | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified_safe_denial` |
 
-For negative cases, the evidence note must say which entitlement path was checked and confirm that no Pro or pack access was unlocked. A negative case can be marked `verified` only when the verification is of the safe denial, not of a purchase unlock.
+For negative cases, the evidence note must say which entitlement path was checked and confirm that no Pro or pack access was unlocked. A negative case can be marked `verified_safe_denial` only when the verification is of the safe denial, not of a purchase unlock.
 
 ## Launch Gate
 

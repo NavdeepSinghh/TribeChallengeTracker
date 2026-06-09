@@ -3,22 +3,12 @@ const {
   VALIDATION_CONFIG,
   getValidationReadiness,
 } = require('../functions/purchaseEntitlements');
+const { evidenceMatrixForReadiness } = require('./store-test-evidence-matrix');
 
 const strict = process.argv.includes('--strict');
 const json = process.argv.includes('--json');
 const platforms = ['ios', 'android'];
-const evidenceCases = [
-  { platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync', requiredResult: 'verified' },
-  { platform: 'ios', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'ios', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'ios', productId: 'any configured product', testCase: 'negative_validation_or_wrong_account', requiredResult: 'safe denial verified' },
-  { platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync', requiredResult: 'verified' },
-  { platform: 'android', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'android', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase', requiredResult: 'verified' },
-  { platform: 'android', productId: 'any configured product', testCase: 'negative_validation_or_wrong_account', requiredResult: 'safe denial verified' },
-];
+const evidenceCases = evidenceMatrixForReadiness();
 
 const readiness = platforms.map((platform) => {
   const status = getValidationReadiness(platform);
@@ -92,7 +82,8 @@ products.forEach((product) => {
 console.log('\nRequired external evidence');
 console.log('--------------------------');
 evidenceCases.forEach((item) => {
-  console.log(`- ${item.platform}: ${item.productId} / ${item.testCase} -> ${item.requiredResult}`);
+  const safeDenial = item.safeDenialRequired ? ' (safe denial note required)' : '';
+  console.log(`- ${item.platform}: ${item.productId} / ${item.testCase} -> ${item.requiredResult}${safeDenial}`);
 });
 
 console.log('\nDecision');

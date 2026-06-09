@@ -46,7 +46,7 @@ For automation or audit tooling, use:
 node scripts/check-store-launch-readiness.js --json
 ```
 
-The JSON output includes `launchReady`, per-platform readiness, configured products, required evidence cases, and the final decision string.
+The JSON output includes `launchReady`, per-platform readiness, configured products, required evidence cases with accepted result statuses, safe-denial flags for negative tests, and the final decision string.
 
 ## Android Google Play Index
 

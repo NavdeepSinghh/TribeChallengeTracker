@@ -47,6 +47,14 @@ describe('store launch readiness script', () => {
     expect(data.readiness.flatMap((platform) => platform.placeholderConfigKeys)).toEqual([]);
     expect(data.products).toHaveLength(4);
     expect(data.requiredEvidence).toHaveLength(10);
+    expect(data.requiredEvidence.filter((item) => item.safeDenialRequired)).toHaveLength(2);
+    expect(data.requiredEvidence.find((item) => item.testCase === 'negative_validation_or_wrong_account')).toEqual(
+      expect.objectContaining({
+        acceptedResults: ['failed', 'verified_safe_denial'],
+        requiredResult: 'failed or verified_safe_denial',
+        safeDenialRequired: true,
+      })
+    );
     expect(data.decision).toContain('Not ready for paid launch review');
     expect(JSON.stringify(data)).not.toContain('raw-secret-token');
   });

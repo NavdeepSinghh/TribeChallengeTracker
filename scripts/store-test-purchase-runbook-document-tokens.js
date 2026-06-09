@@ -14,7 +14,7 @@ const STORE_TEST_PURCHASE_RUNBOOK_TOKENS = [
   "com.risewiththetribe.pro.monthly",
   "com.risewiththetribe.pack.21_day_reset",
   "com.risewiththetribe.pack.summer_shred",
-  "safe-denial note",
+  "verified_safe_denial",
   "Never paste raw purchase tokens",
   "private keys",
   "service account JSON",

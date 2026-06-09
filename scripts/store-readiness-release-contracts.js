@@ -22,6 +22,7 @@ function verifyRequiredStoreReadinessFiles(repoRoot) {
     path.join(repoRoot, "scripts", "store-readiness-core-document-tokens.js"),
     path.join(repoRoot, "scripts", "store-readiness-release-audit-document-tokens.js"),
     path.join(repoRoot, "scripts", "store-readiness-roadmap-document-tokens.js"),
+    path.join(repoRoot, "scripts", "store-test-evidence-matrix.js"),
     path.join(repoRoot, "scripts", "release-audit-script-document-tokens.js"),
     path.join(repoRoot, "scripts", "release-audit-output-document-tokens.js"),
     path.join(repoRoot, "scripts", "store-test-purchase-runbook-document-tokens.js"),
