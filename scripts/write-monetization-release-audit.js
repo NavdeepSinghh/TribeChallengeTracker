@@ -43,7 +43,7 @@ ${renderLatestLocalRecheckItems()}
 
 - Weekly Challenge Campaign Engine foundation is implemented across Web, iOS, and Android.
 - Campaign-branded challenge templates, campaign CTA/hashtag metadata, invite/referral hooks, referral join counting, and generated launch cards are covered by parity checks.
-- Web campaign sharing now has focused helper coverage for the referral invite URL contract, campaign copy contract, launch-card filename contract, native file-share outcome, native text-share fallback outcome, and clipboard fallback outcome.
+- Campaign sharing now has Web helper coverage for the referral invite URL contract, campaign copy contract, launch-card filename contract, native file-share outcome, native text-share fallback outcome, and clipboard fallback outcome, plus native release contracts for iOS share-sheet and Android intent/clipboard guardrails.
 - Web profile sharing now has focused copy coverage for win-card, weekly recap, and monthly recap share text plus focused card-sharing coverage for native file-share, clipboard/download fallback, and caller-specific error-message contracts.
 - Weekly Campaign derived data now has focused coverage for core planning copy, experiment recommendation, story/engagement copy, collab cards, retention follow-up, re-invite copy, first-party signal wording, and no-automation/no-tracking boundaries.
 - Weekly Campaign marketing props now have focused adapter coverage for creator/admin flags, Instagram calendar copy, launch-card copy, collab cards, comment replies, and the complete prop key contract.

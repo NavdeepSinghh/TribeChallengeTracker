@@ -61,6 +61,54 @@ function verifyCrossPlatformProfileCopyContracts({
   });
 }
 
+function verifyCampaignShareHelperContracts({ repoRoot, iosRoot, androidRoot }) {
+  const webShareHelper = read(path.join(repoRoot, "src", "challenges", "challengeShare.js"));
+  const iosShareContracts = [
+    path.join(iosRoot, "TribeChallenge", "Models", "Challenge.swift"),
+    path.join(iosRoot, "TribeChallenge", "Views", "ChallengeTrackerView.swift"),
+    path.join(iosRoot, "TribeChallenge", "Views", "HomeView.swift"),
+  ].map(read).join("\n");
+  const androidShareContracts = read(path.join(
+    androidRoot,
+    "app",
+    "src",
+    "main",
+    "java",
+    "com",
+    "risewiththetribe",
+    "challengetracker",
+    "ui",
+    "TribeApp.kt"
+  ));
+
+  [
+    "buildChallengeShareLink",
+    "campaignShareText",
+    "launchCardFileName",
+    "launch-card-shared",
+    "invite-shared",
+    "campaign-copy-copied",
+  ].forEach((token) => assert(webShareHelper.includes(token), `web campaign share helper is missing ${token}`));
+
+  [
+    "ChallengeShareHelper",
+    "buildChallengeShareLink",
+    "campaignShareText",
+    "launchCardFileName",
+    "UIActivityViewController",
+    "UIPasteboard.general.string",
+  ].forEach((token) => assert(iosShareContracts.includes(token), `iOS campaign share contracts are missing ${token}`));
+
+  [
+    "challengeInviteLink",
+    "challengeCampaignShareText",
+    "launchCardFileName",
+    "shareChallengeLaunchCard",
+    "Intent.ACTION_SEND",
+    "ClipboardManager",
+  ].forEach((token) => assert(androidShareContracts.includes(token), `Android campaign share contracts are missing ${token}`));
+}
+
 function verifyMonetizationEngagementContracts({ repoRoot, iosRoot, androidRoot }) {
   const parityPath = path.join(repoRoot, "FEATURE_PARITY.md");
   const catalogPath = path.join(repoRoot, "docs", "FEATURE_CATALOG.md");
@@ -93,6 +141,7 @@ function verifyMonetizationEngagementContracts({ repoRoot, iosRoot, androidRoot 
     iosProfileContracts,
     androidProfileContracts,
   });
+  verifyCampaignShareHelperContracts({ repoRoot, iosRoot, androidRoot });
 
   [
     "match /featureSubmissions/{submissionId}",

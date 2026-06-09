@@ -132,7 +132,7 @@ Initial implementation status:
 - Invite/referral tracking hooks: done.
 - Referral join counter: done.
 - Shareable generated launch cards: done.
-- Campaign share helper guardrails: done on Web. The shared Web helper now centralizes invite/referral URL building, campaign share text, launch-card filename generation, native file-share fallback, native text-share fallback, and clipboard fallback, with focused unit coverage in `src/__tests__/challengeShare.test.js`.
+- Campaign share helper guardrails: done across Web, iOS, and Android. Web has focused helper coverage for invite/referral URL building, campaign share text, launch-card filename generation, native file-share fallback, native text-share fallback, and clipboard fallback in `src/__tests__/challengeShare.test.js`; native release contracts now preserve matching invite links, campaign copy, launch-card filenames, share-sheet/intent paths, and clipboard copy fallback.
 
 This creates the strongest bridge between Instagram attention and app-based commitment.
 
