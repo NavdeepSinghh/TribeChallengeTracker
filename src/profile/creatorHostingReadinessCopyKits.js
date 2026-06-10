@@ -224,6 +224,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator payout provider setup kit only. Do not create payout accounts, collect bank details, collect payout details, collect tax details, collect government IDs, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, process payments, process refunds, create purchases, write entitlements, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
   ].join('\n');
+  const creatorPayoutOperationsDryRunCopy = [
+    'Rise With The Tribe Creator Payout Operations Dry-Run Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Operations dry-run checklist:',
+    '- Walk through a zero-money payout rehearsal with mock creator eligibility, mock payout event, mock refund adjustment, and mock finance reconciliation notes',
+    '- Confirm legal, finance, support, moderation, marketplace, and entitlement owners know where handoffs happen before real payout onboarding',
+    '- Compare the dry-run outcome against provider setup, creator terms, payout readiness, refund paths, support scripts, and store-test evidence',
+    '- Keep mock payout amounts, provider names, tax form notes, bank details, government IDs, and credentials out of client code, screenshots, public docs, and Firestore profile records',
+    '- Stop the dry run if any step requires live provider access, real creator tax data, real payment movement, payout creation, purchase creation, entitlement writes, or marketplace bypass',
+    '',
+    'This is a creator payout operations dry-run kit only. Do not create payout accounts, access payout providers, collect bank details, collect payout details, collect tax details, collect government IDs, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, move money, process payments, process refunds, create purchases, write entitlements, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
+  ].join('\n');
   const creatorIdentityVerificationPrepCopy = [
     'Rise With The Tribe Creator Identity Verification Prep Kit:',
     '',
@@ -323,6 +342,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorModerationReadinessCopy,
     creatorPaidHostingLaunchGateCopy,
     creatorPaidHostingHoldPlanCopy,
+    creatorPayoutOperationsDryRunCopy,
     creatorPayoutProviderSetupCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,

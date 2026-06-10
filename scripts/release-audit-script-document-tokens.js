@@ -89,6 +89,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "partner demand, revenue, Weekly Campaign, and creator engagement copy composition",
   "src/profile/profileEngagementCreatorCopyBundle.js",
   "same monetization campaign derived-data return contract",
+  "Creator Payout Operations Dry-Run Kit",
   "Creator Hosting Decision Reply Kit",
   "Partner Campaign Decision Reply Kit",
   "src/__tests__/engagementCopy.test.js",
