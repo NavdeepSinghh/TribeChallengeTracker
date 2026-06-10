@@ -396,6 +396,33 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /customerValueReviews/{reviewId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.chargesUsers == false
+        && request.resource.data.unlocksPaidAccess == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.promotesPaidFeatures == false
+        && request.resource.data.keys().hasAll(["uid", "activeDays", "totalPoints", "earnedBadgeCount", "joinedChallengeCount", "reviewScore", "status", "manualReviewOnly", "chargesUsers", "unlocksPaidAccess", "writesEntitlements", "createsDiscounts", "isPaidAccessLive", "promotesPaidFeatures"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.chargesUsers == false
+        && request.resource.data.unlocksPaidAccess == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.promotesPaidFeatures == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "manualReviewOnly", "chargesUsers", "unlocksPaidAccess", "writesEntitlements", "createsDiscounts", "isPaidAccessLive", "promotesPaidFeatures", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     match /weeklyCampaignReviews/{reviewId} {
       allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
       allow create: if request.auth != null

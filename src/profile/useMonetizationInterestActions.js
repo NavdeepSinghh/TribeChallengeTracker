@@ -3,6 +3,7 @@ import {
   saveProTrialInterest,
 } from '../userService';
 import { buildCommunityEventReviewActionHandlers } from './communityEventReviewActionHandlers';
+import { buildCustomerValueReviewActionHandlers } from './customerValueReviewActionHandlers';
 import { buildLaunchExperimentReviewActionHandlers } from './launchExperimentReviewActionHandlers';
 import { buildProTrialReviewActionHandlers } from './proTrialReviewActionHandlers';
 import { buildWeeklyCampaignReviewActionHandlers } from './weeklyCampaignReviewActionHandlers';
@@ -10,33 +11,41 @@ import { buildWeeklyCampaignReviewActionHandlers } from './weeklyCampaignReviewA
 export default function useMonetizationInterestActions({
   approvedLaunchExperimentReviews,
   approvedCommunityEventReviews,
+  approvedCustomerValueReviews,
   approvedProTrialReviews,
   approvedWeeklyCampaignReviews,
   campaignPerformanceSummary,
   featureReviewQueue,
   isAdmin,
   isSubmittingCommunityEventReview,
+  isSubmittingCustomerValueReview,
   isSubmittingLaunchExperimentReview,
   isSubmittingProTrialReview,
   isSubmittingWeeklyCampaignReview,
   launchExperimentReviewNotes,
   profile,
   communityEventReviewNotes,
+  customerValueReviewNotes,
   proTrialReviewNotes,
   recommendedLaunchExperiment,
   referralJoins,
   reviewingCommunityEventReviewId,
+  reviewingCustomerValueReviewId,
   reviewingLaunchExperimentReviewId,
   reviewingProTrialReviewId,
   reviewingWeeklyCampaignReviewId,
   selectedCommunityEventInterestIds,
   selectedProTrialReasonIds,
   setApprovedCommunityEventReviews,
+  setApprovedCustomerValueReviews,
   setApprovedLaunchExperimentReviews,
   setApprovedProTrialReviews,
   setApprovedWeeklyCampaignReviews,
   setCommunityEventInterestMessage,
   setIsSubmittingCommunityEventReview,
+  setCustomerValueReviewMessage,
+  setCustomerValueReviewQueue,
+  setIsSubmittingCustomerValueReview,
   setIsSubmittingLaunchExperimentReview,
   setIsSubmittingProTrialReview,
   setIsSubmittingWeeklyCampaignReview,
@@ -49,6 +58,7 @@ export default function useMonetizationInterestActions({
   setProTrialReviewMessage,
   setProTrialReviewQueue,
   setReviewingCommunityEventReviewId,
+  setReviewingCustomerValueReviewId,
   setReviewingLaunchExperimentReviewId,
   setReviewingProTrialReviewId,
   setReviewingWeeklyCampaignReviewId,
@@ -118,6 +128,20 @@ export default function useMonetizationInterestActions({
     user,
   });
 
+  const customerValueReviewHandlers = buildCustomerValueReviewActionHandlers({
+    approvedCustomerValueReviews,
+    customerValueReviewNotes,
+    isAdmin,
+    isSubmittingCustomerValueReview,
+    reviewingCustomerValueReviewId,
+    setApprovedCustomerValueReviews,
+    setCustomerValueReviewMessage,
+    setCustomerValueReviewQueue,
+    setIsSubmittingCustomerValueReview,
+    setReviewingCustomerValueReviewId,
+    user,
+  });
+
   const launchExperimentReviewHandlers = buildLaunchExperimentReviewActionHandlers({
     approvedLaunchExperimentReviews,
     isAdmin,
@@ -169,6 +193,7 @@ export default function useMonetizationInterestActions({
   return {
     handleCommunityEventInterestToggle,
     ...communityEventReviewHandlers,
+    ...customerValueReviewHandlers,
     ...launchExperimentReviewHandlers,
     ...proTrialReviewHandlers,
     ...weeklyCampaignReviewHandlers,

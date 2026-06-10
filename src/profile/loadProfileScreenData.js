@@ -5,6 +5,8 @@ import {
   getCommunityEventInterestSummary,
   getApprovedCommunityEventReviews,
   getCommunityEventReviewQueue,
+  getApprovedCustomerValueReviews,
+  getCustomerValueReviewQueue,
   getCreatorChallengeTemplateDraftReviewQueue,
   getCreatorBrandedPageReviewQueue,
   getCreatorHostingApplicationReviewQueue,
@@ -73,6 +75,8 @@ export function loadProfileScreenData(userUid, setters) {
       getCommunityEventInterestSummary().then(setters.setCommunityEventInterestSummary).catch(() => setters.setCommunityEventInterestSummary({}));
       getCommunityEventReviewQueue().then(setters.setCommunityEventReviewQueue).catch(() => setters.setCommunityEventReviewQueue([]));
       getApprovedCommunityEventReviews().then(setters.setApprovedCommunityEventReviews).catch(() => setters.setApprovedCommunityEventReviews([]));
+      getCustomerValueReviewQueue().then(setters.setCustomerValueReviewQueue).catch(() => setters.setCustomerValueReviewQueue([]));
+      getApprovedCustomerValueReviews().then(setters.setApprovedCustomerValueReviews).catch(() => setters.setApprovedCustomerValueReviews([]));
       getProTrialInterestSummary().then(setters.setProTrialSummary).catch(() => setters.setProTrialSummary({}));
       getProTrialReviewQueue().then(setters.setProTrialReviewQueue).catch(() => setters.setProTrialReviewQueue([]));
       getApprovedProTrialReviews().then(setters.setApprovedProTrialReviews).catch(() => setters.setApprovedProTrialReviews([]));

@@ -12,6 +12,12 @@ export default function useMonetizationDemandState() {
   const [isSubmittingCommunityEventReview, setIsSubmittingCommunityEventReview] = useState(false);
   const [communityEventReviewNotes, setCommunityEventReviewNotes] = useState({});
   const [reviewingCommunityEventReviewId, setReviewingCommunityEventReviewId] = useState('');
+  const [customerValueReviewQueue, setCustomerValueReviewQueue] = useState([]);
+  const [approvedCustomerValueReviews, setApprovedCustomerValueReviews] = useState([]);
+  const [customerValueReviewMessage, setCustomerValueReviewMessage] = useState('');
+  const [isSubmittingCustomerValueReview, setIsSubmittingCustomerValueReview] = useState(false);
+  const [customerValueReviewNotes, setCustomerValueReviewNotes] = useState({});
+  const [reviewingCustomerValueReviewId, setReviewingCustomerValueReviewId] = useState('');
   const [selectedProTrialReasonIds, setSelectedProTrialReasonIds] = useState([]);
   const [proTrialMessage, setProTrialMessage] = useState('');
   const [isSavingProTrialInterest, setIsSavingProTrialInterest] = useState(false);
@@ -38,6 +44,7 @@ export default function useMonetizationDemandState() {
   return {
     approvedLaunchExperimentReviews,
     approvedCommunityEventReviews,
+    approvedCustomerValueReviews,
     approvedProTrialReviews,
     approvedWeeklyCampaignReviews,
     campaignPerformanceSummary,
@@ -46,7 +53,11 @@ export default function useMonetizationDemandState() {
     communityEventReviewMessage,
     communityEventReviewNotes,
     communityEventReviewQueue,
+    customerValueReviewMessage,
+    customerValueReviewNotes,
+    customerValueReviewQueue,
     isSubmittingCommunityEventReview,
+    isSubmittingCustomerValueReview,
     isSubmittingLaunchExperimentReview,
     isSubmittingWeeklyCampaignReview,
     isSavingCommunityEventInterest,
@@ -62,12 +73,14 @@ export default function useMonetizationDemandState() {
     proTrialSummary,
     reviewingLaunchExperimentReviewId,
     reviewingCommunityEventReviewId,
+    reviewingCustomerValueReviewId,
     reviewingProTrialReviewId,
     reviewingWeeklyCampaignReviewId,
     selectedCommunityEventInterestIds,
     selectedProTrialReasonIds,
     setApprovedLaunchExperimentReviews,
     setApprovedCommunityEventReviews,
+    setApprovedCustomerValueReviews,
     setApprovedProTrialReviews,
     setApprovedWeeklyCampaignReviews,
     setCampaignPerformanceSummary,
@@ -77,6 +90,10 @@ export default function useMonetizationDemandState() {
     setCommunityEventReviewNotes,
     setCommunityEventReviewQueue,
     setIsSubmittingCommunityEventReview,
+    setCustomerValueReviewMessage,
+    setCustomerValueReviewNotes,
+    setCustomerValueReviewQueue,
+    setIsSubmittingCustomerValueReview,
     setIsSubmittingLaunchExperimentReview,
     setIsSubmittingWeeklyCampaignReview,
     setIsSavingCommunityEventInterest,
@@ -92,6 +109,7 @@ export default function useMonetizationDemandState() {
     setProTrialSummary,
     setReviewingLaunchExperimentReviewId,
     setReviewingCommunityEventReviewId,
+    setReviewingCustomerValueReviewId,
     setReviewingProTrialReviewId,
     setReviewingWeeklyCampaignReviewId,
     setSelectedCommunityEventInterestIds,

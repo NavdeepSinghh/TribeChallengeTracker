@@ -25,6 +25,12 @@ export {
   submitCommunityEventReview,
 } from './userServices/communityEventReviewService';
 export {
+  getApprovedCustomerValueReviews,
+  getCustomerValueReviewQueue,
+  reviewCustomerValueReview,
+  submitCustomerValueReview,
+} from './userServices/customerValueReviewService';
+export {
   getApprovedLaunchExperimentReviews,
   getLaunchExperimentReviewQueue,
   reviewLaunchExperimentReview,

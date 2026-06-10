@@ -1,4 +1,5 @@
 import CommunityEventInterestSection from './CommunityEventInterestSection';
+import CustomerValueReviewSection from './CustomerValueReviewSection';
 import { CopyKitPanel } from './MonetizationKitCards';
 import MonetizationLaunchBoard from './MonetizationLaunchBoard';
 import { buildMonetizationPreLaunchSectionData } from './monetizationPreLaunchSectionData';
@@ -11,6 +12,7 @@ export default function MonetizationPreLaunchKits({
   const {
     canShowPlanningKits,
     communityEventInterestSectionProps,
+    customerValueReviewSectionProps,
     followUpCopyKits,
     launchBoardProps,
     primaryCopyKit,
@@ -39,6 +41,10 @@ export default function MonetizationPreLaunchKits({
       {canShowPlanningKits && followUpCopyKits.map(kit => (
         <CopyKitPanel key={kit.title} {...kit} />
       ))}
+
+      {isAdmin && (
+        <CustomerValueReviewSection {...customerValueReviewSectionProps} />
+      )}
     </>
   );
 }

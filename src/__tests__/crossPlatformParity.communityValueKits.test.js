@@ -1,7 +1,14 @@
 const {
+  fs,
+  path,
+  repoRoot,
+  iosChallengeService,
   iosProfile,
   androidApp,
+  androidModels,
+  androidRepository,
   readWebProfileContracts,
+  readWebUserServiceContracts,
 } = require('../testUtils/crossPlatformParityFixtures');
 
 describe('cross-platform community value kit parity source checks', () => {
@@ -48,5 +55,52 @@ describe('cross-platform community value kit parity source checks', () => {
       expect(source).toContain('write entitlements');
       expect(source).toContain('promote paid features as live');
     });
+  });
+
+  it('keeps Customer Value Review Records wired on all platforms as manual evidence only', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CUSTOMER VALUE REVIEW RECORD');
+      expect(source).toContain('SAVE CUSTOMER VALUE REVIEW');
+      expect(source).toContain('CUSTOMER VALUE REVIEW QUEUE');
+      expect(source).toContain('APPROVED CUSTOMER VALUE REVIEWS');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('chargesUsers');
+      expect(source).toContain('unlocksPaidAccess');
+      expect(source).toContain('writesEntitlements');
+      expect(source).toContain('createsDiscounts');
+      expect(source).toContain('isPaidAccessLive');
+      expect(source).toContain('promotesPaidFeatures');
+    });
+
+    [
+      webUserService,
+      iosChallengeService,
+      androidRepository,
+      firestoreRules,
+    ].forEach((source) => {
+      expect(source).toContain('customerValueReviews');
+    });
+
+    [
+      webUserService,
+      iosChallengeService,
+      androidRepository,
+      androidModels,
+      firestoreRules,
+    ].forEach((source) => {
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('chargesUsers');
+      expect(source).toContain('unlocksPaidAccess');
+      expect(source).toContain('writesEntitlements');
+      expect(source).toContain('createsDiscounts');
+      expect(source).toContain('isPaidAccessLive');
+      expect(source).toContain('promotesPaidFeatures');
+    });
+
+    expect(firestoreRules).toContain('match /customerValueReviews/{reviewId}');
   });
 });
