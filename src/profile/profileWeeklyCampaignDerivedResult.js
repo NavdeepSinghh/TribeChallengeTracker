@@ -18,6 +18,8 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignExperimentBriefCopy,
     launchExperimentCopy,
     launchExperimentScorecardCopy,
+    experimentScore,
+    experimentScoreLabel,
     launchQaChecklistCopy,
     launchRetrospectiveCopy,
   } = experimentData;
@@ -43,6 +45,8 @@ export function buildProfileWeeklyCampaignDerivedResult({
     campaignPerformanceCopy,
     campaignSchedulerCopy,
     dmKeywordCopy,
+    experimentScore,
+    experimentScoreLabel,
     launchExperimentCopy,
     launchExperimentScorecardCopy,
     launchExperiments,

@@ -19,6 +19,12 @@ export {
   submitSupportRequest,
 } from './userServices/monetizationSupportService';
 export {
+  getApprovedLaunchExperimentReviews,
+  getLaunchExperimentReviewQueue,
+  reviewLaunchExperimentReview,
+  submitLaunchExperimentReview,
+} from './userServices/launchExperimentReviewService';
+export {
   claimPartnerPerk,
   getApprovedCreatorPrivateInviteLaunches,
   getApprovedCreatorPaidHostingLaunchGateReviews,

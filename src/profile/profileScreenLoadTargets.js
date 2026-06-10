@@ -39,6 +39,8 @@ export function buildProfileScreenLoadTargets({
     setGoalPoints: preferenceState.setGoalPoints,
     setGoalStreak: preferenceState.setGoalStreak,
     setInstagramHandle: engagementState.setInstagramHandle,
+    setApprovedLaunchExperimentReviews: revenueState.setApprovedLaunchExperimentReviews,
+    setLaunchExperimentReviewQueue: revenueState.setLaunchExperimentReviewQueue,
     setPartnerCampaignApplicationReviewQueue: revenueState.setPartnerCampaignApplicationReviewQueue,
     setPartnerPerkClaimReviewQueue: revenueState.setPartnerPerkClaimReviewQueue,
     setPartnerPerkClaims: revenueState.setPartnerPerkClaims,

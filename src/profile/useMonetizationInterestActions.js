@@ -2,16 +2,27 @@ import {
   saveCommunityEventInterest,
   saveProTrialInterest,
 } from '../userService';
+import { buildLaunchExperimentReviewActionHandlers } from './launchExperimentReviewActionHandlers';
 
 export default function useMonetizationInterestActions({
+  approvedLaunchExperimentReviews,
+  isAdmin,
+  isSubmittingLaunchExperimentReview,
+  launchExperimentReviewNotes,
   profile,
+  reviewingLaunchExperimentReviewId,
   selectedCommunityEventInterestIds,
   selectedProTrialReasonIds,
+  setApprovedLaunchExperimentReviews,
   setCommunityEventInterestMessage,
+  setIsSubmittingLaunchExperimentReview,
   setIsSavingCommunityEventInterest,
   setIsSavingProTrialInterest,
+  setLaunchExperimentReviewMessage,
+  setLaunchExperimentReviewQueue,
   setProfile,
   setProTrialMessage,
+  setReviewingLaunchExperimentReviewId,
   setSelectedCommunityEventInterestIds,
   setSelectedProTrialReasonIds,
   user,
@@ -59,8 +70,23 @@ export default function useMonetizationInterestActions({
     }
   };
 
+  const launchExperimentReviewHandlers = buildLaunchExperimentReviewActionHandlers({
+    approvedLaunchExperimentReviews,
+    isAdmin,
+    isSubmittingLaunchExperimentReview,
+    launchExperimentReviewNotes,
+    reviewingLaunchExperimentReviewId,
+    setApprovedLaunchExperimentReviews,
+    setIsSubmittingLaunchExperimentReview,
+    setLaunchExperimentReviewMessage,
+    setLaunchExperimentReviewQueue,
+    setReviewingLaunchExperimentReviewId,
+    user,
+  });
+
   return {
     handleCommunityEventInterestToggle,
+    ...launchExperimentReviewHandlers,
     handleProTrialReasonToggle,
   };
 }
