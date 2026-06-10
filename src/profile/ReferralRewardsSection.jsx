@@ -1,9 +1,11 @@
 import ReferralRewardAdminReviewSection from './ReferralRewardAdminReviewSection';
 import ReferralRewardClaimPanel from './ReferralRewardClaimPanel';
 import ReferralRewardCopyKits from './ReferralRewardCopyKits';
+import ReferralRewardHandoffAuditReviewCard from './ReferralRewardHandoffAuditReviewCard';
 import ReferralRewardProgressPanel from './ReferralRewardProgressPanel';
 
 export default function ReferralRewardsSection({
+  approvedReferralRewardHandoffAuditReviews,
   referralState,
   referralJoins,
   referralLaunchCopy,
@@ -13,12 +15,20 @@ export default function ReferralRewardsSection({
   onReferralRewardClaim,
   isClaimingReferralReward,
   referralRewardClaimMessage,
+  referralRewardHandoffAuditReviewMessage,
+  referralRewardHandoffAuditReviewNotes,
+  referralRewardHandoffAuditReviewQueue,
   isAdmin,
+  isSubmittingReferralRewardHandoffAuditReview,
   referralRewardReviewQueue,
   referralRewardReviewNotes,
+  reviewingReferralRewardHandoffAuditReviewId,
   setReferralRewardReviewNotes,
+  setReferralRewardHandoffAuditReviewNotes,
   reviewingReferralRewardClaimId,
   onReferralRewardClaimReview,
+  onReferralRewardHandoffAuditReviewDecision,
+  onReferralRewardHandoffAuditReviewSubmit,
   referralRewardDecisionReplyCopy,
   copyText,
 }) {
@@ -51,17 +61,30 @@ export default function ReferralRewardsSection({
       </div>
 
       {isAdmin && (
-        <ReferralRewardAdminReviewSection
-          referralJoins={referralJoins}
-          referralRewardReviewQueue={referralRewardReviewQueue}
-          referralRewardReviewNotes={referralRewardReviewNotes}
-          setReferralRewardReviewNotes={setReferralRewardReviewNotes}
-          reviewingReferralRewardClaimId={reviewingReferralRewardClaimId}
-          onReferralRewardClaimReview={onReferralRewardClaimReview}
-          referralRewardDecisionReplyCopy={referralRewardDecisionReplyCopy}
-          unlockedReferralRewardTier={unlockedReferralRewardTier}
-          copyText={copyText}
-        />
+        <>
+          <ReferralRewardAdminReviewSection
+            referralJoins={referralJoins}
+            referralRewardReviewQueue={referralRewardReviewQueue}
+            referralRewardReviewNotes={referralRewardReviewNotes}
+            setReferralRewardReviewNotes={setReferralRewardReviewNotes}
+            reviewingReferralRewardClaimId={reviewingReferralRewardClaimId}
+            onReferralRewardClaimReview={onReferralRewardClaimReview}
+            referralRewardDecisionReplyCopy={referralRewardDecisionReplyCopy}
+            unlockedReferralRewardTier={unlockedReferralRewardTier}
+            copyText={copyText}
+          />
+          <ReferralRewardHandoffAuditReviewCard
+            approvedReferralRewardHandoffAuditReviews={approvedReferralRewardHandoffAuditReviews}
+            isSubmittingReferralRewardHandoffAuditReview={isSubmittingReferralRewardHandoffAuditReview}
+            onDecision={onReferralRewardHandoffAuditReviewDecision}
+            onSubmit={onReferralRewardHandoffAuditReviewSubmit}
+            referralRewardHandoffAuditReviewMessage={referralRewardHandoffAuditReviewMessage}
+            referralRewardHandoffAuditReviewNotes={referralRewardHandoffAuditReviewNotes}
+            referralRewardHandoffAuditReviewQueue={referralRewardHandoffAuditReviewQueue}
+            reviewingReferralRewardHandoffAuditReviewId={reviewingReferralRewardHandoffAuditReviewId}
+            setReferralRewardHandoffAuditReviewNotes={setReferralRewardHandoffAuditReviewNotes}
+          />
+        </>
       )}
     </>
   );

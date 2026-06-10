@@ -93,4 +93,58 @@ describe('cross-platform referral rewards parity source checks', () => {
       expect(source).toContain('pressure members');
     });
   });
+
+  it('keeps Referral Reward Handoff Audit Review Records manual and side-effect free across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    const androidViewModel = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerAndroid/app/src/main/java/com/risewiththetribe/challengetracker/ui/AppViewModel.kt'), 'utf8');
+
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('REFERRAL REWARD HANDOFF AUDIT REVIEW RECORD');
+      expect(source).toContain('SAVE REFERRAL AUDIT');
+      expect(source).toContain('referralRewardHandoffAuditReviews');
+      expect(source).toContain('manualReviewOnly true');
+      expect(source).toContain('grantsPro false');
+      expect(source).toContain('writesEntitlements false');
+      expect(source).toContain('createsPayouts false');
+      expect(source).toContain('createsPurchases false');
+      expect(source).toContain('createsAffiliateRewards false');
+      expect(source).toContain('writesReferralState false');
+      expect(source).toContain('countsLinkOpens false');
+      expect(source).toContain('claimsFulfillment false');
+      expect(source).toContain('hasTrackingPixels false');
+      expect(source).toContain('autoMessagesUsers false');
+      expect(source).toContain('scrapesMessages false');
+      expect(source).toContain('storesReplies false');
+      expect(source).toContain('pressuresMembers false');
+    });
+    [iosChallengeService, androidRepository, androidModels].forEach((source) => {
+      expect(source).toContain('ReferralRewardHandoffAuditReview');
+    });
+    [webUserService, iosChallengeService, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('referralRewardHandoffAuditReviews');
+    });
+    [webUserService, iosChallengeService, androidRepository, androidModels, firestoreRules].forEach((source) => {
+      expect(source).toContain('openClaimCount');
+      expect(source).toContain('highestTierTarget');
+      expect(source).toContain('referralJoins');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('grantsPro');
+      expect(source).toContain('writesEntitlements');
+      expect(source).toContain('createsPayouts');
+      expect(source).toContain('writesReferralState');
+      expect(source).toContain('countsLinkOpens');
+      expect(source).toContain('claimsFulfillment');
+      expect(source).toContain('autoMessagesUsers');
+      expect(source).toContain('scrapesMessages');
+      expect(source).toContain('pressuresMembers');
+    });
+    expect(webProfile).toContain('handleReferralRewardHandoffAuditReviewSubmit');
+    expect(webProfile).toContain('handleReferralRewardHandoffAuditReviewDecision');
+    expect(iosProfile).toContain('submitReferralRewardHandoffAuditReviewRecord');
+    expect(iosProfile).toContain('submitReferralRewardHandoffAuditReviewUpdate');
+    expect(androidViewModel).toContain('submitReferralRewardHandoffAuditReview');
+    expect(androidViewModel).toContain('reviewReferralRewardHandoffAuditReview');
+  });
 });

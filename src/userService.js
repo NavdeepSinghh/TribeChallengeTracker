@@ -118,6 +118,12 @@ export {
   reviewReferralRewardClaim,
 } from './userServices/referralRewardService';
 export {
+  getApprovedReferralRewardHandoffAuditReviews,
+  getReferralRewardHandoffAuditReviewQueue,
+  reviewReferralRewardHandoffAuditReview,
+  submitReferralRewardHandoffAuditReview,
+} from './userServices/referralRewardHandoffAuditReviewService';
+export {
   createUserIfNew,
   getUserProfile,
   saveCustomGoals,

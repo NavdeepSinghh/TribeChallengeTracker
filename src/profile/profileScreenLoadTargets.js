@@ -54,6 +54,8 @@ export function buildProfileScreenLoadTargets({
     setProfile,
     setProfileChallenges,
     setProTrialSummary: revenueState.setProTrialSummary,
+    setApprovedReferralRewardHandoffAuditReviews: reviewState.setApprovedReferralRewardHandoffAuditReviews,
+    setReferralRewardHandoffAuditReviewQueue: reviewState.setReferralRewardHandoffAuditReviewQueue,
     setReferralRewardReviewQueue: reviewState.setReferralRewardReviewQueue,
     setSelectedCommunityEventInterestIds: revenueState.setSelectedCommunityEventInterestIds,
     setSelectedFrameId: preferenceState.setSelectedFrameId,

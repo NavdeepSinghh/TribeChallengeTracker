@@ -30,6 +30,7 @@ import {
   getWeeklyCampaignReviewQueue,
   getPartnerCampaignApplicationReviewQueue,
   getApprovedPartnerPerkHandoffAuditReviews,
+  getApprovedReferralRewardHandoffAuditReviews,
   getPartnerPerkHandoffAuditReviewQueue,
   getPartnerPerkClaimReviewQueue,
   getPartnerPerkClaims,
@@ -41,6 +42,7 @@ import {
   getApprovedCreatorPaidHostingLaunchGateReviews,
   getProTrialInterestSummary,
   getReferralRewardReviewQueue,
+  getReferralRewardHandoffAuditReviewQueue,
   getStoreTestPurchaseEvidenceLog,
   getSupportRefundReadinessReviewQueue,
   getStoreReviewResponseReviewQueue,
@@ -85,6 +87,8 @@ export function loadProfileScreenData(userUid, setters) {
       getPaidLaunchDecisionReviewQueue().then(setters.setPaidLaunchDecisionReviewQueue).catch(() => setters.setPaidLaunchDecisionReviewQueue([]));
       getApprovedPaidLaunchDecisionReviews().then(setters.setApprovedPaidLaunchDecisionReviews).catch(() => setters.setApprovedPaidLaunchDecisionReviews([]));
       getReferralRewardReviewQueue().then(setters.setReferralRewardReviewQueue).catch(() => setters.setReferralRewardReviewQueue([]));
+      getReferralRewardHandoffAuditReviewQueue().then(setters.setReferralRewardHandoffAuditReviewQueue).catch(() => setters.setReferralRewardHandoffAuditReviewQueue([]));
+      getApprovedReferralRewardHandoffAuditReviews().then(setters.setApprovedReferralRewardHandoffAuditReviews).catch(() => setters.setApprovedReferralRewardHandoffAuditReviews([]));
       getPartnerPerkInterestSummary().then(setters.setPartnerPerkSummary).catch(() => setters.setPartnerPerkSummary({}));
       getCommunityEventInterestSummary().then(setters.setCommunityEventInterestSummary).catch(() => setters.setCommunityEventInterestSummary({}));
       getCommunityEventReviewQueue().then(setters.setCommunityEventReviewQueue).catch(() => setters.setCommunityEventReviewQueue([]));

@@ -3,17 +3,27 @@ import {
   getReferralRewardReviewQueue,
   reviewReferralRewardClaim,
 } from '../userService';
+import { buildReferralRewardHandoffAuditReviewActionHandlers } from './referralRewardHandoffAuditReviewActionHandlers';
 
 export default function useReferralRewardActions({
+  approvedReferralRewardHandoffAuditReviews,
   isAdmin,
   isClaimingReferralReward,
+  isSubmittingReferralRewardHandoffAuditReview,
   profile,
   referralJoins,
+  referralRewardHandoffAuditReviewNotes,
   referralRewardReviewNotes,
+  reviewingReferralRewardHandoffAuditReviewId,
   reviewingReferralRewardClaimId,
+  setApprovedReferralRewardHandoffAuditReviews,
   setIsClaimingReferralReward,
+  setIsSubmittingReferralRewardHandoffAuditReview,
+  setReferralRewardHandoffAuditReviewMessage,
+  setReferralRewardHandoffAuditReviewQueue,
   setReferralRewardClaimMessage,
   setReferralRewardReviewQueue,
+  setReviewingReferralRewardHandoffAuditReviewId,
   setReviewingReferralRewardClaimId,
   unlockedReferralRewardTier,
   user,
@@ -60,8 +70,24 @@ export default function useReferralRewardActions({
     }
   };
 
+  const referralRewardHandoffAuditReviewHandlers = buildReferralRewardHandoffAuditReviewActionHandlers({
+    approvedReferralRewardHandoffAuditReviews,
+    isAdmin,
+    isSubmittingReferralRewardHandoffAuditReview,
+    profile,
+    referralRewardHandoffAuditReviewNotes,
+    reviewingReferralRewardHandoffAuditReviewId,
+    setApprovedReferralRewardHandoffAuditReviews,
+    setIsSubmittingReferralRewardHandoffAuditReview,
+    setReferralRewardHandoffAuditReviewMessage,
+    setReferralRewardHandoffAuditReviewQueue,
+    setReviewingReferralRewardHandoffAuditReviewId,
+    user,
+  });
+
   return {
     handleReferralRewardClaim,
     handleReferralRewardClaimReview,
+    ...referralRewardHandoffAuditReviewHandlers,
   };
 }

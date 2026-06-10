@@ -341,6 +341,43 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /referralRewardHandoffAuditReviews/{reviewId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.grantsPro == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.createsAffiliateRewards == false
+        && request.resource.data.writesReferralState == false
+        && request.resource.data.claimsFulfillment == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresMembers == false
+        && request.resource.data.keys().hasAll(["uid", "openClaimCount", "highestTierTarget", "referralJoins", "status", "manualReviewOnly", "grantsPro", "writesEntitlements", "createsPayouts", "createsPurchases", "createsAffiliateRewards", "writesReferralState", "claimsFulfillment", "hasTrackingPixels", "autoMessagesUsers", "scrapesMessages", "pressuresMembers"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.grantsPro == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.createsAffiliateRewards == false
+        && request.resource.data.writesReferralState == false
+        && request.resource.data.claimsFulfillment == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresMembers == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "manualReviewOnly", "grantsPro", "writesEntitlements", "createsPayouts", "createsPurchases", "createsDiscounts", "createsAffiliateRewards", "writesReferralState", "countsLinkOpens", "claimsFulfillment", "makesPaidAccessClaims", "hasTrackingPixels", "autoMessagesUsers", "scrapesMessages", "storesReplies", "promisesOutcomes", "impliesMedicalResults", "pressuresMembers", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Creator hosting applications ─────────────────────────────────────────
     // Creators can request review for hosted challenge readiness. Admins can
     // use reviewCreatorHostingApplication to update reviewNote, reviewedBy,
