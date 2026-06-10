@@ -24,6 +24,12 @@ export {
   submitCreatorBrandedPageDraft,
 } from './creatorBrandedPageService';
 export {
+  getApprovedCreatorPrivateInviteLaunches,
+  getCreatorPrivateInviteLaunchReviewQueue,
+  reviewCreatorPrivateInviteLaunch,
+  submitCreatorPrivateInviteLaunch,
+} from './creatorPrivateInviteLaunchService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,

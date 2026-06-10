@@ -22,6 +22,12 @@ export default function useCreatorRevenueState() {
   const [isSubmittingCreatorBrandedPage, setIsSubmittingCreatorBrandedPage] = useState(false);
   const [creatorBrandedPageReviewNotes, setCreatorBrandedPageReviewNotes] = useState({});
   const [reviewingCreatorBrandedPageId, setReviewingCreatorBrandedPageId] = useState('');
+  const [creatorPrivateInviteLaunchReviewQueue, setCreatorPrivateInviteLaunchReviewQueue] = useState([]);
+  const [approvedCreatorPrivateInviteLaunches, setApprovedCreatorPrivateInviteLaunches] = useState([]);
+  const [creatorPrivateInviteLaunchMessage, setCreatorPrivateInviteLaunchMessage] = useState('');
+  const [isSubmittingCreatorPrivateInviteLaunch, setIsSubmittingCreatorPrivateInviteLaunch] = useState(false);
+  const [creatorPrivateInviteLaunchReviewNotes, setCreatorPrivateInviteLaunchReviewNotes] = useState({});
+  const [reviewingCreatorPrivateInviteLaunchId, setReviewingCreatorPrivateInviteLaunchId] = useState('');
   const [creatorLeaderboardSnapshotReviewQueue, setCreatorLeaderboardSnapshotReviewQueue] = useState([]);
   const [publishedCreatorLeaderboardSnapshots, setPublishedCreatorLeaderboardSnapshots] = useState([]);
   const [creatorLeaderboardSnapshotMessage, setCreatorLeaderboardSnapshotMessage] = useState('');
@@ -34,6 +40,7 @@ export default function useCreatorRevenueState() {
   const [reviewingCreatorTemplateDraftId, setReviewingCreatorTemplateDraftId] = useState('');
 
   return {
+    approvedCreatorPrivateInviteLaunches,
     creatorBio,
     creatorCtaUrl,
     creatorEnabled,
@@ -43,6 +50,9 @@ export default function useCreatorRevenueState() {
     creatorBrandedPageMessage,
     creatorBrandedPageReviewNotes,
     creatorBrandedPageReviewQueue,
+    creatorPrivateInviteLaunchMessage,
+    creatorPrivateInviteLaunchReviewNotes,
+    creatorPrivateInviteLaunchReviewQueue,
     creatorMessage,
     creatorRevenueShareInterest,
     creatorRevenueShareSummary,
@@ -59,10 +69,12 @@ export default function useCreatorRevenueState() {
     isSavingCreator,
     isSubmittingCreatorBrandedPage,
     isSubmittingCreatorHostingApplication,
+    isSubmittingCreatorPrivateInviteLaunch,
     isSubmittingCreatorLeaderboardSnapshot,
     isSubmittingCreatorTemplateDraft,
     reviewingCreatorHostingApplicationId,
     reviewingCreatorBrandedPageId,
+    reviewingCreatorPrivateInviteLaunchId,
     reviewingCreatorLeaderboardSnapshotId,
     reviewingCreatorTemplateDraftId,
     setCreatorBio,
@@ -71,9 +83,13 @@ export default function useCreatorRevenueState() {
     setCreatorHostingApplicationMessage,
     setCreatorHostingApplicationReviewNotes,
     setCreatorHostingApplicationReviewQueue,
+    setApprovedCreatorPrivateInviteLaunches,
     setCreatorBrandedPageMessage,
     setCreatorBrandedPageReviewNotes,
     setCreatorBrandedPageReviewQueue,
+    setCreatorPrivateInviteLaunchMessage,
+    setCreatorPrivateInviteLaunchReviewNotes,
+    setCreatorPrivateInviteLaunchReviewQueue,
     setCreatorMessage,
     setCreatorRevenueShareInterest,
     setCreatorRevenueShareSummary,
@@ -90,10 +106,12 @@ export default function useCreatorRevenueState() {
     setIsSavingCreator,
     setIsSubmittingCreatorBrandedPage,
     setIsSubmittingCreatorHostingApplication,
+    setIsSubmittingCreatorPrivateInviteLaunch,
     setIsSubmittingCreatorLeaderboardSnapshot,
     setIsSubmittingCreatorTemplateDraft,
     setReviewingCreatorHostingApplicationId,
     setReviewingCreatorBrandedPageId,
+    setReviewingCreatorPrivateInviteLaunchId,
     setReviewingCreatorLeaderboardSnapshotId,
     setReviewingCreatorTemplateDraftId,
   };

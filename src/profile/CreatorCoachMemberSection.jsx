@@ -26,6 +26,7 @@ export default function CreatorCoachMemberSection({
   creatorLaunchLink,
   creatorMessage,
   creatorPrivateInviteCopy,
+  creatorPrivateInviteLaunchMessage,
   creatorTemplateDraftMessage,
   creatorAgreementPrepCopy,
   creatorSupportHandoffCopy,
@@ -37,12 +38,14 @@ export default function CreatorCoachMemberSection({
   handleCreatorHostingApplication,
   handleCreatorBrandedPageSubmit,
   handleCreatorLeaderboardSnapshotSubmit,
+  handleCreatorPrivateInviteLaunchSubmit,
   handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
   isSubmittingCreatorBrandedPage,
   isSubmittingCreatorHostingApplication,
   isSubmittingCreatorLeaderboardSnapshot,
+  isSubmittingCreatorPrivateInviteLaunch,
   isSubmittingCreatorTemplateDraft,
   proActive,
   setCreatorBio,
@@ -104,6 +107,22 @@ export default function CreatorCoachMemberSection({
         </button>
         {creatorBrandedPageMessage && (
           <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorBrandedPageMessage}</p>
+        )}
+      </div>
+      <div style={{ padding: 16, borderRadius: 12, background: 'rgba(251,191,36,0.07)', border: '1px solid rgba(251,191,36,0.18)', marginBottom: 14 }}>
+        <div style={{ color: '#FBBF24', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>PRIVATE CREATOR INVITE LAUNCH</div>
+        <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>
+          Save an app-first private challenge invite launch for admin review. It records private challenge readiness only; no auto-messaging, link-open tracking, payments, purchases, entitlements, revenue-share, or paid-hosting claims.
+        </p>
+        <button
+          onClick={handleCreatorPrivateInviteLaunchSubmit}
+          disabled={!proActive || !creatorEnabled || isSubmittingCreatorPrivateInviteLaunch}
+          style={{ border: 0, borderRadius: 9, padding: '10px 12px', background: '#FBBF24', color: '#1f1300', fontWeight: 900, fontSize: 11, cursor: 'pointer' }}
+        >
+          {isSubmittingCreatorPrivateInviteLaunch ? 'SAVING...' : 'SAVE PRIVATE INVITE FOR REVIEW'}
+        </button>
+        {creatorPrivateInviteLaunchMessage && (
+          <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorPrivateInviteLaunchMessage}</p>
         )}
       </div>
       <div style={{ padding: 16, borderRadius: 12, background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.18)', marginBottom: 14 }}>

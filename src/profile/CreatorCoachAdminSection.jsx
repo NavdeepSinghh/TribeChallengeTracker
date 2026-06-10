@@ -1,15 +1,18 @@
 import CreatorDemandSummaryCard from './CreatorDemandSummaryCard';
+import ApprovedCreatorPrivateInviteLaunchesSection from './ApprovedCreatorPrivateInviteLaunchesSection';
 import CreatorBrandedPageReviewSection from './CreatorBrandedPageReviewSection';
 import CreatorChallengeTemplateDraftReviewQueueSection from './CreatorChallengeTemplateDraftReviewQueueSection';
 import CreatorHostingDecisionReplyCard from './CreatorHostingDecisionReplyCard';
 import CreatorHostingReviewQueueSection from './CreatorHostingReviewQueueSection';
 import CreatorLeaderboardSnapshotReviewSection from './CreatorLeaderboardSnapshotReviewSection';
+import CreatorPrivateInviteLaunchReviewSection from './CreatorPrivateInviteLaunchReviewSection';
 import PublishedCreatorChallengeTemplateCatalogSection from './PublishedCreatorChallengeTemplateCatalogSection';
 import PublishedCreatorBrandedPagesSection from './PublishedCreatorBrandedPagesSection';
 import PublishedCreatorLeaderboardSnapshotsSection from './PublishedCreatorLeaderboardSnapshotsSection';
 
 export default function CreatorCoachAdminSection({
   creatorAnalytics,
+  approvedCreatorPrivateInviteLaunches,
   creatorBrandedPageReviewNotes,
   creatorBrandedPageReviewQueue,
   creatorHostingApplicationReviewNotes,
@@ -17,6 +20,8 @@ export default function CreatorCoachAdminSection({
   creatorHostingDecisionReplyCopy,
   creatorLeaderboardSnapshotReviewNotes,
   creatorLeaderboardSnapshotReviewQueue,
+  creatorPrivateInviteLaunchReviewNotes,
+  creatorPrivateInviteLaunchReviewQueue,
   creatorTemplateDraftReviewNotes,
   creatorTemplateDraftReviewQueue,
   creatorRevenueSharePitchCopy,
@@ -25,6 +30,7 @@ export default function CreatorCoachAdminSection({
   handleCreatorHostingApplicationReview,
   handleCreatorBrandedPageReview,
   handleCreatorLeaderboardSnapshotReview,
+  handleCreatorPrivateInviteLaunchReview,
   handleCreatorTemplateDraftReview,
   publishedCreatorChallengeTemplates,
   publishedCreatorBrandedPages,
@@ -32,10 +38,12 @@ export default function CreatorCoachAdminSection({
   reviewingCreatorHostingApplicationId,
   reviewingCreatorBrandedPageId,
   reviewingCreatorLeaderboardSnapshotId,
+  reviewingCreatorPrivateInviteLaunchId,
   reviewingCreatorTemplateDraftId,
   setCreatorHostingApplicationReviewNotes,
   setCreatorBrandedPageReviewNotes,
   setCreatorLeaderboardSnapshotReviewNotes,
+  setCreatorPrivateInviteLaunchReviewNotes,
   setCreatorTemplateDraftReviewNotes,
 }) {
   return (
@@ -71,6 +79,16 @@ export default function CreatorCoachAdminSection({
       />
       <PublishedCreatorBrandedPagesSection
         publishedCreatorBrandedPages={publishedCreatorBrandedPages}
+      />
+      <CreatorPrivateInviteLaunchReviewSection
+        creatorPrivateInviteLaunchReviewNotes={creatorPrivateInviteLaunchReviewNotes}
+        creatorPrivateInviteLaunchReviewQueue={creatorPrivateInviteLaunchReviewQueue}
+        handleCreatorPrivateInviteLaunchReview={handleCreatorPrivateInviteLaunchReview}
+        reviewingCreatorPrivateInviteLaunchId={reviewingCreatorPrivateInviteLaunchId}
+        setCreatorPrivateInviteLaunchReviewNotes={setCreatorPrivateInviteLaunchReviewNotes}
+      />
+      <ApprovedCreatorPrivateInviteLaunchesSection
+        approvedCreatorPrivateInviteLaunches={approvedCreatorPrivateInviteLaunches}
       />
       <CreatorLeaderboardSnapshotReviewSection
         creatorLeaderboardSnapshotReviewNotes={creatorLeaderboardSnapshotReviewNotes}

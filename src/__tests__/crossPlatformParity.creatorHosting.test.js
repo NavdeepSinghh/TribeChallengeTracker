@@ -348,6 +348,44 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps reviewable Private Creator Invite Launch records wired on all platforms without messaging, tracking, or paid-hosting side effects', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PRIVATE CREATOR INVITE LAUNCH');
+      expect(source).toContain('SAVE PRIVATE INVITE FOR REVIEW');
+      expect(source).toContain('creatorPrivateInviteLaunches');
+      expect(source).toContain('auto-messaging');
+      expect(source).toContain('link-open tracking');
+      expect(source).toContain('paid-hosting claims');
+    });
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PRIVATE CREATOR INVITE LAUNCH REVIEW QUEUE');
+      expect(source).toContain('APPROVED PRIVATE CREATOR INVITE LAUNCHES');
+      expect(source).toContain('APPROVE');
+      expect(source).toContain('NOT READY');
+    });
+    [webUserService, iosChallengeService, androidModels, androidRepository].forEach((source) => {
+      expect(source).toContain('CreatorPrivateInviteLaunch');
+      expect(source).toContain('privateChallengeCount');
+      expect(source).toContain('activePrivateChallengeCount');
+      expect(source).toContain('inviteChallengeName');
+      expect(source).toContain('inviteChallengeInviteCode');
+      expect(source).toContain('inviteReady');
+    });
+    [webUserService, iosChallengeService, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('creatorPrivateInviteLaunches');
+      expect(source).toContain('approved');
+      expect(source).toContain('waiting');
+      expect(source).toContain('not_ready');
+      expect(source).toContain('declined');
+    });
+    expect(firestoreRules).toContain('match /creatorPrivateInviteLaunches/{launchId}');
+    expect(firestoreRules).toContain('request.resource.data.isPublic == false');
+    expect(firestoreRules).toContain('request.resource.data.keys().hasAll(["uid", "privateChallengeCount", "inviteChallengeName", "inviteReady", "status", "isPublic"])');
+  });
+
   it('keeps Creator Hosting Application review wired across platforms without paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     const webUserService = readWebUserServiceContracts();

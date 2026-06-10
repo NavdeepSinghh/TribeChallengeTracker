@@ -20,17 +20,20 @@ export {
 } from './userServices/monetizationSupportService';
 export {
   claimPartnerPerk,
+  getApprovedCreatorPrivateInviteLaunches,
   getCampaignPerformanceSummary,
   getCommunityEventInterestSummary,
   getCreatorChallengeTemplateDraftReviewQueue,
   getCreatorBrandedPageReviewQueue,
   getCreatorHostingApplicationReviewQueue,
   getCreatorLeaderboardSnapshotReviewQueue,
+  getCreatorPrivateInviteLaunchReviewQueue,
   getCreatorRevenueShareSummary,
   getPartnerCampaignApplicationReviewQueue,
   getPartnerPerkClaimReviewQueue,
   getPartnerPerkClaims,
   getPartnerPerkInterestSummary,
+  getPublishedCreatorChallengeTemplates,
   getPublishedCreatorLeaderboardSnapshots,
   getPublishedCreatorBrandedPages,
   getProTrialInterestSummary,
@@ -38,6 +41,7 @@ export {
   reviewCreatorBrandedPage,
   reviewCreatorHostingApplication,
   reviewCreatorLeaderboardSnapshot,
+  reviewCreatorPrivateInviteLaunch,
   reviewPartnerCampaignApplication,
   reviewPartnerPerkClaim,
   saveCommunityEventInterest,
@@ -48,6 +52,7 @@ export {
   submitCreatorBrandedPageDraft,
   submitCreatorHostingApplication,
   submitCreatorLeaderboardSnapshot,
+  submitCreatorPrivateInviteLaunch,
   submitPartnerCampaignApplication,
 } from './userServices/creatorPartnerService';
 export {
