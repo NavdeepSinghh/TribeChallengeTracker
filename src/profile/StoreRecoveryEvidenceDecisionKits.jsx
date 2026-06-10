@@ -1,5 +1,6 @@
 import EntitlementRecoveryDecisionKit from './EntitlementRecoveryDecisionKit';
 import StoreTestEvidenceDecisionKit from './StoreTestEvidenceDecisionKit';
+import SupportRefundReadinessReviewKit from './SupportRefundReadinessReviewKit';
 
 export default function StoreRecoveryEvidenceDecisionKits({
   entitlementRecoveryDecisionReplyCopy,
@@ -21,6 +22,15 @@ export default function StoreRecoveryEvidenceDecisionKits({
   onReviewStoreTestEvidence = () => {},
   recordingStoreTestEvidenceId,
   reviewingStoreTestEvidenceId,
+  approvedSupportRefundReadinessReviews = [],
+  isSubmittingSupportRefundReadinessReview,
+  onSupportRefundReadinessReviewDecision = () => {},
+  onSupportRefundReadinessReviewSubmit = () => {},
+  reviewingSupportRefundReadinessReviewId,
+  setSupportRefundReadinessReviewNotes = () => {},
+  supportRefundReadinessReviewMessage,
+  supportRefundReadinessReviewNotes = {},
+  supportRefundReadinessReviewQueue = [],
 }) {
   return (
     <>
@@ -31,6 +41,17 @@ export default function StoreRecoveryEvidenceDecisionKits({
         onEntitlementRecoveryReview={onEntitlementRecoveryReview}
         reviewingEntitlementRecoveryRequestId={reviewingEntitlementRecoveryRequestId}
         setEntitlementRecoveryReviewNotes={setEntitlementRecoveryReviewNotes}
+      />
+      <SupportRefundReadinessReviewKit
+        approvedSupportRefundReadinessReviews={approvedSupportRefundReadinessReviews}
+        isSubmittingSupportRefundReadinessReview={isSubmittingSupportRefundReadinessReview}
+        onSupportRefundReadinessReviewDecision={onSupportRefundReadinessReviewDecision}
+        onSupportRefundReadinessReviewSubmit={onSupportRefundReadinessReviewSubmit}
+        reviewingSupportRefundReadinessReviewId={reviewingSupportRefundReadinessReviewId}
+        setSupportRefundReadinessReviewNotes={setSupportRefundReadinessReviewNotes}
+        supportRefundReadinessReviewMessage={supportRefundReadinessReviewMessage}
+        supportRefundReadinessReviewNotes={supportRefundReadinessReviewNotes}
+        supportRefundReadinessReviewQueue={supportRefundReadinessReviewQueue}
       />
       <StoreTestEvidenceDecisionKit
         isCheckingValidationReadiness={isCheckingValidationReadiness}

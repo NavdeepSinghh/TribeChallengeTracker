@@ -136,6 +136,45 @@ service cloud.firestore {
         && ["recorded", "reviewed", "archived"].hasAny([request.resource.data.status]);
     }
 
+    // ── Support refund readiness reviews ───────────────────────────────────
+    // Manual support/refund readiness evidence queue. These records summarize
+    // open support, entitlement recovery, and store evidence only. They never
+    // process refunds, cancel subscriptions, write entitlements, create
+    // purchases, collect payment details, bypass marketplace policy, or mark
+    // paid access live.
+    match /supportRefundReadinessReviews/{reviewId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "openSupportCount", "entitlementRecoveryCount", "storeEvidenceCount", "reviewScore", "status", "manualReviewOnly", "processesRefunds", "cancelsSubscriptions", "writesEntitlements", "createsPurchases", "bypassesMarketplacePolicy", "collectsPaymentDetails", "isPaidAccessLive"])
+        && request.resource.data.openSupportCount >= 0
+        && request.resource.data.entitlementRecoveryCount >= 0
+        && request.resource.data.storeEvidenceCount >= 0
+        && request.resource.data.reviewScore >= 0
+        && request.resource.data.reviewScore <= 100
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.cancelsSubscriptions == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.collectsPaymentDetails == false
+        && request.resource.data.isPaidAccessLive == false;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.cancelsSubscriptions == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.collectsPaymentDetails == false
+        && request.resource.data.isPaidAccessLive == false;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Feature submissions ─────────────────────────────────────────────────
     // Members can submit opt-in UGC for manual review. Featured submissions are
     // readable to authenticated members for Community Highlights; pending and

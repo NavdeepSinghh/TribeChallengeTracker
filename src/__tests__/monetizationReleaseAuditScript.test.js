@@ -273,6 +273,8 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('manual `communityEventReviews` admin evidence queues');
     expect(content).toContain('Customer Value Review Records are implemented across Web, iOS, and Android');
     expect(content).toContain('manual `customerValueReviews` admin evidence queues');
+    expect(content).toContain('Support Refund Readiness Review Records are implemented across Web, iOS, and Android');
+    expect(content).toContain('manual `supportRefundReadinessReviews` admin evidence queues');
     expect(content).toContain('Weekly Campaign Review Decision Reply Kit is implemented across Web, iOS, and Android');
     expect(content).toContain('copy-ready approved, waiting, not-ready, and declined weekly review replies');
     expect(content).toContain('crossPlatformParity.weeklyCampaignStoryFollowUp.test.js');

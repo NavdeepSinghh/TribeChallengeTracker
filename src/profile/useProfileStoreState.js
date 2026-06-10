@@ -15,8 +15,15 @@ export default function useProfileStoreState() {
   const [reviewingStoreTestEvidenceId, setReviewingStoreTestEvidenceId] = useState('');
   const [validationReadinessMessage, setValidationReadinessMessage] = useState('');
   const [isCheckingValidationReadiness, setIsCheckingValidationReadiness] = useState(false);
+  const [supportRefundReadinessReviewQueue, setSupportRefundReadinessReviewQueue] = useState([]);
+  const [approvedSupportRefundReadinessReviews, setApprovedSupportRefundReadinessReviews] = useState([]);
+  const [supportRefundReadinessReviewMessage, setSupportRefundReadinessReviewMessage] = useState('');
+  const [isSubmittingSupportRefundReadinessReview, setIsSubmittingSupportRefundReadinessReview] = useState(false);
+  const [supportRefundReadinessReviewNotes, setSupportRefundReadinessReviewNotes] = useState({});
+  const [reviewingSupportRefundReadinessReviewId, setReviewingSupportRefundReadinessReviewId] = useState('');
 
   return {
+    approvedSupportRefundReadinessReviews,
     checkoutMessage,
     checkoutProductId,
     entitlementRecoveryMessage,
@@ -24,9 +31,12 @@ export default function useProfileStoreState() {
     entitlementRecoveryReviewQueue,
     isCheckingValidationReadiness,
     isRequestingEntitlementRecovery,
+    isSubmittingSupportRefundReadinessReview,
     recordingStoreTestEvidenceId,
     reviewingEntitlementRecoveryRequestId,
+    reviewingSupportRefundReadinessReviewId,
     reviewingStoreTestEvidenceId,
+    setApprovedSupportRefundReadinessReviews,
     setCheckoutMessage,
     setCheckoutProductId,
     setEntitlementRecoveryMessage,
@@ -34,16 +44,24 @@ export default function useProfileStoreState() {
     setEntitlementRecoveryReviewQueue,
     setIsCheckingValidationReadiness,
     setIsRequestingEntitlementRecovery,
+    setIsSubmittingSupportRefundReadinessReview,
     setRecordingStoreTestEvidenceId,
     setReviewingEntitlementRecoveryRequestId,
+    setReviewingSupportRefundReadinessReviewId,
     setReviewingStoreTestEvidenceId,
     setStoreTestEvidenceLog,
     setStoreTestEvidenceMessage,
     setStoreTestEvidenceReviewNotes,
+    setSupportRefundReadinessReviewMessage,
+    setSupportRefundReadinessReviewNotes,
+    setSupportRefundReadinessReviewQueue,
     setValidationReadinessMessage,
     storeTestEvidenceLog,
     storeTestEvidenceMessage,
     storeTestEvidenceReviewNotes,
+    supportRefundReadinessReviewMessage,
+    supportRefundReadinessReviewNotes,
+    supportRefundReadinessReviewQueue,
     validationReadinessMessage,
   };
 }

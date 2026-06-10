@@ -1,7 +1,14 @@
 const {
+  fs,
+  path,
+  repoRoot,
+  iosChallengeService,
   iosProfile,
+  androidRepository,
+  androidModels,
   androidApp,
   readWebProfileContracts,
+  readWebUserServiceContracts,
 } = require('../testUtils/crossPlatformParityFixtures');
 
 
@@ -50,5 +57,49 @@ describe('cross-platform support and billing parity source checks', () => {
       expect(source).toContain('scrape/store DMs');
       expect(source).toContain('pressure members');
     });
+  });
+
+  it('keeps Support Refund Readiness Review Records wired on all platforms as manual evidence only', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    const uiSources = [webProfile, iosProfile, androidApp];
+    const serviceSources = [webUserService, iosChallengeService, androidRepository, firestoreRules];
+    const modelSources = [iosChallengeService, androidModels];
+    const labels = [
+      'SUPPORT REFUND READINESS REVIEW RECORD',
+      'SAVE SUPPORT READINESS REVIEW',
+      'SUPPORT REFUND READINESS REVIEW QUEUE',
+      'APPROVED SUPPORT REFUND READINESS REVIEWS',
+    ];
+    const guardrails = [
+      'manualReviewOnly',
+      'processesRefunds',
+      'cancelsSubscriptions',
+      'writesEntitlements',
+      'createsPurchases',
+      'bypassesMarketplacePolicy',
+      'collectsPaymentDetails',
+      'isPaidAccessLive',
+    ];
+
+    uiSources.forEach((source) => {
+      labels.forEach(label => expect(source).toContain(label));
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    serviceSources.forEach((source) => {
+      expect(source).toContain('supportRefundReadinessReviews');
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    modelSources.forEach((source) => {
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    expect(webUserService).toContain('submitSupportRefundReadinessReview');
+    expect(webUserService).toContain('reviewSupportRefundReadinessReview');
+    expect(iosChallengeService).toContain('submitSupportRefundReadinessReview');
+    expect(iosChallengeService).toContain('reviewSupportRefundReadinessReview');
+    expect(androidRepository).toContain('submitSupportRefundReadinessReview');
+    expect(androidRepository).toContain('reviewSupportRefundReadinessReview');
+    expect(firestoreRules).toContain('match /supportRefundReadinessReviews/{reviewId}');
   });
 });
