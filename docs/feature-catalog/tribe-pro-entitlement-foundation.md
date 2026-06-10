@@ -85,6 +85,7 @@ Shared behavior:
 - Admin profiles include a Partner Perk Fulfillment Readiness Kit with Manual readiness checks, Open perk claims, `Verify the claim was written from first-party eligibility progress only`, support owner, and destination safety copy before any partner fulfillment exists.
 - Admin profiles include a Partner Perk Fulfillment Handoff Kit with manual approved-claim handoff notes before any partner fulfillment exists.
 - Admin profiles include a Partner Perk Handoff Audit Kit with aggregate-only support outcome checks after manual approved-claim handoff.
+- Admin profiles include a Partner Perk Handoff Audit Decision Reply Kit with approved, waiting, not-ready, and declined manual audit handoff replies before any partner fulfillment exists.
 - Admin profiles include a Partner Perk Admin Decision Reply Kit with approved, waiting, not-ready, and declined manual claim replies before any partner fulfillment exists.
 - Admin profiles can update partner perk claims to `approved`, `waiting`, `not_ready`, or `declined` with `reviewNote`, `reviewedBy`, and `reviewedAt`; member claim history shows the status and review note.
 - Admin profiles include a sponsor reporting foundation that counts saved partner perk interest by category.

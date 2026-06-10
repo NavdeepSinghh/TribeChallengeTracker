@@ -7,7 +7,9 @@ export function buildProfilePartnerDerivedData({
   daysActive,
   partnerCampaignApplicationReviewQueue,
   partnerPerkClaimReviewQueue,
+  partnerPerkHandoffAuditReviewQueue,
   partnerPerkSummary,
+  approvedPartnerPerkHandoffAuditReviews,
   selectedPartnerPerkIds,
   referralJoins,
 }) {
@@ -38,6 +40,7 @@ export function buildProfilePartnerDerivedData({
     partnerPerkFulfillmentReadinessCopy,
     partnerPerkFulfillmentHandoffCopy,
     partnerPerkHandoffAuditCopy,
+    partnerPerkHandoffAuditDecisionReplyCopy,
     partnerPerkDecisionReplyCopy,
     partnerCampaignObjectionReplyCopy,
     partnerCampaignDecisionReplyCopy,
@@ -48,6 +51,8 @@ export function buildProfilePartnerDerivedData({
     referralJoins,
     partnerPerkClaimReviewQueue,
     partnerCampaignApplicationReviewQueue,
+    partnerPerkHandoffAuditReviewQueue,
+    approvedPartnerPerkHandoffAuditReviews,
   });
 
   return {
@@ -63,6 +68,7 @@ export function buildProfilePartnerDerivedData({
     partnerPerkFulfillmentHandoffCopy,
     partnerPerkFulfillmentReadinessCopy,
     partnerPerkHandoffAuditCopy,
+    partnerPerkHandoffAuditDecisionReplyCopy,
     partnerPerkStats,
     partnerPitchCopy,
     partnerTermsReadinessCopy,

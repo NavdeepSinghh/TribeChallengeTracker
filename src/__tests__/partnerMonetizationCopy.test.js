@@ -8,6 +8,8 @@ describe('partner monetization copy contracts', () => {
       },
       partnerCampaignApplicationReviewQueue: [{ id: 'partner-app-1' }],
       partnerDemandTotal: 8,
+      partnerPerkHandoffAuditReviewQueue: [{ id: 'audit-1' }],
+      approvedPartnerPerkHandoffAuditReviews: [{ id: 'audit-approved-1' }],
       partnerPerkClaimReviewQueue: [{ id: 'claim-1' }, { id: 'claim-2' }],
       referralJoins: 5,
       topPartnerPerk: {
@@ -33,6 +35,10 @@ describe('partner monetization copy contracts', () => {
     expect(copy.partnerPerkFulfillmentHandoffCopy).toContain('no-promise handoff note');
     expect(copy.partnerPerkHandoffAuditCopy).toContain('Partner Perk Handoff Audit Kit');
     expect(copy.partnerPerkHandoffAuditCopy).toContain('Record only aggregate support outcomes');
+    expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('Partner Perk Handoff Audit Decision Reply Kit');
+    expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('Open partner perk handoff audit records: 1');
+    expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('APPROVED FOR MANUAL HANDOFF');
+    expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('Do not create coupons');
     expect(copy.partnerPerkDecisionReplyCopy).toContain('Partner Perk Admin Decision Reply Kit');
     expect(copy.partnerPerkDecisionReplyCopy).toContain('WAITING ON PARTNER TERMS');
     expect(copy.partnerCampaignObjectionReplyCopy).toContain('Partner Campaign Objection Reply Kit');

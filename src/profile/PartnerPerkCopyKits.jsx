@@ -7,6 +7,7 @@ export default function PartnerPerkCopyKits({
   partnerPerkFulfillmentHandoffCopy,
   partnerPerkFulfillmentReadinessCopy,
   partnerPerkHandoffAuditCopy,
+  partnerPerkHandoffAuditDecisionReplyCopy,
 }) {
   return (
     <>
@@ -41,6 +42,14 @@ export default function PartnerPerkCopyKits({
         body="Copy manual audit checks after perk handoff so support outcomes stay aggregate-only before coupons, partner links, payouts, discounts, purchases, entitlements, refunds, or fulfillment promises exist."
         buttonLabel="COPY PERK AUDIT KIT"
         copyText={partnerPerkHandoffAuditCopy}
+      />
+      <CopyOnlyCard
+        accent="#BBF7D0"
+        title="PARTNER PERK HANDOFF AUDIT DECISION REPLY KIT"
+        status={{ label: 'COPY ONLY', color: hasClaims ? '#BBF7D0' : '#777' }}
+        body="Copy approved, waiting, not-ready, and declined replies for manual audit handoff decisions without coupons, partner links, payouts, discounts, purchases, entitlements, tracking, refunds, or fulfillment promises."
+        buttonLabel="COPY PERK AUDIT DECISION REPLIES"
+        copyText={partnerPerkHandoffAuditDecisionReplyCopy}
       />
     </>
   );
