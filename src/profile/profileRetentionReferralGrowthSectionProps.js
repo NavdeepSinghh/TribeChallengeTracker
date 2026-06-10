@@ -40,6 +40,7 @@ export function buildReferralRewardsSectionProps({
   referralLaunchCopy,
   referralRewardClaimMessage,
   referralRewardDecisionReplyCopy,
+  referralRewardHandoffAuditDecisionReplyCopy,
   referralRewardHandoffAuditReviewMessage,
   referralRewardHandoffAuditReviewNotes,
   referralRewardHandoffAuditReviewQueue,
@@ -80,6 +81,7 @@ export function buildReferralRewardsSectionProps({
     onReferralRewardHandoffAuditReviewDecision: handleReferralRewardHandoffAuditReviewDecision,
     onReferralRewardHandoffAuditReviewSubmit: handleReferralRewardHandoffAuditReviewSubmit,
     referralRewardDecisionReplyCopy,
+    referralRewardHandoffAuditDecisionReplyCopy,
     copyText,
   };
 }

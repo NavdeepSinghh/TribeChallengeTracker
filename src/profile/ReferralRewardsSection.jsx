@@ -30,6 +30,7 @@ export default function ReferralRewardsSection({
   onReferralRewardHandoffAuditReviewDecision,
   onReferralRewardHandoffAuditReviewSubmit,
   referralRewardDecisionReplyCopy,
+  referralRewardHandoffAuditDecisionReplyCopy,
   copyText,
 }) {
   return (
@@ -75,9 +76,11 @@ export default function ReferralRewardsSection({
           />
           <ReferralRewardHandoffAuditReviewCard
             approvedReferralRewardHandoffAuditReviews={approvedReferralRewardHandoffAuditReviews}
+            copyText={copyText}
             isSubmittingReferralRewardHandoffAuditReview={isSubmittingReferralRewardHandoffAuditReview}
             onDecision={onReferralRewardHandoffAuditReviewDecision}
             onSubmit={onReferralRewardHandoffAuditReviewSubmit}
+            referralRewardHandoffAuditDecisionReplyCopy={referralRewardHandoffAuditDecisionReplyCopy}
             referralRewardHandoffAuditReviewMessage={referralRewardHandoffAuditReviewMessage}
             referralRewardHandoffAuditReviewNotes={referralRewardHandoffAuditReviewNotes}
             referralRewardHandoffAuditReviewQueue={referralRewardHandoffAuditReviewQueue}

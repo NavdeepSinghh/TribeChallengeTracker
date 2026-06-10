@@ -5,6 +5,8 @@ export function buildReferralRewardCopy({
   currentStreak,
   daysActive,
   unlockedReferralRewardTier,
+  referralRewardHandoffAuditReviewQueue = [],
+  approvedReferralRewardHandoffAuditReviews = [],
   referralRewardReviewQueue,
 }) {
   const referralLaunchCopy = referralState.next
@@ -38,10 +40,30 @@ DECLINED FOR NOW: We cannot move this referral reward claim forward right now. T
 
 This is a manual Referral Reward Decision Reply Kit only. Do not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise outcomes, imply medical results, scrape DMs, store inbound replies, add tracking pixels, auto-message users, or pressure members.`;
 
+  const referralRewardHandoffAuditDecisionReplyCopy = `Rise With The Tribe Referral Reward Handoff Audit Decision Reply Kit:
+
+Open referral reward handoff audit records: ${referralRewardHandoffAuditReviewQueue.length}
+Approved manual audit records: ${approvedReferralRewardHandoffAuditReviews.length}
+Referral reward claims waiting: ${referralRewardReviewQueue.length}
+Referral progress: ${referralJoins} attributed challenge joins
+Highest unlocked tier: ${unlockedReferralRewardTier?.label || 'None yet'}
+
+Manual audit decision replies:
+APPROVED FOR MANUAL HANDOFF: This referral reward handoff audit is approved for manual follow-up. Keep recognition copy first-party, support-safe, and no-promise while Pro grants, entitlements, challenge-pack unlocks, payouts, purchases, discounts, affiliate rewards, and fulfillment claims stay off.
+
+WAITING ON HANDOFF REVIEW: This referral reward handoff audit is waiting on manual review. Confirm claim status, tier evidence, support context, and recognition wording before any public thank-you or future perk conversation continues.
+
+NOT READY FOR HANDOFF: This referral reward handoff audit is not ready yet. Resolve duplicate or unclear referral activity, missing support context, unsafe fulfillment expectations, or first-party evidence gaps before moving forward.
+
+DECLINED FOR HANDOFF: This referral reward handoff audit is declined for now. Keep the decision grounded in first-party referral evidence, claim review notes, support boundaries, and no-pressure member communication.
+
+This is a manual Referral Reward Handoff Audit Decision Reply Kit only. Do not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise outcomes, imply medical results, scrape DMs, store inbound replies, add tracking pixels, auto-message users, or pressure members.`;
+
   return {
     referralLaunchCopy,
     referralStorySprintCopy,
     referralRewardSocialProofCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardHandoffAuditDecisionReplyCopy,
   };
 }

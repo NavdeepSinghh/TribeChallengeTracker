@@ -12,6 +12,8 @@ export function buildProfileCommunityReferralDerivedData({
   featureReviewQueue,
   featuredSubmissions,
   profile,
+  approvedReferralRewardHandoffAuditReviews,
+  referralRewardHandoffAuditReviewQueue,
   referralRewardReviewQueue,
   totalWinPoints,
   weeklyCampaignPrompt,
@@ -24,6 +26,7 @@ export function buildProfileCommunityReferralDerivedData({
     referralStorySprintCopy,
     referralRewardSocialProofCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardHandoffAuditDecisionReplyCopy,
   } = buildReferralRewardCopy({
     referralState,
     referralJoins,
@@ -31,6 +34,8 @@ export function buildProfileCommunityReferralDerivedData({
     currentStreak,
     daysActive,
     unlockedReferralRewardTier,
+    approvedReferralRewardHandoffAuditReviews,
+    referralRewardHandoffAuditReviewQueue,
     referralRewardReviewQueue,
   });
   const communityHighlightRoundupItems = featuredSubmissions.slice(0, 4);
@@ -50,6 +55,7 @@ export function buildProfileCommunityReferralDerivedData({
     referralJoins,
     referralLaunchCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardHandoffAuditDecisionReplyCopy,
     referralRewardSocialProofCopy,
     referralState,
     referralStorySprintCopy,

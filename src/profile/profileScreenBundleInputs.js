@@ -25,6 +25,8 @@ export function buildProfileCommunityReferralBundleInputs({
   featuredSubmissions,
   profile,
   referralRewardReviewQueue,
+  approvedReferralRewardHandoffAuditReviews,
+  referralRewardHandoffAuditReviewQueue,
   totalWinPoints,
   weeklyCampaignPrompt,
 }) {
@@ -35,6 +37,8 @@ export function buildProfileCommunityReferralBundleInputs({
     featuredSubmissions,
     profile,
     referralRewardReviewQueue,
+    approvedReferralRewardHandoffAuditReviews,
+    referralRewardHandoffAuditReviewQueue,
     totalWinPoints,
     weeklyCampaignPrompt,
   };

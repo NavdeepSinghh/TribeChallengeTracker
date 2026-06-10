@@ -147,4 +147,30 @@ describe('cross-platform referral rewards parity source checks', () => {
     expect(androidViewModel).toContain('submitReferralRewardHandoffAuditReview');
     expect(androidViewModel).toContain('reviewReferralRewardHandoffAuditReview');
   });
+
+  it('keeps Referral Reward Handoff Audit Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('REFERRAL REWARD HANDOFF AUDIT DECISION REPLY KIT');
+      expect(source).toContain('COPY REFERRAL AUDIT DECISION REPLIES');
+      expect(source).toContain('Referral Reward Handoff Audit Decision Reply Kit');
+      expect(source).toContain('APPROVED FOR MANUAL HANDOFF');
+      expect(source).toContain('WAITING ON HANDOFF REVIEW');
+      expect(source).toContain('NOT READY FOR HANDOFF');
+      expect(source).toContain('DECLINED FOR HANDOFF');
+      expect(source).toContain('Do not grant Pro');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('unlock challenge packs');
+      expect(source).toContain('create discounts');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('create affiliate rewards');
+      expect(source).toContain('write referral state');
+      expect(source).toContain('count link opens');
+      expect(source).toContain('claim fulfillment');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure members');
+    });
+  });
 });

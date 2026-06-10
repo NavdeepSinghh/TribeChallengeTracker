@@ -1,8 +1,10 @@
 export default function ReferralRewardHandoffAuditReviewCard({
   approvedReferralRewardHandoffAuditReviews = [],
+  copyText = () => {},
   isSubmittingReferralRewardHandoffAuditReview,
   onDecision = () => {},
   onSubmit = () => {},
+  referralRewardHandoffAuditDecisionReplyCopy = '',
   referralRewardHandoffAuditReviewMessage,
   referralRewardHandoffAuditReviewNotes = {},
   referralRewardHandoffAuditReviewQueue = [],
@@ -69,6 +71,24 @@ export default function ReferralRewardHandoffAuditReviewCard({
       ))}
       <div style={{ color: '#777', fontSize: 11, marginTop: 8 }}>
         {approvedReferralRewardHandoffAuditReviews.length} approved manual records. Approved records still do not grant Pro, write entitlements, create payouts, purchases, discounts, affiliate rewards, referral state, tracking, auto-messages, scraped replies, fulfillment claims, or pressure.
+      </div>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 10, paddingTop: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'flex-start' }}>
+          <div>
+            <div style={{ color: '#5EEAD4', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>REFERRAL REWARD HANDOFF AUDIT DECISION REPLY KIT</div>
+            <div style={{ color: '#aaa', fontSize: 11, marginTop: 4 }}>
+              Copy approved, waiting, not-ready, and declined audit handoff replies without granting Pro, writing entitlements, unlocking packs, creating payouts, purchases, discounts, affiliate rewards, referral-state writes, link-open counts, tracking, fulfillment claims, auto-messages, scraped replies, or pressure.
+            </div>
+          </div>
+          <span style={{ color: referralRewardHandoffAuditReviewQueue.length ? '#5EEAD4' : '#777', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>COPY ONLY</span>
+        </div>
+        <button
+          type="button"
+          onClick={() => copyText(referralRewardHandoffAuditDecisionReplyCopy, 'Referral audit decision replies copied')}
+          style={{ marginTop: 10, width: '100%', border: '1px solid rgba(45,212,191,0.24)', background: 'rgba(45,212,191,0.11)', color: '#99F6E4', borderRadius: 8, padding: '8px 10px', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}
+        >
+          COPY REFERRAL AUDIT DECISION REPLIES
+        </button>
       </div>
     </div>
   );

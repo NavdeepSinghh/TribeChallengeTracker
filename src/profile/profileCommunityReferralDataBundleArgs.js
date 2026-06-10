@@ -4,6 +4,8 @@ export function buildProfileCommunityReferralDataBundleArgs({
   featureReviewQueue,
   featuredSubmissions,
   profile,
+  approvedReferralRewardHandoffAuditReviews,
+  referralRewardHandoffAuditReviewQueue,
   referralRewardReviewQueue,
   totalWinPoints,
 }, { weeklyCampaignPrompt }) {
@@ -13,6 +15,8 @@ export function buildProfileCommunityReferralDataBundleArgs({
     featureReviewQueue,
     featuredSubmissions,
     profile,
+    approvedReferralRewardHandoffAuditReviews,
+    referralRewardHandoffAuditReviewQueue,
     referralRewardReviewQueue,
     totalWinPoints,
     weeklyCampaignPrompt,

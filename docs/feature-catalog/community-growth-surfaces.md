@@ -53,6 +53,7 @@ Shared behavior:
 - Profile surfaces show a Referral Story Sprint Kit that turns next-tier referral progress into a copy-ready Story/Reel invite around one accountability partner.
 - Profile surfaces show a Referral Reward Social Proof Kit that turns unlocked referral reward progress into copy-ready Story/carousel celebration copy.
 - Admin profile surfaces show a Referral Reward Decision Reply Kit that turns open referral reward claims into copy-ready approved/waiting/not-ready/declined manual replies.
+- Admin profile surfaces show a Referral Reward Handoff Audit Decision Reply Kit that turns manual referral audit records into copy-ready approved/waiting/not-ready/declined replies before any reward fulfillment, Pro grant, entitlement, payout, or referral-state change exists.
 
 Release checks:
 
@@ -64,3 +65,4 @@ Release checks:
 - Referral Story Sprint Kit copy must use first-party progress and referral tier state only; it must not count link opens, grant rewards, write referral state, create payouts, create affiliate rewards, unlock entitlements, imply paid access is live, promise outcomes, or imply medical results.
 - Referral Reward Social Proof Kit copy must use first-party referral progress only; it must not grant rewards, write referral state, create payouts, create affiliate rewards, unlock entitlements, imply paid access is live, promise outcomes, imply medical results, or claim fulfillment before admin review.
 - Referral Reward Decision Reply Kit must be copy-only/manual UI and must not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise outcomes, imply medical results, scrape/store DMs or replies, add tracking pixels, auto-message users, or pressure members.
+- Referral Reward Handoff Audit Decision Reply Kit must be copy-only/manual UI and must not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise outcomes, imply medical results, scrape/store DMs or replies, add tracking pixels, auto-message users, or pressure members.
