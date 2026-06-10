@@ -16,6 +16,7 @@ import {
   getCreatorRevenueShareSummary,
   getEntitlementRecoveryReviewQueue,
   getApprovedSupportRefundReadinessReviews,
+  getApprovedStoreReviewResponseReviews,
   getFeaturedSubmissions,
   getFeatureReviewQueue,
   getFeatureSubmissions,
@@ -38,6 +39,7 @@ import {
   getReferralRewardReviewQueue,
   getStoreTestPurchaseEvidenceLog,
   getSupportRefundReadinessReviewQueue,
+  getStoreReviewResponseReviewQueue,
   getSupportReviewQueue,
   getUserChallengePoints,
   getUserProfile,
@@ -74,6 +76,8 @@ export function loadProfileScreenData(userUid, setters) {
       getStoreTestPurchaseEvidenceLog().then(setters.setStoreTestEvidenceLog).catch(() => setters.setStoreTestEvidenceLog([]));
       getSupportRefundReadinessReviewQueue().then(setters.setSupportRefundReadinessReviewQueue).catch(() => setters.setSupportRefundReadinessReviewQueue([]));
       getApprovedSupportRefundReadinessReviews().then(setters.setApprovedSupportRefundReadinessReviews).catch(() => setters.setApprovedSupportRefundReadinessReviews([]));
+      getStoreReviewResponseReviewQueue().then(setters.setStoreReviewResponseReviewQueue).catch(() => setters.setStoreReviewResponseReviewQueue([]));
+      getApprovedStoreReviewResponseReviews().then(setters.setApprovedStoreReviewResponseReviews).catch(() => setters.setApprovedStoreReviewResponseReviews([]));
       getReferralRewardReviewQueue().then(setters.setReferralRewardReviewQueue).catch(() => setters.setReferralRewardReviewQueue([]));
       getPartnerPerkInterestSummary().then(setters.setPartnerPerkSummary).catch(() => setters.setPartnerPerkSummary({}));
       getCommunityEventInterestSummary().then(setters.setCommunityEventInterestSummary).catch(() => setters.setCommunityEventInterestSummary({}));

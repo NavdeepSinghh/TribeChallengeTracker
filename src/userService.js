@@ -8,8 +8,10 @@ export {
   getAccountDeletionReviewQueue,
   getEntitlementRecoveryReviewQueue,
   getApprovedSupportRefundReadinessReviews,
+  getApprovedStoreReviewResponseReviews,
   getStoreTestPurchaseEvidenceLog,
   getSupportRefundReadinessReviewQueue,
+  getStoreReviewResponseReviewQueue,
   getSupportReviewQueue,
   recordStoreTestPurchaseEvidence,
   requestAccountDeletion,
@@ -17,9 +19,11 @@ export {
   reviewAccountDeletionRequest,
   reviewEntitlementRecoveryRequest,
   reviewStoreTestPurchaseEvidence,
+  reviewStoreReviewResponseReview,
   reviewSupportRefundReadinessReview,
   reviewSupportRequest,
   submitSupportRefundReadinessReview,
+  submitStoreReviewResponseReview,
   submitSupportRequest,
 } from './userServices/monetizationSupportService';
 export {

@@ -21,8 +21,15 @@ export default function useProfileStoreState() {
   const [isSubmittingSupportRefundReadinessReview, setIsSubmittingSupportRefundReadinessReview] = useState(false);
   const [supportRefundReadinessReviewNotes, setSupportRefundReadinessReviewNotes] = useState({});
   const [reviewingSupportRefundReadinessReviewId, setReviewingSupportRefundReadinessReviewId] = useState('');
+  const [storeReviewResponseReviewQueue, setStoreReviewResponseReviewQueue] = useState([]);
+  const [approvedStoreReviewResponseReviews, setApprovedStoreReviewResponseReviews] = useState([]);
+  const [storeReviewResponseReviewMessage, setStoreReviewResponseReviewMessage] = useState('');
+  const [isSubmittingStoreReviewResponseReview, setIsSubmittingStoreReviewResponseReview] = useState(false);
+  const [storeReviewResponseReviewNotes, setStoreReviewResponseReviewNotes] = useState({});
+  const [reviewingStoreReviewResponseReviewId, setReviewingStoreReviewResponseReviewId] = useState('');
 
   return {
+    approvedStoreReviewResponseReviews,
     approvedSupportRefundReadinessReviews,
     checkoutMessage,
     checkoutProductId,
@@ -31,11 +38,14 @@ export default function useProfileStoreState() {
     entitlementRecoveryReviewQueue,
     isCheckingValidationReadiness,
     isRequestingEntitlementRecovery,
+    isSubmittingStoreReviewResponseReview,
     isSubmittingSupportRefundReadinessReview,
     recordingStoreTestEvidenceId,
     reviewingEntitlementRecoveryRequestId,
+    reviewingStoreReviewResponseReviewId,
     reviewingSupportRefundReadinessReviewId,
     reviewingStoreTestEvidenceId,
+    setApprovedStoreReviewResponseReviews,
     setApprovedSupportRefundReadinessReviews,
     setCheckoutMessage,
     setCheckoutProductId,
@@ -44,14 +54,19 @@ export default function useProfileStoreState() {
     setEntitlementRecoveryReviewQueue,
     setIsCheckingValidationReadiness,
     setIsRequestingEntitlementRecovery,
+    setIsSubmittingStoreReviewResponseReview,
     setIsSubmittingSupportRefundReadinessReview,
     setRecordingStoreTestEvidenceId,
     setReviewingEntitlementRecoveryRequestId,
+    setReviewingStoreReviewResponseReviewId,
     setReviewingSupportRefundReadinessReviewId,
     setReviewingStoreTestEvidenceId,
     setStoreTestEvidenceLog,
     setStoreTestEvidenceMessage,
     setStoreTestEvidenceReviewNotes,
+    setStoreReviewResponseReviewMessage,
+    setStoreReviewResponseReviewNotes,
+    setStoreReviewResponseReviewQueue,
     setSupportRefundReadinessReviewMessage,
     setSupportRefundReadinessReviewNotes,
     setSupportRefundReadinessReviewQueue,
@@ -59,6 +74,9 @@ export default function useProfileStoreState() {
     storeTestEvidenceLog,
     storeTestEvidenceMessage,
     storeTestEvidenceReviewNotes,
+    storeReviewResponseReviewMessage,
+    storeReviewResponseReviewNotes,
+    storeReviewResponseReviewQueue,
     supportRefundReadinessReviewMessage,
     supportRefundReadinessReviewNotes,
     supportRefundReadinessReviewQueue,

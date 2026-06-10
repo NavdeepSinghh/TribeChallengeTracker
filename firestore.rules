@@ -175,6 +175,58 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    // ── Store review response reviews ──────────────────────────────────────
+    // Manual App Review / Play review response readiness evidence. These
+    // records summarize current evidence and support coverage only. They never
+    // submit store review, expose private user data, include secrets, unlock
+    // paid access, write entitlements, create purchases, process refunds, claim
+    // review approval, mark paid access live, add tracking pixels, scrape
+    // messages, or bypass marketplace policy.
+    match /storeReviewResponseReviews/{reviewId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "storeEvidenceCount", "openSupportCount", "entitlementRecoveryCount", "policyLinkCount", "productCount", "reviewScore", "status", "manualReviewOnly", "submitsStoreReview", "bypassesMarketplacePolicy", "exposesPrivateUserData", "includesSecrets", "unlocksPaidAccess", "writesEntitlements", "createsPurchases", "processesRefunds", "claimsReviewApproval", "isPaidAccessLive", "hasTrackingPixels", "scrapesMessages"])
+        && request.resource.data.storeEvidenceCount >= 0
+        && request.resource.data.openSupportCount >= 0
+        && request.resource.data.entitlementRecoveryCount >= 0
+        && request.resource.data.policyLinkCount >= 0
+        && request.resource.data.productCount >= 0
+        && request.resource.data.reviewScore >= 0
+        && request.resource.data.reviewScore <= 100
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.submitsStoreReview == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.exposesPrivateUserData == false
+        && request.resource.data.includesSecrets == false
+        && request.resource.data.unlocksPaidAccess == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.claimsReviewApproval == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.scrapesMessages == false;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.submitsStoreReview == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.exposesPrivateUserData == false
+        && request.resource.data.includesSecrets == false
+        && request.resource.data.unlocksPaidAccess == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.claimsReviewApproval == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.scrapesMessages == false;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Feature submissions ─────────────────────────────────────────────────
     // Members can submit opt-in UGC for manual review. Featured submissions are
     // readable to authenticated members for Community Highlights; pending and

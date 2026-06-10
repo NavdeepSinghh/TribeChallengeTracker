@@ -1,4 +1,5 @@
 import EntitlementRecoveryDecisionKit from './EntitlementRecoveryDecisionKit';
+import StoreReviewResponseReviewKit from './StoreReviewResponseReviewKit';
 import StoreTestEvidenceDecisionKit from './StoreTestEvidenceDecisionKit';
 import SupportRefundReadinessReviewKit from './SupportRefundReadinessReviewKit';
 
@@ -22,6 +23,15 @@ export default function StoreRecoveryEvidenceDecisionKits({
   onReviewStoreTestEvidence = () => {},
   recordingStoreTestEvidenceId,
   reviewingStoreTestEvidenceId,
+  approvedStoreReviewResponseReviews = [],
+  isSubmittingStoreReviewResponseReview,
+  onStoreReviewResponseReviewDecision = () => {},
+  onStoreReviewResponseReviewSubmit = () => {},
+  reviewingStoreReviewResponseReviewId,
+  setStoreReviewResponseReviewNotes = () => {},
+  storeReviewResponseReviewMessage,
+  storeReviewResponseReviewNotes = {},
+  storeReviewResponseReviewQueue = [],
   approvedSupportRefundReadinessReviews = [],
   isSubmittingSupportRefundReadinessReview,
   onSupportRefundReadinessReviewDecision = () => {},
@@ -67,6 +77,17 @@ export default function StoreRecoveryEvidenceDecisionKits({
         storeTestEvidenceMessage={storeTestEvidenceMessage}
         storeTestEvidenceReviewNotes={storeTestEvidenceReviewNotes}
         validationReadinessMessage={validationReadinessMessage}
+      />
+      <StoreReviewResponseReviewKit
+        approvedStoreReviewResponseReviews={approvedStoreReviewResponseReviews}
+        isSubmittingStoreReviewResponseReview={isSubmittingStoreReviewResponseReview}
+        onStoreReviewResponseReviewDecision={onStoreReviewResponseReviewDecision}
+        onStoreReviewResponseReviewSubmit={onStoreReviewResponseReviewSubmit}
+        reviewingStoreReviewResponseReviewId={reviewingStoreReviewResponseReviewId}
+        setStoreReviewResponseReviewNotes={setStoreReviewResponseReviewNotes}
+        storeReviewResponseReviewMessage={storeReviewResponseReviewMessage}
+        storeReviewResponseReviewNotes={storeReviewResponseReviewNotes}
+        storeReviewResponseReviewQueue={storeReviewResponseReviewQueue}
       />
     </>
   );

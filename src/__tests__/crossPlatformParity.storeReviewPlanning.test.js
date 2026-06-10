@@ -1,7 +1,14 @@
 const {
+  fs,
+  path,
+  repoRoot,
+  iosChallengeService,
   iosProfile,
+  androidRepository,
+  androidModels,
   androidApp,
   readWebProfileContracts,
+  readWebUserServiceContracts,
 } = require('../testUtils/crossPlatformParityFixtures');
 
 describe('cross-platform store review planning parity source checks', () => {
@@ -91,5 +98,54 @@ describe('cross-platform store review planning parity source checks', () => {
       expect(source).toContain('claim review approval');
       expect(source).toContain('mark paid access live');
     });
+  });
+
+  it('keeps Store Review Response Review Records wired on all platforms as manual evidence only', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    const uiSources = [webProfile, iosProfile, androidApp];
+    const serviceSources = [webUserService, iosChallengeService, androidRepository, firestoreRules];
+    const modelSources = [iosChallengeService, androidModels];
+    const labels = [
+      'STORE REVIEW RESPONSE REVIEW RECORD',
+      'SAVE REVIEW RESPONSE REVIEW',
+      'STORE REVIEW RESPONSE REVIEW QUEUE',
+      'APPROVED STORE REVIEW RESPONSE REVIEWS',
+    ];
+    const guardrails = [
+      'manualReviewOnly',
+      'submitsStoreReview',
+      'bypassesMarketplacePolicy',
+      'exposesPrivateUserData',
+      'includesSecrets',
+      'unlocksPaidAccess',
+      'writesEntitlements',
+      'createsPurchases',
+      'processesRefunds',
+      'claimsReviewApproval',
+      'isPaidAccessLive',
+      'hasTrackingPixels',
+      'scrapesMessages',
+    ];
+
+    uiSources.forEach((source) => {
+      labels.forEach(label => expect(source).toContain(label));
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    serviceSources.forEach((source) => {
+      expect(source).toContain('storeReviewResponseReviews');
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    modelSources.forEach((source) => {
+      guardrails.forEach(flag => expect(source).toContain(flag));
+    });
+    expect(webUserService).toContain('submitStoreReviewResponseReview');
+    expect(webUserService).toContain('reviewStoreReviewResponseReview');
+    expect(iosChallengeService).toContain('submitStoreReviewResponseReview');
+    expect(iosChallengeService).toContain('reviewStoreReviewResponseReview');
+    expect(androidRepository).toContain('submitStoreReviewResponseReview');
+    expect(androidRepository).toContain('reviewStoreReviewResponseReview');
+    expect(firestoreRules).toContain('match /storeReviewResponseReviews/{reviewId}');
   });
 });

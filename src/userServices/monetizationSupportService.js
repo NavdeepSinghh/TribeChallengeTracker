@@ -24,3 +24,9 @@ export {
   reviewSupportRefundReadinessReview,
   submitSupportRefundReadinessReview,
 } from './supportRefundReadinessReviewService';
+export {
+  getApprovedStoreReviewResponseReviews,
+  getStoreReviewResponseReviewQueue,
+  reviewStoreReviewResponseReview,
+  submitStoreReviewResponseReview,
+} from './storeReviewResponseReviewService';
