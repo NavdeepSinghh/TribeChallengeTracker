@@ -25,6 +25,12 @@ export {
   submitLaunchExperimentReview,
 } from './userServices/launchExperimentReviewService';
 export {
+  getApprovedProTrialReviews,
+  getProTrialReviewQueue,
+  reviewProTrialReview,
+  submitProTrialReview,
+} from './userServices/proTrialReviewService';
+export {
   getApprovedWeeklyCampaignReviews,
   getWeeklyCampaignReviewQueue,
   reviewWeeklyCampaignReview,

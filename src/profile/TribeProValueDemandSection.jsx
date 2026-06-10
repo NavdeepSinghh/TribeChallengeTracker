@@ -5,8 +5,10 @@ import TribeProHeaderCard from './TribeProHeaderCard';
 export default function TribeProValueDemandSection({
   communityHighlightRoundupItems,
   copyText,
+  approvedProTrialReviews,
   isAdmin,
   isSavingProTrialInterest,
+  isSubmittingProTrialReview,
   monthlyRecap,
   onProTrialReasonToggle,
   proActive,
@@ -14,10 +16,17 @@ export default function TribeProValueDemandSection({
   proTrialMessage,
   proTrialObjectionReplyCopy,
   proTrialPitchCopy,
+  proTrialReviewMessage,
+  proTrialReviewNotes,
+  proTrialReviewQueue,
   proTrialSummary,
   proValueNextAction,
   selectedProTrialReasonIds,
+  setProTrialReviewNotes,
   storyPostingChecklistCopy,
+  onProTrialReviewDecision,
+  onProTrialReviewSubmit,
+  reviewingProTrialReviewId,
   topProTrialReason,
   totalChallengePoints,
   valueProofStoryCopy,
@@ -48,6 +57,15 @@ export default function TribeProValueDemandSection({
         proTrialPitchCopy={proTrialPitchCopy}
         proTrialDemandTotal={proTrialDemandTotal}
         proTrialObjectionReplyCopy={proTrialObjectionReplyCopy}
+        proTrialReviewMessage={proTrialReviewMessage}
+        proTrialReviewNotes={proTrialReviewNotes}
+        proTrialReviewQueue={proTrialReviewQueue}
+        approvedProTrialReviews={approvedProTrialReviews}
+        onProTrialReviewDecision={onProTrialReviewDecision}
+        onProTrialReviewSubmit={onProTrialReviewSubmit}
+        isSubmittingProTrialReview={isSubmittingProTrialReview}
+        reviewingProTrialReviewId={reviewingProTrialReviewId}
+        setProTrialReviewNotes={setProTrialReviewNotes}
       />
     </>
   );

@@ -92,4 +92,27 @@ describe('cross-platform Pro profile parity source checks', () => {
       expect(source).toContain('first-party demand signal');
     });
   });
+
+  it('keeps Pro Trial Review Records manual and no-commerce across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = require('fs').readFileSync(require('path').resolve(__dirname, '../../firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PRO TRIAL REVIEW RECORD');
+      expect(source).toContain('SAVE PRO TRIAL REVIEW');
+      expect(source).toContain('PRO TRIAL REVIEW QUEUE');
+      expect(source).toContain('APPROVED PRO TRIAL REVIEWS');
+    });
+    [webProfile, webUserService, iosChallengeService, androidApp, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('proTrialReviews');
+    });
+    [webProfile, webUserService, iosChallengeService, androidApp, androidModels, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('startsTrial');
+      expect(source).toContain('createsPurchase');
+      expect(source).toContain('writesEntitlements');
+      expect(source).toContain('isPaidAccessLive');
+    });
+    expect(firestoreRules).toContain('match /proTrialReviews/{reviewId}');
+  });
 });

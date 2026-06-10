@@ -12,6 +12,15 @@ export default function ProTrialInterestSection({
   proTrialPitchCopy,
   proTrialDemandTotal,
   proTrialObjectionReplyCopy,
+  proTrialReviewMessage,
+  proTrialReviewNotes,
+  proTrialReviewQueue,
+  approvedProTrialReviews,
+  onProTrialReviewDecision,
+  onProTrialReviewSubmit,
+  isSubmittingProTrialReview,
+  reviewingProTrialReviewId,
+  setProTrialReviewNotes,
 }) {
   return (
     <div style={{
@@ -30,6 +39,15 @@ export default function ProTrialInterestSection({
           proTrialObjectionReplyCopy={proTrialObjectionReplyCopy}
           proTrialPitchCopy={proTrialPitchCopy}
           proTrialSummary={proTrialSummary}
+          proTrialReviewMessage={proTrialReviewMessage}
+          proTrialReviewNotes={proTrialReviewNotes}
+          proTrialReviewQueue={proTrialReviewQueue}
+          approvedProTrialReviews={approvedProTrialReviews}
+          onProTrialReviewDecision={onProTrialReviewDecision}
+          onProTrialReviewSubmit={onProTrialReviewSubmit}
+          isSubmittingProTrialReview={isSubmittingProTrialReview}
+          reviewingProTrialReviewId={reviewingProTrialReviewId}
+          setProTrialReviewNotes={setProTrialReviewNotes}
           topProTrialReason={topProTrialReason}
         />
       )}

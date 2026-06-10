@@ -342,6 +342,29 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /proTrialReviews/{reviewId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.startsTrial == false
+        && request.resource.data.createsPurchase == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.keys().hasAll(["uid", "selectedReasonIds", "selectedReasonCount", "demandTotal", "topReasonLabel", "reviewScore", "status", "manualReviewOnly", "startsTrial", "createsPurchase", "writesEntitlements", "isPaidAccessLive"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.startsTrial == false
+        && request.resource.data.createsPurchase == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "manualReviewOnly", "startsTrial", "createsPurchase", "writesEntitlements", "isPaidAccessLive", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     match /weeklyCampaignReviews/{reviewId} {
       allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
       allow create: if request.auth != null

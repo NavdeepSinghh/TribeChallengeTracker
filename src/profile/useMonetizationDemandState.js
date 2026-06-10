@@ -10,6 +10,12 @@ export default function useMonetizationDemandState() {
   const [proTrialMessage, setProTrialMessage] = useState('');
   const [isSavingProTrialInterest, setIsSavingProTrialInterest] = useState(false);
   const [proTrialSummary, setProTrialSummary] = useState({});
+  const [proTrialReviewQueue, setProTrialReviewQueue] = useState([]);
+  const [approvedProTrialReviews, setApprovedProTrialReviews] = useState([]);
+  const [proTrialReviewMessage, setProTrialReviewMessage] = useState('');
+  const [isSubmittingProTrialReview, setIsSubmittingProTrialReview] = useState(false);
+  const [proTrialReviewNotes, setProTrialReviewNotes] = useState({});
+  const [reviewingProTrialReviewId, setReviewingProTrialReviewId] = useState('');
   const [launchExperimentReviewQueue, setLaunchExperimentReviewQueue] = useState([]);
   const [approvedLaunchExperimentReviews, setApprovedLaunchExperimentReviews] = useState([]);
   const [launchExperimentReviewMessage, setLaunchExperimentReviewMessage] = useState('');
@@ -25,6 +31,7 @@ export default function useMonetizationDemandState() {
 
   return {
     approvedLaunchExperimentReviews,
+    approvedProTrialReviews,
     approvedWeeklyCampaignReviews,
     campaignPerformanceSummary,
     communityEventInterestMessage,
@@ -33,16 +40,22 @@ export default function useMonetizationDemandState() {
     isSubmittingWeeklyCampaignReview,
     isSavingCommunityEventInterest,
     isSavingProTrialInterest,
+    isSubmittingProTrialReview,
     launchExperimentReviewMessage,
     launchExperimentReviewNotes,
     launchExperimentReviewQueue,
     proTrialMessage,
+    proTrialReviewMessage,
+    proTrialReviewNotes,
+    proTrialReviewQueue,
     proTrialSummary,
     reviewingLaunchExperimentReviewId,
+    reviewingProTrialReviewId,
     reviewingWeeklyCampaignReviewId,
     selectedCommunityEventInterestIds,
     selectedProTrialReasonIds,
     setApprovedLaunchExperimentReviews,
+    setApprovedProTrialReviews,
     setApprovedWeeklyCampaignReviews,
     setCampaignPerformanceSummary,
     setCommunityEventInterestMessage,
@@ -51,12 +64,17 @@ export default function useMonetizationDemandState() {
     setIsSubmittingWeeklyCampaignReview,
     setIsSavingCommunityEventInterest,
     setIsSavingProTrialInterest,
+    setIsSubmittingProTrialReview,
     setLaunchExperimentReviewMessage,
     setLaunchExperimentReviewNotes,
     setLaunchExperimentReviewQueue,
     setProTrialMessage,
+    setProTrialReviewMessage,
+    setProTrialReviewNotes,
+    setProTrialReviewQueue,
     setProTrialSummary,
     setReviewingLaunchExperimentReviewId,
+    setReviewingProTrialReviewId,
     setReviewingWeeklyCampaignReviewId,
     setSelectedCommunityEventInterestIds,
     setSelectedProTrialReasonIds,

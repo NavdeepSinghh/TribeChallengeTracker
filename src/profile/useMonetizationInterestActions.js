@@ -3,28 +3,35 @@ import {
   saveProTrialInterest,
 } from '../userService';
 import { buildLaunchExperimentReviewActionHandlers } from './launchExperimentReviewActionHandlers';
+import { buildProTrialReviewActionHandlers } from './proTrialReviewActionHandlers';
 import { buildWeeklyCampaignReviewActionHandlers } from './weeklyCampaignReviewActionHandlers';
 
 export default function useMonetizationInterestActions({
   approvedLaunchExperimentReviews,
+  approvedProTrialReviews,
   approvedWeeklyCampaignReviews,
   campaignPerformanceSummary,
   featureReviewQueue,
   isAdmin,
   isSubmittingLaunchExperimentReview,
+  isSubmittingProTrialReview,
   isSubmittingWeeklyCampaignReview,
   launchExperimentReviewNotes,
   profile,
+  proTrialReviewNotes,
   recommendedLaunchExperiment,
   referralJoins,
   reviewingLaunchExperimentReviewId,
+  reviewingProTrialReviewId,
   reviewingWeeklyCampaignReviewId,
   selectedCommunityEventInterestIds,
   selectedProTrialReasonIds,
   setApprovedLaunchExperimentReviews,
+  setApprovedProTrialReviews,
   setApprovedWeeklyCampaignReviews,
   setCommunityEventInterestMessage,
   setIsSubmittingLaunchExperimentReview,
+  setIsSubmittingProTrialReview,
   setIsSubmittingWeeklyCampaignReview,
   setIsSavingCommunityEventInterest,
   setIsSavingProTrialInterest,
@@ -32,7 +39,10 @@ export default function useMonetizationInterestActions({
   setLaunchExperimentReviewQueue,
   setProfile,
   setProTrialMessage,
+  setProTrialReviewMessage,
+  setProTrialReviewQueue,
   setReviewingLaunchExperimentReviewId,
+  setReviewingProTrialReviewId,
   setReviewingWeeklyCampaignReviewId,
   setSelectedCommunityEventInterestIds,
   setSelectedProTrialReasonIds,
@@ -100,6 +110,20 @@ export default function useMonetizationInterestActions({
     user,
   });
 
+  const proTrialReviewHandlers = buildProTrialReviewActionHandlers({
+    approvedProTrialReviews,
+    isAdmin,
+    isSubmittingProTrialReview,
+    proTrialReviewNotes,
+    reviewingProTrialReviewId,
+    setApprovedProTrialReviews,
+    setIsSubmittingProTrialReview,
+    setProTrialReviewMessage,
+    setProTrialReviewQueue,
+    setReviewingProTrialReviewId,
+    user,
+  });
+
   const weeklyCampaignReviewHandlers = buildWeeklyCampaignReviewActionHandlers({
     approvedWeeklyCampaignReviews,
     campaignPerformanceSummary,
@@ -123,6 +147,7 @@ export default function useMonetizationInterestActions({
   return {
     handleCommunityEventInterestToggle,
     ...launchExperimentReviewHandlers,
+    ...proTrialReviewHandlers,
     ...weeklyCampaignReviewHandlers,
     handleProTrialReasonToggle,
   };
