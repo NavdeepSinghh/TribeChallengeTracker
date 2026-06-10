@@ -227,6 +227,64 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    // ── Paid launch decision reviews ──────────────────────────────────────
+    // Manual final paid-launch gate evidence. These records summarize current
+    // products, support, recovery, and store-test evidence only. They never
+    // flip paid access live, write entitlements, create purchases, process
+    // payments/refunds, cancel subscriptions, collect payment details, submit
+    // store review, claim launch readiness, claim sandbox proof, add tracking
+    // pixels, scrape messages, or bypass marketplace policy.
+    match /paidLaunchDecisionReviews/{reviewId} {
+      allow read: if request.auth != null && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["uid", "productCount", "storeEvidenceCount", "passedStoreEvidenceCount", "openSupportCount", "entitlementRecoveryCount", "readyCheckCount", "totalCheckCount", "reviewScore", "status", "manualReviewOnly", "flipsPaidAccessLive", "writesEntitlements", "createsPurchases", "processesPayments", "processesRefunds", "cancelsSubscriptions", "collectsPaymentDetails", "submitsStoreReview", "bypassesMarketplacePolicy", "claimsLaunchReadiness", "claimsSandboxProof", "isPaidAccessLive", "hasTrackingPixels", "scrapesMessages"])
+        && request.resource.data.productCount >= 0
+        && request.resource.data.storeEvidenceCount >= 0
+        && request.resource.data.passedStoreEvidenceCount >= 0
+        && request.resource.data.openSupportCount >= 0
+        && request.resource.data.entitlementRecoveryCount >= 0
+        && request.resource.data.readyCheckCount >= 0
+        && request.resource.data.totalCheckCount >= 0
+        && request.resource.data.reviewScore >= 0
+        && request.resource.data.reviewScore <= 100
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.flipsPaidAccessLive == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.processesPayments == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.cancelsSubscriptions == false
+        && request.resource.data.collectsPaymentDetails == false
+        && request.resource.data.submitsStoreReview == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.claimsLaunchReadiness == false
+        && request.resource.data.claimsSandboxProof == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.scrapesMessages == false;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.flipsPaidAccessLive == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.processesPayments == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.cancelsSubscriptions == false
+        && request.resource.data.collectsPaymentDetails == false
+        && request.resource.data.submitsStoreReview == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.claimsLaunchReadiness == false
+        && request.resource.data.claimsSandboxProof == false
+        && request.resource.data.isPaidAccessLive == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.scrapesMessages == false;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Feature submissions ─────────────────────────────────────────────────
     // Members can submit opt-in UGC for manual review. Featured submissions are
     // readable to authenticated members for Community Highlights; pending and

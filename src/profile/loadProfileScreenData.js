@@ -15,6 +15,7 @@ import {
   getCreatorPaidHostingLaunchGateReviewQueue,
   getCreatorRevenueShareSummary,
   getEntitlementRecoveryReviewQueue,
+  getApprovedPaidLaunchDecisionReviews,
   getApprovedSupportRefundReadinessReviews,
   getApprovedStoreReviewResponseReviews,
   getFeaturedSubmissions,
@@ -25,6 +26,7 @@ import {
   getApprovedWeeklyCampaignReviews,
   getLaunchExperimentReviewQueue,
   getProTrialReviewQueue,
+  getPaidLaunchDecisionReviewQueue,
   getWeeklyCampaignReviewQueue,
   getPartnerCampaignApplicationReviewQueue,
   getPartnerPerkClaimReviewQueue,
@@ -78,6 +80,8 @@ export function loadProfileScreenData(userUid, setters) {
       getApprovedSupportRefundReadinessReviews().then(setters.setApprovedSupportRefundReadinessReviews).catch(() => setters.setApprovedSupportRefundReadinessReviews([]));
       getStoreReviewResponseReviewQueue().then(setters.setStoreReviewResponseReviewQueue).catch(() => setters.setStoreReviewResponseReviewQueue([]));
       getApprovedStoreReviewResponseReviews().then(setters.setApprovedStoreReviewResponseReviews).catch(() => setters.setApprovedStoreReviewResponseReviews([]));
+      getPaidLaunchDecisionReviewQueue().then(setters.setPaidLaunchDecisionReviewQueue).catch(() => setters.setPaidLaunchDecisionReviewQueue([]));
+      getApprovedPaidLaunchDecisionReviews().then(setters.setApprovedPaidLaunchDecisionReviews).catch(() => setters.setApprovedPaidLaunchDecisionReviews([]));
       getReferralRewardReviewQueue().then(setters.setReferralRewardReviewQueue).catch(() => setters.setReferralRewardReviewQueue([]));
       getPartnerPerkInterestSummary().then(setters.setPartnerPerkSummary).catch(() => setters.setPartnerPerkSummary({}));
       getCommunityEventInterestSummary().then(setters.setCommunityEventInterestSummary).catch(() => setters.setCommunityEventInterestSummary({}));

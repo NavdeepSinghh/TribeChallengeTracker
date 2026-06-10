@@ -30,3 +30,9 @@ export {
   reviewStoreReviewResponseReview,
   submitStoreReviewResponseReview,
 } from './storeReviewResponseReviewService';
+export {
+  getApprovedPaidLaunchDecisionReviews,
+  getPaidLaunchDecisionReviewQueue,
+  reviewPaidLaunchDecisionReview,
+  submitPaidLaunchDecisionReview,
+} from './paidLaunchDecisionReviewService';

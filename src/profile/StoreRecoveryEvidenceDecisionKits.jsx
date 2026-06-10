@@ -1,4 +1,5 @@
 import EntitlementRecoveryDecisionKit from './EntitlementRecoveryDecisionKit';
+import PaidLaunchDecisionReviewKit from './PaidLaunchDecisionReviewKit';
 import StoreReviewResponseReviewKit from './StoreReviewResponseReviewKit';
 import StoreTestEvidenceDecisionKit from './StoreTestEvidenceDecisionKit';
 import SupportRefundReadinessReviewKit from './SupportRefundReadinessReviewKit';
@@ -23,6 +24,15 @@ export default function StoreRecoveryEvidenceDecisionKits({
   onReviewStoreTestEvidence = () => {},
   recordingStoreTestEvidenceId,
   reviewingStoreTestEvidenceId,
+  approvedPaidLaunchDecisionReviews = [],
+  isSubmittingPaidLaunchDecisionReview,
+  onPaidLaunchDecisionReviewDecision = () => {},
+  onPaidLaunchDecisionReviewSubmit = () => {},
+  paidLaunchDecisionReviewMessage,
+  paidLaunchDecisionReviewNotes = {},
+  paidLaunchDecisionReviewQueue = [],
+  reviewingPaidLaunchDecisionReviewId,
+  setPaidLaunchDecisionReviewNotes = () => {},
   approvedStoreReviewResponseReviews = [],
   isSubmittingStoreReviewResponseReview,
   onStoreReviewResponseReviewDecision = () => {},
@@ -88,6 +98,17 @@ export default function StoreRecoveryEvidenceDecisionKits({
         storeReviewResponseReviewMessage={storeReviewResponseReviewMessage}
         storeReviewResponseReviewNotes={storeReviewResponseReviewNotes}
         storeReviewResponseReviewQueue={storeReviewResponseReviewQueue}
+      />
+      <PaidLaunchDecisionReviewKit
+        approvedPaidLaunchDecisionReviews={approvedPaidLaunchDecisionReviews}
+        isSubmittingPaidLaunchDecisionReview={isSubmittingPaidLaunchDecisionReview}
+        onPaidLaunchDecisionReviewDecision={onPaidLaunchDecisionReviewDecision}
+        onPaidLaunchDecisionReviewSubmit={onPaidLaunchDecisionReviewSubmit}
+        paidLaunchDecisionReviewMessage={paidLaunchDecisionReviewMessage}
+        paidLaunchDecisionReviewNotes={paidLaunchDecisionReviewNotes}
+        paidLaunchDecisionReviewQueue={paidLaunchDecisionReviewQueue}
+        reviewingPaidLaunchDecisionReviewId={reviewingPaidLaunchDecisionReviewId}
+        setPaidLaunchDecisionReviewNotes={setPaidLaunchDecisionReviewNotes}
       />
     </>
   );

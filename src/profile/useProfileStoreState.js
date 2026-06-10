@@ -27,8 +27,15 @@ export default function useProfileStoreState() {
   const [isSubmittingStoreReviewResponseReview, setIsSubmittingStoreReviewResponseReview] = useState(false);
   const [storeReviewResponseReviewNotes, setStoreReviewResponseReviewNotes] = useState({});
   const [reviewingStoreReviewResponseReviewId, setReviewingStoreReviewResponseReviewId] = useState('');
+  const [paidLaunchDecisionReviewQueue, setPaidLaunchDecisionReviewQueue] = useState([]);
+  const [approvedPaidLaunchDecisionReviews, setApprovedPaidLaunchDecisionReviews] = useState([]);
+  const [paidLaunchDecisionReviewMessage, setPaidLaunchDecisionReviewMessage] = useState('');
+  const [isSubmittingPaidLaunchDecisionReview, setIsSubmittingPaidLaunchDecisionReview] = useState(false);
+  const [paidLaunchDecisionReviewNotes, setPaidLaunchDecisionReviewNotes] = useState({});
+  const [reviewingPaidLaunchDecisionReviewId, setReviewingPaidLaunchDecisionReviewId] = useState('');
 
   return {
+    approvedPaidLaunchDecisionReviews,
     approvedStoreReviewResponseReviews,
     approvedSupportRefundReadinessReviews,
     checkoutMessage,
@@ -38,13 +45,19 @@ export default function useProfileStoreState() {
     entitlementRecoveryReviewQueue,
     isCheckingValidationReadiness,
     isRequestingEntitlementRecovery,
+    isSubmittingPaidLaunchDecisionReview,
     isSubmittingStoreReviewResponseReview,
     isSubmittingSupportRefundReadinessReview,
+    paidLaunchDecisionReviewMessage,
+    paidLaunchDecisionReviewNotes,
+    paidLaunchDecisionReviewQueue,
     recordingStoreTestEvidenceId,
     reviewingEntitlementRecoveryRequestId,
+    reviewingPaidLaunchDecisionReviewId,
     reviewingStoreReviewResponseReviewId,
     reviewingSupportRefundReadinessReviewId,
     reviewingStoreTestEvidenceId,
+    setApprovedPaidLaunchDecisionReviews,
     setApprovedStoreReviewResponseReviews,
     setApprovedSupportRefundReadinessReviews,
     setCheckoutMessage,
@@ -54,10 +67,15 @@ export default function useProfileStoreState() {
     setEntitlementRecoveryReviewQueue,
     setIsCheckingValidationReadiness,
     setIsRequestingEntitlementRecovery,
+    setIsSubmittingPaidLaunchDecisionReview,
     setIsSubmittingStoreReviewResponseReview,
     setIsSubmittingSupportRefundReadinessReview,
+    setPaidLaunchDecisionReviewMessage,
+    setPaidLaunchDecisionReviewNotes,
+    setPaidLaunchDecisionReviewQueue,
     setRecordingStoreTestEvidenceId,
     setReviewingEntitlementRecoveryRequestId,
+    setReviewingPaidLaunchDecisionReviewId,
     setReviewingStoreReviewResponseReviewId,
     setReviewingSupportRefundReadinessReviewId,
     setReviewingStoreTestEvidenceId,
