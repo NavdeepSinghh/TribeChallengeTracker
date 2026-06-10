@@ -52,6 +52,10 @@ describe('monetization prelaunch copy contracts', () => {
     expect(copy.communityEventReviewDecisionReplyCopy).toContain('Do not sell tickets');
     expect(copy.customerValueChecklistCopy).toContain('Do not charge users');
     expect(copy.customerValueChecklistCopy).toContain('write entitlements');
+    expect(copy.customerValueReviewDecisionReplyCopy).toContain('Customer Value Review Decision Reply Kit');
+    expect(copy.customerValueReviewDecisionReplyCopy).toContain('APPROVED FOR VALUE LEARNING');
+    expect(copy.customerValueReviewDecisionReplyCopy).toContain('Do not charge users');
+    expect(copy.customerValueReviewDecisionReplyCopy).toContain('write entitlements');
     expect(kits[4]).toMatchObject({
       buttonLabel: 'COPY VALUE CHECKLIST',
       status: 'PRE-LAUNCH',

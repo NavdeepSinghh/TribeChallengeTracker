@@ -4,8 +4,10 @@ import { buildRevenueReadinessCopy } from './revenueReadinessCopy';
 
 export function buildProfileRevenueDerivedData({
   approvedCommunityEventReviews,
+  approvedCustomerValueReviews,
   campaignPerformanceSummary,
   communityEventReviewQueue,
+  customerValueReviewQueue,
   creatorRevenueShareSummary,
   currentStreak,
   daysActive,
@@ -53,7 +55,9 @@ export function buildProfileRevenueDerivedData({
   } = storeData;
   const revenueReadinessCopy = buildRevenueReadinessCopy({
     approvedCommunityEventReviews,
+    approvedCustomerValueReviews,
     communityEventReviewQueue,
+    customerValueReviewQueue,
     storeCatalog,
     recommendedRevenuePath,
     monetizationSignalTotal,

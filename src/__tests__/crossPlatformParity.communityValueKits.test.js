@@ -103,4 +103,36 @@ describe('cross-platform community value kit parity source checks', () => {
 
     expect(firestoreRules).toContain('match /customerValueReviews/{reviewId}');
   });
+
+  it('keeps Customer Value Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+
+    [
+      webProfile,
+      iosProfile,
+      androidApp,
+    ].forEach((source) => {
+      expect(source).toContain('CUSTOMER VALUE REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY VALUE REVIEW DECISION REPLIES');
+      expect(source).toContain('customerValueReviewDecisionReplyCopy');
+      expect(source).toContain('Customer Value Review Decision Reply Kit');
+      expect(source).toContain('APPROVED FOR VALUE LEARNING');
+      expect(source).toContain('WAITING ON VALUE PROOF');
+      expect(source).toContain('NOT READY FOR PAID HANDOFF');
+      expect(source).toContain('DECLINED FOR VALUE HANDOFF');
+      expect(source).toContain('Do not charge users');
+      expect(source).toContain('unlock paid access');
+      expect(source).toContain('create discounts');
+      expect(source).toContain('collect payment details');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promote paid features as live');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure members');
+    });
+  });
 });

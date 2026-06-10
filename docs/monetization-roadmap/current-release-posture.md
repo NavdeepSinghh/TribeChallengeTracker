@@ -102,7 +102,7 @@
 - Creator hosting application review parity coverage is split into `src/__tests__/crossPlatformParity.creatorHostingApplicationReview.test.js`, keeping admin review-update checks separate from monetization launch demand and board checks.
 - Creator hosting reply parity coverage is split into `src/__tests__/crossPlatformParity.creatorHostingReplies.test.js`, keeping objection and decision reply checks separate from creator readiness kit checks.
 - Focused engagement-copy coverage has been added for Value Proof Story Kit, Story Posting Checklist Kit, Streak Rescue Prompt Kit, Comeback Invite, and challenge-pack objection copy side-effect boundaries.
-- Focused monetization-prelaunch copy coverage has been added for Pricing Test Kit, Founder Member Offer Kit, Community Ambassador Kit, Community Event Interest Kit, and Customer Value Checklist no-sale/no-ticket/no-entitlement boundaries.
+- Focused monetization-prelaunch copy coverage has been added for Pricing Test Kit, Founder Member Offer Kit, Community Ambassador Kit, Community Event Interest Kit, Community Event Review Decision Reply Kit, Customer Value Checklist, and Customer Value Review Decision Reply Kit no-sale/no-ticket/no-entitlement boundaries.
 - Focused referral-copy coverage has been added for Referral Launch Kit and Referral Story Sprint Kit first-party progress boundaries.
 - Focused referral social-proof coverage has been added for Referral Reward Social Proof Kit no-reward/no-payout/no-fulfillment boundaries.
 - Focused referral decision-copy coverage has been added for Referral Reward Decision Reply Kit no-Pro/no-entitlement/no-tracking boundaries.

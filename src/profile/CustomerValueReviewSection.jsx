@@ -3,6 +3,7 @@ export default function CustomerValueReviewSection({
   customerValueReviewMessage,
   customerValueReviewNotes = {},
   customerValueReviewQueue = [],
+  customerValueReviewDecisionReplyCopy,
   isAdmin,
   isSubmittingCustomerValueReview,
   onCustomerValueReviewDecision,
@@ -87,6 +88,22 @@ export default function CustomerValueReviewSection({
       <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10 }}>
         {approvedCustomerValueReviews.length} approved manual records. Approved records still do not charge users, unlock paid access, create discounts, write entitlements, or promote paid features as live.
       </p>
+      <div style={{ marginTop: 10, padding: 10, borderRadius: 10, border: '1px solid rgba(45,212,191,0.20)', background: 'rgba(45,212,191,0.07)' }}>
+        <p style={{ margin: 0, color: '#fff', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>CUSTOMER VALUE REVIEW DECISION REPLY KIT</p>
+        <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10, lineHeight: 1.45 }}>
+          Copy approved, waiting, not-ready, and declined replies for manual value-review decisions without charges, paid-access unlocks, discounts, purchases, entitlement writes, refunds, marketplace bypass, paid-live promotion, tracking, auto-messaging, or pressure.
+        </p>
+        <button
+          onClick={() => navigator.clipboard?.writeText(customerValueReviewDecisionReplyCopy || '')}
+          style={{
+            marginTop: 8, width: '100%', borderRadius: 10, padding: '8px 10px',
+            border: '1px solid rgba(45,212,191,0.24)', background: 'rgba(45,212,191,0.10)',
+            color: '#2DD4BF', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+          }}
+        >
+          COPY VALUE REVIEW DECISION REPLIES
+        </button>
+      </div>
     </div>
   );
 }

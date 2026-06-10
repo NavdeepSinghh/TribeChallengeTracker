@@ -15,6 +15,7 @@ export function buildMonetizationPreLaunchSectionData({
   creatorRevenueShareTotal,
   customerValueChecklistCopy,
   approvedCustomerValueReviews,
+  customerValueReviewDecisionReplyCopy,
   customerValueReviewMessage,
   customerValueReviewNotes,
   customerValueReviewQueue,
@@ -97,6 +98,7 @@ export function buildMonetizationPreLaunchSectionData({
     },
     customerValueReviewSectionProps: {
       approvedCustomerValueReviews,
+      customerValueReviewDecisionReplyCopy,
       customerValueReviewMessage,
       customerValueReviewNotes,
       customerValueReviewQueue,
