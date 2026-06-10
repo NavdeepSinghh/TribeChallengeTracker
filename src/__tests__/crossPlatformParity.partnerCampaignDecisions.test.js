@@ -79,4 +79,31 @@ describe('cross-platform partner campaign decision parity source checks', () => 
       expect(source).toContain('pressure partners or members');
     });
   });
+
+  it('keeps Partner Campaign Retrospective Kit aggregate-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PARTNER CAMPAIGN RETROSPECTIVE KIT');
+      expect(source).toContain('COPY PARTNER RETROSPECTIVE');
+      expect(source).toContain('partnerCampaignRetrospectiveCopy');
+      expect(source).toContain('Manual retrospective prompts');
+      expect(source).toContain('aggregate app signal');
+      expect(source).toContain('support notes');
+      expect(source).toContain('repeat-or-pause decisions');
+      expect(source).toContain('aggregate-only post-pilot');
+      expect(source).toContain('Do not create partner links');
+      expect(source).toContain('tracking pixels');
+      expect(source).toContain('ad targeting');
+      expect(source).toContain('affiliate payouts');
+      expect(source).toContain('coupons');
+      expect(source).toContain('purchases');
+      expect(source).toContain('entitlements');
+      expect(source).toContain('revenue-share');
+      expect(source).toContain('third-party data exports');
+      expect(source).toContain('fulfillment promises');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('pressure partners or members');
+    });
+  });
 });

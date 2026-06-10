@@ -6,6 +6,7 @@ export default function PartnerAdminCopyKits({
   copyText,
   partnerActivationCopy,
   partnerCampaignObjectionReplyCopy,
+  partnerCampaignRetrospectiveCopy,
   partnerContractReadinessCopy,
   partnerDemandTotal,
   partnerPitchCopy,
@@ -62,6 +63,16 @@ export default function PartnerAdminCopyKits({
         buttonLabel="COPY PARTNER REPLIES"
         copy={partnerCampaignObjectionReplyCopy}
         copyText={copyText}
+      />
+      <PartnerCopyCard
+        accent="#22C55E"
+        title="PARTNER CAMPAIGN RETROSPECTIVE KIT"
+        status={{ active: partnerDemandTotal, label: 'POST-PILOT' }}
+        body="Copy aggregate-only post-pilot prompts for partner fit, app movement, support notes, and repeat-or-pause decisions without links, tracking, payouts, purchases, or entitlements."
+        buttonLabel="COPY PARTNER RETROSPECTIVE"
+        copy={partnerCampaignRetrospectiveCopy}
+        copyText={copyText}
+        metrics={<PartnerMetrics color="#22C55E" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
       />
     </>
   );

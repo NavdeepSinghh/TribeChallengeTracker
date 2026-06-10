@@ -99,6 +99,7 @@ Shared behavior:
 - Admin profiles include a Partner Campaign Application Review Queue for open `partnerCampaignApplications`.
 - Admin profiles can update partner campaign applications to `approved`, `waiting`, `not_ready`, or `declined` with `reviewNote`, `reviewedBy`, and `reviewedAt`.
 - Admin profiles include a Partner Campaign Decision Reply Kit with approved, waiting, not-ready, and declined manual sponsor-pilot replies before any partner links, tracking, payouts, purchases, entitlements, revenue-share, or fulfillment promises exist.
+- Admin profiles include a Partner Campaign Retrospective Kit with aggregate-only post-pilot prompts for app movement, partner fit, support notes, and repeat-or-pause decisions before any partner links, tracking, payouts, purchases, entitlements, revenue-share, or fulfillment promises exist.
 - Challenge templates can include sponsored campaign metadata for future partner-backed challenges.
 - Sponsored challenge metadata currently uses the same challenge create/join/track backend and does not introduce ad targeting, tracking pixels, or random in-feed placement.
 - Admin profiles include a Campaign Performance Board that aggregates campaign-backed challenge count, active/public/premium/seasonal splits, and member reach.

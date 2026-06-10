@@ -48,5 +48,12 @@ describe('partner monetization copy contracts', () => {
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('Open partner-pilot applications: 1');
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('Do not create partner links');
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('pressure partners or members');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('Partner Campaign Retrospective Kit');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('Open partner-pilot applications: 1');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('Open perk claims: 2');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('aggregate-only post-pilot readback');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('Do not create partner links');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('third-party data exports');
+    expect(copy.partnerCampaignRetrospectiveCopy).toContain('pressure partners or members');
   });
 });
