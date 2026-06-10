@@ -18,6 +18,12 @@ export {
   submitCreatorLeaderboardSnapshot,
 } from './creatorLeaderboardSnapshotService';
 export {
+  getCreatorBrandedPageReviewQueue,
+  getPublishedCreatorBrandedPages,
+  reviewCreatorBrandedPage,
+  submitCreatorBrandedPageDraft,
+} from './creatorBrandedPageService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,

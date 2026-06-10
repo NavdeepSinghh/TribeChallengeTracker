@@ -16,6 +16,12 @@ export default function useCreatorRevenueState() {
   const [reviewingCreatorHostingApplicationId, setReviewingCreatorHostingApplicationId] = useState('');
   const [creatorTemplateDraftReviewQueue, setCreatorTemplateDraftReviewQueue] = useState([]);
   const [publishedCreatorChallengeTemplates, setPublishedCreatorChallengeTemplates] = useState([]);
+  const [creatorBrandedPageReviewQueue, setCreatorBrandedPageReviewQueue] = useState([]);
+  const [publishedCreatorBrandedPages, setPublishedCreatorBrandedPages] = useState([]);
+  const [creatorBrandedPageMessage, setCreatorBrandedPageMessage] = useState('');
+  const [isSubmittingCreatorBrandedPage, setIsSubmittingCreatorBrandedPage] = useState(false);
+  const [creatorBrandedPageReviewNotes, setCreatorBrandedPageReviewNotes] = useState({});
+  const [reviewingCreatorBrandedPageId, setReviewingCreatorBrandedPageId] = useState('');
   const [creatorLeaderboardSnapshotReviewQueue, setCreatorLeaderboardSnapshotReviewQueue] = useState([]);
   const [publishedCreatorLeaderboardSnapshots, setPublishedCreatorLeaderboardSnapshots] = useState([]);
   const [creatorLeaderboardSnapshotMessage, setCreatorLeaderboardSnapshotMessage] = useState('');
@@ -34,6 +40,9 @@ export default function useCreatorRevenueState() {
     creatorHostingApplicationMessage,
     creatorHostingApplicationReviewNotes,
     creatorHostingApplicationReviewQueue,
+    creatorBrandedPageMessage,
+    creatorBrandedPageReviewNotes,
+    creatorBrandedPageReviewQueue,
     creatorMessage,
     creatorRevenueShareInterest,
     creatorRevenueShareSummary,
@@ -45,12 +54,15 @@ export default function useCreatorRevenueState() {
     creatorTemplateDraftReviewNotes,
     creatorTemplateDraftReviewQueue,
     publishedCreatorChallengeTemplates,
+    publishedCreatorBrandedPages,
     publishedCreatorLeaderboardSnapshots,
     isSavingCreator,
+    isSubmittingCreatorBrandedPage,
     isSubmittingCreatorHostingApplication,
     isSubmittingCreatorLeaderboardSnapshot,
     isSubmittingCreatorTemplateDraft,
     reviewingCreatorHostingApplicationId,
+    reviewingCreatorBrandedPageId,
     reviewingCreatorLeaderboardSnapshotId,
     reviewingCreatorTemplateDraftId,
     setCreatorBio,
@@ -59,6 +71,9 @@ export default function useCreatorRevenueState() {
     setCreatorHostingApplicationMessage,
     setCreatorHostingApplicationReviewNotes,
     setCreatorHostingApplicationReviewQueue,
+    setCreatorBrandedPageMessage,
+    setCreatorBrandedPageReviewNotes,
+    setCreatorBrandedPageReviewQueue,
     setCreatorMessage,
     setCreatorRevenueShareInterest,
     setCreatorRevenueShareSummary,
@@ -70,12 +85,15 @@ export default function useCreatorRevenueState() {
     setCreatorTemplateDraftReviewNotes,
     setCreatorTemplateDraftReviewQueue,
     setPublishedCreatorChallengeTemplates,
+    setPublishedCreatorBrandedPages,
     setPublishedCreatorLeaderboardSnapshots,
     setIsSavingCreator,
+    setIsSubmittingCreatorBrandedPage,
     setIsSubmittingCreatorHostingApplication,
     setIsSubmittingCreatorLeaderboardSnapshot,
     setIsSubmittingCreatorTemplateDraft,
     setReviewingCreatorHostingApplicationId,
+    setReviewingCreatorBrandedPageId,
     setReviewingCreatorLeaderboardSnapshotId,
     setReviewingCreatorTemplateDraftId,
   };

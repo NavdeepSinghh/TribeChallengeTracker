@@ -11,6 +11,7 @@ export default function CreatorCoachMemberSection({
   creatorBio,
   creatorCtaUrl,
   creatorEnabled,
+  creatorBrandedPageMessage,
   creatorHostingApplicationMessage,
   creatorHostingObjectionReplyCopy,
   creatorHostingOfferCopy,
@@ -34,10 +35,12 @@ export default function CreatorCoachMemberSection({
   creatorSpecialty,
   creatorTermsReadinessCopy,
   handleCreatorHostingApplication,
+  handleCreatorBrandedPageSubmit,
   handleCreatorLeaderboardSnapshotSubmit,
   handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
+  isSubmittingCreatorBrandedPage,
   isSubmittingCreatorHostingApplication,
   isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorTemplateDraft,
@@ -87,6 +90,22 @@ export default function CreatorCoachMemberSection({
         isSubmittingCreatorTemplateDraft={isSubmittingCreatorTemplateDraft}
         proActive={proActive}
       />
+      <div style={{ padding: 16, borderRadius: 12, background: 'rgba(96,165,250,0.07)', border: '1px solid rgba(96,165,250,0.18)', marginBottom: 14 }}>
+        <div style={{ color: '#60A5FA', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>CREATOR BRANDED PAGE DRAFT</div>
+        <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>
+          Save a Coach Host branded page draft for admin review. It stores creator profile, CTA, and hosted challenge summary only; no tracking pixels, payments, purchases, entitlements, revenue-share, or paid-hosting claims.
+        </p>
+        <button
+          onClick={handleCreatorBrandedPageSubmit}
+          disabled={!proActive || !creatorEnabled || isSubmittingCreatorBrandedPage}
+          style={{ border: 0, borderRadius: 9, padding: '10px 12px', background: '#60A5FA', color: '#06111f', fontWeight: 900, fontSize: 11, cursor: 'pointer' }}
+        >
+          {isSubmittingCreatorBrandedPage ? 'SAVING...' : 'SAVE PAGE DRAFT FOR REVIEW'}
+        </button>
+        {creatorBrandedPageMessage && (
+          <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorBrandedPageMessage}</p>
+        )}
+      </div>
       <div style={{ padding: 16, borderRadius: 12, background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.18)', marginBottom: 14 }}>
         <div style={{ color: '#34D399', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>CREATOR LEADERBOARD SNAPSHOT</div>
         <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>

@@ -91,6 +91,44 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps reviewable Creator Branded Page records wired on all platforms without tracking or paid-hosting side effects', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR BRANDED PAGE');
+      expect(source).toContain('SAVE PAGE DRAFT FOR REVIEW');
+      expect(source).toContain('creatorBrandedPages');
+      expect(source).toContain('tracking pixels');
+      expect(source).toContain('paid-hosting claims');
+    });
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR BRANDED PAGE REVIEW QUEUE');
+      expect(source).toContain('PUBLISHED CREATOR BRANDED PAGES');
+      expect(source).toContain('PUBLISH');
+      expect(source).toContain('NOT READY');
+    });
+    [webUserService, iosChallengeService, androidModels, androidRepository].forEach((source) => {
+      expect(source).toContain('CreatorBrandedPage');
+      expect(source).toContain('creatorCtaUrl');
+      expect(source).toContain('hostedChallengeCount');
+      expect(source).toContain('activeHostedChallengeCount');
+      expect(source).toContain('memberReach');
+      expect(source).toContain('featuredChallengeName');
+      expect(source).toContain('isPublic');
+    });
+    [webUserService, iosChallengeService, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('creatorBrandedPages');
+      expect(source).toContain('published');
+      expect(source).toContain('waiting');
+      expect(source).toContain('not_ready');
+      expect(source).toContain('declined');
+    });
+    expect(firestoreRules).toContain('match /creatorBrandedPages/{pageId}');
+    expect(firestoreRules).toContain('request.resource.data.isPublic == false');
+    expect(firestoreRules).toContain('request.resource.data.keys().hasAll(["uid", "creatorSpecialty", "creatorBio", "hostedChallengeCount", "memberReach", "status", "isPublic"])');
+  });
+
   it('keeps Creator Challenge Template Draft Kit wired on all platforms without template, tracking, or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

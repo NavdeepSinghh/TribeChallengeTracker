@@ -4,6 +4,7 @@ import {
   getCampaignPerformanceSummary,
   getCommunityEventInterestSummary,
   getCreatorChallengeTemplateDraftReviewQueue,
+  getCreatorBrandedPageReviewQueue,
   getCreatorHostingApplicationReviewQueue,
   getCreatorLeaderboardSnapshotReviewQueue,
   getCreatorRevenueShareSummary,
@@ -16,6 +17,7 @@ import {
   getPartnerPerkClaims,
   getPartnerPerkInterestSummary,
   getPublishedCreatorChallengeTemplates,
+  getPublishedCreatorBrandedPages,
   getPublishedCreatorLeaderboardSnapshots,
   getProTrialInterestSummary,
   getReferralRewardReviewQueue,
@@ -61,6 +63,8 @@ export function loadProfileScreenData(userUid, setters) {
       getCreatorRevenueShareSummary().then(setters.setCreatorRevenueShareSummary).catch(() => setters.setCreatorRevenueShareSummary({}));
       getCreatorChallengeTemplateDraftReviewQueue().then(setters.setCreatorTemplateDraftReviewQueue).catch(() => setters.setCreatorTemplateDraftReviewQueue([]));
       getPublishedCreatorChallengeTemplates().then(setters.setPublishedCreatorChallengeTemplates).catch(() => setters.setPublishedCreatorChallengeTemplates([]));
+      getCreatorBrandedPageReviewQueue().then(setters.setCreatorBrandedPageReviewQueue).catch(() => setters.setCreatorBrandedPageReviewQueue([]));
+      getPublishedCreatorBrandedPages().then(setters.setPublishedCreatorBrandedPages).catch(() => setters.setPublishedCreatorBrandedPages([]));
       getCreatorLeaderboardSnapshotReviewQueue().then(setters.setCreatorLeaderboardSnapshotReviewQueue).catch(() => setters.setCreatorLeaderboardSnapshotReviewQueue([]));
       getPublishedCreatorLeaderboardSnapshots().then(setters.setPublishedCreatorLeaderboardSnapshots).catch(() => setters.setPublishedCreatorLeaderboardSnapshots([]));
       getCreatorHostingApplicationReviewQueue().then(setters.setCreatorHostingApplicationReviewQueue).catch(() => setters.setCreatorHostingApplicationReviewQueue([]));
