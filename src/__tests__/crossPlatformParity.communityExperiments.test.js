@@ -109,6 +109,26 @@ describe('cross-platform community experiment parity source checks', () => {
     expect(firestoreRules).toContain('request.resource.data.isPaidAccessLive == false');
   });
 
+  it('keeps Weekly Campaign Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('WEEKLY CAMPAIGN REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY WEEKLY REVIEW DECISION REPLIES');
+      expect(source).toContain('weeklyCampaignReviewDecisionReplyCopy');
+      expect(source).toContain('APPROVED FOR NEXT CAMPAIGN LEARNING');
+      expect(source).toContain('WAITING ON FIRST-PARTY SIGNALS');
+      expect(source).toContain('NOT READY YET');
+      expect(source).toContain('DECLINED FOR NOW');
+      expect(source).toContain('create attribution records');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('auto-post');
+      expect(source).toContain('scrape DMs');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('imply paid access is live');
+    });
+  });
+
   it('keeps Lapsed Member Winback Kit free-first across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

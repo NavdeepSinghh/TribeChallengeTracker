@@ -21,6 +21,23 @@ export default function WeeklyCampaignReviewRecordSection({
   const campaignReach = campaignPerformanceSummary.memberReach || 0;
   const supportRiskCount = supportReviewQueue.length || 0;
   const featureSubmissionCount = featureReviewQueue.length || 0;
+  const weeklyCampaignReviewDecisionReplyCopy = `Rise With The Tribe Weekly Campaign Review Decision Reply Kit:
+
+Open weekly campaign reviews: ${weeklyCampaignReviewQueue.length}
+Approved weekly campaign reviews: ${approvedWeeklyCampaignReviews.length}
+Campaign reviewed: ${weeklyCampaignPrompt.name || 'This week'} ${weeklyCampaignPrompt.hashtag || '#RiseWithTheTribe'}
+Recommended experiment: ${recommendedLaunchExperiment?.label || 'Pro Trial CTA'}
+
+Manual decision replies:
+APPROVED FOR NEXT CAMPAIGN LEARNING: This weekly campaign review is approved for manual planning. Use the first-party app signals to repeat, retire, or adjust the next campaign prompt without creating attribution records or paid-access changes.
+
+WAITING ON FIRST-PARTY SIGNALS: This review has useful context, but it needs clearer first-party app movement before the next launch decision. Add challenge joins, referral joins, Feature Me review status, support risk, or share-card notes before using it as launch evidence.
+
+NOT READY YET: This review is not ready to guide the next campaign. Keep the campaign learning internal until first-party app movement, consent-cleared UGC, and support risk are clearer.
+
+DECLINED FOR NOW: This weekly campaign review should not shape the next push right now. Use a safer campaign prompt or keep gathering app-first evidence before repeating the angle.
+
+This is a manual Weekly Campaign Review Decision Reply Kit only. Do not create attribution records, add tracking pixels, auto-post, scrape DMs, store inbound replies, create purchases, write entitlements, imply paid access is live, promise outcomes, imply medical results, or pressure members.`;
 
   return (
     <div style={{
@@ -107,6 +124,18 @@ export default function WeeklyCampaignReviewRecordSection({
           <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10 }}>
             {approvedWeeklyCampaignReviews.length} approved manual records. Approved records still create no attribution records, tracking pixels, auto-posting, scraped DMs, purchases, entitlements, or paid-access changes.
           </p>
+          <div style={{ marginTop: 12, padding: 10, borderRadius: 10, border: '1px solid rgba(251,191,36,0.20)', background: 'rgba(251,191,36,0.05)' }}>
+            <p style={{ margin: 0, color: '#fff', fontSize: 11, fontWeight: 900 }}>WEEKLY CAMPAIGN REVIEW DECISION REPLY KIT</p>
+            <p style={{ margin: '4px 0 0', color: '#999', fontSize: 10, lineHeight: 1.4 }}>
+              Copy approved, waiting, not-ready, and declined replies without attribution records, tracking pixels, auto-posting, scraped DMs, purchases, entitlements, or paid-access changes.
+            </p>
+            <button
+              onClick={() => navigator.clipboard?.writeText(weeklyCampaignReviewDecisionReplyCopy)}
+              style={{ marginTop: 8, width: '100%', borderRadius: 8, padding: 8, border: '1px solid rgba(251,191,36,0.30)', background: 'rgba(251,191,36,0.10)', color: '#FBBF24', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}
+            >
+              COPY WEEKLY REVIEW DECISION REPLIES
+            </button>
+          </div>
         </div>
       )}
     </div>
