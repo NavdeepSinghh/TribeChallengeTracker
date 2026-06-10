@@ -8,6 +8,7 @@ Features:
 - Weekly Campaign Launch Card Kit across Web, iOS, and Android to turn this week's campaign template into copy-ready card headlines, design notes, caption drafts, hashtags, and consent-safe posting guardrails.
 - Weekly Campaign Preflight Checklist across Web, iOS, and Android to confirm launch-card copy, manual DM replies, seven-day content cadence, referral copy, consent-reviewed UGC, and first-party review metrics before the weekly push.
 - Weekly Campaign Review Kit across Web, iOS, and Android to review challenge joins, referral movement, consent-cleared UGC, manual DM copy, and share-card usage before shaping the next weekly push.
+- Weekly Campaign Review Records across Web, iOS, and Android to save manual `weeklyCampaignReviews` evidence from campaign reach, referral joins, Feature Me review volume, support risk, and recommended experiment context; admin decisions remain review-only and create no attribution records, tracking pixels, auto-posting, scraped DMs, purchases, entitlements, or paid-access changes.
 - Weekly Campaign Storyboard Kit across Web, iOS, and Android to turn this week's campaign prompt into a manual Reel storyboard, Story frame plan, carousel outline, hashtag, and consent-safe publishing guardrails.
 - Weekly Campaign Experiment Brief Kit across Web, iOS, and Android to connect this week's campaign CTA to the recommended manual launch experiment and first-party review metrics.
 - Instagram DM Keyword Kit across Web, iOS, and Android with manual reply copy for `TRIBE`, `COMEBACK`, `PRO`, and `FEATURE` audience flows.

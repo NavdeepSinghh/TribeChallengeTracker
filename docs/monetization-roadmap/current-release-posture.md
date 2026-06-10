@@ -77,6 +77,7 @@
 - Focused profile-copy token files now split support/store, creator/partner, and referral/community copy assertions into separate files while preserving the same combined release token groups.
 - Focused Web surface contract tokens have been grouped so derived-data, profile-module, app-shell, and challenge-surface release assertions live separately while preserving the same static release coverage.
 - Focused Weekly Campaign derived-data and marketing-props coverage has been split so scheduler/experiment/engagement contracts live separately from the UI prop-adapter contract.
+- Weekly Campaign Review Records are implemented across Web, iOS, and Android as manual `weeklyCampaignReviews` admin evidence queues with no attribution, tracking pixel, auto-posting, scraped-DM, purchase, entitlement, or paid-access side effects.
 - Weekly Campaign derived-data result assembly now lives in `src/profile/profileWeeklyCampaignDerivedResult.js`, keeping core, launch-experiment, and engagement bundle flattening separate from `src/profile/profileWeeklyCampaignDerivedData.js` while preserving the same `buildProfileWeeklyCampaignDerivedData` return contract.
 - Focused Weekly Campaign architecture parity coverage has been split so Web derived-data boundary checks live separately from scheduler and campaign board parity checks.
 - Focused Weekly Campaign review-planning parity coverage has been split so review, storyboard, and experiment checks live separately from scheduler, launch-card, and preflight checks.

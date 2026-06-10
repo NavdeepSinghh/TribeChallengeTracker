@@ -1,6 +1,6 @@
 # Monetization Release Audit
 
-Date: 2026-06-07
+Date: 2026-06-10
 
 This audit records the current evidence for the monetization and engagement roadmap across Web, iOS, and Android. It is not a paid-launch approval; it separates code-side parity from external App Store / Google Play evidence.
 
@@ -48,6 +48,7 @@ Additional local checks after the full-gate audit:
 - Focused Weekly Campaign derived-data coverage is wired into `npm run test:release` and passed in `src/__tests__/weeklyCampaignDerivedData.test.js`: scheduler, launch card, preflight, review, DM keyword, experiment, engagement, collab, retention, re-invite, first-party signal, and no-automation/no-tracking boundary contracts.
 - Weekly Campaign derived-data result assembly now lives in `src/profile/profileWeeklyCampaignDerivedResult.js`, keeping core, launch-experiment, and engagement bundle flattening separate from `src/profile/profileWeeklyCampaignDerivedData.js` while preserving the same `buildProfileWeeklyCampaignDerivedData` return contract.
 - Focused Weekly Campaign marketing-props coverage is wired into `npm run test:release` and passed in `src/__tests__/weeklyCampaignMarketingProps.test.js`: Weekly Campaign marketing prop contract, creator/admin flags, Instagram calendar copy, launch-card copy, collab cards, and comment-reply copy.
+- Weekly Campaign Review Records are implemented across Web, iOS, and Android as manual `weeklyCampaignReviews` admin evidence queues with no attribution, tracking pixel, auto-posting, scraped-DM, purchase, entitlement, or paid-access side effects.
 - Focused monetization-model coverage is wired into `npm run test:release` and passed in `src/__tests__/monetizationModel.test.js`: minimum store-test evidence readiness and safe-denial negative evidence.
 - Monetization summary copy now lives in `src/profile/monetizationSummaryCopy.js`, keeping Pro trial, creator beta, launch board, and store-readiness copy separate from revenue-path scoring and store-test evidence models while preserving the same `monetizationModel` export contract.
 - Focused partner-perks prop-adapter coverage is wired into `npm run test:release` and passed in `src/__tests__/partnerPerksProps.test.js`: member/admin/application prop grouping without dropping review, claim, copy, or campaign handlers.
@@ -185,8 +186,7 @@ Additional local checks after the full-gate audit:
 - iOS simulator build passed using `xcodebuild` with generic iOS Simulator destination, `/private/tmp/TribeChallengeDerivedData`, and `/private/tmp/TribeChallengeSPM`.
 - Web production build was rerun successfully under Homebrew Node 20.20.2 with `PATH="/opt/homebrew/opt/node@20/bin:$PATH" CI=true GENERATE_SOURCEMAP=false npm run build`.
 - The Node 24 runtime remains intentionally blocked by `prebuild` because CRA 5 can hang before emitting build output on that runtime.
-- Later local production-build reruns on Node 20.20.2 also reached `Creating an optimized production build...` and then sat inside `react-scripts/scripts/build.js` without compiler/minifier child work. Those hung runners were killed; do not treat those attempts as fresh build evidence. Before claiming a new build proof, confirm no stale `react-scripts build` process is running and rerun the command to completion.
-- The bounded build wrapper was verified with `BUILD_IDLE_TIMEOUT_MS=1000`; it terminated a silent CRA build with a clear diagnostic instead of leaving a long-running process behind.
+- The bounded build wrapper can be verified with a small `BUILD_IDLE_TIMEOUT_MS` value; it terminates a silent CRA build with a clear diagnostic instead of leaving a long-running process behind.
 - `npm run store:readiness` reports the current external store credential gaps and required sandbox/license-test evidence matrix without changing entitlements.
 
 ## Proven Code-Side Scope
@@ -197,7 +197,6 @@ Additional local checks after the full-gate audit:
 - Web profile sharing now has focused copy coverage for win-card, weekly recap, and monthly recap share text plus focused card-sharing coverage for native file-share, clipboard/download fallback, and caller-specific error-message contracts.
 - Weekly Campaign derived data now has focused coverage for core planning copy, experiment recommendation, story/engagement copy, collab cards, retention follow-up, re-invite copy, first-party signal wording, and no-automation/no-tracking boundaries.
 - Weekly Campaign marketing props now have focused adapter coverage for creator/admin flags, Instagram calendar copy, launch-card copy, collab cards, comment replies, and the complete prop key contract.
-- Weekly Campaign marketing now includes an Operator Summary card across Web, iOS, and Android that condenses member reach, active campaign count, referral joins, Feature Me queue depth, recommended manual experiment lens, and app-first no-automation guardrails before the launch-card and copy-kit stack.
 - Weekly campaign planning, Story, DM/comment, collab, retention follow-up, re-invite, UGC consent, and Instagram content calendar kits are present across Web, iOS, and Android.
 - Pro, challenge-pack, creator, partner, support, account deletion, referral reward, store-readiness, and paid-launch decision surfaces are present as copy-only/manual or request/review flows with side-effect guardrails.
 - Release verification now scans split Web profile modules, iOS profile companion files, and Android profile companion files so decomposed feature code remains covered.
