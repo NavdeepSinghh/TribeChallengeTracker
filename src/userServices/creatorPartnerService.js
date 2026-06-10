@@ -59,3 +59,9 @@ export {
   getPartnerPerkClaims,
   reviewPartnerPerkClaim,
 } from './partnerPerkClaimService';
+export {
+  getApprovedPartnerPerkHandoffAuditReviews,
+  getPartnerPerkHandoffAuditReviewQueue,
+  reviewPartnerPerkHandoffAuditReview,
+  submitPartnerPerkHandoffAuditReview,
+} from './partnerPerkHandoffAuditReviewService';

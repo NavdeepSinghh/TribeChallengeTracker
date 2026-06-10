@@ -1,10 +1,20 @@
 import PartnerPerkClaimReviewQueue from './PartnerPerkClaimReviewQueue';
 import PartnerPerkCopyKits from './PartnerPerkCopyKits';
+import PartnerPerkHandoffAuditReviewCard from './PartnerPerkHandoffAuditReviewCard';
 
 export default function PartnerPerkAdminReviewSection({
+  approvedPartnerPerkHandoffAuditReviews,
+  isSubmittingPartnerPerkHandoffAuditReview,
+  onPartnerPerkHandoffAuditReviewDecision,
+  onPartnerPerkHandoffAuditReviewSubmit,
   partnerPerkClaimReviewQueue,
+  partnerPerkHandoffAuditReviewMessage,
+  partnerPerkHandoffAuditReviewNotes,
+  partnerPerkHandoffAuditReviewQueue,
   partnerPerkReviewNotes,
+  reviewingPartnerPerkHandoffAuditReviewId,
   setPartnerPerkReviewNotes,
+  setPartnerPerkHandoffAuditReviewNotes,
   reviewingPartnerPerkClaimId,
   onPartnerPerkClaimReview,
   partnerPerkDecisionReplyCopy,
@@ -31,6 +41,17 @@ export default function PartnerPerkAdminReviewSection({
         partnerPerkFulfillmentHandoffCopy={partnerPerkFulfillmentHandoffCopy}
         partnerPerkFulfillmentReadinessCopy={partnerPerkFulfillmentReadinessCopy}
         partnerPerkHandoffAuditCopy={partnerPerkHandoffAuditCopy}
+      />
+      <PartnerPerkHandoffAuditReviewCard
+        approvedPartnerPerkHandoffAuditReviews={approvedPartnerPerkHandoffAuditReviews}
+        isSubmittingPartnerPerkHandoffAuditReview={isSubmittingPartnerPerkHandoffAuditReview}
+        onDecision={onPartnerPerkHandoffAuditReviewDecision}
+        onSubmit={onPartnerPerkHandoffAuditReviewSubmit}
+        partnerPerkHandoffAuditReviewMessage={partnerPerkHandoffAuditReviewMessage}
+        partnerPerkHandoffAuditReviewNotes={partnerPerkHandoffAuditReviewNotes}
+        partnerPerkHandoffAuditReviewQueue={partnerPerkHandoffAuditReviewQueue}
+        reviewingPartnerPerkHandoffAuditReviewId={reviewingPartnerPerkHandoffAuditReviewId}
+        setPartnerPerkHandoffAuditReviewNotes={setPartnerPerkHandoffAuditReviewNotes}
       />
     </>
   );

@@ -664,6 +664,55 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    // ── Partner perk handoff audit reviews ──────────────────────────────────
+    // Manual aggregate evidence only after partner perk claim review. These
+    // records must not create coupons, links, payouts, discounts, purchases,
+    // entitlements, tracking, refunds, fulfillment promises, or messages.
+    match /partnerPerkHandoffAuditReviews/{reviewId} {
+      allow read: if request.auth != null && isAdmin();
+      allow create: if request.auth != null && isAdmin()
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.createsCoupons == false
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsAffiliateRewards == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.usesAdTargeting == false
+        && request.resource.data.exportsThirdPartyData == false
+        && request.resource.data.makesPaidAccessClaims == false
+        && request.resource.data.collectsPayment == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.promisesFulfillment == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresMembers == false;
+      allow update: if request.auth != null && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.createsCoupons == false
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.createsAffiliateRewards == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.usesAdTargeting == false
+        && request.resource.data.exportsThirdPartyData == false
+        && request.resource.data.makesPaidAccessClaims == false
+        && request.resource.data.collectsPayment == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.promisesFulfillment == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresMembers == false;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Challenges ────────────────────────────────────────────────────────────
     // Any authenticated user can read challenges (for invite-link joins).
     // Only the creator can update/delete; admins can do anything.
