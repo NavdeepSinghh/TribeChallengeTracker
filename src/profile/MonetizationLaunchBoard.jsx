@@ -25,6 +25,23 @@ export default function MonetizationLaunchBoard({
 }) {
   const pendingFeatureCount = featureReviewQueue.length || 0;
   const supportRiskCount = supportReviewQueue.length || 0;
+  const launchExperimentReviewDecisionReplyCopy = `Rise With The Tribe Launch Experiment Review Decision Reply Kit:
+
+Open launch experiment reviews: ${launchExperimentReviewQueue.length}
+Approved launch experiment reviews: ${approvedLaunchExperimentReviews.length}
+Recommended experiment: ${recommendedLaunchExperiment?.label || 'Pro Trial CTA'}
+Experiment score: ${experimentScore}/100 (${experimentScoreLabel})
+
+Manual decision replies:
+APPROVED FOR MANUAL TESTING: This launch experiment review is approved for manual planning. Use first-party app signals to run the next safe test without creating attribution records, tracking pixels, purchases, entitlements, or paid-access changes.
+
+WAITING ON CLEAN SIGNALS: This experiment has useful context, but it needs clearer first-party app movement before promotion. Add challenge joins, referral joins, Feature Me status, support risk, or share-card notes before treating it as launch evidence.
+
+NOT READY YET: This launch experiment is not ready to guide a public push. Keep the idea internal until the app-first signal, consent, and support-risk checks are stronger.
+
+DECLINED FOR NOW: This experiment should not shape the next launch push right now. Use a safer test or keep gathering first-party evidence before repeating this angle.
+
+This is a manual Launch Experiment Review Decision Reply Kit only. Do not create attribution records, add tracking pixels, auto-post, scrape DMs, store inbound replies, create purchases, write entitlements, imply paid access is live, promise outcomes, imply medical results, or pressure members.`;
 
   return (
     <div style={{
@@ -150,6 +167,27 @@ export default function MonetizationLaunchBoard({
           <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10 }}>
             {approvedLaunchExperimentReviews.length} approved manual records. Approved records still create no attribution records, tracking pixels, purchases, entitlements, or paid-access changes.
           </p>
+          <div style={{
+            marginTop: 10, padding: 10, borderRadius: 10,
+            border: '1px solid rgba(52,211,153,0.20)', background: 'rgba(52,211,153,0.05)',
+          }}>
+            <p style={{ margin: 0, color: '#fff', fontSize: 11, fontWeight: 900 }}>
+              LAUNCH EXPERIMENT REVIEW DECISION REPLY KIT
+            </p>
+            <p style={{ margin: '6px 0 0', color: '#888', fontSize: 10, lineHeight: 1.45 }}>
+              Copy approved, waiting, not-ready, and declined replies for manual launch experiment decisions without attribution records, tracking pixels, purchases, entitlements, or paid-access claims.
+            </p>
+            <button
+              onClick={() => navigator.clipboard?.writeText(launchExperimentReviewDecisionReplyCopy)}
+              style={{
+                marginTop: 8, width: '100%', borderRadius: 8, padding: 8,
+                border: '1px solid rgba(52,211,153,0.24)', background: 'rgba(52,211,153,0.10)',
+                color: '#34D399', fontSize: 9, fontWeight: 900, fontFamily: 'monospace',
+              }}
+            >
+              COPY LAUNCH EXPERIMENT DECISION REPLIES
+            </button>
+          </div>
         </div>
       )}
     </div>

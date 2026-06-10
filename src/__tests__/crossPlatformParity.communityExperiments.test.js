@@ -70,6 +70,22 @@ describe('cross-platform community experiment parity source checks', () => {
     expect(firestoreRules).toContain('request.resource.data.isPaidAccessLive == false');
   });
 
+  it('keeps Launch Experiment Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('LAUNCH EXPERIMENT REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY LAUNCH EXPERIMENT DECISION REPLIES');
+      expect(source).toContain('approved, waiting, not-ready, and declined replies');
+      expect(source).toContain('manual launch experiment decisions');
+      expect(source).toContain('Do not create attribution records');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('imply paid access is live');
+      expect(source).toContain('pressure members');
+    });
+  });
+
   it('keeps Weekly Campaign Review records manual and first-party only across platforms', () => {
     const webProfile = readWebProfileContracts();
     const webUserService = readWebUserServiceContracts();
