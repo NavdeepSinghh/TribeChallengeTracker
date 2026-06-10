@@ -1,7 +1,14 @@
 const {
+  fs,
+  path,
+  repoRoot,
   iosProfile,
+  iosChallengeService,
   androidApp,
+  androidModels,
+  androidRepository,
   readWebProfileContracts,
+  readWebUserServiceContracts,
 } = require('../testUtils/crossPlatformParityFixtures');
 
 describe('cross-platform creator hosting readiness parity source checks', () => {
@@ -147,6 +154,49 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
       expect(source).toContain('submit store review');
       expect(source).toContain('claim paid creator hosting is live');
     });
+  });
+
+  it('keeps reviewable Creator Paid Hosting Launch Gate Evidence wired on all platforms without paid-hosting side effects', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAID HOSTING LAUNCH GATE EVIDENCE');
+      expect(source).toContain('SAVE LAUNCH GATE EVIDENCE');
+      expect(source).toContain('creatorPaidHostingLaunchGateReviews');
+      expect(source).toContain('Paid hosting');
+      expect(source).toContain('contracts');
+      expect(source).toContain('payouts');
+      expect(source).toContain('purchases');
+      expect(source).toContain('entitlements');
+      expect(source).toContain('revenue-share');
+    });
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAID HOSTING LAUNCH GATE REVIEW QUEUE');
+      expect(source).toContain('APPROVED PAID HOSTING LAUNCH GATE EVIDENCE');
+      expect(source).toContain('APPROVE');
+      expect(source).toContain('NOT READY');
+    });
+    [webUserService, iosChallengeService, androidModels, androidRepository].forEach((source) => {
+      expect(source).toContain('CreatorPaidHostingLaunchGate');
+      expect(source).toContain('profileReady');
+      expect(source).toContain('revenueReadyCount');
+      expect(source).toContain('hostingApplicationStatus');
+      expect(source).toContain('publishedTemplateCount');
+      expect(source).toContain('approvedPrivateInviteLaunchCount');
+      expect(source).toContain('launchGateReady');
+      expect(source).toContain('isPaidHostingLive');
+    });
+    [webUserService, iosChallengeService, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('creatorPaidHostingLaunchGateReviews');
+      expect(source).toContain('approved');
+      expect(source).toContain('waiting');
+      expect(source).toContain('not_ready');
+      expect(source).toContain('declined');
+    });
+    expect(firestoreRules).toContain('match /creatorPaidHostingLaunchGateReviews/{gateId}');
+    expect(firestoreRules).toContain('request.resource.data.isPaidHostingLive == false');
+    expect(firestoreRules).toContain('request.resource.data.keys().hasAll(["uid", "profileReady", "hostedChallengeCount", "revenueReadyCount", "hostingApplicationStatus", "launchGateReady", "status", "isPaidHostingLive"])');
   });
 
   it('keeps Creator Paid Hosting Hold Plan Kit wired on all platforms without launch side effects', () => {

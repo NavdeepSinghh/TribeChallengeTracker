@@ -20,6 +20,7 @@ export default function CreatorCoachMemberSection({
   creatorLeaderboardPreviewCopy,
   creatorModerationReadinessCopy,
   creatorPaidHostingLaunchGateCopy,
+  creatorPaidHostingLaunchGateMessage,
   creatorPaidHostingHoldPlanCopy,
   creatorLaunchChallenge,
   creatorLaunchCopy,
@@ -39,6 +40,7 @@ export default function CreatorCoachMemberSection({
   handleCreatorBrandedPageSubmit,
   handleCreatorLeaderboardSnapshotSubmit,
   handleCreatorPrivateInviteLaunchSubmit,
+  handleCreatorPaidHostingLaunchGateSubmit,
   handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
@@ -46,6 +48,7 @@ export default function CreatorCoachMemberSection({
   isSubmittingCreatorHostingApplication,
   isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorPrivateInviteLaunch,
+  isSubmittingCreatorPaidHostingLaunchGate,
   isSubmittingCreatorTemplateDraft,
   proActive,
   setCreatorBio,
@@ -123,6 +126,22 @@ export default function CreatorCoachMemberSection({
         </button>
         {creatorPrivateInviteLaunchMessage && (
           <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorPrivateInviteLaunchMessage}</p>
+        )}
+      </div>
+      <div style={{ padding: 16, borderRadius: 12, background: 'rgba(244,114,182,0.07)', border: '1px solid rgba(244,114,182,0.18)', marginBottom: 14 }}>
+        <div style={{ color: '#F472B6', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>CREATOR PAID HOSTING LAUNCH GATE EVIDENCE</div>
+        <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>
+          Save first-party paid-hosting launch gate evidence for admin review. It checks profile, hosted reach, approved review records, and published creator surfaces only; paid hosting stays off with no contracts, payouts, purchases, entitlements, revenue-share, or paid-access claims.
+        </p>
+        <button
+          onClick={handleCreatorPaidHostingLaunchGateSubmit}
+          disabled={!proActive || !creatorEnabled || isSubmittingCreatorPaidHostingLaunchGate}
+          style={{ border: 0, borderRadius: 9, padding: '10px 12px', background: '#F472B6', color: '#220614', fontWeight: 900, fontSize: 11, cursor: 'pointer' }}
+        >
+          {isSubmittingCreatorPaidHostingLaunchGate ? 'SAVING...' : 'SAVE LAUNCH GATE EVIDENCE'}
+        </button>
+        {creatorPaidHostingLaunchGateMessage && (
+          <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorPaidHostingLaunchGateMessage}</p>
         )}
       </div>
       <div style={{ padding: 16, borderRadius: 12, background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.18)', marginBottom: 14 }}>

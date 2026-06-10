@@ -30,6 +30,12 @@ export {
   submitCreatorPrivateInviteLaunch,
 } from './creatorPrivateInviteLaunchService';
 export {
+  getApprovedCreatorPaidHostingLaunchGateReviews,
+  getCreatorPaidHostingLaunchGateReviewQueue,
+  reviewCreatorPaidHostingLaunchGateEvidence,
+  submitCreatorPaidHostingLaunchGateEvidence,
+} from './creatorPaidHostingLaunchGateService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,

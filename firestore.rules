@@ -308,6 +308,21 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /creatorPaidHostingLaunchGateReviews/{gateId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.isPaidHostingLive == false
+        && request.resource.data.keys().hasAll(["uid", "profileReady", "hostedChallengeCount", "revenueReadyCount", "hostingApplicationStatus", "launchGateReady", "status", "isPaidHostingLive"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.isPaidHostingLive == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "isPaidHostingLive", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Partner campaign applications ────────────────────────────────────────
     // Members can request manual sponsor-pilot review from first-party demand.
     // Admins can use reviewPartnerCampaignApplication to update reviewNote,

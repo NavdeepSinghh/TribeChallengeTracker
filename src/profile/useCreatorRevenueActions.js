@@ -2,6 +2,7 @@ import { buildCreatorHostingApplicationActionHandlers } from './creatorHostingAp
 import { buildCreatorBrandedPageActionHandlers } from './creatorBrandedPageActionHandlers';
 import { buildCreatorChallengeTemplateDraftActionHandlers } from './creatorChallengeTemplateDraftActionHandlers';
 import { buildCreatorLeaderboardSnapshotActionHandlers } from './creatorLeaderboardSnapshotActionHandlers';
+import { buildCreatorPaidHostingLaunchGateActionHandlers } from './creatorPaidHostingLaunchGateActionHandlers';
 import { buildCreatorPrivateInviteLaunchActionHandlers } from './creatorPrivateInviteLaunchActionHandlers';
 import { buildCreatorProfileActionHandlers } from './creatorProfileActionHandlers';
 
@@ -13,6 +14,7 @@ export default function useCreatorRevenueActions({
   creatorBrandedPageReviewNotes,
   creatorHostingApplicationReviewNotes,
   creatorLeaderboardSnapshotReviewNotes,
+  creatorPaidHostingLaunchGateReviewNotes,
   creatorPrivateInviteLaunchReviewNotes,
   creatorLaunchChallenge,
   creatorRevenueShareInterest,
@@ -22,6 +24,7 @@ export default function useCreatorRevenueActions({
   isSubmittingCreatorBrandedPage,
   isSubmittingCreatorHostingApplication,
   isSubmittingCreatorLeaderboardSnapshot,
+  isSubmittingCreatorPaidHostingLaunchGate,
   isSubmittingCreatorPrivateInviteLaunch,
   isSubmittingCreatorTemplateDraft,
   proActive,
@@ -30,9 +33,11 @@ export default function useCreatorRevenueActions({
   setPublishedCreatorChallengeTemplates,
   setPublishedCreatorLeaderboardSnapshots,
   setApprovedCreatorPrivateInviteLaunches,
+  setApprovedCreatorPaidHostingLaunchGateReviews,
   reviewingCreatorHostingApplicationId,
   reviewingCreatorBrandedPageId,
   reviewingCreatorLeaderboardSnapshotId,
+  reviewingCreatorPaidHostingLaunchGateId,
   reviewingCreatorPrivateInviteLaunchId,
   reviewingCreatorTemplateDraftId,
   setCreatorLeaderboardSnapshotMessage,
@@ -41,6 +46,8 @@ export default function useCreatorRevenueActions({
   setCreatorBrandedPageReviewQueue,
   setCreatorPrivateInviteLaunchMessage,
   setCreatorPrivateInviteLaunchReviewQueue,
+  setCreatorPaidHostingLaunchGateMessage,
+  setCreatorPaidHostingLaunchGateReviewQueue,
   setCreatorHostingApplicationMessage,
   setCreatorHostingApplicationReviewQueue,
   setCreatorMessage,
@@ -49,6 +56,7 @@ export default function useCreatorRevenueActions({
   setIsSubmittingCreatorLeaderboardSnapshot,
   setIsSubmittingCreatorBrandedPage,
   setIsSubmittingCreatorPrivateInviteLaunch,
+  setIsSubmittingCreatorPaidHostingLaunchGate,
   setIsSavingCreator,
   setIsSubmittingCreatorHostingApplication,
   setIsSubmittingCreatorTemplateDraft,
@@ -57,6 +65,7 @@ export default function useCreatorRevenueActions({
   setReviewingCreatorBrandedPageId,
   setReviewingCreatorLeaderboardSnapshotId,
   setReviewingCreatorPrivateInviteLaunchId,
+  setReviewingCreatorPaidHostingLaunchGateId,
   setReviewingCreatorTemplateDraftId,
   user,
   onProfileUpdated,
@@ -151,11 +160,26 @@ export default function useCreatorRevenueActions({
     setReviewingCreatorPrivateInviteLaunchId,
     user,
   });
+  const creatorPaidHostingLaunchGateHandlers = buildCreatorPaidHostingLaunchGateActionHandlers({
+    creatorEnabled,
+    creatorPaidHostingLaunchGateReviewNotes,
+    isAdmin,
+    isSubmittingCreatorPaidHostingLaunchGate,
+    proActive,
+    reviewingCreatorPaidHostingLaunchGateId,
+    setApprovedCreatorPaidHostingLaunchGateReviews,
+    setCreatorPaidHostingLaunchGateMessage,
+    setCreatorPaidHostingLaunchGateReviewQueue,
+    setIsSubmittingCreatorPaidHostingLaunchGate,
+    setReviewingCreatorPaidHostingLaunchGateId,
+    user,
+  });
 
   return {
     ...creatorBrandedPageHandlers,
     ...creatorHostingApplicationHandlers,
     ...creatorLeaderboardSnapshotHandlers,
+    ...creatorPaidHostingLaunchGateHandlers,
     ...creatorPrivateInviteLaunchHandlers,
     ...creatorProfileHandlers,
     ...creatorTemplateDraftHandlers,

@@ -21,6 +21,7 @@ export {
 export {
   claimPartnerPerk,
   getApprovedCreatorPrivateInviteLaunches,
+  getApprovedCreatorPaidHostingLaunchGateReviews,
   getCampaignPerformanceSummary,
   getCommunityEventInterestSummary,
   getCreatorChallengeTemplateDraftReviewQueue,
@@ -28,6 +29,7 @@ export {
   getCreatorHostingApplicationReviewQueue,
   getCreatorLeaderboardSnapshotReviewQueue,
   getCreatorPrivateInviteLaunchReviewQueue,
+  getCreatorPaidHostingLaunchGateReviewQueue,
   getCreatorRevenueShareSummary,
   getPartnerCampaignApplicationReviewQueue,
   getPartnerPerkClaimReviewQueue,
@@ -42,6 +44,7 @@ export {
   reviewCreatorHostingApplication,
   reviewCreatorLeaderboardSnapshot,
   reviewCreatorPrivateInviteLaunch,
+  reviewCreatorPaidHostingLaunchGateEvidence,
   reviewPartnerCampaignApplication,
   reviewPartnerPerkClaim,
   saveCommunityEventInterest,
@@ -53,6 +56,7 @@ export {
   submitCreatorHostingApplication,
   submitCreatorLeaderboardSnapshot,
   submitCreatorPrivateInviteLaunch,
+  submitCreatorPaidHostingLaunchGateEvidence,
   submitPartnerCampaignApplication,
 } from './userServices/creatorPartnerService';
 export {
