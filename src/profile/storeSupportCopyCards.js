@@ -7,6 +7,7 @@ export function buildStoreSupportCopyCards({
   storeLaunchDryRunCopy,
   storeTestPurchaseSessionPrepCopy,
   storeDemoAccountCopy,
+  storeScreenshotQaCopy,
   storeReviewPackCopy,
   storeReviewResponseCopy,
 }) {
@@ -82,6 +83,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy reviewer notes for a synthetic demo account without creating accounts from client code, exposing real users, or unlocking paid access.',
       buttonLabel: 'COPY DEMO ACCOUNT KIT',
       copyText: storeDemoAccountCopy,
+    },
+    {
+      title: 'STORE SCREENSHOT QA KIT',
+      subtitle: 'Reviewer-safe screenshots and captions',
+      status: 'ASSET QA',
+      accent: '#22C55E',
+      body: 'Copy screenshot QA prompts that use synthetic demo data only and avoid private data, credentials, purchase tokens, paid-live claims, or store submission side effects.',
+      buttonLabel: 'COPY SCREENSHOT QA',
+      copyText: storeScreenshotQaCopy,
     },
     {
       title: 'STORE REVIEW PACK',

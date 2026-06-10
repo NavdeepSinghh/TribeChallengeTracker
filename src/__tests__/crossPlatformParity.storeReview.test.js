@@ -67,6 +67,30 @@ describe('cross-platform store review and evidence parity source checks', () => 
     });
   });
 
+  it('keeps Store Screenshot QA Kit reviewer-safe and copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE SCREENSHOT QA KIT');
+      expect(source).toContain('COPY SCREENSHOT QA');
+      expect(source).toContain('storeScreenshotQaCopy');
+      expect(source).toContain('Reviewer-safe screenshots and captions');
+      expect(source).toContain('ASSET QA');
+      expect(source).toContain('seeded demo data only');
+      expect(source).toContain('synthetic demo account data only');
+      expect(source).toContain('purchase tokens');
+      expect(source).toContain('service account JSON');
+      expect(source).toContain('reviewer passwords');
+      expect(source).toContain('Do not submit store review');
+      expect(source).toContain('expose personal user data');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('bypass StoreKit or Play Billing');
+      expect(source).toContain('claim paid access is live');
+      expect(source).toContain('claim sandbox/license-test evidence without proof');
+      expect(source).toContain('pressure reviewers or members');
+    });
+  });
+
   it('keeps Store Test Purchase Session Prep Kit evidence-safe across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

@@ -68,6 +68,12 @@ export const STORE_DEMO_ACCOUNT_ITEMS = [
   'Keep paid surfaces in review mode unless sandbox/license-test purchases, restore, receipt validation, and entitlement QA are proven',
   'Document optional HealthKit / Health Connect, media upload, notifications, support, privacy, terms, and data deletion behavior for reviewers',
 ];
+export const STORE_SCREENSHOT_QA_ITEMS = [
+  'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
+  'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
+  'Show paid surfaces as pending or review mode until sandbox/license-test evidence, receipt validation, restore, and entitlement QA are proven',
+  'Confirm App Store and Play screenshot captions match current app behavior, privacy policy, support links, and data safety notes',
+];
 export const STORE_REVIEW_PACK_ITEMS = [
   'Draft App Store and Play reviewer notes with demo account context, free challenge flows, permission explanations, and support links',
   'Attach data safety, privacy, terms, data deletion, refund/support handoff, and restore/sync notes before submission',

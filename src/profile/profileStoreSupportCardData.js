@@ -45,6 +45,7 @@ export function buildProfileStoreSupportCardData({
     storeLaunchDryRunCopy,
     storeTestPurchaseSessionPrepCopy,
     storeDemoAccountCopy,
+    storeScreenshotQaCopy,
     storeReviewPackCopy,
     storeReviewResponseCopy,
   } = buildProfileStoreLifecycleSupportData({
@@ -75,6 +76,7 @@ export function buildProfileStoreSupportCardData({
     storeLaunchDryRunCopy,
     storeTestPurchaseSessionPrepCopy,
     storeDemoAccountCopy,
+    storeScreenshotQaCopy,
     storeReviewPackCopy,
     storeReviewResponseCopy,
   });
@@ -86,5 +88,6 @@ export function buildProfileStoreSupportCardData({
     renewalRecoveryCopy,
     storeSupportCopyCards,
     storeTestPurchaseSessionPrepCopy,
+    storeScreenshotQaCopy,
   };
 }

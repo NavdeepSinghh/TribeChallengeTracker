@@ -6,6 +6,7 @@ import {
   STORE_DEMO_ACCOUNT_ITEMS,
   STORE_LAUNCH_DRY_RUN_ITEMS,
   STORE_REVIEW_PACK_ITEMS,
+  STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
 import { buildStoreLifecycleCopy } from './storeLifecycleCopy';
@@ -36,6 +37,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
     storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
     storeDemoAccountItems: STORE_DEMO_ACCOUNT_ITEMS,
+    storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
     storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

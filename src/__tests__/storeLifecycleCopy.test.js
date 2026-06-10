@@ -1,14 +1,55 @@
-import {
-  CANCELLATION_FEEDBACK_ITEMS,
-  LAPSED_MEMBER_WINBACK_ITEMS,
-  RENEWAL_RECOVERY_ITEMS,
-  STORE_DEMO_ACCOUNT_ITEMS,
-  STORE_LAUNCH_DRY_RUN_ITEMS,
-  STORE_REVIEW_PACK_ITEMS,
-  STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
-} from '../profile/profileStoreConstants';
 import { buildStoreLifecycleCopy } from '../profile/storeLifecycleCopy';
 import { buildStoreSupportCopyCards } from '../profile/storeSupportCopyCards';
+
+const CANCELLATION_FEEDBACK_ITEMS = [
+  'Ask what felt unclear, unused, too expensive, or not valuable enough before the member leaves',
+  'Route cancellation steps to App Store or Google Play subscriptions without obstructing the marketplace flow',
+  'Capture optional support notes for product learning without storing payment details or marketplace account data',
+  'Review cancellation themes against first-party Pro interest, pack interest, creator demand, and support readiness',
+];
+const LAPSED_MEMBER_WINBACK_ITEMS = [
+  'Lead with a free comeback challenge, not a discount or payment ask',
+  'Use current weekly campaign copy, streak rescue prompts, and referral momentum as the return path',
+  'Invite the member to log one activity before asking about Pro, packs, creator tools, or partner perks',
+  'Review first-party re-engagement signals only: app logs, challenge joins, referrals, support notes, and saved interest',
+];
+const RENEWAL_RECOVERY_ITEMS = [
+  'Confirm whether the member is lapsed, cancelled, in grace period, or using the wrong store account',
+  'Ask the member to update payment details and manage renewal inside App Store or Google Play subscriptions',
+  'Invite the member to restore/sync purchases after renewal, then open entitlement recovery if access stays missing',
+  'Use first-party support notes only; keep payment, refund, chargeback, and cancellation decisions with the marketplace',
+];
+const STORE_DEMO_ACCOUNT_ITEMS = [
+  'Prepare one reviewer-safe demo account with onboarding complete, profile appearance set, and no personal member data',
+  'Seed visible free flows: joined campaign challenge, activity history, badges, calendar history, share cards, support links, and Feature Me consent example',
+  'Keep paid surfaces in review mode unless sandbox/license-test purchases, restore, receipt validation, and entitlement QA are proven',
+  'Document optional HealthKit / Health Connect, media upload, notifications, support, privacy, terms, and data deletion behavior for reviewers',
+];
+const STORE_LAUNCH_DRY_RUN_ITEMS = [
+  'Run the full signup, onboarding, challenge join, activity log, share, support, and restore/sync path as a release rehearsal',
+  'Confirm validation credentials, sandbox/license-test evidence, entitlement recovery, support links, and data deletion resources are visible',
+  'Record any missing evidence, failed checks, confusing copy, or support handoff gaps before paid access is promoted',
+  'Keep the report copy-only until real App Store sandbox and Play license-test purchases prove the flow end to end',
+];
+const STORE_REVIEW_PACK_ITEMS = [
+  'Draft App Store and Play reviewer notes with demo account context, free challenge flows, permission explanations, and support links',
+  'Attach data safety, privacy, terms, data deletion, refund/support handoff, and restore/sync notes before submission',
+  'Summarize sandbox/license-test evidence and entitlement QA gaps without claiming paid access is live',
+  'Keep review preparation copy-only until products, credentials, policies, support links, restore flow, and entitlement QA are verified',
+];
+const STORE_SCREENSHOT_QA_ITEMS = [
+  'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
+  'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
+  'Show paid surfaces as pending or review mode until sandbox/license-test evidence, receipt validation, restore, and entitlement QA are proven',
+  'Confirm App Store and Play screenshot captions match current app behavior, privacy policy, support links, and data safety notes',
+];
+const STORE_TEST_PURCHASE_SESSION_PREP_ITEMS = [
+  'Confirm getPurchaseValidationReadiness returns validation_configured for iOS and Android before any sandbox/license-test run',
+  'Prepare one App Store sandbox tester and one Play license-test account outside git, screenshots, and public notes',
+  'Run Pro monthly, Pro yearly, pack purchase, restore/sync, wrong-account, duplicate-restore, and negative-validation cases',
+  'Record only reviewed evidence notes in storeTestPurchaseEvidence; never store raw purchase tokens, passwords, service account JSON, or private keys',
+  'Keep paid access in review mode until evidence, entitlement writes, support handoff, and paid launch decision gate are reviewed',
+];
 
 const storeCatalog = [
   { id: 'com.risewiththetribe.pro.monthly', kind: 'subscription' },
@@ -46,6 +87,7 @@ describe('store lifecycle copy contracts', () => {
       storeDemoAccountItems: STORE_DEMO_ACCOUNT_ITEMS,
       storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
+      storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
       storeTestEvidenceSummary,
       supportReviewCount: 1,
@@ -63,7 +105,9 @@ describe('store lifecycle copy contracts', () => {
       renewalRecoveryCopy: lifecycleCopy.renewalRecoveryCopy,
       storeDemoAccountCopy: lifecycleCopy.storeDemoAccountCopy,
       storeLaunchDryRunCopy: lifecycleCopy.storeLaunchDryRunCopy,
+      storeReviewResponseCopy: lifecycleCopy.storeReviewResponseCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
+      storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
       storeTestPurchaseSessionPrepCopy: lifecycleCopy.storeTestPurchaseSessionPrepCopy,
       subscriptionManagementGuidanceCopy: 'subscription',
     });
@@ -84,6 +128,11 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('store raw purchase tokens');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Store Screenshot QA Kit');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('synthetic demo account data only');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('purchase tokens');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('service account JSON');
     expect(cards.map(card => card.title)).toEqual([
       'SUBSCRIPTION MANAGEMENT GUIDANCE KIT',
       'BILLING SUPPORT ESCALATION KIT',
@@ -93,7 +142,9 @@ describe('store lifecycle copy contracts', () => {
       'STORE LAUNCH DRY-RUN KIT',
       'STORE TEST PURCHASE SESSION PREP KIT',
       'STORE DEMO ACCOUNT KIT',
+      'STORE SCREENSHOT QA KIT',
       'STORE REVIEW PACK',
+      'STORE REVIEW RESPONSE KIT',
     ]);
   });
 });
