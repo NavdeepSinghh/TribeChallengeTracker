@@ -25,6 +25,12 @@ export {
   submitLaunchExperimentReview,
 } from './userServices/launchExperimentReviewService';
 export {
+  getApprovedWeeklyCampaignReviews,
+  getWeeklyCampaignReviewQueue,
+  reviewWeeklyCampaignReview,
+  submitWeeklyCampaignReview,
+} from './userServices/weeklyCampaignReviewService';
+export {
   claimPartnerPerk,
   getApprovedCreatorPrivateInviteLaunches,
   getApprovedCreatorPaidHostingLaunchGateReviews,

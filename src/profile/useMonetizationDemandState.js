@@ -16,13 +16,21 @@ export default function useMonetizationDemandState() {
   const [isSubmittingLaunchExperimentReview, setIsSubmittingLaunchExperimentReview] = useState(false);
   const [launchExperimentReviewNotes, setLaunchExperimentReviewNotes] = useState({});
   const [reviewingLaunchExperimentReviewId, setReviewingLaunchExperimentReviewId] = useState('');
+  const [weeklyCampaignReviewQueue, setWeeklyCampaignReviewQueue] = useState([]);
+  const [approvedWeeklyCampaignReviews, setApprovedWeeklyCampaignReviews] = useState([]);
+  const [weeklyCampaignReviewMessage, setWeeklyCampaignReviewMessage] = useState('');
+  const [isSubmittingWeeklyCampaignReview, setIsSubmittingWeeklyCampaignReview] = useState(false);
+  const [weeklyCampaignReviewNotes, setWeeklyCampaignReviewNotes] = useState({});
+  const [reviewingWeeklyCampaignReviewId, setReviewingWeeklyCampaignReviewId] = useState('');
 
   return {
     approvedLaunchExperimentReviews,
+    approvedWeeklyCampaignReviews,
     campaignPerformanceSummary,
     communityEventInterestMessage,
     communityEventInterestSummary,
     isSubmittingLaunchExperimentReview,
+    isSubmittingWeeklyCampaignReview,
     isSavingCommunityEventInterest,
     isSavingProTrialInterest,
     launchExperimentReviewMessage,
@@ -31,13 +39,16 @@ export default function useMonetizationDemandState() {
     proTrialMessage,
     proTrialSummary,
     reviewingLaunchExperimentReviewId,
+    reviewingWeeklyCampaignReviewId,
     selectedCommunityEventInterestIds,
     selectedProTrialReasonIds,
     setApprovedLaunchExperimentReviews,
+    setApprovedWeeklyCampaignReviews,
     setCampaignPerformanceSummary,
     setCommunityEventInterestMessage,
     setCommunityEventInterestSummary,
     setIsSubmittingLaunchExperimentReview,
+    setIsSubmittingWeeklyCampaignReview,
     setIsSavingCommunityEventInterest,
     setIsSavingProTrialInterest,
     setLaunchExperimentReviewMessage,
@@ -46,7 +57,14 @@ export default function useMonetizationDemandState() {
     setProTrialMessage,
     setProTrialSummary,
     setReviewingLaunchExperimentReviewId,
+    setReviewingWeeklyCampaignReviewId,
     setSelectedCommunityEventInterestIds,
     setSelectedProTrialReasonIds,
+    setWeeklyCampaignReviewMessage,
+    setWeeklyCampaignReviewNotes,
+    setWeeklyCampaignReviewQueue,
+    weeklyCampaignReviewMessage,
+    weeklyCampaignReviewNotes,
+    weeklyCampaignReviewQueue,
   };
 }

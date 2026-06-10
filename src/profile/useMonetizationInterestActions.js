@@ -3,19 +3,29 @@ import {
   saveProTrialInterest,
 } from '../userService';
 import { buildLaunchExperimentReviewActionHandlers } from './launchExperimentReviewActionHandlers';
+import { buildWeeklyCampaignReviewActionHandlers } from './weeklyCampaignReviewActionHandlers';
 
 export default function useMonetizationInterestActions({
   approvedLaunchExperimentReviews,
+  approvedWeeklyCampaignReviews,
+  campaignPerformanceSummary,
+  featureReviewQueue,
   isAdmin,
   isSubmittingLaunchExperimentReview,
+  isSubmittingWeeklyCampaignReview,
   launchExperimentReviewNotes,
   profile,
+  recommendedLaunchExperiment,
+  referralJoins,
   reviewingLaunchExperimentReviewId,
+  reviewingWeeklyCampaignReviewId,
   selectedCommunityEventInterestIds,
   selectedProTrialReasonIds,
   setApprovedLaunchExperimentReviews,
+  setApprovedWeeklyCampaignReviews,
   setCommunityEventInterestMessage,
   setIsSubmittingLaunchExperimentReview,
+  setIsSubmittingWeeklyCampaignReview,
   setIsSavingCommunityEventInterest,
   setIsSavingProTrialInterest,
   setLaunchExperimentReviewMessage,
@@ -23,9 +33,15 @@ export default function useMonetizationInterestActions({
   setProfile,
   setProTrialMessage,
   setReviewingLaunchExperimentReviewId,
+  setReviewingWeeklyCampaignReviewId,
   setSelectedCommunityEventInterestIds,
   setSelectedProTrialReasonIds,
+  setWeeklyCampaignReviewMessage,
+  setWeeklyCampaignReviewQueue,
+  supportReviewQueue,
   user,
+  weeklyCampaignPrompt,
+  weeklyCampaignReviewNotes,
   onProfileUpdated,
 }) {
   const handleCommunityEventInterestToggle = async eventId => {
@@ -84,9 +100,30 @@ export default function useMonetizationInterestActions({
     user,
   });
 
+  const weeklyCampaignReviewHandlers = buildWeeklyCampaignReviewActionHandlers({
+    approvedWeeklyCampaignReviews,
+    campaignPerformanceSummary,
+    featureReviewQueue,
+    isAdmin,
+    isSubmittingWeeklyCampaignReview,
+    recommendedLaunchExperiment,
+    referralJoins,
+    reviewingWeeklyCampaignReviewId,
+    setApprovedWeeklyCampaignReviews,
+    setIsSubmittingWeeklyCampaignReview,
+    setReviewingWeeklyCampaignReviewId,
+    setWeeklyCampaignReviewMessage,
+    setWeeklyCampaignReviewQueue,
+    supportReviewQueue,
+    user,
+    weeklyCampaignPrompt,
+    weeklyCampaignReviewNotes,
+  });
+
   return {
     handleCommunityEventInterestToggle,
     ...launchExperimentReviewHandlers,
+    ...weeklyCampaignReviewHandlers,
     handleProTrialReasonToggle,
   };
 }

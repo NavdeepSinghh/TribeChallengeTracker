@@ -4,6 +4,7 @@ import WeeklyCampaignInstagramCalendarSection from './WeeklyCampaignInstagramCal
 import WeeklyCampaignLaunchCardSection from './WeeklyCampaignLaunchCardSection';
 import WeeklyCampaignMetricKitSection from './WeeklyCampaignMetricKitSection';
 import WeeklyCampaignOperatingSummaryCard from './WeeklyCampaignOperatingSummaryCard';
+import WeeklyCampaignReviewRecordSection from './WeeklyCampaignReviewRecordSection';
 import { buildWeeklyCampaignMarketingSectionData } from './weeklyCampaignMarketingSectionData';
 
 export default function WeeklyCampaignMarketingSection({
@@ -34,6 +35,8 @@ export default function WeeklyCampaignMarketingSection({
       {weeklyCampaignMetricKitSections.map(section => (
         <WeeklyCampaignMetricKitSection key={section.title} {...section} />
       ))}
+
+      <WeeklyCampaignReviewRecordSection {...props} isAdmin={isAdmin} />
 
       <WeeklyCampaignDmKeywordSection {...dmKeywordSectionProps} />
 

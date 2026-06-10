@@ -70,6 +70,45 @@ describe('cross-platform community experiment parity source checks', () => {
     expect(firestoreRules).toContain('request.resource.data.isPaidAccessLive == false');
   });
 
+  it('keeps Weekly Campaign Review records manual and first-party only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('WEEKLY CAMPAIGN REVIEW RECORD');
+      expect(source).toContain('SAVE WEEKLY REVIEW');
+      expect(source).toContain('WEEKLY CAMPAIGN REVIEW QUEUE');
+      expect(source).toContain('APPROVED WEEKLY CAMPAIGN REVIEWS');
+      expect(source).toContain('weeklyCampaignReviews');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('createsAttribution');
+      expect(source).toContain('hasTrackingPixels');
+      expect(source).toContain('isPaidAccessLive');
+      expect(source).toContain('attribution records');
+      expect(source).toContain('tracking pixels');
+      expect(source).toContain('auto-posting');
+      expect(source).toContain('scraped DMs');
+      expect(source).toContain('purchases');
+      expect(source).toContain('entitlements');
+      expect(source).toContain('paid-access changes');
+    });
+    [webUserService, firestoreRules].forEach((source) => {
+      expect(source).toContain('weeklyCampaignReviews');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('createsAttribution');
+      expect(source).toContain('hasTrackingPixels');
+      expect(source).toContain('isPaidAccessLive');
+      expect(source).toContain('approved');
+      expect(source).toContain('waiting');
+      expect(source).toContain('not_ready');
+      expect(source).toContain('declined');
+    });
+    expect(firestoreRules).toContain('match /weeklyCampaignReviews/{reviewId}');
+    expect(firestoreRules).toContain('request.resource.data.createsAttribution == false');
+    expect(firestoreRules).toContain('request.resource.data.hasTrackingPixels == false');
+    expect(firestoreRules).toContain('request.resource.data.isPaidAccessLive == false');
+  });
+
   it('keeps Lapsed Member Winback Kit free-first across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

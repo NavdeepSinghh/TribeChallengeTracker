@@ -15,7 +15,9 @@ import {
   getFeatureReviewQueue,
   getFeatureSubmissions,
   getApprovedLaunchExperimentReviews,
+  getApprovedWeeklyCampaignReviews,
   getLaunchExperimentReviewQueue,
+  getWeeklyCampaignReviewQueue,
   getPartnerCampaignApplicationReviewQueue,
   getPartnerPerkClaimReviewQueue,
   getPartnerPerkClaims,
@@ -83,6 +85,8 @@ export function loadProfileScreenData(userUid, setters) {
       getCampaignPerformanceSummary().then(setters.setCampaignPerformanceSummary).catch(() => setters.setCampaignPerformanceSummary({}));
       getLaunchExperimentReviewQueue().then(setters.setLaunchExperimentReviewQueue).catch(() => setters.setLaunchExperimentReviewQueue([]));
       getApprovedLaunchExperimentReviews().then(setters.setApprovedLaunchExperimentReviews).catch(() => setters.setApprovedLaunchExperimentReviews([]));
+      getWeeklyCampaignReviewQueue().then(setters.setWeeklyCampaignReviewQueue).catch(() => setters.setWeeklyCampaignReviewQueue([]));
+      getApprovedWeeklyCampaignReviews().then(setters.setApprovedWeeklyCampaignReviews).catch(() => setters.setApprovedWeeklyCampaignReviews([]));
     }
   });
 

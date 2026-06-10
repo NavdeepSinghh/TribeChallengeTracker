@@ -40,6 +40,7 @@ export function buildProfileScreenLoadTargets({
     setGoalStreak: preferenceState.setGoalStreak,
     setInstagramHandle: engagementState.setInstagramHandle,
     setApprovedLaunchExperimentReviews: revenueState.setApprovedLaunchExperimentReviews,
+    setApprovedWeeklyCampaignReviews: revenueState.setApprovedWeeklyCampaignReviews,
     setLaunchExperimentReviewQueue: revenueState.setLaunchExperimentReviewQueue,
     setPartnerCampaignApplicationReviewQueue: revenueState.setPartnerCampaignApplicationReviewQueue,
     setPartnerPerkClaimReviewQueue: revenueState.setPartnerPerkClaimReviewQueue,
@@ -56,5 +57,6 @@ export function buildProfileScreenLoadTargets({
     setStoreTestEvidenceLog: storeState.setStoreTestEvidenceLog,
     setSupportReviewQueue: reviewState.setSupportReviewQueue,
     setVisible,
+    setWeeklyCampaignReviewQueue: revenueState.setWeeklyCampaignReviewQueue,
   };
 }

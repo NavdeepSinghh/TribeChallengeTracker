@@ -9,10 +9,14 @@ export function buildPartnerRevenueComputedInputs(computedData) {
     campaignPerformanceSummary,
     creatorAnalytics,
     creatorLaunchChallenge,
+    featureReviewQueue,
     isAdmin,
     partnerCampaignApplicationSignalTotal,
     proActive,
+    recommendedLaunchExperiment,
     referralJoins,
+    supportReviewQueue,
+    weeklyCampaignPrompt,
   } = computedData;
 
   return {
@@ -21,10 +25,14 @@ export function buildPartnerRevenueComputedInputs(computedData) {
     campaignPerformanceSummary,
     creatorAnalytics,
     creatorLaunchChallenge,
+    featureReviewQueue,
     isAdmin,
     partnerCampaignApplicationSignalTotal,
     proActive,
+    recommendedLaunchExperiment,
     referralJoins,
+    supportReviewQueue,
+    weeklyCampaignPrompt,
   };
 }
 
