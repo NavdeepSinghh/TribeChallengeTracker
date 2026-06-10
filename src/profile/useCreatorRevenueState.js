@@ -16,6 +16,12 @@ export default function useCreatorRevenueState() {
   const [reviewingCreatorHostingApplicationId, setReviewingCreatorHostingApplicationId] = useState('');
   const [creatorTemplateDraftReviewQueue, setCreatorTemplateDraftReviewQueue] = useState([]);
   const [publishedCreatorChallengeTemplates, setPublishedCreatorChallengeTemplates] = useState([]);
+  const [creatorLeaderboardSnapshotReviewQueue, setCreatorLeaderboardSnapshotReviewQueue] = useState([]);
+  const [publishedCreatorLeaderboardSnapshots, setPublishedCreatorLeaderboardSnapshots] = useState([]);
+  const [creatorLeaderboardSnapshotMessage, setCreatorLeaderboardSnapshotMessage] = useState('');
+  const [isSubmittingCreatorLeaderboardSnapshot, setIsSubmittingCreatorLeaderboardSnapshot] = useState(false);
+  const [creatorLeaderboardSnapshotReviewNotes, setCreatorLeaderboardSnapshotReviewNotes] = useState({});
+  const [reviewingCreatorLeaderboardSnapshotId, setReviewingCreatorLeaderboardSnapshotId] = useState('');
   const [creatorTemplateDraftMessage, setCreatorTemplateDraftMessage] = useState('');
   const [isSubmittingCreatorTemplateDraft, setIsSubmittingCreatorTemplateDraft] = useState(false);
   const [creatorTemplateDraftReviewNotes, setCreatorTemplateDraftReviewNotes] = useState({});
@@ -32,14 +38,20 @@ export default function useCreatorRevenueState() {
     creatorRevenueShareInterest,
     creatorRevenueShareSummary,
     creatorSpecialty,
+    creatorLeaderboardSnapshotMessage,
+    creatorLeaderboardSnapshotReviewNotes,
+    creatorLeaderboardSnapshotReviewQueue,
     creatorTemplateDraftMessage,
     creatorTemplateDraftReviewNotes,
     creatorTemplateDraftReviewQueue,
     publishedCreatorChallengeTemplates,
+    publishedCreatorLeaderboardSnapshots,
     isSavingCreator,
     isSubmittingCreatorHostingApplication,
+    isSubmittingCreatorLeaderboardSnapshot,
     isSubmittingCreatorTemplateDraft,
     reviewingCreatorHostingApplicationId,
+    reviewingCreatorLeaderboardSnapshotId,
     reviewingCreatorTemplateDraftId,
     setCreatorBio,
     setCreatorCtaUrl,
@@ -51,14 +63,20 @@ export default function useCreatorRevenueState() {
     setCreatorRevenueShareInterest,
     setCreatorRevenueShareSummary,
     setCreatorSpecialty,
+    setCreatorLeaderboardSnapshotMessage,
+    setCreatorLeaderboardSnapshotReviewNotes,
+    setCreatorLeaderboardSnapshotReviewQueue,
     setCreatorTemplateDraftMessage,
     setCreatorTemplateDraftReviewNotes,
     setCreatorTemplateDraftReviewQueue,
     setPublishedCreatorChallengeTemplates,
+    setPublishedCreatorLeaderboardSnapshots,
     setIsSavingCreator,
     setIsSubmittingCreatorHostingApplication,
+    setIsSubmittingCreatorLeaderboardSnapshot,
     setIsSubmittingCreatorTemplateDraft,
     setReviewingCreatorHostingApplicationId,
+    setReviewingCreatorLeaderboardSnapshotId,
     setReviewingCreatorTemplateDraftId,
   };
 }

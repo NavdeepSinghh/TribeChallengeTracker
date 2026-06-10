@@ -1,5 +1,6 @@
 import { buildCreatorHostingApplicationActionHandlers } from './creatorHostingApplicationActionHandlers';
 import { buildCreatorChallengeTemplateDraftActionHandlers } from './creatorChallengeTemplateDraftActionHandlers';
+import { buildCreatorLeaderboardSnapshotActionHandlers } from './creatorLeaderboardSnapshotActionHandlers';
 import { buildCreatorProfileActionHandlers } from './creatorProfileActionHandlers';
 
 export default function useCreatorRevenueActions({
@@ -8,28 +9,36 @@ export default function useCreatorRevenueActions({
   creatorCtaUrl,
   creatorEnabled,
   creatorHostingApplicationReviewNotes,
+  creatorLeaderboardSnapshotReviewNotes,
   creatorLaunchChallenge,
   creatorRevenueShareInterest,
   creatorSpecialty,
   creatorTemplateDraftReviewNotes,
   isAdmin,
   isSubmittingCreatorHostingApplication,
+  isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorTemplateDraft,
   proActive,
   profile,
   setPublishedCreatorChallengeTemplates,
+  setPublishedCreatorLeaderboardSnapshots,
   reviewingCreatorHostingApplicationId,
+  reviewingCreatorLeaderboardSnapshotId,
   reviewingCreatorTemplateDraftId,
+  setCreatorLeaderboardSnapshotMessage,
+  setCreatorLeaderboardSnapshotReviewQueue,
   setCreatorHostingApplicationMessage,
   setCreatorHostingApplicationReviewQueue,
   setCreatorMessage,
   setCreatorTemplateDraftMessage,
   setCreatorTemplateDraftReviewQueue,
+  setIsSubmittingCreatorLeaderboardSnapshot,
   setIsSavingCreator,
   setIsSubmittingCreatorHostingApplication,
   setIsSubmittingCreatorTemplateDraft,
   setProfile,
   setReviewingCreatorHostingApplicationId,
+  setReviewingCreatorLeaderboardSnapshotId,
   setReviewingCreatorTemplateDraftId,
   user,
   onProfileUpdated,
@@ -82,9 +91,24 @@ export default function useCreatorRevenueActions({
     setReviewingCreatorTemplateDraftId,
     user,
   });
+  const creatorLeaderboardSnapshotHandlers = buildCreatorLeaderboardSnapshotActionHandlers({
+    creatorEnabled,
+    creatorLeaderboardSnapshotReviewNotes,
+    isAdmin,
+    isSubmittingCreatorLeaderboardSnapshot,
+    proActive,
+    reviewingCreatorLeaderboardSnapshotId,
+    setCreatorLeaderboardSnapshotMessage,
+    setCreatorLeaderboardSnapshotReviewQueue,
+    setIsSubmittingCreatorLeaderboardSnapshot,
+    setPublishedCreatorLeaderboardSnapshots,
+    setReviewingCreatorLeaderboardSnapshotId,
+    user,
+  });
 
   return {
     ...creatorHostingApplicationHandlers,
+    ...creatorLeaderboardSnapshotHandlers,
     ...creatorProfileHandlers,
     ...creatorTemplateDraftHandlers,
   };

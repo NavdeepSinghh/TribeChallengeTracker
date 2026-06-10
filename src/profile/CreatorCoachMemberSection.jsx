@@ -15,6 +15,7 @@ export default function CreatorCoachMemberSection({
   creatorHostingObjectionReplyCopy,
   creatorHostingOfferCopy,
   creatorIdentityVerificationPrepCopy,
+  creatorLeaderboardSnapshotMessage,
   creatorLeaderboardPreviewCopy,
   creatorModerationReadinessCopy,
   creatorPaidHostingLaunchGateCopy,
@@ -33,10 +34,12 @@ export default function CreatorCoachMemberSection({
   creatorSpecialty,
   creatorTermsReadinessCopy,
   handleCreatorHostingApplication,
+  handleCreatorLeaderboardSnapshotSubmit,
   handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
   isSubmittingCreatorHostingApplication,
+  isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorTemplateDraft,
   proActive,
   setCreatorBio,
@@ -84,6 +87,22 @@ export default function CreatorCoachMemberSection({
         isSubmittingCreatorTemplateDraft={isSubmittingCreatorTemplateDraft}
         proActive={proActive}
       />
+      <div style={{ padding: 16, borderRadius: 12, background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.18)', marginBottom: 14 }}>
+        <div style={{ color: '#34D399', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>CREATOR LEADERBOARD SNAPSHOT</div>
+        <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>
+          Save an aggregate hosted-challenge leaderboard snapshot for admin review. It uses first-party challenge counts and total points only; no member identities, per-user logs, payouts, purchases, entitlements, tracking, or paid-hosting claims.
+        </p>
+        <button
+          onClick={handleCreatorLeaderboardSnapshotSubmit}
+          disabled={!proActive || !creatorEnabled || isSubmittingCreatorLeaderboardSnapshot}
+          style={{ border: 0, borderRadius: 9, padding: '10px 12px', background: '#34D399', color: '#04130d', fontWeight: 900, fontSize: 11, cursor: 'pointer' }}
+        >
+          {isSubmittingCreatorLeaderboardSnapshot ? 'SAVING...' : 'SAVE SNAPSHOT FOR REVIEW'}
+        </button>
+        {creatorLeaderboardSnapshotMessage && (
+          <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorLeaderboardSnapshotMessage}</p>
+        )}
+      </div>
       <CreatorProfileForm
         creatorBio={creatorBio}
         creatorCtaUrl={creatorCtaUrl}

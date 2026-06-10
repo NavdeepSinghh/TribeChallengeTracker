@@ -242,6 +242,46 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps reviewable Creator Leaderboard Snapshots aggregate-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR LEADERBOARD SNAPSHOT');
+      expect(source).toContain('SAVE SNAPSHOT FOR REVIEW');
+      expect(source).toContain('aggregate hosted-challenge movement');
+      expect(source).toContain('member identities');
+      expect(source).toContain('per-user logs');
+      expect(source).toContain('paid-hosting claims');
+    });
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR LEADERBOARD SNAPSHOT REVIEW QUEUE');
+      expect(source).toContain('PUBLISHED CREATOR LEADERBOARD SNAPSHOTS');
+      expect(source).toContain('creatorLeaderboardSnapshots');
+      expect(source).toContain('PUBLISH');
+      expect(source).toContain('NOT READY');
+    });
+    [webUserService, iosChallengeService, androidModels, androidRepository].forEach((source) => {
+      expect(source).toContain('CreatorLeaderboardSnapshot');
+      expect(source).toContain('hostedChallengeCount');
+      expect(source).toContain('activeHostedChallengeCount');
+      expect(source).toContain('memberReach');
+      expect(source).toContain('aggregatePoints');
+      expect(source).toContain('topChallengeAggregatePoints');
+      expect(source).toContain('isPublic');
+    });
+    [webUserService, iosChallengeService, androidRepository, firestoreRules].forEach((source) => {
+      expect(source).toContain('creatorLeaderboardSnapshots');
+      expect(source).toContain('published');
+      expect(source).toContain('waiting');
+      expect(source).toContain('not_ready');
+      expect(source).toContain('declined');
+    });
+    expect(firestoreRules).toContain('match /creatorLeaderboardSnapshots/{snapshotId}');
+    expect(firestoreRules).toContain('request.resource.data.isPublic == false');
+    expect(firestoreRules).toContain('request.resource.data.keys().hasAll(["uid", "hostedChallengeCount", "memberReach", "aggregatePoints", "topChallengeName", "status", "isPublic"])');
+  });
+
   it('keeps Private Creator Invite Kit wired on all platforms without invite or paid-hosting side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

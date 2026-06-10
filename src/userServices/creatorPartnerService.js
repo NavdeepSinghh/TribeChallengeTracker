@@ -12,6 +12,12 @@ export {
   submitCreatorChallengeTemplateDraft,
 } from './creatorChallengeTemplateDraftService';
 export {
+  getCreatorLeaderboardSnapshotReviewQueue,
+  getPublishedCreatorLeaderboardSnapshots,
+  reviewCreatorLeaderboardSnapshot,
+  submitCreatorLeaderboardSnapshot,
+} from './creatorLeaderboardSnapshotService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,
