@@ -365,6 +365,37 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /communityEventReviews/{reviewId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.createsTickets == false
+        && request.resource.data.createsOrders == false
+        && request.resource.data.collectsPayments == false
+        && request.resource.data.booksVenues == false
+        && request.resource.data.promisesMerch == false
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.keys().hasAll(["uid", "selectedEventIds", "selectedEventCount", "demandTotal", "topEventLabel", "reviewScore", "status", "manualReviewOnly", "createsTickets", "createsOrders", "collectsPayments", "booksVenues", "promisesMerch", "createsPartnerLinks", "createsPayouts", "writesEntitlements"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.createsTickets == false
+        && request.resource.data.createsOrders == false
+        && request.resource.data.collectsPayments == false
+        && request.resource.data.booksVenues == false
+        && request.resource.data.promisesMerch == false
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "manualReviewOnly", "createsTickets", "createsOrders", "collectsPayments", "booksVenues", "promisesMerch", "createsPartnerLinks", "createsPayouts", "writesEntitlements", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     match /weeklyCampaignReviews/{reviewId} {
       allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
       allow create: if request.auth != null

@@ -19,6 +19,12 @@ export {
   submitSupportRequest,
 } from './userServices/monetizationSupportService';
 export {
+  getApprovedCommunityEventReviews,
+  getCommunityEventReviewQueue,
+  reviewCommunityEventReview,
+  submitCommunityEventReview,
+} from './userServices/communityEventReviewService';
+export {
   getApprovedLaunchExperimentReviews,
   getLaunchExperimentReviewQueue,
   reviewLaunchExperimentReview,

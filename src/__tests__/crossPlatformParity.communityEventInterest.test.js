@@ -1,4 +1,7 @@
 const {
+  fs,
+  path,
+  repoRoot,
   iosChallengeService,
   iosProfile,
   iosUserProfile,
@@ -54,5 +57,56 @@ describe('cross-platform community event interest parity source checks', () => {
       expect(source).toContain('TAP TO SAVE');
       expect(source).toContain('DEMAND');
     });
+  });
+
+  it('keeps Community Event Review Records wired on all platforms as manual evidence only', () => {
+    const webProfile = readWebProfileContracts();
+    const webUserService = readWebUserServiceContracts();
+    const firestoreRules = fs.readFileSync(path.resolve(repoRoot, 'firestore.rules'), 'utf8');
+
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('COMMUNITY EVENT REVIEW RECORD');
+      expect(source).toContain('SAVE COMMUNITY EVENT REVIEW');
+      expect(source).toContain('COMMUNITY EVENT REVIEW QUEUE');
+      expect(source).toContain('APPROVED COMMUNITY EVENT REVIEWS');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('createsTickets');
+      expect(source).toContain('createsOrders');
+      expect(source).toContain('collectsPayments');
+      expect(source).toContain('booksVenues');
+      expect(source).toContain('promisesMerch');
+      expect(source).toContain('createsPartnerLinks');
+      expect(source).toContain('createsPayouts');
+      expect(source).toContain('writesEntitlements');
+    });
+
+    [
+      webUserService,
+      iosChallengeService,
+      androidRepository,
+      firestoreRules,
+    ].forEach((source) => {
+      expect(source).toContain('communityEventReviews');
+    });
+
+    [
+      webUserService,
+      iosChallengeService,
+      androidRepository,
+      androidModels,
+      firestoreRules,
+    ].forEach((source) => {
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('createsTickets');
+      expect(source).toContain('createsOrders');
+      expect(source).toContain('collectsPayments');
+      expect(source).toContain('booksVenues');
+      expect(source).toContain('promisesMerch');
+      expect(source).toContain('createsPartnerLinks');
+      expect(source).toContain('createsPayouts');
+      expect(source).toContain('writesEntitlements');
+    });
+
+    expect(firestoreRules).toContain('match /communityEventReviews/{reviewId}');
   });
 });
