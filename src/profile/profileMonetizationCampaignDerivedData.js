@@ -7,6 +7,8 @@ export function buildProfileMonetizationCampaignDerivedData(input) {
   const {
     campaignPerformanceSummary,
     challengePoints,
+    approvedCommunityEventReviews,
+    communityEventReviewQueue,
     creatorRevenueShareSummary,
     currentStreak,
     daysActive,
@@ -41,7 +43,9 @@ export function buildProfileMonetizationCampaignDerivedData(input) {
   });
   const { partnerDemandTotal } = partnerData;
   const revenueData = buildProfileRevenueDerivedData({
+    approvedCommunityEventReviews,
     campaignPerformanceSummary,
+    communityEventReviewQueue,
     creatorRevenueShareSummary,
     currentStreak,
     daysActive,

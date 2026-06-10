@@ -109,4 +109,32 @@ describe('cross-platform community event interest parity source checks', () => {
 
     expect(firestoreRules).toContain('match /communityEventReviews/{reviewId}');
   });
+
+  it('keeps Community Event Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('COMMUNITY EVENT REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY EVENT REVIEW DECISION REPLIES');
+      expect(source).toContain('communityEventReviewDecisionReplyCopy');
+      expect(source).toContain('Community Event Review Decision Reply Kit');
+      expect(source).toContain('APPROVED FOR EVENT LEARNING');
+      expect(source).toContain('WAITING ON EVENT READINESS');
+      expect(source).toContain('NOT READY FOR EVENT HANDOFF');
+      expect(source).toContain('DECLINED FOR EVENT HANDOFF');
+      expect(source).toContain('Do not sell tickets');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create orders');
+      expect(source).toContain('promise merch');
+      expect(source).toContain('book venues');
+      expect(source).toContain('create partner links');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('export private member data');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure members');
+    });
+  });
 });

@@ -8,6 +8,7 @@ export default function CommunityEventInterestSection({
   communityEventReviewMessage,
   communityEventReviewNotes = {},
   communityEventReviewQueue = [],
+  communityEventReviewDecisionReplyCopy,
   approvedCommunityEventReviews = [],
   isAdmin,
   isSubmittingCommunityEventReview,
@@ -118,6 +119,22 @@ export default function CommunityEventInterestSection({
           <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10 }}>
             {approvedCommunityEventReviews.length} approved manual records. Approved records still create no tickets, orders, payments, venues, partner links, payouts, or entitlements.
           </p>
+          <div style={{ marginTop: 10, padding: 10, borderRadius: 10, border: '1px solid rgba(251,113,133,0.20)', background: 'rgba(251,113,133,0.07)' }}>
+            <p style={{ margin: 0, color: '#fff', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>COMMUNITY EVENT REVIEW DECISION REPLY KIT</p>
+            <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10, lineHeight: 1.45 }}>
+              Copy approved, waiting, not-ready, and declined replies for manual event-review decisions without tickets, orders, payments, merch promises, venues, partner links, payouts, entitlements, tracking, or pressure.
+            </p>
+            <button
+              onClick={() => navigator.clipboard?.writeText(communityEventReviewDecisionReplyCopy || '')}
+              style={{
+                marginTop: 8, width: '100%', borderRadius: 10, padding: '8px 10px',
+                border: '1px solid rgba(251,113,133,0.24)', background: 'rgba(251,113,133,0.10)',
+                color: '#FB7185', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+              }}
+            >
+              COPY EVENT REVIEW DECISION REPLIES
+            </button>
+          </div>
         </div>
       )}
       <CommunityEventInterestFooter communityEventInterestMessage={communityEventInterestMessage} />

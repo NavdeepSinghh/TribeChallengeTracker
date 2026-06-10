@@ -47,6 +47,9 @@ describe('monetization prelaunch copy contracts', () => {
     expect(copy.communityAmbassadorCopy).toContain('affiliate links');
     expect(copy.communityEventInterestCopy).toContain('Do not sell tickets');
     expect(copy.communityEventInterestCopy).toContain('book venues');
+    expect(copy.communityEventReviewDecisionReplyCopy).toContain('Community Event Review Decision Reply Kit');
+    expect(copy.communityEventReviewDecisionReplyCopy).toContain('APPROVED FOR EVENT LEARNING');
+    expect(copy.communityEventReviewDecisionReplyCopy).toContain('Do not sell tickets');
     expect(copy.customerValueChecklistCopy).toContain('Do not charge users');
     expect(copy.customerValueChecklistCopy).toContain('write entitlements');
     expect(kits[4]).toMatchObject({
