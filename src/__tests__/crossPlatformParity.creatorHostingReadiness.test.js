@@ -149,6 +149,47 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Creator Payout Reconciliation Kit wired on all platforms without payout or private-log side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAYOUT RECONCILIATION KIT');
+      expect(source).toContain('COPY PAYOUT RECONCILIATION KIT');
+      expect(source).toContain('creatorPayoutReconciliationCopy');
+      expect(source).toContain('Mock payout evidence matching before launch');
+      expect(source).toContain('Payout reconciliation checklist');
+      expect(source).toContain('mock payout events');
+      expect(source).toContain('store-test evidence');
+      expect(source).toContain('refund adjustments');
+      expect(source).toContain('entitlement QA');
+      expect(source).toContain('finance reconciliation notes');
+      expect(source).toContain('private member logs');
+      expect(source).toContain('payout reconciliation is not live');
+      expect(source).toContain('hold-plan review');
+      expect(source).toContain('creator payout reconciliation kit only');
+      expect(source).toContain('Do not create payout accounts');
+      expect(source).toContain('access payout providers');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('move money');
+      expect(source).toContain('process payments');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+      expect(source).toContain('expose private member logs');
+      expect(source).toContain('scrape or store messages');
+    });
+  });
+
   it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

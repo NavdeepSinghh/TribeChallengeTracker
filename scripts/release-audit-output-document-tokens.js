@@ -95,6 +95,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "src/profile/profileEngagementCreatorCopyBundle.js",
   "same monetization campaign derived-data return contract",
   "Creator Payout Operations Dry-Run Kit",
+  "Creator Payout Reconciliation Kit",
   "Creator Hosting Decision Reply Kit",
   "Creator Challenge Template Draft Kit",
   "Partner Campaign Decision Reply Kit",
