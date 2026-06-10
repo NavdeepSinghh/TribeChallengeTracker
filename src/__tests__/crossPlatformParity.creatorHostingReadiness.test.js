@@ -77,6 +77,39 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Creator Payout Provider Setup Kit wired on all platforms without provider or tax collection side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAYOUT PROVIDER SETUP KIT');
+      expect(source).toContain('COPY PAYOUT SETUP KIT');
+      expect(source).toContain('creatorPayoutProviderSetupCopy');
+      expect(source).toContain('Provider setup before payout onboarding');
+      expect(source).toContain('Provider setup checklist');
+      expect(source).toContain('payout providers');
+      expect(source).toContain('country coverage');
+      expect(source).toContain('tax form support');
+      expect(source).toContain('finance reconciliation');
+      expect(source).toContain('marketplace boundaries');
+      expect(source).toContain('payout onboarding is not live');
+      expect(source).toContain('Firestore profile records');
+      expect(source).toContain('creator payout provider setup kit only');
+      expect(source).toContain('Do not create payout accounts');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+    });
+  });
+
   it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

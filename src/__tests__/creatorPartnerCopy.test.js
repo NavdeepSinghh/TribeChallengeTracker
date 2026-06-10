@@ -93,6 +93,11 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorPayoutReadinessCopy).toContain('Creator Payout Readiness Kit');
     expect(copy.creatorPayoutReadinessCopy).toContain('Do not create payouts');
     expect(copy.creatorPayoutReadinessCopy).toContain('collect tax details');
+    expect(copy.creatorPayoutProviderSetupCopy).toContain('Creator Payout Provider Setup Kit');
+    expect(copy.creatorPayoutProviderSetupCopy).toContain('Provider setup checklist');
+    expect(copy.creatorPayoutProviderSetupCopy).toContain('Do not create payout accounts');
+    expect(copy.creatorPayoutProviderSetupCopy).toContain('collect bank details');
+    expect(copy.creatorPayoutProviderSetupCopy).toContain('store provider credentials');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Creator Hosting Objection Reply Kit');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Do not claim paid creator hosting is live');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('store inbound DMs');
