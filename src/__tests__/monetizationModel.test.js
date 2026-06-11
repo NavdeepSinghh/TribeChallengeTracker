@@ -9,11 +9,13 @@ const verifiedPurchaseEvidence = [
   ['ios', 'com.risewiththetribe.pack.21_day_reset', 'sandbox_purchase'],
   ['ios', 'com.risewiththetribe.pack.summer_shred', 'sandbox_purchase'],
   ['ios', 'com.risewiththetribe.pack.beginner_consistency', 'sandbox_purchase'],
+  ['ios', 'com.risewiththetribe.pack.discipline_30', 'sandbox_purchase'],
   ['android', 'com.risewiththetribe.pro.monthly', 'sandbox_purchase'],
   ['android', 'com.risewiththetribe.pro.monthly', 'restore_sync'],
   ['android', 'com.risewiththetribe.pack.21_day_reset', 'sandbox_purchase'],
   ['android', 'com.risewiththetribe.pack.summer_shred', 'sandbox_purchase'],
   ['android', 'com.risewiththetribe.pack.beginner_consistency', 'sandbox_purchase'],
+  ['android', 'com.risewiththetribe.pack.discipline_30', 'sandbox_purchase'],
 ].map(([platform, productId, testCase]) => ({
   platform,
   productId,
@@ -57,9 +59,9 @@ describe('monetization launch evidence model', () => {
     const summary = summarizeStoreTestEvidence(log);
 
     expect(status.ready).toBe(true);
-    expect(status.verifiedCaseCount).toBe(12);
+    expect(status.verifiedCaseCount).toBe(14);
     expect(summary.minimumEvidence.ready).toBe(true);
-    expect(summary.verified).toBe(10);
+    expect(summary.verified).toBe(12);
     expect(summary.verified_safe_denial).toBe(1);
     expect(summary.failed).toBe(1);
     expect(summary.safe_denial).toBe(2);

@@ -36,7 +36,7 @@ describe('purchase entitlement backend contract', () => {
   });
 
   it('maps paid challenge pack purchases to the specific pack entitlement path', () => {
-    const productId = 'com.risewiththetribe.pack.beginner_consistency';
+    const productId = 'com.risewiththetribe.pack.discipline_30';
     const data = buildEntitlementData({
       product: PRODUCT_CATALOG[productId],
       productId,
@@ -49,13 +49,13 @@ describe('purchase entitlement backend contract', () => {
     expect(data).toEqual({
       entitlements: {
         packs: {
-          beginner_consistency: {
+          discipline_30: {
             active: true,
             source: 'play_billing',
             productId,
             transactionId: 'order_456',
             updatedAt: now,
-            packId: 'beginner_consistency',
+            packId: 'discipline_30',
           },
         },
       },

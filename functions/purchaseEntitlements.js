@@ -36,6 +36,12 @@ const PRODUCT_CATALOG = {
     kind: 'challengePack',
     packId: 'beginner_consistency',
   },
+  'com.risewiththetribe.pack.discipline_30': {
+    platformTypes: ['ios', 'android'],
+    entitlement: 'paidChallengePacks',
+    kind: 'challengePack',
+    packId: 'discipline_30',
+  },
 };
 
 const VALIDATION_CONFIG = {

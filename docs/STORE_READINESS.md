@@ -115,7 +115,7 @@ Store forms should state:
 - App Store privacy nutrition labels reflect auth/profile/activity/health data use.
 - In-app account deletion request flow writes `accountDeletionRequests/{uid}`, admin profiles show the review queue, and the hosted data-deletion page is deployed.
 - In-app support request flow writes `supportRequests`, admin profiles show the open support queue, and the hosted support page is deployed.
-- App Store / Play Billing products exist for `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, and `com.risewiththetribe.pack.beginner_consistency` before enabling checkout in production.
+- App Store / Play Billing products exist for `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, and `com.risewiththetribe.pack.discipline_30` before enabling checkout in production.
 - Firebase Functions purchase-validation config is present before expecting paid purchases to unlock Pro.
 - `getPurchaseValidationReadiness` returns `validation_configured` before running store test purchases, but paid launch still waits for recorded sandbox/license-test evidence.
 - `functions/.env.example` lists every required App Store and Play validation key with placeholders only.

@@ -40,6 +40,7 @@ describe('cross-platform challenge pack parity source checks', () => {
       expect(source).toContain('com.risewiththetribe.pack.21_day_reset');
       expect(source).toContain('com.risewiththetribe.pack.summer_shred');
       expect(source).toContain('com.risewiththetribe.pack.beginner_consistency');
+      expect(source).toContain('com.risewiththetribe.pack.discipline_30');
     });
   });
 
@@ -48,6 +49,7 @@ describe('cross-platform challenge pack parity source checks', () => {
       'com.risewiththetribe.pack.21_day_reset',
       'com.risewiththetribe.pack.summer_shred',
       'com.risewiththetribe.pack.beginner_consistency',
+      'com.risewiththetribe.pack.discipline_30',
     ].forEach((productId) => {
       expect(iosProducts).toContain(productId);
       expect(androidModels).toContain(productId);
