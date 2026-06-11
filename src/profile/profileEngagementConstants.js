@@ -37,6 +37,7 @@ export const PRO_BENEFITS = [
   'Premium profile frames',
   'Streak recovery credits',
   'Private challenges',
+  'Longer activity history views',
   'Premium badges and share templates',
 ];
 

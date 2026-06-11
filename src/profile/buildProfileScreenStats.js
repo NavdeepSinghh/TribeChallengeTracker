@@ -47,6 +47,7 @@ export function buildProfileScreenStats({
     daysActive,
     goals,
     monthlyRecap,
+    myHistory,
     totalChallengePoints,
     totalWinPoints,
     weeklyRecap,

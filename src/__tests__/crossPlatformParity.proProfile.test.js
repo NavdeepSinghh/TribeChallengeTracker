@@ -21,6 +21,30 @@ describe('cross-platform Pro profile parity source checks', () => {
     expect(androidApp).toContain('shareMonthlyRecap');
   });
 
+  it('keeps 90-day Pro history insight read-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('90-day history insight');
+      expect(source).toContain('90-day activity history view');
+      expect(source).toContain('90D ACTIVE');
+      expect(source).toContain('90D SESSIONS');
+      expect(source).toContain('90D POINTS');
+      expect(source).toContain('DEEP BASE');
+      expect(source).toContain('BUILDING BASE');
+      expect(source).toContain('RESET WINDOW');
+      expect(source).toContain('PRO PREVIEW');
+      expect(source).toContain('Uses existing app history only');
+      expect(source).toContain('does not export private history');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('grant Pro');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('imply paid access is live');
+    });
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('Longer activity history views');
+    });
+  });
+
   it('keeps Pro Value Snapshot wired on all platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

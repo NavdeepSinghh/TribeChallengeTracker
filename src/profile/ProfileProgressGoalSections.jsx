@@ -11,6 +11,7 @@ export default function ProfileProgressGoalSections({ model }) {
     goalsMessage,
     handleCustomGoalsSave,
     isSavingGoals,
+    longHistoryReport,
     monthlyReport,
     proActive,
     setGoalActiveDays,
@@ -26,6 +27,7 @@ export default function ProfileProgressGoalSections({ model }) {
         proActive={proActive}
         weeklyReport={weeklyReport}
         monthlyReport={monthlyReport}
+        longHistoryReport={longHistoryReport}
       />
 
       <CustomGoalsSection

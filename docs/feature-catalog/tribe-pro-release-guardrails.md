@@ -65,6 +65,7 @@ Release checks:
 - Pro analytics must unlock only when `entitlements.pro.active == true`.
 - Pro weekly and monthly report metrics must be computed from existing activity logs, challenge member points, current streak data, and saved custom goals.
 - The weekly and monthly report status thresholds must stay aligned across platforms: `ON TRACK` at 80+, `BUILDING` at 50-79, and `RESTART` below 50.
+- Pro 90-day history insight must be computed from existing app activity history only and must not export private history, create purchases, grant Pro, write entitlements, imply paid access is live, or require a new backend collection.
 - Custom goals save only for active Pro users and write to `users/{uid}.goals`.
 - Missing custom goal fields use defaults: 5 active days, 250 weekly points, and 30-day streak target.
 - Profile frames save only for active Pro users and write to `users/{uid}.cosmetics.profileFrameId`.

@@ -45,6 +45,7 @@ Shared behavior:
 - Profile includes a Pro-gated analytics/report surface. Free users see a locked preview; active Pro users see report metrics and insight copy.
 - Pro analytics reports use shared weekly and monthly report contracts: weekly score, 7-day consistency, monthly score, 30-day active days, 30-day points, challenge points, status labels, and next-best-action copy.
 - Weekly score is derived from current progress toward custom active-day, weekly-points, and streak goals; monthly score uses the same weekly goals scaled to four weeks and the same streak target. Neither report requires a new backend collection.
+- Active Pro users see a 90-day history insight with active days, sessions, points, active-rate status, top activity, and next-best-action copy derived from existing activity history only.
 - Active Pro users can share a 30-day recap prompt from the profile/report surface using the same monthly report data.
 - Profile includes a Pro-gated custom goals surface for weekly active days, weekly points, and streak target.
 - Profile includes a Pro-gated profile frame picker saved under `users/{uid}.cosmetics.profileFrameId`.

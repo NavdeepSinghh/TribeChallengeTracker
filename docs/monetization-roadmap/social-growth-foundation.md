@@ -78,6 +78,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Tribe Pro custom weekly and streak goals.
 - Tribe Pro profile frames backed by `users/{uid}.cosmetics.profileFrameId`.
 - Tribe Pro share templates backed by `users/{uid}.sharePreferences.templateId` with free `classic` and Pro `gold` / `neon` generated-card palettes.
+- Tribe Pro 90-day history insight across Web, iOS, and Android with active days, sessions, points, top activity, and status copy derived from existing activity history only.
 - Creator / Coach Mode foundation backed by `users/{uid}.creatorProfile` for future hosted challenges, branded pages, and revenue-share.
 - Creator Profile Completion Kit across Web, iOS, and Android with copy-ready specialty, bio, CTA, Coach Host block, and app-first launch readiness guidance before creator terms, payouts, revenue-share, paid hosting, tracking, private exports, outcome promises, or medical claims.
 - Creator analytics foundation across Web, iOS, and Android using existing hosted challenge metrics.
@@ -125,6 +126,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Partner Perk Admin Decision Reply Kit across Web, iOS, and Android with admin copy-ready approved, waiting, not-ready, and declined claim replies before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, or fulfillment promises exist.
 - Partner Perk Claim Admin Review Updates across Web, iOS, and Android with admin-only status updates (`approved`, `waiting`, `not_ready`, `declined`) plus `reviewNote`, `reviewedBy`, and `reviewedAt` on `partnerPerkClaims` before coupons, partner links, payouts, discounts, purchases, entitlements, affiliate rewards, tracking, or fulfillment promises exist.
 - Pro weekly report scoring across Web, iOS, and Android using existing activity logs, challenge stats, current streaks, and custom goals.
+- Pro longer activity history views across Web, iOS, and Android using existing app history for a 90-day active-day/session/point/top-activity insight without new backend writes or private-history export.
 - Challenge completion recaps across Web, iOS, and Android for shareable community proof and future premium pack finish moments.
 - Premium badge foundation across Web, iOS, and Android with Pro-gated weekly report, streak recovery, and finisher badges.
 - Tribe Pro streak recovery credits backed by zero-point `streak_recovery` activity log entries.
