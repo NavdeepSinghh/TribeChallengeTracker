@@ -5,7 +5,7 @@ Use this runbook after App Store Connect, Google Play Console, and Firebase Func
 ## Preconditions
 
 - `npm run release:check:all` passes on the release candidate.
-- App Store products exist for `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, and `com.risewiththetribe.pack.comeback_14`.
+- App Store products exist for `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, `com.risewiththetribe.pack.comeback_14`, and `com.risewiththetribe.pack.event_prep_21`.
 - Play Billing products exist for the same product IDs.
 - Firebase Functions has real App Store Server API and Google Play Developer API credentials configured outside git.
 - `getPurchaseValidationReadiness` returns `validation_configured` for iOS and Android.
@@ -20,7 +20,7 @@ Use this runbook after App Store Connect, Google Play Console, and Firebase Func
 3. Purchase `com.risewiththetribe.pro.monthly`.
 4. Confirm `verifyPurchase` returns a verified result and writes `users/{uid}.entitlements.pro.active`.
 5. Restore purchases and confirm the restore path is idempotent.
-6. Repeat purchase/restore evidence for `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, and `com.risewiththetribe.pack.comeback_14`.
+6. Repeat purchase/restore evidence for `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, `com.risewiththetribe.pack.comeback_14`, and `com.risewiththetribe.pack.event_prep_21`.
 7. Run a negative validation using a wrong-account or invalid transaction case and confirm it does not unlock access.
 
 ## Android License-Test Pass
@@ -30,7 +30,7 @@ Use this runbook after App Store Connect, Google Play Console, and Firebase Func
 3. Purchase `com.risewiththetribe.pro.monthly`.
 4. Confirm `verifyPurchase` returns a verified result and writes `users/{uid}.entitlements.pro.active`.
 5. Restore/sync purchases and confirm the sync path is idempotent.
-6. Repeat purchase/restore evidence for `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, and `com.risewiththetribe.pack.comeback_14`.
+6. Repeat purchase/restore evidence for `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, `com.risewiththetribe.pack.comeback_14`, and `com.risewiththetribe.pack.event_prep_21`.
 7. Run a negative validation using a wrong-account or invalid token case and confirm it does not unlock access.
 
 ## Evidence To Record
@@ -59,6 +59,7 @@ Before a paid launch review, the admin Store Test Purchase Evidence Log should c
 | iOS | `com.risewiththetribe.pack.discipline_30` | `sandbox_purchase` | `verified` |
 | iOS | `com.risewiththetribe.pack.tribe_mode_75` | `sandbox_purchase` | `verified` |
 | iOS | `com.risewiththetribe.pack.comeback_14` | `sandbox_purchase` | `verified` |
+| iOS | `com.risewiththetribe.pack.event_prep_21` | `sandbox_purchase` | `verified` |
 | iOS | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified_safe_denial` |
 | Android | `com.risewiththetribe.pro.monthly` | `sandbox_purchase` | `verified` |
 | Android | `com.risewiththetribe.pro.monthly` | `restore_sync` | `verified` |
@@ -68,6 +69,7 @@ Before a paid launch review, the admin Store Test Purchase Evidence Log should c
 | Android | `com.risewiththetribe.pack.discipline_30` | `sandbox_purchase` | `verified` |
 | Android | `com.risewiththetribe.pack.tribe_mode_75` | `sandbox_purchase` | `verified` |
 | Android | `com.risewiththetribe.pack.comeback_14` | `sandbox_purchase` | `verified` |
+| Android | `com.risewiththetribe.pack.event_prep_21` | `sandbox_purchase` | `verified` |
 | Android | Any configured product | `negative_validation` or `wrong_account` | `failed` or `verified_safe_denial` |
 
 For negative cases, the evidence note must say which entitlement path was checked and confirm that no Pro or pack access was unlocked. A negative case can be marked `verified_safe_denial` only when the verification is of the safe denial, not of a purchase unlock.

@@ -52,6 +52,7 @@ Examples:
 - Beginner Consistency Plan.
 - 75-Day Tribe Mode.
 - 14-Day Comeback Sprint.
+- 21-Day Event Prep Pack.
 - Seasonal or event-based challenges.
 
 Candidate premium content:
@@ -64,7 +65,7 @@ Candidate premium content:
 
 Implementation notes:
 
-- Initial shared pack product IDs are `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, and `com.risewiththetribe.pack.comeback_14`.
+- Initial shared pack product IDs are `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, `com.risewiththetribe.pack.comeback_14`, and `com.risewiththetribe.pack.event_prep_21`.
 - Product constants exist across Web, iOS, and Android.
 - iOS StoreKit and Android Play Billing service scaffolding can query products and launch purchase flows once console products exist.
 - Firebase Functions has a callable `verifyPurchase` contract that audits attempts and returns `validation_not_configured` until real store validation credentials are available.

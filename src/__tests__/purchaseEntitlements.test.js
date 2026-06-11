@@ -36,7 +36,7 @@ describe('purchase entitlement backend contract', () => {
   });
 
   it('maps paid challenge pack purchases to the specific pack entitlement path', () => {
-    const productId = 'com.risewiththetribe.pack.comeback_14';
+    const productId = 'com.risewiththetribe.pack.event_prep_21';
     const data = buildEntitlementData({
       product: PRODUCT_CATALOG[productId],
       productId,
@@ -49,13 +49,13 @@ describe('purchase entitlement backend contract', () => {
     expect(data).toEqual({
       entitlements: {
         packs: {
-          comeback_14: {
+          event_prep_21: {
             active: true,
             source: 'play_billing',
             productId,
             transactionId: 'order_456',
             updatedAt: now,
-            packId: 'comeback_14',
+            packId: 'event_prep_21',
           },
         },
       },

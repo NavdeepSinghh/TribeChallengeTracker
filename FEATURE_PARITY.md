@@ -680,6 +680,7 @@ Shared product ids:
 | 30-Day Discipline Challenge | `com.risewiththetribe.pack.discipline_30` | challenge pack | `paidChallengePacks` / `packId = discipline_30` |
 | 75-Day Tribe Mode | `com.risewiththetribe.pack.tribe_mode_75` | challenge pack | `paidChallengePacks` / `packId = tribe_mode_75` |
 | 14-Day Comeback Sprint | `com.risewiththetribe.pack.comeback_14` | challenge pack | `paidChallengePacks` / `packId = comeback_14` |
+| 21-Day Event Prep Pack | `com.risewiththetribe.pack.event_prep_21` | challenge pack | `paidChallengePacks` / `packId = event_prep_21` |
 
 Behavior:
 
@@ -932,7 +933,7 @@ Priority roadmap:
 | Sponsored challenge metadata foundation | Optional challenge sponsor fields, create preview card, tracker detail card | Optional challenge sponsor fields, create preview card, tracker detail card | Optional challenge sponsor fields, create preview card, tracker detail card |
 | Pro streak recovery | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday |
 | Pro private challenge gate | Private creation requires active Pro; public remains free | Private creation requires active Pro; public remains free | Private creation requires active Pro; public remains free |
-| Premium challenge pack foundation | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, and 14-Day Comeback Sprint metadata with Pro/pack creation gate | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, and 14-Day Comeback Sprint metadata with Pro/pack creation gate | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, and 14-Day Comeback Sprint metadata with Pro/pack creation gate |
+| Premium challenge pack foundation | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, 14-Day Comeback Sprint, and 21-Day Event Prep Pack metadata with Pro/pack creation gate | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, 14-Day Comeback Sprint, and 21-Day Event Prep Pack metadata with Pro/pack creation gate | 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, 14-Day Comeback Sprint, and 21-Day Event Prep Pack metadata with Pro/pack creation gate |
 | Premium pack accountability prompts | Paid packs persist and show prompt arrays on tracker/detail surfaces | Paid packs persist and show prompt arrays on tracker/detail surfaces | Paid packs persist and show prompt arrays on tracker/detail surfaces |
 | Store product catalog | Shared Pro/pack product IDs in code | Shared Pro/pack product IDs in code | Shared Pro/pack product IDs in code |
 | Store Launch Readiness | Admin-only product/credential/test-purchase checklist | Admin-only product/credential/test-purchase checklist | Admin-only product/credential/test-purchase checklist |

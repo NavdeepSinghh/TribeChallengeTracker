@@ -7,6 +7,7 @@ const MINIMUM_STORE_TEST_EVIDENCE_CASES = [
   { id: 'ios_discipline_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
   { id: 'ios_tribe_mode_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
   { id: 'ios_comeback_14_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.comeback_14', testCase: 'sandbox_purchase' },
+  { id: 'ios_event_prep_21_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.event_prep_21', testCase: 'sandbox_purchase' },
   { id: 'android_pro_purchase', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase' },
   { id: 'android_pro_restore', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync' },
   { id: 'android_reset_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase' },
@@ -15,6 +16,7 @@ const MINIMUM_STORE_TEST_EVIDENCE_CASES = [
   { id: 'android_discipline_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
   { id: 'android_tribe_mode_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
   { id: 'android_comeback_14_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.comeback_14', testCase: 'sandbox_purchase' },
+  { id: 'android_event_prep_21_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.event_prep_21', testCase: 'sandbox_purchase' },
 ];
 
 function evidenceNoteText(item) {

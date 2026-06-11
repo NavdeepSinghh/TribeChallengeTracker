@@ -53,6 +53,12 @@ export const STORE_PRODUCTS = {
     entitlement: 'paidChallengePacks',
     packId: 'comeback_14',
   },
+  eventPrep21Pack: {
+    id: 'com.risewiththetribe.pack.event_prep_21',
+    kind: 'challengePack',
+    entitlement: 'paidChallengePacks',
+    packId: 'event_prep_21',
+  },
 };
 
 export const STORE_PRODUCT_IDS = Object.values(STORE_PRODUCTS).map(product => product.id);

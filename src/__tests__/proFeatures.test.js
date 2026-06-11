@@ -30,6 +30,7 @@ describe('Pro feature and store product catalog', () => {
       'com.risewiththetribe.pack.discipline_30',
       'com.risewiththetribe.pack.tribe_mode_75',
       'com.risewiththetribe.pack.comeback_14',
+      'com.risewiththetribe.pack.event_prep_21',
     ]);
     expect(STORE_PRODUCTS.reset21Pack.packId).toBe('21_day_reset');
     expect(STORE_PRODUCTS.reset21Pack.entitlement).toBe(PRO_FEATURES.paidChallengePacks);
@@ -38,6 +39,7 @@ describe('Pro feature and store product catalog', () => {
     expect(STORE_PRODUCTS.discipline30Pack.packId).toBe('discipline_30');
     expect(STORE_PRODUCTS.tribeMode75Pack.packId).toBe('tribe_mode_75');
     expect(STORE_PRODUCTS.comeback14Pack.packId).toBe('comeback_14');
+    expect(STORE_PRODUCTS.eventPrep21Pack.packId).toBe('event_prep_21');
 
     const functionsSource = [
       fs.readFileSync(path.resolve(__dirname, '../../functions/index.js'), 'utf8'),

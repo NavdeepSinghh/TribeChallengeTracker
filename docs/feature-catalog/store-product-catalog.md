@@ -12,6 +12,7 @@ Shared product IDs:
 - `com.risewiththetribe.pack.discipline_30`: standalone 30-Day Discipline Challenge purchase candidate.
 - `com.risewiththetribe.pack.tribe_mode_75`: standalone 75-Day Tribe Mode purchase candidate.
 - `com.risewiththetribe.pack.comeback_14`: standalone 14-Day Comeback Sprint purchase candidate.
+- `com.risewiththetribe.pack.event_prep_21`: standalone 21-Day Event Prep Pack purchase candidate.
 
 Shared behavior:
 

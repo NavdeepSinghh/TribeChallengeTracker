@@ -43,6 +43,7 @@ describe('cross-platform challenge pack parity source checks', () => {
       expect(source).toContain('com.risewiththetribe.pack.discipline_30');
       expect(source).toContain('com.risewiththetribe.pack.tribe_mode_75');
       expect(source).toContain('com.risewiththetribe.pack.comeback_14');
+      expect(source).toContain('com.risewiththetribe.pack.event_prep_21');
     });
   });
 
@@ -54,6 +55,7 @@ describe('cross-platform challenge pack parity source checks', () => {
       'com.risewiththetribe.pack.discipline_30',
       'com.risewiththetribe.pack.tribe_mode_75',
       'com.risewiththetribe.pack.comeback_14',
+      'com.risewiththetribe.pack.event_prep_21',
     ].forEach((productId) => {
       expect(iosProducts).toContain(productId);
       expect(androidModels).toContain(productId);
