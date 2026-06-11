@@ -1,6 +1,7 @@
 const ROADMAP_TOKENS = [
   "Store Validation Credential Template",
   "Store Test Purchase Runbook",
+  "Store Product Parity Guard",
   "MONETIZATION_RELEASE_AUDIT.md",
   "Focused bounded build-wrapper coverage",
   "Focused build-runtime guard coverage",

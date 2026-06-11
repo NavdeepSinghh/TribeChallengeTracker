@@ -15,6 +15,7 @@ function verifyRequiredStoreReadinessFiles(repoRoot) {
     path.join(repoRoot, "scripts", "write-monetization-release-audit.js"),
     path.join(repoRoot, "scripts", "monetization-release-audit-local-recheck-items.js"),
     path.join(repoRoot, "scripts", "check-store-launch-readiness.js"),
+    path.join(repoRoot, "scripts", "verify-store-product-parity.js"),
     path.join(repoRoot, "scripts", "verify-release-documentation-contracts.js"),
     path.join(repoRoot, "scripts", "store-readiness-release-contracts.js"),
     path.join(repoRoot, "scripts", "store-readiness-document-contracts.js"),
@@ -31,6 +32,7 @@ function verifyRequiredStoreReadinessFiles(repoRoot) {
     path.join(repoRoot, "scripts", "creator-partner-profile-copy-tokens.js"),
     path.join(repoRoot, "scripts", "referral-community-profile-copy-tokens.js"),
     path.join(repoRoot, "src", "__tests__", "storeLaunchReadinessScript.test.js"),
+    path.join(repoRoot, "src", "__tests__", "storeProductParity.test.js"),
     path.join(repoRoot, "src", "__tests__", "purchaseEntitlements.test.js"),
     path.join(repoRoot, "src", "__tests__", "purchaseValidationReadiness.test.js"),
     path.join(repoRoot, "src", "__tests__", "badgeCatalog.test.js"),
@@ -72,7 +74,7 @@ function verifyRequiredStoreReadinessFiles(repoRoot) {
 
 function verifyReleaseScriptContracts(packageJson) {
   assert(packageJson.scripts?.["store:readiness"] === "node scripts/check-store-launch-readiness.js", "package.json must define store:readiness");
-  assert(packageJson.scripts?.["test:store-readiness"] === "react-scripts test --runTestsByPath src/__tests__/storeLaunchReadinessScript.test.js --watchAll=false --runInBand", "package.json must define test:store-readiness");
+  assert(packageJson.scripts?.["test:store-readiness"] === "react-scripts test --runTestsByPath src/__tests__/storeLaunchReadinessScript.test.js src/__tests__/storeProductParity.test.js --watchAll=false --runInBand", "package.json must define test:store-readiness");
   assert(packageJson.scripts?.["test:purchase-entitlements"] === "react-scripts test --runTestsByPath src/__tests__/purchaseEntitlements.test.js src/__tests__/purchaseValidationReadiness.test.js --watchAll=false --runInBand", "package.json must define test:purchase-entitlements");
   assert(packageJson.scripts?.["test:badges"] === "react-scripts test --runTestsByPath src/__tests__/badgeCatalog.test.js src/__tests__/badgeService.test.js src/__tests__/badgeProgress.test.js --watchAll=false --runInBand", "package.json must define test:badges");
   assert(packageJson.scripts?.["test:challenge-templates"] === "react-scripts test --runTestsByPath src/__tests__/challengeTemplates.test.js --watchAll=false --runInBand", "package.json must define test:challenge-templates");

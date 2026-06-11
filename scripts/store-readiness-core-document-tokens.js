@@ -22,6 +22,7 @@ const STORE_READINESS_DOC_TOKENS = [
   "docs/store-readiness/ios-app-store.md",
   "iOS App Store Index",
   "npm run store:readiness",
+  "Store Product Parity Guard",
   "campaign-share",
   "build-wrapper",
   "build-runtime guard",
@@ -49,6 +50,8 @@ const STORE_READINESS_SCRIPT_TOKENS = [
 
 const STORE_READINESS_TEST_TOKENS = [
   "check-store-launch-readiness.js",
+  "storeProductParity.test.js",
+  "verifyStoreProductParity",
   "--strict",
   "--json",
   "credentials_missing_or_placeholder",

@@ -686,6 +686,7 @@ Behavior:
 
 - Product IDs must match across Web billing references, StoreKit products, Play Billing products, backend receipt validation, and entitlement writes.
 - Product constants exist in Web, iOS, and Android code so purchase setup can be wired without inventing new IDs.
+- `scripts/verify-store-product-parity.js` compares backend, Web, iOS, Android, and Android Play Billing query references before release checks pass.
 - iOS has StoreKit product query/purchase service scaffolding, and Android has Play Billing product query/purchase service scaffolding.
 - Web has a checkout placeholder service that uses the shared IDs and intentionally fails until a compliant billing provider is selected.
 - Firebase Functions now exposes callable `verifyPurchase`, which validates request shape, records an audit attempt, and refuses to unlock entitlements until App Store / Play receipt validation returns a verified result.

@@ -25,7 +25,10 @@ function verifyStoreReadinessDocumentContracts({ repoRoot }) {
   const releaseAuditPath = path.join(repoRoot, "docs", "MONETIZATION_RELEASE_AUDIT.md");
   const storeTestPurchaseRunbookPath = path.join(repoRoot, "docs", "STORE_TEST_PURCHASE_RUNBOOK.md");
   const storeReadinessScriptPath = path.join(repoRoot, "scripts", "check-store-launch-readiness.js");
-  const storeReadinessTestPath = path.join(repoRoot, "src", "__tests__", "storeLaunchReadinessScript.test.js");
+  const storeReadinessTestPaths = [
+    path.join(repoRoot, "src", "__tests__", "storeLaunchReadinessScript.test.js"),
+    path.join(repoRoot, "src", "__tests__", "storeProductParity.test.js"),
+  ];
   const releaseAuditScriptPath = path.join(repoRoot, "scripts", "write-monetization-release-audit.js");
   const releaseAuditSourcePaths = [
     releaseAuditScriptPath,
@@ -36,7 +39,10 @@ function verifyStoreReadinessDocumentContracts({ repoRoot }) {
   ENV_TEMPLATE_TOKENS.forEach((token) => assertIncludes(envExamplePath, token));
   STORE_READINESS_DOC_TOKENS.forEach((token) => assertMarkdownIncludes(storeReadinessPath, token));
   STORE_READINESS_SCRIPT_TOKENS.forEach((token) => assertIncludes(storeReadinessScriptPath, token));
-  STORE_READINESS_TEST_TOKENS.forEach((token) => assertIncludes(storeReadinessTestPath, token));
+  const storeReadinessTestSource = readExistingFiles(storeReadinessTestPaths);
+  STORE_READINESS_TEST_TOKENS.forEach((token) => {
+    assert(storeReadinessTestSource.includes(token), `store readiness tests are missing ${token}`);
+  });
   RELEASE_AUDIT_SCRIPT_TOKENS.forEach((token) => {
     assert(releaseAuditSource.includes(token), `release audit generator sources are missing ${token}`);
   });

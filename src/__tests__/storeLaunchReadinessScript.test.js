@@ -45,9 +45,23 @@ describe('store launch readiness script', () => {
     expect(data.readiness).toHaveLength(2);
     expect(data.readiness.flatMap((platform) => platform.missingConfigKeysOnly)).toEqual(storeCredentialKeys);
     expect(data.readiness.flatMap((platform) => platform.placeholderConfigKeys)).toEqual([]);
-    expect(data.products).toHaveLength(4);
-    expect(data.requiredEvidence).toHaveLength(10);
+    expect(data.products).toHaveLength(9);
+    expect(data.requiredEvidence).toHaveLength(20);
     expect(data.requiredEvidence.filter((item) => item.safeDenialRequired)).toHaveLength(2);
+    expect(data.requiredEvidence).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          platform: 'ios',
+          productId: 'com.risewiththetribe.pack.event_prep_21',
+          testCase: 'sandbox_purchase',
+        }),
+        expect.objectContaining({
+          platform: 'android',
+          productId: 'com.risewiththetribe.pack.event_prep_21',
+          testCase: 'sandbox_purchase',
+        }),
+      ])
+    );
     expect(data.requiredEvidence.find((item) => item.testCase === 'negative_validation_or_wrong_account')).toEqual(
       expect.objectContaining({
         acceptedResults: ['failed', 'verified_safe_denial'],

@@ -27,6 +27,7 @@ Shared behavior:
 - The callable response includes `status`, `reason`, `message`, product metadata, required config keys, missing config keys, and the next backend action.
 - Verified purchases are applied by the server only, using idempotent `purchaseEntitlements/{purchaseRecordId}` records and shared `users/{uid}.entitlements` fields.
 - Profile purchase cards expose "Sync previous purchases" restore actions: iOS uses StoreKit current entitlements, Android uses Play Billing owned purchases, and Web remains provider-neutral until web billing exists.
+- Store product parity verification compares backend `PRODUCT_CATALOG`, Web `STORE_PRODUCTS`, iOS `StoreProducts`, Android `StoreProducts`, and Android Play Billing query references before release checks pass.
 - Profile purchase cards expose "Request entitlement review" actions that write `entitlementRecoveryRequests/{uid}` with `productCount`, `proActive`, `packCount`, `activePackCount`, `reason`, `status`, `source`, and timestamps for manual support review.
 - Entitlement recovery reasons include `restore_sync_failed`, `missing_pro`, `missing_pack`, `account_mismatch`, and `billing_question`.
 - Entitlement Recovery Review Queue is admin-only and must not write entitlements, process refunds, cancel subscriptions, create purchases, or bypass marketplace policy.
@@ -60,6 +61,7 @@ Shared behavior:
 Release checks:
 
 - Store product IDs match `FEATURE_PARITY.md`.
+- Store product parity must pass across backend, Web, iOS, Android, and Android Play Billing query references before running external store tests.
 - Pro subscription products map to `entitlements.pro`.
 - Challenge pack products map to stable `packId` values.
 - Missing store products leave the current locked/free UI intact.

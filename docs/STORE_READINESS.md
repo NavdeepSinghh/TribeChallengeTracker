@@ -40,6 +40,8 @@ npm run store:readiness
 
 This command reads only local environment variables and the shared product catalog. It reports missing or placeholder App Store / Play validation keys, lists configured product IDs, and prints the required sandbox/license-test evidence matrix. Use `node scripts/check-store-launch-readiness.js --strict` only when credentials are expected to be configured and a missing or placeholder key should fail the check.
 
+`npm run test:store-readiness` also runs the Store Product Parity Guard, which compares backend, Web, iOS, Android, and Android Play Billing product references before store-test evidence is trusted.
+
 For automation or audit tooling, use:
 
 ```bash

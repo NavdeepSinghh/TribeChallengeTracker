@@ -1,15 +1,35 @@
-const STORE_TEST_EVIDENCE_MATRIX = [
-  { platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync', acceptedResults: ['verified'] },
-  { platform: 'ios', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'ios', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'ios', productId: 'any configured product', testCase: 'negative_validation_or_wrong_account', acceptedResults: ['failed', 'verified_safe_denial'] },
-  { platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync', acceptedResults: ['verified'] },
-  { platform: 'android', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'android', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
-  { platform: 'android', productId: 'any configured product', testCase: 'negative_validation_or_wrong_account', acceptedResults: ['failed', 'verified_safe_denial'] },
-];
+const { PRODUCT_CATALOG } = require('../functions/purchaseEntitlements');
+
+function buildStoreTestEvidenceMatrix(productCatalog = PRODUCT_CATALOG) {
+  const products = Object.entries(productCatalog);
+  const monthlySubscription = products.find(([, product]) => (
+    product.kind === 'subscription' && product.cadence === 'monthly'
+  ));
+  const challengePacks = products.filter(([, product]) => product.kind === 'challengePack');
+
+  return ['ios', 'android'].flatMap((platform) => {
+    const platformCases = [];
+    if (monthlySubscription) {
+      const [productId] = monthlySubscription;
+      platformCases.push(
+        { platform, productId, testCase: 'sandbox_purchase', acceptedResults: ['verified'] },
+        { platform, productId, testCase: 'restore_sync', acceptedResults: ['verified'] },
+      );
+    }
+    challengePacks.forEach(([productId]) => {
+      platformCases.push({ platform, productId, testCase: 'sandbox_purchase', acceptedResults: ['verified'] });
+    });
+    platformCases.push({
+      platform,
+      productId: 'any configured product',
+      testCase: 'negative_validation_or_wrong_account',
+      acceptedResults: ['failed', 'verified_safe_denial'],
+    });
+    return platformCases;
+  });
+}
+
+const STORE_TEST_EVIDENCE_MATRIX = buildStoreTestEvidenceMatrix();
 
 function formatAcceptedResults(acceptedResults) {
   return acceptedResults.join(' or ');
@@ -25,6 +45,7 @@ function evidenceMatrixForReadiness() {
 
 module.exports = {
   STORE_TEST_EVIDENCE_MATRIX,
+  buildStoreTestEvidenceMatrix,
   evidenceMatrixForReadiness,
   formatAcceptedResults,
 };
