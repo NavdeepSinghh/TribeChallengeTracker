@@ -29,6 +29,12 @@ export const STORE_PRODUCTS = {
     entitlement: 'paidChallengePacks',
     packId: 'summer_shred',
   },
+  beginnerConsistencyPack: {
+    id: 'com.risewiththetribe.pack.beginner_consistency',
+    kind: 'challengePack',
+    entitlement: 'paidChallengePacks',
+    packId: 'beginner_consistency',
+  },
 };
 
 export const STORE_PRODUCT_IDS = Object.values(STORE_PRODUCTS).map(product => product.id);

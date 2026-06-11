@@ -127,7 +127,7 @@ Planned shared behavior:
 - Referral tracking, reward badges, and reward ladder. Initial 1/5/10 badges plus 1/5/10/25 profile ladder are implemented.
 - Tribe Pro subscription entitlements.
 - Pro custom weekly and streak goals. Initial cross-platform profile surfaces are implemented.
-- Premium challenge packs. Initial 21-Day Reset Pack metadata and Pro creation gate are implemented.
+- Premium challenge packs. Initial 21-Day Reset Pack and Beginner Consistency Plan metadata with Pro/pack creation gates are implemented.
 - Creator/coach challenge hosting.
 
 Release checks:

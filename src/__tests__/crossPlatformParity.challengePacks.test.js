@@ -39,6 +39,7 @@ describe('cross-platform challenge pack parity source checks', () => {
     [fs.readFileSync(path.resolve(repoRoot, 'src/proFeatures.js'), 'utf8'), iosProducts, androidModels].forEach((source) => {
       expect(source).toContain('com.risewiththetribe.pack.21_day_reset');
       expect(source).toContain('com.risewiththetribe.pack.summer_shred');
+      expect(source).toContain('com.risewiththetribe.pack.beginner_consistency');
     });
   });
 
@@ -46,6 +47,7 @@ describe('cross-platform challenge pack parity source checks', () => {
     [
       'com.risewiththetribe.pack.21_day_reset',
       'com.risewiththetribe.pack.summer_shred',
+      'com.risewiththetribe.pack.beginner_consistency',
     ].forEach((productId) => {
       expect(iosProducts).toContain(productId);
       expect(androidModels).toContain(productId);

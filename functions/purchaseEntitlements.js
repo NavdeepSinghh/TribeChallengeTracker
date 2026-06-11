@@ -30,6 +30,12 @@ const PRODUCT_CATALOG = {
     kind: 'challengePack',
     packId: 'summer_shred',
   },
+  'com.risewiththetribe.pack.beginner_consistency': {
+    platformTypes: ['ios', 'android'],
+    entitlement: 'paidChallengePacks',
+    kind: 'challengePack',
+    packId: 'beginner_consistency',
+  },
 };
 
 const VALIDATION_CONFIG = {

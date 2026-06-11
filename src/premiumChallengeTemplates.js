@@ -30,4 +30,33 @@ export const PREMIUM_CHALLENGE_TEMPLATES = [
     ],
     disclaimer: 'This premium challenge pack is for accountability and habit formation. It is not medical advice. Adjust intensity to your needs and consult a healthcare professional when appropriate.',
   },
+  {
+    id: 'premium_beginner_consistency',
+    name: 'Beginner Consistency Plan',
+    emoji: '🌱',
+    color: '#34D399',
+    duration: 14,
+    tagline: 'A gentle premium starter plan for movement, recovery, and confidence',
+    difficulty: 'Beginner',
+    isPremium: true,
+    packId: 'beginner_consistency',
+    packLabel: 'Beginner Pack',
+    rules: [
+      'Complete one approachable movement session each day',
+      'Log how the session felt, not just the result',
+      'Take one planned recovery or mobility step',
+      'Share one weekly proof update only if it helps accountability',
+    ],
+    tasks: [
+      { id: 'movement', label: 'Beginner movement completed', emoji: '🌱' },
+      { id: 'checkin', label: 'Confidence check-in logged', emoji: '📝' },
+      { id: 'recovery', label: 'Recovery or mobility step', emoji: '🧘' },
+    ],
+    dailyPrompts: [
+      'Make the session easy enough to repeat tomorrow.',
+      'Write one sentence about what helped you start.',
+      'Choose consistency over intensity today.',
+    ],
+    disclaimer: 'This premium challenge pack is for accountability and habit formation. It is not medical advice. Adjust intensity to your needs and consult a healthcare professional when appropriate.',
+  },
 ];

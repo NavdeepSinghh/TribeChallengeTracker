@@ -77,7 +77,7 @@ The Pro subscription foundation inventory now lives in `docs/monetization-roadma
 
 Features:
 
-- Premium challenge templates. Status: initial 21-Day Reset Pack template and Pro creation gate done.
+- Premium challenge templates. Status: initial 21-Day Reset Pack and Beginner Consistency Plan templates with Pro/pack creation gates done.
 - Premium pack accountability prompts. Status: paid-pack daily prompt arrays persist and render across Web, iOS, and Android.
 - Challenge pack purchase/entitlement tracking. Status: shared product IDs, native query service scaffolding, verification payload contract, per-pack entitlement gates, live validation calls, and server entitlement writer done; production credentials and real store test purchases pending.
 - Challenge pack checkout visibility. Status: profile surfaces show pack products and per-pack unlocked state across Web, iOS, and Android.

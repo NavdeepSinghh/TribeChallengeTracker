@@ -13,6 +13,7 @@ export function buildProfileStoreCatalogData(profile) {
   const challengePackTitle = product => ({
     '21_day_reset': '21-Day Reset Pack',
     summer_shred: '28-Day Summer Shred',
+    beginner_consistency: 'Beginner Consistency Plan',
   }[product.packId] || product.packId || product.id);
   const subscriptionProducts = STORE_CATALOG.filter(product => product.kind === 'subscription');
   const challengePackProducts = STORE_CATALOG.filter(product => product.kind === 'challengePack');

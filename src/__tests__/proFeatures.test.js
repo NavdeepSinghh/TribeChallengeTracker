@@ -26,10 +26,12 @@ describe('Pro feature and store product catalog', () => {
       'com.risewiththetribe.pro.yearly',
       'com.risewiththetribe.pack.21_day_reset',
       'com.risewiththetribe.pack.summer_shred',
+      'com.risewiththetribe.pack.beginner_consistency',
     ]);
     expect(STORE_PRODUCTS.reset21Pack.packId).toBe('21_day_reset');
     expect(STORE_PRODUCTS.reset21Pack.entitlement).toBe(PRO_FEATURES.paidChallengePacks);
     expect(STORE_PRODUCTS.summerShredPack.packId).toBe('summer_shred');
+    expect(STORE_PRODUCTS.beginnerConsistencyPack.packId).toBe('beginner_consistency');
 
     const functionsSource = [
       fs.readFileSync(path.resolve(__dirname, '../../functions/index.js'), 'utf8'),

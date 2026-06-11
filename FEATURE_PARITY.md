@@ -676,6 +676,7 @@ Shared product ids:
 | Tribe Pro Yearly | `com.risewiththetribe.pro.yearly` | subscription | `entitlements.pro.active` |
 | 21-Day Reset Pack | `com.risewiththetribe.pack.21_day_reset` | challenge pack | `paidChallengePacks` / `packId = 21_day_reset` |
 | 28-Day Summer Shred | `com.risewiththetribe.pack.summer_shred` | challenge pack | `paidChallengePacks` / `packId = summer_shred` |
+| Beginner Consistency Plan | `com.risewiththetribe.pack.beginner_consistency` | challenge pack | `paidChallengePacks` / `packId = beginner_consistency` |
 
 Behavior:
 
@@ -928,7 +929,7 @@ Priority roadmap:
 | Sponsored challenge metadata foundation | Optional challenge sponsor fields, create preview card, tracker detail card | Optional challenge sponsor fields, create preview card, tracker detail card | Optional challenge sponsor fields, create preview card, tracker detail card |
 | Pro streak recovery | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday | Pro-gated recovery writes zero-point `streak_recovery` activity for yesterday |
 | Pro private challenge gate | Private creation requires active Pro; public remains free | Private creation requires active Pro; public remains free | Private creation requires active Pro; public remains free |
-| Premium challenge pack foundation | 21-Day Reset Pack metadata and Pro creation gate | 21-Day Reset Pack metadata and Pro creation gate | 21-Day Reset Pack metadata and Pro creation gate |
+| Premium challenge pack foundation | 21-Day Reset Pack and Beginner Consistency Plan metadata with Pro/pack creation gate | 21-Day Reset Pack and Beginner Consistency Plan metadata with Pro/pack creation gate | 21-Day Reset Pack and Beginner Consistency Plan metadata with Pro/pack creation gate |
 | Premium pack accountability prompts | Paid packs persist and show prompt arrays on tracker/detail surfaces | Paid packs persist and show prompt arrays on tracker/detail surfaces | Paid packs persist and show prompt arrays on tracker/detail surfaces |
 | Store product catalog | Shared Pro/pack product IDs in code | Shared Pro/pack product IDs in code | Shared Pro/pack product IDs in code |
 | Store Launch Readiness | Admin-only product/credential/test-purchase checklist | Admin-only product/credential/test-purchase checklist | Admin-only product/credential/test-purchase checklist |

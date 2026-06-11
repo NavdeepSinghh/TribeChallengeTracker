@@ -131,7 +131,7 @@ Shared behavior:
 - Paid challenge pack creation also accepts specific active pack entitlements at `users/{uid}.entitlements.packs.{packId}.active`, so future receipt validation can unlock one pack without granting full Pro.
 - Paid challenge packs can include accountability prompt arrays that are persisted onto challenge docs and rendered in tracker/detail surfaces.
 - Profile checkout surfaces show subscription products and challenge-pack products separately, including an `UNLOCKED` state when Pro or the specific pack entitlement is active.
-- The first premium pack foundation template is `21-Day Reset Pack` with `packId = 21_day_reset`.
+- Premium pack foundation templates include `21-Day Reset Pack` with `packId = 21_day_reset` and `Beginner Consistency Plan` with `packId = beginner_consistency`.
 - Profile checkout buttons surface the shared Pro subscription products; entitlement unlock still waits for receipt validation credentials.
 - Admin profiles include Store Launch Readiness with product ID counts, credential setup reminders, sandbox/test purchase reminders, and entitlement write checks.
 

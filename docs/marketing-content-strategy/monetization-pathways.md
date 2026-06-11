@@ -17,7 +17,7 @@ Safe positioning:
 
 ### Premium Challenges
 
-Primary offer: structured challenge packs such as 21-Day Reset and Summer Shred.
+Primary offer: structured challenge packs such as 21-Day Reset, Summer Shred, and Beginner Consistency Plan.
 
 Best timing:
 
