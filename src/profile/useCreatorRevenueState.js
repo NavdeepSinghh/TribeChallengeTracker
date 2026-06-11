@@ -34,6 +34,12 @@ export default function useCreatorRevenueState() {
   const [isSubmittingCreatorPaidHostingLaunchGate, setIsSubmittingCreatorPaidHostingLaunchGate] = useState(false);
   const [creatorPaidHostingLaunchGateReviewNotes, setCreatorPaidHostingLaunchGateReviewNotes] = useState({});
   const [reviewingCreatorPaidHostingLaunchGateId, setReviewingCreatorPaidHostingLaunchGateId] = useState('');
+  const [creatorPayoutExceptionReviewQueue, setCreatorPayoutExceptionReviewQueue] = useState([]);
+  const [approvedCreatorPayoutExceptionReviews, setApprovedCreatorPayoutExceptionReviews] = useState([]);
+  const [creatorPayoutExceptionMessage, setCreatorPayoutExceptionMessage] = useState('');
+  const [isSubmittingCreatorPayoutExceptionReview, setIsSubmittingCreatorPayoutExceptionReview] = useState(false);
+  const [creatorPayoutExceptionReviewNotes, setCreatorPayoutExceptionReviewNotes] = useState({});
+  const [reviewingCreatorPayoutExceptionReviewId, setReviewingCreatorPayoutExceptionReviewId] = useState('');
   const [creatorLeaderboardSnapshotReviewQueue, setCreatorLeaderboardSnapshotReviewQueue] = useState([]);
   const [publishedCreatorLeaderboardSnapshots, setPublishedCreatorLeaderboardSnapshots] = useState([]);
   const [creatorLeaderboardSnapshotMessage, setCreatorLeaderboardSnapshotMessage] = useState('');
@@ -48,6 +54,7 @@ export default function useCreatorRevenueState() {
   return {
     approvedCreatorPrivateInviteLaunches,
     approvedCreatorPaidHostingLaunchGateReviews,
+    approvedCreatorPayoutExceptionReviews,
     creatorBio,
     creatorCtaUrl,
     creatorEnabled,
@@ -63,6 +70,9 @@ export default function useCreatorRevenueState() {
     creatorPaidHostingLaunchGateMessage,
     creatorPaidHostingLaunchGateReviewNotes,
     creatorPaidHostingLaunchGateReviewQueue,
+    creatorPayoutExceptionMessage,
+    creatorPayoutExceptionReviewNotes,
+    creatorPayoutExceptionReviewQueue,
     creatorMessage,
     creatorRevenueShareInterest,
     creatorRevenueShareSummary,
@@ -81,12 +91,14 @@ export default function useCreatorRevenueState() {
     isSubmittingCreatorHostingApplication,
     isSubmittingCreatorPrivateInviteLaunch,
     isSubmittingCreatorPaidHostingLaunchGate,
+    isSubmittingCreatorPayoutExceptionReview,
     isSubmittingCreatorLeaderboardSnapshot,
     isSubmittingCreatorTemplateDraft,
     reviewingCreatorHostingApplicationId,
     reviewingCreatorBrandedPageId,
     reviewingCreatorPrivateInviteLaunchId,
     reviewingCreatorPaidHostingLaunchGateId,
+    reviewingCreatorPayoutExceptionReviewId,
     reviewingCreatorLeaderboardSnapshotId,
     reviewingCreatorTemplateDraftId,
     setCreatorBio,
@@ -97,6 +109,7 @@ export default function useCreatorRevenueState() {
     setCreatorHostingApplicationReviewQueue,
     setApprovedCreatorPrivateInviteLaunches,
     setApprovedCreatorPaidHostingLaunchGateReviews,
+    setApprovedCreatorPayoutExceptionReviews,
     setCreatorBrandedPageMessage,
     setCreatorBrandedPageReviewNotes,
     setCreatorBrandedPageReviewQueue,
@@ -106,6 +119,9 @@ export default function useCreatorRevenueState() {
     setCreatorPaidHostingLaunchGateMessage,
     setCreatorPaidHostingLaunchGateReviewNotes,
     setCreatorPaidHostingLaunchGateReviewQueue,
+    setCreatorPayoutExceptionMessage,
+    setCreatorPayoutExceptionReviewNotes,
+    setCreatorPayoutExceptionReviewQueue,
     setCreatorMessage,
     setCreatorRevenueShareInterest,
     setCreatorRevenueShareSummary,
@@ -124,12 +140,14 @@ export default function useCreatorRevenueState() {
     setIsSubmittingCreatorHostingApplication,
     setIsSubmittingCreatorPrivateInviteLaunch,
     setIsSubmittingCreatorPaidHostingLaunchGate,
+    setIsSubmittingCreatorPayoutExceptionReview,
     setIsSubmittingCreatorLeaderboardSnapshot,
     setIsSubmittingCreatorTemplateDraft,
     setReviewingCreatorHostingApplicationId,
     setReviewingCreatorBrandedPageId,
     setReviewingCreatorPrivateInviteLaunchId,
     setReviewingCreatorPaidHostingLaunchGateId,
+    setReviewingCreatorPayoutExceptionReviewId,
     setReviewingCreatorLeaderboardSnapshotId,
     setReviewingCreatorTemplateDraftId,
   };

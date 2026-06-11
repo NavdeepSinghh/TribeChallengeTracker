@@ -22,6 +22,7 @@ export default function CreatorCoachMemberSection({
   creatorModerationReadinessCopy,
   creatorPaidHostingLaunchGateCopy,
   creatorPaidHostingLaunchGateMessage,
+  creatorPayoutExceptionMessage,
   creatorPaidHostingHoldPlanCopy,
   creatorLaunchChallenge,
   creatorLaunchCopy,
@@ -48,6 +49,7 @@ export default function CreatorCoachMemberSection({
   handleCreatorLeaderboardSnapshotSubmit,
   handleCreatorPrivateInviteLaunchSubmit,
   handleCreatorPaidHostingLaunchGateSubmit,
+  handleCreatorPayoutExceptionReviewSubmit,
   handleCreatorTemplateDraftSubmit,
   handleCreatorSave,
   isSavingCreator,
@@ -56,6 +58,7 @@ export default function CreatorCoachMemberSection({
   isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorPrivateInviteLaunch,
   isSubmittingCreatorPaidHostingLaunchGate,
+  isSubmittingCreatorPayoutExceptionReview,
   isSubmittingCreatorTemplateDraft,
   proActive,
   setCreatorBio,
@@ -156,6 +159,22 @@ export default function CreatorCoachMemberSection({
         </button>
         {creatorPaidHostingLaunchGateMessage && (
           <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorPaidHostingLaunchGateMessage}</p>
+        )}
+      </div>
+      <div style={{ padding: 16, borderRadius: 12, background: 'rgba(251,113,133,0.07)', border: '1px solid rgba(251,113,133,0.18)', marginBottom: 14 }}>
+        <div style={{ color: '#FB7185', fontSize: 10, fontFamily: 'monospace', fontWeight: 900 }}>CREATOR PAYOUT EXCEPTION REVIEW RECORD</div>
+        <p style={{ margin: '8px 0 12px', color: '#aaa', fontSize: 12, lineHeight: 1.45 }}>
+          Save aggregate creatorPayoutExceptionReviews evidence for manual admin review. This does not resolve payout disputes, process refunds, collect tax forms, collect government IDs, collect bank details, collect payout details, access payout providers, create payout accounts, create payouts, move money, create purchases, write entitlements, give tax advice, bypass marketplace policy, promise earnings, expose private member logs, scrape messages, add tracking pixels, or imply paid creator hosting is live.
+        </p>
+        <button
+          onClick={handleCreatorPayoutExceptionReviewSubmit}
+          disabled={!proActive || !creatorEnabled || isSubmittingCreatorPayoutExceptionReview}
+          style={{ border: 0, borderRadius: 9, padding: '10px 12px', background: '#FB7185', color: '#23060b', fontWeight: 900, fontSize: 11, cursor: 'pointer' }}
+        >
+          {isSubmittingCreatorPayoutExceptionReview ? 'SAVING...' : 'SAVE PAYOUT EXCEPTION REVIEW'}
+        </button>
+        {creatorPayoutExceptionMessage && (
+          <p style={{ margin: '10px 0 0', color: '#aaa', fontSize: 10, fontFamily: 'monospace', lineHeight: 1.35 }}>{creatorPayoutExceptionMessage}</p>
         )}
       </div>
       <div style={{ padding: 16, borderRadius: 12, background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.18)', marginBottom: 14 }}>

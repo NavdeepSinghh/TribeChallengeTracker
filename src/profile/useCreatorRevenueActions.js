@@ -3,6 +3,7 @@ import { buildCreatorBrandedPageActionHandlers } from './creatorBrandedPageActio
 import { buildCreatorChallengeTemplateDraftActionHandlers } from './creatorChallengeTemplateDraftActionHandlers';
 import { buildCreatorLeaderboardSnapshotActionHandlers } from './creatorLeaderboardSnapshotActionHandlers';
 import { buildCreatorPaidHostingLaunchGateActionHandlers } from './creatorPaidHostingLaunchGateActionHandlers';
+import { buildCreatorPayoutExceptionReviewActionHandlers } from './creatorPayoutExceptionReviewActionHandlers';
 import { buildCreatorPrivateInviteLaunchActionHandlers } from './creatorPrivateInviteLaunchActionHandlers';
 import { buildCreatorProfileActionHandlers } from './creatorProfileActionHandlers';
 
@@ -15,6 +16,7 @@ export default function useCreatorRevenueActions({
   creatorHostingApplicationReviewNotes,
   creatorLeaderboardSnapshotReviewNotes,
   creatorPaidHostingLaunchGateReviewNotes,
+  creatorPayoutExceptionReviewNotes,
   creatorPrivateInviteLaunchReviewNotes,
   creatorLaunchChallenge,
   creatorRevenueShareInterest,
@@ -25,6 +27,7 @@ export default function useCreatorRevenueActions({
   isSubmittingCreatorHostingApplication,
   isSubmittingCreatorLeaderboardSnapshot,
   isSubmittingCreatorPaidHostingLaunchGate,
+  isSubmittingCreatorPayoutExceptionReview,
   isSubmittingCreatorPrivateInviteLaunch,
   isSubmittingCreatorTemplateDraft,
   proActive,
@@ -34,10 +37,12 @@ export default function useCreatorRevenueActions({
   setPublishedCreatorLeaderboardSnapshots,
   setApprovedCreatorPrivateInviteLaunches,
   setApprovedCreatorPaidHostingLaunchGateReviews,
+  setApprovedCreatorPayoutExceptionReviews,
   reviewingCreatorHostingApplicationId,
   reviewingCreatorBrandedPageId,
   reviewingCreatorLeaderboardSnapshotId,
   reviewingCreatorPaidHostingLaunchGateId,
+  reviewingCreatorPayoutExceptionReviewId,
   reviewingCreatorPrivateInviteLaunchId,
   reviewingCreatorTemplateDraftId,
   setCreatorLeaderboardSnapshotMessage,
@@ -48,6 +53,8 @@ export default function useCreatorRevenueActions({
   setCreatorPrivateInviteLaunchReviewQueue,
   setCreatorPaidHostingLaunchGateMessage,
   setCreatorPaidHostingLaunchGateReviewQueue,
+  setCreatorPayoutExceptionMessage,
+  setCreatorPayoutExceptionReviewQueue,
   setCreatorHostingApplicationMessage,
   setCreatorHostingApplicationReviewQueue,
   setCreatorMessage,
@@ -57,6 +64,7 @@ export default function useCreatorRevenueActions({
   setIsSubmittingCreatorBrandedPage,
   setIsSubmittingCreatorPrivateInviteLaunch,
   setIsSubmittingCreatorPaidHostingLaunchGate,
+  setIsSubmittingCreatorPayoutExceptionReview,
   setIsSavingCreator,
   setIsSubmittingCreatorHostingApplication,
   setIsSubmittingCreatorTemplateDraft,
@@ -66,6 +74,7 @@ export default function useCreatorRevenueActions({
   setReviewingCreatorLeaderboardSnapshotId,
   setReviewingCreatorPrivateInviteLaunchId,
   setReviewingCreatorPaidHostingLaunchGateId,
+  setReviewingCreatorPayoutExceptionReviewId,
   setReviewingCreatorTemplateDraftId,
   user,
   onProfileUpdated,
@@ -174,12 +183,27 @@ export default function useCreatorRevenueActions({
     setReviewingCreatorPaidHostingLaunchGateId,
     user,
   });
+  const creatorPayoutExceptionReviewHandlers = buildCreatorPayoutExceptionReviewActionHandlers({
+    creatorEnabled,
+    creatorPayoutExceptionReviewNotes,
+    isAdmin,
+    isSubmittingCreatorPayoutExceptionReview,
+    proActive,
+    reviewingCreatorPayoutExceptionReviewId,
+    setApprovedCreatorPayoutExceptionReviews,
+    setCreatorPayoutExceptionMessage,
+    setCreatorPayoutExceptionReviewQueue,
+    setIsSubmittingCreatorPayoutExceptionReview,
+    setReviewingCreatorPayoutExceptionReviewId,
+    user,
+  });
 
   return {
     ...creatorBrandedPageHandlers,
     ...creatorHostingApplicationHandlers,
     ...creatorLeaderboardSnapshotHandlers,
     ...creatorPaidHostingLaunchGateHandlers,
+    ...creatorPayoutExceptionReviewHandlers,
     ...creatorPrivateInviteLaunchHandlers,
     ...creatorProfileHandlers,
     ...creatorTemplateDraftHandlers,

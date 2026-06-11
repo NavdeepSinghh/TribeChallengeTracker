@@ -509,6 +509,85 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    match /creatorPayoutExceptionReviews/{reviewId} {
+      allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.aggregateOnly == true
+        && request.resource.data.resolvesPayoutDisputes == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.collectsTaxDetails == false
+        && request.resource.data.collectsTaxForms == false
+        && request.resource.data.collectsGovernmentIds == false
+        && request.resource.data.collectsBankDetails == false
+        && request.resource.data.collectsPayoutDetails == false
+        && request.resource.data.verifiesIdentities == false
+        && request.resource.data.createsPayoutAccounts == false
+        && request.resource.data.accessesPayoutProviders == false
+        && request.resource.data.storesProviderCredentials == false
+        && request.resource.data.storesTaxForms == false
+        && request.resource.data.createsContracts == false
+        && request.resource.data.collectsSignatures == false
+        && request.resource.data.startsRevenueShare == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.movesMoney == false
+        && request.resource.data.processesPayments == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.givesTaxAdvice == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.promisesEarnings == false
+        && request.resource.data.impliesPaidCreatorHostingLive == false
+        && request.resource.data.exposesPrivateMemberLogs == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.storesMessages == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.promisesOutcomes == false
+        && request.resource.data.impliesMedicalResults == false
+        && request.resource.data.pressuresCreators == false
+        && request.resource.data.keys().hasAll(["uid", "hostingApplicationStatus", "approvedLaunchGateCount", "storeEvidenceCount", "entitlementRecoveryCount", "supportCount", "paidLaunchDecisionCount", "exceptionScore", "status", "manualReviewOnly", "aggregateOnly"]);
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.aggregateOnly == true
+        && request.resource.data.resolvesPayoutDisputes == false
+        && request.resource.data.processesRefunds == false
+        && request.resource.data.collectsTaxDetails == false
+        && request.resource.data.collectsTaxForms == false
+        && request.resource.data.collectsGovernmentIds == false
+        && request.resource.data.collectsBankDetails == false
+        && request.resource.data.collectsPayoutDetails == false
+        && request.resource.data.verifiesIdentities == false
+        && request.resource.data.createsPayoutAccounts == false
+        && request.resource.data.accessesPayoutProviders == false
+        && request.resource.data.storesProviderCredentials == false
+        && request.resource.data.storesTaxForms == false
+        && request.resource.data.createsContracts == false
+        && request.resource.data.collectsSignatures == false
+        && request.resource.data.startsRevenueShare == false
+        && request.resource.data.createsPayouts == false
+        && request.resource.data.movesMoney == false
+        && request.resource.data.processesPayments == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.givesTaxAdvice == false
+        && request.resource.data.bypassesMarketplacePolicy == false
+        && request.resource.data.promisesEarnings == false
+        && request.resource.data.impliesPaidCreatorHostingLive == false
+        && request.resource.data.exposesPrivateMemberLogs == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.storesMessages == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.promisesOutcomes == false
+        && request.resource.data.impliesMedicalResults == false
+        && request.resource.data.pressuresCreators == false
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(["status", "manualReviewOnly", "aggregateOnly", "resolvesPayoutDisputes", "processesRefunds", "collectsTaxDetails", "collectsTaxForms", "collectsGovernmentIds", "collectsBankDetails", "collectsPayoutDetails", "verifiesIdentities", "createsPayoutAccounts", "accessesPayoutProviders", "storesProviderCredentials", "storesTaxForms", "createsContracts", "collectsSignatures", "startsRevenueShare", "createsPayouts", "movesMoney", "processesPayments", "createsPurchases", "writesEntitlements", "givesTaxAdvice", "bypassesMarketplacePolicy", "promisesEarnings", "impliesPaidCreatorHostingLive", "exposesPrivateMemberLogs", "scrapesMessages", "storesMessages", "hasTrackingPixels", "promisesOutcomes", "impliesMedicalResults", "pressuresCreators", "reviewNote", "reviewedBy", "reviewedAt", "approvedAt", "updatedAt"]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     match /launchExperimentReviews/{reviewId} {
       allow read: if request.auth != null && (isAdmin() || request.auth.uid == resource.data.uid);
       allow create: if request.auth != null

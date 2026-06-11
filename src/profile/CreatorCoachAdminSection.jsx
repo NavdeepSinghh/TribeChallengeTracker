@@ -1,5 +1,6 @@
 import CreatorDemandSummaryCard from './CreatorDemandSummaryCard';
 import ApprovedCreatorPaidHostingLaunchGateReviewsSection from './ApprovedCreatorPaidHostingLaunchGateReviewsSection';
+import ApprovedCreatorPayoutExceptionReviewsSection from './ApprovedCreatorPayoutExceptionReviewsSection';
 import ApprovedCreatorPrivateInviteLaunchesSection from './ApprovedCreatorPrivateInviteLaunchesSection';
 import CreatorBrandedPageReviewSection from './CreatorBrandedPageReviewSection';
 import CreatorChallengeTemplateDraftReviewQueueSection from './CreatorChallengeTemplateDraftReviewQueueSection';
@@ -7,6 +8,7 @@ import CreatorHostingDecisionReplyCard from './CreatorHostingDecisionReplyCard';
 import CreatorHostingReviewQueueSection from './CreatorHostingReviewQueueSection';
 import CreatorLeaderboardSnapshotReviewSection from './CreatorLeaderboardSnapshotReviewSection';
 import CreatorPaidHostingLaunchGateReviewSection from './CreatorPaidHostingLaunchGateReviewSection';
+import CreatorPayoutExceptionReviewSection from './CreatorPayoutExceptionReviewSection';
 import CreatorPrivateInviteLaunchReviewSection from './CreatorPrivateInviteLaunchReviewSection';
 import PublishedCreatorChallengeTemplateCatalogSection from './PublishedCreatorChallengeTemplateCatalogSection';
 import PublishedCreatorBrandedPagesSection from './PublishedCreatorBrandedPagesSection';
@@ -16,6 +18,7 @@ export default function CreatorCoachAdminSection({
   creatorAnalytics,
   approvedCreatorPrivateInviteLaunches,
   approvedCreatorPaidHostingLaunchGateReviews,
+  approvedCreatorPayoutExceptionReviews,
   creatorBrandedPageReviewNotes,
   creatorBrandedPageReviewQueue,
   creatorHostingApplicationReviewNotes,
@@ -25,6 +28,8 @@ export default function CreatorCoachAdminSection({
   creatorLeaderboardSnapshotReviewQueue,
   creatorPaidHostingLaunchGateReviewNotes,
   creatorPaidHostingLaunchGateReviewQueue,
+  creatorPayoutExceptionReviewNotes,
+  creatorPayoutExceptionReviewQueue,
   creatorPrivateInviteLaunchReviewNotes,
   creatorPrivateInviteLaunchReviewQueue,
   creatorTemplateDraftReviewNotes,
@@ -36,6 +41,7 @@ export default function CreatorCoachAdminSection({
   handleCreatorBrandedPageReview,
   handleCreatorLeaderboardSnapshotReview,
   handleCreatorPaidHostingLaunchGateReview,
+  handleCreatorPayoutExceptionReview,
   handleCreatorPrivateInviteLaunchReview,
   handleCreatorTemplateDraftReview,
   publishedCreatorChallengeTemplates,
@@ -45,12 +51,14 @@ export default function CreatorCoachAdminSection({
   reviewingCreatorBrandedPageId,
   reviewingCreatorLeaderboardSnapshotId,
   reviewingCreatorPaidHostingLaunchGateId,
+  reviewingCreatorPayoutExceptionReviewId,
   reviewingCreatorPrivateInviteLaunchId,
   reviewingCreatorTemplateDraftId,
   setCreatorHostingApplicationReviewNotes,
   setCreatorBrandedPageReviewNotes,
   setCreatorLeaderboardSnapshotReviewNotes,
   setCreatorPaidHostingLaunchGateReviewNotes,
+  setCreatorPayoutExceptionReviewNotes,
   setCreatorPrivateInviteLaunchReviewNotes,
   setCreatorTemplateDraftReviewNotes,
 }) {
@@ -107,6 +115,16 @@ export default function CreatorCoachAdminSection({
       />
       <ApprovedCreatorPaidHostingLaunchGateReviewsSection
         approvedCreatorPaidHostingLaunchGateReviews={approvedCreatorPaidHostingLaunchGateReviews}
+      />
+      <CreatorPayoutExceptionReviewSection
+        creatorPayoutExceptionReviewNotes={creatorPayoutExceptionReviewNotes}
+        creatorPayoutExceptionReviewQueue={creatorPayoutExceptionReviewQueue}
+        handleCreatorPayoutExceptionReview={handleCreatorPayoutExceptionReview}
+        reviewingCreatorPayoutExceptionReviewId={reviewingCreatorPayoutExceptionReviewId}
+        setCreatorPayoutExceptionReviewNotes={setCreatorPayoutExceptionReviewNotes}
+      />
+      <ApprovedCreatorPayoutExceptionReviewsSection
+        approvedCreatorPayoutExceptionReviews={approvedCreatorPayoutExceptionReviews}
       />
       <CreatorLeaderboardSnapshotReviewSection
         creatorLeaderboardSnapshotReviewNotes={creatorLeaderboardSnapshotReviewNotes}

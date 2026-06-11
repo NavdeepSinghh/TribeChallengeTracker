@@ -36,6 +36,12 @@ export {
   submitCreatorPaidHostingLaunchGateEvidence,
 } from './creatorPaidHostingLaunchGateService';
 export {
+  getApprovedCreatorPayoutExceptionReviews,
+  getCreatorPayoutExceptionReviewQueue,
+  reviewCreatorPayoutExceptionReview,
+  submitCreatorPayoutExceptionReview,
+} from './creatorPayoutExceptionReviewService';
+export {
   getCreatorHostingApplicationReviewQueue,
   reviewCreatorHostingApplication,
   submitCreatorHostingApplication,

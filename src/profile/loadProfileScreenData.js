@@ -13,6 +13,7 @@ import {
   getCreatorLeaderboardSnapshotReviewQueue,
   getCreatorPrivateInviteLaunchReviewQueue,
   getCreatorPaidHostingLaunchGateReviewQueue,
+  getCreatorPayoutExceptionReviewQueue,
   getCreatorRevenueShareSummary,
   getEntitlementRecoveryReviewQueue,
   getApprovedPaidLaunchDecisionReviews,
@@ -42,6 +43,7 @@ import {
   getPublishedCreatorLeaderboardSnapshots,
   getApprovedCreatorPrivateInviteLaunches,
   getApprovedCreatorPaidHostingLaunchGateReviews,
+  getApprovedCreatorPayoutExceptionReviews,
   getProTrialInterestSummary,
   getReferralRewardReviewQueue,
   getReferralRewardHandoffAuditReviewQueue,
@@ -109,6 +111,8 @@ export function loadProfileScreenData(userUid, setters) {
       getApprovedCreatorPrivateInviteLaunches().then(setters.setApprovedCreatorPrivateInviteLaunches).catch(() => setters.setApprovedCreatorPrivateInviteLaunches([]));
       getCreatorPaidHostingLaunchGateReviewQueue().then(setters.setCreatorPaidHostingLaunchGateReviewQueue).catch(() => setters.setCreatorPaidHostingLaunchGateReviewQueue([]));
       getApprovedCreatorPaidHostingLaunchGateReviews().then(setters.setApprovedCreatorPaidHostingLaunchGateReviews).catch(() => setters.setApprovedCreatorPaidHostingLaunchGateReviews([]));
+      getCreatorPayoutExceptionReviewQueue().then(setters.setCreatorPayoutExceptionReviewQueue).catch(() => setters.setCreatorPayoutExceptionReviewQueue([]));
+      getApprovedCreatorPayoutExceptionReviews().then(setters.setApprovedCreatorPayoutExceptionReviews).catch(() => setters.setApprovedCreatorPayoutExceptionReviews([]));
       getCreatorLeaderboardSnapshotReviewQueue().then(setters.setCreatorLeaderboardSnapshotReviewQueue).catch(() => setters.setCreatorLeaderboardSnapshotReviewQueue([]));
       getPublishedCreatorLeaderboardSnapshots().then(setters.setPublishedCreatorLeaderboardSnapshots).catch(() => setters.setPublishedCreatorLeaderboardSnapshots([]));
       getCreatorHostingApplicationReviewQueue().then(setters.setCreatorHostingApplicationReviewQueue).catch(() => setters.setCreatorHostingApplicationReviewQueue([]));
