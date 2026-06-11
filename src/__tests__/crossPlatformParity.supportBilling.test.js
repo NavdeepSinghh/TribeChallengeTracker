@@ -102,4 +102,30 @@ describe('cross-platform support and billing parity source checks', () => {
     expect(androidRepository).toContain('reviewSupportRefundReadinessReview');
     expect(firestoreRules).toContain('match /supportRefundReadinessReviews/{reviewId}');
   });
+
+  it('keeps Support Refund Readiness Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('SUPPORT REFUND READINESS REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY SUPPORT READINESS DECISION REPLIES');
+      expect(source).toContain('supportRefundReadinessReviewDecisionReplyCopy');
+      expect(source).toContain('Manual support readiness decision replies');
+      expect(source).toContain('APPROVED FOR SUPPORT READINESS');
+      expect(source).toContain('WAITING ON SUPPORT EVIDENCE');
+      expect(source).toContain('NOT READY FOR SUPPORT HANDOFF');
+      expect(source).toContain('DECLINED FOR LAUNCH SUPPORT');
+      expect(source).toContain('manual Support Refund Readiness Review Decision Reply Kit only');
+      expect(source).toContain('Do not process refunds');
+      expect(source).toContain('cancel subscriptions');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('collect payment details');
+      expect(source).toContain('bypass App Store or Google Play policy');
+      expect(source).toContain('promote paid access as live');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('pressure members');
+    });
+  });
 });

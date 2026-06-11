@@ -25,6 +25,7 @@ Shared behavior:
 - Admin and enabled creator profiles let members save Community Event Interest options under `users/{uid}.communityEventInterest.selectedIds`; admin summaries count aggregate first-party local meetup, milestone merch, studio pop-up, and finisher-moment demand only.
 - Admin and enabled creator profiles include a Customer Value Checklist that exports free-loop, paid-value, community-proof, and support-readiness checks before charging users.
 - Admin profiles include a Support Refund Readiness Kit that exports restore, marketplace refund, entitlement recovery, and escalation handoff copy before paid launch.
+- Admin profiles include a Support Refund Readiness Review Decision Reply Kit with approved, waiting, not-ready, and declined manual support readiness replies before refunds, cancellations, entitlement writes, purchases, payment-detail collection, marketplace bypass, or paid-live promotion exists.
 - Profile purchase cards include an Entitlement Recovery Request action that writes `entitlementRecoveryRequests/{uid}` for manual review when restore/sync does not match store purchase history.
 - Admin profiles include an Entitlement Recovery Review Queue for open `entitlementRecoveryRequests`.
 - Entitlement Recovery Admin Review Updates let admins mark recovery requests `waiting`, `resolved`, or `closed` while saving `reviewNote`, `reviewedBy`, and `reviewedAt`.
