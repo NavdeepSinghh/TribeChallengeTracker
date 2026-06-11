@@ -149,4 +149,35 @@ describe('cross-platform partner campaign decision parity source checks', () => 
       expect(source).toContain('pressure partners or members');
     });
   });
+
+  it('keeps Partner Campaign Retrospective Review Records aggregate-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PARTNER CAMPAIGN RETROSPECTIVE REVIEW RECORD');
+      expect(source).toContain('PARTNER CAMPAIGN RETROSPECTIVE REVIEW QUEUE');
+      expect(source).toContain('SAVE RETROSPECTIVE REVIEW');
+      expect(source).toContain('partnerCampaignRetrospectiveReviews');
+      expect(source).toContain('submitPartnerCampaignRetrospectiveReview');
+      expect(source).toContain('reviewPartnerCampaignRetrospectiveReview');
+      expect(source).toContain('manualReviewOnly');
+      expect(source).toContain('aggregateOnly');
+      expect(source).toContain('createsPartnerLinks');
+      expect(source).toContain('hasTrackingPixels');
+      expect(source).toContain('usesAdTargeting');
+      expect(source).toContain('createsAffiliatePayouts');
+      expect(source).toContain('createsCommissions');
+      expect(source).toContain('createsCoupons');
+      expect(source).toContain('createsDiscounts');
+      expect(source).toContain('createsPurchases');
+      expect(source).toContain('writesEntitlements');
+      expect(source).toContain('startsRevenueShare');
+      expect(source).toContain('makesPaidAccessClaims');
+      expect(source).toContain('exportsThirdPartyData');
+      expect(source).toContain('collectsPayment');
+      expect(source).toContain('promisesFulfillment');
+      expect(source).toContain('autoMessagesUsers');
+      expect(source).toContain('scrapesMessages');
+      expect(source).toContain('pressuresPartnersOrMembers');
+    });
+  });
 });

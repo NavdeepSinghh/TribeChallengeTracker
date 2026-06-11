@@ -10,6 +10,12 @@ export default function usePartnerRevenueState() {
   const [isSubmittingPartnerCampaignApplication, setIsSubmittingPartnerCampaignApplication] = useState(false);
   const [partnerCampaignApplicationReviewNotes, setPartnerCampaignApplicationReviewNotes] = useState({});
   const [reviewingPartnerCampaignApplicationId, setReviewingPartnerCampaignApplicationId] = useState('');
+  const [partnerCampaignRetrospectiveReviewQueue, setPartnerCampaignRetrospectiveReviewQueue] = useState([]);
+  const [approvedPartnerCampaignRetrospectiveReviews, setApprovedPartnerCampaignRetrospectiveReviews] = useState([]);
+  const [partnerCampaignRetrospectiveReviewMessage, setPartnerCampaignRetrospectiveReviewMessage] = useState('');
+  const [isSubmittingPartnerCampaignRetrospectiveReview, setIsSubmittingPartnerCampaignRetrospectiveReview] = useState(false);
+  const [partnerCampaignRetrospectiveReviewNotes, setPartnerCampaignRetrospectiveReviewNotes] = useState({});
+  const [reviewingPartnerCampaignRetrospectiveReviewId, setReviewingPartnerCampaignRetrospectiveReviewId] = useState('');
   const [partnerPerkClaimReviewQueue, setPartnerPerkClaimReviewQueue] = useState([]);
   const [partnerPerkClaims, setPartnerPerkClaims] = useState([]);
   const [partnerPerkClaimMessage, setPartnerPerkClaimMessage] = useState('');
@@ -25,13 +31,18 @@ export default function usePartnerRevenueState() {
 
   return {
     approvedPartnerPerkHandoffAuditReviews,
+    approvedPartnerCampaignRetrospectiveReviews,
     claimingPartnerPerkId,
     isSubmittingPartnerPerkHandoffAuditReview,
     isSavingPartnerPerks,
     isSubmittingPartnerCampaignApplication,
+    isSubmittingPartnerCampaignRetrospectiveReview,
     partnerCampaignApplicationMessage,
     partnerCampaignApplicationReviewNotes,
     partnerCampaignApplicationReviewQueue,
+    partnerCampaignRetrospectiveReviewMessage,
+    partnerCampaignRetrospectiveReviewNotes,
+    partnerCampaignRetrospectiveReviewQueue,
     partnerPerkClaimMessage,
     partnerPerkClaimReviewQueue,
     partnerPerkClaims,
@@ -42,17 +53,23 @@ export default function usePartnerRevenueState() {
     partnerPerkReviewNotes,
     partnerPerkSummary,
     reviewingPartnerCampaignApplicationId,
+    reviewingPartnerCampaignRetrospectiveReviewId,
     reviewingPartnerPerkHandoffAuditReviewId,
     reviewingPartnerPerkClaimId,
     selectedPartnerPerkIds,
     setClaimingPartnerPerkId,
     setApprovedPartnerPerkHandoffAuditReviews,
+    setApprovedPartnerCampaignRetrospectiveReviews,
     setIsSubmittingPartnerPerkHandoffAuditReview,
     setIsSavingPartnerPerks,
     setIsSubmittingPartnerCampaignApplication,
+    setIsSubmittingPartnerCampaignRetrospectiveReview,
     setPartnerCampaignApplicationMessage,
     setPartnerCampaignApplicationReviewNotes,
     setPartnerCampaignApplicationReviewQueue,
+    setPartnerCampaignRetrospectiveReviewMessage,
+    setPartnerCampaignRetrospectiveReviewNotes,
+    setPartnerCampaignRetrospectiveReviewQueue,
     setPartnerPerkClaimMessage,
     setPartnerPerkClaimReviewQueue,
     setPartnerPerkClaims,
@@ -63,6 +80,7 @@ export default function usePartnerRevenueState() {
     setPartnerPerkReviewNotes,
     setPartnerPerkSummary,
     setReviewingPartnerCampaignApplicationId,
+    setReviewingPartnerCampaignRetrospectiveReviewId,
     setReviewingPartnerPerkHandoffAuditReviewId,
     setReviewingPartnerPerkClaimId,
     setSelectedPartnerPerkIds,

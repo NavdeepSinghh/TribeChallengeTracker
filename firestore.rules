@@ -667,6 +667,61 @@ service cloud.firestore {
       allow delete: if request.auth != null && isAdmin();
     }
 
+    // ── Partner campaign retrospective reviews ─────────────────────────────
+    // Admin-only aggregate post-pilot evidence. These records must not create
+    // partner links, tracking, payouts, coupons, purchases, entitlements,
+    // revenue-share, third-party exports, fulfillment promises, or messages.
+    match /partnerCampaignRetrospectiveReviews/{reviewId} {
+      allow read: if request.auth != null && isAdmin();
+      allow create: if request.auth != null && isAdmin()
+        && request.resource.data.status == "open"
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.aggregateOnly == true
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.usesAdTargeting == false
+        && request.resource.data.createsAffiliatePayouts == false
+        && request.resource.data.createsCommissions == false
+        && request.resource.data.createsCoupons == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.startsRevenueShare == false
+        && request.resource.data.makesPaidAccessClaims == false
+        && request.resource.data.exportsThirdPartyData == false
+        && request.resource.data.collectsPayment == false
+        && request.resource.data.promisesFulfillment == false
+        && request.resource.data.promisesOutcomes == false
+        && request.resource.data.impliesMedicalResults == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresPartnersOrMembers == false;
+      allow update: if request.auth != null && isAdmin()
+        && ["open", "approved", "waiting", "not_ready", "declined"].hasAny([request.resource.data.status])
+        && request.resource.data.manualReviewOnly == true
+        && request.resource.data.aggregateOnly == true
+        && request.resource.data.createsPartnerLinks == false
+        && request.resource.data.hasTrackingPixels == false
+        && request.resource.data.usesAdTargeting == false
+        && request.resource.data.createsAffiliatePayouts == false
+        && request.resource.data.createsCommissions == false
+        && request.resource.data.createsCoupons == false
+        && request.resource.data.createsDiscounts == false
+        && request.resource.data.createsPurchases == false
+        && request.resource.data.writesEntitlements == false
+        && request.resource.data.startsRevenueShare == false
+        && request.resource.data.makesPaidAccessClaims == false
+        && request.resource.data.exportsThirdPartyData == false
+        && request.resource.data.collectsPayment == false
+        && request.resource.data.promisesFulfillment == false
+        && request.resource.data.promisesOutcomes == false
+        && request.resource.data.impliesMedicalResults == false
+        && request.resource.data.autoMessagesUsers == false
+        && request.resource.data.scrapesMessages == false
+        && request.resource.data.pressuresPartnersOrMembers == false;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // ── Partner perk claims ─────────────────────────────────────────────────
     // Eligible members can request manual perk review. Admins can use
     // reviewPartnerPerkClaim to update review status plus reviewNote,

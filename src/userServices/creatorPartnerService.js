@@ -54,6 +54,12 @@ export {
   submitPartnerCampaignApplication,
 } from './partnerCampaignApplicationService';
 export {
+  getApprovedPartnerCampaignRetrospectiveReviews,
+  getPartnerCampaignRetrospectiveReviewQueue,
+  reviewPartnerCampaignRetrospectiveReview,
+  submitPartnerCampaignRetrospectiveReview,
+} from './partnerCampaignRetrospectiveReviewService';
+export {
   claimPartnerPerk,
   getPartnerPerkClaimReviewQueue,
   getPartnerPerkClaims,

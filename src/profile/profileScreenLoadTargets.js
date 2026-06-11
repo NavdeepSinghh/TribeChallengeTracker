@@ -46,6 +46,8 @@ export function buildProfileScreenLoadTargets({
     setApprovedWeeklyCampaignReviews: revenueState.setApprovedWeeklyCampaignReviews,
     setLaunchExperimentReviewQueue: revenueState.setLaunchExperimentReviewQueue,
     setPartnerCampaignApplicationReviewQueue: revenueState.setPartnerCampaignApplicationReviewQueue,
+    setPartnerCampaignRetrospectiveReviewQueue: revenueState.setPartnerCampaignRetrospectiveReviewQueue,
+    setApprovedPartnerCampaignRetrospectiveReviews: revenueState.setApprovedPartnerCampaignRetrospectiveReviews,
     setApprovedPartnerPerkHandoffAuditReviews: revenueState.setApprovedPartnerPerkHandoffAuditReviews,
     setPartnerPerkHandoffAuditReviewQueue: revenueState.setPartnerPerkHandoffAuditReviewQueue,
     setPartnerPerkClaimReviewQueue: revenueState.setPartnerPerkClaimReviewQueue,

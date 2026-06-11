@@ -1,4 +1,5 @@
 import PartnerCampaignDecisionReplyCard from './PartnerCampaignDecisionReplyCard';
+import PartnerCampaignRetrospectiveReviewCard from './PartnerCampaignRetrospectiveReviewCard';
 import PartnerCampaignReviewQueueSection from './PartnerCampaignReviewQueueSection';
 import PartnerAdminCopyKits from './PartnerAdminCopyKits';
 import PartnerDemandGrid from './PartnerDemandGrid';
@@ -9,6 +10,7 @@ export default function PartnerPerksAdminSummary(props) {
   const {
     adminCopyKitProps,
     campaignDecisionReplyCardProps,
+    campaignRetrospectiveReviewCardProps,
     campaignReviewQueueSectionProps,
     partnerPerkSummary,
     perkReviewSectionProps,
@@ -22,6 +24,7 @@ export default function PartnerPerksAdminSummary(props) {
       <PartnerPerkAdminReviewSection {...perkReviewSectionProps} />
       <PartnerCampaignReviewQueueSection {...campaignReviewQueueSectionProps} />
       <PartnerCampaignDecisionReplyCard {...campaignDecisionReplyCardProps} />
+      <PartnerCampaignRetrospectiveReviewCard {...campaignRetrospectiveReviewCardProps} />
     </div>
   );
 }

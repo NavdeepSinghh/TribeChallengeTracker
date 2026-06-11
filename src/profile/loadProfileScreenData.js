@@ -29,6 +29,8 @@ import {
   getPaidLaunchDecisionReviewQueue,
   getWeeklyCampaignReviewQueue,
   getPartnerCampaignApplicationReviewQueue,
+  getApprovedPartnerCampaignRetrospectiveReviews,
+  getPartnerCampaignRetrospectiveReviewQueue,
   getApprovedPartnerPerkHandoffAuditReviews,
   getApprovedReferralRewardHandoffAuditReviews,
   getPartnerPerkHandoffAuditReviewQueue,
@@ -111,6 +113,8 @@ export function loadProfileScreenData(userUid, setters) {
       getPublishedCreatorLeaderboardSnapshots().then(setters.setPublishedCreatorLeaderboardSnapshots).catch(() => setters.setPublishedCreatorLeaderboardSnapshots([]));
       getCreatorHostingApplicationReviewQueue().then(setters.setCreatorHostingApplicationReviewQueue).catch(() => setters.setCreatorHostingApplicationReviewQueue([]));
       getPartnerCampaignApplicationReviewQueue().then(setters.setPartnerCampaignApplicationReviewQueue).catch(() => setters.setPartnerCampaignApplicationReviewQueue([]));
+      getPartnerCampaignRetrospectiveReviewQueue().then(setters.setPartnerCampaignRetrospectiveReviewQueue).catch(() => setters.setPartnerCampaignRetrospectiveReviewQueue([]));
+      getApprovedPartnerCampaignRetrospectiveReviews().then(setters.setApprovedPartnerCampaignRetrospectiveReviews).catch(() => setters.setApprovedPartnerCampaignRetrospectiveReviews([]));
       getPartnerPerkClaimReviewQueue().then(setters.setPartnerPerkClaimReviewQueue).catch(() => setters.setPartnerPerkClaimReviewQueue([]));
       getPartnerPerkHandoffAuditReviewQueue().then(setters.setPartnerPerkHandoffAuditReviewQueue).catch(() => setters.setPartnerPerkHandoffAuditReviewQueue([]));
       getApprovedPartnerPerkHandoffAuditReviews().then(setters.setApprovedPartnerPerkHandoffAuditReviews).catch(() => setters.setApprovedPartnerPerkHandoffAuditReviews([]));
