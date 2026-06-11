@@ -16,6 +16,26 @@ export default function ProTrialAdminSummary({
   setProTrialReviewNotes,
   topProTrialReason,
 }) {
+  const proTrialReviewDecisionReplyCopy = [
+    'Rise With The Tribe Pro Trial Review Decision Reply Kit:',
+    '',
+    `Open Pro trial reviews: ${proTrialReviewQueue.length}`,
+    `Approved Pro trial reviews: ${approvedProTrialReviews.length}`,
+    `First-party Pro trial signals: ${proTrialDemandTotal}`,
+    `Top Pro trial interest: ${topProTrialReason?.label || 'Gathering demand'}`,
+    '',
+    'Manual Pro trial decision replies:',
+    'APPROVED FOR MANUAL TRIAL READINESS: This Pro trial review is approved for manual readiness planning. Use the first-party interest signal to refine onboarding, value proof, support readiness, store QA, and entitlement recovery checks without starting a trial, creating a purchase, granting Pro, writing entitlements, or claiming paid access is live.',
+    '',
+    'WAITING ON STORE TRIAL READINESS: This Pro trial review is waiting on store setup, sandbox/license testing, pricing copy, support coverage, entitlement QA, and recovery evidence before any trial promise or launch message is used.',
+    '',
+    'NOT READY FOR TRIAL HANDOFF: This review is not ready for trial handoff. Keep collecting first-party Pro interest, challenge consistency proof, support notes, and store validation evidence before mentioning trial access, pricing, discounts, purchases, or paid benefits.',
+    '',
+    'DECLINED FOR TRIAL HANDOFF: We are not using this review for Pro trial launch planning right now because the interest, value proof, support readiness, or store validation evidence is not strong enough. Keep the member in the free challenge loop without pressure.',
+    '',
+    'This is a manual Pro Trial Review Decision Reply Kit only. Do not start trials, create purchases, grant Pro, write entitlements, unlock paid access, collect payment details, offer discounts, process refunds, bypass App Store or Google Play policy, claim store-backed trials are live, promise outcomes, imply medical results, auto-message users, scrape/store DMs, add tracking pixels, or pressure members.',
+  ].join('\n');
+
   return (
     <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
       <p style={{ margin: '0 0 8px', color: '#fff', fontSize: 11, fontWeight: 900 }}>Pro trial demand summary</p>
@@ -123,6 +143,42 @@ export default function ProTrialAdminSummary({
         <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10 }}>
           {approvedProTrialReviews.length} approved manual records. Approved records still start no trials, create no purchases, write no entitlements, and make no paid-access changes.
         </p>
+      </div>
+      <div style={{
+        marginTop: 10, borderRadius: 12, padding: 11,
+        background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
+          <p style={{ margin: 0, color: '#FBBF24', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>PRO TRIAL REVIEW DECISION REPLY KIT</p>
+          <p style={{ margin: 0, color: proTrialReviewQueue.length ? '#FBBF24' : '#777', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>
+            COPY ONLY
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginTop: 8 }}>
+          {[
+            ['OPEN', proTrialReviewQueue.length],
+            ['APPROVED', approvedProTrialReviews.length],
+            ['SIGNALS', proTrialDemandTotal],
+          ].map(([label, value]) => (
+            <div key={label} style={{ borderRadius: 10, padding: 8, background: 'rgba(0,0,0,0.18)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <p style={{ margin: 0, color: '#FBBF24', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>{label}</p>
+              <p style={{ margin: '4px 0 0', color: '#fff', fontSize: 16, fontWeight: 900 }}>{value}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ margin: '9px 0 0', color: '#888', fontSize: 10, lineHeight: 1.45 }}>
+          Copy approved, waiting, not-ready, and declined Pro trial review replies without starting trials, purchases, Pro grants, entitlements, paid access, discounts, refunds, tracking, or pressure.
+        </p>
+        <button
+          onClick={() => navigator.clipboard?.writeText(proTrialReviewDecisionReplyCopy)}
+          style={{
+            marginTop: 9, width: '100%', borderRadius: 12, padding: '9px 10px',
+            border: '1px solid rgba(251,191,36,0.22)', background: 'rgba(251,191,36,0.10)',
+            color: '#FBBF24', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+          }}
+        >
+          COPY PRO TRIAL DECISION REPLIES
+        </button>
       </div>
       <div style={{
         marginTop: 10, borderRadius: 12, padding: 11,

@@ -11,6 +11,7 @@ Shared behavior:
 - Profile checkout surfaces include Pro Trial Interest capture for first-party demand signals with allowed reasons `reports`, `challenge_packs`, and `creator_tools`.
 - Admin profiles include a Pro trial demand summary and Trial Launch Kit that count saved Pro Trial Interest reasons from first-party user profile data.
 - Admin profiles include a Pro Trial Objection Reply Kit that turns aggregate Pro Trial Interest demand into manual replies for Pro questions before store-backed trials are live.
+- Admin profiles include a Pro Trial Review Decision Reply Kit with approved, waiting, not-ready, and declined manual Pro trial review replies before store-backed trials, purchases, Pro grants, entitlement writes, paid-access unlocks, discounts, refunds, or marketplace claims exist.
 - Admin profiles include a Monetization Launch Board that combines aggregate Pro trial, creator beta, and partner perk demand signals.
 - Admin and enabled creator profiles include a Launch Experiment Kit that recommends copy-ready Pro trial, pack-drop, referral sprint, or partner-perk tests from first-party signals.
 - Admin and enabled creator profiles include a Launch Experiment Scorecard that scores the recommended test with first-party demand, campaign reach, and community-loop signals.

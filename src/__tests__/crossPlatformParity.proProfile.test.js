@@ -115,4 +115,33 @@ describe('cross-platform Pro profile parity source checks', () => {
     });
     expect(firestoreRules).toContain('match /proTrialReviews/{reviewId}');
   });
+
+  it('keeps Pro Trial Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PRO TRIAL REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY PRO TRIAL DECISION REPLIES');
+      expect(source).toContain('proTrialReviewDecisionReplyCopy');
+      expect(source).toContain('Manual Pro trial decision replies');
+      expect(source).toContain('APPROVED FOR MANUAL TRIAL READINESS');
+      expect(source).toContain('WAITING ON STORE TRIAL READINESS');
+      expect(source).toContain('NOT READY FOR TRIAL HANDOFF');
+      expect(source).toContain('DECLINED FOR TRIAL HANDOFF');
+      expect(source).toContain('manual Pro Trial Review Decision Reply Kit only');
+      expect(source).toContain('Do not start trials');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('grant Pro');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('unlock paid access');
+      expect(source).toContain('collect payment details');
+      expect(source).toContain('offer discounts');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('bypass App Store or Google Play policy');
+      expect(source).toContain('claim store-backed trials are live');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('pressure members');
+    });
+  });
 });
