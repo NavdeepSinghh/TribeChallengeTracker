@@ -47,6 +47,12 @@ export const STORE_PRODUCTS = {
     entitlement: 'paidChallengePacks',
     packId: 'tribe_mode_75',
   },
+  comeback14Pack: {
+    id: 'com.risewiththetribe.pack.comeback_14',
+    kind: 'challengePack',
+    entitlement: 'paidChallengePacks',
+    packId: 'comeback_14',
+  },
 };
 
 export const STORE_PRODUCT_IDS = Object.values(STORE_PRODUCTS).map(product => product.id);

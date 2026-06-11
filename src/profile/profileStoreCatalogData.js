@@ -16,6 +16,7 @@ export function buildProfileStoreCatalogData(profile) {
     beginner_consistency: 'Beginner Consistency Plan',
     discipline_30: '30-Day Discipline Challenge',
     tribe_mode_75: '75-Day Tribe Mode',
+    comeback_14: '14-Day Comeback Sprint',
   }[product.packId] || product.packId || product.id);
   const subscriptionProducts = STORE_CATALOG.filter(product => product.kind === 'subscription');
   const challengePackProducts = STORE_CATALOG.filter(product => product.kind === 'challengePack');

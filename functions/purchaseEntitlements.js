@@ -48,6 +48,12 @@ const PRODUCT_CATALOG = {
     kind: 'challengePack',
     packId: 'tribe_mode_75',
   },
+  'com.risewiththetribe.pack.comeback_14': {
+    platformTypes: ['ios', 'android'],
+    entitlement: 'paidChallengePacks',
+    kind: 'challengePack',
+    packId: 'comeback_14',
+  },
 };
 
 const VALIDATION_CONFIG = {

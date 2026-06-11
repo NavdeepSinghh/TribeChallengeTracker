@@ -127,7 +127,8 @@ Planned shared behavior:
 - Referral tracking, reward badges, and reward ladder. Initial 1/5/10 badges plus 1/5/10/25 profile ladder are implemented.
 - Tribe Pro subscription entitlements.
 - Pro custom weekly and streak goals. Initial cross-platform profile surfaces are implemented.
-- Premium challenge packs. Initial 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, and 75-Day Tribe Mode metadata with Pro/pack creation gates are implemented.
+- Premium challenge packs. Initial 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, and 14-Day Comeback Sprint metadata with Pro/pack creation gates are implemented.
+- Store product IDs in code: `com.risewiththetribe.pro.monthly`, `com.risewiththetribe.pro.yearly`, `com.risewiththetribe.pack.21_day_reset`, `com.risewiththetribe.pack.summer_shred`, `com.risewiththetribe.pack.beginner_consistency`, `com.risewiththetribe.pack.discipline_30`, `com.risewiththetribe.pack.tribe_mode_75`, and `com.risewiththetribe.pack.comeback_14`.
 - Creator/coach challenge hosting.
 
 Release checks:
