@@ -45,6 +45,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorPayoutReconciliationCopy,
     creatorTaxWorkflowReadinessCopy,
     creatorPayoutExceptionResponseCopy,
+    creatorPayoutSupportEscalationCopy,
     creatorPayoutProviderSetupCopy,
   } = creatorHostingCopyData;
 
@@ -66,6 +67,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorPayoutReconciliationCopy,
     creatorTaxWorkflowReadinessCopy,
     creatorPayoutExceptionResponseCopy,
+    creatorPayoutSupportEscalationCopy,
     creatorPayoutProviderSetupCopy,
     creatorHostingObjectionReplyCopy,
     creatorHostingOfferCopy,

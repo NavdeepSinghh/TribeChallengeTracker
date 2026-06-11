@@ -300,6 +300,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator payout exception response kit only. Do not resolve payout disputes, process refunds, collect tax details, collect tax forms, collect government IDs, collect bank details, collect payout details, verify identities, create payout accounts, access payout providers, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, move money, process payments, create purchases, write entitlements, give tax advice, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, expose private member logs, scrape or store messages, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
   ].join('\n');
+  const creatorPayoutSupportEscalationCopy = [
+    'Rise With The Tribe Creator Payout Support Escalation Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Payout support escalation checklist:',
+    '- Assign a clear owner before replying: creator support, member support, finance, marketplace support, legal/tax, payout provider setup, entitlement QA, moderation, or product owner',
+    '- Classify severity as information request, blocked onboarding, refund confusion, entitlement mismatch, tax workflow question, provider setup blocker, safety issue, or marketplace policy concern',
+    '- Use approved response language that says payout support escalation is not live payout support, not tax advice, not refund processing, and not a revenue-share approval',
+    '- Keep escalation notes first-party and aggregate; do not include private member logs, off-platform messages, tax forms, bank details, government IDs, provider credentials, or screenshots with sensitive data',
+    '- Close the loop by routing each unresolved case to hold-plan review, exception response, tax workflow readiness, provider setup, reconciliation, marketplace support, or entitlement QA',
+    '',
+    'This is a creator payout support escalation kit only. Do not provide live payout support, resolve payout disputes, process refunds, collect tax details, collect tax forms, collect government IDs, collect bank details, collect payout details, verify identities, create payout accounts, access payout providers, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, move money, process payments, create purchases, write entitlements, give tax advice, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, expose private member logs, scrape or store messages, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
+  ].join('\n');
   const creatorIdentityVerificationPrepCopy = [
     'Rise With The Tribe Creator Identity Verification Prep Kit:',
     '',
@@ -403,6 +422,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorPayoutReconciliationCopy,
     creatorTaxWorkflowReadinessCopy,
     creatorPayoutExceptionResponseCopy,
+    creatorPayoutSupportEscalationCopy,
     creatorPayoutProviderSetupCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,

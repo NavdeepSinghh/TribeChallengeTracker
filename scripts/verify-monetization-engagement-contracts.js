@@ -29,6 +29,7 @@ function verifyRoadmapFeatureDocs({ parityPath, catalogPath, roadmapPath }) {
     "Creator Payout Reconciliation Kit",
     "Creator Tax Workflow Readiness Kit",
     "Creator Payout Exception Response Kit",
+    "Creator Payout Support Escalation Kit",
     "Creator Identity Verification Prep Kit",
     "Creator Moderation Readiness Kit",
     "Creator Paid Hosting Launch Gate Kit",

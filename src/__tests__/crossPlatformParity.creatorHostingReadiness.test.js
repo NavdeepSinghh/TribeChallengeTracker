@@ -272,6 +272,51 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Creator Payout Support Escalation Kit wired on all platforms without live support or payout side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAYOUT SUPPORT ESCALATION KIT');
+      expect(source).toContain('COPY PAYOUT SUPPORT KIT');
+      expect(source).toContain('creatorPayoutSupportEscalationCopy');
+      expect(source).toContain('Support owner routing before payout support');
+      expect(source).toContain('Payout support escalation checklist');
+      expect(source).toContain('creator support');
+      expect(source).toContain('member support');
+      expect(source).toContain('finance');
+      expect(source).toContain('marketplace support');
+      expect(source).toContain('legal/tax');
+      expect(source).toContain('payout provider setup');
+      expect(source).toContain('entitlement QA');
+      expect(source).toContain('payout support escalation is not live payout support');
+      expect(source).toContain('creator payout support escalation kit only');
+      expect(source).toContain('Do not provide live payout support');
+      expect(source).toContain('resolve payout disputes');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('collect tax forms');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('verify identities');
+      expect(source).toContain('create payout accounts');
+      expect(source).toContain('access payout providers');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('move money');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('give tax advice');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+      expect(source).toContain('expose private member logs');
+      expect(source).toContain('scrape or store messages');
+    });
+  });
+
   it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

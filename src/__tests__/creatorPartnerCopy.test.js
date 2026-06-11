@@ -122,6 +122,12 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorPayoutExceptionResponseCopy).toContain('Do not resolve payout disputes');
     expect(copy.creatorPayoutExceptionResponseCopy).toContain('process refunds');
     expect(copy.creatorPayoutExceptionResponseCopy).toContain('write entitlements');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('Creator Payout Support Escalation Kit');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('Payout support escalation checklist');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('payout support escalation is not live payout support');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('Do not provide live payout support');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('process refunds');
+    expect(copy.creatorPayoutSupportEscalationCopy).toContain('write entitlements');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Creator Hosting Objection Reply Kit');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Do not claim paid creator hosting is live');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('store inbound DMs');

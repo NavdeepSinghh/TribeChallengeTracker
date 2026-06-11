@@ -99,6 +99,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Creator Payout Reconciliation Kit across Web, iOS, and Android with a copy-only evidence-matching checklist for mock payout events, store-test evidence, refund adjustments, entitlement QA, finance notes, and owner sign-off before any real payout run.
 - Creator Tax Workflow Readiness Kit across Web, iOS, and Android with a copy-only tax workflow owner, payout-provider tax form path, country coverage, withholding review, finance export, and approved support-language checklist before creator tax onboarding.
 - Creator Payout Exception Response Kit across Web, iOS, and Android with copy-only manual exception reply checks for store-test mismatches, refund disputes, entitlement gaps, tax workflow gaps, provider setup gaps, support escalation, and creator eligibility before payout processing.
+- Creator Payout Support Escalation Kit across Web, iOS, and Android with copy-only support owner, severity, approved response language, privacy, and routing checks before creator payout support is live.
 - Creator Hosting Objection Reply Kit across Web, iOS, and Android with copy-only manual creator replies before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Partner Perks foundation across profile surfaces for future aligned brand offers without intrusive ads.
 - Partner Perk interest capture across Web, iOS, and Android to learn which aligned offers users actually want before negotiating partners.

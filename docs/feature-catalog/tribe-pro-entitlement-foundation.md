@@ -70,6 +70,7 @@ Shared behavior:
 - Creator Payout Reconciliation Kit generates a copy-only evidence-matching checklist for mock payout events, store-test evidence, refund adjustments, entitlement QA, finance notes, and owner sign-off before any real payout run.
 - Creator Tax Workflow Readiness Kit generates a copy-only tax workflow owner, provider tax-form path, country coverage, withholding review, finance export, and approved support-language checklist before creator tax onboarding.
 - Creator Payout Exception Response Kit generates copy-only manual exception reply checks for store-test mismatches, refund disputes, entitlement gaps, tax workflow gaps, provider setup gaps, support escalation, and creator eligibility questions before payout processing.
+- Creator Payout Support Escalation Kit generates copy-only support owner, severity, approved response language, privacy, and routing checks before creator payout support is live.
 - Creator Hosting Objection Reply Kit generates copy-only manual replies for creator paid-hosting questions before revenue-share, payout operations, store validation, and entitlement QA are complete.
 - Creator Hosting Application lets Pro creators with Coach Mode enabled request manual hosted-readiness review under `creatorHostingApplications/{uid}`.
 - Creator Hosting Application stores creator focus, hosted challenge count, member reach, revenue-ready count, revenue-share interest, status, source, and timestamps.

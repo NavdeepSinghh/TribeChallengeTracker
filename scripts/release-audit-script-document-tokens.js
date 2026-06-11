@@ -93,6 +93,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "Creator Payout Reconciliation Kit",
   "Creator Tax Workflow Readiness Kit",
   "Creator Payout Exception Response Kit",
+  "Creator Payout Support Escalation Kit",
   "Creator Hosting Decision Reply Kit",
   "Partner Campaign Decision Reply Kit",
   "src/__tests__/engagementCopy.test.js",

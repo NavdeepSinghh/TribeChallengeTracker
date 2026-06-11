@@ -98,6 +98,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "Creator Payout Reconciliation Kit",
   "Creator Tax Workflow Readiness Kit",
   "Creator Payout Exception Response Kit",
+  "Creator Payout Support Escalation Kit",
   "Creator Hosting Decision Reply Kit",
   "Creator Challenge Template Draft Kit",
   "Partner Campaign Decision Reply Kit",
