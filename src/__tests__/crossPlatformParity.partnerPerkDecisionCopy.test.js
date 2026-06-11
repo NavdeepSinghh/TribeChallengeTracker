@@ -135,4 +135,49 @@ describe('cross-platform partner perk decision copy parity source checks', () =>
       expect(source).toContain('fulfillment promises');
     });
   });
+
+  it('keeps Partner Perk Support Escalation Kit copy-only across platforms without fulfillment side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [
+      webProfile,
+      iosProfile,
+      androidApp,
+    ].forEach((source) => {
+      expect(source).toContain('PARTNER PERK SUPPORT ESCALATION KIT');
+      expect(source).toContain('COPY PERK SUPPORT KIT');
+      expect(source).toContain('partnerPerkSupportEscalationCopy');
+      expect(source).toContain('Partner Perk Support Escalation Kit');
+      expect(source).toContain('Partner perk support escalation checklist');
+      expect(source).toContain('member support');
+      expect(source).toContain('partner support');
+      expect(source).toContain('marketplace support');
+      expect(source).toContain('privacy/data safety');
+      expect(source).toContain('entitlement QA');
+      expect(source).toContain('finance/refund policy');
+      expect(source).toContain('partner perk support escalation is not live fulfillment');
+      expect(source).toContain('not coupon delivery');
+      expect(source).toContain('not refund processing');
+      expect(source).toContain('not payment collection');
+      expect(source).toContain('not entitlement approval');
+      expect(source).toContain('Do not provide live perk fulfillment');
+      expect(source).toContain('create coupons');
+      expect(source).toContain('create partner links');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('collect payment details');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('create discounts');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create affiliate rewards');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('use ad targeting');
+      expect(source).toContain('export third-party data');
+      expect(source).toContain('expose private member logs');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('promise fulfillment');
+      expect(source).toContain('imply paid access is live');
+      expect(source).toContain('pressure members');
+    });
+  });
 });

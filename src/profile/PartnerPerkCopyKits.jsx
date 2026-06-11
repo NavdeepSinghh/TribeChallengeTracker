@@ -8,6 +8,7 @@ export default function PartnerPerkCopyKits({
   partnerPerkFulfillmentReadinessCopy,
   partnerPerkHandoffAuditCopy,
   partnerPerkHandoffAuditDecisionReplyCopy,
+  partnerPerkSupportEscalationCopy,
 }) {
   return (
     <>
@@ -50,6 +51,14 @@ export default function PartnerPerkCopyKits({
         body="Copy approved, waiting, not-ready, and declined replies for manual audit handoff decisions without coupons, partner links, payouts, discounts, purchases, entitlements, tracking, refunds, or fulfillment promises."
         buttonLabel="COPY PERK AUDIT DECISION REPLIES"
         copyText={partnerPerkHandoffAuditDecisionReplyCopy}
+      />
+      <CopyOnlyCard
+        accent="#F0ABFC"
+        title="PARTNER PERK SUPPORT ESCALATION KIT"
+        status={{ label: 'SUPPORT MAP', color: hasClaims ? '#F0ABFC' : '#777' }}
+        body="Copy partner-perk support owner, severity, privacy, response-language, and routing checks before coupons, links, refunds, purchases, entitlements, or fulfillment exist."
+        buttonLabel="COPY PERK SUPPORT KIT"
+        copyText={partnerPerkSupportEscalationCopy}
       />
     </>
   );

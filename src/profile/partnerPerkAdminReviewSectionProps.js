@@ -6,6 +6,7 @@ export function buildPartnerPerkAdminReviewSectionProps({
   partnerPerkFulfillmentReadinessCopy,
   partnerPerkHandoffAuditCopy,
   partnerPerkHandoffAuditDecisionReplyCopy,
+  partnerPerkSupportEscalationCopy,
   partnerPerkReviewNotes,
   reviewingPartnerPerkClaimId,
   setPartnerPerkReviewNotes,
@@ -21,5 +22,6 @@ export function buildPartnerPerkAdminReviewSectionProps({
     partnerPerkFulfillmentHandoffCopy,
     partnerPerkHandoffAuditCopy,
     partnerPerkHandoffAuditDecisionReplyCopy,
+    partnerPerkSupportEscalationCopy,
   };
 }

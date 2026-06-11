@@ -39,6 +39,12 @@ describe('partner monetization copy contracts', () => {
     expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('Open partner perk handoff audit records: 1');
     expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('APPROVED FOR MANUAL HANDOFF');
     expect(copy.partnerPerkHandoffAuditDecisionReplyCopy).toContain('Do not create coupons');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('Partner Perk Support Escalation Kit');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('Partner perk support escalation checklist');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('partner perk support escalation is not live fulfillment');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('Do not provide live perk fulfillment');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('create coupons');
+    expect(copy.partnerPerkSupportEscalationCopy).toContain('write entitlements');
     expect(copy.partnerPerkDecisionReplyCopy).toContain('Partner Perk Admin Decision Reply Kit');
     expect(copy.partnerPerkDecisionReplyCopy).toContain('WAITING ON PARTNER TERMS');
     expect(copy.partnerCampaignObjectionReplyCopy).toContain('Partner Campaign Objection Reply Kit');
