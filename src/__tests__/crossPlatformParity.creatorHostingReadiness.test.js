@@ -228,6 +228,50 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Creator Payout Exception Response Kit wired on all platforms without dispute or payout side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAYOUT EXCEPTION RESPONSE KIT');
+      expect(source).toContain('COPY PAYOUT EXCEPTION KIT');
+      expect(source).toContain('creatorPayoutExceptionResponseCopy');
+      expect(source).toContain('Manual exception replies before payout processing');
+      expect(source).toContain('Payout exception response checklist');
+      expect(source).toContain('mismatched store-test evidence');
+      expect(source).toContain('refund dispute');
+      expect(source).toContain('entitlement gap');
+      expect(source).toContain('tax workflow gap');
+      expect(source).toContain('provider setup gap');
+      expect(source).toContain('support escalation');
+      expect(source).toContain('creator eligibility question');
+      expect(source).toContain('payout exception review is not live payout processing');
+      expect(source).toContain('creator payout exception response kit only');
+      expect(source).toContain('Do not resolve payout disputes');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('collect tax forms');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('verify identities');
+      expect(source).toContain('create payout accounts');
+      expect(source).toContain('access payout providers');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('move money');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('give tax advice');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+      expect(source).toContain('expose private member logs');
+      expect(source).toContain('scrape or store messages');
+    });
+  });
+
   it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

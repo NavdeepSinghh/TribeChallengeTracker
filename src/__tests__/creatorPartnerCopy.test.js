@@ -116,6 +116,12 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorTaxWorkflowReadinessCopy).toContain('Do not collect tax details');
     expect(copy.creatorTaxWorkflowReadinessCopy).toContain('give tax advice');
     expect(copy.creatorTaxWorkflowReadinessCopy).toContain('store tax forms');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('Creator Payout Exception Response Kit');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('Payout exception response checklist');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('payout exception review is not live payout processing');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('Do not resolve payout disputes');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('process refunds');
+    expect(copy.creatorPayoutExceptionResponseCopy).toContain('write entitlements');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Creator Hosting Objection Reply Kit');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('Do not claim paid creator hosting is live');
     expect(copy.creatorHostingObjectionReplyCopy).toContain('store inbound DMs');
