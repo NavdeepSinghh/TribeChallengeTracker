@@ -262,6 +262,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator payout reconciliation kit only. Do not create payout accounts, access payout providers, collect bank details, collect payout details, collect tax details, collect government IDs, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, move money, process payments, process refunds, create purchases, write entitlements, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, expose private member logs, scrape or store messages, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
   ].join('\n');
+  const creatorTaxWorkflowReadinessCopy = [
+    'Rise With The Tribe Creator Tax Workflow Readiness Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Tax workflow readiness checklist:',
+    '- Map the future tax workflow owner, payout-provider tax form path, creator eligibility rules, country coverage, withholding review, and finance export process before any creator onboarding',
+    '- Confirm tax form collection, government ID checks, legal entity review, and withholding decisions happen only inside approved provider, legal, finance, or tax-advisor workflows',
+    '- Prepare creator-facing setup copy that explains tax onboarding is not live and no tax form, bank, payout, or government ID details should be sent through profile, DMs, screenshots, support tickets, or Firestore profile records',
+    '- Cross-check tax workflow readiness against creator terms, payout provider setup, payout dry run, reconciliation, refund responsibility, support escalation, marketplace policy, and entitlement QA',
+    '- Route tax questions to reviewed legal/finance support language instead of giving tax advice, promising payout eligibility, or implying revenue-share is approved',
+    '',
+    'This is a creator tax workflow readiness kit only. Do not collect tax details, collect tax forms, collect government IDs, collect bank details, collect payout details, verify identities, create payout accounts, access payout providers, store provider credentials, store tax forms, create contracts, collect signatures, start revenue-share, create payouts, move money, process payments, process refunds, create purchases, write entitlements, give tax advice, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, expose private member logs, scrape or store messages, add tracking pixels, promise outcomes, imply medical results, or pressure creators.',
+  ].join('\n');
   const creatorIdentityVerificationPrepCopy = [
     'Rise With The Tribe Creator Identity Verification Prep Kit:',
     '',
@@ -363,6 +382,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorPaidHostingHoldPlanCopy,
     creatorPayoutOperationsDryRunCopy,
     creatorPayoutReconciliationCopy,
+    creatorTaxWorkflowReadinessCopy,
     creatorPayoutProviderSetupCopy,
     creatorPayoutReadinessCopy,
     creatorTermsReadinessCopy,

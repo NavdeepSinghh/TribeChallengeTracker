@@ -34,6 +34,7 @@ export default function CreatorCoachMemberSection({
   creatorPaidHostingPolicyCopy,
   creatorPayoutOperationsDryRunCopy,
   creatorPayoutReconciliationCopy,
+  creatorTaxWorkflowReadinessCopy,
   creatorPayoutProviderSetupCopy,
   creatorPayoutReadinessCopy,
   creatorRevenueShareInterest,
@@ -82,6 +83,7 @@ export default function CreatorCoachMemberSection({
         creatorPaidHostingPolicyCopy={creatorPaidHostingPolicyCopy}
         creatorPayoutOperationsDryRunCopy={creatorPayoutOperationsDryRunCopy}
         creatorPayoutReconciliationCopy={creatorPayoutReconciliationCopy}
+        creatorTaxWorkflowReadinessCopy={creatorTaxWorkflowReadinessCopy}
         creatorPayoutProviderSetupCopy={creatorPayoutProviderSetupCopy}
         creatorPayoutReadinessCopy={creatorPayoutReadinessCopy}
         creatorRevenueShareInterest={creatorRevenueShareInterest}

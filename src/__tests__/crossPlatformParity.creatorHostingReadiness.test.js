@@ -190,6 +190,44 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Creator Tax Workflow Readiness Kit wired on all platforms without tax collection side effects', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR TAX WORKFLOW READINESS KIT');
+      expect(source).toContain('COPY TAX WORKFLOW KIT');
+      expect(source).toContain('creatorTaxWorkflowReadinessCopy');
+      expect(source).toContain('Tax workflow review before payout onboarding');
+      expect(source).toContain('Tax workflow readiness checklist');
+      expect(source).toContain('tax workflow owner');
+      expect(source).toContain('payout-provider tax form path');
+      expect(source).toContain('country coverage');
+      expect(source).toContain('withholding review');
+      expect(source).toContain('finance export process');
+      expect(source).toContain('tax onboarding is not live');
+      expect(source).toContain('Firestore profile records');
+      expect(source).toContain('tax-advisor workflows');
+      expect(source).toContain('creator tax workflow readiness kit only');
+      expect(source).toContain('Do not collect tax details');
+      expect(source).toContain('collect tax forms');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('verify identities');
+      expect(source).toContain('create payout accounts');
+      expect(source).toContain('access payout providers');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('give tax advice');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+    });
+  });
+
   it('keeps Creator Identity Verification Prep Kit wired on all platforms without client-side verification side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

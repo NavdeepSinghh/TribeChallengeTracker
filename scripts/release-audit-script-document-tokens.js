@@ -91,6 +91,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "same monetization campaign derived-data return contract",
   "Creator Payout Operations Dry-Run Kit",
   "Creator Payout Reconciliation Kit",
+  "Creator Tax Workflow Readiness Kit",
   "Creator Hosting Decision Reply Kit",
   "Partner Campaign Decision Reply Kit",
   "src/__tests__/engagementCopy.test.js",
