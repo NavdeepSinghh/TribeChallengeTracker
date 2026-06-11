@@ -539,4 +539,47 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     expect(firestoreRules).toContain('request.resource.data.createsPayouts == false');
     expect(firestoreRules).toContain('request.resource.data.writesEntitlements == false');
   });
+
+  it('keeps Creator Payout Exception Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAYOUT EXCEPTION REVIEW DECISION REPLY KIT');
+      expect(source).toContain('Creator Payout Exception Review Decision Reply Kit');
+      expect(source).toContain('approved, waiting, not-ready, and declined replies');
+      expect(source).toContain('APPROVED FOR MANUAL PAYOUT READINESS REVIEW');
+      expect(source).toContain('WAITING ON PAYOUT READINESS');
+      expect(source).toContain('NOT READY FOR PAYOUT HANDOFF');
+      expect(source).toContain('DECLINED FOR PAYOUT HANDOFF');
+      expect(source).toContain('COPY PAYOUT EXCEPTION DECISION REPLIES');
+      expect(source).toContain('Do not resolve payout disputes');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('collect tax forms');
+      expect(source).toContain('collect government IDs');
+      expect(source).toContain('collect bank details');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('verify identities');
+      expect(source).toContain('create payout accounts');
+      expect(source).toContain('access payout providers');
+      expect(source).toContain('store provider credentials');
+      expect(source).toContain('store tax forms');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect signatures');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('move money');
+      expect(source).toContain('process payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('give tax advice');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid creator hosting is live');
+      expect(source).toContain('expose private member logs');
+      expect(source).toContain('scrape/store messages');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure creators');
+    });
+  });
 });

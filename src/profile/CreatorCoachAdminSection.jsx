@@ -8,6 +8,7 @@ import CreatorHostingDecisionReplyCard from './CreatorHostingDecisionReplyCard';
 import CreatorHostingReviewQueueSection from './CreatorHostingReviewQueueSection';
 import CreatorLeaderboardSnapshotReviewSection from './CreatorLeaderboardSnapshotReviewSection';
 import CreatorPaidHostingLaunchGateReviewSection from './CreatorPaidHostingLaunchGateReviewSection';
+import CreatorPayoutExceptionDecisionReplyCard from './CreatorPayoutExceptionDecisionReplyCard';
 import CreatorPayoutExceptionReviewSection from './CreatorPayoutExceptionReviewSection';
 import CreatorPrivateInviteLaunchReviewSection from './CreatorPrivateInviteLaunchReviewSection';
 import PublishedCreatorChallengeTemplateCatalogSection from './PublishedCreatorChallengeTemplateCatalogSection';
@@ -125,6 +126,10 @@ export default function CreatorCoachAdminSection({
       />
       <ApprovedCreatorPayoutExceptionReviewsSection
         approvedCreatorPayoutExceptionReviews={approvedCreatorPayoutExceptionReviews}
+      />
+      <CreatorPayoutExceptionDecisionReplyCard
+        approvedCreatorPayoutExceptionReviews={approvedCreatorPayoutExceptionReviews}
+        creatorPayoutExceptionReviewQueue={creatorPayoutExceptionReviewQueue}
       />
       <CreatorLeaderboardSnapshotReviewSection
         creatorLeaderboardSnapshotReviewNotes={creatorLeaderboardSnapshotReviewNotes}
