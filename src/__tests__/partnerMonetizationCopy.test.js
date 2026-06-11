@@ -50,6 +50,12 @@ describe('partner monetization copy contracts', () => {
     expect(copy.partnerCampaignObjectionReplyCopy).toContain('Partner Campaign Objection Reply Kit');
     expect(copy.partnerCampaignObjectionReplyCopy).toContain('Do not claim partner campaigns are live');
     expect(copy.partnerCampaignObjectionReplyCopy).toContain('share third-party data');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('Partner Campaign Support Escalation Kit');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('Partner campaign support escalation checklist');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('partner campaign support escalation is not a live sponsor campaign');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('Do not claim partner campaigns are live');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('create partner links');
+    expect(copy.partnerCampaignSupportEscalationCopy).toContain('write entitlements');
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('Partner Campaign Decision Reply Kit');
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('Open partner-pilot applications: 1');
     expect(copy.partnerCampaignDecisionReplyCopy).toContain('Do not create partner links');

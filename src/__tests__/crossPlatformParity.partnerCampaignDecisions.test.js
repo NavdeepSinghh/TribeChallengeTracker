@@ -80,6 +80,49 @@ describe('cross-platform partner campaign decision parity source checks', () => 
     });
   });
 
+  it('keeps Partner Campaign Support Escalation Kit manual across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PARTNER CAMPAIGN SUPPORT ESCALATION KIT');
+      expect(source).toContain('COPY PARTNER SUPPORT KIT');
+      expect(source).toContain('partnerCampaignSupportEscalationCopy');
+      expect(source).toContain('Partner Campaign Support Escalation Kit');
+      expect(source).toContain('Partner campaign support escalation checklist');
+      expect(source).toContain('partner terms owner');
+      expect(source).toContain('member support');
+      expect(source).toContain('partner support');
+      expect(source).toContain('marketplace support');
+      expect(source).toContain('privacy/data safety');
+      expect(source).toContain('entitlement QA');
+      expect(source).toContain('finance/refund policy');
+      expect(source).toContain('moderation');
+      expect(source).toContain('partner campaign support escalation is not a live sponsor campaign');
+      expect(source).toContain('not partner-link activation');
+      expect(source).toContain('not coupon delivery');
+      expect(source).toContain('not payment collection');
+      expect(source).toContain('not payout approval');
+      expect(source).toContain('not entitlement approval');
+      expect(source).toContain('Do not claim partner campaigns are live');
+      expect(source).toContain('create partner links');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('use ad targeting');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('create affiliate payouts');
+      expect(source).toContain('create commissions');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('offer discounts');
+      expect(source).toContain('create coupons');
+      expect(source).toContain('share third-party data');
+      expect(source).toContain('export private member logs');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('promise fulfillment');
+      expect(source).toContain('pressure users, partners, or members');
+    });
+  });
+
   it('keeps Partner Campaign Retrospective Kit aggregate-only across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

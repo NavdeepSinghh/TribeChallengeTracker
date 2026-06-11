@@ -7,6 +7,7 @@ export default function PartnerAdminCopyKits({
   partnerActivationCopy,
   partnerCampaignObjectionReplyCopy,
   partnerCampaignRetrospectiveCopy,
+  partnerCampaignSupportEscalationCopy,
   partnerContractReadinessCopy,
   partnerDemandTotal,
   partnerPitchCopy,
@@ -63,6 +64,16 @@ export default function PartnerAdminCopyKits({
         buttonLabel="COPY PARTNER REPLIES"
         copy={partnerCampaignObjectionReplyCopy}
         copyText={copyText}
+      />
+      <PartnerCopyCard
+        accent="#F0ABFC"
+        title="PARTNER CAMPAIGN SUPPORT ESCALATION KIT"
+        status={{ active: partnerDemandTotal, label: 'SUPPORT MAP' }}
+        body="Copy sponsor-pilot support owner, severity, privacy, response-language, and routing checks before links, tracking, payouts, purchases, or fulfillment exist."
+        buttonLabel="COPY PARTNER SUPPORT KIT"
+        copy={partnerCampaignSupportEscalationCopy}
+        copyText={copyText}
+        metrics={<PartnerMetrics color="#F0ABFC" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
       />
       <PartnerCopyCard
         accent="#22C55E"

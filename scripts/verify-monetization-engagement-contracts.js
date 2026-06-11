@@ -36,6 +36,7 @@ function verifyRoadmapFeatureDocs({ parityPath, catalogPath, roadmapPath }) {
     "Creator Paid Hosting Hold Plan Kit",
     "Creator Hosting Decision Reply Kit",
     "Partner Campaign Decision Reply Kit",
+    "Partner Campaign Support Escalation Kit",
     "Referral Reward Decision Reply Kit",
     "Partner Perk Fulfillment Handoff Kit",
     "Partner Perk Handoff Audit Kit",

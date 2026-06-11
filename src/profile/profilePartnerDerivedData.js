@@ -44,6 +44,7 @@ export function buildProfilePartnerDerivedData({
     partnerPerkSupportEscalationCopy,
     partnerPerkDecisionReplyCopy,
     partnerCampaignObjectionReplyCopy,
+    partnerCampaignSupportEscalationCopy,
     partnerCampaignDecisionReplyCopy,
     partnerCampaignRetrospectiveCopy,
   } = buildPartnerMonetizationCopy({
@@ -64,6 +65,7 @@ export function buildProfilePartnerDerivedData({
     partnerCampaignApplicationSignalTotal,
     partnerCampaignDecisionReplyCopy,
     partnerCampaignObjectionReplyCopy,
+    partnerCampaignSupportEscalationCopy,
     partnerCampaignRetrospectiveCopy,
     partnerContractReadinessCopy,
     partnerDemandTotal,
