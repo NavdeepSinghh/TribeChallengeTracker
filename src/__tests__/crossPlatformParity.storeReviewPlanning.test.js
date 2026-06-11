@@ -148,4 +148,32 @@ describe('cross-platform store review planning parity source checks', () => {
     expect(androidRepository).toContain('reviewStoreReviewResponseReview');
     expect(firestoreRules).toContain('match /storeReviewResponseReviews/{reviewId}');
   });
+
+  it('keeps Store Review Response Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE REVIEW RESPONSE REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY REVIEW RESPONSE DECISION REPLIES');
+      expect(source).toContain('storeReviewResponseReviewDecisionReplyCopy');
+      expect(source).toContain('Manual reviewer response decision replies');
+      expect(source).toContain('APPROVED FOR REVIEWER RESPONSE');
+      expect(source).toContain('WAITING ON REVIEW EVIDENCE');
+      expect(source).toContain('NOT READY FOR REVIEWER FOLLOW-UP');
+      expect(source).toContain('DECLINED FOR REVIEW RESPONSE');
+      expect(source).toContain('manual Store Review Response Review Decision Reply Kit only');
+      expect(source).toContain('Do not submit store review');
+      expect(source).toContain('expose private user data');
+      expect(source).toContain('include passwords or secret keys');
+      expect(source).toContain('unlock paid access');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('claim review approval');
+      expect(source).toContain('mark paid access live');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape messages');
+      expect(source).toContain('bypass App Store or Google Play policy');
+      expect(source).toContain('pressure reviewers or members');
+    });
+  });
 });

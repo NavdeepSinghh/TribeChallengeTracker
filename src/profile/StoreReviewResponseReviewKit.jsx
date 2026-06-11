@@ -9,6 +9,22 @@ export default function StoreReviewResponseReviewKit({
   storeReviewResponseReviewNotes = {},
   storeReviewResponseReviewQueue = [],
 }) {
+  const storeReviewResponseReviewDecisionReplyCopy = `Rise With The Tribe Store Review Response Review Decision Reply Kit:
+
+APPROVED FOR REVIEWER RESPONSE:
+The store review response record is approved for manual reviewer follow-up preparation. Confirm the response stays factual, uses only current-build evidence, routes demo access through store-console reviewer notes, and keeps paid access pending until store validation is complete.
+
+WAITING ON REVIEW EVIDENCE:
+Keep this reviewer response record open. Add clearer policy links, demo-account path, permission explanation, purchase/restore evidence, support handoff, or rejection-fix notes before using it in App Store or Play reviewer follow-up.
+
+NOT READY FOR REVIEWER FOLLOW-UP:
+Do not use this response yet. It still needs stronger privacy/data-safety language, current-build evidence, support coverage, product/setup status, or marketplace-safe wording before any reviewer communication.
+
+DECLINED FOR REVIEW RESPONSE:
+This response record is not acceptable for reviewer follow-up right now. Rebuild it around the exact rejection, verified evidence, policy links, support resources, and marketplace boundaries before resubmission planning.
+
+This is a manual Store Review Response Review Decision Reply Kit only. Do not submit store review, expose private user data, include passwords or secret keys, unlock paid access, write entitlements, create purchases, process refunds, claim review approval, mark paid access live, add tracking pixels, scrape messages, bypass App Store or Google Play policy, auto-message users, or pressure reviewers or members.`;
+
   return (
     <div style={{ border: '1px solid rgba(249,115,22,0.20)', borderRadius: 12, padding: 12, background: 'rgba(249,115,22,0.06)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 8 }}>
@@ -48,7 +64,36 @@ export default function StoreReviewResponseReviewKit({
         <div style={{ color: '#777', fontSize: 11 }}>
           {approvedStoreReviewResponseReviews.length} approved manual records. Approved records still do not submit store review, expose private data, include secrets, unlock paid access, write entitlements, create purchases, process refunds, claim review approval, mark paid access live, add tracking pixels, scrape messages, or bypass marketplace policy.
         </div>
+        <div style={{ border: '1px solid rgba(251,191,36,0.2)', borderRadius: 10, padding: 10, background: 'rgba(251,191,36,0.06)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ color: '#FBBF24', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>STORE REVIEW RESPONSE REVIEW DECISION REPLY KIT</div>
+              <div style={{ color: '#9CA3AF', fontSize: 11, marginTop: 4 }}>Manual reviewer response decision replies. Copy-only: no store submission, private data, secrets, paid unlocks, entitlement writes, purchases, refunds, review-approval claims, paid-live promotion, tracking, scraping, or marketplace bypass.</div>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigator.clipboard?.writeText(storeReviewResponseReviewDecisionReplyCopy)}
+              style={{ border: '1px solid rgba(251,191,36,0.45)', background: 'rgba(251,191,36,0.12)', color: '#FDE68A', borderRadius: 8, padding: '7px 9px', fontSize: 9, fontWeight: 900, fontFamily: 'monospace', cursor: 'pointer' }}
+            >
+              COPY REVIEW RESPONSE DECISION REPLIES
+            </button>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 6, marginTop: 10 }}>
+            <MiniMetric label="OPEN" value={storeReviewResponseReviewQueue.length} />
+            <MiniMetric label="APPROVED" value={approvedStoreReviewResponseReviews.length} />
+            <MiniMetric label="EVIDENCE" value={storeReviewResponseReviewQueue.reduce((sum, review) => sum + Number(review.storeEvidenceCount || 0), 0)} />
+          </div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function MiniMetric({ label, value }) {
+  return (
+    <div style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: 8, background: 'rgba(0,0,0,0.18)' }}>
+      <div style={{ color: '#9CA3AF', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>{label}</div>
+      <div style={{ color: '#FDE68A', fontSize: 14, fontWeight: 900, marginTop: 2 }}>{value}</div>
     </div>
   );
 }
