@@ -372,6 +372,35 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     });
   });
 
+  it('keeps Private Creator Invite Launch Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PRIVATE CREATOR INVITE LAUNCH DECISION REPLY KIT');
+      expect(source).toContain('Private Creator Invite Launch Decision Reply Kit');
+      expect(source).toContain('COPY PRIVATE INVITE DECISION REPLIES');
+      expect(source).toContain('APPROVED FOR MANUAL PRIVATE INVITE READINESS');
+      expect(source).toContain('WAITING ON PRIVATE INVITE READINESS');
+      expect(source).toContain('NOT READY FOR PRIVATE INVITE HANDOFF');
+      expect(source).toContain('DECLINED FOR PRIVATE INVITE HANDOFF');
+      expect(source).toContain('Do not auto-message users');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('store inbound replies');
+      expect(source).toContain('count link opens');
+      expect(source).toContain('track recipients');
+      expect(source).toContain('export private member activity');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('grant paid access');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('imply paid creator hosting is live');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('pressure creators or invitees');
+    });
+  });
+
   it('keeps Creator Paid Hosting Launch Gate Kit wired on all platforms without launch side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {
