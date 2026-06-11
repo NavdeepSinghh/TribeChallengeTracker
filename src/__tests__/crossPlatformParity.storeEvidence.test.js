@@ -4,12 +4,14 @@ const {
   repoRoot,
   iosChallengeService,
   iosProfile,
+  iosUserProfile,
   androidRepository,
   androidApp,
   androidModels,
   readWebProfileContracts,
   readWebUserServiceContracts,
 } = require('../testUtils/crossPlatformParityFixtures');
+const { STORE_TEST_EVIDENCE_MATRIX } = require('../../scripts/store-test-evidence-matrix');
 
 describe('cross-platform store evidence parity source checks', () => {
   it('keeps Store Test Purchase Evidence Log admin-only without entitlement side effects', () => {
@@ -96,5 +98,35 @@ describe('cross-platform store evidence parity source checks', () => {
       expect(source).toContain('scrape/store DMs');
       expect(source).toContain('pressure members');
     });
+  });
+
+  it('keeps store evidence record buttons aligned to the shared product evidence matrix', () => {
+    const webProfile = [
+      readWebProfileContracts(),
+      fs.readFileSync(path.resolve(repoRoot, 'src/proFeatures.js'), 'utf8'),
+      fs.readFileSync(path.resolve(repoRoot, 'src/profile/storeTestEvidenceMatrix.js'), 'utf8'),
+    ].join('\n');
+    const nativeIosSource = `${iosProfile}\n${iosUserProfile}`;
+    const nativeAndroidSource = `${androidApp}\n${androidModels}`;
+    const requiredProductIds = [...new Set(
+      STORE_TEST_EVIDENCE_MATRIX
+        .filter(item => item.productId !== 'any configured product')
+        .map(item => item.productId)
+    )];
+
+    expect(STORE_TEST_EVIDENCE_MATRIX).toHaveLength(20);
+    expect(STORE_TEST_EVIDENCE_MATRIX.filter(item => item.safeDenialRequired)).toHaveLength(2);
+    [webProfile, nativeIosSource, nativeAndroidSource].forEach((source) => {
+      requiredProductIds.forEach((productId) => {
+        expect(source).toContain(productId);
+      });
+      expect(source).toContain('negative_validation');
+      expect(source).toContain('wrong-account safe denial');
+    });
+    expect(webProfile).toContain('productId: product.id');
+    expect(nativeIosSource).toContain('productId: product.id');
+    expect(nativeIosSource).toContain('evidenceCase.productId');
+    expect(nativeAndroidSource).toContain('productId = product.id');
+    expect(nativeAndroidSource).toContain('test.productId');
   });
 });
