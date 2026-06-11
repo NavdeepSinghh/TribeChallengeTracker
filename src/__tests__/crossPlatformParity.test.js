@@ -95,7 +95,7 @@ const paritySuites = [
 describe('cross-platform feature parity suite map', () => {
   it('keeps parity coverage split into focused suites', () => {
     expect(paritySuites).toHaveLength(6);
-    expect(paritySuites.flatMap((suite) => suite.cases)).toHaveLength(50);
+    expect(paritySuites.flatMap((suite) => suite.cases)).toHaveLength(55);
     expect(paritySuites.map((suite) => suite.area)).toEqual([
       'store launch',
       'store review and evidence',
