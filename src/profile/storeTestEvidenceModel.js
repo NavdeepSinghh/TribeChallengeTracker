@@ -1,23 +1,9 @@
-const MINIMUM_STORE_TEST_EVIDENCE_CASES = [
-  { id: 'ios_pro_purchase', platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase' },
-  { id: 'ios_pro_restore', platform: 'ios', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync' },
-  { id: 'ios_reset_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase' },
-  { id: 'ios_summer_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase' },
-  { id: 'ios_beginner_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.beginner_consistency', testCase: 'sandbox_purchase' },
-  { id: 'ios_discipline_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
-  { id: 'ios_tribe_mode_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
-  { id: 'ios_comeback_14_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.comeback_14', testCase: 'sandbox_purchase' },
-  { id: 'ios_event_prep_21_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.event_prep_21', testCase: 'sandbox_purchase' },
-  { id: 'android_pro_purchase', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase' },
-  { id: 'android_pro_restore', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync' },
-  { id: 'android_reset_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase' },
-  { id: 'android_summer_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase' },
-  { id: 'android_beginner_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.beginner_consistency', testCase: 'sandbox_purchase' },
-  { id: 'android_discipline_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
-  { id: 'android_tribe_mode_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
-  { id: 'android_comeback_14_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.comeback_14', testCase: 'sandbox_purchase' },
-  { id: 'android_event_prep_21_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.event_prep_21', testCase: 'sandbox_purchase' },
-];
+import { STORE_TEST_EVIDENCE_MATRIX } from './storeTestEvidenceMatrix';
+
+const MINIMUM_STORE_TEST_EVIDENCE_CASES = STORE_TEST_EVIDENCE_MATRIX.filter(test => !test.safeDenialRequired);
+const MINIMUM_SAFE_DENIAL_PLATFORMS = STORE_TEST_EVIDENCE_MATRIX
+  .filter(test => test.safeDenialRequired)
+  .map(test => test.platform);
 
 function evidenceNoteText(item) {
   return `${item.evidenceNote || ''} ${item.reviewNote || ''}`.toLowerCase();
@@ -47,16 +33,16 @@ export function getMinimumStoreTestEvidenceStatus(storeTestEvidenceLog = []) {
       && isVerifiedPurchaseEvidence(item)
     )))
     .map(required => required.id);
-  const safeDenialPlatforms = ['ios', 'android'].filter(platform => storeTestEvidenceLog.some(item => (
+  const safeDenialPlatforms = MINIMUM_SAFE_DENIAL_PLATFORMS.filter(platform => storeTestEvidenceLog.some(item => (
     item.platform === platform && isSafeDenialEvidence(item)
   )));
-  const missingSafeDenialPlatforms = ['ios', 'android'].filter(platform => !safeDenialPlatforms.includes(platform));
+  const missingSafeDenialPlatforms = MINIMUM_SAFE_DENIAL_PLATFORMS.filter(platform => !safeDenialPlatforms.includes(platform));
 
   return {
     ready: missingRequiredCases.length === 0 && missingSafeDenialPlatforms.length === 0,
     missingRequiredCases,
     missingSafeDenialPlatforms,
-    requiredCaseCount: MINIMUM_STORE_TEST_EVIDENCE_CASES.length + 2,
+    requiredCaseCount: MINIMUM_STORE_TEST_EVIDENCE_CASES.length + MINIMUM_SAFE_DENIAL_PLATFORMS.length,
     verifiedCaseCount: MINIMUM_STORE_TEST_EVIDENCE_CASES.length - missingRequiredCases.length + safeDenialPlatforms.length,
   };
 }

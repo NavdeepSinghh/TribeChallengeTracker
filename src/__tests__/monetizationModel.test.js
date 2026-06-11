@@ -2,32 +2,16 @@ import {
   getMinimumStoreTestEvidenceStatus,
   summarizeStoreTestEvidence,
 } from '../profile/monetizationModel';
+import { STORE_TEST_EVIDENCE_MATRIX } from '../profile/storeTestEvidenceMatrix';
 
-const verifiedPurchaseEvidence = [
-  ['ios', 'com.risewiththetribe.pro.monthly', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pro.monthly', 'restore_sync'],
-  ['ios', 'com.risewiththetribe.pack.21_day_reset', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.summer_shred', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.beginner_consistency', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.discipline_30', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.tribe_mode_75', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.comeback_14', 'sandbox_purchase'],
-  ['ios', 'com.risewiththetribe.pack.event_prep_21', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pro.monthly', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pro.monthly', 'restore_sync'],
-  ['android', 'com.risewiththetribe.pack.21_day_reset', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.summer_shred', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.beginner_consistency', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.discipline_30', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.tribe_mode_75', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.comeback_14', 'sandbox_purchase'],
-  ['android', 'com.risewiththetribe.pack.event_prep_21', 'sandbox_purchase'],
-].map(([platform, productId, testCase]) => ({
-  platform,
-  productId,
-  testCase,
-  result: 'verified',
-}));
+const verifiedPurchaseEvidence = STORE_TEST_EVIDENCE_MATRIX
+  .filter(test => !test.safeDenialRequired)
+  .map(test => ({
+    platform: test.platform,
+    productId: test.productId,
+    testCase: test.testCase,
+    result: 'verified',
+  }));
 
 describe('monetization launch evidence model', () => {
   it('blocks paid launch evidence readiness when the minimum matrix is incomplete', () => {
@@ -40,6 +24,21 @@ describe('monetization launch evidence model', () => {
     expect(status.missingRequiredCases).toContain('ios_pro_restore');
     expect(status.missingRequiredCases).toContain('android_summer_purchase');
     expect(status.missingSafeDenialPlatforms).toEqual(['ios', 'android']);
+  });
+
+  it('derives the minimum proof matrix from shared store evidence cases', () => {
+    const purchaseEvidenceCases = STORE_TEST_EVIDENCE_MATRIX.filter(test => !test.safeDenialRequired);
+    const safeDenialCases = STORE_TEST_EVIDENCE_MATRIX.filter(test => test.safeDenialRequired);
+
+    expect(purchaseEvidenceCases).toHaveLength(18);
+    expect(safeDenialCases.map(test => test.platform)).toEqual(['ios', 'android']);
+    expect(purchaseEvidenceCases.map(test => test.id)).toEqual(
+      expect.arrayContaining([
+        'ios_pro_restore',
+        'ios_event_prep_21_purchase',
+        'android_summer_purchase',
+      ])
+    );
   });
 
   it('accepts complete verified purchase evidence plus safe-denial negative evidence', () => {

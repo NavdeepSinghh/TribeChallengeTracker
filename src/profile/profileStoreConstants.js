@@ -1,4 +1,5 @@
 import { getStoreProductCatalog } from '../purchaseService';
+import { STORE_TEST_EVIDENCE_MATRIX } from './storeTestEvidenceMatrix';
 
 export const STORE_CATALOG = getStoreProductCatalog();
 export const STORE_READINESS_ITEMS = [
@@ -87,9 +88,4 @@ export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'Android license test: buy each challenge pack, restore owned purchases, then verify the matching entitlements.packs entry',
   'Negative QA: cancellation, duplicate restore, wrong account, and failed receipt validation must not unlock access',
 ];
-export const STORE_TEST_EVIDENCE_CASES = [
-  { id: 'ios_pro_sandbox', platform: 'ios', productKind: 'subscription', testCase: 'sandbox_purchase', label: 'iOS Pro sandbox purchase' },
-  { id: 'ios_pack_restore', platform: 'ios', productKind: 'challengePack', testCase: 'restore_sync', label: 'iOS pack restore sync' },
-  { id: 'android_pro_license', platform: 'android', productKind: 'subscription', testCase: 'sandbox_purchase', label: 'Android Pro license test' },
-  { id: 'android_negative_validation', platform: 'android', productKind: 'challengePack', testCase: 'negative_validation', label: 'Android negative validation' },
-];
+export const STORE_TEST_EVIDENCE_CASES = STORE_TEST_EVIDENCE_MATRIX;

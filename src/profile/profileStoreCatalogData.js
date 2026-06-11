@@ -19,13 +19,9 @@ export function buildProfileStoreCatalogData(profile) {
     comeback_14: '14-Day Comeback Sprint',
     event_prep_21: '21-Day Event Prep Pack',
   }[product.packId] || product.packId || product.id);
-  const subscriptionProducts = STORE_CATALOG.filter(product => product.kind === 'subscription');
   const challengePackProducts = STORE_CATALOG.filter(product => product.kind === 'challengePack');
   const activeChallengePackCount = challengePackProducts.filter(isPackUnlocked).length;
-  const storeTestEvidenceCases = STORE_TEST_EVIDENCE_CASES.map(test => {
-    const product = test.productKind === 'subscription' ? subscriptionProducts[0] : challengePackProducts[0];
-    return { ...test, productId: product?.id || '' };
-  });
+  const storeTestEvidenceCases = STORE_TEST_EVIDENCE_CASES;
 
   return {
     activeChallengePackCount,
