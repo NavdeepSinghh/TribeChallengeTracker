@@ -17,7 +17,7 @@ Safe positioning:
 
 ### Premium Challenges
 
-Primary offer: structured challenge packs such as 21-Day Reset, Summer Shred, Beginner Consistency Plan, and 30-Day Discipline Challenge.
+Primary offer: structured challenge packs such as 21-Day Reset, Summer Shred, Beginner Consistency Plan, 30-Day Discipline Challenge, and 75-Day Tribe Mode.
 
 Best timing:
 

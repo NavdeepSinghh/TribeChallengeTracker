@@ -15,6 +15,7 @@ export function buildProfileStoreCatalogData(profile) {
     summer_shred: '28-Day Summer Shred',
     beginner_consistency: 'Beginner Consistency Plan',
     discipline_30: '30-Day Discipline Challenge',
+    tribe_mode_75: '75-Day Tribe Mode',
   }[product.packId] || product.packId || product.id);
   const subscriptionProducts = STORE_CATALOG.filter(product => product.kind === 'subscription');
   const challengePackProducts = STORE_CATALOG.filter(product => product.kind === 'challengePack');

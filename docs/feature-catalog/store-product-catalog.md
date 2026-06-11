@@ -10,6 +10,7 @@ Shared product IDs:
 - `com.risewiththetribe.pack.summer_shred`: standalone 28-Day Summer Shred seasonal pack purchase candidate.
 - `com.risewiththetribe.pack.beginner_consistency`: standalone Beginner Consistency Plan purchase candidate.
 - `com.risewiththetribe.pack.discipline_30`: standalone 30-Day Discipline Challenge purchase candidate.
+- `com.risewiththetribe.pack.tribe_mode_75`: standalone 75-Day Tribe Mode purchase candidate.
 
 Shared behavior:
 

@@ -5,12 +5,14 @@ const MINIMUM_STORE_TEST_EVIDENCE_CASES = [
   { id: 'ios_summer_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase' },
   { id: 'ios_beginner_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.beginner_consistency', testCase: 'sandbox_purchase' },
   { id: 'ios_discipline_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
+  { id: 'ios_tribe_mode_purchase', platform: 'ios', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
   { id: 'android_pro_purchase', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'sandbox_purchase' },
   { id: 'android_pro_restore', platform: 'android', productId: 'com.risewiththetribe.pro.monthly', testCase: 'restore_sync' },
   { id: 'android_reset_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.21_day_reset', testCase: 'sandbox_purchase' },
   { id: 'android_summer_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.summer_shred', testCase: 'sandbox_purchase' },
   { id: 'android_beginner_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.beginner_consistency', testCase: 'sandbox_purchase' },
   { id: 'android_discipline_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.discipline_30', testCase: 'sandbox_purchase' },
+  { id: 'android_tribe_mode_purchase', platform: 'android', productId: 'com.risewiththetribe.pack.tribe_mode_75', testCase: 'sandbox_purchase' },
 ];
 
 function evidenceNoteText(item) {

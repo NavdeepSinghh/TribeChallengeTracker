@@ -132,12 +132,12 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Challenge completion recaps across Web, iOS, and Android for shareable community proof and future premium pack finish moments.
 - Premium badge foundation across Web, iOS, and Android with Pro-gated weekly report, streak recovery, and finisher badges.
 - Tribe Pro streak recovery credits backed by zero-point `streak_recovery` activity log entries.
-- Paid challenge pack foundation with Pro/pack-gated 21-Day Reset Pack, Beginner Consistency Plan, and 30-Day Discipline Challenge templates.
+- Paid challenge pack foundation with Pro/pack-gated 21-Day Reset Pack, Beginner Consistency Plan, 30-Day Discipline Challenge, and 75-Day Tribe Mode templates.
 - Paid challenge pack value preview across Web, iOS, and Android using existing template metadata and unlock state.
 - Paid challenge pack accountability prompts across Web, iOS, and Android tracker/detail surfaces.
 - Challenge Pack Launch Kit across Web, iOS, and Android with copy-ready paid-pack launch messaging using shared product IDs before store credentials are live.
 - Challenge Pack Objection Reply Kit across Web, iOS, and Android with manual pack-question replies that keep paid access, pricing, purchases, entitlements, and marketplace claims gated until validation is complete.
-- Shared store product catalog constants for Pro, 21-Day Reset Pack, Summer Shred, Beginner Consistency Plan, and 30-Day Discipline Challenge.
+- Shared store product catalog constants for Pro, 21-Day Reset Pack, Summer Shred, Beginner Consistency Plan, 30-Day Discipline Challenge, and 75-Day Tribe Mode.
 - Profile checkout UI wired to shared products, StoreKit product loading, and Play Billing product loading.
 - Server-side purchase entitlement writer for verified Pro and challenge-pack purchases, guarded behind receipt validation.
 - Purchase restore/sync actions across profile purchase cards, with native restore history replaying through backend verification.
