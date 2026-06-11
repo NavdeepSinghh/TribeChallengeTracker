@@ -7,6 +7,7 @@ export default function PartnerAdminCopyKits({
   partnerActivationCopy,
   partnerCampaignObjectionReplyCopy,
   partnerCampaignRetrospectiveCopy,
+  partnerCampaignRetrospectiveDecisionReplyCopy,
   partnerCampaignSupportEscalationCopy,
   partnerContractReadinessCopy,
   partnerDemandTotal,
@@ -84,6 +85,16 @@ export default function PartnerAdminCopyKits({
         copy={partnerCampaignRetrospectiveCopy}
         copyText={copyText}
         metrics={<PartnerMetrics color="#22C55E" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
+      />
+      <PartnerCopyCard
+        accent="#FBBF24"
+        title="PARTNER CAMPAIGN RETROSPECTIVE DECISION REPLY KIT"
+        status={{ active: partnerDemandTotal, label: 'COPY ONLY' }}
+        body="Copy approved, waiting, not-ready, and declined retrospective replies without links, tracking, payouts, purchases, entitlements, revenue-share, exports, fulfillment promises, or pressure."
+        buttonLabel="COPY RETROSPECTIVE DECISION REPLIES"
+        copy={partnerCampaignRetrospectiveDecisionReplyCopy}
+        copyText={copyText}
+        metrics={<PartnerMetrics color="#FBBF24" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
       />
     </>
   );

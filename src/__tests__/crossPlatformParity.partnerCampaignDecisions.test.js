@@ -180,4 +180,37 @@ describe('cross-platform partner campaign decision parity source checks', () => 
       expect(source).toContain('pressuresPartnersOrMembers');
     });
   });
+
+  it('keeps Partner Campaign Retrospective Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PARTNER CAMPAIGN RETROSPECTIVE DECISION REPLY KIT');
+      expect(source).toContain('COPY RETROSPECTIVE DECISION REPLIES');
+      expect(source).toContain('partnerCampaignRetrospectiveDecisionReplyCopy');
+      expect(source).toContain('Manual retrospective decision replies');
+      expect(source).toContain('APPROVED FOR MANUAL REPEAT REVIEW');
+      expect(source).toContain('WAITING ON RETROSPECTIVE EVIDENCE');
+      expect(source).toContain('NOT READY FOR PARTNER HANDOFF');
+      expect(source).toContain('DECLINED FOR PARTNER HANDOFF');
+      expect(source).toContain('manual Partner Campaign Retrospective Decision Reply Kit only');
+      expect(source).toContain('Do not create partner links');
+      expect(source).toContain('tracking pixels');
+      expect(source).toContain('ad targeting');
+      expect(source).toContain('affiliate payouts');
+      expect(source).toContain('commissions');
+      expect(source).toContain('coupons');
+      expect(source).toContain('discounts');
+      expect(source).toContain('purchases');
+      expect(source).toContain('entitlements');
+      expect(source).toContain('revenue-share');
+      expect(source).toContain('paid-access claims');
+      expect(source).toContain('third-party data exports');
+      expect(source).toContain('collect payment');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('promise fulfillment');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('scrape/store DMs');
+      expect(source).toContain('pressure partners or members');
+    });
+  });
 });

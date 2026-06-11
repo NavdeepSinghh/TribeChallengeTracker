@@ -7,6 +7,8 @@ describe('partner monetization copy contracts', () => {
         memberReach: 21,
       },
       partnerCampaignApplicationReviewQueue: [{ id: 'partner-app-1' }],
+      partnerCampaignRetrospectiveReviewQueue: [{ id: 'retro-1' }],
+      approvedPartnerCampaignRetrospectiveReviews: [{ id: 'retro-approved-1' }],
       partnerDemandTotal: 8,
       partnerPerkHandoffAuditReviewQueue: [{ id: 'audit-1' }],
       approvedPartnerPerkHandoffAuditReviews: [{ id: 'audit-approved-1' }],
@@ -67,5 +69,17 @@ describe('partner monetization copy contracts', () => {
     expect(copy.partnerCampaignRetrospectiveCopy).toContain('Do not create partner links');
     expect(copy.partnerCampaignRetrospectiveCopy).toContain('third-party data exports');
     expect(copy.partnerCampaignRetrospectiveCopy).toContain('pressure partners or members');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('Partner Campaign Retrospective Decision Reply Kit');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('Open partner campaign retrospective reviews: 1');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('Approved manual retrospective reviews: 1');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('APPROVED FOR MANUAL REPEAT REVIEW');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('WAITING ON RETROSPECTIVE EVIDENCE');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('NOT READY FOR PARTNER HANDOFF');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('DECLINED FOR PARTNER HANDOFF');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('Do not create partner links');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('tracking pixels');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('entitlements');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('process refunds');
+    expect(copy.partnerCampaignRetrospectiveDecisionReplyCopy).toContain('pressure partners or members');
   });
 });
