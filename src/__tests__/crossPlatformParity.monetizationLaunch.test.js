@@ -71,6 +71,12 @@ describe('cross-platform monetization launch parity source checks', () => {
       expect(source).toContain('monetizationLaunchCopy');
       expect(source).toContain('COPY LAUNCH BOARD COPY');
       expect(source).toContain('first-party monetization signals');
+      expect(source).toContain('Pro trial reasons');
+      expect(source).toContain('Creator beta opt-ins');
+      expect(source).toContain('Partner perk signals');
+      expect(source).toContain('validate store products');
+      expect(source).toContain('payout policy');
+      expect(source).toContain('partner offer terms');
     });
   });
 
