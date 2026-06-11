@@ -45,6 +45,30 @@ describe('cross-platform Pro profile parity source checks', () => {
     });
   });
 
+  it('keeps Pro Health Sync Insight read-only and non-medical across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('Health Sync Insight');
+      expect(source).toContain('SYNCED');
+      expect(source).toContain('MANUAL');
+      expect(source).toContain('SYNC RATE');
+      expect(source).toContain('SYNC BASE');
+      expect(source).toContain('MIXED LOGS');
+      expect(source).toContain('MANUAL BASE');
+      expect(source).toContain('Optional HealthKit / Health Connect insight');
+      expect(source).toContain('Uses already-imported app logs only');
+      expect(source).toContain('does not request new health permissions');
+      expect(source).toContain('export raw health data');
+      expect(source).toContain('create diagnoses');
+      expect(source).toContain('promise medical results');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('grant Pro');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('imply paid access is live');
+      expect(source).toContain('Advanced Health sync insights');
+    });
+  });
+
   it('keeps Pro Value Snapshot wired on all platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

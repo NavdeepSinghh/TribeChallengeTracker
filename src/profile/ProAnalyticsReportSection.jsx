@@ -1,4 +1,4 @@
-export default function ProAnalyticsReportSection({ proActive, weeklyReport, monthlyReport, longHistoryReport }) {
+export default function ProAnalyticsReportSection({ proActive, weeklyReport, monthlyReport, longHistoryReport, healthSyncInsight }) {
   const longHistory = longHistoryReport || {
     activeDays: 0,
     activeRate: 0,
@@ -8,6 +8,14 @@ export default function ProAnalyticsReportSection({ proActive, weeklyReport, mon
     topType: 'No activity yet',
     topTypeSessions: 0,
     nextAction: 'Restart with the free challenge loop and use the 90-day view to spot the simplest comeback window.',
+  };
+  const healthInsight = healthSyncInsight || {
+    syncedSessions: 0,
+    manualSessions: 0,
+    syncRate: 0,
+    syncedPoints: 0,
+    status: 'MANUAL BASE',
+    nextAction: 'Try one optional Health sync import from the log screen, or keep manual logging if that feels clearer.',
   };
 
   return (
@@ -109,6 +117,51 @@ export default function ProAnalyticsReportSection({ proActive, weeklyReport, mon
         )}
         <p style={{ margin: '6px 0 0', color: '#666', fontSize: 9, lineHeight: 1.4, fontFamily: 'monospace' }}>
           Uses existing app history only; does not export private history, create purchases, grant Pro, write entitlements, or imply paid access is live.
+        </p>
+      </div>
+      <div style={{
+        marginTop: 10,
+        borderRadius: 10,
+        padding: 10,
+        background: proActive ? 'rgba(96,165,250,0.07)' : 'rgba(255,255,255,0.025)',
+        border: `1px solid ${proActive ? 'rgba(96,165,250,0.20)' : 'rgba(255,255,255,0.06)'}`,
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center', marginBottom: 8 }}>
+          <p style={{ margin: 0, color: '#fff', fontSize: 12, fontWeight: 900 }}>Health Sync Insight</p>
+          <span style={{ color: proActive ? '#93C5FD' : '#777', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>
+            {proActive ? healthInsight.status : 'PRO PREVIEW'}
+          </span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+          {[
+            ['SYNCED', `${healthInsight.syncedSessions}`],
+            ['MANUAL', `${healthInsight.manualSessions}`],
+            ['SYNC RATE', `${healthInsight.syncRate}%`],
+          ].map(([label, value]) => (
+            <div key={label} style={{
+              textAlign: 'center',
+              borderRadius: 8,
+              padding: '8px 5px',
+              background: 'rgba(255,255,255,0.035)',
+              border: '1px solid rgba(255,255,255,0.06)',
+            }}>
+              <p style={{ margin: 0, color: '#fff', fontSize: 14, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>
+                {proActive ? value : 'LOCKED'}
+              </p>
+              <p style={{ margin: '3px 0 0', color: '#777', fontSize: 8, fontWeight: 800, fontFamily: 'monospace' }}>{label}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ margin: '8px 0 0', color: proActive ? '#BFDBFE' : '#777', fontSize: 10, lineHeight: 1.45, fontFamily: 'monospace' }}>
+          Optional HealthKit / Health Connect insight: {proActive ? `${healthInsight.syncedPoints} synced points from imported workouts in the last 30 days.` : 'unlock Pro to compare synced workouts with manual app logs.'}
+        </p>
+        {proActive && (
+          <p style={{ margin: '6px 0 0', color: '#9CA3AF', fontSize: 10, lineHeight: 1.45 }}>
+            {healthInsight.nextAction}
+          </p>
+        )}
+        <p style={{ margin: '6px 0 0', color: '#666', fontSize: 9, lineHeight: 1.4, fontFamily: 'monospace' }}>
+          Uses already-imported app logs only; does not request new health permissions, export raw health data, create diagnoses, promise medical results, create purchases, grant Pro, write entitlements, or imply paid access is live.
         </p>
       </div>
       <p style={{ margin: '8px 0 0', color: '#777', fontSize: 10, fontFamily: 'monospace' }}>

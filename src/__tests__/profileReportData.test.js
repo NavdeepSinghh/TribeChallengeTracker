@@ -1,4 +1,4 @@
-import { buildLongHistoryReport } from '../profile/profileReportData';
+import { buildHealthSyncInsight, buildLongHistoryReport } from '../profile/profileReportData';
 
 function dayKey(offset) {
   const date = new Date();
@@ -38,6 +38,31 @@ describe('profile report data', () => {
       status: 'RESET WINDOW',
       topType: 'RUN',
       topTypeSessions: 2,
+    });
+  });
+
+  it('builds Pro Health Sync Insight from already-imported app logs only', () => {
+    const history = {
+      [dayKey(0)]: {
+        activities: [
+          { id: 'health-connect-workout-1', activityId: 'run', points: 40, note: 'Morning run synced from Health Connect' },
+          { id: 'manual-1', activityId: 'yoga', points: 20, note: 'Manual mobility' },
+        ],
+      },
+      [dayKey(12)]: {
+        activities: [{ id: 'health-abc', activityId: 'walk', points: 10, note: 'Synced from Apple Watch via Fitness' }],
+      },
+      [dayKey(30)]: {
+        activities: [{ id: 'health-old', activityId: 'cycle', points: 50, note: 'Synced from Health Connect' }],
+      },
+    };
+
+    expect(buildHealthSyncInsight({ history })).toMatchObject({
+      syncedSessions: 2,
+      manualSessions: 1,
+      syncRate: 67,
+      syncedPoints: 50,
+      status: 'SYNC BASE',
     });
   });
 });

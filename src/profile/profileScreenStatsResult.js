@@ -21,6 +21,7 @@ export function buildProfileScreenStatsResult({
     weeklyRecap,
   } = activityStats;
   const {
+    healthSyncInsight,
     longHistoryReport,
     monthlyReport,
     proAnalytics,
@@ -40,6 +41,7 @@ export function buildProfileScreenStatsResult({
     monthlyRecap,
     proAnalytics,
     currentStreak,
+    healthSyncInsight,
     longHistoryReport,
     weeklyReport,
     monthlyReport,

@@ -10,6 +10,7 @@ export default function ProfileProgressGoalSections({ model }) {
     goalStreak,
     goalsMessage,
     handleCustomGoalsSave,
+    healthSyncInsight,
     isSavingGoals,
     longHistoryReport,
     monthlyReport,
@@ -28,6 +29,7 @@ export default function ProfileProgressGoalSections({ model }) {
         weeklyReport={weeklyReport}
         monthlyReport={monthlyReport}
         longHistoryReport={longHistoryReport}
+        healthSyncInsight={healthSyncInsight}
       />
 
       <CustomGoalsSection
