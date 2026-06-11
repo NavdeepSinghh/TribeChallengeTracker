@@ -30,6 +30,12 @@ describe('cross-platform store review and evidence parity source checks', () => 
       expect(source).toContain('Manual release rehearsal before paid access');
       expect(source).toContain('Run the full signup, onboarding, challenge join, activity log, share, support, and restore/sync path');
       expect(source).toContain('validation credentials, sandbox/license-test evidence, entitlement recovery, support links');
+      expect(source).toContain('Dry-run summary');
+      expect(source).toContain('Store test evidence');
+      expect(source).toContain('Entitlement recovery queue');
+      expect(source).toContain('Policy links visible');
+      expect(source).toContain('Recommended revenue path');
+      expect(source).toContain('Manual dry-run script');
       expect(source).toContain('Do not flip paid access live');
       expect(source).toContain('write entitlements');
       expect(source).toContain('create purchases');
