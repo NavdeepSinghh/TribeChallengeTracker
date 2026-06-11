@@ -55,6 +55,7 @@ Shared behavior:
 - Creator / Coach Mode includes revenue-share readiness metrics for hosted paid-pack challenges and hosted challenges with paid-pack metadata or at least five members.
 - Creator Launch Kit generates repost-ready creator launch copy from the next hosted challenge, invite code, creator specialty, creator bio, and `@risewiththetribe` tag.
 - Creator Challenge Template Draft Kit generates a copy-only reusable hosted challenge template checklist from creator focus, hosted reach, revenue-ready signals, and the next candidate challenge before any new creator template records or paid-hosting offers exist.
+- Creator Leaderboard Ranking Readiness Kit generates copy-only aggregate ranking inputs, tie-break, dispute, privacy, moderation, and support checks before public rankings or paid-hosting ranking claims exist.
 - Creator Hosting Offer Kit generates a copy-only paid-hosting planning brief from creator focus, hosted challenge reach, revenue-ready signals, beta interest, and the next hosted challenge.
 - Creator Terms Readiness Kit generates a copy-only responsibilities and guardrails brief for creator conduct, moderation, payout readiness, marketplace alignment, and support handoff before paid hosting.
 - Creator Agreement Prep Kit generates a copy-only creator identity, support owner, moderation owner, marketplace alignment, payout/tax workflow, and claim-rule checklist before legal terms, signatures, payouts, purchases, entitlements, revenue-share, or paid-hosting-live claims exist.

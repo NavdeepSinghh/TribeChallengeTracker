@@ -18,6 +18,7 @@ export default function CreatorCoachMemberSection({
   creatorIdentityVerificationPrepCopy,
   creatorLeaderboardSnapshotMessage,
   creatorLeaderboardPreviewCopy,
+  creatorLeaderboardRankingReadinessCopy,
   creatorModerationReadinessCopy,
   creatorPaidHostingLaunchGateCopy,
   creatorPaidHostingLaunchGateMessage,
@@ -73,6 +74,7 @@ export default function CreatorCoachMemberSection({
         creatorHostingOfferCopy={creatorHostingOfferCopy}
         creatorIdentityVerificationPrepCopy={creatorIdentityVerificationPrepCopy}
         creatorLeaderboardPreviewCopy={creatorLeaderboardPreviewCopy}
+        creatorLeaderboardRankingReadinessCopy={creatorLeaderboardRankingReadinessCopy}
         creatorModerationReadinessCopy={creatorModerationReadinessCopy}
         creatorPaidHostingLaunchGateCopy={creatorPaidHostingLaunchGateCopy}
         creatorPaidHostingHoldPlanCopy={creatorPaidHostingHoldPlanCopy}

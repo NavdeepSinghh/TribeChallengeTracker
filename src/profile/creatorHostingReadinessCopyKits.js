@@ -63,6 +63,24 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator leaderboard preview kit only. Do not create leaderboard records, expose private member activity, export per-user logs, create contracts, collect payments, create purchases, write entitlements, start revenue-share, create payouts, create partner links, add tracking pixels, scrape DMs, store inbound replies, promise earnings, imply paid hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorLeaderboardRankingReadinessCopy = [
+    'Rise With The Tribe Creator Leaderboard Ranking Readiness Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    candidateChallengeLine,
+    '',
+    'Ranking readiness checklist:',
+    '- Define aggregate ranking inputs before any public creator leaderboard: hosted challenge count, active hosted challenges, member reach, aggregate points, referral joins, and consent-cleared Feature Me submissions',
+    '- Confirm tie-break rules, stale challenge handling, dispute owner, moderation owner, privacy owner, and support handoff before publishing rankings',
+    '- Keep ranking evidence identity-safe and aggregate-only; do not export member identities, per-user logs, private submissions, support notes, or off-platform activity',
+    '- Review paid-hosting language separately so leaderboard placement never implies earnings, paid access, creator approval, revenue-share, payout eligibility, or guaranteed outcomes',
+    '- Route questionable snapshots to creator leaderboard snapshot review, creator moderation readiness, creator support handoff, paid hosting launch gate, marketplace QA, or entitlement QA before any public claim',
+    '',
+    'This is a manual creator leaderboard ranking readiness kit only. Do not create leaderboard records, publish rankings, expose member identities, export private member activity, export per-user logs, create contracts, collect payments, create purchases, write entitlements, approve paid hosting, start revenue-share, create payouts, create partner links, add tracking pixels, scrape DMs, store inbound replies, promise earnings, imply paid hosting is live, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorBrandedPagePreviewCopy = [
     'Rise With The Tribe Creator Branded Page Preview Kit:',
     '',
@@ -408,6 +426,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorBrandedPagePreviewCopy,
     creatorChallengeTemplateDraftCopy,
     creatorLeaderboardPreviewCopy,
+    creatorLeaderboardRankingReadinessCopy,
     creatorProfileCompletionCopy,
     creatorHostingOfferCopy,
     creatorPrivateInviteCopy,

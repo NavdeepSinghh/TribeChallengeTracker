@@ -10,7 +10,7 @@ Candidate features:
 
 - Coach profile.
 - Creator challenge templates. Initial copy kit, reviewable `creatorChallengeTemplateDrafts` records, admin-published free-first `creatorChallengeTemplates` catalog records, and dynamic create-picker ingestion are live across Web, iOS, and Android; paid hosting remains pending.
-- Creator leaderboard. Initial copy-only leaderboard preview kit plus reviewable aggregate `creatorLeaderboardSnapshots` records are live across Web, iOS, and Android using first-party hosted challenge movement only; paid-hosting ranking flows remain pending.
+- Creator leaderboard. Initial copy-only leaderboard preview kit, Creator Leaderboard Ranking Readiness Kit, and reviewable aggregate `creatorLeaderboardSnapshots` records are live across Web, iOS, and Android using first-party hosted challenge movement only; paid-hosting ranking flows remain pending until external paid-hosting policy, payout, marketplace, and entitlement evidence is proven.
 - Private challenge invite links. Copy-only kit and reviewable `creatorPrivateInviteLaunches` records are live across Web, iOS, and Android; auto-messaging, link-open tracking, recipient tracking, paid access, and paid-hosting promotion remain pending.
 - Branded challenge pages. Initial Coach Host blocks, copy-only branded page preview kit, and reviewable `creatorBrandedPages` records are live across Web, iOS, and Android; paid-hosting promotion remains pending.
 - Creator leaderboard.

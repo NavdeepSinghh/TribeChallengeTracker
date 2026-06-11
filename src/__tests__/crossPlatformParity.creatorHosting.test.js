@@ -280,6 +280,49 @@ describe('cross-platform creator hosting parity source checks', () => {
     });
   });
 
+  it('keeps Creator Leaderboard Ranking Readiness Kit manual across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR LEADERBOARD RANKING READINESS KIT');
+      expect(source).toContain('COPY RANKING READINESS KIT');
+      expect(source).toContain('creatorLeaderboardRankingReadinessCopy');
+      expect(source).toContain('Creator Leaderboard Ranking Readiness Kit');
+      expect(source).toContain('Ranking readiness checklist');
+      expect(source).toContain('aggregate ranking inputs');
+      expect(source).toContain('hosted challenge count');
+      expect(source).toContain('active hosted challenges');
+      expect(source).toContain('member reach');
+      expect(source).toContain('aggregate points');
+      expect(source).toContain('referral joins');
+      expect(source).toContain('consent-cleared Feature Me submissions');
+      expect(source).toContain('tie-break rules');
+      expect(source).toContain('stale challenge handling');
+      expect(source).toContain('dispute owner');
+      expect(source).toContain('moderation owner');
+      expect(source).toContain('privacy owner');
+      expect(source).toContain('support handoff');
+      expect(source).toContain('identity-safe and aggregate-only');
+      expect(source).toContain('Do not create leaderboard records');
+      expect(source).toContain('publish rankings');
+      expect(source).toContain('expose member identities');
+      expect(source).toContain('export private member activity');
+      expect(source).toContain('export per-user logs');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect payments');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('approve paid hosting');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape DMs');
+      expect(source).toContain('store inbound replies');
+      expect(source).toContain('promise earnings');
+      expect(source).toContain('imply paid hosting is live');
+      expect(source).toContain('pressure creators or members');
+    });
+  });
+
   it('keeps reviewable Creator Leaderboard Snapshots aggregate-only across platforms', () => {
     const webProfile = readWebProfileContracts();
     const webUserService = readWebUserServiceContracts();

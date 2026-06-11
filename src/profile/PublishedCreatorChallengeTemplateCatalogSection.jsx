@@ -4,7 +4,7 @@ export default function PublishedCreatorChallengeTemplateCatalogSection({
   return (
     <div style={{ borderRadius: 14, padding: 14, marginBottom: 12, background: 'rgba(52,211,153,0.06)', border: '1px solid rgba(52,211,153,0.16)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-        <p style={{ margin: 0, color: '#34D399', fontSize: 12, fontWeight: 900 }}>Published Creator Template Catalog</p>
+        <p style={{ margin: 0, color: '#34D399', fontSize: 12, fontWeight: 900 }}>PUBLISHED CREATOR TEMPLATE CATALOG</p>
         <span style={{ color: '#34D399', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>{publishedCreatorChallengeTemplates.length} LIVE</span>
       </div>
       <p style={{ margin: '7px 0 0', color: '#aaa', fontSize: 10, lineHeight: 1.4 }}>

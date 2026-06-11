@@ -50,6 +50,15 @@ describe('creator hosting copy contracts', () => {
     expect(copy.creatorLeaderboardPreviewCopy).toContain('Do not create leaderboard records');
     expect(copy.creatorLeaderboardPreviewCopy).toContain('export per-user logs');
     expect(copy.creatorLeaderboardPreviewCopy).toContain('imply paid hosting is live');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('Creator Leaderboard Ranking Readiness Kit');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('Ranking readiness checklist');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('aggregate ranking inputs');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('tie-break rules');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('identity-safe and aggregate-only');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('Do not create leaderboard records');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('publish rankings');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('approve paid hosting');
+    expect(copy.creatorLeaderboardRankingReadinessCopy).toContain('write entitlements');
     expect(copy.creatorPrivateInviteCopy).toContain('Private Creator Invite Kit');
     expect(copy.creatorPrivateInviteCopy).toContain('private Pro Coach Mode challenge');
     expect(copy.creatorPrivateInviteCopy).toContain('first-party challenge joins');
