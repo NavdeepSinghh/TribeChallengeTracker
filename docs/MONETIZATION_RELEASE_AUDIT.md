@@ -1,6 +1,6 @@
 # Monetization Release Audit
 
-Date: 2026-06-10
+Date: 2026-06-11
 
 This audit records the current evidence for the monetization and engagement roadmap across Web, iOS, and Android. It is not a paid-launch approval; it separates code-side parity from external App Store / Google Play evidence.
 
@@ -19,7 +19,7 @@ Result:
 - Web tests passed: 20 suites, 139 tests.
 - Web production build compiled successfully.
 - Static release verifier passed.
-- Focused cross-platform parity suites passed: 10 suites, 106 tests.
+- Focused cross-platform parity suites passed: 48 suites, 164 tests.
 - iOS simulator build passed with `** BUILD SUCCEEDED **`.
 - Android debug build passed with `BUILD SUCCESSFUL`.
 
@@ -200,7 +200,9 @@ Additional local checks after the full-gate audit:
 - Weekly Campaign content-bank parity coverage is split into `src/__tests__/crossPlatformParity.weeklyCampaignContentBank.test.js`, keeping FAQ carousel and caption bank checks separate from Live Q&A and recap checks.
 - Weekly Campaign copy-card definitions now split story/response cards into `src/profile/weeklyCampaignStoryCopyCardDefinitions.js` and Live/FAQ/caption cards into `src/profile/weeklyCampaignLiveCopyCardDefinitions.js` while preserving the same combined card export.
 - Weekly Campaign collab parity coverage is split between invite/follow-up/safety checks and lifecycle recap/renewal/rendering checks in `src/__tests__/crossPlatformParity.weeklyCampaignCollabLifecycle.test.js`.
-- Focused Web cross-platform parity suites passed: 47 suites, 112 tests.
+- Focused Web cross-platform parity suites passed: 48 suites, 164 tests.
+- Store policy/evidence parity was rechecked on 2026-06-11: `src/__tests__/crossPlatformParity.storeEvidence.test.js`, `src/__tests__/crossPlatformParity.storePolicy.test.js`, and `src/__tests__/crossPlatformParity.test.js` passed together after iOS gained the full Store Test Evidence Decision Reply Kit archived path, Data Safety Disclosure Kit wording, and policy/support source label.
+- Full focused Web cross-platform parity was rechecked on 2026-06-11 with `npm test -- --testPathPattern=crossPlatformParity --watchAll=false --silent`: 48 suites and 164 tests passed.
 - Static release verifier passed.
 - Profile parity contract labels now live in `src/profile/profileParityContractLabels.js`, keeping the cross-platform profile parity label list separate from engagement prompt constants while preserving the same `PROFILE_PARITY_CONTRACT_LABELS` export through `src/profile/profileEngagementConstants.js`.
 - Android Kotlin compile passed with `:app:compileDebugKotlin`.

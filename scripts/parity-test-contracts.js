@@ -14,6 +14,7 @@ const PARITY_TEST_FILES = [
   "crossPlatformParity.communityContent.test.js",
   "crossPlatformParity.communityExperiments.test.js",
   "crossPlatformParity.challengePacks.test.js",
+  "crossPlatformParity.challengeCompletionRecap.test.js",
   "crossPlatformParity.supportBilling.test.js",
   "crossPlatformParity.entitlementRecoveryReview.test.js",
   "crossPlatformParity.subscriptionLifecycle.test.js",
