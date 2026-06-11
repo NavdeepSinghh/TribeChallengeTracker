@@ -439,6 +439,35 @@ describe('cross-platform creator hosting readiness parity source checks', () => 
     expect(firestoreRules).toContain('request.resource.data.keys().hasAll(["uid", "profileReady", "hostedChallengeCount", "revenueReadyCount", "hostingApplicationStatus", "launchGateReady", "status", "isPaidHostingLive"])');
   });
 
+  it('keeps Creator Paid Hosting Launch Gate Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('CREATOR PAID HOSTING LAUNCH GATE DECISION REPLY KIT');
+      expect(source).toContain('Creator Paid Hosting Launch Gate Decision Reply Kit');
+      expect(source).toContain('COPY LAUNCH GATE DECISION REPLIES');
+      expect(source).toContain('APPROVED FOR MANUAL PAID-HOSTING READINESS REVIEW');
+      expect(source).toContain('WAITING ON LAUNCH GATE READINESS');
+      expect(source).toContain('NOT READY FOR PAID-HOSTING HANDOFF');
+      expect(source).toContain('DECLINED FOR PAID-HOSTING HANDOFF');
+      expect(source).toContain('Do not approve paid hosting');
+      expect(source).toContain('create contracts');
+      expect(source).toContain('collect signatures');
+      expect(source).toContain('collect payout details');
+      expect(source).toContain('collect tax details');
+      expect(source).toContain('verify identities');
+      expect(source).toContain('start revenue-share');
+      expect(source).toContain('create payouts');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('grant paid access');
+      expect(source).toContain('bypass marketplace policy');
+      expect(source).toContain('submit store review');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure creators or members');
+    });
+  });
+
   it('keeps Creator Paid Hosting Hold Plan Kit wired on all platforms without launch side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {
