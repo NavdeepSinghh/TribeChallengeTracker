@@ -113,6 +113,37 @@ describe('cross-platform store launch decision parity source checks', () => {
     expect(firestoreRules).toContain('match /paidLaunchDecisionReviews/{reviewId}');
   });
 
+  it('keeps Paid Launch Decision Review Decision Reply Kit copy-only across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('PAID LAUNCH DECISION REVIEW DECISION REPLY KIT');
+      expect(source).toContain('COPY PAID LAUNCH REVIEW DECISION REPLIES');
+      expect(source).toContain('paidLaunchDecisionReviewDecisionReplyCopy');
+      expect(source).toContain('Manual launch review decision replies');
+      expect(source).toContain('APPROVED FOR FINAL LAUNCH REVIEW');
+      expect(source).toContain('WAITING ON LAUNCH EVIDENCE');
+      expect(source).toContain('NOT READY FOR PAID LAUNCH');
+      expect(source).toContain('DECLINED FOR PAID LAUNCH');
+      expect(source).toContain('manual Paid Launch Decision Review Decision Reply Kit only');
+      expect(source).toContain('Do not flip paid access live');
+      expect(source).toContain('write entitlements');
+      expect(source).toContain('create purchases');
+      expect(source).toContain('process payments');
+      expect(source).toContain('process refunds');
+      expect(source).toContain('cancel subscriptions');
+      expect(source).toContain('collect payment details');
+      expect(source).toContain('submit store review');
+      expect(source).toContain('claim launch readiness');
+      expect(source).toContain('claim sandbox proof');
+      expect(source).toContain('mark paid access live');
+      expect(source).toContain('add tracking pixels');
+      expect(source).toContain('scrape messages');
+      expect(source).toContain('bypass App Store or Google Play policy');
+      expect(source).toContain('auto-message users');
+      expect(source).toContain('pressure members');
+    });
+  });
+
   it('keeps Sandbox Purchase Test Plan wired without live charge or entitlement side effects', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

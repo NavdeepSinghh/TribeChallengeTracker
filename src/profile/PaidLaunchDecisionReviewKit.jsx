@@ -9,6 +9,22 @@ export default function PaidLaunchDecisionReviewKit({
   reviewingPaidLaunchDecisionReviewId,
   setPaidLaunchDecisionReviewNotes = () => {},
 }) {
+  const paidLaunchDecisionReviewDecisionReplyCopy = `Rise With The Tribe Paid Launch Decision Review Decision Reply Kit:
+
+APPROVED FOR FINAL LAUNCH REVIEW:
+The paid launch decision review record is approved for final human launch review. Confirm product IDs, backend receipt validation, sandbox/license-test evidence, restore flow, support/refund handoff, entitlement QA, policy links, and reviewer notes before any paid-access promotion.
+
+WAITING ON LAUNCH EVIDENCE:
+Keep this paid launch decision record open. Add stronger product setup proof, sandbox/license-test evidence, backend validation notes, entitlement QA, support/refund coverage, policy links, or reviewer-prep context before launch review.
+
+NOT READY FOR PAID LAUNCH:
+Do not use this record as launch approval. A blocker remains in product setup, receipt validation, store evidence, restore behavior, entitlement QA, support policy, privacy/data safety, or marketplace review readiness.
+
+DECLINED FOR PAID LAUNCH:
+This record is not acceptable for final paid launch review right now. Rebuild the launch decision packet around verified store evidence, support readiness, entitlement QA, policy compliance, and marketplace-safe wording.
+
+This is a manual Paid Launch Decision Review Decision Reply Kit only. Do not flip paid access live, write entitlements, create purchases, process payments, process refunds, cancel subscriptions, collect payment details, submit store review, claim launch readiness, claim sandbox proof, mark paid access live, add tracking pixels, scrape messages, bypass App Store or Google Play policy, auto-message users, or pressure members.`;
+
   return (
     <div style={{ border: '1px solid rgba(248,113,113,0.22)', borderRadius: 12, padding: 12, background: 'rgba(248,113,113,0.06)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center', marginBottom: 8 }}>
@@ -48,7 +64,36 @@ export default function PaidLaunchDecisionReviewKit({
         <div style={{ color: '#777', fontSize: 11 }}>
           {approvedPaidLaunchDecisionReviews.length} approved manual records. Approved records still do not flip paid access live, write entitlements, create purchases, process payments, process refunds, submit store review, claim launch readiness, add tracking pixels, scrape messages, or bypass marketplace policy.
         </div>
+        <div style={{ border: '1px solid rgba(251,191,36,0.2)', borderRadius: 10, padding: 10, background: 'rgba(251,191,36,0.06)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ color: '#FBBF24', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>PAID LAUNCH DECISION REVIEW DECISION REPLY KIT</div>
+              <div style={{ color: '#9CA3AF', fontSize: 11, marginTop: 4 }}>Manual launch review decision replies. Copy-only: no paid-live flip, entitlement writes, purchases, payments, refunds, cancellations, payment-detail collection, store submission, launch-readiness claims, sandbox-proof claims, tracking, scraping, or marketplace bypass.</div>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigator.clipboard?.writeText(paidLaunchDecisionReviewDecisionReplyCopy)}
+              style={{ border: '1px solid rgba(251,191,36,0.45)', background: 'rgba(251,191,36,0.12)', color: '#FDE68A', borderRadius: 8, padding: '7px 9px', fontSize: 9, fontWeight: 900, fontFamily: 'monospace', cursor: 'pointer' }}
+            >
+              COPY PAID LAUNCH REVIEW DECISION REPLIES
+            </button>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 6, marginTop: 10 }}>
+            <MiniMetric label="OPEN" value={paidLaunchDecisionReviewQueue.length} />
+            <MiniMetric label="APPROVED" value={approvedPaidLaunchDecisionReviews.length} />
+            <MiniMetric label="READY" value={paidLaunchDecisionReviewQueue.reduce((sum, review) => sum + Number(review.readyCheckCount || 0), 0)} />
+          </div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function MiniMetric({ label, value }) {
+  return (
+    <div style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: 8, background: 'rgba(0,0,0,0.18)' }}>
+      <div style={{ color: '#9CA3AF', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>{label}</div>
+      <div style={{ color: '#FDE68A', fontSize: 14, fontWeight: 900, marginTop: 2 }}>{value}</div>
     </div>
   );
 }
