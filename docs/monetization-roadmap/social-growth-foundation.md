@@ -26,7 +26,7 @@ Features:
 
 ### Weekly Campaign Social Growth Operations Index
 
-The Weekly Campaign social-growth operations inventory now lives in `docs/monetization-roadmap/weekly-campaign-social-growth.md` so the Phase 1 foundation stays readable while include-aware roadmap checks preserve scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, re-invite, no-automation, no-tracking, consent, app-first, referral, and content-calendar sequencing evidence.
+The Weekly Campaign social-growth operations inventory now lives in `docs/monetization-roadmap/weekly-campaign-social-growth.md` so the Phase 1 foundation stays readable while include-aware roadmap checks preserve scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, re-invite, no-automation, no-tracking, consent, app-first, referral, and content-calendar sequencing evidence.
 
 <!-- include: weekly-campaign-social-growth.md -->
 

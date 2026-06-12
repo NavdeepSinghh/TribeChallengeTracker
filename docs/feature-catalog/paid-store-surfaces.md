@@ -6,7 +6,7 @@ Tribe Pro entitlement behavior, Pro analytics, creator/coach, partner-perk, camp
 
 ## Weekly Campaign Copy Surface Index
 
-Weekly Campaign scheduler, launch-card, preflight, review, Story, Live, FAQ, caption, collab, retention, and re-invite copy surfaces now live in `docs/feature-catalog/weekly-campaign-copy-surfaces.md` so paid-access surfaces stay readable while preserving the same no-automation, no-tracking, no-paid-live, consent, and app-first guardrails.
+Weekly Campaign scheduler, launch-card, preflight, review, Story, Live, FAQ, caption, collab, retention, support-triage, and re-invite copy surfaces now live in `docs/feature-catalog/weekly-campaign-copy-surfaces.md` so paid-access surfaces stay readable while preserving the same no-automation, no-tracking, no-paid-live, consent, and app-first guardrails.
 
 <!-- include: weekly-campaign-copy-surfaces.md -->
 
