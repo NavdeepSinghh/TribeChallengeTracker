@@ -23,6 +23,7 @@ export function buildStoreSupportCopyCards({
   storeReviewDemoAccessQaCopy,
   storeReviewSupportHandoffQaCopy,
   storeReviewEvidencePacketIndexCopy,
+  storeReviewFinalSignoffCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -241,6 +242,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy an evidence packet index without creating fake proof, exporting tokens, writing entitlements, or claiming paid access readiness.',
       buttonLabel: 'COPY PACKET INDEX',
       copyText: storeReviewEvidencePacketIndexCopy,
+    },
+    {
+      title: 'STORE REVIEW FINAL SIGN-OFF KIT',
+      subtitle: 'Human-reviewed build, evidence, policy, and reply gate',
+      status: 'FINAL SIGN-OFF',
+      accent: '#DBEAFE',
+      body: 'Copy a final sign-off checklist without submitting review, exposing credentials, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY FINAL SIGN-OFF',
+      copyText: storeReviewFinalSignoffCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

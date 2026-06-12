@@ -109,6 +109,12 @@ const STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS = [
   'Link every index row to a sanitized evidence note, fixed build reference, support handoff, policy URL, screenshot/caption owner, and reviewedAt value',
   'Keep the packet index internal until evidence owner, policy-link owner, support owner, and resubmission owner confirm it matches the fixed build',
 ];
+const STORE_REVIEW_FINAL_SIGNOFF_ITEMS = [
+  'Confirm fixed build, reviewer reply, evidence packet index, policy links, data safety, demo access, screenshots, metadata, and support handoff are all reviewed',
+  'Require one named owner for build readiness, evidence, policy links, support routing, data safety, screenshots, metadata, and reviewer-note copy',
+  'Hold resubmission if sandbox/license-test proof, restore/sync, safe-denial coverage, demo access, policy links, or support handoff still needs review',
+  'Keep final sign-off internal until a human confirms the packet is ready for console work without paid-live claims or credential exposure',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -191,6 +197,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewDemoAccessQaItems: STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
       storeReviewSupportHandoffQaItems: STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
       storeReviewEvidencePacketIndexItems: STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS,
+      storeReviewFinalSignoffItems: STORE_REVIEW_FINAL_SIGNOFF_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -224,6 +231,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewDemoAccessQaCopy: lifecycleCopy.storeReviewDemoAccessQaCopy,
       storeReviewSupportHandoffQaCopy: lifecycleCopy.storeReviewSupportHandoffQaCopy,
       storeReviewEvidencePacketIndexCopy: lifecycleCopy.storeReviewEvidencePacketIndexCopy,
+      storeReviewFinalSignoffCopy: lifecycleCopy.storeReviewFinalSignoffCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -468,6 +476,24 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewEvidencePacketIndexCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewEvidencePacketIndexCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewEvidencePacketIndexCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('Store Review Final Sign-Off Kit');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('Confirm fixed build, reviewer reply');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('Manual final sign-off checklist');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('reviewer reply packet');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('metadata diff');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('resubmission owner');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('App Store Connect or Play Console work');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewFinalSignoffCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -506,6 +532,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW DEMO ACCESS QA KIT',
       'STORE REVIEW SUPPORT HANDOFF QA KIT',
       'STORE REVIEW EVIDENCE PACKET INDEX KIT',
+      'STORE REVIEW FINAL SIGN-OFF KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

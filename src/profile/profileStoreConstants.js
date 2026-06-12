@@ -167,6 +167,12 @@ export const STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS = [
   'Link every index row to a sanitized evidence note, fixed build reference, support handoff, policy URL, screenshot/caption owner, and reviewedAt value',
   'Keep the packet index internal until evidence owner, policy-link owner, support owner, and resubmission owner confirm it matches the fixed build',
 ];
+export const STORE_REVIEW_FINAL_SIGNOFF_ITEMS = [
+  'Confirm fixed build, reviewer reply, evidence packet index, policy links, data safety, demo access, screenshots, metadata, and support handoff are all reviewed',
+  'Require one named owner for build readiness, evidence, policy links, support routing, data safety, screenshots, metadata, and reviewer-note copy',
+  'Hold resubmission if sandbox/license-test proof, restore/sync, safe-denial coverage, demo access, policy links, or support handoff still needs review',
+  'Keep final sign-off internal until a human confirms the packet is ready for console work without paid-live claims or credential exposure',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
