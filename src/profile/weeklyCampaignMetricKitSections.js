@@ -15,6 +15,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewHandoffQaBridgeCopy,
   launchRetrospectiveNextCampaignReviewOwnerHandoffCopy,
   launchRetrospectiveNextCampaignReviewOwnerQaCopy,
+  launchRetrospectiveNextCampaignReviewNotesHandoffCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -943,6 +944,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the approved review owner handoff, callback evidence, first-party signal summary, review notes owner, review decision owner, support route, consent queue, and paid-language hold before campaign review starts.',
       buttonLabel: 'COPY REVIEW OWNER QA',
       copyText: launchRetrospectiveNextCampaignReviewOwnerQaCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Notes Handoff Kit',
+      subtitle: 'Manual handoff into review notes',
+      status: 'NOTES',
+      accent: '#86EFAC',
+      background: 'rgba(134,239,172,0.05)',
+      border: '1px solid rgba(134,239,172,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off approved owner QA into review notes owner, review decision owner, consent-safe proof, support route, consent queue, and paid-language hold before Weekly Campaign Review Kit notes are copied.',
+      buttonLabel: 'COPY REVIEW NOTES',
+      copyText: launchRetrospectiveNextCampaignReviewNotesHandoffCopy,
     },
   ];
 }
