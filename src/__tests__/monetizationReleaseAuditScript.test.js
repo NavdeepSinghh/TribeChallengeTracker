@@ -205,7 +205,7 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('docs/feature-catalog/store-product-catalog.md');
     expect(content).toContain('include-aware release checks preserving product IDs, receipt validation, restore/sync, entitlement-recovery, store-test evidence, and paid-launch guardrails');
     expect(content).toContain('docs/feature-catalog/weekly-campaign-copy-surfaces.md');
-    expect(content).toContain('include-aware release checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, re-invite, no-automation, no-tracking, no-paid-live, consent, and app-first guardrails');
+    expect(content).toContain('include-aware release checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, support-readiness, re-invite, no-automation, no-tracking, no-paid-live, consent, and app-first guardrails');
     expect(content).toContain('docs/instagram-content-bank/weekly-campaign-captions.md');
     expect(content).toContain('include-aware campaign checks preserving the same launch, education, highlight, comeback, progress-proof, admin-note, and recap copy');
     expect(content).toContain('docs/instagram-content-bank/weekly-campaign-weekend-captions.md');
@@ -249,7 +249,7 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('docs/monetization-roadmap/social-growth-foundation.md');
     expect(content).toContain('include-aware roadmap checks preserving the Phase 1 Weekly Campaign, referral, Pro, paid-pack, creator/coach, partner, and store-readiness sequencing evidence');
     expect(content).toContain('docs/monetization-roadmap/weekly-campaign-social-growth.md');
-    expect(content).toContain('include-aware roadmap checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, re-invite, no-automation, no-tracking, consent, app-first, referral, and content-calendar sequencing evidence');
+    expect(content).toContain('include-aware roadmap checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, support-readiness, re-invite, no-automation, no-tracking, consent, app-first, referral, and content-calendar sequencing evidence');
     expect(content).toContain('docs/monetization-roadmap/pro-subscription-foundation.md');
     expect(content).toContain('include-aware roadmap checks preserving entitlement, store-readiness, recovery, evidence, analytics, creator/coach, referral-reward, and paid-access guardrail sequencing evidence');
     expect(content).toContain('crossPlatformParity.creatorHostingApplicationReview.test.js');

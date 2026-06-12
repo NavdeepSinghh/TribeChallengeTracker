@@ -26,6 +26,7 @@ const ROADMAP_TOKENS = [
   "Weekly Campaign Social Growth Operations Index",
   "Weekly Campaign Social Growth Operations",
   "Weekly Campaign Scheduler",
+  "Weekly Campaign Support Readiness Script Kit",
   "Weekly Campaign Re-Invite Kit",
   "Instagram Content Calendar",
   "docs/monetization-roadmap/pro-subscription-foundation.md",
@@ -115,6 +116,7 @@ const FEATURE_CATALOG_TOKENS = [
   "docs/feature-catalog/weekly-campaign-copy-surfaces.md",
   "Weekly Campaign Copy Surface Index",
   "Weekly Campaign Copy Surfaces",
+  "Web admin profiles include a Weekly Campaign Support Readiness Script Kit",
 ];
 
 module.exports = {

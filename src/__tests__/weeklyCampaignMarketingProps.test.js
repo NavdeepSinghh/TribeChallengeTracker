@@ -32,9 +32,13 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.isAdmin).toBe(false);
     expect(props.weeklyCampaignPrompt).toEqual(weeklyCampaignPrompt);
     expect(props.weeklyCampaignLaunchCardCopy).toContain("Card headline: Seven Day Reset");
-    expect(props.weeklyCampaignCollabCopyCards).toHaveLength(8);
+    expect(props.weeklyCampaignCollabCopyCards).toHaveLength(9);
     expect(props.weeklyCampaignCollabCopyCards[6].title).toBe("Weekly Campaign Support Triage Kit");
     expect(props.weeklyCampaignCollabCopyCards[6].copyText).toContain("create support tickets outside the app");
+    expect(props.weeklyCampaignCollabCopyCards[7].title).toBe("Weekly Campaign Support Readiness Script Kit");
+    expect(props.weeklyCampaignCollabCopyCards[7].copyText).toContain("Manual support readiness script");
+    expect(props.weeklyCampaignCollabCopyCards[7].copyText).toContain("Confirm the member's campaign question is resolved");
+    expect(props.weeklyCampaignCollabCopyCards[7].copyText).toContain("Do not auto-message users");
     expect(props.weeklyCampaignCommentReplyCopy).toContain("Q: How do I join?");
     expect(props.instagramContentCalendarCopy).toContain("Instagram Content Calendar");
     expect(Object.keys(props).sort()).toEqual([
