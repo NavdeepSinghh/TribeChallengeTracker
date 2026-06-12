@@ -221,6 +221,12 @@ export const STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS = [
   'Route rejection, metadata rejection, or action-required states back to root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before any follow-up',
   'Keep status watch internal until a human confirms the console state without exposing credentials, private data, purchase tokens, paid-live claims, or approval claims',
 ];
+export const STORE_REVIEW_OUTCOME_HANDOFF_ITEMS = [
+  'Route approved, rejected, metadata rejected, action required, in review, waiting for review, and needs-owner-review outcomes to the right internal owner before any public follow-up',
+  'For approved states, confirm paid launch gate, entitlement QA, store evidence, support handoff, policy links, and launch messaging before any paid-live or approval language is used',
+  'For rejected, metadata rejected, or action-required states, reopen root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before changing reviewer-facing copy',
+  'Keep outcome handoff internal until a human confirms the console state, owner, next action, and evidence reference without exposing credentials, private data, purchase tokens, or approval claims',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

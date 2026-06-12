@@ -32,6 +32,7 @@ export function buildStoreSupportCopyCards({
   storeReviewReviewerNotesPasteQaCopy,
   storeReviewConsoleSubmissionChecklistCopy,
   storeReviewSubmissionStatusWatchCopy,
+  storeReviewOutcomeHandoffCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -331,6 +332,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a submission status watch checklist without changing review status, editing console fields, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY STATUS WATCH',
       copyText: storeReviewSubmissionStatusWatchCopy,
+    },
+    {
+      title: 'STORE REVIEW OUTCOME HANDOFF KIT',
+      subtitle: 'Approved, rejected, action-required owner routing',
+      status: 'OUTCOME HANDOFF',
+      accent: '#FED7AA',
+      body: 'Copy an outcome handoff checklist without announcing approval, changing review status, writing entitlements, or marking paid access live.',
+      buttonLabel: 'COPY OUTCOME HANDOFF',
+      copyText: storeReviewOutcomeHandoffCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

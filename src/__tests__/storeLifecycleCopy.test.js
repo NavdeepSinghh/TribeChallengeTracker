@@ -163,6 +163,12 @@ const STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS = [
   'Route rejection, metadata rejection, or action-required states back to root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before any follow-up',
   'Keep status watch internal until a human confirms the console state without exposing credentials, private data, purchase tokens, paid-live claims, or approval claims',
 ];
+const STORE_REVIEW_OUTCOME_HANDOFF_ITEMS = [
+  'Route approved, rejected, metadata rejected, action required, in review, waiting for review, and needs-owner-review outcomes to the right internal owner before any public follow-up',
+  'For approved states, confirm paid launch gate, entitlement QA, store evidence, support handoff, policy links, and launch messaging before any paid-live or approval language is used',
+  'For rejected, metadata rejected, or action-required states, reopen root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before changing reviewer-facing copy',
+  'Keep outcome handoff internal until a human confirms the console state, owner, next action, and evidence reference without exposing credentials, private data, purchase tokens, or approval claims',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -254,6 +260,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewReviewerNotesPasteQaItems: STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS,
       storeReviewConsoleSubmissionChecklistItems: STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
       storeReviewSubmissionStatusWatchItems: STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
+      storeReviewOutcomeHandoffItems: STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -296,6 +303,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewReviewerNotesPasteQaCopy: lifecycleCopy.storeReviewReviewerNotesPasteQaCopy,
       storeReviewConsoleSubmissionChecklistCopy: lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy,
       storeReviewSubmissionStatusWatchCopy: lifecycleCopy.storeReviewSubmissionStatusWatchCopy,
+      storeReviewOutcomeHandoffCopy: lifecycleCopy.storeReviewOutcomeHandoffCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -730,6 +738,29 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('Store Review Outcome Handoff Kit');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('Route approved, rejected');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('Manual outcome handoff checklist');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('paid launch gate review');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('launch messaging owner');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('needs owner review');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('evidence reference');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('change review status from client code');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('announce approval');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('announce paid launch');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -777,6 +808,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW REVIEWER NOTES PASTE QA KIT',
       'STORE REVIEW CONSOLE SUBMISSION CHECKLIST KIT',
       'STORE REVIEW SUBMISSION STATUS WATCH KIT',
+      'STORE REVIEW OUTCOME HANDOFF KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

@@ -29,6 +29,7 @@ import {
   STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS,
   STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
   STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
+  STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -84,6 +85,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewReviewerNotesPasteQaItems: STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS,
     storeReviewConsoleSubmissionChecklistItems: STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
     storeReviewSubmissionStatusWatchItems: STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
+    storeReviewOutcomeHandoffItems: STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,
