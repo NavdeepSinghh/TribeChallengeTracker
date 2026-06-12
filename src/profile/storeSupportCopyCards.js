@@ -14,6 +14,7 @@ export function buildStoreSupportCopyCards({
   storeReviewResponseCopy,
   storeReviewEvidenceGapDecisionCopy,
   storeReviewEvidenceGapTriageCopy,
+  storeReviewPolicyLinkQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -151,6 +152,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy evidence-gap decision replies without creating fake proof, submitting review, exposing private data, unlocking paid access, or claiming approval.',
       buttonLabel: 'COPY GAP DECISION REPLIES',
       copyText: storeReviewEvidenceGapDecisionCopy,
+    },
+    {
+      title: 'STORE REVIEW POLICY LINK QA KIT',
+      subtitle: 'Privacy, terms, support, data deletion, and permission link checks',
+      status: 'POLICY QA',
+      accent: '#86EFAC',
+      body: 'Copy policy-link QA checks without submitting review, exposing credentials, changing entitlements, or claiming paid access is live.',
+      buttonLabel: 'COPY POLICY LINK QA',
+      copyText: storeReviewPolicyLinkQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

@@ -55,6 +55,12 @@ const STORE_REVIEW_EVIDENCE_GAP_DECISION_ITEMS = [
   'Mark not-ready when the gap lacks product IDs, platform context, support/refund handoff, entitlement QA, or reviewed evidence notes',
   'Decline gaps that rely on fake proof, private data, credentials, purchase tokens, unreviewed screenshots, or pressure to resubmit',
 ];
+const STORE_REVIEW_POLICY_LINK_QA_ITEMS = [
+  'Open every public policy, support, and data-deletion link from the exact reviewer notes before resubmission',
+  'Confirm permission explanations match the current build for media uploads, notifications, optional health sync, purchases, restore/sync, and account deletion',
+  'Check that reviewer notes point to marketplace refund/support paths without promising in-app refunds, manual entitlements, or paid access',
+  'Keep policy-link QA copy-only until the fixed build, data safety notes, screenshots, support handoff, and evidence packet are reviewed',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -128,6 +134,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
       storeReviewEvidenceGapDecisionItems: STORE_REVIEW_EVIDENCE_GAP_DECISION_ITEMS,
       storeReviewEvidenceGapTriageItems: STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS,
+      storeReviewPolicyLinkQaItems: STORE_REVIEW_POLICY_LINK_QA_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -152,6 +159,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewResponseCopy: lifecycleCopy.storeReviewResponseCopy,
       storeReviewEvidenceGapDecisionCopy: lifecycleCopy.storeReviewEvidenceGapDecisionCopy,
       storeReviewEvidenceGapTriageCopy: lifecycleCopy.storeReviewEvidenceGapTriageCopy,
+      storeReviewPolicyLinkQaCopy: lifecycleCopy.storeReviewPolicyLinkQaCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -231,6 +239,20 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewEvidenceGapDecisionCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewEvidenceGapDecisionCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewEvidenceGapDecisionCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('Store Review Policy Link QA Kit');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('Open every public policy');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('Manual policy-link QA checklist');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('Privacy, Support');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('optional HealthKit / Health Connect');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('purchase validation');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -260,6 +282,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW RESPONSE KIT',
       'STORE REVIEW EVIDENCE GAP TRIAGE KIT',
       'STORE REVIEW EVIDENCE GAP DECISION REPLY KIT',
+      'STORE REVIEW POLICY LINK QA KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

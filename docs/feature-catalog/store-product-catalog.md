@@ -62,6 +62,7 @@ Shared behavior:
 - Web admin profile surfaces show a Store Review Resubmission Readiness Kit with policy-fix, reviewer-note, screenshot/caption, demo-account, support-link, and evidence-packet checks after App Review or Play follow-up.
 - Web admin profile surfaces show a Store Review Evidence Gap Triage Kit with missing matrix case, safe-denial, validation, screenshot/caption, reviewer-note, policy-link, and support/refund handoff checks before resubmission.
 - Web admin profile surfaces show a Store Review Evidence Gap Decision Reply Kit with approved, waiting, not-ready, and declined manual replies for evidence-gap triage before reviewer notes or resubmission prep move forward.
+- Web admin profile surfaces show a Store Review Policy Link QA Kit with privacy, terms, support, data deletion, permission explanation, marketplace refund, data safety, and reviewer-note checks before review resubmission.
 - Firebase Functions exposes callable `getPurchaseValidationReadiness` so admin profile surfaces can check App Store / Play credential readiness without submitting a fake purchase or writing entitlements.
 - Product IDs do not unlock features directly.
 - Purchase and receipt-validation work must write the shared entitlement fields before gated UI unlocks.
