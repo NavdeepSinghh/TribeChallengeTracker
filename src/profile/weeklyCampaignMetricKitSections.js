@@ -6,6 +6,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionCopy,
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignFinalPostingPrepHandoffCopy,
+  launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -781,6 +782,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Hand off approved launch copy into the manual posting prep owner, final QA owner, support route, consent queue, paid-language hold, and no-paid-live note before final posting prep QA starts.',
       buttonLabel: 'COPY POSTING PREP HANDOFF',
       copyText: launchRetrospectiveNextCampaignFinalPostingPrepHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Final Posting Prep QA Bridge Kit',
+      subtitle: 'Manual QA before posting operator brief',
+      status: 'POSTING PREP QA',
+      accent: '#4338CA',
+      background: 'rgba(67,56,202,0.05)',
+      border: '1px solid rgba(67,56,202,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check the approved final posting prep handoff, launch copy, support route, consent queue, paid-language hold, no-paid-live note, and operator brief owner before manual posting operator prep starts.',
+      buttonLabel: 'COPY POSTING PREP QA BRIDGE',
+      copyText: launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy,
     },
   ];
 }
