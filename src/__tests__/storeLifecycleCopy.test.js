@@ -133,6 +133,12 @@ const STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS = [
   'Mark not-ready when the hold still lacks a named owner, unblock condition, reviewed evidence, or safe-denial coverage for the affected platform',
   'Decline release requests that depend on fake proof, private credentials, purchase tokens, public metadata claims, paid-live claims, or pressure to resubmit',
 ];
+const STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS = [
+  'Compare the fixed build, hold-release decisions, reviewer reply, evidence packet, policy links, support handoff, screenshots, metadata, demo access, and data safety before reviewer notes are pasted',
+  'Confirm every released hold has a matching evidence packet row, reviewer-note impact, policy/support link, fixed-build reference, and owner sign-off',
+  'Flag mismatches between console draft fields, public metadata, screenshots, permission copy, data safety, support routing, and reviewer-facing reply language',
+  'Keep the packet QA internal until resubmission owner confirms no credentials, purchase tokens, private data, paid-live claims, or approval claims are present',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -219,6 +225,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewConsoleDraftQaItems: STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
       storeReviewSubmissionHoldReasonsItems: STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
       storeReviewHoldReleaseDecisionItems: STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS,
+      storeReviewResubmissionPacketQaItems: STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -256,6 +263,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewConsoleDraftQaCopy: lifecycleCopy.storeReviewConsoleDraftQaCopy,
       storeReviewSubmissionHoldReasonsCopy: lifecycleCopy.storeReviewSubmissionHoldReasonsCopy,
       storeReviewHoldReleaseDecisionCopy: lifecycleCopy.storeReviewHoldReleaseDecisionCopy,
+      storeReviewResubmissionPacketQaCopy: lifecycleCopy.storeReviewResubmissionPacketQaCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -582,6 +590,27 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('Store Review Resubmission Packet QA Kit');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('Compare the fixed build');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('Manual resubmission packet QA checklist');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('released holds');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('evidence packet index');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('console draft notes');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('reviewer-facing copy factual');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('paste reviewer notes without packet QA');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewResubmissionPacketQaCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -624,6 +653,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW CONSOLE DRAFT QA KIT',
       'STORE REVIEW SUBMISSION HOLD REASONS KIT',
       'STORE REVIEW HOLD RELEASE DECISION KIT',
+      'STORE REVIEW RESUBMISSION PACKET QA KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

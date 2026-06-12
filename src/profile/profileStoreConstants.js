@@ -191,6 +191,12 @@ export const STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS = [
   'Mark not-ready when the hold still lacks a named owner, unblock condition, reviewed evidence, or safe-denial coverage for the affected platform',
   'Decline release requests that depend on fake proof, private credentials, purchase tokens, public metadata claims, paid-live claims, or pressure to resubmit',
 ];
+export const STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS = [
+  'Compare the fixed build, hold-release decisions, reviewer reply, evidence packet, policy links, support handoff, screenshots, metadata, demo access, and data safety before reviewer notes are pasted',
+  'Confirm every released hold has a matching evidence packet row, reviewer-note impact, policy/support link, fixed-build reference, and owner sign-off',
+  'Flag mismatches between console draft fields, public metadata, screenshots, permission copy, data safety, support routing, and reviewer-facing reply language',
+  'Keep the packet QA internal until resubmission owner confirms no credentials, purchase tokens, private data, paid-live claims, or approval claims are present',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

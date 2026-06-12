@@ -24,6 +24,7 @@ import {
   STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
   STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
   STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS,
+  STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -74,6 +75,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewConsoleDraftQaItems: STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
     storeReviewSubmissionHoldReasonsItems: STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
     storeReviewHoldReleaseDecisionItems: STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS,
+    storeReviewResubmissionPacketQaItems: STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

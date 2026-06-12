@@ -27,6 +27,7 @@ export function buildStoreSupportCopyCards({
   storeReviewConsoleDraftQaCopy,
   storeReviewSubmissionHoldReasonsCopy,
   storeReviewHoldReleaseDecisionCopy,
+  storeReviewResubmissionPacketQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -281,6 +282,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy hold-release decision replies without removing holds without reviewed proof, editing console fields, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY HOLD DECISIONS',
       copyText: storeReviewHoldReleaseDecisionCopy,
+    },
+    {
+      title: 'STORE REVIEW RESUBMISSION PACKET QA KIT',
+      subtitle: 'Fixed build, evidence, policy, and reply packet check',
+      status: 'PACKET QA',
+      accent: '#E9D5FF',
+      body: 'Copy a resubmission packet QA checklist without pasting reviewer notes, editing console fields, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY PACKET QA',
+      copyText: storeReviewResubmissionPacketQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
