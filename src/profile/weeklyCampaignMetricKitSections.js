@@ -11,6 +11,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy,
   launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy,
   launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy,
+  launchRetrospectiveNextCampaignReviewHandoffBridgeCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -871,6 +872,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check callback handoff evidence, manual post-complete status, approved packet reference, support note, consent note, first-party monitor owner, and review handoff owner before review handoff starts.',
       buttonLabel: 'COPY CALLBACK QA BRIDGE',
       copyText: launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Handoff Bridge Kit',
+      subtitle: 'Manual bridge into review handoff',
+      status: 'REVIEW BRIDGE',
+      accent: '#15803D',
+      background: 'rgba(21,128,61,0.05)',
+      border: '1px solid rgba(21,128,61,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Bridge approved callback QA into review handoff owner, weekly campaign review owner, first-party signal summary, support route, consent queue, and paid-language hold before review handoff starts.',
+      buttonLabel: 'COPY REVIEW BRIDGE',
+      copyText: launchRetrospectiveNextCampaignReviewHandoffBridgeCopy,
     },
   ];
 }
