@@ -31,6 +31,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionReviewQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy,
+  launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureReceiptHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy,
@@ -1303,6 +1304,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'QA the final closure handoff, approved completion review QA reference, support route, consent queue, paid-language hold, and no-paid-live note before the closure packet is closed.',
       buttonLabel: 'COPY CLOSURE QA',
       copyText: launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Final Closure Receipt Handoff Kit',
+      subtitle: 'Manual handoff to closure receipt',
+      status: 'CLOSURE RECEIPT',
+      accent: '#0F172A',
+      background: 'rgba(15,23,42,0.05)',
+      border: '1px solid rgba(15,23,42,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off the accepted final closure QA note, approved references, support route, consent queue, paid-language hold, and no-paid-live note before final closure receipt QA starts.',
+      buttonLabel: 'COPY CLOSURE RECEIPT',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureReceiptHandoffCopy,
     },
   ];
 }
