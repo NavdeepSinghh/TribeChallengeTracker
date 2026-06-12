@@ -204,6 +204,25 @@ export function buildCreatorHostingReadinessCopyKits({
     '',
     'This is a creator paid-hosting policy kit only. Do not approve paid hosting, create contracts, collect signatures, collect payout details, collect tax details, create payouts, start revenue-share, process payments, create purchases, write entitlements, process refunds, bypass marketplace policy, promise earnings, imply paid creator hosting is live, export private member activity, add tracking pixels, promise outcomes, imply medical results, or pressure creators or members.',
   ].join('\n');
+  const creatorLegalPacketPrepCopy = [
+    'Rise With The Tribe Creator Legal Packet Prep Kit:',
+    '',
+    creatorFocusLine,
+    hostedChallengesLine,
+    memberReachLine,
+    revenueReadyLine,
+    creatorBetaInterestLine,
+    candidateChallengeLine,
+    '',
+    'Legal packet checklist:',
+    '- Assemble copy-only references for creator terms readiness, agreement prep, paid-hosting policy, support handoff, moderation readiness, payout readiness, tax workflow readiness, and marketplace alignment',
+    '- Name owners for legal review, finance review, marketplace policy, support, moderation, privacy, entitlement QA, and creator communications before sending anything for approval',
+    '- Keep the packet evidence-based: saved creator profile, hosted challenge summary, claim-safety notes, support routes, store-test evidence status, and payout/tax workflow gaps',
+    '- Mark every unresolved gap clearly: signatures, payout provider, tax workflow, identity verification, refund responsibility, store validation, entitlement QA, and paid-hosting launch gate',
+    '- Use the packet to brief legal and operations reviewers only; keep creator-facing copy in free hosted challenge mode until approvals are complete',
+    '',
+    'This is a creator legal packet prep kit only. Do not create contracts, collect signatures, collect payout details, collect tax details, collect government IDs, verify identities, create payout accounts, access payout providers, store provider credentials, store tax forms, start revenue-share, create payouts, move money, process payments, process refunds, create purchases, write entitlements, grant paid access, bypass marketplace policy, submit store review, promise earnings, imply paid creator hosting is live, export private member activity, expose private member logs, scrape or store messages, add tracking pixels, promise outcomes, imply medical results, or pressure creators or members.',
+  ].join('\n');
   const creatorPayoutReadinessCopy = [
     'Rise With The Tribe Creator Payout Readiness Kit:',
     '',
@@ -433,6 +452,7 @@ export function buildCreatorHostingReadinessCopyKits({
     creatorAgreementPrepCopy,
     creatorSupportHandoffCopy,
     creatorPaidHostingPolicyCopy,
+    creatorLegalPacketPrepCopy,
     creatorIdentityVerificationPrepCopy,
     creatorModerationReadinessCopy,
     creatorPaidHostingLaunchGateCopy,
