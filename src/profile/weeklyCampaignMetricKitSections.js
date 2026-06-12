@@ -23,6 +23,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewDecisionReplyQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy,
+  launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -1087,6 +1088,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the reply operator handoff, approved reply-copy source, reply lane, support route, consent queue, and paid-language hold before any human reply operator acts.',
       buttonLabel: 'COPY REPLY OPERATOR QA',
       copyText: launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision Reply Send Readiness Kit',
+      subtitle: 'Manual readiness before reply send',
+      status: 'SEND READY',
+      accent: '#15803D',
+      background: 'rgba(21,128,61,0.05)',
+      border: '1px solid rgba(21,128,61,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check approved operator QA, reply-copy source, reply lane, support route, consent queue, paid-language hold, and no-paid-live note before any manual reply send or copy step.',
+      buttonLabel: 'COPY REPLY SEND READY',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy,
     },
   ];
 }

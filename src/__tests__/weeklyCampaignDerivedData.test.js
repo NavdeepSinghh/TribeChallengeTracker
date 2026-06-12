@@ -732,6 +732,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Send Readiness Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("Manual next campaign review decision reply send readiness");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("approved operator QA reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("send readiness reviewer");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("Weekly Campaign Review Decision Reply Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
