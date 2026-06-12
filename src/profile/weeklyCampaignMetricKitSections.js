@@ -5,6 +5,7 @@ export function buildWeeklyCampaignMetricKitSections({
   featureReviewQueue,
   launchRetrospectiveDecisionCopy,
   launchRetrospectiveDecisionReplyCopy,
+  launchRetrospectiveNextCampaignFinalPostingPrepHandoffCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -763,6 +764,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Approve, hold, route support, request consent review, open store QA, keep free-loop CTA, or hold paid-language copy after the launch-copy QA bridge and before final posting prep.',
       buttonLabel: 'COPY LAUNCH COPY APPROVAL',
       copyText: launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Final Posting Prep Handoff Kit',
+      subtitle: 'Manual handoff into final posting prep QA',
+      status: 'POSTING PREP',
+      accent: '#4C1D95',
+      background: 'rgba(76,29,149,0.05)',
+      border: '1px solid rgba(76,29,149,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off approved launch copy into the manual posting prep owner, final QA owner, support route, consent queue, paid-language hold, and no-paid-live note before final posting prep QA starts.',
+      buttonLabel: 'COPY POSTING PREP HANDOFF',
+      copyText: launchRetrospectiveNextCampaignFinalPostingPrepHandoffCopy,
     },
   ];
 }
