@@ -61,6 +61,12 @@ const STORE_REVIEW_POLICY_LINK_QA_ITEMS = [
   'Check that reviewer notes point to marketplace refund/support paths without promising in-app refunds, manual entitlements, or paid access',
   'Keep policy-link QA copy-only until the fixed build, data safety notes, screenshots, support handoff, and evidence packet are reviewed',
 ];
+const STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS = [
+  'Classify each App Review or Play feedback item as demo access, permission wording, purchase/restore evidence, metadata, screenshot, privacy, support, or paid-access claim',
+  'Map every rejection reason to one fixed build owner, one reviewer-note change, one evidence packet item, and one policy or support link',
+  'Separate real app defects from reviewer-note gaps so product fixes, policy copy, screenshots, and evidence updates do not blur together',
+  'Keep root-cause notes internal until a human confirms the fixed build, public policy links, and evidence packet are ready for resubmission prep',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -135,6 +141,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewEvidenceGapDecisionItems: STORE_REVIEW_EVIDENCE_GAP_DECISION_ITEMS,
       storeReviewEvidenceGapTriageItems: STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS,
       storeReviewPolicyLinkQaItems: STORE_REVIEW_POLICY_LINK_QA_ITEMS,
+      storeReviewRejectionRootCauseItems: STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -160,6 +167,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewEvidenceGapDecisionCopy: lifecycleCopy.storeReviewEvidenceGapDecisionCopy,
       storeReviewEvidenceGapTriageCopy: lifecycleCopy.storeReviewEvidenceGapTriageCopy,
       storeReviewPolicyLinkQaCopy: lifecycleCopy.storeReviewPolicyLinkQaCopy,
+      storeReviewRejectionRootCauseCopy: lifecycleCopy.storeReviewRejectionRootCauseCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -253,6 +261,21 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('claim sandbox/license-test proof without evidence');
     expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewPolicyLinkQaCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('Store Review Rejection Root Cause Kit');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('Classify each App Review or Play feedback item');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('Manual root-cause checklist');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('demo access, permission wording, IAP/purchase evidence');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('fixed build owner');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('sanitized evidence packet');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewRejectionRootCauseCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -283,6 +306,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW EVIDENCE GAP TRIAGE KIT',
       'STORE REVIEW EVIDENCE GAP DECISION REPLY KIT',
       'STORE REVIEW POLICY LINK QA KIT',
+      'STORE REVIEW REJECTION ROOT CAUSE KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

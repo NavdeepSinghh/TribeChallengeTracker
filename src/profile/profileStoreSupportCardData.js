@@ -53,6 +53,7 @@ export function buildProfileStoreSupportCardData({
     storeReviewEvidenceGapDecisionCopy,
     storeReviewEvidenceGapTriageCopy,
     storeReviewPolicyLinkQaCopy,
+    storeReviewRejectionRootCauseCopy,
     storeReviewResubmissionCopy,
   } = buildProfileStoreLifecycleSupportData({
     activeChallengePackCount,
@@ -90,6 +91,7 @@ export function buildProfileStoreSupportCardData({
     storeReviewEvidenceGapDecisionCopy,
     storeReviewEvidenceGapTriageCopy,
     storeReviewPolicyLinkQaCopy,
+    storeReviewRejectionRootCauseCopy,
     storeReviewResubmissionCopy,
   });
 

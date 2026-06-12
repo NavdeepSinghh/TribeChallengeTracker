@@ -15,6 +15,7 @@ export function buildStoreSupportCopyCards({
   storeReviewEvidenceGapDecisionCopy,
   storeReviewEvidenceGapTriageCopy,
   storeReviewPolicyLinkQaCopy,
+  storeReviewRejectionRootCauseCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -161,6 +162,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy policy-link QA checks without submitting review, exposing credentials, changing entitlements, or claiming paid access is live.',
       buttonLabel: 'COPY POLICY LINK QA',
       copyText: storeReviewPolicyLinkQaCopy,
+    },
+    {
+      title: 'STORE REVIEW REJECTION ROOT CAUSE KIT',
+      subtitle: 'Reviewer feedback, owner, evidence, and policy mapping',
+      status: 'ROOT CAUSE',
+      accent: '#67E8F9',
+      body: 'Copy a rejection root-cause checklist without submitting review, exposing credentials, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY ROOT CAUSE KIT',
+      copyText: storeReviewRejectionRootCauseCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
