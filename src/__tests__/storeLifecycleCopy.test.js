@@ -91,6 +91,12 @@ const STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS = [
   'Remove wording that implies required health access, automatic posting, medical outcomes, live paid access, or unreviewed purchase evidence',
   'Keep permission-copy notes internal until the fixed build, public policies, screenshot captions, and reviewer reply packet are reviewed together',
 ];
+const STORE_REVIEW_DEMO_ACCESS_QA_ITEMS = [
+  'Confirm reviewer demo access instructions point to one reviewed account shared only through App Store Connect or Play Console notes',
+  'Check seeded free flows for onboarding, joined challenge, activity history, badges, share cards, support links, and Feature Me consent examples',
+  'Verify paid surfaces stay in review mode unless sandbox/license-test purchase, restore, validation, and entitlement evidence is reviewed',
+  'Keep demo-access QA internal until credentials, screenshots, policy links, support handoff, and reviewer notes are checked by a human',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -170,6 +176,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewMetadataDiffItems: STORE_REVIEW_METADATA_DIFF_ITEMS,
       storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
       storeReviewPermissionCopyCheckItems: STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
+      storeReviewDemoAccessQaItems: STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -200,6 +207,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewMetadataDiffCopy: lifecycleCopy.storeReviewMetadataDiffCopy,
       storeReviewDataSafetyAlignmentCopy: lifecycleCopy.storeReviewDataSafetyAlignmentCopy,
       storeReviewPermissionCopyCheckCopy: lifecycleCopy.storeReviewPermissionCopyCheckCopy,
+      storeReviewDemoAccessQaCopy: lifecycleCopy.storeReviewDemoAccessQaCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -387,6 +395,25 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('Store Review Demo Access QA Kit');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('Confirm reviewer demo access instructions');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('Manual demo access QA checklist');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('App Store Connect or Play Console notes');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('joined campaign challenge');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('Feature Me consent');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('without real member data');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('paid surfaces in review mode');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -422,6 +449,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW METADATA DIFF KIT',
       'STORE REVIEW DATA SAFETY ALIGNMENT KIT',
       'STORE REVIEW PERMISSION COPY CHECK KIT',
+      'STORE REVIEW DEMO ACCESS QA KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

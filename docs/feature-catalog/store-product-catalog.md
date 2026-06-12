@@ -68,6 +68,7 @@ Shared behavior:
 - Web admin profile surfaces show a Store Review Metadata Diff Kit with listing copy, screenshot/caption, permission, policy-link, data-safety, support/refund, purchase/restore, and reviewer-note mismatch checks before resubmission prep.
 - Web admin profile surfaces show a Store Review Data Safety Alignment Kit with App Privacy, Play Data Safety, optional health sync, media, purchase validation, support, data deletion, permission, policy-link, and screenshot alignment checks before resubmission prep.
 - Web admin profile surfaces show a Store Review Permission Copy Check Kit with optional health sync, media upload, notification, purchase validation, restore/sync, support, data deletion, screenshot, policy-link, and reviewer-note copy checks before resubmission prep.
+- Web admin profile surfaces show a Store Review Demo Access QA Kit with reviewer demo account, seeded free-flow, policy-link, support handoff, screenshot, permission, restore/sync, and paid-review-mode checks before reviewer notes are copied.
 - Firebase Functions exposes callable `getPurchaseValidationReadiness` so admin profile surfaces can check App Store / Play credential readiness without submitting a fake purchase or writing entitlements.
 - Product IDs do not unlock features directly.
 - Purchase and receipt-validation work must write the shared entitlement fields before gated UI unlocks.

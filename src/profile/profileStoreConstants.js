@@ -149,6 +149,12 @@ export const STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS = [
   'Remove wording that implies required health access, automatic posting, medical outcomes, live paid access, or unreviewed purchase evidence',
   'Keep permission-copy notes internal until the fixed build, public policies, screenshot captions, and reviewer reply packet are reviewed together',
 ];
+export const STORE_REVIEW_DEMO_ACCESS_QA_ITEMS = [
+  'Confirm reviewer demo access instructions point to one reviewed account shared only through App Store Connect or Play Console notes',
+  'Check seeded free flows for onboarding, joined challenge, activity history, badges, share cards, support links, and Feature Me consent examples',
+  'Verify paid surfaces stay in review mode unless sandbox/license-test purchase, restore, validation, and entitlement evidence is reviewed',
+  'Keep demo-access QA internal until credentials, screenshots, policy links, support handoff, and reviewer notes are checked by a human',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

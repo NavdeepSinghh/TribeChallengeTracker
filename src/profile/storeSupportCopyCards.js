@@ -20,6 +20,7 @@ export function buildStoreSupportCopyCards({
   storeReviewMetadataDiffCopy,
   storeReviewDataSafetyAlignmentCopy,
   storeReviewPermissionCopyCheckCopy,
+  storeReviewDemoAccessQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -211,6 +212,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a permission-copy checklist without publishing reviewer notes, exposing credentials, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY PERMISSION COPY',
       copyText: storeReviewPermissionCopyCheckCopy,
+    },
+    {
+      title: 'STORE REVIEW DEMO ACCESS QA KIT',
+      subtitle: 'Reviewer demo account, seeded flows, and paid-mode checks',
+      status: 'DEMO QA',
+      accent: '#99F6E4',
+      body: 'Copy a demo-access QA checklist without storing reviewer passwords, exposing member data, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY DEMO QA',
+      copyText: storeReviewDemoAccessQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
