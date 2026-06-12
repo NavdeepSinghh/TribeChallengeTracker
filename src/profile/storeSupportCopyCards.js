@@ -31,6 +31,7 @@ export function buildStoreSupportCopyCards({
   storeReviewResubmissionDecisionReplyCopy,
   storeReviewReviewerNotesPasteQaCopy,
   storeReviewConsoleSubmissionChecklistCopy,
+  storeReviewSubmissionStatusWatchCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -321,6 +322,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a console submission checklist without submitting review, editing console fields, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY SUBMISSION CHECKLIST',
       copyText: storeReviewConsoleSubmissionChecklistCopy,
+    },
+    {
+      title: 'STORE REVIEW SUBMISSION STATUS WATCH KIT',
+      subtitle: 'Post-submission console state and owner follow-up',
+      status: 'STATUS WATCH',
+      accent: '#FECDD3',
+      body: 'Copy a submission status watch checklist without changing review status, editing console fields, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY STATUS WATCH',
+      copyText: storeReviewSubmissionStatusWatchCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

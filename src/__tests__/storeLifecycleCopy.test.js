@@ -157,6 +157,12 @@ const STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS = [
   'Hold submission if any credential, purchase token, order ID, transaction ID, private user data, draft-only link, paid-live claim, approval claim, or unreviewed proof remains',
   'Keep the checklist internal until the console owner confirms submission readiness outside client code',
 ];
+const STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS = [
+  'Track App Store Connect and Play Console review states after a human submits, including waiting for review, in review, rejected, approved, metadata rejected, and action required',
+  'Match every status note to the submitted build, reviewer notes, evidence packet, policy links, support handoff, screenshots, metadata, data safety, and console submission checklist',
+  'Route rejection, metadata rejection, or action-required states back to root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before any follow-up',
+  'Keep status watch internal until a human confirms the console state without exposing credentials, private data, purchase tokens, paid-live claims, or approval claims',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -247,6 +253,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewResubmissionDecisionReplyItems: STORE_REVIEW_RESUBMISSION_DECISION_REPLY_ITEMS,
       storeReviewReviewerNotesPasteQaItems: STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS,
       storeReviewConsoleSubmissionChecklistItems: STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
+      storeReviewSubmissionStatusWatchItems: STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -288,6 +295,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewResubmissionDecisionReplyCopy: lifecycleCopy.storeReviewResubmissionDecisionReplyCopy,
       storeReviewReviewerNotesPasteQaCopy: lifecycleCopy.storeReviewReviewerNotesPasteQaCopy,
       storeReviewConsoleSubmissionChecklistCopy: lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy,
+      storeReviewSubmissionStatusWatchCopy: lifecycleCopy.storeReviewSubmissionStatusWatchCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -699,6 +707,29 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('Store Review Submission Status Watch Kit');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('Track App Store Connect and Play Console review states');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('Manual submission status watch checklist');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('waiting for review');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('metadata rejected');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('action required');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('submitted build');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('reviewedAt timestamp');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('change review status from client code');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('announce approval');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewSubmissionStatusWatchCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -745,6 +776,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW RESUBMISSION DECISION REPLY KIT',
       'STORE REVIEW REVIEWER NOTES PASTE QA KIT',
       'STORE REVIEW CONSOLE SUBMISSION CHECKLIST KIT',
+      'STORE REVIEW SUBMISSION STATUS WATCH KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

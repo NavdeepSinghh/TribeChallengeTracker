@@ -215,6 +215,12 @@ export const STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS = [
   'Hold submission if any credential, purchase token, order ID, transaction ID, private user data, draft-only link, paid-live claim, approval claim, or unreviewed proof remains',
   'Keep the checklist internal until the console owner confirms submission readiness outside client code',
 ];
+export const STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS = [
+  'Track App Store Connect and Play Console review states after a human submits, including waiting for review, in review, rejected, approved, metadata rejected, and action required',
+  'Match every status note to the submitted build, reviewer notes, evidence packet, policy links, support handoff, screenshots, metadata, data safety, and console submission checklist',
+  'Route rejection, metadata rejection, or action-required states back to root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before any follow-up',
+  'Keep status watch internal until a human confirms the console state without exposing credentials, private data, purchase tokens, paid-live claims, or approval claims',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
