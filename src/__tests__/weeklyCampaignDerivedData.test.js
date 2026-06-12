@@ -395,6 +395,17 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("purchases");
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("entitlement writes");
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("paid-access grants");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("Launch Retrospective Decision Kit");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("Manual retrospective decision");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("decision lane");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("next campaign owner");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveDecisionCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {

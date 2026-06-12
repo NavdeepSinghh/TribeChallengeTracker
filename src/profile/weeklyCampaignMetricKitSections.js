@@ -3,6 +3,7 @@ import { GOLD, DM_KEYWORD_PROMPTS } from './profileConstants';
 export function buildWeeklyCampaignMetricKitSections({
   campaignPerformanceSummary,
   featureReviewQueue,
+  launchRetrospectiveDecisionCopy,
   launchRetrospectiveReadinessHandoffCopy,
   launchRetrospectiveReadinessQaCopy,
   launchRetrospectiveReadinessScriptCopy,
@@ -583,6 +584,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Copy a first-party retrospective readiness script before repeating, pausing, or escalating a launch experiment.',
       buttonLabel: 'COPY RETRO READINESS SCRIPT',
       copyText: launchRetrospectiveReadinessScriptCopy,
+    },
+    {
+      title: 'Launch Retrospective Decision Kit',
+      subtitle: 'Manual repeat, pause, or route decision',
+      status: 'RETRO DECISION',
+      accent: '#FBCFE8',
+      background: 'rgba(251,207,232,0.05)',
+      border: '1px solid rgba(251,207,232,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Choose repeat, pause, support review, store QA, prompt refresh, free-loop, or paid-language hold after retrospective readback.',
+      buttonLabel: 'COPY RETRO DECISION',
+      copyText: launchRetrospectiveDecisionCopy,
     },
   ];
 }

@@ -7,6 +7,7 @@ export function buildWeeklyCampaignMarketingSectionData({
   dmKeywordCopy,
   featureReviewQueue,
   instagramContentCalendarCopy,
+  launchRetrospectiveDecisionCopy,
   launchRetrospectiveReadinessScriptCopy,
   launchRetrospectiveReadinessHandoffCopy,
   launchRetrospectiveReadinessQaCopy,
@@ -73,6 +74,7 @@ export function buildWeeklyCampaignMarketingSectionData({
     operatingSummaryProps: buildWeeklyCampaignOperatingSummary({
       campaignPerformanceSummary,
       featureReviewQueue,
+      launchRetrospectiveDecisionCopy,
       recommendedLaunchExperiment,
       referralJoins,
       weeklyCampaignPrompt,
@@ -99,6 +101,7 @@ export function buildWeeklyCampaignMarketingSectionData({
       featureReviewQueue,
       recommendedLaunchExperiment,
       referralJoins,
+      launchRetrospectiveDecisionCopy,
       launchRetrospectiveReadinessHandoffCopy,
       launchRetrospectiveReadinessQaCopy,
       launchRetrospectiveReadinessScriptCopy,
