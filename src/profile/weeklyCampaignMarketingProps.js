@@ -43,6 +43,7 @@ export function buildWeeklyCampaignMarketingProps(model) {
     weeklyCampaignStoryPollCopy,
     weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignWeekendPushStoryCopy,
+    weeklyCampaignSundayRecapQaCopy,
   } = model;
 
   return {
@@ -90,5 +91,6 @@ export function buildWeeklyCampaignMarketingProps(model) {
     weeklyCampaignStoryPollCopy,
     weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignWeekendPushStoryCopy,
+    weeklyCampaignSundayRecapQaCopy,
   };
 }

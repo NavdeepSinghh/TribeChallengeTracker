@@ -15,6 +15,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignReviewCopy,
   weeklyCampaignStoryboardCopy,
   weeklyCampaignWeekendPushDecisionCopy,
+  weeklyCampaignSundayRecapQaCopy,
 }) {
   return [
     {
@@ -84,6 +85,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Decide whether to approve, repeat, comeback-invite, feature proof, support-route, or hold weekend follow-up copy.',
       buttonLabel: 'COPY WEEKEND DECISION',
       copyText: weeklyCampaignWeekendPushDecisionCopy,
+    },
+    {
+      title: 'Weekly Campaign Sunday Recap QA Kit',
+      subtitle: 'Manual recap and next-week handoff check',
+      status: 'RECAP QA',
+      accent: '#C4B5FD',
+      background: 'rgba(196,181,253,0.05)',
+      border: '1px solid rgba(196,181,253,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Check aggregate recap copy, consent-cleared proof, support-risk notes, and next-week handoff before any Sunday recap post.',
+      buttonLabel: 'COPY SUNDAY RECAP QA',
+      copyText: weeklyCampaignSundayRecapQaCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',

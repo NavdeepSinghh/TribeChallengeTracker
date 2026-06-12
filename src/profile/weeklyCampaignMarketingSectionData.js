@@ -35,6 +35,7 @@ export function buildWeeklyCampaignMarketingSectionData({
   weeklyCampaignStoryPollCopy,
   weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignWeekendPushStoryCopy,
+  weeklyCampaignSundayRecapQaCopy,
 }) {
   return {
     dmKeywordSectionProps: {
@@ -81,6 +82,7 @@ export function buildWeeklyCampaignMarketingSectionData({
       weeklyCampaignFirstDayMonitorCopy,
       weeklyCampaignMidweekAdjustmentCopy,
       weeklyCampaignWeekendPushDecisionCopy,
+      weeklyCampaignSundayRecapQaCopy,
       weeklyCampaignLaunchCopyQaCopy,
       weeklyCampaignPreflightCopy,
       weeklyCampaignPrompt,
