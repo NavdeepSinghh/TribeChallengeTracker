@@ -61,6 +61,9 @@ describe('cross-platform store review planning parity source checks', () => {
       expect(source).toContain('storeReviewEvidencePackCopy');
       expect(source).toContain('Reviewer proof package from release checks');
       expect(source).toContain('Store test evidence:');
+      expect(source).toContain('Minimum evidence matrix');
+      expect(source).toContain('Missing required cases');
+      expect(source).toContain('Missing safe-denial platforms');
       expect(source).toContain('Policy and support links');
       expect(source).toContain('HealthKit / Health Connect explanations');
       expect(source).toContain('sandbox/license-test evidence status');

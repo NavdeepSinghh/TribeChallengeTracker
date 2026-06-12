@@ -60,6 +60,12 @@ const storeTestEvidenceSummary = {
   android: 1,
   failed: 0,
   ios: 1,
+  minimumEvidence: {
+    missingRequiredCases: ['ios_pro_restore'],
+    missingSafeDenialPlatforms: ['android'],
+    requiredCaseCount: 20,
+    verifiedCaseCount: 18,
+  },
   needs_review: 1,
   total: 3,
 };
@@ -122,13 +128,19 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.lapsedMemberWinbackCopy).toContain('Do not auto-message users');
     expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Store Launch Dry-Run Kit');
     expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Do not flip paid access live');
+    expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Minimum evidence matrix: 18/20 required proof items verified');
+    expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Missing required cases: ios_pro_restore');
+    expect(lifecycleCopy.storeLaunchDryRunCopy).toContain('Missing safe-denial platforms: android');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Store Test Purchase Session Prep Kit');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('getPurchaseValidationReadiness returns validation_configured');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Minimum evidence matrix: 18/20 required proof items verified');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Do not create fake purchase evidence');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('store raw purchase tokens');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
+    expect(lifecycleCopy.storeReviewPackCopy).toContain('Missing required cases: ios_pro_restore');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Do not submit store review');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Store Screenshot QA Kit');
+    expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Missing safe-denial platforms: android');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('synthetic demo account data only');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Do not submit store review');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('purchase tokens');

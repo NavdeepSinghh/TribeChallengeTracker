@@ -32,6 +32,9 @@ describe('cross-platform store review and evidence parity source checks', () => 
       expect(source).toContain('validation credentials, sandbox/license-test evidence, entitlement recovery, support links');
       expect(source).toContain('Dry-run summary');
       expect(source).toContain('Store test evidence');
+      expect(source).toContain('Minimum evidence matrix');
+      expect(source).toContain('Missing required cases');
+      expect(source).toContain('Missing safe-denial platforms');
       expect(source).toContain('Entitlement recovery queue');
       expect(source).toContain('Policy links visible');
       expect(source).toContain('Recommended revenue path');
@@ -83,6 +86,8 @@ describe('cross-platform store review and evidence parity source checks', () => 
       expect(source).toContain('ASSET QA');
       expect(source).toContain('seeded demo data only');
       expect(source).toContain('synthetic demo account data only');
+      expect(source).toContain('Minimum evidence matrix');
+      expect(source).toContain('Missing safe-denial platforms');
       expect(source).toContain('purchase tokens');
       expect(source).toContain('service account JSON');
       expect(source).toContain('reviewer passwords');
