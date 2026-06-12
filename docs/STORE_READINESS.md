@@ -59,6 +59,8 @@ node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-st
 
 The evidence-log audit reports the minimum evidence matrix count, missing purchase/restore cases, and missing safe-denial platforms. Do not include raw purchase tokens, transaction payloads, service account JSON, private keys, tester passwords, personal user data, or private screenshots in the exported JSON.
 
+Use the admin Store Evidence Archive Kit to copy the sanitized export and JSON audit archive checklist into the internal release packet only. The archive must not include raw purchase tokens, transaction IDs, order IDs, tester credentials, private keys, service account JSON, private screenshots, or act as final paid-launch approval.
+
 ## Android Google Play Index
 
 Android package, Firebase, Google Sign-In, App Links, and Play Billing validation setup now live in `docs/store-readiness/android-google-play.md` so this store readiness guide stays readable while preserving the same Play release contract.

@@ -33,6 +33,7 @@ const ROADMAP_TOKENS = [
   "Phase 3: Pro Subscription Foundation",
   "Phase 6: Partnerships",
   "Store Test Purchase Evidence Log",
+  "Store Evidence Archive Kit",
   "Focused store-readiness verifier coverage",
   "Focused cross-platform profile-copy contract tokens",
   "Focused Web surface contract tokens",

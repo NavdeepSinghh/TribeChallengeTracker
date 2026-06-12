@@ -67,6 +67,8 @@ node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-st
 
 The output must show `evidenceReady: true`, `verifiedCaseCount: 20`, no missing required cases, and no missing safe-denial platforms before the Paid Launch Decision Gate can be trusted.
 
+After the audit passes, use the admin Store Evidence Archive Kit to copy the sanitized evidence export and JSON audit checklist into the internal release packet. Keep the archive internal and exclude raw purchase tokens, transaction IDs, order IDs, tester emails/passwords, private keys, service account JSON, private screenshots, entitlement writes, purchase creation, refunds, store-review submission, or any claim that archived evidence is final launch approval.
+
 ## Minimum Evidence Matrix
 
 Before a paid launch review, the admin Store Test Purchase Evidence Log should contain at least these reviewed proof records:

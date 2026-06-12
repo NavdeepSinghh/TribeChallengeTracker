@@ -93,6 +93,7 @@ Features:
 - Lapsed Member Winback Kit. Status: admin-only copy-ready free-first comeback prompts done across Web, iOS, and Android while messaging automation, tracking, discounts, charges, purchases, entitlements, and paid-access claims remain out of scope.
 - Store Launch Dry-Run Kit. Status: admin-only copy-ready release rehearsal report done across Web, iOS, and Android before paid access is promoted.
 - Store Test Purchase Session Prep Kit. Status: admin-only copy-ready sandbox/license-test run checklist done across Web, iOS, and Android before real store test evidence is recorded.
+- Store Evidence Archive Kit. Status: admin-only copy-ready sanitized evidence export and JSON audit archive checklist done across Web, iOS, and Android for internal release packets before final paid launch review.
 - Store Demo Account Kit. Status: admin-only copy-ready reviewer-safe demo account notes done across Web, iOS, and Android before store submission.
 - Store Screenshot QA Kit. Status: admin-only copy-ready reviewer-safe screenshot and caption QA prompts done across Web, iOS, and Android before store submission.
 - Store Review Pack. Status: admin-only copy-ready store-review prep notes and policy evidence done across Web, iOS, and Android before store submission.

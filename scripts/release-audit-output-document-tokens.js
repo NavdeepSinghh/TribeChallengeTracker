@@ -277,6 +277,8 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "scripts/instagram-campaign-profile-contract-tokens.js",
   "document/content-bank checks separate from Web/iOS/Android profile copy checks",
   "Store Test Purchase Runbook",
+  "Store Evidence Archive Kit",
+  "internal release packets",
   "Not Yet Proven",
   "App Store Connect purchase-validation credentials",
   "Google Play Developer API credentials",
