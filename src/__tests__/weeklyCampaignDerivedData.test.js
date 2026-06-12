@@ -362,6 +362,17 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchQaChecklistCopy).toContain("[x] PRODUCT IDS");
     expect(data.launchQaChecklistCopy).toContain("[ ] STORE TESTS");
     expect(data.launchRetrospectiveCopy).toContain("does not add tracking pixels");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("Launch Retrospective Readiness Handoff Kit");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("Manual retrospective readiness handoff");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("retrospective owner");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("repeat/hold decision deadline");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveReadinessHandoffCopy).toContain("unlock paid access");
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Manual retrospective readiness script");
     expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Capture only first-party app movement");

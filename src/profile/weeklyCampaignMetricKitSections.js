@@ -3,6 +3,7 @@ import { GOLD, DM_KEYWORD_PROMPTS } from './profileConstants';
 export function buildWeeklyCampaignMetricKitSections({
   campaignPerformanceSummary,
   featureReviewQueue,
+  launchRetrospectiveReadinessHandoffCopy,
   launchRetrospectiveReadinessScriptCopy,
   recommendedLaunchExperiment,
   referralJoins,
@@ -530,6 +531,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Approve, hold, or route the manual experiment lane after the brief is QA-reviewed and before retrospective readback begins.',
       buttonLabel: 'COPY EXPERIMENT APPROVAL',
       copyText: weeklyCampaignExperimentBriefApprovalCopy,
+    },
+    {
+      title: 'Launch Retrospective Readiness Handoff Kit',
+      subtitle: 'Manual retrospective owner handoff',
+      status: 'RETRO HANDOFF',
+      accent: '#F0ABFC',
+      background: 'rgba(240,171,252,0.05)',
+      border: '1px solid rgba(240,171,252,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off approved experiment evidence, first-party signal summary, support route, consent queue, and paid-language hold before retrospective readback begins.',
+      buttonLabel: 'COPY RETRO HANDOFF',
+      copyText: launchRetrospectiveReadinessHandoffCopy,
     },
     {
       title: 'Launch Retrospective Readiness Script Kit',
