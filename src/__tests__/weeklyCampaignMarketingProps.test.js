@@ -68,6 +68,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("Launch Retrospective Next Campaign Post-Complete Callback Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("Launch Retrospective Next Campaign Post-Complete Callback QA Bridge Kit");
     expect(props.launchRetrospectiveNextCampaignReviewHandoffBridgeCopy).toContain("Launch Retrospective Next Campaign Review Handoff Bridge Kit");
+    expect(props.launchRetrospectiveNextCampaignReviewHandoffQaBridgeCopy).toContain("Launch Retrospective Next Campaign Review Handoff QA Bridge Kit");
     expect(props.launchRetrospectiveNextCampaignLaunchCopyApprovalCopy).toContain("Launch Retrospective Next Campaign Launch Copy Approval Kit");
     expect(props.launchRetrospectiveNextCampaignLaunchCopyHandoffCopy).toContain("Launch Retrospective Next Campaign Launch Copy Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignLaunchCopyQaBridgeCopy).toContain("Launch Retrospective Next Campaign Launch Copy QA Bridge Kit");
@@ -114,6 +115,7 @@ describe("Weekly Campaign marketing props", () => {
       "launchRetrospectiveNextCampaignPreflightBridgeCopy",
       "launchRetrospectiveNextCampaignQaCopy",
       "launchRetrospectiveNextCampaignReviewHandoffBridgeCopy",
+      "launchRetrospectiveNextCampaignReviewHandoffQaBridgeCopy",
       "launchRetrospectiveReadinessHandoffCopy",
       "launchRetrospectiveReadinessQaCopy",
       "launchRetrospectiveReadinessScriptCopy",
@@ -204,7 +206,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(49);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(50);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -388,5 +390,9 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[48].buttonLabel).toBe("COPY REVIEW BRIDGE");
     expect(sectionData.weeklyCampaignMetricKitSections[48].copyText).toContain("Manual next campaign review handoff bridge");
     expect(sectionData.weeklyCampaignMetricKitSections[48].copyText).toContain("weekly campaign review owner");
+    expect(sectionData.weeklyCampaignMetricKitSections[49].title).toBe("Launch Retrospective Next Campaign Review Handoff QA Bridge Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[49].buttonLabel).toBe("COPY REVIEW QA BRIDGE");
+    expect(sectionData.weeklyCampaignMetricKitSections[49].copyText).toContain("Manual next campaign review handoff QA bridge");
+    expect(sectionData.weeklyCampaignMetricKitSections[49].copyText).toContain("Weekly Campaign Review Handoff Kit");
   });
 });
