@@ -768,6 +768,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Sent Receipt QA Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("Manual next campaign review decision reply sent receipt QA");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("approved sent receipt handoff reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("sent receipt QA reviewer");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("Weekly Campaign Review Decision Reply Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {

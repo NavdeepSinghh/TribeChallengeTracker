@@ -26,6 +26,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy,
+  launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -1141,6 +1142,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Hand off the manual reply send QA into a sent receipt owner, reply lane, support route, consent queue, paid-language hold, and no-paid-live note.',
       buttonLabel: 'COPY REPLY RECEIPT',
       copyText: launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision Reply Sent Receipt QA Kit',
+      subtitle: 'Manual QA after reply receipt',
+      status: 'RECEIPT QA',
+      accent: '#0891B2',
+      background: 'rgba(8,145,178,0.05)',
+      border: '1px solid rgba(8,145,178,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'QA the sent receipt handoff, manual send timestamp, reply lane, support route, consent queue, paid-language hold, and no-paid-live note before receipt archiving.',
+      buttonLabel: 'COPY RECEIPT QA',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy,
     },
   ];
 }
