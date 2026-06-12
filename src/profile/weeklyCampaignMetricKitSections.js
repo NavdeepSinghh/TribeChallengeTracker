@@ -6,6 +6,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionCopy,
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignBriefCopy,
+  launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignHandoffCopy,
   launchRetrospectiveNextCampaignQaCopy,
   launchRetrospectiveReadinessHandoffCopy,
@@ -673,6 +674,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Turn the approved next campaign QA note into an app-first campaign angle, free challenge CTA, support route, consent lane, and preflight owner.',
       buttonLabel: 'COPY NEXT BRIEF',
       copyText: launchRetrospectiveNextCampaignBriefCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Brief QA Kit',
+      subtitle: 'Manual QA before new launch copy starts',
+      status: 'BRIEF QA',
+      accent: '#C026D3',
+      background: 'rgba(192,38,211,0.05)',
+      border: '1px solid rgba(192,38,211,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check the next campaign brief for app-first angle, free challenge CTA, support-safe route, consent-safe proof lane, paid-language hold, and preflight owner.',
+      buttonLabel: 'COPY BRIEF QA',
+      copyText: launchRetrospectiveNextCampaignBriefQaCopy,
     },
   ];
 }

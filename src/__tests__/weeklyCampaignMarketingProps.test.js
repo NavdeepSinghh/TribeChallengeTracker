@@ -60,6 +60,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.launchRetrospectiveDecisionCopy).toContain("Launch Retrospective Decision Kit");
     expect(props.launchRetrospectiveDecisionReplyCopy).toContain("Launch Retrospective Decision Reply Kit");
     expect(props.launchRetrospectiveNextCampaignBriefCopy).toContain("Launch Retrospective Next Campaign Brief Kit");
+    expect(props.launchRetrospectiveNextCampaignBriefQaCopy).toContain("Launch Retrospective Next Campaign Brief QA Kit");
     expect(props.launchRetrospectiveNextCampaignHandoffCopy).toContain("Launch Retrospective Next Campaign Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignQaCopy).toContain("Launch Retrospective Next Campaign QA Kit");
     expect(props.launchRetrospectiveReadinessHandoffCopy).toContain("Launch Retrospective Readiness Handoff Kit");
@@ -88,6 +89,7 @@ describe("Weekly Campaign marketing props", () => {
       "launchRetrospectiveDecisionCopy",
       "launchRetrospectiveDecisionReplyCopy",
       "launchRetrospectiveNextCampaignBriefCopy",
+      "launchRetrospectiveNextCampaignBriefQaCopy",
       "launchRetrospectiveNextCampaignHandoffCopy",
       "launchRetrospectiveNextCampaignQaCopy",
       "launchRetrospectiveReadinessHandoffCopy",
@@ -180,7 +182,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(37);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(38);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -316,5 +318,9 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[36].buttonLabel).toBe("COPY NEXT BRIEF");
     expect(sectionData.weeklyCampaignMetricKitSections[36].copyText).toContain("Manual next campaign brief");
     expect(sectionData.weeklyCampaignMetricKitSections[36].copyText).toContain("app-first campaign angle");
+    expect(sectionData.weeklyCampaignMetricKitSections[37].title).toBe("Launch Retrospective Next Campaign Brief QA Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[37].buttonLabel).toBe("COPY BRIEF QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[37].copyText).toContain("Manual next campaign brief QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[37].copyText).toContain("next campaign brief QA owner");
   });
 });

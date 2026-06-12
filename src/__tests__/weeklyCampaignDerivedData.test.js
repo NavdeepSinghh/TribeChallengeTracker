@@ -456,6 +456,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignBriefCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignBriefCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignBriefCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("Launch Retrospective Next Campaign Brief QA Kit");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("Manual next campaign brief QA");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("app-first campaign angle");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("next campaign brief QA owner");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("preflight owner");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignBriefQaCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
