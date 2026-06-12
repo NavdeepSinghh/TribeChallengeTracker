@@ -19,6 +19,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignNextWeekLaunchAngleCopy,
   weeklyCampaignPreflightAssetReadinessCopy,
   weeklyCampaignPreflightCopyFreezeCopy,
+  weeklyCampaignPreflightLaunchPacketQaCopy,
   weeklyCampaignPreflightOwnerHandoffCopy,
   weeklyCampaignPreflightReadinessDecisionCopy,
 }) {
@@ -192,6 +193,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Confirm launch-card headline, caption input, Story/Reel hook, consent-safe proof, and support routing before final assets.',
       buttonLabel: 'COPY PREFLIGHT ASSETS',
       copyText: weeklyCampaignPreflightAssetReadinessCopy,
+    },
+    {
+      title: 'Weekly Campaign Preflight Launch Packet QA Kit',
+      subtitle: 'Manual final packet check before preflight',
+      status: 'PACKET QA',
+      accent: '#38BDF8',
+      background: 'rgba(56,189,248,0.05)',
+      border: '1px solid rgba(56,189,248,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Check the launch-card headline, caption input, Story/Reel hook, CTA, consent proof, support note, and owner as one packet.',
+      buttonLabel: 'COPY PACKET QA',
+      copyText: weeklyCampaignPreflightLaunchPacketQaCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',
