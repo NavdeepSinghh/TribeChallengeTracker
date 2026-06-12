@@ -17,6 +17,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignSundayRecapQaCopy,
   weeklyCampaignNextWeekLaunchAngleCopy,
+  weeklyCampaignPreflightCopyFreezeCopy,
   weeklyCampaignPreflightOwnerHandoffCopy,
   weeklyCampaignPreflightReadinessDecisionCopy,
 }) {
@@ -156,6 +157,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Approve, clarify, support-route, wait for consent proof, repeat free-loop CTA, or hold paid-feature language before preflight.',
       buttonLabel: 'COPY PREFLIGHT DECISION',
       copyText: weeklyCampaignPreflightReadinessDecisionCopy,
+    },
+    {
+      title: 'Weekly Campaign Preflight Copy Freeze Kit',
+      subtitle: 'Manual freeze before preflight edits',
+      status: 'FREEZE',
+      accent: '#2DD4BF',
+      background: 'rgba(45,212,191,0.05)',
+      border: '1px solid rgba(45,212,191,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Freeze the launch-card headline, app-first CTA, manual replies, consent proof, and support-risk routing note before preflight edits.',
+      buttonLabel: 'COPY PREFLIGHT FREEZE',
+      copyText: weeklyCampaignPreflightCopyFreezeCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',
