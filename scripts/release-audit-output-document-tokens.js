@@ -3,7 +3,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "not a paid-launch approval",
   "npm run release:check:all",
   "Web tests passed: 20 suites, 139 tests",
-  "Focused cross-platform parity suites passed: 48 suites, 164 tests",
+  "Focused cross-platform parity suites passed: 48 suites, 170 tests",
   "src/__tests__/monetizationModel.test.js",
   "src/profile/monetizationSummaryCopy.js",
   "src/__tests__/engagementCopy.test.js",
