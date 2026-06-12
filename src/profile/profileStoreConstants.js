@@ -227,6 +227,12 @@ export const STORE_REVIEW_OUTCOME_HANDOFF_ITEMS = [
   'For rejected, metadata rejected, or action-required states, reopen root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before changing reviewer-facing copy',
   'Keep outcome handoff internal until a human confirms the console state, owner, next action, and evidence reference without exposing credentials, private data, purchase tokens, or approval claims',
 ];
+export const STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS = [
+  'Hold public launch, support, email, social, referral, partner, and paid-access messaging until store outcome, paid launch gate, entitlement QA, and evidence archive are reviewed together',
+  'For approved outcomes, route launch wording through final release owner, support owner, policy-link owner, and marketing owner before saying paid access, Pro, or packs are available',
+  'For rejected, metadata rejected, action-required, in-review, waiting-for-review, or unclear outcomes, keep communication internal and route back to outcome handoff, status watch, or resubmission prep',
+  'Record channel, owner, approved wording, evidence reference, reviewedAt timestamp, and remaining hold reason without exposing credentials, private data, purchase tokens, or approval claims',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

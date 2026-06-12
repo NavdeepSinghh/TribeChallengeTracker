@@ -169,6 +169,12 @@ const STORE_REVIEW_OUTCOME_HANDOFF_ITEMS = [
   'For rejected, metadata rejected, or action-required states, reopen root cause, hold reasons, packet QA, reviewer notes paste QA, and resubmission decision replies before changing reviewer-facing copy',
   'Keep outcome handoff internal until a human confirms the console state, owner, next action, and evidence reference without exposing credentials, private data, purchase tokens, or approval claims',
 ];
+const STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS = [
+  'Hold public launch, support, email, social, referral, partner, and paid-access messaging until store outcome, paid launch gate, entitlement QA, and evidence archive are reviewed together',
+  'For approved outcomes, route launch wording through final release owner, support owner, policy-link owner, and marketing owner before saying paid access, Pro, or packs are available',
+  'For rejected, metadata rejected, action-required, in-review, waiting-for-review, or unclear outcomes, keep communication internal and route back to outcome handoff, status watch, or resubmission prep',
+  'Record channel, owner, approved wording, evidence reference, reviewedAt timestamp, and remaining hold reason without exposing credentials, private data, purchase tokens, or approval claims',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -261,6 +267,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewConsoleSubmissionChecklistItems: STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
       storeReviewSubmissionStatusWatchItems: STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
       storeReviewOutcomeHandoffItems: STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
+      storeReviewLaunchCommunicationHoldItems: STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -304,6 +311,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewConsoleSubmissionChecklistCopy: lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy,
       storeReviewSubmissionStatusWatchCopy: lifecycleCopy.storeReviewSubmissionStatusWatchCopy,
       storeReviewOutcomeHandoffCopy: lifecycleCopy.storeReviewOutcomeHandoffCopy,
+      storeReviewLaunchCommunicationHoldCopy: lifecycleCopy.storeReviewLaunchCommunicationHoldCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -761,6 +769,35 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewOutcomeHandoffCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('Store Review Launch Communication Hold Kit');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('Hold public launch, support, email');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('Manual launch communication hold checklist');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('marketing owner');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('public launch');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('paid-access');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('approved wording');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('remaining hold reason');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('change review status from client code');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('announce approval');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('announce paid launch');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('publish public launch copy');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('send marketing email');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('post paid-access social copy');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('tell members Pro is live');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('tell members packs are live');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewLaunchCommunicationHoldCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -809,6 +846,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW CONSOLE SUBMISSION CHECKLIST KIT',
       'STORE REVIEW SUBMISSION STATUS WATCH KIT',
       'STORE REVIEW OUTCOME HANDOFF KIT',
+      'STORE REVIEW LAUNCH COMMUNICATION HOLD KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

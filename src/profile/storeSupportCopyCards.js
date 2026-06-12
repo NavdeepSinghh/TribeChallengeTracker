@@ -33,6 +33,7 @@ export function buildStoreSupportCopyCards({
   storeReviewConsoleSubmissionChecklistCopy,
   storeReviewSubmissionStatusWatchCopy,
   storeReviewOutcomeHandoffCopy,
+  storeReviewLaunchCommunicationHoldCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -341,6 +342,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy an outcome handoff checklist without announcing approval, changing review status, writing entitlements, or marking paid access live.',
       buttonLabel: 'COPY OUTCOME HANDOFF',
       copyText: storeReviewOutcomeHandoffCopy,
+    },
+    {
+      title: 'STORE REVIEW LAUNCH COMMUNICATION HOLD KIT',
+      subtitle: 'Public launch, support, and marketing message gate',
+      status: 'LAUNCH HOLD',
+      accent: '#FCD34D',
+      body: 'Copy a launch communication hold checklist without announcing approval, publishing paid launch copy, writing entitlements, or marking paid access live.',
+      buttonLabel: 'COPY LAUNCH HOLD',
+      copyText: storeReviewLaunchCommunicationHoldCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
