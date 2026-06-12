@@ -18,6 +18,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignSundayRecapQaCopy,
   weeklyCampaignNextWeekLaunchAngleCopy,
   weeklyCampaignPreflightOwnerHandoffCopy,
+  weeklyCampaignPreflightReadinessDecisionCopy,
 }) {
   return [
     {
@@ -138,6 +139,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Assign preflight owners for launch copy, manual replies, consent review, and support-risk routing before the next campaign preflight starts.',
       buttonLabel: 'COPY PREFLIGHT HANDOFF',
       copyText: weeklyCampaignPreflightOwnerHandoffCopy,
+    },
+    {
+      title: 'Weekly Campaign Preflight Readiness Decision Kit',
+      subtitle: 'Manual approve or hold decision before preflight',
+      status: 'READY?',
+      accent: '#22C55E',
+      background: 'rgba(34,197,94,0.05)',
+      border: '1px solid rgba(34,197,94,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Approve, clarify, support-route, wait for consent proof, repeat free-loop CTA, or hold paid-feature language before preflight.',
+      buttonLabel: 'COPY PREFLIGHT DECISION',
+      copyText: weeklyCampaignPreflightReadinessDecisionCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',
