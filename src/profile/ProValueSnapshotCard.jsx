@@ -13,6 +13,7 @@ export default function ProValueSnapshotCard({
   challengePackLaunchCopy,
   challengePackLaunchQaCopy,
   challengePackObjectionReplyCopy,
+  challengePackSupportTriageCopy,
   communityHighlightRoundupItems,
   copyText,
 }) {
@@ -91,6 +92,17 @@ export default function ProValueSnapshotCard({
         softText="#FEF3C7"
         subtitleColor="#FDE68A"
         onCopy={() => copyText(challengePackObjectionReplyCopy, 'Challenge pack replies copied')}
+      />
+      <ProValueCopyKitCard
+        title="CHALLENGE PACK SUPPORT TRIAGE KIT"
+        subtitle="Manual pack support handoff"
+        status="SUPPORT FIRST"
+        body="Copy support triage lanes for missing-pack, wrong-account, restore, refund, and launch-language questions before pack launch copy is used."
+        buttonLabel="COPY PACK SUPPORT TRIAGE"
+        accent="#38BDF8"
+        softText="#E0F2FE"
+        subtitleColor="#BAE6FD"
+        onCopy={() => copyText(challengePackSupportTriageCopy, 'Challenge pack support triage copied')}
       />
     </div>
   );

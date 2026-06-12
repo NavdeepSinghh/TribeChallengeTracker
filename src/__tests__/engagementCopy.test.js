@@ -91,6 +91,19 @@ describe('engagement copy contracts', () => {
     expect(copy.challengePackLaunchQaCopy).toContain('add tracking pixels');
     expect(copy.challengePackObjectionReplyCopy).toContain('store credentials');
     expect(copy.challengePackObjectionReplyCopy).toContain('Do not claim challenge packs are live');
+    expect(copy.challengePackSupportTriageCopy).toContain('Challenge Pack Support Triage Kit');
+    expect(copy.challengePackSupportTriageCopy).toContain('Manual support triage');
+    expect(copy.challengePackSupportTriageCopy).toContain('Missing pack access');
+    expect(copy.challengePackSupportTriageCopy).toContain('Wrong-account');
+    expect(copy.challengePackSupportTriageCopy).toContain('Duplicate charge, refund, or cancellation concern');
+    expect(copy.challengePackSupportTriageCopy).toContain('not live until external store evidence');
+    expect(copy.challengePackSupportTriageCopy).toContain('Do not claim packs are live');
+    expect(copy.challengePackSupportTriageCopy).toContain('create purchases');
+    expect(copy.challengePackSupportTriageCopy).toContain('write entitlements');
+    expect(copy.challengePackSupportTriageCopy).toContain('process refunds');
+    expect(copy.challengePackSupportTriageCopy).toContain('auto-message users');
+    expect(copy.challengePackSupportTriageCopy).toContain('scrape/store DMs');
+    expect(copy.challengePackSupportTriageCopy).toContain('add tracking pixels');
   });
 
   it('renders challenge pack launch kits in the web value snapshot card', () => {
@@ -108,6 +121,9 @@ describe('engagement copy contracts', () => {
     expect(source).toContain('CHALLENGE PACK OBJECTION REPLY KIT');
     expect(source).toContain('COPY PACK REPLIES');
     expect(source).toContain('challengePackObjectionReplyCopy');
+    expect(source).toContain('CHALLENGE PACK SUPPORT TRIAGE KIT');
+    expect(source).toContain('COPY PACK SUPPORT TRIAGE');
+    expect(source).toContain('challengePackSupportTriageCopy');
   });
 
   it('keeps challenge pack launch copy routed through Profile value-demand props', () => {
@@ -126,6 +142,7 @@ describe('engagement copy contracts', () => {
         challengePackLaunchCopy: 'pack launch',
         challengePackLaunchQaCopy: 'pack launch qa',
         challengePackObjectionReplyCopy: 'pack replies',
+        challengePackSupportTriageCopy: 'pack support triage',
         streakRescuePromptCopy: 'streak rescue',
         comebackChallengeInviteCopy: 'comeback invite',
       },
@@ -196,8 +213,10 @@ describe('engagement copy contracts', () => {
     expect(engagementResult.challengePackLaunchCopy).toBe('pack launch');
     expect(engagementResult.challengePackLaunchQaCopy).toBe('pack launch qa');
     expect(engagementResult.challengePackObjectionReplyCopy).toBe('pack replies');
+    expect(engagementResult.challengePackSupportTriageCopy).toBe('pack support triage');
     expect(props.challengePackLaunchCopy).toBe('pack launch');
     expect(props.challengePackLaunchQaCopy).toBe('pack launch qa');
     expect(props.challengePackObjectionReplyCopy).toBe('pack replies');
+    expect(props.challengePackSupportTriageCopy).toBe('pack support triage');
   });
 });

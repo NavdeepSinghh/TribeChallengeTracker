@@ -137,6 +137,7 @@ The Weekly Campaign social-growth operations inventory now lives in `docs/moneti
 - Paid challenge pack accountability prompts across Web, iOS, and Android tracker/detail surfaces.
 - Challenge Pack Launch Kit across Web, iOS, and Android with copy-ready paid-pack launch messaging using shared product IDs before store credentials are live.
 - Challenge Pack Objection Reply Kit across Web, iOS, and Android with manual pack-question replies that keep paid access, pricing, purchases, entitlements, and marketplace claims gated until validation is complete.
+- Challenge Pack Support Triage Kit on Web with manual missing-pack, wrong-account, restore, refund, cancellation, and launch-language support lanes before pack launch copy is used.
 - Shared store product catalog constants for Pro, 21-Day Reset Pack, Summer Shred, Beginner Consistency Plan, 30-Day Discipline Challenge, 75-Day Tribe Mode, 14-Day Comeback Sprint, and 21-Day Event Prep Pack.
 - Profile checkout UI wired to shared products, StoreKit product loading, and Play Billing product loading.
 - Server-side purchase entitlement writer for verified Pro and challenge-pack purchases, guarded behind receipt validation.
