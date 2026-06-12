@@ -197,6 +197,12 @@ export const STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS = [
   'Flag mismatches between console draft fields, public metadata, screenshots, permission copy, data safety, support routing, and reviewer-facing reply language',
   'Keep the packet QA internal until resubmission owner confirms no credentials, purchase tokens, private data, paid-live claims, or approval claims are present',
 ];
+export const STORE_REVIEW_RESUBMISSION_DECISION_REPLY_ITEMS = [
+  'Approve resubmission prep only when packet QA, hold-release decisions, final sign-off, console draft QA, evidence packet, policy links, support handoff, and fixed-build notes agree',
+  'Wait when reviewer notes, screenshots, metadata, data safety, demo access, permission copy, support routing, or evidence rows still need owner confirmation',
+  'Mark not-ready when released holds are missing proof, packet QA found mismatches, safe-denial coverage is incomplete, or the fixed build is not confirmed',
+  'Decline resubmission requests that rely on unreviewed proof, private data, credentials, purchase tokens, paid-live claims, approval claims, or pressure to move faster than evidence',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

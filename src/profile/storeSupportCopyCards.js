@@ -28,6 +28,7 @@ export function buildStoreSupportCopyCards({
   storeReviewSubmissionHoldReasonsCopy,
   storeReviewHoldReleaseDecisionCopy,
   storeReviewResubmissionPacketQaCopy,
+  storeReviewResubmissionDecisionReplyCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -291,6 +292,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a resubmission packet QA checklist without pasting reviewer notes, editing console fields, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY PACKET QA',
       copyText: storeReviewResubmissionPacketQaCopy,
+    },
+    {
+      title: 'STORE REVIEW RESUBMISSION DECISION REPLY KIT',
+      subtitle: 'Approved, waiting, not-ready, and declined resubmission replies',
+      status: 'RESUBMIT DECISION',
+      accent: '#F0ABFC',
+      body: 'Copy resubmission decision replies without submitting review, pasting reviewer notes without packet QA, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY RESUBMISSION DECISIONS',
+      copyText: storeReviewResubmissionDecisionReplyCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

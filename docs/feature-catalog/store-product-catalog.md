@@ -76,6 +76,7 @@ Shared behavior:
 - Web admin profile surfaces show a Store Review Submission Hold Reasons Kit with internal hold reason, owner, missing proof, reviewer-note impact, evidence-packet, policy/support link, fixed-build, and unblock-condition checks before console work continues.
 - Web admin profile surfaces show a Store Review Hold Release Decision Kit with approved, waiting, not-ready, and declined hold-release replies before resubmission prep resumes.
 - Web admin profile surfaces show a Store Review Resubmission Packet QA Kit with fixed-build, hold-release, reviewer-reply, evidence-packet, policy-link, support-handoff, screenshot, metadata, demo-access, and data-safety checks before reviewer notes change.
+- Web admin profile surfaces show a Store Review Resubmission Decision Reply Kit with approved, waiting, not-ready, and declined resubmission-prep replies before reviewer notes or console work move forward.
 - Firebase Functions exposes callable `getPurchaseValidationReadiness` so admin profile surfaces can check App Store / Play credential readiness without submitting a fake purchase or writing entitlements.
 - Product IDs do not unlock features directly.
 - Purchase and receipt-validation work must write the shared entitlement fields before gated UI unlocks.
