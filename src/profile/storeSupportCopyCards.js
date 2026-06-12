@@ -12,6 +12,7 @@ export function buildStoreSupportCopyCards({
   storeScreenshotQaCopy,
   storeReviewPackCopy,
   storeReviewResponseCopy,
+  storeReviewEvidenceGapDecisionCopy,
   storeReviewEvidenceGapTriageCopy,
   storeReviewResubmissionCopy,
 }) {
@@ -141,6 +142,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy an evidence-gap triage checklist without creating fake proof, submitting review, exposing credentials, unlocking paid access, or claiming approval.',
       buttonLabel: 'COPY EVIDENCE GAP TRIAGE',
       copyText: storeReviewEvidenceGapTriageCopy,
+    },
+    {
+      title: 'STORE REVIEW EVIDENCE GAP DECISION REPLY KIT',
+      subtitle: 'Approved, waiting, not-ready, and declined evidence-gap replies',
+      status: 'GAP REPLIES',
+      accent: '#FDE047',
+      body: 'Copy evidence-gap decision replies without creating fake proof, submitting review, exposing private data, unlocking paid access, or claiming approval.',
+      buttonLabel: 'COPY GAP DECISION REPLIES',
+      copyText: storeReviewEvidenceGapDecisionCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

@@ -136,6 +136,6 @@ Initial implementation status:
 
 This creates the strongest bridge between Instagram attention and app-based commitment.
 
-Current release posture is maintained as a split release-evidence ledger so this roadmap can stay focused on direction and sequencing. Recent Web-only readiness checkpoints include Store Review Evidence Gap Triage Kit, Store Review Resubmission Readiness Kit, Launch Retrospective Readiness Script Kit, Pro Trial Store Readiness Script Kit, Challenge Pack Store Readiness Script Kit, Creator Payout Support Readiness Script Kit, and Partner Support Readiness Script Kit, with Web admin copy-only member-safe support readiness script done for partner support follow-up while mobile parity remains separate.
+Current release posture is maintained as a split release-evidence ledger so this roadmap can stay focused on direction and sequencing. Recent Web-only readiness checkpoints include Store Review Evidence Gap Decision Reply Kit, Store Review Evidence Gap Triage Kit, Store Review Resubmission Readiness Kit, Launch Retrospective Readiness Script Kit, Pro Trial Store Readiness Script Kit, Challenge Pack Store Readiness Script Kit, Creator Payout Support Readiness Script Kit, and Partner Support Readiness Script Kit, with Web admin copy-only member-safe support readiness script done for partner support follow-up while mobile parity remains separate.
 
 <!-- include: monetization-roadmap/current-release-posture.md -->

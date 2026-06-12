@@ -107,6 +107,12 @@ export const STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS = [
   'Assign one owner and one next proof action for each App Store sandbox or Play license-test gap before reviewer notes change',
   'Keep the triage notes internal until a human confirms evidence, policy wording, support links, and paid-launch gate status',
 ];
+export const STORE_REVIEW_EVIDENCE_GAP_DECISION_ITEMS = [
+  'Approve only evidence gaps that have a named owner, a real proof path, and no paid-live or store-submission claim',
+  'Wait when a sandbox/license-test action, restore/sync result, policy link, screenshot, or reviewer note is still being gathered',
+  'Mark not-ready when the gap lacks product IDs, platform context, support/refund handoff, entitlement QA, or reviewed evidence notes',
+  'Decline gaps that rely on fake proof, private data, credentials, purchase tokens, unreviewed screenshots, or pressure to resubmit',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

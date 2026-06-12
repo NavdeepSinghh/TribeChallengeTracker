@@ -50,6 +50,7 @@ export function buildProfileStoreSupportCardData({
     storeScreenshotQaCopy,
     storeReviewPackCopy,
     storeReviewResponseCopy,
+    storeReviewEvidenceGapDecisionCopy,
     storeReviewEvidenceGapTriageCopy,
     storeReviewResubmissionCopy,
   } = buildProfileStoreLifecycleSupportData({
@@ -85,6 +86,7 @@ export function buildProfileStoreSupportCardData({
     storeScreenshotQaCopy,
     storeReviewPackCopy,
     storeReviewResponseCopy,
+    storeReviewEvidenceGapDecisionCopy,
     storeReviewEvidenceGapTriageCopy,
     storeReviewResubmissionCopy,
   });
