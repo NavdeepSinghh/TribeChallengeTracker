@@ -49,5 +49,6 @@ Features:
 - Weekly Campaign Preflight Launch Packet QA Kit on Web with manual frozen-copy, launch-asset, consent-proof, support-routing, and owner handoff checks before preflight.
 - Weekly Campaign Preflight Go/No-Go Kit on Web with manual go, copy-hold, asset-hold, consent-hold, support-route, free-loop repeat, or paid-language hold decisions before preflight.
 - Weekly Campaign Preflight Checklist Handoff Kit on Web with manual approved-lane, packet-reference, blocker, consent-proof, support-route, and checklist-owner handoff before preflight work starts.
+- Weekly Campaign Preflight Checklist QA Kit on Web with manual completed-checklist, blocker, consent-proof, support-route, and launch-readiness handoff review before copy is treated as ready.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.
