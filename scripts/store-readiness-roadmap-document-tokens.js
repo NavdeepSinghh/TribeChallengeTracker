@@ -31,6 +31,8 @@ const ROADMAP_TOKENS = [
   "docs/monetization-roadmap/pro-subscription-foundation.md",
   "Phase 3: Pro Subscription Foundation Index",
   "Phase 3: Pro Subscription Foundation",
+  "Pro Trial Support Escalation Kit",
+  "Web admin copy-only support handoff done for store setup, value proof, support coverage, entitlement QA, marketplace routing, and refund-confusion triage",
   "Phase 6: Partnerships",
   "Store Test Purchase Evidence Log",
   "Store Evidence Archive Kit",
