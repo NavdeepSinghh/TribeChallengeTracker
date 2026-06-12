@@ -57,5 +57,6 @@ Features:
 - Weekly Campaign Review Handoff Kit on Web with manual callback-evidence, first-party signal, support-route, consent-queue, and review-owner handoff before the post-launch review brief is written.
 - Weekly Campaign Review Decision Kit on Web with manual repeat, storyboard refresh, support-route, consent-review, referral follow-up, paid-language hold, or retrospective-readiness decisions before next content work starts.
 - Weekly Campaign Storyboard Handoff Kit on Web with manual review-decision, app-first CTA, consent-proof, support-route, paid-language hold, and storyboard-owner handoff before content planning starts.
+- Weekly Campaign Storyboard QA Kit on Web with manual Reel, Story, carousel, consent-proof, app-first CTA, support-route, paid-language, and reward-language checks before experiment planning.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.

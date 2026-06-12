@@ -48,6 +48,7 @@ export function buildWeeklyCampaignMarketingSectionData({
   weeklyCampaignStartDayStoryCopy,
   weeklyCampaignStoryboardHandoffCopy,
   weeklyCampaignStoryboardCopy,
+  weeklyCampaignStoryboardQaCopy,
   weeklyCampaignStoryPollCopy,
   weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignWeekendPushStoryCopy,
@@ -120,6 +121,7 @@ export function buildWeeklyCampaignMarketingSectionData({
       weeklyCampaignReviewDecisionCopy,
       weeklyCampaignStoryboardHandoffCopy,
       weeklyCampaignStoryboardCopy,
+      weeklyCampaignStoryboardQaCopy,
     }),
     weeklyCampaignCollabCopyCards,
   };

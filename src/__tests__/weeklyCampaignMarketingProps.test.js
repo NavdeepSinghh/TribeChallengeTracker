@@ -53,6 +53,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.weeklyCampaignReviewHandoffCopy).toContain("Weekly Campaign Review Handoff Kit");
     expect(props.weeklyCampaignReviewDecisionCopy).toContain("Weekly Campaign Review Decision Kit");
     expect(props.weeklyCampaignStoryboardHandoffCopy).toContain("Weekly Campaign Storyboard Handoff Kit");
+    expect(props.weeklyCampaignStoryboardQaCopy).toContain("Weekly Campaign Storyboard QA Kit");
     expect(props.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
     expect(props.weeklyCampaignCollabCopyCards).toHaveLength(9);
     expect(props.weeklyCampaignCollabCopyCards[6].title).toBe("Weekly Campaign Support Triage Kit");
@@ -122,6 +123,7 @@ describe("Weekly Campaign marketing props", () => {
       "weeklyCampaignStoryPollCopy",
       "weeklyCampaignStoryboardCopy",
       "weeklyCampaignStoryboardHandoffCopy",
+      "weeklyCampaignStoryboardQaCopy",
       "weeklyCampaignSundayRecapQaCopy",
       "weeklyCampaignWeekendPushDecisionCopy",
       "weeklyCampaignWeekendPushStoryCopy",
@@ -158,7 +160,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(26);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(27);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -245,8 +247,13 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[22].buttonLabel).toBe("COPY STORYBOARD HANDOFF");
     expect(sectionData.weeklyCampaignMetricKitSections[22].copyText).toContain("Manual storyboard handoff");
     expect(sectionData.weeklyCampaignMetricKitSections[22].copyText).toContain("paid-language hold note");
-    expect(sectionData.weeklyCampaignMetricKitSections[25].title).toBe("Launch Retrospective Readiness Script Kit");
-    expect(sectionData.weeklyCampaignMetricKitSections[25].copyText).toContain("Manual retrospective readiness script");
-    expect(sectionData.weeklyCampaignMetricKitSections[25].copyText).toContain("Do not create experiment records");
+    expect(sectionData.weeklyCampaignMetricKitSections[23].title).toBe("Weekly Campaign Storyboard Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[24].title).toBe("Weekly Campaign Storyboard QA Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[24].buttonLabel).toBe("COPY STORYBOARD QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[24].copyText).toContain("Manual storyboard QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[24].copyText).toContain("experiment brief owner");
+    expect(sectionData.weeklyCampaignMetricKitSections[26].title).toBe("Launch Retrospective Readiness Script Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[26].copyText).toContain("Manual retrospective readiness script");
+    expect(sectionData.weeklyCampaignMetricKitSections[26].copyText).toContain("Do not create experiment records");
   });
 });
