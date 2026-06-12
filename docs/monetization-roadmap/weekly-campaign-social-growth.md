@@ -67,5 +67,6 @@ Features:
 - Launch Retrospective Decision Reply Kit on Web with copy-ready repeat, pause, support-review, store-QA, prompt-refresh, free-loop, or paid-language-hold replies after the manual retrospective decision.
 - Launch Retrospective Next Campaign Handoff Kit on Web with manual next campaign owner, preflight owner, support route, consent queue, evidence reference, entitlement QA status, and paid-language hold after the decision reply.
 - Launch Retrospective Next Campaign QA Kit on Web with manual next-campaign handoff, final decision reply, support route, consent queue, entitlement QA status, no-paid-live, and preflight-start checks.
+- Launch Retrospective Next Campaign Brief Kit on Web with manual app-first campaign angle, free challenge CTA, support route, consent-safe proof lane, paid-language hold, and preflight owner after next-campaign QA.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.
