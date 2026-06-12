@@ -4,6 +4,8 @@ export const PRO_FEATURES = {
   paidChallengePacks: 'paidChallengePacks',
 };
 
+export const V1_PAID_FEATURES_ENABLED = false;
+
 export const STORE_PRODUCTS = {
   proMonthly: {
     id: 'com.risewiththetribe.pro.monthly',
@@ -64,20 +66,24 @@ export const STORE_PRODUCTS = {
 export const STORE_PRODUCT_IDS = Object.values(STORE_PRODUCTS).map(product => product.id);
 
 export function hasActivePro(profile) {
+  if (!V1_PAID_FEATURES_ENABLED) return false;
   return profile?.entitlements?.pro?.active === true;
 }
 
 export function hasActiveChallengePack(profile, packId) {
+  if (!V1_PAID_FEATURES_ENABLED) return false;
   if (!packId) return false;
   return profile?.entitlements?.packs?.[packId]?.active === true;
 }
 
 export function canCreateChallengeTemplate(profile, template) {
   if (!template?.isPremium) return true;
+  if (!V1_PAID_FEATURES_ENABLED) return true;
   return hasActivePro(profile) || hasActiveChallengePack(profile, template.packId);
 }
 
 export function canUseProFeature(profile, featureId) {
   if (!featureId) return false;
+  if (!V1_PAID_FEATURES_ENABLED) return false;
   return hasActivePro(profile);
 }

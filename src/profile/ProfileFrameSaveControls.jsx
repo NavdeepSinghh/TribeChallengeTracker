@@ -1,4 +1,5 @@
 import { ACCENT } from './profileConstants';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function ProfileFrameSaveControls({
   cosmeticsMessage,
@@ -6,6 +7,7 @@ export default function ProfileFrameSaveControls({
   onFrameSave,
   proActive,
 }) {
+  const enabled = !V1_PAID_FEATURES_ENABLED || proActive;
   return (
     <>
       <button
@@ -14,15 +16,15 @@ export default function ProfileFrameSaveControls({
         style={{
           width: '100%', marginTop: 12, padding: '12px',
           borderRadius: 14, border: 'none',
-          background: proActive ? ACCENT : 'rgba(255,255,255,0.08)',
-          color: proActive ? '#111' : '#aaa',
+          background: enabled ? ACCENT : 'rgba(255,255,255,0.08)',
+          color: enabled ? '#111' : '#aaa',
           fontWeight: 900, cursor: isSavingCosmetics ? 'wait' : 'pointer',
         }}
       >
-        {proActive ? (isSavingCosmetics ? 'Saving Frame' : 'Save Profile Frame') : 'Unlock with Tribe Pro'}
+        {enabled ? (isSavingCosmetics ? 'Saving Frame' : 'Save Profile Frame') : 'Later Release'}
       </button>
       {cosmeticsMessage && (
-        <p style={{ margin: '10px 0 0', color: proActive ? '#34D399' : '#FFD166', fontSize: 11, fontWeight: 800 }}>
+        <p style={{ margin: '10px 0 0', color: enabled ? '#34D399' : '#FFD166', fontSize: 11, fontWeight: 800 }}>
           {cosmeticsMessage}
         </p>
       )}

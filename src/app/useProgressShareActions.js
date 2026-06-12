@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { saveSharePreferences } from "../userService";
+import { V1_PAID_FEATURES_ENABLED } from "../proFeatures";
 import { SHARE_TEMPLATES } from "./activityModel";
 import { makeProgressShareImageBlob, progressShareText } from "./progressShare";
 
@@ -15,8 +16,8 @@ export default function useProgressShareActions({
 
   const handleShareTemplateSelect = async (templateId) => {
     const template = SHARE_TEMPLATES.find(t => t.id === templateId) || SHARE_TEMPLATES[0];
-    if (template.pro && !hasActivePro) {
-      showToast("Tribe Pro unlocks premium share templates");
+    if (V1_PAID_FEATURES_ENABLED && template.pro && !hasActivePro) {
+      showToast("Premium share templates are planned for a later release");
       return;
     }
     if (!user || template.id === shareTemplateId || savingShareTemplate) return;

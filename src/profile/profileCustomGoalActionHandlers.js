@@ -1,4 +1,5 @@
 import { saveCustomGoals } from '../userService';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export function buildProfileCustomGoalActionHandlers({
   goalActiveDays,
@@ -11,8 +12,8 @@ export function buildProfileCustomGoalActionHandlers({
   user,
 }) {
   const handleCustomGoalsSave = async () => {
-    if (!proActive) {
-      setGoalsMessage('Custom goals unlock with Tribe Pro.');
+    if (V1_PAID_FEATURES_ENABLED && !proActive) {
+      setGoalsMessage('Custom goals are planned for a later release.');
       return;
     }
     setIsSavingGoals(true);

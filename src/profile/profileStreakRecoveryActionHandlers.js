@@ -1,4 +1,5 @@
 import { saveStreakRecovery } from '../userService';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export function buildProfileStreakRecoveryActionHandlers({
   myHistory,
@@ -11,8 +12,8 @@ export function buildProfileStreakRecoveryActionHandlers({
   onHistoryUpdated,
 }) {
   const handleStreakRecovery = async () => {
-    if (!proActive) {
-      setRecoveryMessage('Streak recovery credits unlock with Tribe Pro.');
+    if (!V1_PAID_FEATURES_ENABLED || !proActive) {
+      setRecoveryMessage('Streak recovery is planned for a later release.');
       return;
     }
     setIsSavingRecovery(true);

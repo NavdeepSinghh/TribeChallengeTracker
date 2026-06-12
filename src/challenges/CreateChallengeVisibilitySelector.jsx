@@ -1,4 +1,5 @@
 import { ACCENT } from './challengeTheme';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function CreateChallengeVisibilitySelector({
   canCreatePrivate,
@@ -13,12 +14,14 @@ export default function CreateChallengeVisibilitySelector({
       <div style={{ display: 'flex', gap: 10 }}>
         {[
           { val: true,  icon: '🌐', label: 'Public', desc: 'Discoverable by anyone' },
-          { val: false, icon: '🔒', label: 'Private', desc: canCreatePrivate ? 'Invite link only' : 'Tribe Pro benefit' },
+          { val: false, icon: '🔒', label: 'Private', desc: canCreatePrivate ? 'Invite link only' : (V1_PAID_FEATURES_ENABLED ? 'Tribe Pro benefit' : 'Later release') },
         ].map(opt => (
           <button key={String(opt.val)} onClick={() => {
             if (opt.val === false && !canCreatePrivate) {
               setIsPublic(true);
-              setProMessage('Private challenges are a Tribe Pro feature. Public challenges are still available.');
+              setProMessage(V1_PAID_FEATURES_ENABLED
+                ? 'Private challenges are a Tribe Pro feature. Public challenges are still available.'
+                : 'Private challenges are planned after the free V1 launch. Public challenges are available now.');
               return;
             }
             setProMessage('');

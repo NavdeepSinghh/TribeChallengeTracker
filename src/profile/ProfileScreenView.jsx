@@ -4,6 +4,7 @@ import ProfileScreenIdentityPanel from './ProfileScreenIdentityPanel';
 import ProfileScreenSheets from './ProfileScreenSheets';
 import ProfileScreenSupportSections from './ProfileScreenSupportSections';
 import ProfileTopBar from './ProfileTopBar';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function ProfileScreenView({ model, mode = 'profile' }) {
   const { onClose, visible } = model;
@@ -29,9 +30,13 @@ export default function ProfileScreenView({ model, mode = 'profile' }) {
         <ProfileScreenIdentityPanel model={model} />
         {isSettings ? (
           <>
-            <ProfileMonetizationSections model={model} mode="commerce" />
             <ProfileScreenGrowthSections model={model} />
-            <ProfileMonetizationSections model={model} mode="prelaunch" />
+            {V1_PAID_FEATURES_ENABLED && (
+              <>
+                <ProfileMonetizationSections model={model} mode="commerce" />
+                <ProfileMonetizationSections model={model} mode="prelaunch" />
+              </>
+            )}
             <ProfileScreenSupportSections model={model} />
           </>
         ) : (

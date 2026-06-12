@@ -1,4 +1,4 @@
-import { canCreateChallengeTemplate } from '../proFeatures';
+import { canCreateChallengeTemplate, V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 import { card } from './challengeTheme';
 
 export default function CreateChallengeTemplateCard({ onTemplateSelect, profile, template }) {
@@ -25,7 +25,7 @@ export default function CreateChallengeTemplateCard({ onTemplateSelect, profile,
           </span>
           {template.isPremium && (
             <span style={{ fontSize: 9, fontFamily: 'monospace', fontWeight: 900, color: '#A78BFA', background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.35)', borderRadius: 5, padding: '2px 6px' }}>
-              {unlocked ? template.packLabel?.toUpperCase() || 'PREMIUM' : 'LOCKED'}
+              {V1_PAID_FEATURES_ENABLED ? (unlocked ? template.packLabel?.toUpperCase() || 'PREMIUM' : 'LOCKED') : 'V1 INCLUDED'}
             </span>
           )}
           {template.source === 'creatorChallengeTemplates' && (
@@ -63,9 +63,11 @@ export default function CreateChallengeTemplateCard({ onTemplateSelect, profile,
               ))}
             </div>
             <div style={{ marginTop: 7, color: '#888', fontSize: 10, lineHeight: 1.35 }}>
-              {unlocked
+              {!V1_PAID_FEATURES_ENABLED
+                ? 'Included in V1 launch. Build the challenge and use the pack prompts every day.'
+                : unlocked
                 ? 'Unlocked for your account. Build the challenge and use the pack prompts every day.'
-                : 'Unlock with Tribe Pro or this pack to create the structured challenge.'}
+                : 'This structured challenge pack is planned for a later release.'}
             </div>
           </div>
         )}

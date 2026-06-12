@@ -1,4 +1,5 @@
 import { saveCreatorProfile } from '../userService';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export function buildCreatorProfileActionHandlers({
   creatorBio,
@@ -15,8 +16,8 @@ export function buildCreatorProfileActionHandlers({
   onProfileUpdated,
 }) {
   const handleCreatorSave = async () => {
-    if (!proActive) {
-      setCreatorMessage('Creator / Coach Mode unlocks with Tribe Pro.');
+    if (V1_PAID_FEATURES_ENABLED && !proActive) {
+      setCreatorMessage('Creator / Coach Mode is planned for a later release.');
       return;
     }
     setIsSavingCreator(true);

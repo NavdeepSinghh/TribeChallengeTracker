@@ -1,5 +1,6 @@
 import CreatorCoachMetricGrid from './CreatorCoachMetricGrid';
 import { GOLD } from './profileConstants';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function CreatorCoachSummaryPanel({
   creatorAnalytics,
@@ -9,6 +10,7 @@ export default function CreatorCoachSummaryPanel({
   setCreatorEnabled,
   setCreatorRevenueShareInterest,
 }) {
+  const enabled = !V1_PAID_FEATURES_ENABLED || proActive;
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start', marginBottom: 12 }}>
@@ -18,8 +20,8 @@ export default function CreatorCoachSummaryPanel({
             Public profile foundation for future hosted challenges
           </p>
         </div>
-        <span style={{ color: creatorEnabled ? '#60A5FA' : (proActive ? GOLD : '#777'), fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>
-          {creatorEnabled ? 'LIVE' : (proActive ? 'PRO' : 'LOCKED')}
+        <span style={{ color: creatorEnabled ? '#60A5FA' : (enabled ? GOLD : '#777'), fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>
+          {creatorEnabled ? 'LIVE' : (enabled ? 'V1' : 'LATER')}
         </span>
       </div>
       <label style={{
@@ -30,7 +32,7 @@ export default function CreatorCoachSummaryPanel({
         <input
           type="checkbox"
           checked={creatorEnabled}
-          disabled={!proActive}
+          disabled={!enabled}
           onChange={e => setCreatorEnabled(e.target.checked)}
           style={{ width: 18, height: 18, accentColor: '#60A5FA' }}
         />
@@ -43,7 +45,7 @@ export default function CreatorCoachSummaryPanel({
           ['ACTIVE', creatorAnalytics.active],
           ['PRIVATE', creatorAnalytics.private],
         ]}
-        proActive={proActive}
+        proActive={enabled}
       />
       <CreatorCoachMetricGrid
         color="#34D399"
@@ -51,7 +53,7 @@ export default function CreatorCoachSummaryPanel({
           ['PAID PACKS', creatorAnalytics.paidPacks],
           ['READY', creatorAnalytics.revenueReady],
         ]}
-        proActive={proActive}
+        proActive={enabled}
       />
       <label style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -61,7 +63,7 @@ export default function CreatorCoachSummaryPanel({
         <input
           type="checkbox"
           checked={creatorRevenueShareInterest}
-          disabled={!proActive}
+          disabled={!enabled}
           onChange={e => setCreatorRevenueShareInterest(e.target.checked)}
           style={{ width: 18, height: 18, accentColor: '#34D399' }}
         />
