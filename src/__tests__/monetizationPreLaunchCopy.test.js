@@ -73,6 +73,23 @@ describe('monetization prelaunch copy contracts', () => {
     expect(copy.customerValueReviewDecisionReplyCopy).toContain('APPROVED FOR VALUE LEARNING');
     expect(copy.customerValueReviewDecisionReplyCopy).toContain('Do not charge users');
     expect(copy.customerValueReviewDecisionReplyCopy).toContain('write entitlements');
+    expect(copy.customerValueSupportEscalationCopy).toContain('Customer Value Support Escalation Kit');
+    expect(copy.customerValueSupportEscalationCopy).toContain('Support escalation checklist');
+    expect(copy.customerValueSupportEscalationCopy).toContain('not a charge');
+    expect(copy.customerValueSupportEscalationCopy).toContain('not paid-access unlock');
+    expect(copy.customerValueSupportEscalationCopy).toContain('not entitlement approval');
+    expect(copy.customerValueSupportEscalationCopy).toContain('first-party and support-safe');
+    expect(copy.customerValueSupportEscalationCopy).toContain('Do not charge users');
+    expect(copy.customerValueSupportEscalationCopy).toContain('unlock paid access');
+    expect(copy.customerValueSupportEscalationCopy).toContain('create discounts');
+    expect(copy.customerValueSupportEscalationCopy).toContain('collect payment details');
+    expect(copy.customerValueSupportEscalationCopy).toContain('create purchases');
+    expect(copy.customerValueSupportEscalationCopy).toContain('write entitlements');
+    expect(copy.customerValueSupportEscalationCopy).toContain('process refunds');
+    expect(copy.customerValueSupportEscalationCopy).toContain('promote paid features as live');
+    expect(copy.customerValueSupportEscalationCopy).toContain('export per-user paid-interest lists');
+    expect(copy.customerValueSupportEscalationCopy).toContain('add tracking pixels');
+    expect(copy.customerValueSupportEscalationCopy).toContain('auto-message users');
     expect(kits[4]).toMatchObject({
       buttonLabel: 'COPY VALUE CHECKLIST',
       status: 'PRE-LAUNCH',

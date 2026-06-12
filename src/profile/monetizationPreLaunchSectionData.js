@@ -17,6 +17,7 @@ export function buildMonetizationPreLaunchSectionData({
   customerValueChecklistCopy,
   approvedCustomerValueReviews,
   customerValueReviewDecisionReplyCopy,
+  customerValueSupportEscalationCopy,
   customerValueReviewMessage,
   customerValueReviewNotes,
   customerValueReviewQueue,
@@ -101,6 +102,7 @@ export function buildMonetizationPreLaunchSectionData({
     customerValueReviewSectionProps: {
       approvedCustomerValueReviews,
       customerValueReviewDecisionReplyCopy,
+      customerValueSupportEscalationCopy,
       customerValueReviewMessage,
       customerValueReviewNotes,
       customerValueReviewQueue,

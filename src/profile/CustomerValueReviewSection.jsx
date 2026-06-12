@@ -4,6 +4,7 @@ export default function CustomerValueReviewSection({
   customerValueReviewNotes = {},
   customerValueReviewQueue = [],
   customerValueReviewDecisionReplyCopy,
+  customerValueSupportEscalationCopy,
   isAdmin,
   isSubmittingCustomerValueReview,
   onCustomerValueReviewDecision,
@@ -102,6 +103,22 @@ export default function CustomerValueReviewSection({
           }}
         >
           COPY VALUE REVIEW DECISION REPLIES
+        </button>
+      </div>
+      <div style={{ marginTop: 10, padding: 10, borderRadius: 10, border: '1px solid rgba(244,63,94,0.22)', background: 'rgba(244,63,94,0.07)' }}>
+        <p style={{ margin: 0, color: '#fff', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>CUSTOMER VALUE SUPPORT ESCALATION KIT</p>
+        <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10, lineHeight: 1.45 }}>
+          Copy support routing for value proof, onboarding, store readiness, entitlement QA, marketplace, privacy, and paid-handoff questions before charges, purchases, discounts, entitlements, or paid-live claims exist.
+        </p>
+        <button
+          onClick={() => navigator.clipboard?.writeText(customerValueSupportEscalationCopy || '')}
+          style={{
+            marginTop: 8, width: '100%', borderRadius: 10, padding: '8px 10px',
+            border: '1px solid rgba(244,63,94,0.24)', background: 'rgba(244,63,94,0.10)',
+            color: '#F43F5E', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+          }}
+        >
+          COPY VALUE SUPPORT ESCALATION
         </button>
       </div>
     </div>
