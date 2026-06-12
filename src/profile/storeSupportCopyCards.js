@@ -30,6 +30,7 @@ export function buildStoreSupportCopyCards({
   storeReviewResubmissionPacketQaCopy,
   storeReviewResubmissionDecisionReplyCopy,
   storeReviewReviewerNotesPasteQaCopy,
+  storeReviewConsoleSubmissionChecklistCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -311,6 +312,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a reviewer-notes paste QA checklist without submitting review, editing console fields, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY PASTE QA',
       copyText: storeReviewReviewerNotesPasteQaCopy,
+    },
+    {
+      title: 'STORE REVIEW CONSOLE SUBMISSION CHECKLIST KIT',
+      subtitle: 'Human console owner final submission checks',
+      status: 'SUBMISSION CHECK',
+      accent: '#FBCFE8',
+      body: 'Copy a console submission checklist without submitting review, editing console fields, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY SUBMISSION CHECKLIST',
+      copyText: storeReviewConsoleSubmissionChecklistCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

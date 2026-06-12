@@ -209,6 +209,12 @@ export const STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS = [
   'Flag any mismatch between App Store Connect notes, Play Console notes, public metadata, screenshots, permission copy, support routing, and evidence packet references',
   'Keep paste QA internal until the resubmission owner confirms the exact notes are ready for human console work',
 ];
+export const STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS = [
+  'Confirm App Store Connect and Play Console drafts match reviewer-note paste QA, resubmission decisions, packet QA, fixed-build notes, evidence rows, policy links, support handoff, demo access, screenshots, metadata, and data safety',
+  'Verify the human console owner has checked version/build number, reviewer notes, test instructions, screenshots, privacy/data safety answers, support URLs, and contact details before submission',
+  'Hold submission if any credential, purchase token, order ID, transaction ID, private user data, draft-only link, paid-live claim, approval claim, or unreviewed proof remains',
+  'Keep the checklist internal until the console owner confirms submission readiness outside client code',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

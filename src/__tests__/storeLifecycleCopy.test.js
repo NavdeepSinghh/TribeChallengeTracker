@@ -151,6 +151,12 @@ const STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS = [
   'Flag any mismatch between App Store Connect notes, Play Console notes, public metadata, screenshots, permission copy, support routing, and evidence packet references',
   'Keep paste QA internal until the resubmission owner confirms the exact notes are ready for human console work',
 ];
+const STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS = [
+  'Confirm App Store Connect and Play Console drafts match reviewer-note paste QA, resubmission decisions, packet QA, fixed-build notes, evidence rows, policy links, support handoff, demo access, screenshots, metadata, and data safety',
+  'Verify the human console owner has checked version/build number, reviewer notes, test instructions, screenshots, privacy/data safety answers, support URLs, and contact details before submission',
+  'Hold submission if any credential, purchase token, order ID, transaction ID, private user data, draft-only link, paid-live claim, approval claim, or unreviewed proof remains',
+  'Keep the checklist internal until the console owner confirms submission readiness outside client code',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -240,6 +246,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewResubmissionPacketQaItems: STORE_REVIEW_RESUBMISSION_PACKET_QA_ITEMS,
       storeReviewResubmissionDecisionReplyItems: STORE_REVIEW_RESUBMISSION_DECISION_REPLY_ITEMS,
       storeReviewReviewerNotesPasteQaItems: STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS,
+      storeReviewConsoleSubmissionChecklistItems: STORE_REVIEW_CONSOLE_SUBMISSION_CHECKLIST_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -280,6 +287,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewResubmissionPacketQaCopy: lifecycleCopy.storeReviewResubmissionPacketQaCopy,
       storeReviewResubmissionDecisionReplyCopy: lifecycleCopy.storeReviewResubmissionDecisionReplyCopy,
       storeReviewReviewerNotesPasteQaCopy: lifecycleCopy.storeReviewReviewerNotesPasteQaCopy,
+      storeReviewConsoleSubmissionChecklistCopy: lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -670,6 +678,27 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewReviewerNotesPasteQaCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewReviewerNotesPasteQaCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewReviewerNotesPasteQaCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('Store Review Console Submission Checklist Kit');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('Confirm App Store Connect and Play Console drafts');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('Manual console submission checklist');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('human console owner');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('version/build number');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('Hold submission if credentials');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('submission readiness outside client code');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('paste reviewer notes without human QA');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewConsoleSubmissionChecklistCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -715,6 +744,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW RESUBMISSION PACKET QA KIT',
       'STORE REVIEW RESUBMISSION DECISION REPLY KIT',
       'STORE REVIEW REVIEWER NOTES PASTE QA KIT',
+      'STORE REVIEW CONSOLE SUBMISSION CHECKLIST KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });
