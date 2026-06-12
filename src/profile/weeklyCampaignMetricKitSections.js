@@ -7,6 +7,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
+  launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
   launchRetrospectiveNextCampaignLaunchCopyHandoffCopy,
   launchRetrospectiveNextCampaignLaunchCopyQaBridgeCopy,
   launchRetrospectiveNextCampaignPreflightBridgeCopy,
@@ -745,6 +746,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the launch-copy handoff packet, approved preflight bridge, launch-card headline, caption direction, Story/Reel hook, pinned-comment CTA, DM route, support route, consent queue, and paid-language hold before launch copy is approved.',
       buttonLabel: 'COPY LAUNCH COPY QA BRIDGE',
       copyText: launchRetrospectiveNextCampaignLaunchCopyQaBridgeCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Launch Copy Approval Kit',
+      subtitle: 'Manual launch-copy approval decision',
+      status: 'COPY APPROVAL',
+      accent: '#581C87',
+      background: 'rgba(88,28,135,0.05)',
+      border: '1px solid rgba(88,28,135,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Approve, hold, route support, request consent review, open store QA, keep free-loop CTA, or hold paid-language copy after the launch-copy QA bridge and before final posting prep.',
+      buttonLabel: 'COPY LAUNCH COPY APPROVAL',
+      copyText: launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
     },
   ];
 }
