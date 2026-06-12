@@ -33,6 +33,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignStoryboardCopy,
     weeklyCampaignStoryboardQaCopy,
     weeklyCampaignExperimentBriefHandoffCopy,
+    weeklyCampaignExperimentBriefQaCopy,
     dmKeywordCopy,
   } = coreData;
   const {
@@ -85,6 +86,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignCountdownStoryCopy,
     weeklyCampaignExperimentBriefCopy,
     weeklyCampaignExperimentBriefHandoffCopy,
+    weeklyCampaignExperimentBriefQaCopy,
     weeklyCampaignFaqCarouselCopy,
     weeklyCampaignFinalPostingPrepQaCopy,
     weeklyCampaignFirstDayMonitorCopy,
