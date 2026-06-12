@@ -576,6 +576,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("Launch Retrospective Next Campaign Post-Complete Callback QA Bridge Kit");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("Manual next campaign post-complete callback QA bridge");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("approved callback handoff reference");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("review handoff owner");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("Weekly Campaign Review Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackQaBridgeCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
