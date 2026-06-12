@@ -3,6 +3,7 @@ import { GOLD, DM_KEYWORD_PROMPTS } from './profileConstants';
 export function buildWeeklyCampaignMetricKitSections({
   campaignPerformanceSummary,
   featureReviewQueue,
+  launchRetrospectiveReadinessScriptCopy,
   recommendedLaunchExperiment,
   referralJoins,
   weeklyCampaignExperimentBriefCopy,
@@ -79,6 +80,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: "Connect this week's campaign CTA to the recommended manual experiment and review only first-party app movement afterward.",
       buttonLabel: 'COPY EXPERIMENT BRIEF',
       copyText: weeklyCampaignExperimentBriefCopy,
+    },
+    {
+      title: 'Launch Retrospective Readiness Script Kit',
+      subtitle: 'Manual first-party campaign readback before repeat decisions',
+      status: 'RETRO',
+      accent: '#F5D0FE',
+      background: 'rgba(245,208,254,0.05)',
+      border: '1px solid rgba(245,208,254,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Copy a first-party retrospective readiness script before repeating, pausing, or escalating a launch experiment.',
+      buttonLabel: 'COPY RETRO READINESS SCRIPT',
+      copyText: launchRetrospectiveReadinessScriptCopy,
     },
   ];
 }

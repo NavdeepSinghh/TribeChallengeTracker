@@ -26,6 +26,7 @@ const ROADMAP_TOKENS = [
   "Weekly Campaign Social Growth Operations Index",
   "Weekly Campaign Social Growth Operations",
   "Weekly Campaign Scheduler",
+  "Launch Retrospective Readiness Script Kit",
   "Weekly Campaign Support Readiness Script Kit",
   "Weekly Campaign Re-Invite Kit",
   "Instagram Content Calendar",
@@ -122,6 +123,7 @@ const FEATURE_CATALOG_TOKENS = [
   "docs/feature-catalog/weekly-campaign-copy-surfaces.md",
   "Weekly Campaign Copy Surface Index",
   "Weekly Campaign Copy Surfaces",
+  "Web admin and enabled creator profiles include a Launch Retrospective Readiness Script Kit",
   "Web admin profiles include a Weekly Campaign Support Readiness Script Kit",
 ];
 

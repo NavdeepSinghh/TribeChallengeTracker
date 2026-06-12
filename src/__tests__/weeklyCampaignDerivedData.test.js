@@ -34,6 +34,17 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchQaChecklistCopy).toContain("[x] PRODUCT IDS");
     expect(data.launchQaChecklistCopy).toContain("[ ] STORE TESTS");
     expect(data.launchRetrospectiveCopy).toContain("does not add tracking pixels");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Manual retrospective readiness script");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Capture only first-party app movement");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Separate directional Instagram reactions");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("This launch retrospective readiness script is copy-only");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("attribution records");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("purchases");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("entitlement writes");
+    expect(data.launchRetrospectiveReadinessScriptCopy).toContain("paid-access grants");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {

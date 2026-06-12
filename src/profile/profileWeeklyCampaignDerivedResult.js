@@ -22,6 +22,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     experimentScoreLabel,
     launchQaChecklistCopy,
     launchRetrospectiveCopy,
+    launchRetrospectiveReadinessScriptCopy,
   } = experimentData;
   const {
     weeklyCampaignCommentReplyCopy,
@@ -52,6 +53,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     launchExperiments,
     launchQaChecklistCopy,
     launchRetrospectiveCopy,
+    launchRetrospectiveReadinessScriptCopy,
     recommendedLaunchExperiment,
     weeklyCampaignCaptionBankCopy,
     weeklyCampaignCollabCopyCards,

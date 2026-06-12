@@ -35,5 +35,6 @@ Features:
 - Weekly Campaign Retention Follow-Up Kit across Web, iOS, and Android with manual app-first follow-up lanes for active, comeback, feature-ready, interest-saved, and support-risk members after each campaign push.
 - Weekly Campaign Support Triage Kit on Web with manual support-risk lanes for billing/refund, privacy/account, paid-access confusion, Feature Me consent, and safe re-invite decisions before campaign follow-up copy is used.
 - Weekly Campaign Support Readiness Script Kit on Web with member-safe support follow-up language before retention, re-invite, collab, Feature Me, Pro, pack, creator, or partner copy is used.
+- Launch Retrospective Readiness Script Kit on Web with copy-ready first-party campaign readback before repeating, pausing, or escalating a launch experiment.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.
