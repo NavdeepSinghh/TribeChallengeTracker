@@ -7,6 +7,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
+  launchRetrospectiveNextCampaignPreflightBridgeCopy,
   launchRetrospectiveNextCampaignHandoffCopy,
   launchRetrospectiveNextCampaignQaCopy,
   launchRetrospectiveReadinessHandoffCopy,
@@ -691,6 +692,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the next campaign brief for app-first angle, free challenge CTA, support-safe route, consent-safe proof lane, paid-language hold, and preflight owner.',
       buttonLabel: 'COPY BRIEF QA',
       copyText: launchRetrospectiveNextCampaignBriefQaCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Preflight Bridge Kit',
+      subtitle: 'Manual bridge into preflight owner handoff',
+      status: 'PREFLIGHT BRIDGE',
+      accent: '#A21CAF',
+      background: 'rgba(162,28,175,0.05)',
+      border: '1px solid rgba(162,28,175,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Bridge approved brief QA into the preflight owner, launch-copy QA owner, asset owner, support route, consent queue, and paid-language hold before launch copy begins.',
+      buttonLabel: 'COPY PREFLIGHT BRIDGE',
+      copyText: launchRetrospectiveNextCampaignPreflightBridgeCopy,
     },
   ];
 }
