@@ -69,6 +69,8 @@ The output must show `evidenceReady: true`, `verifiedCaseCount: 20`, no missing 
 
 After the audit passes, use the admin Store Evidence Archive Kit to copy the sanitized evidence export and JSON audit checklist into the internal release packet. Keep the archive internal and exclude raw purchase tokens, transaction IDs, order IDs, tester emails/passwords, private keys, service account JSON, private screenshots, entitlement writes, purchase creation, refunds, store-review submission, or any claim that archived evidence is final launch approval.
 
+Before collecting evidence, copy the admin Store Evidence Export Template Kit and fill one sanitized JSON row only after the real sandbox/license-test action is reviewed. Keep template rows at `needs_review` until review, use only the allowed test cases and result values, and never treat a template row as verified purchase proof.
+
 ## Minimum Evidence Matrix
 
 Before a paid launch review, the admin Store Test Purchase Evidence Log should contain at least these reviewed proof records:

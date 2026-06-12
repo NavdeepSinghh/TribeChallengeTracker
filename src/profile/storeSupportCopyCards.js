@@ -7,6 +7,7 @@ export function buildStoreSupportCopyCards({
   storeLaunchDryRunCopy,
   storeTestPurchaseSessionPrepCopy,
   storeEvidenceArchiveCopy,
+  storeEvidenceExportTemplateCopy,
   storeDemoAccountCopy,
   storeScreenshotQaCopy,
   storeReviewPackCopy,
@@ -84,6 +85,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy the evidence archive checklist without exporting tokens, transaction IDs, tester emails, credentials, private screenshots, or treating archived evidence as launch approval.',
       buttonLabel: 'COPY EVIDENCE ARCHIVE',
       copyText: storeEvidenceArchiveCopy,
+    },
+    {
+      title: 'STORE EVIDENCE EXPORT TEMPLATE KIT',
+      subtitle: 'Sanitized JSON evidence template',
+      status: 'TEMPLATE',
+      accent: '#FDE68A',
+      body: 'Copy the sanitized evidence JSON template without creating fake proof, exporting tokens, or treating template rows as verified evidence.',
+      buttonLabel: 'COPY EVIDENCE TEMPLATE',
+      copyText: storeEvidenceExportTemplateCopy,
     },
     {
       title: 'STORE DEMO ACCOUNT KIT',

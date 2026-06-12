@@ -57,6 +57,12 @@ const STORE_EVIDENCE_ARCHIVE_ITEMS = [
   'Attach only aggregate evidence status to App Store / Play review notes; keep tester aliases, tokens, transaction IDs, and private screenshots internal',
   'Re-run the archive checklist whenever product IDs, validation credentials, entitlement writes, restore/sync behavior, or support handoff copy changes',
 ];
+const STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS = [
+  'Start from the sanitized JSON template before every App Store sandbox or Play license-test session',
+  'Create one record per platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt value after real evidence is reviewed',
+  'Use placeholder-safe notes until a real sandbox/license-test action has happened and never invent verified evidence',
+  'Run the exported file through node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json --json before archiving',
+];
 
 const storeCatalog = [
   { id: 'com.risewiththetribe.pro.monthly', kind: 'subscription' },
@@ -99,6 +105,7 @@ describe('store lifecycle copy contracts', () => {
       storeCatalog,
       storeDemoAccountItems: STORE_DEMO_ACCOUNT_ITEMS,
       storeEvidenceArchiveItems: STORE_EVIDENCE_ARCHIVE_ITEMS,
+      storeEvidenceExportTemplateItems: STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS,
       storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
@@ -119,6 +126,7 @@ describe('store lifecycle copy contracts', () => {
       renewalRecoveryCopy: lifecycleCopy.renewalRecoveryCopy,
       storeDemoAccountCopy: lifecycleCopy.storeDemoAccountCopy,
       storeEvidenceArchiveCopy: lifecycleCopy.storeEvidenceArchiveCopy,
+      storeEvidenceExportTemplateCopy: lifecycleCopy.storeEvidenceExportTemplateCopy,
       storeLaunchDryRunCopy: lifecycleCopy.storeLaunchDryRunCopy,
       storeReviewResponseCopy: lifecycleCopy.storeReviewResponseCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
@@ -155,6 +163,12 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeEvidenceArchiveCopy).toContain('internal release packet');
     expect(lifecycleCopy.storeEvidenceArchiveCopy).toContain('Do not create fake evidence');
     expect(lifecycleCopy.storeEvidenceArchiveCopy).toContain('treat archived evidence as final launch approval');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('Store Evidence Export Template Kit');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('Sanitized JSON template');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('"platform": "ios"');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('"result": "needs_review"');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('Keep only platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt fields');
+    expect(lifecycleCopy.storeEvidenceExportTemplateCopy).toContain('treat a template record as verified evidence');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Missing required cases: ios_pro_restore');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Do not submit store review');
@@ -173,6 +187,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE LAUNCH DRY-RUN KIT',
       'STORE TEST PURCHASE SESSION PREP KIT',
       'STORE EVIDENCE ARCHIVE KIT',
+      'STORE EVIDENCE EXPORT TEMPLATE KIT',
       'STORE DEMO ACCOUNT KIT',
       'STORE SCREENSHOT QA KIT',
       'STORE REVIEW PACK',

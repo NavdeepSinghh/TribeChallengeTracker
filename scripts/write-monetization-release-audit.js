@@ -50,6 +50,7 @@ ${renderLatestLocalRecheckItems()}
 - Weekly campaign planning, Story, DM/comment, collab, retention follow-up, re-invite, UGC consent, and Instagram content calendar kits are present across Web, iOS, and Android.
 - Pro, challenge-pack, creator, partner, support, account deletion, referral reward, store-readiness, and paid-launch decision surfaces are present as copy-only/manual or request/review flows with side-effect guardrails.
 - Store Evidence Archive Kit is present across Web, iOS, and Android so admins can copy sanitized evidence export and JSON audit archive checklists into internal release packets without exposing tokens, transaction IDs, tester credentials, private keys, service account JSON, private screenshots, or treating archived evidence as launch approval.
+- Store Evidence Export Template Kit is present across Web, iOS, and Android so admins can start sandbox/license-test evidence collection from sanitized JSON rows without creating fake evidence, exporting tokens or credentials, or treating template rows as verified proof.
 - Release verification now scans split Web profile modules, iOS profile companion files, and Android profile companion files so decomposed feature code remains covered.
 - Store Test Purchase Runbook exists at \`docs/STORE_TEST_PURCHASE_RUNBOOK.md\` and is required by the release verifier.
 

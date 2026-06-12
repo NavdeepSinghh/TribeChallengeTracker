@@ -25,6 +25,7 @@ const STORE_READINESS_DOC_TOKENS = [
   "--evidence-log",
   "sanitized-store-evidence.json",
   "Store Evidence Archive Kit",
+  "Store Evidence Export Template Kit",
   "internal release packet",
   "Store Product Parity Guard",
   "campaign-share",

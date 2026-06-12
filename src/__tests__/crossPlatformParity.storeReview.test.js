@@ -156,6 +156,35 @@ describe('cross-platform store review and evidence parity source checks', () => 
     });
   });
 
+  it('keeps Store Evidence Export Template Kit sanitized across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE EVIDENCE EXPORT TEMPLATE KIT');
+      expect(source).toContain('COPY EVIDENCE TEMPLATE');
+      expect(source).toContain('storeEvidenceExportTemplateCopy');
+      expect(source).toContain('Sanitized JSON evidence template');
+      expect(source).toContain('Sanitized JSON template');
+      expect(source).toContain('platform');
+      expect(source).toContain('productId');
+      expect(source).toContain('testCase');
+      expect(source).toContain('result');
+      expect(source).toContain('needs_review');
+      expect(source).toContain('evidenceNote');
+      expect(source).toContain('reviewNote');
+      expect(source).toContain('reviewedAt');
+      expect(source).toContain('testCase values sandbox_purchase, restore_sync, negative_validation, or wrong_account');
+      expect(source).toContain('result values verified, verified_safe_denial, needs_review, failed, or archived');
+      expect(source).toContain('Do not create fake evidence');
+      expect(source).toContain('export raw purchase tokens');
+      expect(source).toContain('export transaction IDs');
+      expect(source).toContain('store tester emails');
+      expect(source).toContain('store service account JSON');
+      expect(source).toContain('expose private screenshots');
+      expect(source).toContain('write entitlements from the client');
+      expect(source).toContain('treat a template record as verified evidence');
+    });
+  });
+
   it('keeps Store Review Pack prep-only across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {

@@ -71,6 +71,12 @@ export const STORE_EVIDENCE_ARCHIVE_ITEMS = [
   'Attach only aggregate evidence status to App Store / Play review notes; keep tester aliases, tokens, transaction IDs, and private screenshots internal',
   'Re-run the archive checklist whenever product IDs, validation credentials, entitlement writes, restore/sync behavior, or support handoff copy changes',
 ];
+export const STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS = [
+  'Start from the sanitized JSON template before every App Store sandbox or Play license-test session',
+  'Create one record per platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt value after real evidence is reviewed',
+  'Use placeholder-safe notes until a real sandbox/license-test action has happened and never invent verified evidence',
+  'Run the exported file through node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json --json before archiving',
+];
 export const STORE_DEMO_ACCOUNT_ITEMS = [
   'Prepare one reviewer-safe demo account with onboarding complete, profile appearance set, and no personal member data',
   'Seed visible free flows: joined campaign challenge, activity history, badges, calendar history, share cards, support links, and Feature Me consent example',

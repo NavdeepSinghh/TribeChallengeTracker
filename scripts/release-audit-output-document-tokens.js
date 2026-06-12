@@ -278,6 +278,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "document/content-bank checks separate from Web/iOS/Android profile copy checks",
   "Store Test Purchase Runbook",
   "Store Evidence Archive Kit",
+  "Store Evidence Export Template Kit",
   "internal release packets",
   "Not Yet Proven",
   "App Store Connect purchase-validation credentials",

@@ -208,6 +208,7 @@ Additional local checks after the full-gate audit:
 - Store release-prep copy was aligned on 2026-06-12: Web, iOS, and Android dry-run, test-session, screenshot QA, review pack, and evidence-pack surfaces now show minimum evidence matrix counts plus missing purchase/restore cases and safe-denial platforms before real store testing.
 - Store readiness evidence-log auditing was added on 2026-06-12: `check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json` can validate an exported reviewed Store Test Purchase Evidence Log against the minimum matrix without reading raw purchase tokens, credentials, or private tester data.
 - Store Evidence Archive Kit documentation was aligned on 2026-06-12: release readiness, runbook, roadmap, feature catalog, and generated audit docs now keep the sanitized internal release-packet archive separate from paid-launch approval.
+- Store Evidence Export Template Kit was added on 2026-06-12 across Web, iOS, and Android so admins can copy sanitized JSON evidence rows before real sandbox/license-test review without creating fake proof or exposing tokens, transaction IDs, tester credentials, private keys, service account JSON, or private screenshots.
 - Full focused Web cross-platform parity was rechecked on 2026-06-11 with `npm test -- --testPathPattern=crossPlatformParity --watchAll=false --silent`: 48 suites and 164 tests passed.
 - Static release verifier passed.
 - Profile parity contract labels now live in `src/profile/profileParityContractLabels.js`, keeping the cross-platform profile parity label list separate from engagement prompt constants while preserving the same `PROFILE_PARITY_CONTRACT_LABELS` export through `src/profile/profileEngagementConstants.js`.
@@ -230,6 +231,7 @@ Additional local checks after the full-gate audit:
 - Weekly campaign planning, Story, DM/comment, collab, retention follow-up, re-invite, UGC consent, and Instagram content calendar kits are present across Web, iOS, and Android.
 - Pro, challenge-pack, creator, partner, support, account deletion, referral reward, store-readiness, and paid-launch decision surfaces are present as copy-only/manual or request/review flows with side-effect guardrails.
 - Store Evidence Archive Kit is present across Web, iOS, and Android so admins can copy sanitized evidence export and JSON audit archive checklists into internal release packets without exposing tokens, transaction IDs, tester credentials, private keys, service account JSON, private screenshots, or treating archived evidence as launch approval.
+- Store Evidence Export Template Kit is present across Web, iOS, and Android so admins can start sandbox/license-test evidence collection from sanitized JSON rows without creating fake evidence, exporting tokens or credentials, or treating template rows as verified proof.
 - Release verification now scans split Web profile modules, iOS profile companion files, and Android profile companion files so decomposed feature code remains covered.
 - Store Test Purchase Runbook exists at `docs/STORE_TEST_PURCHASE_RUNBOOK.md` and is required by the release verifier.
 

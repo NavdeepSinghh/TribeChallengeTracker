@@ -61,6 +61,8 @@ The evidence-log audit reports the minimum evidence matrix count, missing purcha
 
 Use the admin Store Evidence Archive Kit to copy the sanitized export and JSON audit archive checklist into the internal release packet only. The archive must not include raw purchase tokens, transaction IDs, order IDs, tester credentials, private keys, service account JSON, private screenshots, or act as final paid-launch approval.
 
+Use the admin Store Evidence Export Template Kit before each real sandbox/license-test session to start from the safe JSON shape. Template rows must contain only `platform`, `productId`, `testCase`, `result`, `evidenceNote`, `reviewNote`, and `reviewedAt`, must stay `needs_review` until human review, and must not include raw tokens, transaction IDs, order IDs, tester emails/passwords, private keys, service account JSON, private screenshots, or act as verified evidence.
+
 ## Android Google Play Index
 
 Android package, Firebase, Google Sign-In, App Links, and Play Billing validation setup now live in `docs/store-readiness/android-google-play.md` so this store readiness guide stays readable while preserving the same Play release contract.
