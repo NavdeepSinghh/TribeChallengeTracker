@@ -104,6 +104,27 @@ describe('engagement copy contracts', () => {
     expect(copy.challengePackSupportTriageCopy).toContain('auto-message users');
     expect(copy.challengePackSupportTriageCopy).toContain('scrape/store DMs');
     expect(copy.challengePackSupportTriageCopy).toContain('add tracking pixels');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('Challenge Pack Store Readiness Script Kit');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('Pack products in code: com.risewiththetribe.pack.21_day_reset');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('Manual readiness script');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('App Store / Google Play products');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('receipt validation');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('sandbox/license-test purchases');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('restore/sync');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('entitlement QA');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('missing-pack');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('wrong-account');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('does not unlock packs');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('create purchases');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('grant Pro');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('write entitlements');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('collect payment details');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('process refunds');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('submit store review');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('claim paid packs are live');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('auto-message users');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('scrape/store DMs');
+    expect(copy.challengePackStoreReadinessScriptCopy).toContain('add tracking pixels');
   });
 
   it('renders challenge pack launch kits in the web value snapshot card', () => {
@@ -124,6 +145,10 @@ describe('engagement copy contracts', () => {
     expect(source).toContain('CHALLENGE PACK SUPPORT TRIAGE KIT');
     expect(source).toContain('COPY PACK SUPPORT TRIAGE');
     expect(source).toContain('challengePackSupportTriageCopy');
+    expect(source).toContain('CHALLENGE PACK STORE READINESS SCRIPT KIT');
+    expect(source).toContain('COPY PACK READINESS SCRIPT');
+    expect(source).toContain('challengePackStoreReadinessScriptCopy');
+    expect(source).toContain('member-safe readiness script');
   });
 
   it('keeps challenge pack launch copy routed through Profile value-demand props', () => {
@@ -143,6 +168,7 @@ describe('engagement copy contracts', () => {
         challengePackLaunchQaCopy: 'pack launch qa',
         challengePackObjectionReplyCopy: 'pack replies',
         challengePackSupportTriageCopy: 'pack support triage',
+        challengePackStoreReadinessScriptCopy: 'pack readiness script',
         streakRescuePromptCopy: 'streak rescue',
         comebackChallengeInviteCopy: 'comeback invite',
       },
@@ -214,9 +240,11 @@ describe('engagement copy contracts', () => {
     expect(engagementResult.challengePackLaunchQaCopy).toBe('pack launch qa');
     expect(engagementResult.challengePackObjectionReplyCopy).toBe('pack replies');
     expect(engagementResult.challengePackSupportTriageCopy).toBe('pack support triage');
+    expect(engagementResult.challengePackStoreReadinessScriptCopy).toBe('pack readiness script');
     expect(props.challengePackLaunchCopy).toBe('pack launch');
     expect(props.challengePackLaunchQaCopy).toBe('pack launch qa');
     expect(props.challengePackObjectionReplyCopy).toBe('pack replies');
     expect(props.challengePackSupportTriageCopy).toBe('pack support triage');
+    expect(props.challengePackStoreReadinessScriptCopy).toBe('pack readiness script');
   });
 });

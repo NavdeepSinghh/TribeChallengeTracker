@@ -77,6 +77,7 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('src/__tests__/engagementCopy.test.js');
     expect(content).toContain('Streak Rescue');
     expect(content).toContain('Challenge Pack Support Triage Kit');
+    expect(content).toContain('Challenge Pack Store Readiness Script Kit');
     expect(content).toContain('paid-pack no-purchase/no-entitlement/no-refund/no-store-review side-effect boundaries');
     expect(content).toContain('src/__tests__/monetizationPreLaunchCopy.test.js');
     expect(content).toContain('Customer Value Checklist');

@@ -8,6 +8,7 @@ export default function TribeProValueDemandSection({
   challengePackLaunchQaCopy,
   challengePackObjectionReplyCopy,
   challengePackSupportTriageCopy,
+  challengePackStoreReadinessScriptCopy,
   copyText,
   approvedProTrialReviews,
   isAdmin,
@@ -55,6 +56,7 @@ export default function TribeProValueDemandSection({
         challengePackLaunchQaCopy={challengePackLaunchQaCopy}
         challengePackObjectionReplyCopy={challengePackObjectionReplyCopy}
         challengePackSupportTriageCopy={challengePackSupportTriageCopy}
+        challengePackStoreReadinessScriptCopy={challengePackStoreReadinessScriptCopy}
         copyText={copyText}
       />
       <ProTrialInterestSection

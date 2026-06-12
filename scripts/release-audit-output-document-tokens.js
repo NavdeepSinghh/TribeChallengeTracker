@@ -122,6 +122,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "Founder Member Offer Kit",
   "Streak Rescue Prompt Kit",
   "Challenge Pack Support Triage Kit",
+  "Challenge Pack Store Readiness Script Kit",
   "member/admin/application prop grouping",
   "src/profile/partnerPerksMemberProps.js",
   "src/profile/partnerPerksAdminProps.js",

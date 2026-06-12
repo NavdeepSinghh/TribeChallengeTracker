@@ -18,6 +18,7 @@ export function buildProfileEngagementCreatorCopyResult({
     challengePackLaunchQaCopy,
     challengePackObjectionReplyCopy,
     challengePackSupportTriageCopy,
+    challengePackStoreReadinessScriptCopy,
     streakRescuePromptCopy,
     comebackChallengeInviteCopy,
   } = engagementCampaignCopyData;
@@ -58,6 +59,7 @@ export function buildProfileEngagementCreatorCopyResult({
     challengePackLaunchQaCopy,
     challengePackObjectionReplyCopy,
     challengePackSupportTriageCopy,
+    challengePackStoreReadinessScriptCopy,
     comebackChallengeInviteCopy,
     creatorAnalytics,
     creatorBrandedPagePreviewCopy,

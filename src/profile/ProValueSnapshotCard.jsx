@@ -14,6 +14,7 @@ export default function ProValueSnapshotCard({
   challengePackLaunchQaCopy,
   challengePackObjectionReplyCopy,
   challengePackSupportTriageCopy,
+  challengePackStoreReadinessScriptCopy,
   communityHighlightRoundupItems,
   copyText,
 }) {
@@ -103,6 +104,17 @@ export default function ProValueSnapshotCard({
         softText="#E0F2FE"
         subtitleColor="#BAE6FD"
         onCopy={() => copyText(challengePackSupportTriageCopy, 'Challenge pack support triage copied')}
+      />
+      <ProValueCopyKitCard
+        title="CHALLENGE PACK STORE READINESS SCRIPT KIT"
+        subtitle="Member-safe pack readiness"
+        status="COPY ONLY"
+        body="Copy a member-safe readiness script for pack questions before store products, receipt validation, restore/sync, and entitlement QA are verified."
+        buttonLabel="COPY PACK READINESS SCRIPT"
+        accent="#14B8A6"
+        softText="#CCFBF1"
+        subtitleColor="#99F6E4"
+        onCopy={() => copyText(challengePackStoreReadinessScriptCopy, 'Challenge pack readiness script copied')}
       />
     </div>
   );
