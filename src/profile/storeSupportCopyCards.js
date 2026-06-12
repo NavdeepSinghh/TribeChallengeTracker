@@ -34,6 +34,7 @@ export function buildStoreSupportCopyCards({
   storeReviewSubmissionStatusWatchCopy,
   storeReviewOutcomeHandoffCopy,
   storeReviewLaunchCommunicationHoldCopy,
+  storeReviewLaunchMessageQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -351,6 +352,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a launch communication hold checklist without announcing approval, publishing paid launch copy, writing entitlements, or marking paid access live.',
       buttonLabel: 'COPY LAUNCH HOLD',
       copyText: storeReviewLaunchCommunicationHoldCopy,
+    },
+    {
+      title: 'STORE REVIEW LAUNCH MESSAGE QA KIT',
+      subtitle: 'Exact public, support, and marketing wording check',
+      status: 'MESSAGE QA',
+      accent: '#FDE68A',
+      body: 'Copy a launch message QA checklist without publishing public copy, sending marketing email, writing entitlements, or claiming paid access is live.',
+      buttonLabel: 'COPY MESSAGE QA',
+      copyText: storeReviewLaunchMessageQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

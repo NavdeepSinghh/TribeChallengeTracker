@@ -233,6 +233,12 @@ export const STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS = [
   'For rejected, metadata rejected, action-required, in-review, waiting-for-review, or unclear outcomes, keep communication internal and route back to outcome handoff, status watch, or resubmission prep',
   'Record channel, owner, approved wording, evidence reference, reviewedAt timestamp, and remaining hold reason without exposing credentials, private data, purchase tokens, or approval claims',
 ];
+export const STORE_REVIEW_LAUNCH_MESSAGE_QA_ITEMS = [
+  'Compare exact public launch, support, email, social, referral, partner, paid-access, Pro, and pack wording against the approved launch communication hold record',
+  'Confirm every message names only reviewed features, current product IDs, policy links, support boundaries, and availability states that match the paid launch gate',
+  'Remove wording that implies store approval, paid access, Pro, packs, refunds, health outcomes, creator payouts, partner perks, or discounts before those surfaces are actually live',
+  'Record channel owner, approved wording, evidence reference, reviewedAt timestamp, scheduled window, and rollback note before any human publishes or sends the message',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

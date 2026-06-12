@@ -31,6 +31,7 @@ import {
   STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
   STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
   STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS,
+  STORE_REVIEW_LAUNCH_MESSAGE_QA_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -88,6 +89,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewSubmissionStatusWatchItems: STORE_REVIEW_SUBMISSION_STATUS_WATCH_ITEMS,
     storeReviewOutcomeHandoffItems: STORE_REVIEW_OUTCOME_HANDOFF_ITEMS,
     storeReviewLaunchCommunicationHoldItems: STORE_REVIEW_LAUNCH_COMMUNICATION_HOLD_ITEMS,
+    storeReviewLaunchMessageQaItems: STORE_REVIEW_LAUNCH_MESSAGE_QA_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

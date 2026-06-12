@@ -82,6 +82,7 @@ Shared behavior:
 - Web admin profile surfaces show a Store Review Submission Status Watch Kit with post-submission App Store Connect and Play Console state, submitted-build, evidence-packet, policy-link, support-handoff, metadata, data-safety, and owner follow-up checks.
 - Web admin profile surfaces show a Store Review Outcome Handoff Kit with approved, rejected, metadata-rejected, action-required, in-review, waiting-for-review, and owner-review routing before public follow-up or paid launch language.
 - Web admin profile surfaces show a Store Review Launch Communication Hold Kit with public launch, support, email, social, referral, partner, paid-access, Pro, and pack messaging gates before any approval, paid-live, or availability language leaves review mode.
+- Web admin profile surfaces show a Store Review Launch Message QA Kit with exact public launch, support, email, social, referral, partner, paid-access, Pro, and pack wording checks against the launch communication hold, paid launch gate, support boundaries, and evidence references before human publishing.
 - Firebase Functions exposes callable `getPurchaseValidationReadiness` so admin profile surfaces can check App Store / Play credential readiness without submitting a fake purchase or writing entitlements.
 - Product IDs do not unlock features directly.
 - Purchase and receipt-validation work must write the shared entitlement fields before gated UI unlocks.
