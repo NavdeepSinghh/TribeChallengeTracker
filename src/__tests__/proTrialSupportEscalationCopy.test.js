@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 import { buildMonetizationSummaryCopy } from '../profile/monetizationSummaryCopy';
+import { buildProfileStoreDerivedResult } from '../profile/profileStoreDerivedResult';
+import { buildTribeProValueDemandProps } from '../profile/tribeProValueDemandProps';
 
 describe('web Pro trial support escalation copy', () => {
   it('builds a copy-only support escalation kit without paid-access side effects', () => {
@@ -81,5 +83,77 @@ describe('web Pro trial support escalation copy', () => {
     expect(source).toContain('COPY PRO TRIAL LAUNCH QA');
     expect(source).toContain('proTrialLaunchQaCopy');
     expect(source).toContain('Check store setup, entitlement writes, support routing, and launch copy');
+  });
+
+  it('keeps support and launch QA copy routed through the Profile value-demand props', () => {
+    const storeDerived = buildProfileStoreDerivedResult({
+      storeCatalogData: {
+        activeChallengePackCount: 0,
+        challengePackProducts: [],
+        challengePackTitle: () => 'Pack',
+        isPackUnlocked: () => false,
+        proActive: false,
+        proSource: 'none',
+        storeCatalog: [{ id: 'tribe.pro.monthly' }],
+        storePackCount: 0,
+        storeSubscriptionCount: 1,
+        storeTestEvidenceCases: [],
+      },
+      storeMonetizationData: {
+        creatorRevenueSharePitchCopy: 'creator pitch',
+        monetizationLaunchCopy: 'launch board',
+        proTrialObjectionReplyCopy: 'objection copy',
+        proTrialPitchCopy: 'pitch copy',
+        proTrialLaunchQaCopy: 'launch qa copy',
+        proTrialSupportEscalationCopy: 'support escalation copy',
+        recommendedRevenuePath: { label: 'Pro' },
+        revenuePathways: [],
+        storeReadinessCopy: 'store readiness',
+      },
+      storeReadinessData: {
+        storeCredentialSetupCopy: 'credential setup',
+        supportRefundReadinessCopy: 'refund readiness',
+        subscriptionManagementGuidanceCopy: 'subscription guidance',
+        paidLaunchDecisionCopy: 'paid launch',
+        paidLaunchDecisionReplyCopy: 'paid launch reply',
+        paidLaunchDecisionStatus: 'hold',
+        storeTestEvidenceDecisionReplyCopy: 'evidence reply',
+      },
+      storeReviewSupportData: {},
+    });
+
+    const props = buildTribeProValueDemandProps({
+      ...storeDerived,
+      communityHighlightRoundupItems: [],
+      copyText: jest.fn(),
+      approvedProTrialReviews: [],
+      handleProTrialReasonToggle: jest.fn(),
+      handleProTrialReviewDecision: jest.fn(),
+      handleProTrialReviewSubmit: jest.fn(),
+      isAdmin: true,
+      isSavingProTrialInterest: false,
+      isSubmittingProTrialReview: false,
+      monthlyRecap: {},
+      proTrialDemandTotal: 0,
+      proTrialMessage: '',
+      proTrialReviewMessage: '',
+      proTrialReviewNotes: {},
+      proTrialReviewQueue: [],
+      proTrialSummary: {},
+      proValueNextAction: 'Save interest',
+      selectedProTrialReasonIds: [],
+      setProTrialReviewNotes: jest.fn(),
+      storyPostingChecklistCopy: 'story checklist',
+      reviewingProTrialReviewId: null,
+      topProTrialReason: null,
+      totalChallengePoints: 0,
+      valueProofStoryCopy: 'value proof',
+      weeklyReport: {},
+    });
+
+    expect(storeDerived.proTrialLaunchQaCopy).toBe('launch qa copy');
+    expect(storeDerived.proTrialSupportEscalationCopy).toBe('support escalation copy');
+    expect(props.proTrialLaunchQaCopy).toBe('launch qa copy');
+    expect(props.proTrialSupportEscalationCopy).toBe('support escalation copy');
   });
 });
