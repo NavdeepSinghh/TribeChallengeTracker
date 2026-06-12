@@ -26,6 +26,7 @@ export function buildStoreSupportCopyCards({
   storeReviewFinalSignoffCopy,
   storeReviewConsoleDraftQaCopy,
   storeReviewSubmissionHoldReasonsCopy,
+  storeReviewHoldReleaseDecisionCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -271,6 +272,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a submission-hold checklist without editing console fields, removing holds without proof, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY HOLD REASONS',
       copyText: storeReviewSubmissionHoldReasonsCopy,
+    },
+    {
+      title: 'STORE REVIEW HOLD RELEASE DECISION KIT',
+      subtitle: 'Approved, waiting, not-ready, and declined hold decisions',
+      status: 'HOLD DECISION',
+      accent: '#DDD6FE',
+      body: 'Copy hold-release decision replies without removing holds without reviewed proof, editing console fields, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY HOLD DECISIONS',
+      copyText: storeReviewHoldReleaseDecisionCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

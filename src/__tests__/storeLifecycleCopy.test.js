@@ -127,6 +127,12 @@ const STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS = [
   'Keep hold notes separate from reviewer-facing copy so internal gaps do not become public store metadata or submission claims',
   'Release a hold only after reviewed evidence, policy links, support handoff, demo access, metadata, console draft, and final sign-off all match the fixed build',
 ];
+const STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS = [
+  'Approve hold release only when the missing proof path, reviewer-note impact, evidence packet row, and fixed-build reference are reviewed together',
+  'Wait when policy links, data safety answers, support routing, demo access, screenshots, metadata, or console draft fields still need owner confirmation',
+  'Mark not-ready when the hold still lacks a named owner, unblock condition, reviewed evidence, or safe-denial coverage for the affected platform',
+  'Decline release requests that depend on fake proof, private credentials, purchase tokens, public metadata claims, paid-live claims, or pressure to resubmit',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -212,6 +218,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewFinalSignoffItems: STORE_REVIEW_FINAL_SIGNOFF_ITEMS,
       storeReviewConsoleDraftQaItems: STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
       storeReviewSubmissionHoldReasonsItems: STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
+      storeReviewHoldReleaseDecisionItems: STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -248,6 +255,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewFinalSignoffCopy: lifecycleCopy.storeReviewFinalSignoffCopy,
       storeReviewConsoleDraftQaCopy: lifecycleCopy.storeReviewConsoleDraftQaCopy,
       storeReviewSubmissionHoldReasonsCopy: lifecycleCopy.storeReviewSubmissionHoldReasonsCopy,
+      storeReviewHoldReleaseDecisionCopy: lifecycleCopy.storeReviewHoldReleaseDecisionCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -550,6 +558,30 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewSubmissionHoldReasonsCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewSubmissionHoldReasonsCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewSubmissionHoldReasonsCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('Store Review Hold Release Decision Kit');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('Approve hold release only');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('Manual hold release decision replies');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('APPROVED TO RELEASE HOLD');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('WAITING ON HOLD PROOF');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('NOT READY TO RELEASE HOLD');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('DECLINED FOR RESUBMISSION');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('missing proof path');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('evidence packet row');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('safe-denial coverage');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('fake proof');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('edit console fields from client code');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('remove holds without reviewed proof');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('mark final approval');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewHoldReleaseDecisionCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -591,6 +623,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW FINAL SIGN-OFF KIT',
       'STORE REVIEW CONSOLE DRAFT QA KIT',
       'STORE REVIEW SUBMISSION HOLD REASONS KIT',
+      'STORE REVIEW HOLD RELEASE DECISION KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

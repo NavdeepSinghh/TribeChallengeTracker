@@ -185,6 +185,12 @@ export const STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS = [
   'Keep hold notes separate from reviewer-facing copy so internal gaps do not become public store metadata or submission claims',
   'Release a hold only after reviewed evidence, policy links, support handoff, demo access, metadata, console draft, and final sign-off all match the fixed build',
 ];
+export const STORE_REVIEW_HOLD_RELEASE_DECISION_ITEMS = [
+  'Approve hold release only when the missing proof path, reviewer-note impact, evidence packet row, and fixed-build reference are reviewed together',
+  'Wait when policy links, data safety answers, support routing, demo access, screenshots, metadata, or console draft fields still need owner confirmation',
+  'Mark not-ready when the hold still lacks a named owner, unblock condition, reviewed evidence, or safe-denial coverage for the affected platform',
+  'Decline release requests that depend on fake proof, private credentials, purchase tokens, public metadata claims, paid-live claims, or pressure to resubmit',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
