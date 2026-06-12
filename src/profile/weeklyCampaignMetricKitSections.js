@@ -16,6 +16,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignStoryboardCopy,
   weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignSundayRecapQaCopy,
+  weeklyCampaignNextWeekLaunchAngleCopy,
 }) {
   return [
     {
@@ -102,6 +103,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check aggregate recap copy, consent-cleared proof, support-risk notes, and next-week handoff before any Sunday recap post.',
       buttonLabel: 'COPY SUNDAY RECAP QA',
       copyText: weeklyCampaignSundayRecapQaCopy,
+    },
+    {
+      title: 'Weekly Campaign Next-Week Launch Angle Kit',
+      subtitle: 'Manual next campaign angle decision',
+      status: 'NEXT ANGLE',
+      accent: '#FDBA74',
+      background: 'rgba(253,186,116,0.05)',
+      border: '1px solid rgba(253,186,116,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Choose the next-week launch angle from recap QA, campaign movement, consent-safe proof, and support-risk notes before preflight.',
+      buttonLabel: 'COPY NEXT-WEEK ANGLE',
+      copyText: weeklyCampaignNextWeekLaunchAngleCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',
