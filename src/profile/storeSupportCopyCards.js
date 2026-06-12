@@ -29,6 +29,7 @@ export function buildStoreSupportCopyCards({
   storeReviewHoldReleaseDecisionCopy,
   storeReviewResubmissionPacketQaCopy,
   storeReviewResubmissionDecisionReplyCopy,
+  storeReviewReviewerNotesPasteQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -301,6 +302,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy resubmission decision replies without submitting review, pasting reviewer notes without packet QA, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY RESUBMISSION DECISIONS',
       copyText: storeReviewResubmissionDecisionReplyCopy,
+    },
+    {
+      title: 'STORE REVIEW REVIEWER NOTES PASTE QA KIT',
+      subtitle: 'Exact App Store Connect and Play Console note check',
+      status: 'PASTE QA',
+      accent: '#F5D0FE',
+      body: 'Copy a reviewer-notes paste QA checklist without submitting review, editing console fields, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY PASTE QA',
+      copyText: storeReviewReviewerNotesPasteQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

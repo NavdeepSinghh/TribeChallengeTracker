@@ -67,6 +67,7 @@ export function buildProfileStoreSupportCardData({
     storeReviewHoldReleaseDecisionCopy,
     storeReviewResubmissionPacketQaCopy,
     storeReviewResubmissionDecisionReplyCopy,
+    storeReviewReviewerNotesPasteQaCopy,
     storeReviewResubmissionCopy,
   } = buildProfileStoreLifecycleSupportData({
     activeChallengePackCount,
@@ -118,6 +119,7 @@ export function buildProfileStoreSupportCardData({
     storeReviewHoldReleaseDecisionCopy,
     storeReviewResubmissionPacketQaCopy,
     storeReviewResubmissionDecisionReplyCopy,
+    storeReviewReviewerNotesPasteQaCopy,
     storeReviewResubmissionCopy,
   });
 

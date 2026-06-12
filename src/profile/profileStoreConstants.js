@@ -203,6 +203,12 @@ export const STORE_REVIEW_RESUBMISSION_DECISION_REPLY_ITEMS = [
   'Mark not-ready when released holds are missing proof, packet QA found mismatches, safe-denial coverage is incomplete, or the fixed build is not confirmed',
   'Decline resubmission requests that rely on unreviewed proof, private data, credentials, purchase tokens, paid-live claims, approval claims, or pressure to move faster than evidence',
 ];
+export const STORE_REVIEW_REVIEWER_NOTES_PASTE_QA_ITEMS = [
+  'Compare the final reviewer notes against resubmission decision replies, packet QA, fixed-build notes, evidence packet rows, policy links, support handoff, demo access, screenshots, metadata, and data safety before pasting',
+  'Confirm reviewer-facing language is factual, build-specific, and limited to reviewed proof without credentials, purchase tokens, private data, paid-live claims, or approval claims',
+  'Flag any mismatch between App Store Connect notes, Play Console notes, public metadata, screenshots, permission copy, support routing, and evidence packet references',
+  'Keep paste QA internal until the resubmission owner confirms the exact notes are ready for human console work',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
