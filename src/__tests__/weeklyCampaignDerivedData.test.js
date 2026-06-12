@@ -347,6 +347,17 @@ describe("Weekly Campaign derived data", () => {
 
     expect(data.recommendedLaunchExperiment.label).toBe("Referral Sprint");
     expect(data.weeklyCampaignExperimentBriefCopy).toContain("Measure only first-party app movement");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("Weekly Campaign Experiment Brief Approval Kit");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("Manual experiment brief approval");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("approved experiment lane");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("retrospective readiness trigger");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("Do not create experiment records");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("create attribution records");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("tracking pixels");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("write referral state");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("grant rewards");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("write entitlements");
+    expect(data.weeklyCampaignExperimentBriefApprovalCopy).toContain("unlock paid access");
     expect(data.launchExperimentCopy).toContain("do not add tracking pixels");
     expect(data.launchQaChecklistCopy).toContain("[x] PRODUCT IDS");
     expect(data.launchQaChecklistCopy).toContain("[ ] STORE TESTS");
