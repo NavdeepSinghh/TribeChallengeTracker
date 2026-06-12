@@ -864,6 +864,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Final Closure QA Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("Manual next campaign review decision reply receipt archive final closure QA");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("approved final closure handoff reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("final closure QA reviewer");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("final closure packet is closed");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureQaCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
