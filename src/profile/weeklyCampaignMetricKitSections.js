@@ -14,6 +14,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewHandoffBridgeCopy,
   launchRetrospectiveNextCampaignReviewHandoffQaBridgeCopy,
   launchRetrospectiveNextCampaignReviewOwnerHandoffCopy,
+  launchRetrospectiveNextCampaignReviewOwnerQaCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -925,6 +926,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Hand off the approved review QA bridge, callback evidence, first-party signal summary, support route, consent queue, review notes owner, and review decision owner before campaign review starts.',
       buttonLabel: 'COPY REVIEW OWNER',
       copyText: launchRetrospectiveNextCampaignReviewOwnerHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Owner QA Kit',
+      subtitle: 'Manual QA before campaign review',
+      status: 'OWNER QA',
+      accent: '#4ADE80',
+      background: 'rgba(74,222,128,0.05)',
+      border: '1px solid rgba(74,222,128,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check the approved review owner handoff, callback evidence, first-party signal summary, review notes owner, review decision owner, support route, consent queue, and paid-language hold before campaign review starts.',
+      buttonLabel: 'COPY REVIEW OWNER QA',
+      copyText: launchRetrospectiveNextCampaignReviewOwnerQaCopy,
     },
   ];
 }
