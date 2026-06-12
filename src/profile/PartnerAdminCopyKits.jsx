@@ -10,6 +10,7 @@ export default function PartnerAdminCopyKits({
   partnerCampaignRetrospectiveDecisionReplyCopy,
   partnerCampaignSupportEscalationCopy,
   partnerContractReadinessCopy,
+  partnerLegalPacketPrepCopy,
   partnerDemandTotal,
   partnerPitchCopy,
   partnerTermsReadinessCopy,
@@ -56,6 +57,16 @@ export default function PartnerAdminCopyKits({
         copy={partnerContractReadinessCopy}
         copyText={copyText}
         metrics={<PartnerMetrics color="#818CF8" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
+      />
+      <PartnerCopyCard
+        accent="#F43F5E"
+        title="PARTNER LEGAL PACKET PREP KIT"
+        status={{ active: partnerDemandTotal, label: 'LEGAL PACKET' }}
+        body="Copy a legal, privacy, support, marketplace, and entitlement QA packet before sponsor outreach, links, coupons, fulfillment, or reporting move forward."
+        buttonLabel="COPY PARTNER LEGAL PACKET"
+        copy={partnerLegalPacketPrepCopy}
+        copyText={copyText}
+        metrics={<PartnerMetrics color="#F43F5E" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
       />
       <PartnerCopyCard
         accent="#818CF8"
