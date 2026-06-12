@@ -10,6 +10,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignLaunchCopyQaCopy,
     weeklyCampaignFirstDayMonitorCopy,
     weeklyCampaignMidweekAdjustmentCopy,
+    weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignPreflightCopy,
     weeklyCampaignReviewCopy,
     weeklyCampaignStoryboardCopy,
@@ -80,6 +81,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignStartDayStoryCopy,
     weeklyCampaignStoryboardCopy,
     weeklyCampaignStoryPollCopy,
+    weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignWeekendPushStoryCopy,
   };
 }

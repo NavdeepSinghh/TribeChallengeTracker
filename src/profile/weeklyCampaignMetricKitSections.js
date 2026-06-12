@@ -14,6 +14,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignPrompt,
   weeklyCampaignReviewCopy,
   weeklyCampaignStoryboardCopy,
+  weeklyCampaignWeekendPushDecisionCopy,
 }) {
   return [
     {
@@ -66,6 +67,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Decide whether to repeat, clarify, support-route, comeback-invite, ask for consent, or hold follow-up copy midweek.',
       buttonLabel: 'COPY MIDWEEK ADJUSTMENT',
       copyText: weeklyCampaignMidweekAdjustmentCopy,
+    },
+    {
+      title: 'Weekly Campaign Weekend Push Decision Kit',
+      subtitle: 'Manual final-push decision from app signals',
+      status: 'WEEKEND',
+      accent: '#A78BFA',
+      background: 'rgba(167,139,250,0.05)',
+      border: '1px solid rgba(167,139,250,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Decide whether to approve, repeat, comeback-invite, feature proof, support-route, or hold weekend follow-up copy.',
+      buttonLabel: 'COPY WEEKEND DECISION',
+      copyText: weeklyCampaignWeekendPushDecisionCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',

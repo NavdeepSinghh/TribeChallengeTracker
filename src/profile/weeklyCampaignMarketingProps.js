@@ -41,6 +41,7 @@ export function buildWeeklyCampaignMarketingProps(model) {
     weeklyCampaignStartDayStoryCopy,
     weeklyCampaignStoryboardCopy,
     weeklyCampaignStoryPollCopy,
+    weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignWeekendPushStoryCopy,
   } = model;
 
@@ -87,6 +88,7 @@ export function buildWeeklyCampaignMarketingProps(model) {
     weeklyCampaignStartDayStoryCopy,
     weeklyCampaignStoryboardCopy,
     weeklyCampaignStoryPollCopy,
+    weeklyCampaignWeekendPushDecisionCopy,
     weeklyCampaignWeekendPushStoryCopy,
   };
 }

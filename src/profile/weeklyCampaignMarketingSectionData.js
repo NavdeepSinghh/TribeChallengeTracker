@@ -33,6 +33,7 @@ export function buildWeeklyCampaignMarketingSectionData({
   weeklyCampaignStartDayStoryCopy,
   weeklyCampaignStoryboardCopy,
   weeklyCampaignStoryPollCopy,
+  weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignWeekendPushStoryCopy,
 }) {
   return {
@@ -79,6 +80,7 @@ export function buildWeeklyCampaignMarketingSectionData({
       weeklyCampaignExperimentBriefCopy,
       weeklyCampaignFirstDayMonitorCopy,
       weeklyCampaignMidweekAdjustmentCopy,
+      weeklyCampaignWeekendPushDecisionCopy,
       weeklyCampaignLaunchCopyQaCopy,
       weeklyCampaignPreflightCopy,
       weeklyCampaignPrompt,
