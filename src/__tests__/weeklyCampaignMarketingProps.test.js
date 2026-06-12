@@ -33,6 +33,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.weeklyCampaignPrompt).toEqual(weeklyCampaignPrompt);
     expect(props.weeklyCampaignLaunchCardCopy).toContain("Card headline: Seven Day Reset");
     expect(props.weeklyCampaignLaunchCopyQaCopy).toContain("Weekly Campaign Launch Copy QA Kit");
+    expect(props.weeklyCampaignFirstDayMonitorCopy).toContain("Weekly Campaign First 24h Monitor Kit");
     expect(props.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
     expect(props.weeklyCampaignCollabCopyCards).toHaveLength(9);
     expect(props.weeklyCampaignCollabCopyCards[6].title).toBe("Weekly Campaign Support Triage Kit");
@@ -67,6 +68,7 @@ describe("Weekly Campaign marketing props", () => {
       "weeklyCampaignCountdownStoryCopy",
       "weeklyCampaignExperimentBriefCopy",
       "weeklyCampaignFaqCarouselCopy",
+      "weeklyCampaignFirstDayMonitorCopy",
       "weeklyCampaignLaunchCardCopy",
       "weeklyCampaignLaunchCopyQaCopy",
       "weeklyCampaignLiveQaCopy",
@@ -118,13 +120,17 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(6);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(7);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Do not auto-post to Instagram");
-    expect(sectionData.weeklyCampaignMetricKitSections[5].title).toBe("Launch Retrospective Readiness Script Kit");
-    expect(sectionData.weeklyCampaignMetricKitSections[5].copyText).toContain("Manual retrospective readiness script");
-    expect(sectionData.weeklyCampaignMetricKitSections[5].copyText).toContain("Do not create experiment records");
+    expect(sectionData.weeklyCampaignMetricKitSections[1].title).toBe("Weekly Campaign First 24h Monitor Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[1].buttonLabel).toBe("COPY 24H MONITOR");
+    expect(sectionData.weeklyCampaignMetricKitSections[1].copyText).toContain("Manual first 24h monitor checklist");
+    expect(sectionData.weeklyCampaignMetricKitSections[1].copyText).toContain("support-risk replies");
+    expect(sectionData.weeklyCampaignMetricKitSections[6].title).toBe("Launch Retrospective Readiness Script Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[6].copyText).toContain("Manual retrospective readiness script");
+    expect(sectionData.weeklyCampaignMetricKitSections[6].copyText).toContain("Do not create experiment records");
   });
 });
