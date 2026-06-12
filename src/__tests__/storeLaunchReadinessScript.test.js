@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+const os = require('os');
 const { execFileSync } = require('child_process');
 
 const scriptPath = path.resolve(__dirname, '../../scripts/check-store-launch-readiness.js');
@@ -34,6 +36,13 @@ const runReadinessJson = ({ args = [], env = buildEnv(), expectFailure = false }
   }
 };
 
+const writeEvidenceLog = records => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'store-evidence-'));
+  const filePath = path.join(dir, 'sanitized-store-evidence.json');
+  fs.writeFileSync(filePath, JSON.stringify({ storeTestEvidenceLog: records }, null, 2));
+  return filePath;
+};
+
 describe('store launch readiness script', () => {
   it('emits the credential and external evidence gaps as parseable JSON', () => {
     const { failed, data } = runReadinessJson();
@@ -47,6 +56,13 @@ describe('store launch readiness script', () => {
     expect(data.readiness.flatMap((platform) => platform.placeholderConfigKeys)).toEqual([]);
     expect(data.products).toHaveLength(9);
     expect(data.requiredEvidence).toHaveLength(20);
+    expect(data.evidenceReady).toBe(false);
+    expect(data.evidenceStatus).toEqual(expect.objectContaining({
+      provided: false,
+      ready: false,
+      requiredCaseCount: 20,
+      verifiedCaseCount: 0,
+    }));
     expect(data.requiredEvidence.filter((item) => item.safeDenialRequired)).toHaveLength(2);
     expect(data.requiredEvidence).toEqual(
       expect.arrayContaining([
@@ -128,5 +144,54 @@ describe('store launch readiness script', () => {
     expect(data.readiness.flatMap((platform) => platform.missingConfigKeysOnly)).toEqual([]);
     expect(data.readiness.flatMap((platform) => platform.placeholderConfigKeys)).toEqual([]);
     expect(data.decision).toContain('external evidence matrix');
+  });
+
+  it('audits a supplied sanitized evidence log against the minimum matrix', () => {
+    const evidenceLogPath = writeEvidenceLog([
+      {
+        platform: 'ios',
+        productId: 'com.risewiththetribe.pro.monthly',
+        testCase: 'sandbox_purchase',
+        result: 'verified',
+        evidenceNote: 'Sandbox receipt verified; entitlement path checked.',
+      },
+    ]);
+    const { failed, data } = runReadinessJson({
+      args: ['--evidence-log', evidenceLogPath],
+    });
+
+    expect(failed).toBe(false);
+    expect(data.evidenceReady).toBe(false);
+    expect(data.evidenceStatus.provided).toBe(true);
+    expect(data.evidenceStatus.recordCount).toBe(1);
+    expect(data.evidenceStatus.verifiedCaseCount).toBe(1);
+    expect(data.evidenceStatus.requiredCaseCount).toBe(20);
+    expect(data.evidenceStatus.missingRequiredCases).toContain('ios_pro_restore');
+    expect(data.evidenceStatus.missingSafeDenialPlatforms).toEqual(['ios', 'android']);
+    expect(JSON.stringify(data)).not.toContain('raw-secret-token');
+  });
+
+  it('reports evidence ready when a sanitized evidence log satisfies every matrix case', () => {
+    const requiredEvidence = runReadinessJson().data.requiredEvidence;
+    const evidenceLogPath = writeEvidenceLog(requiredEvidence.map(item => ({
+      platform: item.platform,
+      productId: item.productId === 'any configured product' ? 'com.risewiththetribe.pro.monthly' : item.productId,
+      testCase: item.safeDenialRequired ? 'negative_validation' : item.testCase,
+      result: item.safeDenialRequired ? 'verified_safe_denial' : 'verified',
+      evidenceNote: item.safeDenialRequired
+        ? 'Entitlement path checked; no Pro, no pack, no access, no unlock.'
+        : 'Sandbox/license-test receipt verified and entitlement path checked.',
+    })));
+    const { failed, data } = runReadinessJson({
+      args: ['--evidence-log', evidenceLogPath],
+    });
+
+    expect(failed).toBe(false);
+    expect(data.evidenceReady).toBe(true);
+    expect(data.evidenceStatus.ready).toBe(true);
+    expect(data.evidenceStatus.recordCount).toBe(20);
+    expect(data.evidenceStatus.verifiedCaseCount).toBe(20);
+    expect(data.evidenceStatus.missingRequiredCases).toEqual([]);
+    expect(data.evidenceStatus.missingSafeDenialPlatforms).toEqual([]);
   });
 });

@@ -50,6 +50,15 @@ node scripts/check-store-launch-readiness.js --json
 
 The JSON output includes `launchReady`, per-platform readiness, configured products, required evidence cases with accepted result statuses, safe-denial flags for negative tests, and the final decision string.
 
+After real sandbox/license-test evidence is reviewed in the admin Store Test Purchase Evidence Log, export a sanitized JSON file with only safe evidence fields such as `platform`, `productId`, `testCase`, `result`, `evidenceNote`, and `reviewNote`, then audit it locally:
+
+```bash
+node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json
+node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json --json
+```
+
+The evidence-log audit reports the minimum evidence matrix count, missing purchase/restore cases, and missing safe-denial platforms. Do not include raw purchase tokens, transaction payloads, service account JSON, private keys, tester passwords, personal user data, or private screenshots in the exported JSON.
+
 ## Android Google Play Index
 
 Android package, Firebase, Google Sign-In, App Links, and Play Billing validation setup now live in `docs/store-readiness/android-google-play.md` so this store readiness guide stays readable while preserving the same Play release contract.

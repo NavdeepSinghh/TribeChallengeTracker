@@ -11,6 +11,7 @@ Use this runbook after App Store Connect, Google Play Console, and Firebase Func
 - `getPurchaseValidationReadiness` returns `validation_configured` for iOS and Android.
 - `npm run store:readiness` reports no missing credential keys; use `node scripts/check-store-launch-readiness.js --strict` when this should fail fast.
 - `node scripts/check-store-launch-readiness.js --json` can be attached to internal release notes after confirming it contains no secrets.
+- After evidence is reviewed, `node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json --json` reports the minimum evidence matrix as complete before final paid launch review.
 - Store tester accounts are not personal production accounts.
 
 ## iOS Sandbox Pass
@@ -44,6 +45,27 @@ Record each proof item in the admin Store Test Purchase Evidence Log, not in sou
 - Evidence note with tester account alias, timestamp, receipt-validation result, Firestore entitlement path checked, restore/sync result, and any support handoff note.
 
 Never paste raw purchase tokens, App Store transaction payloads, Play purchase tokens, private keys, service account JSON, tester passwords, or personal user data into docs, commits, screenshots, or public review notes.
+
+For the local evidence-log audit, export only sanitized reviewed fields from the admin log. A safe JSON record looks like:
+
+```json
+{
+  "platform": "ios",
+  "productId": "com.risewiththetribe.pro.monthly",
+  "testCase": "sandbox_purchase",
+  "result": "verified",
+  "evidenceNote": "Sandbox receipt verified; entitlement path checked.",
+  "reviewNote": "No raw receipt or personal data stored."
+}
+```
+
+Run:
+
+```bash
+node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json --json
+```
+
+The output must show `evidenceReady: true`, `verifiedCaseCount: 20`, no missing required cases, and no missing safe-denial platforms before the Paid Launch Decision Gate can be trusted.
 
 ## Minimum Evidence Matrix
 

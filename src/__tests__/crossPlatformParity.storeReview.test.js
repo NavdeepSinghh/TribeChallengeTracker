@@ -110,6 +110,8 @@ describe('cross-platform store review and evidence parity source checks', () => 
       expect(source).toContain('storeTestPurchaseSessionPrepCopy');
       expect(source).toContain('Sandbox and license-test evidence rehearsal');
       expect(source).toContain('getPurchaseValidationReadiness returns validation_configured');
+      expect(source).toContain('node scripts/check-store-launch-readiness.js --evidence-log');
+      expect(source).toContain('sanitized-store-evidence.json');
       expect(source).toContain('storeTestPurchaseEvidence');
       expect(source).toContain('Do not create fake purchase evidence');
       expect(source).toContain('store raw purchase tokens');

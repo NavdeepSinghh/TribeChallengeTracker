@@ -47,6 +47,7 @@ const STORE_TEST_PURCHASE_SESSION_PREP_ITEMS = [
   'Confirm getPurchaseValidationReadiness returns validation_configured for iOS and Android before any sandbox/license-test run',
   'Prepare one App Store sandbox tester and one Play license-test account outside git, screenshots, and public notes',
   'Run Pro monthly, Pro yearly, pack purchase, restore/sync, wrong-account, duplicate-restore, and negative-validation cases',
+  'Export a sanitized reviewed evidence log and run node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json before paid launch review',
   'Record only reviewed evidence notes in storeTestPurchaseEvidence; never store raw purchase tokens, passwords, service account JSON, or private keys',
   'Keep paid access in review mode until evidence, entitlement writes, support handoff, and paid launch decision gate are reviewed',
 ];
@@ -134,6 +135,7 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Store Test Purchase Session Prep Kit');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('getPurchaseValidationReadiness returns validation_configured');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Minimum evidence matrix: 18/20 required proof items verified');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('node scripts/check-store-launch-readiness.js --evidence-log');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Do not create fake purchase evidence');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('store raw purchase tokens');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
