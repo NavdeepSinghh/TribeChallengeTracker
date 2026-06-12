@@ -66,6 +66,29 @@ describe('web Pro trial support escalation copy', () => {
     expect(copy.proTrialLaunchQaCopy).toContain('auto-message users');
     expect(copy.proTrialLaunchQaCopy).toContain('scrape/store DMs');
     expect(copy.proTrialLaunchQaCopy).toContain('add tracking pixels');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('Pro Trial Store Readiness Script Kit');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('First-party Pro trial signals: 7');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('Top Pro trial interest: Reports');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('Subscription products in code: tribe.pro.monthly, tribe.pro.annual');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('Manual readiness script');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('App Store / Google Play products');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('receipt validation');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('sandbox/license-test purchases');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('restore/sync');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('entitlement QA');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('wrong-account');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('missing-entitlement');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('does not start a trial');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('create a purchase');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('grant Pro');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('write entitlements');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('unlock paid access');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('collect payment details');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('process refunds');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('submit store review');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('auto-message users');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('scrape/store DMs');
+    expect(copy.proTrialStoreReadinessScriptCopy).toContain('add tracking pixels');
   });
 
   it('renders the web admin support card as copy-only', () => {
@@ -83,6 +106,11 @@ describe('web Pro trial support escalation copy', () => {
     expect(source).toContain('COPY PRO TRIAL LAUNCH QA');
     expect(source).toContain('proTrialLaunchQaCopy');
     expect(source).toContain('Check store setup, entitlement writes, support routing, and launch copy');
+    expect(source).toContain('PRO TRIAL STORE READINESS SCRIPT KIT');
+    expect(source).toContain('COPY PRO TRIAL READINESS SCRIPT');
+    expect(source).toContain('proTrialStoreReadinessScriptCopy');
+    expect(source).toContain('member-safe readiness script');
+    expect(source).toContain('before store products, receipt validation, restore/sync, and entitlement QA are verified');
   });
 
   it('keeps support and launch QA copy routed through the Profile value-demand props', () => {
@@ -105,6 +133,7 @@ describe('web Pro trial support escalation copy', () => {
         proTrialObjectionReplyCopy: 'objection copy',
         proTrialPitchCopy: 'pitch copy',
         proTrialLaunchQaCopy: 'launch qa copy',
+        proTrialStoreReadinessScriptCopy: 'readiness script copy',
         proTrialSupportEscalationCopy: 'support escalation copy',
         recommendedRevenuePath: { label: 'Pro' },
         revenuePathways: [],
@@ -152,8 +181,10 @@ describe('web Pro trial support escalation copy', () => {
     });
 
     expect(storeDerived.proTrialLaunchQaCopy).toBe('launch qa copy');
+    expect(storeDerived.proTrialStoreReadinessScriptCopy).toBe('readiness script copy');
     expect(storeDerived.proTrialSupportEscalationCopy).toBe('support escalation copy');
     expect(props.proTrialLaunchQaCopy).toBe('launch qa copy');
+    expect(props.proTrialStoreReadinessScriptCopy).toBe('readiness script copy');
     expect(props.proTrialSupportEscalationCopy).toBe('support escalation copy');
   });
 });

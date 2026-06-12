@@ -35,6 +35,8 @@ const ROADMAP_TOKENS = [
   "Web admin copy-only support handoff done for store setup, value proof, support coverage, entitlement QA, marketplace routing, and refund-confusion triage",
   "Pro Trial Launch QA Kit",
   "Web admin copy-only launch QA handoff done for store setup, entitlement writes, support routing, and launch copy",
+  "Pro Trial Store Readiness Script Kit",
+  "Web admin copy-only member-safe readiness script done for saved Pro Trial Interest",
   "Challenge Pack Support Triage Kit",
   "Web admin/creator copy-ready missing-pack, wrong-account, restore, refund, cancellation, and launch-language support handoff",
   "Phase 6: Partnerships",

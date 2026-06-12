@@ -5,6 +5,7 @@ export default function ProTrialAdminSummary({
   proTrialObjectionReplyCopy,
   proTrialLaunchQaCopy,
   proTrialPitchCopy,
+  proTrialStoreReadinessScriptCopy,
   proTrialSupportEscalationCopy,
   proTrialReviewMessage,
   proTrialReviewNotes = {},
@@ -180,6 +181,28 @@ export default function ProTrialAdminSummary({
           }}
         >
           COPY PRO TRIAL DECISION REPLIES
+        </button>
+      </div>
+      <div style={{
+        marginTop: 10, borderRadius: 12, padding: 11,
+        background: 'rgba(20,184,166,0.08)', border: '1px solid rgba(20,184,166,0.18)',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
+          <p style={{ margin: 0, color: '#14B8A6', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>PRO TRIAL STORE READINESS SCRIPT KIT</p>
+          <p style={{ margin: 0, color: '#14B8A6', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>COPY ONLY</p>
+        </div>
+        <p style={{ margin: '7px 0 0', color: '#888', fontSize: 10, lineHeight: 1.45 }}>
+          Copy a member-safe readiness script for trial questions before store products, receipt validation, restore/sync, and entitlement QA are verified.
+        </p>
+        <button
+          onClick={() => navigator.clipboard?.writeText(proTrialStoreReadinessScriptCopy)}
+          style={{
+            marginTop: 9, width: '100%', borderRadius: 12, padding: '9px 10px',
+            border: '1px solid rgba(20,184,166,0.22)', background: 'rgba(20,184,166,0.10)',
+            color: '#14B8A6', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+          }}
+        >
+          COPY PRO TRIAL READINESS SCRIPT
         </button>
       </div>
       <div style={{

@@ -13,6 +13,7 @@ export default function ProTrialInterestSection({
   proTrialDemandTotal,
   proTrialObjectionReplyCopy,
   proTrialLaunchQaCopy,
+  proTrialStoreReadinessScriptCopy,
   proTrialSupportEscalationCopy,
   proTrialReviewMessage,
   proTrialReviewNotes,
@@ -40,6 +41,7 @@ export default function ProTrialInterestSection({
           proTrialDemandTotal={proTrialDemandTotal}
           proTrialObjectionReplyCopy={proTrialObjectionReplyCopy}
           proTrialLaunchQaCopy={proTrialLaunchQaCopy}
+          proTrialStoreReadinessScriptCopy={proTrialStoreReadinessScriptCopy}
           proTrialSupportEscalationCopy={proTrialSupportEscalationCopy}
           proTrialPitchCopy={proTrialPitchCopy}
           proTrialSummary={proTrialSummary}

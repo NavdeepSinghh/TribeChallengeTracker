@@ -21,6 +21,7 @@ export default function TribeProValueDemandSection({
   proTrialObjectionReplyCopy,
   proTrialPitchCopy,
   proTrialLaunchQaCopy,
+  proTrialStoreReadinessScriptCopy,
   proTrialSupportEscalationCopy,
   proTrialReviewMessage,
   proTrialReviewNotes,
@@ -68,6 +69,7 @@ export default function TribeProValueDemandSection({
         proTrialDemandTotal={proTrialDemandTotal}
         proTrialObjectionReplyCopy={proTrialObjectionReplyCopy}
         proTrialLaunchQaCopy={proTrialLaunchQaCopy}
+        proTrialStoreReadinessScriptCopy={proTrialStoreReadinessScriptCopy}
         proTrialSupportEscalationCopy={proTrialSupportEscalationCopy}
         proTrialReviewMessage={proTrialReviewMessage}
         proTrialReviewNotes={proTrialReviewNotes}
