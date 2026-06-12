@@ -25,6 +25,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy,
+  launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy,
@@ -1195,6 +1196,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'QA the receipt archive handoff, approved receipt reference, manual send timestamp, support route, consent queue, paid-language hold, and no-paid-live note before archive completion.',
       buttonLabel: 'COPY ARCHIVE QA',
       copyText: launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveQaCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Completion Handoff Kit',
+      subtitle: 'Manual handoff before archive completion',
+      status: 'COMPLETE',
+      accent: '#4F46E5',
+      background: 'rgba(79,70,229,0.05)',
+      border: '1px solid rgba(79,70,229,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off approved archive QA into completion ownership with manual send timestamp, support route, consent queue, paid-language hold, unresolved blocker note, and no-paid-live note.',
+      buttonLabel: 'COPY ARCHIVE COMPLETE',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionHandoffCopy,
     },
   ];
 }
