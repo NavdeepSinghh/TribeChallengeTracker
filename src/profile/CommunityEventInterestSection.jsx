@@ -9,6 +9,7 @@ export default function CommunityEventInterestSection({
   communityEventReviewNotes = {},
   communityEventReviewQueue = [],
   communityEventReviewDecisionReplyCopy,
+  communityEventSupportEscalationCopy,
   approvedCommunityEventReviews = [],
   isAdmin,
   isSubmittingCommunityEventReview,
@@ -133,6 +134,22 @@ export default function CommunityEventInterestSection({
               }}
             >
               COPY EVENT REVIEW DECISION REPLIES
+            </button>
+          </div>
+          <div style={{ marginTop: 10, padding: 10, borderRadius: 10, border: '1px solid rgba(244,63,94,0.22)', background: 'rgba(244,63,94,0.07)' }}>
+            <p style={{ margin: 0, color: '#fff', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>COMMUNITY EVENT SUPPORT ESCALATION KIT</p>
+            <p style={{ margin: '6px 0 0', color: '#777', fontSize: 10, lineHeight: 1.45 }}>
+              Copy event support routing for safety, privacy, event ops, partner terms, marketplace, refund, and accessibility questions before tickets, venues, merch, payments, partner links, payouts, or entitlements exist.
+            </p>
+            <button
+              onClick={() => navigator.clipboard?.writeText(communityEventSupportEscalationCopy || '')}
+              style={{
+                marginTop: 8, width: '100%', borderRadius: 10, padding: '8px 10px',
+                border: '1px solid rgba(244,63,94,0.24)', background: 'rgba(244,63,94,0.10)',
+                color: '#F43F5E', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+              }}
+            >
+              COPY EVENT SUPPORT ESCALATION
             </button>
           </div>
         </div>
