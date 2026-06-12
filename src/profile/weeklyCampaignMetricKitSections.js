@@ -7,6 +7,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignFinalPostingPrepHandoffCopy,
   launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy,
+  launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -799,6 +800,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the approved final posting prep handoff, launch copy, support route, consent queue, paid-language hold, no-paid-live note, and operator brief owner before manual posting operator prep starts.',
       buttonLabel: 'COPY POSTING PREP QA BRIDGE',
       copyText: launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Manual Posting Operator Handoff Kit',
+      subtitle: 'Manual handoff into operator brief',
+      status: 'OPERATOR HANDOFF',
+      accent: '#312E81',
+      background: 'rgba(49,46,129,0.05)',
+      border: '1px solid rgba(49,46,129,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off the approved final posting prep QA bridge, caption source, launch-card source, reply owner, consent proof, support route, and callback owner before any human posting operator receives instructions.',
+      buttonLabel: 'COPY OPERATOR HANDOFF',
+      copyText: launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy,
     },
   ];
 }

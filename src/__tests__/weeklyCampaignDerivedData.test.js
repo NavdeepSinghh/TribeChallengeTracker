@@ -540,6 +540,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("Launch Retrospective Next Campaign Manual Posting Operator Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("Manual next campaign posting operator handoff");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("approved final posting prep QA bridge reference");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("post-complete callback owner");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("Weekly Campaign Manual Posting Operator Brief Kit");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
