@@ -17,6 +17,7 @@ export function buildWeeklyCampaignMetricKitSections({
   weeklyCampaignWeekendPushDecisionCopy,
   weeklyCampaignSundayRecapQaCopy,
   weeklyCampaignNextWeekLaunchAngleCopy,
+  weeklyCampaignPreflightOwnerHandoffCopy,
 }) {
   return [
     {
@@ -120,6 +121,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Choose the next-week launch angle from recap QA, campaign movement, consent-safe proof, and support-risk notes before preflight.',
       buttonLabel: 'COPY NEXT-WEEK ANGLE',
       copyText: weeklyCampaignNextWeekLaunchAngleCopy,
+    },
+    {
+      title: 'Weekly Campaign Preflight Owner Handoff Kit',
+      subtitle: 'Manual owner assignment before preflight',
+      status: 'HANDOFF',
+      accent: '#F59E0B',
+      background: 'rgba(245,158,11,0.05)',
+      border: '1px solid rgba(245,158,11,0.16)',
+      metrics: [
+        ['ACTIVE', campaignPerformanceSummary.active || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Assign preflight owners for launch copy, manual replies, consent review, and support-risk routing before the next campaign preflight starts.',
+      buttonLabel: 'COPY PREFLIGHT HANDOFF',
+      copyText: weeklyCampaignPreflightOwnerHandoffCopy,
     },
     {
       title: 'Weekly Campaign Preflight Checklist',
