@@ -129,4 +129,32 @@ describe('cross-platform store evidence parity source checks', () => {
     expect(nativeAndroidSource).toContain('productId = product.id');
     expect(nativeAndroidSource).toContain('test.productId');
   });
+
+  it('keeps native paid launch readiness tied to the minimum evidence matrix', () => {
+    const webEvidenceModel = fs.readFileSync(path.resolve(repoRoot, 'src/profile/storeTestEvidenceModel.js'), 'utf8');
+    const webDecisionData = fs.readFileSync(path.resolve(repoRoot, 'src/profile/profileStoreLaunchDecisionData.js'), 'utf8');
+    const webDecisionCopy = fs.readFileSync(path.resolve(repoRoot, 'src/profile/storeDecisionCopy.js'), 'utf8');
+    const iosCopyModels = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerIOS/TribeChallenge/Views/ProfileCopyModels.swift'), 'utf8');
+    const androidCopyModels = fs.readFileSync(path.resolve(repoRoot, '../TribeChallengeTrackerAndroid/app/src/main/java/com/risewiththetribe/challengetracker/ui/ProfileCopyModels.kt'), 'utf8');
+
+    [webEvidenceModel, iosCopyModels, androidCopyModels].forEach((source) => {
+      expect(source).toContain('missingRequiredCases');
+      expect(source).toContain('missingSafeDenialPlatforms');
+      expect(source).toContain('requiredCaseCount');
+      expect(source).toContain('verifiedCaseCount');
+      expect(source).toContain('negative_validation');
+      expect(source).toContain('wrong_account');
+      expect(source).toContain('no unlock');
+      expect(source).toContain('did not unlock');
+    });
+    [webDecisionCopy, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('Minimum evidence matrix');
+      expect(source).toContain('Missing required cases');
+      expect(source).toContain('Missing safe-denial platforms');
+      expect(source).toContain('minimum evidence matrix');
+    });
+    expect(webDecisionData).toContain('minimumEvidence.ready');
+    expect(iosProfile).toContain('storeTestEvidenceMinimumStatus.ready');
+    expect(androidApp).toContain('storeTestEvidenceMinimumStatus.ready');
+  });
 });
