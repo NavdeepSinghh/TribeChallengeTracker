@@ -101,6 +101,12 @@ export const STORE_REVIEW_RESUBMISSION_ITEMS = [
   'Re-check sandbox/license-test evidence, restore/sync, entitlement recovery, and paid-launch decision status before sending updated notes',
   'Keep resubmission prep copy-only until the fixed build, reviewer notes, policies, and evidence packet are reviewed by a human',
 ];
+export const STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS = [
+  'Start with the minimum evidence matrix and list every missing purchase, restore, wrong-account, or safe-denial proof item',
+  'Separate credential/setup gaps from product-copy gaps, screenshot gaps, demo-account gaps, and support/refund handoff gaps',
+  'Assign one owner and one next proof action for each App Store sandbox or Play license-test gap before reviewer notes change',
+  'Keep the triage notes internal until a human confirms evidence, policy wording, support links, and paid-launch gate status',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

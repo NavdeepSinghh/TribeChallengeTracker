@@ -12,6 +12,7 @@ export function buildStoreSupportCopyCards({
   storeScreenshotQaCopy,
   storeReviewPackCopy,
   storeReviewResponseCopy,
+  storeReviewEvidenceGapTriageCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -131,6 +132,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy reviewer follow-up replies without resubmitting, exposing private data, changing purchases, writing entitlements, or claiming paid access is live.',
       buttonLabel: 'COPY REVIEW RESPONSE',
       copyText: storeReviewResponseCopy,
+    },
+    {
+      title: 'STORE REVIEW EVIDENCE GAP TRIAGE KIT',
+      subtitle: 'Missing proof, policy, screenshot, and support handoff triage',
+      status: 'GAP TRIAGE',
+      accent: '#FACC15',
+      body: 'Copy an evidence-gap triage checklist without creating fake proof, submitting review, exposing credentials, unlocking paid access, or claiming approval.',
+      buttonLabel: 'COPY EVIDENCE GAP TRIAGE',
+      copyText: storeReviewEvidenceGapTriageCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

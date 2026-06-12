@@ -43,6 +43,12 @@ const STORE_REVIEW_RESUBMISSION_ITEMS = [
   'Re-check sandbox/license-test evidence, restore/sync, entitlement recovery, and paid-launch decision status before sending updated notes',
   'Keep resubmission prep copy-only until the fixed build, reviewer notes, policies, and evidence packet are reviewed by a human',
 ];
+const STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS = [
+  'Start with the minimum evidence matrix and list every missing purchase, restore, wrong-account, or safe-denial proof item',
+  'Separate credential/setup gaps from product-copy gaps, screenshot gaps, demo-account gaps, and support/refund handoff gaps',
+  'Assign one owner and one next proof action for each App Store sandbox or Play license-test gap before reviewer notes change',
+  'Keep the triage notes internal until a human confirms evidence, policy wording, support links, and paid-launch gate status',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -114,6 +120,7 @@ describe('store lifecycle copy contracts', () => {
       storeEvidenceExportTemplateItems: STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS,
       storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
+      storeReviewEvidenceGapTriageItems: STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -136,6 +143,7 @@ describe('store lifecycle copy contracts', () => {
       storeEvidenceExportTemplateCopy: lifecycleCopy.storeEvidenceExportTemplateCopy,
       storeLaunchDryRunCopy: lifecycleCopy.storeLaunchDryRunCopy,
       storeReviewResponseCopy: lifecycleCopy.storeReviewResponseCopy,
+      storeReviewEvidenceGapTriageCopy: lifecycleCopy.storeReviewEvidenceGapTriageCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -186,6 +194,20 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Do not submit store review');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('purchase tokens');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('service account JSON');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Store Review Evidence Gap Triage Kit');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Start with the minimum evidence matrix');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Manual evidence-gap triage');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('credentials or sandbox/license-test proof still pending');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Missing required cases: ios_pro_restore');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Missing safe-denial platforms: android');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('Do not create fake evidence');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('submit store review');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('export transaction IDs');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('unlock paid access');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewEvidenceGapTriageCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -213,6 +235,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE SCREENSHOT QA KIT',
       'STORE REVIEW PACK',
       'STORE REVIEW RESPONSE KIT',
+      'STORE REVIEW EVIDENCE GAP TRIAGE KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });
