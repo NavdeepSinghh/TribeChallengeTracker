@@ -112,9 +112,15 @@ describe('cross-platform store review and evidence parity source checks', () => 
       expect(source).toContain('getPurchaseValidationReadiness returns validation_configured');
       expect(source).toContain('node scripts/check-store-launch-readiness.js --evidence-log');
       expect(source).toContain('sanitized-store-evidence.json');
+      expect(source).toContain('platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt');
+      expect(source).toContain('--json');
+      expect(source).toContain('internal release packet');
       expect(source).toContain('storeTestPurchaseEvidence');
       expect(source).toContain('Do not create fake purchase evidence');
+      expect(source).toContain('export order IDs');
+      expect(source).toContain('export transaction IDs');
       expect(source).toContain('store raw purchase tokens');
+      expect(source).toContain('store tester emails');
       expect(source).toContain('store tester passwords');
       expect(source).toContain('store private keys');
       expect(source).toContain('store service account JSON');

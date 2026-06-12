@@ -136,7 +136,10 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('getPurchaseValidationReadiness returns validation_configured');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Minimum evidence matrix: 18/20 required proof items verified');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('node scripts/check-store-launch-readiness.js --evidence-log');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('--json and archive the output with the internal release packet');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('Do not create fake purchase evidence');
+    expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('export transaction IDs');
     expect(lifecycleCopy.storeTestPurchaseSessionPrepCopy).toContain('store raw purchase tokens');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Store Review Pack');
     expect(lifecycleCopy.storeReviewPackCopy).toContain('Missing required cases: ios_pro_restore');

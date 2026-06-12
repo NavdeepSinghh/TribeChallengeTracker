@@ -61,6 +61,7 @@ export const STORE_TEST_PURCHASE_SESSION_PREP_ITEMS = [
   'Prepare one App Store sandbox tester and one Play license-test account outside git, screenshots, and public notes',
   'Run Pro monthly, Pro yearly, pack purchase, restore/sync, wrong-account, duplicate-restore, and negative-validation cases',
   'Export a sanitized reviewed evidence log and run node scripts/check-store-launch-readiness.js --evidence-log path/to/sanitized-store-evidence.json before paid launch review',
+  'Export only platform, productId, testCase, result, evidenceNote, reviewNote, and reviewedAt fields; keep order IDs, transaction IDs, purchase tokens, tester emails, and credentials out of the file',
   'Record only reviewed evidence notes in storeTestPurchaseEvidence; never store raw purchase tokens, passwords, service account JSON, or private keys',
   'Keep paid access in review mode until evidence, entitlement writes, support handoff, and paid launch decision gate are reviewed',
 ];
