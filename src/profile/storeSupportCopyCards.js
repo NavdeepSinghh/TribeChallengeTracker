@@ -19,6 +19,7 @@ export function buildStoreSupportCopyCards({
   storeReviewerReplyPacketCopy,
   storeReviewMetadataDiffCopy,
   storeReviewDataSafetyAlignmentCopy,
+  storeReviewPermissionCopyCheckCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -201,6 +202,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a data-safety alignment checklist without publishing privacy labels, exposing credentials, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY DATA SAFETY',
       copyText: storeReviewDataSafetyAlignmentCopy,
+    },
+    {
+      title: 'STORE REVIEW PERMISSION COPY CHECK KIT',
+      subtitle: 'Health, media, notification, purchase, and deletion copy',
+      status: 'PERMISSION COPY',
+      accent: '#5EEAD4',
+      body: 'Copy a permission-copy checklist without publishing reviewer notes, exposing credentials, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY PERMISSION COPY',
+      copyText: storeReviewPermissionCopyCheckCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

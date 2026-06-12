@@ -143,6 +143,12 @@ export const STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS = [
   'Assign one owner for each privacy-label, data-safety, permission, support, deletion, purchase-validation, or screenshot mismatch before resubmission prep',
   'Keep alignment notes internal until public policy links, data safety answers, reviewer notes, and evidence packet references are reviewed together',
 ];
+export const STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS = [
+  'Check reviewer-note language for optional HealthKit / Health Connect, media uploads, notifications, purchase validation, restore/sync, support, and account deletion',
+  'Match every permission explanation to the current build, screenshot captions, policy links, and data-safety answers before resubmission prep',
+  'Remove wording that implies required health access, automatic posting, medical outcomes, live paid access, or unreviewed purchase evidence',
+  'Keep permission-copy notes internal until the fixed build, public policies, screenshot captions, and reviewer reply packet are reviewed together',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

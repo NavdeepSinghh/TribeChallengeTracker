@@ -85,6 +85,12 @@ const STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS = [
   'Assign one owner for each privacy-label, data-safety, permission, support, deletion, purchase-validation, or screenshot mismatch before resubmission prep',
   'Keep alignment notes internal until public policy links, data safety answers, reviewer notes, and evidence packet references are reviewed together',
 ];
+const STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS = [
+  'Check reviewer-note language for optional HealthKit / Health Connect, media uploads, notifications, purchase validation, restore/sync, support, and account deletion',
+  'Match every permission explanation to the current build, screenshot captions, policy links, and data-safety answers before resubmission prep',
+  'Remove wording that implies required health access, automatic posting, medical outcomes, live paid access, or unreviewed purchase evidence',
+  'Keep permission-copy notes internal until the fixed build, public policies, screenshot captions, and reviewer reply packet are reviewed together',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -163,6 +169,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewerReplyPacketItems: STORE_REVIEWER_REPLY_PACKET_ITEMS,
       storeReviewMetadataDiffItems: STORE_REVIEW_METADATA_DIFF_ITEMS,
       storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
+      storeReviewPermissionCopyCheckItems: STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -192,6 +199,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewerReplyPacketCopy: lifecycleCopy.storeReviewerReplyPacketCopy,
       storeReviewMetadataDiffCopy: lifecycleCopy.storeReviewMetadataDiffCopy,
       storeReviewDataSafetyAlignmentCopy: lifecycleCopy.storeReviewDataSafetyAlignmentCopy,
+      storeReviewPermissionCopyCheckCopy: lifecycleCopy.storeReviewPermissionCopyCheckCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -357,6 +365,28 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('Store Review Permission Copy Check Kit');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('Check reviewer-note language');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('Manual permission copy checklist');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('optional HealthKit / Health Connect');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('media uploads');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('notifications');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('purchase validation');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('account deletion');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('health sync is required');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('medical results are promised');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('publish unreviewed permission copy');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewPermissionCopyCheckCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -391,6 +421,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEWER REPLY PACKET KIT',
       'STORE REVIEW METADATA DIFF KIT',
       'STORE REVIEW DATA SAFETY ALIGNMENT KIT',
+      'STORE REVIEW PERMISSION COPY CHECK KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });
