@@ -18,6 +18,7 @@ import {
   STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
   STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
   STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
+  STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -62,6 +63,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
     storeReviewPermissionCopyCheckItems: STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
     storeReviewDemoAccessQaItems: STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
+    storeReviewSupportHandoffQaItems: STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

@@ -21,6 +21,7 @@ export function buildStoreSupportCopyCards({
   storeReviewDataSafetyAlignmentCopy,
   storeReviewPermissionCopyCheckCopy,
   storeReviewDemoAccessQaCopy,
+  storeReviewSupportHandoffQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -221,6 +222,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a demo-access QA checklist without storing reviewer passwords, exposing member data, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY DEMO QA',
       copyText: storeReviewDemoAccessQaCopy,
+    },
+    {
+      title: 'STORE REVIEW SUPPORT HANDOFF QA KIT',
+      subtitle: 'Marketplace support, restore, deletion, and policy routing',
+      status: 'SUPPORT QA',
+      accent: '#CCFBF1',
+      body: 'Copy a support-handoff QA checklist without promising refunds, writing entitlements, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY SUPPORT QA',
+      copyText: storeReviewSupportHandoffQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

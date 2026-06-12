@@ -97,6 +97,12 @@ const STORE_REVIEW_DEMO_ACCESS_QA_ITEMS = [
   'Verify paid surfaces stay in review mode unless sandbox/license-test purchase, restore, validation, and entitlement evidence is reviewed',
   'Keep demo-access QA internal until credentials, screenshots, policy links, support handoff, and reviewer notes are checked by a human',
 ];
+const STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS = [
+  'Confirm reviewer notes route refunds, cancellations, failed renewals, duplicate charges, and billing disputes to App Store or Google Play support',
+  'Check support, entitlement recovery, restore/sync, account deletion, privacy, terms, and data deletion links before resubmission prep',
+  'Separate marketplace support handoff from in-app support so reviewer notes do not promise refunds, manual entitlements, or paid access',
+  'Keep support-handoff QA internal until support owner, policy-link owner, evidence owner, and reviewer-note owner sign off',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -177,6 +183,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
       storeReviewPermissionCopyCheckItems: STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
       storeReviewDemoAccessQaItems: STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
+      storeReviewSupportHandoffQaItems: STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -208,6 +215,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewDataSafetyAlignmentCopy: lifecycleCopy.storeReviewDataSafetyAlignmentCopy,
       storeReviewPermissionCopyCheckCopy: lifecycleCopy.storeReviewPermissionCopyCheckCopy,
       storeReviewDemoAccessQaCopy: lifecycleCopy.storeReviewDemoAccessQaCopy,
+      storeReviewSupportHandoffQaCopy: lifecycleCopy.storeReviewSupportHandoffQaCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -414,6 +422,26 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewDemoAccessQaCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('Store Review Support Handoff QA Kit');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('Confirm reviewer notes route refunds');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('Manual support handoff QA checklist');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('App Store or Google Play support');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('restore/sync');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('entitlement recovery');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('account deletion');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('without promising manual entitlements');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('promise refunds');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('process refunds');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('cancel subscriptions');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('collect payment details');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewSupportHandoffQaCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -450,6 +478,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW DATA SAFETY ALIGNMENT KIT',
       'STORE REVIEW PERMISSION COPY CHECK KIT',
       'STORE REVIEW DEMO ACCESS QA KIT',
+      'STORE REVIEW SUPPORT HANDOFF QA KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

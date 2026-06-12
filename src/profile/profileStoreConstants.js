@@ -155,6 +155,12 @@ export const STORE_REVIEW_DEMO_ACCESS_QA_ITEMS = [
   'Verify paid surfaces stay in review mode unless sandbox/license-test purchase, restore, validation, and entitlement evidence is reviewed',
   'Keep demo-access QA internal until credentials, screenshots, policy links, support handoff, and reviewer notes are checked by a human',
 ];
+export const STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS = [
+  'Confirm reviewer notes route refunds, cancellations, failed renewals, duplicate charges, and billing disputes to App Store or Google Play support',
+  'Check support, entitlement recovery, restore/sync, account deletion, privacy, terms, and data deletion links before resubmission prep',
+  'Separate marketplace support handoff from in-app support so reviewer notes do not promise refunds, manual entitlements, or paid access',
+  'Keep support-handoff QA internal until support owner, policy-link owner, evidence owner, and reviewer-note owner sign off',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
