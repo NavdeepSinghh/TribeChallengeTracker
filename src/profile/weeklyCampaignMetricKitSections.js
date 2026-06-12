@@ -7,6 +7,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
+  launchRetrospectiveNextCampaignLaunchCopyHandoffCopy,
   launchRetrospectiveNextCampaignPreflightBridgeCopy,
   launchRetrospectiveNextCampaignHandoffCopy,
   launchRetrospectiveNextCampaignQaCopy,
@@ -709,6 +710,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Bridge approved brief QA into the preflight owner, launch-copy QA owner, asset owner, support route, consent queue, and paid-language hold before launch copy begins.',
       buttonLabel: 'COPY PREFLIGHT BRIDGE',
       copyText: launchRetrospectiveNextCampaignPreflightBridgeCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Launch Copy Handoff Kit',
+      subtitle: 'Manual handoff into launch-copy QA',
+      status: 'LAUNCH COPY HANDOFF',
+      accent: '#86198F',
+      background: 'rgba(134,25,143,0.05)',
+      border: '1px solid rgba(134,25,143,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Package the approved preflight bridge into a launch-copy writer, launch-copy QA owner, launch-card headline, caption direction, Story/Reel hook, pinned-comment CTA, DM route, support route, consent queue, and paid-language hold.',
+      buttonLabel: 'COPY LAUNCH COPY HANDOFF',
+      copyText: launchRetrospectiveNextCampaignLaunchCopyHandoffCopy,
     },
   ];
 }
