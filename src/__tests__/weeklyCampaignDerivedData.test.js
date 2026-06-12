@@ -780,6 +780,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptQaCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("Manual next campaign review decision reply receipt archive handoff");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("approved sent receipt QA reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("receipt archive owner");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("receipt archive QA starts");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
