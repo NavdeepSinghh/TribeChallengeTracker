@@ -13,6 +13,7 @@ import {
   STORE_REVIEW_POLICY_LINK_QA_ITEMS,
   STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
   STORE_REVIEW_RESUBMISSION_ITEMS,
+  STORE_REVIEWER_REPLY_PACKET_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -52,6 +53,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewEvidenceGapTriageItems: STORE_REVIEW_EVIDENCE_GAP_TRIAGE_ITEMS,
     storeReviewPolicyLinkQaItems: STORE_REVIEW_POLICY_LINK_QA_ITEMS,
     storeReviewRejectionRootCauseItems: STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
+    storeReviewerReplyPacketItems: STORE_REVIEWER_REPLY_PACKET_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

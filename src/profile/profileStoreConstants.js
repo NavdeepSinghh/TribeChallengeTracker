@@ -125,6 +125,12 @@ export const STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS = [
   'Separate real app defects from reviewer-note gaps so product fixes, policy copy, screenshots, and evidence updates do not blur together',
   'Keep root-cause notes internal until a human confirms the fixed build, public policy links, and evidence packet are ready for resubmission prep',
 ];
+export const STORE_REVIEWER_REPLY_PACKET_ITEMS = [
+  'Assemble the final reviewer reply from the confirmed root cause, fixed build note, evidence packet, policy links, and support handoff',
+  'Keep the reply factual, build-specific, and limited to reviewed proof for demo access, permissions, purchase/restore, privacy, or support questions',
+  'Add screenshot/caption, metadata, data safety, and reviewer-note changes only after the owner confirms they match the current build',
+  'Hold the packet internally until a human confirms no credentials, personal data, purchase tokens, or paid-access claims are included',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

@@ -16,6 +16,7 @@ export function buildStoreSupportCopyCards({
   storeReviewEvidenceGapTriageCopy,
   storeReviewPolicyLinkQaCopy,
   storeReviewRejectionRootCauseCopy,
+  storeReviewerReplyPacketCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -171,6 +172,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a rejection root-cause checklist without submitting review, exposing credentials, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY ROOT CAUSE KIT',
       copyText: storeReviewRejectionRootCauseCopy,
+    },
+    {
+      title: 'STORE REVIEWER REPLY PACKET KIT',
+      subtitle: 'Final reply, proof references, and owner sign-off',
+      status: 'REPLY PACKET',
+      accent: '#38BDF8',
+      body: 'Copy a reviewer reply packet checklist without submitting review, exposing credentials, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY REPLY PACKET',
+      copyText: storeReviewerReplyPacketCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
