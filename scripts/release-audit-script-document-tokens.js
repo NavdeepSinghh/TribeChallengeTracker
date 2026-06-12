@@ -102,6 +102,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "src/__tests__/monetizationPreLaunchCopy.test.js",
   "Founder Member Offer Kit",
   "Streak Rescue Prompt Kit",
+  "Challenge Pack Support Triage Kit",
   "src/__tests__/referralCopy.test.js",
   "src/__tests__/referralRewardDecisionCopy.test.js",
   "src/__tests__/referralRewardSocialProofCopy.test.js",
