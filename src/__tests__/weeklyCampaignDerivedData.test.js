@@ -42,7 +42,7 @@ describe("Weekly Campaign derived data", () => {
     expect(data.weeklyCampaignCommentReplyCopy).toContain("Q: How do I join?");
     expect(data.weeklyCampaignCountdownStoryCopy).toContain("Manual Story sequence");
     expect(data.weeklyCampaignCaptionBankCopy).toContain("manual caption bank");
-    expect(data.weeklyCampaignCollabCopyCards).toHaveLength(7);
+    expect(data.weeklyCampaignCollabCopyCards).toHaveLength(8);
     expect(data.weeklyCampaignCollabCopyCards.map(card => card.title)).toEqual([
       "Weekly Campaign Collab Invite Kit",
       "Weekly Campaign Collab Follow-Up Kit",
@@ -50,10 +50,13 @@ describe("Weekly Campaign derived data", () => {
       "Weekly Campaign Collab Recap Kit",
       "Weekly Campaign Collab Renewal Kit",
       "Weekly Campaign Retention Follow-Up Kit",
+      "Weekly Campaign Support Triage Kit",
       "Weekly Campaign Re-Invite Kit",
     ]);
     expect(data.weeklyCampaignCollabCopyCards[5].copyText).toContain("Manual follow-up lanes");
-    expect(data.weeklyCampaignCollabCopyCards[6].copyText).toContain("Manual re-invite lanes");
+    expect(data.weeklyCampaignCollabCopyCards[6].copyText).toContain("Manual triage lanes");
+    expect(data.weeklyCampaignCollabCopyCards[6].copyText).toContain("Open support-risk items: 1");
+    expect(data.weeklyCampaignCollabCopyCards[7].copyText).toContain("Manual re-invite lanes");
     data.weeklyCampaignCollabCopyCards.forEach((card) => {
       expect(card.copyText).toContain("Do not");
       expect(card.copyText).toMatch(/auto-message|auto-post|scrape/);

@@ -82,6 +82,7 @@ export function buildProfileMonetizationCampaignDerivedData(input) {
     referralJoins,
     storeCatalog,
     storePackCount,
+    supportReviewQueue,
     weeklyCampaignPrompt,
   });
   const engagementCreatorCopyData = buildProfileEngagementCreatorCopyBundle({

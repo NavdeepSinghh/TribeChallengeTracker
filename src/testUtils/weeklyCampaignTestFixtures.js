@@ -27,6 +27,7 @@ function buildWeeklyCampaignDerivedDataInput() {
       { id: "com.risewiththetribe.pack.reset", kind: "pack" },
     ],
     storePackCount: 2,
+    supportReviewQueue: [{ id: "support-1" }],
     weeklyCampaignPrompt,
   };
 }

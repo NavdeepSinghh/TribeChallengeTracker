@@ -15,6 +15,7 @@ export function buildProfileWeeklyCampaignDerivedData({
   referralJoins,
   storeCatalog,
   storePackCount,
+  supportReviewQueue = [],
   weeklyCampaignPrompt,
 }) {
   const coreData = buildWeeklyCampaignCoreCopy({
@@ -40,6 +41,7 @@ export function buildProfileWeeklyCampaignDerivedData({
     campaignPerformanceSummary,
     referralJoins,
     featureReviewQueue,
+    supportReviewQueue,
   });
 
   return buildProfileWeeklyCampaignDerivedResult({
