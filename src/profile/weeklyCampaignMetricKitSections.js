@@ -18,6 +18,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewNotesHandoffCopy,
   launchRetrospectiveNextCampaignReviewNotesQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionHandoffCopy,
+  launchRetrospectiveNextCampaignReviewDecisionQaCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -997,6 +998,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Hand off approved review notes QA into review decision owner, decision lanes, consent-safe proof, support route, consent queue, and paid-language hold before Weekly Campaign Review Decision Kit starts.',
       buttonLabel: 'COPY REVIEW DECISION',
       copyText: launchRetrospectiveNextCampaignReviewDecisionHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision QA Kit',
+      subtitle: 'Manual QA before final decision copy',
+      status: 'DECISION QA',
+      accent: '#F0FDF4',
+      background: 'rgba(240,253,244,0.05)',
+      border: '1px solid rgba(34,197,94,0.12)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check approved review decision handoff, decision lanes, consent-safe proof, support route, consent queue, review decision owner, and paid-language hold before final review decision copy is used.',
+      buttonLabel: 'COPY REVIEW DECISION QA',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionQaCopy,
     },
   ];
 }
