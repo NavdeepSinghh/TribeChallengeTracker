@@ -29,6 +29,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignReviewHandoffCopy,
     weeklyCampaignReviewCopy,
     weeklyCampaignReviewDecisionCopy,
+    weeklyCampaignStoryboardHandoffCopy,
     weeklyCampaignStoryboardCopy,
     dmKeywordCopy,
   } = coreData;
@@ -110,6 +111,7 @@ export function buildProfileWeeklyCampaignDerivedResult({
     weeklyCampaignReviewCopy,
     weeklyCampaignReviewDecisionCopy,
     weeklyCampaignStartDayStoryCopy,
+    weeklyCampaignStoryboardHandoffCopy,
     weeklyCampaignStoryboardCopy,
     weeklyCampaignStoryPollCopy,
     weeklyCampaignWeekendPushDecisionCopy,
