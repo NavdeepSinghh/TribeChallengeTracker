@@ -1,3 +1,8 @@
+jest.mock('../firebase', () => ({
+  db: {},
+  functions: {},
+}));
+
 import {
   BILLING_SUPPORT_ESCALATION_ITEMS,
   SUBSCRIPTION_MANAGEMENT_GUIDANCE_ITEMS,

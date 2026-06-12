@@ -1,3 +1,8 @@
+jest.mock("../firebase", () => ({
+  db: {},
+  functions: {},
+}));
+
 const {
   buildProfileWeeklyCampaignDerivedData,
 } = require("../profile/profileWeeklyCampaignDerivedData");

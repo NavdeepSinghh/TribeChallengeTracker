@@ -1,3 +1,8 @@
+jest.mock("../firebase", () => ({
+  db: {},
+  functions: {},
+}));
+
 const {
   buildProfileWeeklyCampaignDerivedData,
 } = require("../profile/profileWeeklyCampaignDerivedData");
@@ -31,14 +36,21 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.weeklyCampaignCommentReplyCopy).toContain("Q: How do I join?");
     expect(props.instagramContentCalendarCopy).toContain("Instagram Content Calendar");
     expect(Object.keys(props).sort()).toEqual([
+      "approvedWeeklyCampaignReviews",
       "campaignPerformanceSummary",
       "creatorEnabled",
       "dmKeywordCopy",
       "featureReviewQueue",
+      "handleWeeklyCampaignReviewDecision",
+      "handleWeeklyCampaignReviewSubmit",
       "instagramContentCalendarCopy",
       "isAdmin",
+      "isSubmittingWeeklyCampaignReview",
       "recommendedLaunchExperiment",
       "referralJoins",
+      "reviewingWeeklyCampaignReviewId",
+      "setWeeklyCampaignReviewNotes",
+      "supportReviewQueue",
       "weeklyCampaignCaptionBankCopy",
       "weeklyCampaignCollabCopyCards",
       "weeklyCampaignCommentReplyCopy",
@@ -56,6 +68,9 @@ describe("Weekly Campaign marketing props", () => {
       "weeklyCampaignPreflightCopy",
       "weeklyCampaignPrompt",
       "weeklyCampaignReviewCopy",
+      "weeklyCampaignReviewMessage",
+      "weeklyCampaignReviewNotes",
+      "weeklyCampaignReviewQueue",
       "weeklyCampaignStartDayStoryCopy",
       "weeklyCampaignStoryPollCopy",
       "weeklyCampaignStoryboardCopy",

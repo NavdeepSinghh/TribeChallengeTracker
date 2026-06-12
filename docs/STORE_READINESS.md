@@ -118,7 +118,7 @@ Store forms should state:
 
 ## Release Checklist
 
-- `npm run test:release` passes for static release contracts, focused store-readiness CLI, `purchase-entitlements` backend, badges, challenge-templates, campaign-share, profile-share, Weekly Campaign derived-data, monetization-model, engagement-copy, referral-copy, support-billing-copy, creator-partner-copy, build-wrapper, build-runtime guard, release-audit generator, and cross-platform parity suites.
+- `npm run test:release` passes for static release contracts, focused store-readiness CLI, `purchase-entitlements` backend, badges, challenge-templates, campaign-share, profile-share, Weekly Campaign derived-data, monetization-model, Pro trial support, engagement-copy, referral-copy, support-billing-copy, creator-partner-copy, build-wrapper, build-runtime guard, release-audit generator, and cross-platform parity suites.
 - `npm run release:check:all` passes before store submission.
 - `docs/STORE_TEST_PURCHASE_RUNBOOK.md` has been followed for real iOS sandbox and Android license-test evidence.
 - Android `google-services.json` is present for local/store builds.
