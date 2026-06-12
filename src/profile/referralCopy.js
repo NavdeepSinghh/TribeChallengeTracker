@@ -40,6 +40,24 @@ DECLINED FOR NOW: We cannot move this referral reward claim forward right now. T
 
 This is a manual Referral Reward Decision Reply Kit only. Do not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise outcomes, imply medical results, scrape DMs, store inbound replies, add tracking pixels, auto-message users, or pressure members.`;
 
+  const referralRewardSupportEscalationCopy = `Rise With The Tribe Referral Reward Support Escalation Kit:
+
+Open referral reward claims: ${referralRewardReviewQueue.length}
+Open referral reward handoff audit records: ${referralRewardHandoffAuditReviewQueue.length}
+Approved manual audit records: ${approvedReferralRewardHandoffAuditReviews.length}
+Referral progress: ${referralJoins} attributed challenge joins
+Highest unlocked tier: ${unlockedReferralRewardTier?.label || 'None yet'}
+Next tier: ${referralState.next?.label || 'Ladder clear'}
+
+Support escalation checklist:
+[ ] Assign the first response owner: member support, referral review owner, recognition copy owner, privacy/data safety, marketplace support, entitlement QA, or product owner.
+[ ] Classify severity as information request, duplicate or unclear referral activity, claim status mismatch, recognition wording concern, fulfillment expectation, privacy concern, missing challenge-join evidence, or pressure/safety escalation.
+[ ] Use approved response language saying referral reward support escalation is not live fulfillment, not a Pro grant, not a payout, not a discount, not a purchase, not affiliate reward approval, and not entitlement approval.
+[ ] Keep escalation notes first-party and support-safe; do not export private member activity, per-user invite lists, support transcripts, off-platform messages, screenshots with sensitive data, or link-open evidence.
+[ ] Route unresolved cases to referral reward claim review, handoff audit review, support review, privacy/data safety, marketplace support, or entitlement QA before any recognition or future perk conversation continues.
+
+This is a manual Referral Reward Support Escalation Kit only. Do not grant Pro, write entitlements, unlock challenge packs, create discounts, create payouts, create purchases, create affiliate rewards, write referral state, count link opens, claim fulfillment, promise rewards, imply paid access is live, expose private member logs, export per-user invite lists, scrape DMs, store inbound replies, add tracking pixels, auto-message users, promise outcomes, imply medical results, or pressure members.`;
+
   const referralRewardHandoffAuditDecisionReplyCopy = `Rise With The Tribe Referral Reward Handoff Audit Decision Reply Kit:
 
 Open referral reward handoff audit records: ${referralRewardHandoffAuditReviewQueue.length}
@@ -64,6 +82,7 @@ This is a manual Referral Reward Handoff Audit Decision Reply Kit only. Do not g
     referralStorySprintCopy,
     referralRewardSocialProofCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardSupportEscalationCopy,
     referralRewardHandoffAuditDecisionReplyCopy,
   };
 }

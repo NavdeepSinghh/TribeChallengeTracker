@@ -26,6 +26,7 @@ export function buildProfileCommunityReferralDerivedData({
     referralStorySprintCopy,
     referralRewardSocialProofCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardSupportEscalationCopy,
     referralRewardHandoffAuditDecisionReplyCopy,
   } = buildReferralRewardCopy({
     referralState,
@@ -55,6 +56,7 @@ export function buildProfileCommunityReferralDerivedData({
     referralJoins,
     referralLaunchCopy,
     referralRewardDecisionReplyCopy,
+    referralRewardSupportEscalationCopy,
     referralRewardHandoffAuditDecisionReplyCopy,
     referralRewardSocialProofCopy,
     referralState,

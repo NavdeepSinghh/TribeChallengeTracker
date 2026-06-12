@@ -1,4 +1,5 @@
 import ReferralRewardAdminReviewSection from './ReferralRewardAdminReviewSection';
+import { ReferralCopyCard } from './ReferralRewardCards';
 import ReferralRewardClaimPanel from './ReferralRewardClaimPanel';
 import ReferralRewardCopyKits from './ReferralRewardCopyKits';
 import ReferralRewardHandoffAuditReviewCard from './ReferralRewardHandoffAuditReviewCard';
@@ -30,6 +31,7 @@ export default function ReferralRewardsSection({
   onReferralRewardHandoffAuditReviewDecision,
   onReferralRewardHandoffAuditReviewSubmit,
   referralRewardDecisionReplyCopy,
+  referralRewardSupportEscalationCopy,
   referralRewardHandoffAuditDecisionReplyCopy,
   copyText,
 }) {
@@ -73,6 +75,20 @@ export default function ReferralRewardsSection({
             referralRewardDecisionReplyCopy={referralRewardDecisionReplyCopy}
             unlockedReferralRewardTier={unlockedReferralRewardTier}
             copyText={copyText}
+          />
+          <ReferralCopyCard
+            title="REFERRAL REWARD SUPPORT ESCALATION KIT"
+            subtitle="Manual support routing before reward fulfillment"
+            status="SUPPORT MAP"
+            color="#F43F5E"
+            metrics={[
+              { label: 'OPEN', value: referralRewardReviewQueue.length },
+              { label: 'AUDITS', value: referralRewardHandoffAuditReviewQueue.length },
+              { label: 'JOINS', value: referralJoins },
+            ]}
+            body="Copy referral reward support routing for claim status, duplicate checks, privacy, recognition wording, and entitlement QA without granting Pro, payouts, discounts, purchases, affiliate rewards, or fulfillment."
+            buttonLabel="COPY REFERRAL SUPPORT KIT"
+            onCopy={() => copyText(referralRewardSupportEscalationCopy, 'Referral reward support escalation copied')}
           />
           <ReferralRewardHandoffAuditReviewCard
             approvedReferralRewardHandoffAuditReviews={approvedReferralRewardHandoffAuditReviews}
