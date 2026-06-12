@@ -53,5 +53,6 @@ Features:
 - Weekly Campaign Launch Readiness Handoff Kit on Web with manual approved-checklist, launch-copy, reply-owner, consent-proof, support-route, blocker, and launch-operator handoff before final posting prep.
 - Weekly Campaign Final Posting Prep QA Kit on Web with manual final-caption, launch-card, Story/Reel hook, CTA, reply-boundary, consent-proof, support-route, and launch-operator checks before any human posts outside the app.
 - Weekly Campaign Manual Posting Operator Brief Kit on Web with manual caption-source, launch-card-source, Story/Reel hook, CTA, reply-owner, consent-proof, support-route, and post-complete callback owner instructions.
+- Weekly Campaign Post-Complete Callback QA Kit on Web with manual post-complete, posting-operator, approved-packet, support-note, and first-party monitoring owner callback before post-launch review starts.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.
