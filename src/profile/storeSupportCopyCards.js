@@ -25,6 +25,7 @@ export function buildStoreSupportCopyCards({
   storeReviewEvidencePacketIndexCopy,
   storeReviewFinalSignoffCopy,
   storeReviewConsoleDraftQaCopy,
+  storeReviewSubmissionHoldReasonsCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -261,6 +262,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a console-draft QA checklist without submitting review, editing console fields, exposing credentials, or claiming approval.',
       buttonLabel: 'COPY CONSOLE QA',
       copyText: storeReviewConsoleDraftQaCopy,
+    },
+    {
+      title: 'STORE REVIEW SUBMISSION HOLD REASONS KIT',
+      subtitle: 'Internal hold reason, owner, proof, and unblock checks',
+      status: 'HOLD REASONS',
+      accent: '#C7D2FE',
+      body: 'Copy a submission-hold checklist without editing console fields, removing holds without proof, writing entitlements, or claiming approval.',
+      buttonLabel: 'COPY HOLD REASONS',
+      copyText: storeReviewSubmissionHoldReasonsCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

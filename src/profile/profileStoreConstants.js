@@ -179,6 +179,12 @@ export const STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS = [
   'Flag draft mismatches for owner review instead of editing console fields from client code or claiming submission readiness',
   'Keep console-draft QA internal until a human confirms no credentials, purchase tokens, private data, or paid-live claims are present',
 ];
+export const STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS = [
+  'Classify every hold as evidence gap, policy/data-safety mismatch, demo-access issue, support handoff gap, metadata drift, console draft mismatch, missing final sign-off, or paid-live claim risk',
+  'Attach each hold reason to one owner, one missing proof path, one reviewer-note impact, and one clear unblock condition before console work continues',
+  'Keep hold notes separate from reviewer-facing copy so internal gaps do not become public store metadata or submission claims',
+  'Release a hold only after reviewed evidence, policy links, support handoff, demo access, metadata, console draft, and final sign-off all match the fixed build',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

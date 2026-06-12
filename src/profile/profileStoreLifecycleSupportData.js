@@ -22,6 +22,7 @@ import {
   STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS,
   STORE_REVIEW_FINAL_SIGNOFF_ITEMS,
   STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
+  STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -70,6 +71,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewEvidencePacketIndexItems: STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS,
     storeReviewFinalSignoffItems: STORE_REVIEW_FINAL_SIGNOFF_ITEMS,
     storeReviewConsoleDraftQaItems: STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS,
+    storeReviewSubmissionHoldReasonsItems: STORE_REVIEW_SUBMISSION_HOLD_REASONS_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,
