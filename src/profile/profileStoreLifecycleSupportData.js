@@ -15,6 +15,7 @@ import {
   STORE_REVIEW_RESUBMISSION_ITEMS,
   STORE_REVIEWER_REPLY_PACKET_ITEMS,
   STORE_REVIEW_METADATA_DIFF_ITEMS,
+  STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -56,6 +57,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewRejectionRootCauseItems: STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
     storeReviewerReplyPacketItems: STORE_REVIEWER_REPLY_PACKET_ITEMS,
     storeReviewMetadataDiffItems: STORE_REVIEW_METADATA_DIFF_ITEMS,
+    storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,

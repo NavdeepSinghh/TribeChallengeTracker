@@ -79,6 +79,12 @@ const STORE_REVIEW_METADATA_DIFF_ITEMS = [
   'Assign one owner for each metadata, screenshot/caption, policy-link, data-safety, or reviewer-note change before resubmission prep',
   'Keep the diff internal until public listing copy, screenshots, policy links, evidence notes, and support handoff are reviewed together',
 ];
+const STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS = [
+  'Match App Privacy and Play Data Safety answers to the current build for auth, profile, activity, optional health sync, media, purchases, support, and deletion',
+  'Confirm permission explanations, policy links, reviewer notes, and screenshots describe the same data use without adding new collection claims',
+  'Assign one owner for each privacy-label, data-safety, permission, support, deletion, purchase-validation, or screenshot mismatch before resubmission prep',
+  'Keep alignment notes internal until public policy links, data safety answers, reviewer notes, and evidence packet references are reviewed together',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -156,6 +162,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewRejectionRootCauseItems: STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
       storeReviewerReplyPacketItems: STORE_REVIEWER_REPLY_PACKET_ITEMS,
       storeReviewMetadataDiffItems: STORE_REVIEW_METADATA_DIFF_ITEMS,
+      storeReviewDataSafetyAlignmentItems: STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -184,6 +191,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewRejectionRootCauseCopy: lifecycleCopy.storeReviewRejectionRootCauseCopy,
       storeReviewerReplyPacketCopy: lifecycleCopy.storeReviewerReplyPacketCopy,
       storeReviewMetadataDiffCopy: lifecycleCopy.storeReviewMetadataDiffCopy,
+      storeReviewDataSafetyAlignmentCopy: lifecycleCopy.storeReviewDataSafetyAlignmentCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -329,6 +337,26 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('Store Review Data Safety Alignment Kit');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('Match App Privacy and Play Data Safety answers');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('Manual data safety alignment checklist');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('optional HealthKit / Health Connect sync');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('purchase validation');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('account/data deletion');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('privacy policy, terms, support, data deletion');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('publish unreviewed privacy labels');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('publish unreviewed data safety answers');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewDataSafetyAlignmentCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -362,6 +390,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW REJECTION ROOT CAUSE KIT',
       'STORE REVIEWER REPLY PACKET KIT',
       'STORE REVIEW METADATA DIFF KIT',
+      'STORE REVIEW DATA SAFETY ALIGNMENT KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });

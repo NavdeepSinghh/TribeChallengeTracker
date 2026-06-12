@@ -137,6 +137,12 @@ export const STORE_REVIEW_METADATA_DIFF_ITEMS = [
   'Assign one owner for each metadata, screenshot/caption, policy-link, data-safety, or reviewer-note change before resubmission prep',
   'Keep the diff internal until public listing copy, screenshots, policy links, evidence notes, and support handoff are reviewed together',
 ];
+export const STORE_REVIEW_DATA_SAFETY_ALIGNMENT_ITEMS = [
+  'Match App Privacy and Play Data Safety answers to the current build for auth, profile, activity, optional health sync, media, purchases, support, and deletion',
+  'Confirm permission explanations, policy links, reviewer notes, and screenshots describe the same data use without adding new collection claims',
+  'Assign one owner for each privacy-label, data-safety, permission, support, deletion, purchase-validation, or screenshot mismatch before resubmission prep',
+  'Keep alignment notes internal until public policy links, data safety answers, reviewer notes, and evidence packet references are reviewed together',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

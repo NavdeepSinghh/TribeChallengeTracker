@@ -18,6 +18,7 @@ export function buildStoreSupportCopyCards({
   storeReviewRejectionRootCauseCopy,
   storeReviewerReplyPacketCopy,
   storeReviewMetadataDiffCopy,
+  storeReviewDataSafetyAlignmentCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -191,6 +192,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a metadata diff checklist without publishing store copy, exposing credentials, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY METADATA DIFF',
       copyText: storeReviewMetadataDiffCopy,
+    },
+    {
+      title: 'STORE REVIEW DATA SAFETY ALIGNMENT KIT',
+      subtitle: 'Privacy labels, data safety, permissions, and policy match',
+      status: 'DATA SAFETY',
+      accent: '#2DD4BF',
+      body: 'Copy a data-safety alignment checklist without publishing privacy labels, exposing credentials, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY DATA SAFETY',
+      copyText: storeReviewDataSafetyAlignmentCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
