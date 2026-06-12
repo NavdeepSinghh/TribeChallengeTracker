@@ -161,6 +161,12 @@ export const STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS = [
   'Separate marketplace support handoff from in-app support so reviewer notes do not promise refunds, manual entitlements, or paid access',
   'Keep support-handoff QA internal until support owner, policy-link owner, evidence owner, and reviewer-note owner sign off',
 ];
+export const STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS = [
+  'Create one internal index for reviewed product IDs, sandbox/license-test evidence, restore/sync results, policy links, screenshots, and reviewer-note owners',
+  'Separate verified evidence, safe-denial evidence, needs-review gaps, failed checks, and archived proof before reviewer notes are copied',
+  'Link every index row to a sanitized evidence note, fixed build reference, support handoff, policy URL, screenshot/caption owner, and reviewedAt value',
+  'Keep the packet index internal until evidence owner, policy-link owner, support owner, and resubmission owner confirm it matches the fixed build',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

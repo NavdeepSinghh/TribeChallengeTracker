@@ -22,6 +22,7 @@ export function buildStoreSupportCopyCards({
   storeReviewPermissionCopyCheckCopy,
   storeReviewDemoAccessQaCopy,
   storeReviewSupportHandoffQaCopy,
+  storeReviewEvidencePacketIndexCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -231,6 +232,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a support-handoff QA checklist without promising refunds, writing entitlements, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY SUPPORT QA',
       copyText: storeReviewSupportHandoffQaCopy,
+    },
+    {
+      title: 'STORE REVIEW EVIDENCE PACKET INDEX KIT',
+      subtitle: 'Reviewed proof, owners, links, and fixed-build index',
+      status: 'PACKET INDEX',
+      accent: '#E0F2FE',
+      body: 'Copy an evidence packet index without creating fake proof, exporting tokens, writing entitlements, or claiming paid access readiness.',
+      buttonLabel: 'COPY PACKET INDEX',
+      copyText: storeReviewEvidencePacketIndexCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

@@ -19,6 +19,7 @@ import {
   STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
   STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
   STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
+  STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -64,6 +65,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeReviewPermissionCopyCheckItems: STORE_REVIEW_PERMISSION_COPY_CHECK_ITEMS,
     storeReviewDemoAccessQaItems: STORE_REVIEW_DEMO_ACCESS_QA_ITEMS,
     storeReviewSupportHandoffQaItems: STORE_REVIEW_SUPPORT_HANDOFF_QA_ITEMS,
+    storeReviewEvidencePacketIndexItems: STORE_REVIEW_EVIDENCE_PACKET_INDEX_ITEMS,
     storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,
