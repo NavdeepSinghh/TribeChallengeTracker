@@ -1,4 +1,6 @@
 import { buildEngagementCopy } from '../profile/engagementCopy';
+import { buildProfileEngagementCreatorCopyResult } from '../profile/profileEngagementCreatorCopyResult';
+import { buildTribeProValueDemandProps } from '../profile/tribeProValueDemandProps';
 
 const recommendedRevenuePath = {
   label: 'Tribe Pro',
@@ -106,5 +108,96 @@ describe('engagement copy contracts', () => {
     expect(source).toContain('CHALLENGE PACK OBJECTION REPLY KIT');
     expect(source).toContain('COPY PACK REPLIES');
     expect(source).toContain('challengePackObjectionReplyCopy');
+  });
+
+  it('keeps challenge pack launch copy routed through Profile value-demand props', () => {
+    const engagementResult = buildProfileEngagementCreatorCopyResult({
+      engagementState: {
+        creatorAnalytics: {},
+        proValueNextAction: 'Review store QA',
+        yesterdayKey: '2026-06-12',
+        yesterdayRecovered: false,
+      },
+      engagementCampaignCopyData: {
+        valueProofStoryCopy: 'value proof',
+        storyPostingChecklistCopy: 'story checklist',
+        instagramPromptCopy: 'instagram prompt',
+        instagramContentCalendarCopy: 'calendar copy',
+        challengePackLaunchCopy: 'pack launch',
+        challengePackLaunchQaCopy: 'pack launch qa',
+        challengePackObjectionReplyCopy: 'pack replies',
+        streakRescuePromptCopy: 'streak rescue',
+        comebackChallengeInviteCopy: 'comeback invite',
+      },
+      creatorHostingCopyData: {
+        creatorOwnedChallenges: [],
+        creatorLaunchChallenge: null,
+        creatorLaunchLink: '',
+        creatorLaunchCopy: '',
+        creatorBrandedPagePreviewCopy: '',
+        creatorChallengeTemplateDraftCopy: '',
+        creatorProfileCompletionCopy: '',
+        creatorPrivateInviteCopy: '',
+        creatorAgreementPrepCopy: '',
+        creatorSupportHandoffCopy: '',
+        creatorPaidHostingPolicyCopy: '',
+        creatorLegalPacketPrepCopy: '',
+        creatorHostingOfferCopy: '',
+        creatorTermsReadinessCopy: '',
+        creatorPayoutReadinessCopy: '',
+        creatorHostingObjectionReplyCopy: '',
+        creatorHostingDecisionReplyCopy: '',
+        creatorIdentityVerificationPrepCopy: '',
+        creatorLeaderboardPreviewCopy: '',
+        creatorLeaderboardRankingReadinessCopy: '',
+        creatorModerationReadinessCopy: '',
+        creatorPaidHostingLaunchGateCopy: '',
+        creatorPaidHostingHoldPlanCopy: '',
+        creatorPayoutOperationsDryRunCopy: '',
+        creatorPayoutReconciliationCopy: '',
+        creatorTaxWorkflowReadinessCopy: '',
+        creatorPayoutExceptionResponseCopy: '',
+        creatorPayoutSupportEscalationCopy: '',
+        creatorPayoutProviderSetupCopy: '',
+      },
+    });
+
+    const props = buildTribeProValueDemandProps({
+      ...engagementResult,
+      communityHighlightRoundupItems: [],
+      copyText: jest.fn(),
+      approvedProTrialReviews: [],
+      handleProTrialReasonToggle: jest.fn(),
+      handleProTrialReviewDecision: jest.fn(),
+      handleProTrialReviewSubmit: jest.fn(),
+      isAdmin: true,
+      isSavingProTrialInterest: false,
+      isSubmittingProTrialReview: false,
+      monthlyRecap: {},
+      proActive: false,
+      proTrialDemandTotal: 0,
+      proTrialMessage: '',
+      proTrialObjectionReplyCopy: 'trial objection',
+      proTrialPitchCopy: 'trial pitch',
+      proTrialLaunchQaCopy: 'trial qa',
+      proTrialSupportEscalationCopy: 'trial support',
+      proTrialReviewMessage: '',
+      proTrialReviewNotes: {},
+      proTrialReviewQueue: [],
+      proTrialSummary: {},
+      selectedProTrialReasonIds: [],
+      setProTrialReviewNotes: jest.fn(),
+      reviewingProTrialReviewId: null,
+      topProTrialReason: null,
+      totalChallengePoints: 0,
+      weeklyReport: {},
+    });
+
+    expect(engagementResult.challengePackLaunchCopy).toBe('pack launch');
+    expect(engagementResult.challengePackLaunchQaCopy).toBe('pack launch qa');
+    expect(engagementResult.challengePackObjectionReplyCopy).toBe('pack replies');
+    expect(props.challengePackLaunchCopy).toBe('pack launch');
+    expect(props.challengePackLaunchQaCopy).toBe('pack launch qa');
+    expect(props.challengePackObjectionReplyCopy).toBe('pack replies');
   });
 });
