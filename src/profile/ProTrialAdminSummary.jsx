@@ -3,6 +3,7 @@ import { PRO_TRIAL_REASONS } from './profileConstants';
 export default function ProTrialAdminSummary({
   proTrialDemandTotal,
   proTrialObjectionReplyCopy,
+  proTrialLaunchQaCopy,
   proTrialPitchCopy,
   proTrialSupportEscalationCopy,
   proTrialReviewMessage,
@@ -179,6 +180,28 @@ export default function ProTrialAdminSummary({
           }}
         >
           COPY PRO TRIAL DECISION REPLIES
+        </button>
+      </div>
+      <div style={{
+        marginTop: 10, borderRadius: 12, padding: 11,
+        background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.18)',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
+          <p style={{ margin: 0, color: '#22C55E', fontSize: 10, fontWeight: 900, fontFamily: 'monospace' }}>PRO TRIAL LAUNCH QA KIT</p>
+          <p style={{ margin: 0, color: '#22C55E', fontSize: 9, fontWeight: 900, fontFamily: 'monospace' }}>COPY ONLY</p>
+        </div>
+        <p style={{ margin: '7px 0 0', color: '#888', fontSize: 10, lineHeight: 1.45 }}>
+          Check store setup, entitlement writes, support routing, and launch copy before any trial launch wording is used.
+        </p>
+        <button
+          onClick={() => navigator.clipboard?.writeText(proTrialLaunchQaCopy)}
+          style={{
+            marginTop: 9, width: '100%', borderRadius: 12, padding: '9px 10px',
+            border: '1px solid rgba(34,197,94,0.22)', background: 'rgba(34,197,94,0.10)',
+            color: '#22C55E', fontSize: 10, fontWeight: 900, fontFamily: 'monospace',
+          }}
+        >
+          COPY PRO TRIAL LAUNCH QA
         </button>
       </div>
       <div style={{

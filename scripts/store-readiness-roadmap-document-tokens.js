@@ -33,6 +33,8 @@ const ROADMAP_TOKENS = [
   "Phase 3: Pro Subscription Foundation",
   "Pro Trial Support Escalation Kit",
   "Web admin copy-only support handoff done for store setup, value proof, support coverage, entitlement QA, marketplace routing, and refund-confusion triage",
+  "Pro Trial Launch QA Kit",
+  "Web admin copy-only launch QA handoff done for store setup, entitlement writes, support routing, and launch copy",
   "Phase 6: Partnerships",
   "Store Test Purchase Evidence Log",
   "Store Evidence Archive Kit",

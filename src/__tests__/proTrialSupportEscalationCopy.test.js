@@ -13,8 +13,8 @@ describe('web Pro trial support escalation copy', () => {
       creatorRevenueShareSummary: {},
       partnerDemandTotal: 0,
       monetizationSignalTotal: 7,
-      storeCatalog: [],
-      storeSubscriptionCount: 0,
+      storeCatalog: [{ id: 'tribe.pro.monthly' }, { id: 'tribe.pro.annual' }],
+      storeSubscriptionCount: 2,
       storePackCount: 0,
     });
 
@@ -44,6 +44,26 @@ describe('web Pro trial support escalation copy', () => {
     expect(copy.proTrialSupportEscalationCopy).toContain('auto-message users');
     expect(copy.proTrialSupportEscalationCopy).toContain('scrape/store DMs');
     expect(copy.proTrialSupportEscalationCopy).toContain('add tracking pixels');
+    expect(copy.proTrialLaunchQaCopy).toContain('Pro Trial Launch QA Kit');
+    expect(copy.proTrialLaunchQaCopy).toContain('Products in code: tribe.pro.monthly, tribe.pro.annual');
+    expect(copy.proTrialLaunchQaCopy).toContain('Launch QA checklist');
+    expect(copy.proTrialLaunchQaCopy).toContain('Store QA');
+    expect(copy.proTrialLaunchQaCopy).toContain('Entitlement QA');
+    expect(copy.proTrialLaunchQaCopy).toContain('Support QA');
+    expect(copy.proTrialLaunchQaCopy).toContain('Copy QA');
+    expect(copy.proTrialLaunchQaCopy).toContain('not a trial start');
+    expect(copy.proTrialLaunchQaCopy).toContain('not a purchase');
+    expect(copy.proTrialLaunchQaCopy).toContain('not a Pro grant');
+    expect(copy.proTrialLaunchQaCopy).toContain('not paid-access launch approval');
+    expect(copy.proTrialLaunchQaCopy).toContain('not store-review approval');
+    expect(copy.proTrialLaunchQaCopy).toContain('Do not start trials');
+    expect(copy.proTrialLaunchQaCopy).toContain('create purchases');
+    expect(copy.proTrialLaunchQaCopy).toContain('grant Pro');
+    expect(copy.proTrialLaunchQaCopy).toContain('write entitlements');
+    expect(copy.proTrialLaunchQaCopy).toContain('submit store review');
+    expect(copy.proTrialLaunchQaCopy).toContain('auto-message users');
+    expect(copy.proTrialLaunchQaCopy).toContain('scrape/store DMs');
+    expect(copy.proTrialLaunchQaCopy).toContain('add tracking pixels');
   });
 
   it('renders the web admin support card as copy-only', () => {
@@ -57,5 +77,9 @@ describe('web Pro trial support escalation copy', () => {
     expect(source).toContain('proTrialSupportEscalationCopy');
     expect(source).toContain('Route store setup, value proof, support coverage');
     expect(source).toContain('without starting trials, purchases, Pro grants, or paid-access changes');
+    expect(source).toContain('PRO TRIAL LAUNCH QA KIT');
+    expect(source).toContain('COPY PRO TRIAL LAUNCH QA');
+    expect(source).toContain('proTrialLaunchQaCopy');
+    expect(source).toContain('Check store setup, entitlement writes, support routing, and launch copy');
   });
 });
