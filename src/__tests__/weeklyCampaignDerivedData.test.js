@@ -756,6 +756,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Sent Receipt Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("Manual next campaign review decision reply sent receipt handoff");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("approved send QA reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("sent receipt owner");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("Weekly Campaign Review Decision Reply Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplySentReceiptHandoffCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
