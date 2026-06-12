@@ -100,6 +100,8 @@ const FEATURE_CATALOG_TOKENS = [
   "Tribe Pro Entitlement Foundation Index",
   "Tribe Pro Entitlement Foundation",
   "Pro analytics",
+  "Pro Trial Store Readiness Script Kit",
+  "Web admin profiles include a Pro Trial Store Readiness Script Kit",
   "docs/feature-catalog/tribe-pro-release-guardrails.md",
   "Tribe Pro Release Guardrails Index",
   "Future Pro-gated features",
