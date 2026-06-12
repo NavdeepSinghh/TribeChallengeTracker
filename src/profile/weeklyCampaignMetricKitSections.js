@@ -22,6 +22,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignReviewDecisionReplyHandoffCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyQaCopy,
   launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy,
+  launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -1069,6 +1070,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Hand off approved decision reply QA into the human reply operator, reply lane, support route, consent queue, and paid-language hold before any review decision reply is sent manually.',
       buttonLabel: 'COPY REPLY OPERATOR',
       copyText: launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Review Decision Reply Operator QA Kit',
+      subtitle: 'Manual QA before reply operator action',
+      status: 'OPERATOR QA',
+      accent: '#047857',
+      background: 'rgba(4,120,87,0.05)',
+      border: '1px solid rgba(4,120,87,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check the reply operator handoff, approved reply-copy source, reply lane, support route, consent queue, and paid-language hold before any human reply operator acts.',
+      buttonLabel: 'COPY REPLY OPERATOR QA',
+      copyText: launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy,
     },
   ];
 }

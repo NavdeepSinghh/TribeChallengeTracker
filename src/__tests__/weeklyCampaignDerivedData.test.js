@@ -720,6 +720,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Operator QA Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("Manual next campaign review decision reply operator QA");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("approved operator handoff reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("decision reply operator QA reviewer");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("Weekly Campaign Review Decision Reply Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorQaCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
