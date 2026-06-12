@@ -293,7 +293,8 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('src/profile/profileParityContractLabels.js');
     expect(content).toContain('same `PROFILE_PARITY_CONTRACT_LABELS` export');
     expect(content).toContain('crossPlatformParity.weeklyCampaignCollabLifecycle.test.js');
-    expect(content).toContain('48 suites, 164 tests');
+    expect(content).toContain('48 suites, 170 tests');
+    expect(content).toContain('48 suites and 164 tests passed');
     expect(content).toContain('Store policy/evidence parity was rechecked on 2026-06-11');
     expect(content).toContain('Full focused Web cross-platform parity was rechecked on 2026-06-11');
     expect(content).toContain('scripts/verify-react-build-timeout.js');

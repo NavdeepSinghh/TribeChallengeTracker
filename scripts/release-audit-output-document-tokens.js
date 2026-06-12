@@ -225,7 +225,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "src/profile/weeklyCampaignLiveCopyCardDefinitions.js",
   "same combined card export",
   "crossPlatformParity.weeklyCampaignCollabLifecycle.test.js",
-  "Focused Web cross-platform parity suites passed: 48 suites, 164 tests",
+  "Focused Web cross-platform parity suites passed through `npm run test:release`: 48 suites, 170 tests",
   "Store policy/evidence parity was rechecked on 2026-06-11",
   "Full focused Web cross-platform parity was rechecked on 2026-06-11",
   "src/profile/profileParityContractLabels.js",
