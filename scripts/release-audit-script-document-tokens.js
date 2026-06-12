@@ -99,6 +99,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "Creator Hosting Decision Reply Kit",
   "Partner Campaign Decision Reply Kit",
   "Partner Campaign Support Escalation Kit",
+  "Partner Support Readiness Script Kit",
   "src/__tests__/engagementCopy.test.js",
   "src/__tests__/monetizationPreLaunchCopy.test.js",
   "Founder Member Offer Kit",

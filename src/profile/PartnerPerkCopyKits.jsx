@@ -9,6 +9,7 @@ export default function PartnerPerkCopyKits({
   partnerPerkHandoffAuditCopy,
   partnerPerkHandoffAuditDecisionReplyCopy,
   partnerPerkSupportEscalationCopy,
+  partnerSupportReadinessScriptCopy,
 }) {
   return (
     <>
@@ -59,6 +60,14 @@ export default function PartnerPerkCopyKits({
         body="Copy partner-perk support owner, severity, privacy, response-language, and routing checks before coupons, links, refunds, purchases, entitlements, or fulfillment exist."
         buttonLabel="COPY PERK SUPPORT KIT"
         copyText={partnerPerkSupportEscalationCopy}
+      />
+      <CopyOnlyCard
+        accent="#F5D0FE"
+        title="PARTNER SUPPORT READINESS SCRIPT KIT"
+        status={{ label: 'SCRIPT', color: hasClaims ? '#F5D0FE' : '#777' }}
+        body="Copy member-safe partner support readiness language before live perks, coupons, links, refunds, purchases, entitlements, or fulfillment promises move forward."
+        buttonLabel="COPY PARTNER SUPPORT READINESS"
+        copyText={partnerSupportReadinessScriptCopy}
       />
     </>
   );

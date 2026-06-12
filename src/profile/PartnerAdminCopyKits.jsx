@@ -9,6 +9,7 @@ export default function PartnerAdminCopyKits({
   partnerCampaignRetrospectiveCopy,
   partnerCampaignRetrospectiveDecisionReplyCopy,
   partnerCampaignSupportEscalationCopy,
+  partnerSupportReadinessScriptCopy,
   partnerContractReadinessCopy,
   partnerLegalPacketPrepCopy,
   partnerDemandTotal,
@@ -86,6 +87,16 @@ export default function PartnerAdminCopyKits({
         copy={partnerCampaignSupportEscalationCopy}
         copyText={copyText}
         metrics={<PartnerMetrics color="#F0ABFC" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
+      />
+      <PartnerCopyCard
+        accent="#F5D0FE"
+        title="PARTNER SUPPORT READINESS SCRIPT KIT"
+        status={{ active: partnerDemandTotal, label: 'SCRIPT' }}
+        body="Copy member-safe partner support readiness language before sponsor links, coupons, fulfillment, refunds, purchases, entitlements, or partner promises move forward."
+        buttonLabel="COPY PARTNER SUPPORT READINESS"
+        copy={partnerSupportReadinessScriptCopy}
+        copyText={copyText}
+        metrics={<PartnerMetrics color="#F5D0FE" partnerDemandTotal={partnerDemandTotal} campaignPerformanceSummary={campaignPerformanceSummary} referralJoins={referralJoins} />}
       />
       <PartnerCopyCard
         accent="#22C55E"

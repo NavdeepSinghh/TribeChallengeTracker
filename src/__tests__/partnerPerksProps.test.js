@@ -33,6 +33,7 @@ describe('partner perks section prop adapter', () => {
       partnerPerkHandoffAuditCopy: 'audit',
       partnerPerkHandoffAuditDecisionReplyCopy: 'audit decision',
       partnerPerkSupportEscalationCopy: 'support escalation',
+      partnerSupportReadinessScriptCopy: 'support readiness script',
       partnerPerkMessage: 'saved',
       partnerPerkReviewNotes: { claim1: 'note' },
       partnerPerkStats: { gym_drop_in: 2 },
@@ -72,6 +73,7 @@ describe('partner perks section prop adapter', () => {
       partnerCampaignSupportEscalationCopy: 'campaign support',
       partnerPerkHandoffAuditDecisionReplyCopy: 'audit decision',
       partnerPerkSupportEscalationCopy: 'support escalation',
+      partnerSupportReadinessScriptCopy: 'support readiness script',
       copyText: model.copyText,
     });
     expect(props.adminProps.onPartnerPerkClaimReview).toBe(model.handlePartnerPerkClaimReview);

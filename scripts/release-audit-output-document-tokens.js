@@ -105,6 +105,7 @@ const RELEASE_AUDIT_DOC_TOKENS = [
   "Creator Challenge Template Draft Kit",
   "Partner Campaign Decision Reply Kit",
   "Partner Campaign Support Escalation Kit",
+  "Partner Support Readiness Script Kit",
   "Referral Story Sprint Kit",
   "Referral Reward Decision Reply Kit",
   "src/profile/communitySupportReviewScreenInputs.js",

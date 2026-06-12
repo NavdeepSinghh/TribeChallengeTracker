@@ -23,6 +23,7 @@ export default function PartnerPerkAdminReviewSection({
   partnerPerkHandoffAuditCopy,
   partnerPerkHandoffAuditDecisionReplyCopy,
   partnerPerkSupportEscalationCopy,
+  partnerSupportReadinessScriptCopy,
 }) {
   const hasClaims = partnerPerkClaimReviewQueue.length > 0;
 
@@ -45,6 +46,7 @@ export default function PartnerPerkAdminReviewSection({
         partnerPerkHandoffAuditCopy={partnerPerkHandoffAuditCopy}
         partnerPerkHandoffAuditDecisionReplyCopy={partnerPerkHandoffAuditDecisionReplyCopy}
         partnerPerkSupportEscalationCopy={partnerPerkSupportEscalationCopy}
+        partnerSupportReadinessScriptCopy={partnerSupportReadinessScriptCopy}
       />
       <PartnerPerkHandoffAuditReviewCard
         approvedPartnerPerkHandoffAuditReviews={approvedPartnerPerkHandoffAuditReviews}
