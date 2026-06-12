@@ -50,6 +50,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.weeklyCampaignFinalPostingPrepQaCopy).toContain("Weekly Campaign Final Posting Prep QA Kit");
     expect(props.weeklyCampaignManualPostingOperatorBriefCopy).toContain("Weekly Campaign Manual Posting Operator Brief Kit");
     expect(props.weeklyCampaignPostCompleteCallbackQaCopy).toContain("Weekly Campaign Post-Complete Callback QA Kit");
+    expect(props.weeklyCampaignReviewHandoffCopy).toContain("Weekly Campaign Review Handoff Kit");
     expect(props.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
     expect(props.weeklyCampaignCollabCopyCards).toHaveLength(9);
     expect(props.weeklyCampaignCollabCopyCards[6].title).toBe("Weekly Campaign Support Triage Kit");
@@ -110,6 +111,7 @@ describe("Weekly Campaign marketing props", () => {
       "weeklyCampaignPreflightReadinessDecisionCopy",
       "weeklyCampaignPrompt",
       "weeklyCampaignReviewCopy",
+      "weeklyCampaignReviewHandoffCopy",
       "weeklyCampaignReviewMessage",
       "weeklyCampaignReviewNotes",
       "weeklyCampaignReviewQueue",
@@ -152,7 +154,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(23);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(24);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -226,8 +228,12 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[18].buttonLabel).toBe("COPY CALLBACK QA");
     expect(sectionData.weeklyCampaignMetricKitSections[18].copyText).toContain("Manual post-complete callback QA");
     expect(sectionData.weeklyCampaignMetricKitSections[18].copyText).toContain("first-party monitor owner");
-    expect(sectionData.weeklyCampaignMetricKitSections[22].title).toBe("Launch Retrospective Readiness Script Kit");
-    expect(sectionData.weeklyCampaignMetricKitSections[22].copyText).toContain("Manual retrospective readiness script");
-    expect(sectionData.weeklyCampaignMetricKitSections[22].copyText).toContain("Do not create experiment records");
+    expect(sectionData.weeklyCampaignMetricKitSections[19].title).toBe("Weekly Campaign Review Handoff Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[19].buttonLabel).toBe("COPY REVIEW HANDOFF");
+    expect(sectionData.weeklyCampaignMetricKitSections[19].copyText).toContain("Manual review handoff");
+    expect(sectionData.weeklyCampaignMetricKitSections[19].copyText).toContain("first-party signal summary");
+    expect(sectionData.weeklyCampaignMetricKitSections[23].title).toBe("Launch Retrospective Readiness Script Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[23].copyText).toContain("Manual retrospective readiness script");
+    expect(sectionData.weeklyCampaignMetricKitSections[23].copyText).toContain("Do not create experiment records");
   });
 });
