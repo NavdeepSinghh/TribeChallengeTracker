@@ -708,6 +708,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyQaCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyQaCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyQaCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Operator Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("Manual next campaign review decision reply operator handoff");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("approved decision reply QA reference");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("decision reply operator");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("Weekly Campaign Review Decision Reply Kit");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignReviewDecisionReplyOperatorHandoffCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
