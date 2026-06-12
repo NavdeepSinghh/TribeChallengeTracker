@@ -131,6 +131,12 @@ export const STORE_REVIEWER_REPLY_PACKET_ITEMS = [
   'Add screenshot/caption, metadata, data safety, and reviewer-note changes only after the owner confirms they match the current build',
   'Hold the packet internally until a human confirms no credentials, personal data, purchase tokens, or paid-access claims are included',
 ];
+export const STORE_REVIEW_METADATA_DIFF_ITEMS = [
+  'Compare App Store and Play listing text, screenshots, captions, permission explanations, and reviewer notes against the fixed build',
+  'Flag every mismatch between metadata, data safety, privacy links, support links, purchase/restore behavior, and current app screens',
+  'Assign one owner for each metadata, screenshot/caption, policy-link, data-safety, or reviewer-note change before resubmission prep',
+  'Keep the diff internal until public listing copy, screenshots, policy links, evidence notes, and support handoff are reviewed together',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

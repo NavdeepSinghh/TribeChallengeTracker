@@ -17,6 +17,7 @@ export function buildStoreSupportCopyCards({
   storeReviewPolicyLinkQaCopy,
   storeReviewRejectionRootCauseCopy,
   storeReviewerReplyPacketCopy,
+  storeReviewMetadataDiffCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -181,6 +182,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a reviewer reply packet checklist without submitting review, exposing credentials, changing purchases, or claiming paid access readiness.',
       buttonLabel: 'COPY REPLY PACKET',
       copyText: storeReviewerReplyPacketCopy,
+    },
+    {
+      title: 'STORE REVIEW METADATA DIFF KIT',
+      subtitle: 'Listing copy, screenshot, policy, and data-safety diff',
+      status: 'METADATA DIFF',
+      accent: '#22D3EE',
+      body: 'Copy a metadata diff checklist without publishing store copy, exposing credentials, changing purchases, or claiming paid access readiness.',
+      buttonLabel: 'COPY METADATA DIFF',
+      copyText: storeReviewMetadataDiffCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',

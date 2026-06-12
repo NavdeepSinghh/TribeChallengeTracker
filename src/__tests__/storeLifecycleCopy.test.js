@@ -73,6 +73,12 @@ const STORE_REVIEWER_REPLY_PACKET_ITEMS = [
   'Add screenshot/caption, metadata, data safety, and reviewer-note changes only after the owner confirms they match the current build',
   'Hold the packet internally until a human confirms no credentials, personal data, purchase tokens, or paid-access claims are included',
 ];
+const STORE_REVIEW_METADATA_DIFF_ITEMS = [
+  'Compare App Store and Play listing text, screenshots, captions, permission explanations, and reviewer notes against the fixed build',
+  'Flag every mismatch between metadata, data safety, privacy links, support links, purchase/restore behavior, and current app screens',
+  'Assign one owner for each metadata, screenshot/caption, policy-link, data-safety, or reviewer-note change before resubmission prep',
+  'Keep the diff internal until public listing copy, screenshots, policy links, evidence notes, and support handoff are reviewed together',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -149,6 +155,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewPolicyLinkQaItems: STORE_REVIEW_POLICY_LINK_QA_ITEMS,
       storeReviewRejectionRootCauseItems: STORE_REVIEW_REJECTION_ROOT_CAUSE_ITEMS,
       storeReviewerReplyPacketItems: STORE_REVIEWER_REPLY_PACKET_ITEMS,
+      storeReviewMetadataDiffItems: STORE_REVIEW_METADATA_DIFF_ITEMS,
       storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
@@ -176,6 +183,7 @@ describe('store lifecycle copy contracts', () => {
       storeReviewPolicyLinkQaCopy: lifecycleCopy.storeReviewPolicyLinkQaCopy,
       storeReviewRejectionRootCauseCopy: lifecycleCopy.storeReviewRejectionRootCauseCopy,
       storeReviewerReplyPacketCopy: lifecycleCopy.storeReviewerReplyPacketCopy,
+      storeReviewMetadataDiffCopy: lifecycleCopy.storeReviewMetadataDiffCopy,
       storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
@@ -302,6 +310,25 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeReviewerReplyPacketCopy).toContain('claim review approval');
     expect(lifecycleCopy.storeReviewerReplyPacketCopy).toContain('mark paid access live');
     expect(lifecycleCopy.storeReviewerReplyPacketCopy).toContain('auto-message users');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('Store Review Metadata Diff Kit');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('Compare App Store and Play listing text');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('Manual metadata diff checklist');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('title, subtitle, short description');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('screenshot captions');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('data-safety text');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('support/refund handoff');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('publish unreviewed store metadata');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('include order IDs');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('include transaction IDs');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('publish private policy drafts');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('claim sandbox/license-test proof without evidence');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('mark paid access live');
+    expect(lifecycleCopy.storeReviewMetadataDiffCopy).toContain('auto-message users');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
     expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
@@ -334,6 +361,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE REVIEW POLICY LINK QA KIT',
       'STORE REVIEW REJECTION ROOT CAUSE KIT',
       'STORE REVIEWER REPLY PACKET KIT',
+      'STORE REVIEW METADATA DIFF KIT',
       'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });
