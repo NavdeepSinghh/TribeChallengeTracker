@@ -40,6 +40,7 @@ export default function CreatorCoachMemberSection({
   creatorTaxWorkflowReadinessCopy,
   creatorPayoutExceptionResponseCopy,
   creatorPayoutSupportEscalationCopy,
+  creatorPayoutSupportReadinessScriptCopy,
   creatorPayoutProviderSetupCopy,
   creatorPayoutReadinessCopy,
   creatorRevenueShareInterest,
@@ -95,6 +96,7 @@ export default function CreatorCoachMemberSection({
         creatorTaxWorkflowReadinessCopy={creatorTaxWorkflowReadinessCopy}
         creatorPayoutExceptionResponseCopy={creatorPayoutExceptionResponseCopy}
         creatorPayoutSupportEscalationCopy={creatorPayoutSupportEscalationCopy}
+        creatorPayoutSupportReadinessScriptCopy={creatorPayoutSupportReadinessScriptCopy}
         creatorPayoutProviderSetupCopy={creatorPayoutProviderSetupCopy}
         creatorPayoutReadinessCopy={creatorPayoutReadinessCopy}
         creatorRevenueShareInterest={creatorRevenueShareInterest}

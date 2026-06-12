@@ -51,6 +51,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorTaxWorkflowReadinessCopy,
     creatorPayoutExceptionResponseCopy,
     creatorPayoutSupportEscalationCopy,
+    creatorPayoutSupportReadinessScriptCopy,
     creatorPayoutProviderSetupCopy,
   } = creatorHostingCopyData;
 
@@ -77,6 +78,7 @@ export function buildProfileEngagementCreatorCopyResult({
     creatorTaxWorkflowReadinessCopy,
     creatorPayoutExceptionResponseCopy,
     creatorPayoutSupportEscalationCopy,
+    creatorPayoutSupportReadinessScriptCopy,
     creatorPayoutProviderSetupCopy,
     creatorHostingObjectionReplyCopy,
     creatorHostingOfferCopy,

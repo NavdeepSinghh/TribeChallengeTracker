@@ -94,6 +94,7 @@ const RELEASE_AUDIT_SCRIPT_TOKENS = [
   "Creator Tax Workflow Readiness Kit",
   "Creator Payout Exception Response Kit",
   "Creator Payout Support Escalation Kit",
+  "Creator Payout Support Readiness Script Kit",
   "Creator Leaderboard Ranking Readiness Kit",
   "Creator Hosting Decision Reply Kit",
   "Partner Campaign Decision Reply Kit",
