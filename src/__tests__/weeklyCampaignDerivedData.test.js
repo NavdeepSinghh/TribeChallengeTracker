@@ -564,6 +564,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("Launch Retrospective Next Campaign Post-Complete Callback Handoff Kit");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("Manual next campaign post-complete callback handoff");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("approved operator brief QA bridge reference");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("review handoff owner");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("Weekly Campaign Post-Complete Callback QA Kit");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {

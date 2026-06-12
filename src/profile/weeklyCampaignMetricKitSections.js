@@ -9,6 +9,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveNextCampaignFinalPostingPrepQaBridgeCopy,
   launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy,
   launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy,
+  launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy,
   launchRetrospectiveNextCampaignBriefCopy,
   launchRetrospectiveNextCampaignBriefQaCopy,
   launchRetrospectiveNextCampaignLaunchCopyApprovalCopy,
@@ -835,6 +836,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Check the manual posting operator handoff, caption source, launch-card source, reply owner, consent proof, support route, and callback owner before post-complete callback prep starts.',
       buttonLabel: 'COPY OPERATOR QA BRIDGE',
       copyText: launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign Post-Complete Callback Handoff Kit',
+      subtitle: 'Manual handoff into callback QA',
+      status: 'CALLBACK HANDOFF',
+      accent: '#14532D',
+      background: 'rgba(20,83,45,0.05)',
+      border: '1px solid rgba(20,83,45,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Hand off the approved operator brief QA bridge, post-complete callback owner, first-party monitor owner, support route, consent queue, and review handoff owner before callback QA starts.',
+      buttonLabel: 'COPY CALLBACK HANDOFF',
+      copyText: launchRetrospectiveNextCampaignPostCompleteCallbackHandoffCopy,
     },
   ];
 }
