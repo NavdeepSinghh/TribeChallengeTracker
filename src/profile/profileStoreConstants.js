@@ -65,6 +65,12 @@ export const STORE_TEST_PURCHASE_SESSION_PREP_ITEMS = [
   'Record only reviewed evidence notes in storeTestPurchaseEvidence; never store raw purchase tokens, passwords, service account JSON, or private keys',
   'Keep paid access in review mode until evidence, entitlement writes, support handoff, and paid launch decision gate are reviewed',
 ];
+export const STORE_EVIDENCE_ARCHIVE_ITEMS = [
+  'Save the sanitized evidence export and --json audit output in the internal release packet after human review',
+  'Record the release candidate build, reviewer, reviewedAt timestamp, missing matrix cases, and missing safe-denial platforms',
+  'Attach only aggregate evidence status to App Store / Play review notes; keep tester aliases, tokens, transaction IDs, and private screenshots internal',
+  'Re-run the archive checklist whenever product IDs, validation credentials, entitlement writes, restore/sync behavior, or support handoff copy changes',
+];
 export const STORE_DEMO_ACCOUNT_ITEMS = [
   'Prepare one reviewer-safe demo account with onboarding complete, profile appearance set, and no personal member data',
   'Seed visible free flows: joined campaign challenge, activity history, badges, calendar history, share cards, support links, and Feature Me consent example',

@@ -6,6 +6,7 @@ export function buildStoreSupportCopyCards({
   lapsedMemberWinbackCopy,
   storeLaunchDryRunCopy,
   storeTestPurchaseSessionPrepCopy,
+  storeEvidenceArchiveCopy,
   storeDemoAccountCopy,
   storeScreenshotQaCopy,
   storeReviewPackCopy,
@@ -74,6 +75,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy the external store-test session checklist without creating fake evidence, storing credentials, or marking paid access live.',
       buttonLabel: 'COPY TEST SESSION PREP',
       copyText: storeTestPurchaseSessionPrepCopy,
+    },
+    {
+      title: 'STORE EVIDENCE ARCHIVE KIT',
+      subtitle: 'Sanitized audit packet and release evidence archive',
+      status: 'ARCHIVE',
+      accent: '#FBBF24',
+      body: 'Copy the evidence archive checklist without exporting tokens, transaction IDs, tester emails, credentials, private screenshots, or treating archived evidence as launch approval.',
+      buttonLabel: 'COPY EVIDENCE ARCHIVE',
+      copyText: storeEvidenceArchiveCopy,
     },
     {
       title: 'STORE DEMO ACCOUNT KIT',

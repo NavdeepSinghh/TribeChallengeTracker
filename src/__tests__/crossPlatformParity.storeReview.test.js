@@ -132,6 +132,30 @@ describe('cross-platform store review and evidence parity source checks', () => 
     });
   });
 
+  it('keeps Store Evidence Archive Kit release-packet safe across platforms', () => {
+    const webProfile = readWebProfileContracts();
+    [webProfile, iosProfile, androidApp].forEach((source) => {
+      expect(source).toContain('STORE EVIDENCE ARCHIVE KIT');
+      expect(source).toContain('COPY EVIDENCE ARCHIVE');
+      expect(source).toContain('storeEvidenceArchiveCopy');
+      expect(source).toContain('Sanitized audit packet and release evidence archive');
+      expect(source).toContain('Archive readiness brief');
+      expect(source).toContain('sanitized-store-evidence.json');
+      expect(source).toContain('evidenceReady, verifiedCaseCount, missingRequiredCases, and missingSafeDenialPlatforms');
+      expect(source).toContain('internal release packet');
+      expect(source).toContain('reviewedAt timestamp');
+      expect(source).toContain('Do not create fake evidence');
+      expect(source).toContain('export raw purchase tokens');
+      expect(source).toContain('export transaction IDs');
+      expect(source).toContain('store tester emails');
+      expect(source).toContain('service account JSON');
+      expect(source).toContain('expose private screenshots');
+      expect(source).toContain('write entitlements from the client');
+      expect(source).toContain('create purchases outside StoreKit or Play Billing');
+      expect(source).toContain('treat archived evidence as final launch approval');
+    });
+  });
+
   it('keeps Store Review Pack prep-only across platforms', () => {
     const webProfile = readWebProfileContracts();
     [webProfile, iosProfile, androidApp].forEach((source) => {
