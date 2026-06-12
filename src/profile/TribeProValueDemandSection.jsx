@@ -4,6 +4,9 @@ import TribeProHeaderCard from './TribeProHeaderCard';
 
 export default function TribeProValueDemandSection({
   communityHighlightRoundupItems,
+  challengePackLaunchCopy,
+  challengePackLaunchQaCopy,
+  challengePackObjectionReplyCopy,
   copyText,
   approvedProTrialReviews,
   isAdmin,
@@ -46,6 +49,9 @@ export default function TribeProValueDemandSection({
         valueProofStoryCopy={valueProofStoryCopy}
         storyPostingChecklistCopy={storyPostingChecklistCopy}
         communityHighlightRoundupItems={communityHighlightRoundupItems}
+        challengePackLaunchCopy={challengePackLaunchCopy}
+        challengePackLaunchQaCopy={challengePackLaunchQaCopy}
+        challengePackObjectionReplyCopy={challengePackObjectionReplyCopy}
         copyText={copyText}
       />
       <ProTrialInterestSection

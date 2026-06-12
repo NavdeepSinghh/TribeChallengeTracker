@@ -10,6 +10,9 @@ export default function ProValueSnapshotCard({
   proValueNextAction,
   valueProofStoryCopy,
   storyPostingChecklistCopy,
+  challengePackLaunchCopy,
+  challengePackLaunchQaCopy,
+  challengePackObjectionReplyCopy,
   communityHighlightRoundupItems,
   copyText,
 }) {
@@ -55,6 +58,39 @@ export default function ProValueSnapshotCard({
         softText="#DBEAFE"
         subtitleColor="#BFDBFE"
         onCopy={() => copyText(storyPostingChecklistCopy, 'Story posting checklist copied')}
+      />
+      <ProValueCopyKitCard
+        title="CHALLENGE PACK LAUNCH KIT"
+        subtitle="Paid-pack demand copy"
+        status="PENDING STORE QA"
+        body="Copy launch messaging for challenge pack demand while store credentials, test purchases, restore, and entitlement QA remain gated."
+        buttonLabel="COPY PACK LAUNCH COPY"
+        accent="#A78BFA"
+        softText="#EDE9FE"
+        subtitleColor="#DDD6FE"
+        onCopy={() => copyText(challengePackLaunchCopy, 'Challenge pack launch copy copied')}
+      />
+      <ProValueCopyKitCard
+        title="CHALLENGE PACK LAUNCH QA KIT"
+        subtitle="Store and entitlement checks"
+        status="COPY ONLY"
+        body="Copy the store, entitlement, support, and launch-language checks that must pass before paid packs are promoted."
+        buttonLabel="COPY PACK LAUNCH QA"
+        accent="#22C55E"
+        softText="#DCFCE7"
+        subtitleColor="#BBF7D0"
+        onCopy={() => copyText(challengePackLaunchQaCopy, 'Challenge pack launch QA copied')}
+      />
+      <ProValueCopyKitCard
+        title="CHALLENGE PACK OBJECTION REPLY KIT"
+        subtitle="Manual paid-pack replies"
+        status="NO PAID CLAIMS"
+        body="Copy replies for pack questions while pricing, purchases, marketplace validation, restore, and entitlement QA remain incomplete."
+        buttonLabel="COPY PACK REPLIES"
+        accent="#F59E0B"
+        softText="#FEF3C7"
+        subtitleColor="#FDE68A"
+        onCopy={() => copyText(challengePackObjectionReplyCopy, 'Challenge pack replies copied')}
       />
     </div>
   );

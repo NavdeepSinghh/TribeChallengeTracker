@@ -66,7 +66,45 @@ describe('engagement copy contracts', () => {
     expect(copy.streakRescuePromptCopy).toContain('spend recovery credits');
     expect(copy.comebackChallengeInviteCopy).toContain('Comeback Challenge Invite Kit');
     expect(copy.comebackChallengeInviteCopy).toContain('Do not auto-message users');
+    expect(copy.challengePackLaunchCopy).toContain('Challenge Pack Launch Kit');
+    expect(copy.challengePackLaunchCopy).toContain('Store credentials and test purchases must be completed');
+    expect(copy.challengePackLaunchQaCopy).toContain('Challenge Pack Launch QA Kit');
+    expect(copy.challengePackLaunchQaCopy).toContain('Pack products in code: com.risewiththetribe.pack.21_day_reset');
+    expect(copy.challengePackLaunchQaCopy).toContain('Launch QA checklist');
+    expect(copy.challengePackLaunchQaCopy).toContain('Store QA');
+    expect(copy.challengePackLaunchQaCopy).toContain('Entitlement QA');
+    expect(copy.challengePackLaunchQaCopy).toContain('Support QA');
+    expect(copy.challengePackLaunchQaCopy).toContain('Copy QA');
+    expect(copy.challengePackLaunchQaCopy).toContain('not a pack unlock');
+    expect(copy.challengePackLaunchQaCopy).toContain('not a purchase');
+    expect(copy.challengePackLaunchQaCopy).toContain('not entitlement approval');
+    expect(copy.challengePackLaunchQaCopy).toContain('not store-review approval');
+    expect(copy.challengePackLaunchQaCopy).toContain('Do not claim packs are live');
+    expect(copy.challengePackLaunchQaCopy).toContain('quote unconfigured prices');
+    expect(copy.challengePackLaunchQaCopy).toContain('create purchases');
+    expect(copy.challengePackLaunchQaCopy).toContain('write entitlements');
+    expect(copy.challengePackLaunchQaCopy).toContain('submit store review');
+    expect(copy.challengePackLaunchQaCopy).toContain('auto-message users');
+    expect(copy.challengePackLaunchQaCopy).toContain('scrape/store DMs');
+    expect(copy.challengePackLaunchQaCopy).toContain('add tracking pixels');
     expect(copy.challengePackObjectionReplyCopy).toContain('store credentials');
     expect(copy.challengePackObjectionReplyCopy).toContain('Do not claim challenge packs are live');
+  });
+
+  it('renders challenge pack launch kits in the web value snapshot card', () => {
+    const source = require('fs').readFileSync(
+      require('path').join(__dirname, '../profile/ProValueSnapshotCard.jsx'),
+      'utf8',
+    );
+
+    expect(source).toContain('CHALLENGE PACK LAUNCH KIT');
+    expect(source).toContain('COPY PACK LAUNCH COPY');
+    expect(source).toContain('challengePackLaunchCopy');
+    expect(source).toContain('CHALLENGE PACK LAUNCH QA KIT');
+    expect(source).toContain('COPY PACK LAUNCH QA');
+    expect(source).toContain('challengePackLaunchQaCopy');
+    expect(source).toContain('CHALLENGE PACK OBJECTION REPLY KIT');
+    expect(source).toContain('COPY PACK REPLIES');
+    expect(source).toContain('challengePackObjectionReplyCopy');
   });
 });

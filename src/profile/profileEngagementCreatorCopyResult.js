@@ -15,6 +15,7 @@ export function buildProfileEngagementCreatorCopyResult({
     instagramPromptCopy,
     instagramContentCalendarCopy,
     challengePackLaunchCopy,
+    challengePackLaunchQaCopy,
     challengePackObjectionReplyCopy,
     streakRescuePromptCopy,
     comebackChallengeInviteCopy,
@@ -53,6 +54,7 @@ export function buildProfileEngagementCreatorCopyResult({
 
   return {
     challengePackLaunchCopy,
+    challengePackLaunchQaCopy,
     challengePackObjectionReplyCopy,
     comebackChallengeInviteCopy,
     creatorAnalytics,

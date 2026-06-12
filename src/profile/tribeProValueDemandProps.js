@@ -1,6 +1,9 @@
 export function buildTribeProValueDemandProps(model) {
   const {
     communityHighlightRoundupItems,
+    challengePackLaunchCopy,
+    challengePackLaunchQaCopy,
+    challengePackObjectionReplyCopy,
     copyText,
     approvedProTrialReviews,
     handleProTrialReasonToggle,
@@ -34,6 +37,9 @@ export function buildTribeProValueDemandProps(model) {
 
   return {
     communityHighlightRoundupItems,
+    challengePackLaunchCopy,
+    challengePackLaunchQaCopy,
+    challengePackObjectionReplyCopy,
     copyText,
     approvedProTrialReviews,
     isAdmin,
