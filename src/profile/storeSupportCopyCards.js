@@ -12,6 +12,7 @@ export function buildStoreSupportCopyCards({
   storeScreenshotQaCopy,
   storeReviewPackCopy,
   storeReviewResponseCopy,
+  storeReviewResubmissionCopy,
 }) {
   return [
     {
@@ -130,6 +131,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy reviewer follow-up replies without resubmitting, exposing private data, changing purchases, writing entitlements, or claiming paid access is live.',
       buttonLabel: 'COPY REVIEW RESPONSE',
       copyText: storeReviewResponseCopy,
+    },
+    {
+      title: 'STORE REVIEW RESUBMISSION READINESS KIT',
+      subtitle: 'Policy fix, evidence, and reviewer-note checklist',
+      status: 'RESUBMIT READY',
+      accent: '#A3E635',
+      body: 'Copy a resubmission readiness checklist without submitting review, exposing credentials, unlocking paid access, or claiming approval.',
+      buttonLabel: 'COPY RESUBMISSION READINESS',
+      copyText: storeReviewResubmissionCopy,
     },
   ];
 }

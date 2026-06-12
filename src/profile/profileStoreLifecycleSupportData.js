@@ -8,6 +8,7 @@ import {
   STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS,
   STORE_LAUNCH_DRY_RUN_ITEMS,
   STORE_REVIEW_PACK_ITEMS,
+  STORE_REVIEW_RESUBMISSION_ITEMS,
   STORE_SCREENSHOT_QA_ITEMS,
   STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
 } from './profileConstants';
@@ -43,6 +44,7 @@ export function buildProfileStoreLifecycleSupportData({
     storeDemoAccountItems: STORE_DEMO_ACCOUNT_ITEMS,
     storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
     storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
+    storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
     storeCatalog,
     policyLinks: POLICY_LINKS,
     weeklyCampaignPrompt,

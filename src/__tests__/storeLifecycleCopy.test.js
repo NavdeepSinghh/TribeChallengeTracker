@@ -37,6 +37,12 @@ const STORE_REVIEW_PACK_ITEMS = [
   'Summarize sandbox/license-test evidence and entitlement QA gaps without claiming paid access is live',
   'Keep review preparation copy-only until products, credentials, policies, support links, restore flow, and entitlement QA are verified',
 ];
+const STORE_REVIEW_RESUBMISSION_ITEMS = [
+  'Pair every App Review or Play rejection note with one owner, one policy area, one evidence gap, and one fix note',
+  'Confirm the current build, demo account notes, permission explanations, screenshots, and support links match the resubmission reply',
+  'Re-check sandbox/license-test evidence, restore/sync, entitlement recovery, and paid-launch decision status before sending updated notes',
+  'Keep resubmission prep copy-only until the fixed build, reviewer notes, policies, and evidence packet are reviewed by a human',
+];
 const STORE_SCREENSHOT_QA_ITEMS = [
   'Capture screenshots from seeded demo data only: onboarding, challenge tracker, logging, profile, support links, and free challenge flows',
   'Hide private member data, emails, purchase tokens, store credentials, service account JSON, and reviewer passwords from every screenshot',
@@ -108,6 +114,7 @@ describe('store lifecycle copy contracts', () => {
       storeEvidenceExportTemplateItems: STORE_EVIDENCE_EXPORT_TEMPLATE_ITEMS,
       storeLaunchDryRunItems: STORE_LAUNCH_DRY_RUN_ITEMS,
       storeReviewPackItems: STORE_REVIEW_PACK_ITEMS,
+      storeReviewResubmissionItems: STORE_REVIEW_RESUBMISSION_ITEMS,
       storeScreenshotQaItems: STORE_SCREENSHOT_QA_ITEMS,
       storeTestPurchaseSessionPrepItems: STORE_TEST_PURCHASE_SESSION_PREP_ITEMS,
       storeTestEvidenceSummary,
@@ -129,6 +136,7 @@ describe('store lifecycle copy contracts', () => {
       storeEvidenceExportTemplateCopy: lifecycleCopy.storeEvidenceExportTemplateCopy,
       storeLaunchDryRunCopy: lifecycleCopy.storeLaunchDryRunCopy,
       storeReviewResponseCopy: lifecycleCopy.storeReviewResponseCopy,
+      storeReviewResubmissionCopy: lifecycleCopy.storeReviewResubmissionCopy,
       storeReviewPackCopy: lifecycleCopy.storeReviewPackCopy,
       storeScreenshotQaCopy: lifecycleCopy.storeScreenshotQaCopy,
       storeTestPurchaseSessionPrepCopy: lifecycleCopy.storeTestPurchaseSessionPrepCopy,
@@ -178,6 +186,19 @@ describe('store lifecycle copy contracts', () => {
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('Do not submit store review');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('purchase tokens');
     expect(lifecycleCopy.storeScreenshotQaCopy).toContain('service account JSON');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Store Review Resubmission Readiness Kit');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Pair every App Review or Play rejection note');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Manual resubmission checklist');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Missing required cases: ios_pro_restore');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('App Store Connect / Play Console review notes');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('Do not submit store review');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('store reviewer passwords');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('include purchase tokens');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('unlock paid access');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('write entitlements');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('create purchases');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('claim review approval');
+    expect(lifecycleCopy.storeReviewResubmissionCopy).toContain('mark paid access live');
     expect(cards.map(card => card.title)).toEqual([
       'SUBSCRIPTION MANAGEMENT GUIDANCE KIT',
       'BILLING SUPPORT ESCALATION KIT',
@@ -192,6 +213,7 @@ describe('store lifecycle copy contracts', () => {
       'STORE SCREENSHOT QA KIT',
       'STORE REVIEW PACK',
       'STORE REVIEW RESPONSE KIT',
+      'STORE REVIEW RESUBMISSION READINESS KIT',
     ]);
   });
 });

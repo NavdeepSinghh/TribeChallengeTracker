@@ -205,7 +205,7 @@ describe('monetization release audit generator', () => {
     expect(content).toContain('docs/feature-catalog/store-product-catalog.md');
     expect(content).toContain('include-aware release checks preserving product IDs, receipt validation, restore/sync, entitlement-recovery, store-test evidence, and paid-launch guardrails');
     expect(content).toContain('docs/feature-catalog/weekly-campaign-copy-surfaces.md');
-    expect(content).toContain('include-aware release checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, support-readiness, re-invite, no-automation, no-tracking, no-paid-live, consent, and app-first guardrails');
+    expect(content).toContain('include-aware release checks preserving scheduler, launch-card, preflight, Story, Live, FAQ, caption, collab, retention, support-triage, support-readiness, retrospective-readiness, re-invite, no-automation, no-tracking, no-paid-live, consent, and app-first guardrails');
     expect(content).toContain('docs/instagram-content-bank/weekly-campaign-captions.md');
     expect(content).toContain('include-aware campaign checks preserving the same launch, education, highlight, comeback, progress-proof, admin-note, and recap copy');
     expect(content).toContain('docs/instagram-content-bank/weekly-campaign-weekend-captions.md');

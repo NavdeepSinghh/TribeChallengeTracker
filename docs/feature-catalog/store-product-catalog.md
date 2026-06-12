@@ -59,6 +59,7 @@ Shared behavior:
 - Admin profile surfaces show a Store Demo Account Kit with reviewer-safe demo account notes for App Store / Play review, seeded free-flow guidance, permission explanations, policy links, and paid-access cautions.
 - Admin profile surfaces show a Store Screenshot QA Kit with reviewer-safe screenshot and caption prompts for seeded demo data, free challenge flows, policy links, data safety notes, store-test evidence, and paid-launch gate cautions.
 - Admin profile surfaces show a Store Review Pack with copy-ready reviewer notes, policy evidence, permission explanations, data safety pointers, support/refund handoff, and paid-access readiness cautions.
+- Web admin profile surfaces show a Store Review Resubmission Readiness Kit with policy-fix, reviewer-note, screenshot/caption, demo-account, support-link, and evidence-packet checks after App Review or Play follow-up.
 - Firebase Functions exposes callable `getPurchaseValidationReadiness` so admin profile surfaces can check App Store / Play credential readiness without submitting a fake purchase or writing entitlements.
 - Product IDs do not unlock features directly.
 - Purchase and receipt-validation work must write the shared entitlement fields before gated UI unlocks.

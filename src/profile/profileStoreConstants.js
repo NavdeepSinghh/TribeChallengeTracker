@@ -95,6 +95,12 @@ export const STORE_REVIEW_PACK_ITEMS = [
   'Summarize sandbox/license-test evidence and entitlement QA gaps without claiming paid access is live',
   'Keep review preparation copy-only until products, credentials, policies, support links, restore flow, and entitlement QA are verified',
 ];
+export const STORE_REVIEW_RESUBMISSION_ITEMS = [
+  'Pair every App Review or Play rejection note with one owner, one policy area, one evidence gap, and one fix note',
+  'Confirm the current build, demo account notes, permission explanations, screenshots, and support links match the resubmission reply',
+  'Re-check sandbox/license-test evidence, restore/sync, entitlement recovery, and paid-launch decision status before sending updated notes',
+  'Keep resubmission prep copy-only until the fixed build, reviewer notes, policies, and evidence packet are reviewed by a human',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',
