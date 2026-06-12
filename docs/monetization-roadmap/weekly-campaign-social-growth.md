@@ -6,6 +6,7 @@ Features:
 
 - Weekly Campaign Scheduler across Web, iOS, and Android to give admins and creators copy-ready prompts from this week's campaign template.
 - Weekly Campaign Launch Card Kit across Web, iOS, and Android to turn this week's campaign template into copy-ready card headlines, design notes, caption drafts, hashtags, and consent-safe posting guardrails.
+- Weekly Campaign Launch Copy QA Kit on Web with manual checks for launch-card, caption, Story/Reel hook, pinned comment, DM keyword replies, and referral CTA before any human weekly campaign post.
 - Weekly Campaign Preflight Checklist across Web, iOS, and Android to confirm launch-card copy, manual DM replies, seven-day content cadence, referral copy, consent-reviewed UGC, and first-party review metrics before the weekly push.
 - Weekly Campaign Review Kit across Web, iOS, and Android to review challenge joins, referral movement, consent-cleared UGC, manual DM copy, and share-card usage before shaping the next weekly push.
 - Weekly Campaign Review Records across Web, iOS, and Android to save manual `weeklyCampaignReviews` evidence from campaign reach, referral joins, Feature Me review volume, support risk, and recommended experiment context; admin decisions remain review-only and create no attribution records, tracking pixels, auto-posting, scraped DMs, purchases, entitlements, or paid-access changes.

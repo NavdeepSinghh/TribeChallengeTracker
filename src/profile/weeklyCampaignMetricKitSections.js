@@ -7,12 +7,30 @@ export function buildWeeklyCampaignMetricKitSections({
   recommendedLaunchExperiment,
   referralJoins,
   weeklyCampaignExperimentBriefCopy,
+  weeklyCampaignLaunchCopyQaCopy,
   weeklyCampaignPreflightCopy,
   weeklyCampaignPrompt,
   weeklyCampaignReviewCopy,
   weeklyCampaignStoryboardCopy,
 }) {
   return [
+    {
+      title: 'Weekly Campaign Launch Copy QA Kit',
+      subtitle: 'Manual copy check before posting',
+      status: 'COPY QA',
+      accent: '#38BDF8',
+      background: 'rgba(56,189,248,0.05)',
+      border: '1px solid rgba(56,189,248,0.16)',
+      metrics: [
+        ['CARD', weeklyCampaignPrompt.hashtag],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+      ],
+      body: 'Check launch-card, caption, Story/Reel hook, pinned comment, DM keyword, and referral copy before any manual weekly campaign post.',
+      buttonLabel: 'COPY LAUNCH COPY QA',
+      copyText: weeklyCampaignLaunchCopyQaCopy,
+    },
     {
       title: 'Weekly Campaign Preflight Checklist',
       subtitle: 'Manual launch readiness before posting',
