@@ -4,6 +4,7 @@ export function buildWeeklyCampaignMetricKitSections({
   campaignPerformanceSummary,
   featureReviewQueue,
   launchRetrospectiveDecisionCopy,
+  launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveReadinessHandoffCopy,
   launchRetrospectiveReadinessQaCopy,
   launchRetrospectiveReadinessScriptCopy,
@@ -601,6 +602,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Choose repeat, pause, support review, store QA, prompt refresh, free-loop, or paid-language hold after retrospective readback.',
       buttonLabel: 'COPY RETRO DECISION',
       copyText: launchRetrospectiveDecisionCopy,
+    },
+    {
+      title: 'Launch Retrospective Decision Reply Kit',
+      subtitle: 'Manual approved, pause, support, store QA, or prompt reply',
+      status: 'RETRO REPLY',
+      accent: '#F9A8D4',
+      background: 'rgba(249,168,212,0.05)',
+      border: '1px solid rgba(249,168,212,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Copy safe retrospective decision replies for repeat, pause, support review, store QA, prompt refresh, free-loop, or paid-language hold outcomes.',
+      buttonLabel: 'COPY RETRO REPLY',
+      copyText: launchRetrospectiveDecisionReplyCopy,
     },
   ];
 }

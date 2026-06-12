@@ -406,6 +406,20 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveDecisionCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveDecisionCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveDecisionCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("Launch Retrospective Decision Reply Kit");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("Manual retrospective decision replies");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("APPROVED TO REPEAT");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("PAUSE FOR NOW");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("ROUTE SUPPORT REVIEW");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("OPEN STORE QA");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("REFRESH WEEKLY PROMPT");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveDecisionReplyCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
