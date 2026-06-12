@@ -15,6 +15,7 @@ export function buildWeeklyCampaignMarketingSectionData({
   weeklyCampaignCommentReplyCopy,
   weeklyCampaignCompletionRecapStoryCopy,
   weeklyCampaignCountdownStoryCopy,
+  weeklyCampaignExperimentBriefHandoffCopy,
   weeklyCampaignExperimentBriefCopy,
   weeklyCampaignFaqCarouselCopy,
   weeklyCampaignFinalPostingPrepQaCopy,
@@ -122,6 +123,7 @@ export function buildWeeklyCampaignMarketingSectionData({
       weeklyCampaignStoryboardHandoffCopy,
       weeklyCampaignStoryboardCopy,
       weeklyCampaignStoryboardQaCopy,
+      weeklyCampaignExperimentBriefHandoffCopy,
     }),
     weeklyCampaignCollabCopyCards,
   };
