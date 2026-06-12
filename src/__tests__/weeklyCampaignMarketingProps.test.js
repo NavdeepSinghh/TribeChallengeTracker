@@ -83,6 +83,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Completion QA Kit");
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionReviewHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Completion Review Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionReviewQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Completion Review QA Kit");
+    expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Final Closure Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Handoff Kit");
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveQaCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive QA Kit");
     expect(props.launchRetrospectiveNextCampaignReviewDecisionReplySendReadinessCopy).toContain("Launch Retrospective Next Campaign Review Decision Reply Send Readiness Kit");
@@ -144,6 +145,7 @@ describe("Weekly Campaign marketing props", () => {
       "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionQaCopy",
       "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionReviewHandoffCopy",
       "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveCompletionReviewQaCopy",
+      "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveFinalClosureHandoffCopy",
       "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveHandoffCopy",
       "launchRetrospectiveNextCampaignReviewDecisionReplyReceiptArchiveQaCopy",
       "launchRetrospectiveNextCampaignReviewDecisionReplySendQaCopy",
@@ -246,7 +248,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(70);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(71);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -514,5 +516,9 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[69].buttonLabel).toBe("COPY REVIEW QA");
     expect(sectionData.weeklyCampaignMetricKitSections[69].copyText).toContain("Manual next campaign review decision reply receipt archive completion review QA");
     expect(sectionData.weeklyCampaignMetricKitSections[69].copyText).toContain("completion review QA reviewer");
+    expect(sectionData.weeklyCampaignMetricKitSections[70].title).toBe("Launch Retrospective Next Campaign Review Decision Reply Receipt Archive Final Closure Handoff Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[70].buttonLabel).toBe("COPY CLOSURE HANDOFF");
+    expect(sectionData.weeklyCampaignMetricKitSections[70].copyText).toContain("Manual next campaign review decision reply receipt archive final closure handoff");
+    expect(sectionData.weeklyCampaignMetricKitSections[70].copyText).toContain("final closure owner");
   });
 });
