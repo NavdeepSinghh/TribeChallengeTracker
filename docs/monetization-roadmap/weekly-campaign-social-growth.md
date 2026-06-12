@@ -45,5 +45,6 @@ Features:
 - Weekly Campaign Preflight Owner Handoff Kit on Web with manual launch copy, reply, consent, and support-risk owner assignment before the next campaign preflight starts.
 - Weekly Campaign Preflight Readiness Decision Kit on Web with manual approve, clarify, support-route, consent-hold, free-loop repeat, or paid-language hold decisions before preflight.
 - Weekly Campaign Preflight Copy Freeze Kit on Web with manual launch-card headline, app-first CTA, reply, consent-proof, and support-risk routing freeze before preflight edits.
+- Weekly Campaign Preflight Asset Readiness Kit on Web with manual launch-card, caption, Story/Reel hook, consent-safe proof, and support-routing checks before final assets.
 - Weekly Campaign Re-Invite Kit across Web, iOS, and Android with manual next-challenge referral prompts for active, comeback, feature-ready, referral-curious, and support-risk members after each campaign push.
 - Weekly Campaign Operator Summary across Web, iOS, and Android that gives admins and creators a compact member reach, active campaign, referral join, Feature Me queue, recommended experiment, and next manual action readout before they copy launch, review, collab, retention, or re-invite kits.
