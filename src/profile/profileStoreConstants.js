@@ -173,6 +173,12 @@ export const STORE_REVIEW_FINAL_SIGNOFF_ITEMS = [
   'Hold resubmission if sandbox/license-test proof, restore/sync, safe-denial coverage, demo access, policy links, or support handoff still needs review',
   'Keep final sign-off internal until a human confirms the packet is ready for console work without paid-live claims or credential exposure',
 ];
+export const STORE_REVIEW_CONSOLE_DRAFT_QA_ITEMS = [
+  'Check App Store Connect and Play Console draft fields against the final sign-off packet before any reviewer notes are pasted',
+  'Confirm reviewer reply, demo access notes, metadata, screenshots, data safety, policy links, support handoff, and evidence summary match the fixed build',
+  'Flag draft mismatches for owner review instead of editing console fields from client code or claiming submission readiness',
+  'Keep console-draft QA internal until a human confirms no credentials, purchase tokens, private data, or paid-live claims are present',
+];
 export const SANDBOX_PURCHASE_TEST_ITEMS = [
   'iOS sandbox: buy Pro monthly, restore, then verify verifyPurchase writes entitlements.pro.active',
   'iOS sandbox: buy each challenge pack, restore, then verify the matching entitlements.packs entry',

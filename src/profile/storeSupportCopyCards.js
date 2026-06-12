@@ -24,6 +24,7 @@ export function buildStoreSupportCopyCards({
   storeReviewSupportHandoffQaCopy,
   storeReviewEvidencePacketIndexCopy,
   storeReviewFinalSignoffCopy,
+  storeReviewConsoleDraftQaCopy,
   storeReviewResubmissionCopy,
 }) {
   return [
@@ -251,6 +252,15 @@ export function buildStoreSupportCopyCards({
       body: 'Copy a final sign-off checklist without submitting review, exposing credentials, writing entitlements, or claiming approval.',
       buttonLabel: 'COPY FINAL SIGN-OFF',
       copyText: storeReviewFinalSignoffCopy,
+    },
+    {
+      title: 'STORE REVIEW CONSOLE DRAFT QA KIT',
+      subtitle: 'App Store Connect and Play Console draft field check',
+      status: 'CONSOLE QA',
+      accent: '#BFDBFE',
+      body: 'Copy a console-draft QA checklist without submitting review, editing console fields, exposing credentials, or claiming approval.',
+      buttonLabel: 'COPY CONSOLE QA',
+      copyText: storeReviewConsoleDraftQaCopy,
     },
     {
       title: 'STORE REVIEW RESUBMISSION READINESS KIT',
