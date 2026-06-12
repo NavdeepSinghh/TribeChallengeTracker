@@ -60,6 +60,7 @@ describe("Weekly Campaign marketing props", () => {
     expect(props.launchRetrospectiveDecisionCopy).toContain("Launch Retrospective Decision Kit");
     expect(props.launchRetrospectiveDecisionReplyCopy).toContain("Launch Retrospective Decision Reply Kit");
     expect(props.launchRetrospectiveNextCampaignHandoffCopy).toContain("Launch Retrospective Next Campaign Handoff Kit");
+    expect(props.launchRetrospectiveNextCampaignQaCopy).toContain("Launch Retrospective Next Campaign QA Kit");
     expect(props.launchRetrospectiveReadinessHandoffCopy).toContain("Launch Retrospective Readiness Handoff Kit");
     expect(props.launchRetrospectiveReadinessQaCopy).toContain("Launch Retrospective Readiness QA Kit");
     expect(props.launchRetrospectiveReadinessScriptCopy).toContain("Launch Retrospective Readiness Script Kit");
@@ -86,6 +87,7 @@ describe("Weekly Campaign marketing props", () => {
       "launchRetrospectiveDecisionCopy",
       "launchRetrospectiveDecisionReplyCopy",
       "launchRetrospectiveNextCampaignHandoffCopy",
+      "launchRetrospectiveNextCampaignQaCopy",
       "launchRetrospectiveReadinessHandoffCopy",
       "launchRetrospectiveReadinessQaCopy",
       "launchRetrospectiveReadinessScriptCopy",
@@ -176,7 +178,7 @@ describe("Weekly Campaign marketing props", () => {
     ]);
     expect(sectionData.operatingSummaryProps.copyText).toContain("Do not auto-post");
     expect(sectionData.operatingSummaryProps.copyText).toContain("Recommended review lens: Referral Sprint");
-    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(35);
+    expect(sectionData.weeklyCampaignMetricKitSections).toHaveLength(36);
     expect(sectionData.weeklyCampaignMetricKitSections[0].title).toBe("Weekly Campaign Launch Copy QA Kit");
     expect(sectionData.weeklyCampaignMetricKitSections[0].buttonLabel).toBe("COPY LAUNCH COPY QA");
     expect(sectionData.weeklyCampaignMetricKitSections[0].copyText).toContain("Manual launch copy QA checklist");
@@ -304,5 +306,9 @@ describe("Weekly Campaign marketing props", () => {
     expect(sectionData.weeklyCampaignMetricKitSections[34].buttonLabel).toBe("COPY NEXT HANDOFF");
     expect(sectionData.weeklyCampaignMetricKitSections[34].copyText).toContain("Manual next campaign handoff");
     expect(sectionData.weeklyCampaignMetricKitSections[34].copyText).toContain("next preflight owner");
+    expect(sectionData.weeklyCampaignMetricKitSections[35].title).toBe("Launch Retrospective Next Campaign QA Kit");
+    expect(sectionData.weeklyCampaignMetricKitSections[35].buttonLabel).toBe("COPY NEXT QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[35].copyText).toContain("Manual next campaign QA");
+    expect(sectionData.weeklyCampaignMetricKitSections[35].copyText).toContain("next campaign QA owner");
   });
 });

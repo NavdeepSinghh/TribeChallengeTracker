@@ -6,6 +6,7 @@ export function buildWeeklyCampaignMetricKitSections({
   launchRetrospectiveDecisionCopy,
   launchRetrospectiveDecisionReplyCopy,
   launchRetrospectiveNextCampaignHandoffCopy,
+  launchRetrospectiveNextCampaignQaCopy,
   launchRetrospectiveReadinessHandoffCopy,
   launchRetrospectiveReadinessQaCopy,
   launchRetrospectiveReadinessScriptCopy,
@@ -637,6 +638,23 @@ export function buildWeeklyCampaignMetricKitSections({
       body: 'Carry the final retrospective decision into the next campaign owner, preflight owner, support route, consent queue, and paid-language hold.',
       buttonLabel: 'COPY NEXT HANDOFF',
       copyText: launchRetrospectiveNextCampaignHandoffCopy,
+    },
+    {
+      title: 'Launch Retrospective Next Campaign QA Kit',
+      subtitle: 'Manual QA before the next preflight starts',
+      status: 'NEXT QA',
+      accent: '#E879F9',
+      background: 'rgba(232,121,249,0.05)',
+      border: '1px solid rgba(232,121,249,0.16)',
+      metrics: [
+        ['TEST', recommendedLaunchExperiment.label],
+        ['REACH', campaignPerformanceSummary.memberReach || 0],
+        ['REF', referralJoins],
+        ['UGC', featureReviewQueue.length],
+      ],
+      body: 'Check the next campaign handoff, decision reply, support route, consent queue, entitlement QA status, and no-paid-live note before preflight starts.',
+      buttonLabel: 'COPY NEXT QA',
+      copyText: launchRetrospectiveNextCampaignQaCopy,
     },
   ];
 }
