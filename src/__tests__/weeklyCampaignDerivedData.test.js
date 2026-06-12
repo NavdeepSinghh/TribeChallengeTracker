@@ -552,6 +552,18 @@ describe("Weekly Campaign derived data", () => {
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("grant rewards");
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("write entitlements");
     expect(data.launchRetrospectiveNextCampaignManualPostingOperatorHandoffCopy).toContain("unlock paid access");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("Launch Retrospective Next Campaign Manual Posting Operator Brief QA Bridge Kit");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("Manual next campaign operator brief QA bridge");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("approved manual posting operator handoff reference");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("first-party monitor owner");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("Weekly Campaign Post-Complete Callback QA Kit");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("Do not create experiment records");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("create attribution records");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("tracking pixels");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("write referral state");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("grant rewards");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("write entitlements");
+    expect(data.launchRetrospectiveNextCampaignManualPostingOperatorBriefQaBridgeCopy).toContain("unlock paid access");
   });
 
   it("builds engagement, collab, retention, and re-invite copy without automation side effects", () => {
