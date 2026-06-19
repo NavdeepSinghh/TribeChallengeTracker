@@ -7,7 +7,8 @@ const {
 } = require("./verify-release-utils");
 
 const TEAM_ID = "69JKTAE887";
-const IOS_BUNDLE_ID = "com.risewiththetribe.challengetracker";
+const IOS_BUNDLE_ID = "com.risewiththetribe.tribelog";
+const IOS_LEGACY_BUNDLE_ID = "com.risewiththetribe.challengetracker";
 const ANDROID_PACKAGE = "com.risewiththetribe.challengetracker";
 const DOMAIN = "risewiththetribe.app";
 
@@ -26,6 +27,7 @@ function verifyIosUniversalLinksArtifact(repoRoot) {
   const details = aasa.applinks?.details || [];
   const appIds = details.flatMap((detail) => detail.appIDs || []);
   assert(appIds.includes(`${TEAM_ID}.${IOS_BUNDLE_ID}`), "AASA must include the iOS Team ID and bundle ID");
+  assert(appIds.includes(`${TEAM_ID}.${IOS_LEGACY_BUNDLE_ID}`), "AASA must keep the legacy iOS bundle ID while older builds exist");
   assert(JSON.stringify(aasa).includes("join"), "AASA must allow challenge invite query links");
 }
 

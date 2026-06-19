@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.risewiththetribe.challengetracker",
+      "sha256_cert_fingerprints": [
+        "F1:2C:96:44:CC:2B:30:F6:6F:9D:B3:84:4A:8D:D8:FC:3F:AE:54:D2:F1:B4:68:A6:45:A9:EF:16:F5:9B:88:D6"
+      ]
+    }
+  }
+]
