@@ -11,7 +11,16 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(undefined); // undefined = still loading
 
   useEffect(() => {
+    let resolved = false;
+    const fallback = setTimeout(() => {
+      if (!resolved) {
+        setUser(null);
+      }
+    }, 2500);
+
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
+      resolved = true;
+      clearTimeout(fallback);
       if (firebaseUser) {
         // Re-enable Firestore network (may have been disabled on previous sign-out)
         enableNetwork(db).catch(() => {});
@@ -23,8 +32,16 @@ export function AuthProvider({ children }) {
         disableNetwork(db).catch(() => {});
         setUser(null);
       }
+    }, () => {
+      resolved = true;
+      clearTimeout(fallback);
+      setUser(null);
     });
-    return unsub;
+
+    return () => {
+      clearTimeout(fallback);
+      unsub();
+    };
   }, []);
 
   return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
