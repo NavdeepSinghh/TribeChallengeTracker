@@ -20,6 +20,7 @@ export default function usePendingChallengeEntry(setTab) {
     setPendingJoinCode(null);
     setPendingReferralUid(null);
     sessionStorage.removeItem("pendingJoinCode");
+    sessionStorage.removeItem("pendingReferralUid");
   };
 
   return {
