@@ -1,14 +1,28 @@
 import { ACTIVITY_TYPES } from "./activityModel";
 import { useAppTheme } from "./AppThemeContext";
 
-export default function HomeActivityBreakdown({ actCounts }) {
+export default function HomeActivityBreakdown({ actCounts, embedded = false }) {
   const { theme } = useAppTheme();
+  const activeActivities = ACTIVITY_TYPES.filter(activity => actCounts[activity.id] > 0);
 
   return (
-    <div style={{ padding: "0 20px 24px" }}>
+    <div style={{ padding: embedded ? 0 : "0 20px 24px" }}>
       <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>ACTIVITY BREAKDOWN</p>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {ACTIVITY_TYPES.filter(activity => actCounts[activity.id] > 0).map(activity => (
+        {activeActivities.length === 0 && (
+          <div style={{
+            border: `1px solid ${theme.cardBorder}`,
+            borderRadius: 14,
+            background: theme.cardBg,
+            color: theme.textSoft,
+            fontSize: 12,
+            lineHeight: 1.45,
+            padding: 14,
+          }}>
+            Log your first activity to see your mix here.
+          </div>
+        )}
+        {activeActivities.map(activity => (
           <div key={activity.id} style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span style={{ fontSize: 18, width: 24, textAlign: "center" }}>{activity.icon}</span>
             <div style={{ flex: 1 }}>

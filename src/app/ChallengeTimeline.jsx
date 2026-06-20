@@ -1,17 +1,19 @@
 import { useAppTheme } from "./AppThemeContext";
 
-export default function ChallengeTimeline({ challengeStats = { joined: 0, owned: 0 }, challenges, setTab, windowStart }) {
+export default function ChallengeTimeline({ challengeStats = { joined: 0, owned: 0 }, challenges, compact = false, setTab, windowStart }) {
   const { theme } = useAppTheme();
   if (!challenges.length) return null;
 
   return (
-    <div style={{ marginTop: 16, borderTop: `1px solid ${theme.divider}`, paddingTop: 14 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginBottom: 10 }}>
-        <p style={{ color: theme.muted, fontSize: 9, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: 0 }}>ACTIVE CHALLENGES</p>
-        <span style={{ color: theme.mutedStrong, fontSize: 9, fontWeight: 700, fontFamily: "monospace" }}>
-          {challengeStats.joined} JOINED · {challengeStats.owned} STARTED
-        </span>
-      </div>
+    <div style={{ marginTop: compact ? 12 : 16, borderTop: compact ? "none" : `1px solid ${theme.divider}`, paddingTop: compact ? 0 : 14 }}>
+      {!compact && (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginBottom: 10 }}>
+          <p style={{ color: theme.muted, fontSize: 9, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: 0 }}>ACTIVE CHALLENGES</p>
+          <span style={{ color: theme.mutedStrong, fontSize: 9, fontWeight: 700, fontFamily: "monospace" }}>
+            {challengeStats.joined} JOINED · {challengeStats.owned} STARTED
+          </span>
+        </div>
+      )}
       {challenges.map(challenge => (
         <ChallengeTimelineRow key={challenge.id} challenge={challenge} theme={theme} windowStart={windowStart} />
       ))}

@@ -1,4 +1,4 @@
-import HomeActivityBreakdown from "./HomeActivityBreakdown";
+import HomeChallengesSection from "./HomeChallengesSection";
 import HomeCalendarSection from "./HomeCalendarSection";
 import HomeHero from "./HomeHero";
 import HomeLogActivityButton from "./HomeLogActivityButton";
@@ -36,8 +36,13 @@ export default function HomeTab({
       />
       <HomeStatsCards myHistory={myHistory} streak={streak} totalPts={totalPts} />
       <HomeLogActivityButton setShowLog={setShowLog} />
-      <HomeActivityBreakdown actCounts={actCounts} />
+      <HomeChallengesSection
+        challengeStats={challengeStats}
+        myChallenges={myChallenges}
+        setTab={setTab}
+      />
       <HomeCalendarSection
+        actCounts={actCounts}
         challengeStats={challengeStats}
         myChallenges={myChallenges}
         myHistory={myHistory}

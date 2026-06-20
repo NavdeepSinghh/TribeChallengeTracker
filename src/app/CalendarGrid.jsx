@@ -3,7 +3,7 @@ import { useAppTheme } from "./AppThemeContext";
 import CalendarDayCell from "./CalendarDayCell";
 import ChallengeTimeline from "./ChallengeTimeline";
 
-export default function CalendarGrid({ challengeStats, history, challenges = [], onDayClick, setTab }) {
+export default function CalendarGrid({ challengeStats, history, challenges = [], includeChallengeTimeline = true, onDayClick, setTab }) {
   const { theme } = useAppTheme();
   const days = getCalendarDays(history);
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
@@ -50,12 +50,14 @@ export default function CalendarGrid({ challengeStats, history, challenges = [],
         </div>
       ))}
 
-      <ChallengeTimeline
-        challengeStats={challengeStats}
-        challenges={activeChallenges}
-        setTab={setTab}
-        windowStart={windowStart}
-      />
+      {includeChallengeTimeline && (
+        <ChallengeTimeline
+          challengeStats={challengeStats}
+          challenges={activeChallenges}
+          setTab={setTab}
+          windowStart={windowStart}
+        />
+      )}
     </div>
   );
 }
