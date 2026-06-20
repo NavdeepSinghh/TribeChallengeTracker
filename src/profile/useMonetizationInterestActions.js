@@ -42,6 +42,8 @@ export default function useMonetizationInterestActions({
   setApprovedProTrialReviews,
   setApprovedWeeklyCampaignReviews,
   setCommunityEventInterestMessage,
+  setCommunityEventReviewMessage,
+  setCommunityEventReviewQueue,
   setIsSubmittingCommunityEventReview,
   setCustomerValueReviewMessage,
   setCustomerValueReviewQueue,

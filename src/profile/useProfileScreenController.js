@@ -33,5 +33,6 @@ export default function useProfileScreenController({
     ...computedData,
     ...profileActions,
     onClose,
+    user,
   };
 }
