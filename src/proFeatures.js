@@ -84,6 +84,8 @@ export function canCreateChallengeTemplate(profile, template) {
 
 export function canUseProFeature(profile, featureId) {
   if (!featureId) return false;
-  if (!V1_PAID_FEATURES_ENABLED) return false;
+  if (!V1_PAID_FEATURES_ENABLED) {
+    return featureId === PRO_FEATURES.privateChallenges;
+  }
   return hasActivePro(profile);
 }

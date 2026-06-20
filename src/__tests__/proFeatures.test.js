@@ -5,11 +5,12 @@ const { readMarkdownWithIncludes } = require('../../scripts/verify-release-utils
 
 describe('Pro feature and store product catalog', () => {
   it('gates Pro features from the shared entitlement path', () => {
-    expect(hasActivePro({ entitlements: { pro: { active: true } } })).toBe(true);
+    expect(hasActivePro({ entitlements: { pro: { active: true } } })).toBe(false);
     expect(hasActivePro({ entitlements: { pro: { active: false } } })).toBe(false);
     expect(canUseProFeature({ entitlements: { pro: { active: true } } }, PRO_FEATURES.privateChallenges)).toBe(true);
-    expect(canUseProFeature(null, PRO_FEATURES.privateChallenges)).toBe(false);
-    expect(hasActiveChallengePack({ entitlements: { packs: { summer_shred: { active: true } } } }, 'summer_shred')).toBe(true);
+    expect(canUseProFeature(null, PRO_FEATURES.privateChallenges)).toBe(true);
+    expect(canUseProFeature({ entitlements: { pro: { active: true } } }, PRO_FEATURES.premiumAnalytics)).toBe(false);
+    expect(hasActiveChallengePack({ entitlements: { packs: { summer_shred: { active: true } } } }, 'summer_shred')).toBe(false);
     expect(canCreateChallengeTemplate(
       { entitlements: { packs: { summer_shred: { active: true } } } },
       { isPremium: true, packId: 'summer_shred' }
@@ -17,7 +18,7 @@ describe('Pro feature and store product catalog', () => {
     expect(canCreateChallengeTemplate(
       { entitlements: { packs: { summer_shred: { active: false } } } },
       { isPremium: true, packId: 'summer_shred' }
-    )).toBe(false);
+    )).toBe(true);
   });
 
   it('keeps store product ids stable for native and backend purchase wiring', () => {

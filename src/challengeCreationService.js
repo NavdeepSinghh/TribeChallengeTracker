@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from './firebase';
-import { canCreateChallengeTemplate } from './proFeatures';
+import { canCreateChallengeTemplate, canUseProFeature, PRO_FEATURES } from './proFeatures';
 import { buildChallengeMemberRecord } from './challengeMembershipJoinHelpers';
 
 const genInviteCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -21,7 +21,7 @@ export async function createChallenge(uid, template, customName, startDateStr, i
 
   const creatorSnap = await getDoc(doc(db, 'users', uid));
   const creator = creatorSnap.data() || {};
-  const canCreatePrivate = creator?.entitlements?.pro?.active === true;
+  const canCreatePrivate = canUseProFeature(creator, PRO_FEATURES.privateChallenges);
   if (!canCreateChallengeTemplate(creator, template)) {
     throw new Error('This challenge pack requires Tribe Pro or an active pack purchase.');
   }
