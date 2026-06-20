@@ -1,7 +1,12 @@
-export default function ProfileAvatarIdentity({ memberYear, rank, user }) {
+export default function ProfileAvatarIdentity({ memberYear, rank, theme, user }) {
+  const palette = theme || {
+    text: '#fff',
+    mutedStrong: '#888',
+  };
+
   return (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <h2 style={{ margin: '0 0 4px', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+      <h2 style={{ margin: '0 0 4px', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: palette.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
         {user.displayName || user.email?.split('@')[0] || 'Tribe Member'}
       </h2>
       <span style={{
@@ -11,7 +16,7 @@ export default function ProfileAvatarIdentity({ memberYear, rank, user }) {
       }}>
         {rank.icon} {rank.label}
       </span>
-      <p style={{ margin: '6px 0 0', fontSize: 10, color: '#444', fontFamily: 'monospace' }}>
+      <p style={{ margin: '6px 0 0', fontSize: 10, color: palette.mutedStrong, fontFamily: 'monospace' }}>
         Member since {memberYear}
       </p>
     </div>

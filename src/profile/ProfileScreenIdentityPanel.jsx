@@ -20,6 +20,7 @@ export default function ProfileScreenIdentityPanel({ model }) {
     selectedFrameId,
     setSelectedFrameId,
     setShowAvatarPicker,
+    theme,
     user,
   } = model;
 
@@ -44,6 +45,7 @@ export default function ProfileScreenIdentityPanel({ model }) {
       onFrameSave={handleFrameSave}
       isSavingCosmetics={isSavingCosmetics}
       cosmeticsMessage={cosmeticsMessage}
+      theme={theme}
     />
   );
 }

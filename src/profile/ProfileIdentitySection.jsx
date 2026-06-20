@@ -1,5 +1,6 @@
 import ProfileAvatarCard from './ProfileAvatarCard';
 import ProfileFramePickerCard from './ProfileFramePickerCard';
+import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function ProfileIdentitySection({
   rank,
@@ -21,6 +22,7 @@ export default function ProfileIdentitySection({
   onFrameSave,
   isSavingCosmetics,
   cosmeticsMessage,
+  theme,
 }) {
   return (
     <>
@@ -38,15 +40,19 @@ export default function ProfileIdentitySection({
         profileImageSrc={profileImageSrc}
         rank={rank}
         user={user}
+        theme={theme}
       />
-      <ProfileFramePickerCard
-        cosmeticsMessage={cosmeticsMessage}
-        isSavingCosmetics={isSavingCosmetics}
-        onFrameSave={onFrameSave}
-        onFrameSelect={onFrameSelect}
-        proActive={proActive}
-        selectedFrameId={selectedFrameId}
-      />
+      {V1_PAID_FEATURES_ENABLED && (
+        <ProfileFramePickerCard
+          cosmeticsMessage={cosmeticsMessage}
+          isSavingCosmetics={isSavingCosmetics}
+          onFrameSave={onFrameSave}
+          onFrameSelect={onFrameSelect}
+          proActive={proActive}
+          selectedFrameId={selectedFrameId}
+          theme={theme}
+        />
+      )}
     </>
   );
 }

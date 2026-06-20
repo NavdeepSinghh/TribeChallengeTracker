@@ -9,6 +9,7 @@ export default function ProfileUtilitySection({
   onReminderOff,
   user,
   onSignOut,
+  theme,
 }) {
   return (
     <>
@@ -17,9 +18,10 @@ export default function ProfileUtilitySection({
         onReminderOff={onReminderOff}
         reminderError={reminderError}
         reminderLabel={reminderLabel}
+        theme={theme}
       />
-      <ProfilePolicyLinksCard />
-      <ProfileAccountCard onSignOut={onSignOut} user={user} />
+      <ProfilePolicyLinksCard theme={theme} />
+      <ProfileAccountCard onSignOut={onSignOut} theme={theme} user={user} />
     </>
   );
 }

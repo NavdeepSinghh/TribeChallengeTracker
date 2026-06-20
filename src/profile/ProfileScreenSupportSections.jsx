@@ -14,9 +14,9 @@ export default function ProfileScreenSupportSections({ model }) {
 
   return (
     <>
-      <ProfileUtilitySection {...utilitySectionProps} />
+      <ProfileUtilitySection {...utilitySectionProps} theme={model.theme} />
 
-      <SupportAccountSection {...supportAccountSectionProps} />
+      <SupportAccountSection {...supportAccountSectionProps} theme={model.theme} />
     </>
   );
 }

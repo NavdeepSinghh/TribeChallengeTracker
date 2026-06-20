@@ -15,15 +15,21 @@ export default function ProfileAvatarCard({
   onPhotoUpload,
   profileImageSrc,
   rank,
+  theme,
   user,
 }) {
+  const palette = theme || {
+    cardBg: 'rgba(255,255,255,0.03)',
+    cardBorder: 'rgba(255,255,255,0.06)',
+  };
+
   return (
     <>
       <div style={{
         display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20,
         padding: '20px', borderRadius: 20,
-        background: `linear-gradient(135deg, ${rank.color}12, rgba(255,255,255,0.02))`,
-        border: `1px solid ${rank.color}33`,
+        background: palette.cardBg,
+        border: `1px solid ${palette.cardBorder}`,
       }}>
         <input
           id={fileInputId}
@@ -41,7 +47,7 @@ export default function ProfileAvatarCard({
           onAvatarPickerOpen={onAvatarPickerOpen}
           profileImageSrc={profileImageSrc}
         />
-        <ProfileAvatarIdentity memberYear={memberYear} rank={rank} user={user} />
+        <ProfileAvatarIdentity memberYear={memberYear} rank={rank} theme={theme} user={user} />
         {isSavingAppearance && <ProfileAppearanceSavingSpinner />}
       </div>
       <ProfileAppearanceError appearanceError={appearanceError} />

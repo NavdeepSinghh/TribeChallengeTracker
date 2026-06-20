@@ -12,16 +12,17 @@ export default function SupportAccountSection(props) {
     supportRequestCardProps,
     supportReviewAdminSectionProps,
   } = buildSupportAccountProps(props);
+  const { theme } = props;
 
   return (
     <>
-      <SupportRequestCard {...supportRequestCardProps} />
+      <SupportRequestCard {...supportRequestCardProps} theme={theme} />
 
       {isAdmin && (
         <SupportReviewAdminSection {...supportReviewAdminSectionProps} />
       )}
 
-      <AccountDeletionRequestCard {...accountDeletionRequestCardProps} />
+      <AccountDeletionRequestCard {...accountDeletionRequestCardProps} theme={theme} />
 
       {isAdmin && (
         <AccountDeletionAdminReviewSection {...accountDeletionAdminReviewSectionProps} />

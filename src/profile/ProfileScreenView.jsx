@@ -4,16 +4,20 @@ import ProfileScreenIdentityPanel from './ProfileScreenIdentityPanel';
 import ProfileScreenSheets from './ProfileScreenSheets';
 import ProfileScreenSupportSections from './ProfileScreenSupportSections';
 import ProfileTopBar from './ProfileTopBar';
+import { useAppTheme } from '../app/AppThemeContext';
 import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function ProfileScreenView({ model, mode = 'profile' }) {
   const { onClose, visible } = model;
   const isSettings = mode === 'settings';
+  const { theme, resolvedMode } = useAppTheme();
+  const themedModel = { ...model, theme, resolvedMode };
 
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 250,
-      background: '#080808',
+      background: theme.appBg,
+      color: theme.text,
       overflowY: 'auto',
       maxWidth: 430, margin: '0 auto',
       fontFamily: "'Space Grotesk', sans-serif",
@@ -24,27 +28,26 @@ export default function ProfileScreenView({ model, mode = 'profile' }) {
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
 
-      <ProfileTopBar onClose={onClose} />
+      <ProfileTopBar onClose={onClose} theme={theme} title={isSettings ? 'SETTINGS' : 'YOUR PROFILE'} />
 
       <div style={{ padding: '24px 24px 60px' }}>
-        <ProfileScreenIdentityPanel model={model} />
+        {!isSettings && <ProfileScreenIdentityPanel model={themedModel} />}
         {isSettings ? (
           <>
-            <ProfileScreenGrowthSections model={model} />
             {V1_PAID_FEATURES_ENABLED && (
               <>
-                <ProfileMonetizationSections model={model} mode="commerce" />
-                <ProfileMonetizationSections model={model} mode="prelaunch" />
+                <ProfileMonetizationSections model={themedModel} mode="commerce" />
+                <ProfileMonetizationSections model={themedModel} mode="prelaunch" />
               </>
             )}
-            <ProfileScreenSupportSections model={model} />
+            <ProfileScreenSupportSections model={themedModel} />
           </>
         ) : (
-          <ProfileScreenGrowthSections model={model} mode="profile" />
+          <ProfileScreenGrowthSections model={themedModel} mode="profile" />
         )}
       </div>
 
-      <ProfileScreenSheets model={model} />
+      <ProfileScreenSheets model={themedModel} />
     </div>
   );
 }

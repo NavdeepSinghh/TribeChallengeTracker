@@ -47,7 +47,8 @@ describe('ProfileScreen settings render', () => {
       );
     });
 
-    expect(container.textContent).toContain('YOUR PROFILE');
+    expect(container.textContent).toContain('SETTINGS');
+    expect(container.textContent).toContain('Sign Out');
     await act(async () => {
       root.unmount();
     });
