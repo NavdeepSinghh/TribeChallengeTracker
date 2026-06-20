@@ -1,3 +1,5 @@
+import { useAppTheme } from "./AppThemeContext";
+
 export default function LogModalActions({
   actInfo,
   handle,
@@ -5,12 +7,14 @@ export default function LogModalActions({
   onClose,
   value,
 }) {
+  const { theme } = useAppTheme();
+
   return (
     <>
       <button onClick={handle} disabled={!value} style={{
         width: "100%", padding: "14px", borderRadius: 14, border: "none",
-        background: value && actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : "rgba(255,255,255,0.07)",
-        color: value ? "#fff" : "#555", fontSize: 15, fontWeight: 800, cursor: value ? "pointer" : "default",
+        background: value && actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : theme.cardBg,
+        color: value ? theme.textInverse : theme.muted, fontSize: 15, fontWeight: 800, cursor: value ? "pointer" : "default",
         fontFamily: "'Syne', sans-serif", letterSpacing: 0.5,
         boxShadow: value && actInfo ? `0 4px 20px ${actInfo.color}55` : "none",
         transition: "all .2s",
@@ -20,9 +24,9 @@ export default function LogModalActions({
 
       <button onClick={onClose} style={{
         width: "100%", marginTop: 10, padding: "13px", borderRadius: 14,
-        border: `1px solid ${loggedActivitiesCount ? "rgba(52,211,153,0.3)" : "rgba(255,255,255,0.07)"}`,
+        border: `1px solid ${loggedActivitiesCount ? "rgba(52,211,153,0.45)" : theme.cardBorder}`,
         background: "none",
-        color: loggedActivitiesCount ? "#34D399" : "#444",
+        color: loggedActivitiesCount ? "#059669" : theme.mutedStrong,
         fontSize: 14, fontWeight: 700, cursor: "pointer",
         fontFamily: "'Space Grotesk', sans-serif",
         transition: "all .2s",

@@ -1,4 +1,5 @@
 import { isNative, isWeb } from "../platformService";
+import { useAppTheme } from "./AppThemeContext";
 import WearableIdleSyncOptions from "./WearableIdleSyncOptions";
 import WearableSyncError from "./WearableSyncError";
 import WearableUnavailable from "./WearableUnavailable";
@@ -14,9 +15,11 @@ export default function WearableSyncPanel({
   syncState,
   syncWorkouts,
 }) {
+  const { theme } = useAppTheme();
+
   return (
-    <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-      <p style={{ color: "#555", fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>SYNC FROM WEARABLE</p>
+    <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: theme.cardBg, border: `1px solid ${theme.cardBorder}` }}>
+      <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>SYNC FROM WEARABLE</p>
 
       {isWeb && <WearableWebPromo />}
 
@@ -26,7 +29,7 @@ export default function WearableSyncPanel({
 
       {isNative && syncState === "loading" && (
         <div style={{ textAlign: "center", padding: "10px 0" }}>
-          <p style={{ margin: 0, fontSize: 13, color: "#888" }}>⏳  Fetching workouts…</p>
+          <p style={{ margin: 0, fontSize: 13, color: theme.textSoft }}>⏳  Fetching workouts…</p>
         </div>
       )}
 

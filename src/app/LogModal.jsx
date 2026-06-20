@@ -1,4 +1,5 @@
 import { openHealthSettings } from "../healthService";
+import { useAppTheme } from "./AppThemeContext";
 import LogActivityForm from "./LogActivityForm";
 import LogModalActions from "./LogModalActions";
 import LogModalHeader from "./LogModalHeader";
@@ -7,6 +8,7 @@ import WearableSyncPanel from "./WearableSyncPanel";
 import useLogModalState from "./useLogModalState";
 
 export default function LogModal({ onClose, onLog, todayActivities = [] }) {
+  const { theme } = useAppTheme();
   const {
     actInfo,
     applyWorkout,
@@ -26,8 +28,8 @@ export default function LogModal({ onClose, onLog, todayActivities = [] }) {
   } = useLogModalState({ onLog, todayActivities });
 
   return (
-    <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
-      <div style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto" }}>
+    <div style={{ position: "fixed", inset: 0, background: theme.overlayBg, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
+      <div style={{ background: theme.cardBgStrong, border: `1px solid ${theme.cardBorderStrong}`, borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 24px 80px rgba(0,0,0,0.24)" }}>
         <LogModalHeader loggedActivitiesCount={loggedActivities.length} onClose={onClose} />
         <LogTodaySummary loggedActivities={loggedActivities} />
         <LogActivityForm
