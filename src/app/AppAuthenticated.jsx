@@ -3,6 +3,7 @@ import AppAuthenticatedFrame from "./AppAuthenticatedFrame";
 import AppOverlays from "./AppOverlays";
 import AppTabContent from "./AppTabContent";
 import AppToast from "./AppToast";
+import { AppThemeProvider } from "./AppThemeContext";
 import { buildAppAuthenticatedProps } from "./appAuthenticatedProps";
 import useAppAuthenticatedState from "./useAppAuthenticatedState";
 
@@ -15,14 +16,16 @@ export default function AppAuthenticated({ user }) {
   } = buildAppAuthenticatedProps({ appState, user });
 
   return (
-    <AppAuthenticatedFrame>
-      <AppOverlays {...overlayProps} />
+    <AppThemeProvider>
+      <AppAuthenticatedFrame>
+        <AppOverlays {...overlayProps} />
 
-      <AppToast toast={appState.toast} />
+        <AppToast toast={appState.toast} />
 
-      <AppTabContent {...tabContentProps} />
+        <AppTabContent {...tabContentProps} />
 
-      <AppBottomNav {...bottomNavProps} />
-    </AppAuthenticatedFrame>
+        <AppBottomNav {...bottomNavProps} />
+      </AppAuthenticatedFrame>
+    </AppThemeProvider>
   );
 }

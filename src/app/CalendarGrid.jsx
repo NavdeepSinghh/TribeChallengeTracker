@@ -1,8 +1,10 @@
 import { ACTIVITY_TYPES, today, formatDate, getCalendarDays } from "./activityModel";
+import { useAppTheme } from "./AppThemeContext";
 import CalendarDayCell from "./CalendarDayCell";
 import ChallengeTimeline from "./ChallengeTimeline";
 
 export default function CalendarGrid({ challengeStats, history, challenges = [], onDayClick, setTab }) {
+  const { theme } = useAppTheme();
   const days = getCalendarDays(history);
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
   const weeks = [];
@@ -27,7 +29,7 @@ export default function CalendarGrid({ challengeStats, history, challenges = [],
     <div>
       <div style={{ display: "flex", gap: 4, marginBottom: 6 }}>
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(w => (
-          <div key={w} style={{ width: 36, textAlign: "center", fontSize: 9, color: "#555", fontWeight: 700, letterSpacing: 0.5, fontFamily: "monospace" }}>{w}</div>
+          <div key={w} style={{ width: 36, textAlign: "center", fontSize: 9, color: theme.muted, fontWeight: 700, letterSpacing: 0.5, fontFamily: "monospace" }}>{w}</div>
         ))}
       </div>
 

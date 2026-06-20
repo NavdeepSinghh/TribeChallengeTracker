@@ -1,4 +1,5 @@
 import { formatDate, getEntryActivities, today } from "./activityModel";
+import { useAppTheme } from "./AppThemeContext";
 
 export default function CalendarDayCell({
   actMap,
@@ -6,6 +7,7 @@ export default function CalendarDayCell({
   day,
   onDayClick,
 }) {
+  const { theme } = useAppTheme();
   const entry = day.activity;
   const acts = getEntryActivities(entry);
   const firstAct = acts[0] || null;
@@ -23,19 +25,19 @@ export default function CalendarDayCell({
       onClick={() => onDayClick && clickable && onDayClick(day)}
       style={{
         width: 36, height: 36, borderRadius: 8, position: "relative",
-        background: firstAct ? `${activityInfo?.color}33` : "rgba(255,255,255,0.04)",
-        border: `1.5px solid ${isToday ? "#fff" : firstAct ? activityInfo?.color : "rgba(255,255,255,0.06)"}`,
+        background: firstAct ? `${activityInfo?.color}33` : theme.cardBgStrong,
+        border: `1.5px solid ${isToday ? theme.text : firstAct ? activityInfo?.color : theme.cardBorder}`,
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
         cursor: clickable ? "pointer" : "default", transition: "all .2s",
         boxShadow: firstAct ? `0 0 8px ${activityInfo?.color}44` : "none",
       }}>
       <span style={{ fontSize: 14 }}>{firstAct ? activityInfo?.icon : ""}</span>
-      <span style={{ fontSize: 8, color: "#666", fontFamily: "monospace" }}>{day.day}</span>
+      <span style={{ fontSize: 8, color: theme.mutedStrong, fontFamily: "monospace" }}>{day.day}</span>
       {count > 1 && (
         <div style={{
           position: "absolute", top: -5, right: -5,
           width: 14, height: 14, borderRadius: "50%",
-          background: "#FF6B35", border: "2px solid #080808",
+          background: "#FF6B35", border: `2px solid ${theme.appBg}`,
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 8, fontWeight: 900, color: "#fff", fontFamily: "monospace", lineHeight: 1,
         }}>{count}</div>
@@ -45,7 +47,7 @@ export default function CalendarDayCell({
           position: "absolute", bottom: -1, left: "50%", transform: "translateX(-50%)",
           width: 6, height: 6, borderRadius: "50%",
           background: challenge.color,
-          border: "1.5px solid #080808",
+          border: `1.5px solid ${theme.appBg}`,
           boxShadow: `0 0 4px ${challenge.color}`,
         }} />
       )}

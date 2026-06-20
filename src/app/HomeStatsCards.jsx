@@ -1,6 +1,8 @@
 import { getEntryActivities } from "./activityModel";
+import { useAppTheme } from "./AppThemeContext";
 
 export default function HomeStatsCards({ myHistory, streak, totalPts }) {
+  const { theme } = useAppTheme();
   const daysActive = Object.keys(myHistory).filter(d => getEntryActivities(myHistory[d]).length > 0).length;
   const stats = [
     { label: "STREAK", value: streak, suffix: "🔥", color: "#FF6B35" },
@@ -19,10 +21,10 @@ export default function HomeStatsCards({ myHistory, streak, totalPts }) {
         );
 
         const style = {
-          background: "rgba(255,255,255,0.04)",
+          background: theme.cardBgStrong,
           borderRadius: 16,
           padding: "14px 12px",
-          border: "1px solid rgba(255,255,255,0.06)",
+          border: `1px solid ${theme.cardBorder}`,
           textAlign: "center",
           minWidth: 0,
         };
