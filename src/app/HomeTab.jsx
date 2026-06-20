@@ -34,10 +34,16 @@ export default function HomeTab({
         totalPts={totalPts}
         userProfile={userProfile}
       />
-      <HomeStatsCards challengeStats={challengeStats} myHistory={myHistory} setTab={setTab} streak={streak} totalPts={totalPts} />
+      <HomeStatsCards myHistory={myHistory} streak={streak} totalPts={totalPts} />
       <HomeLogActivityButton setShowLog={setShowLog} />
       <HomeActivityBreakdown actCounts={actCounts} />
-      <HomeCalendarSection myChallenges={myChallenges} myHistory={myHistory} setSelectedDay={setSelectedDay} />
+      <HomeCalendarSection
+        challengeStats={challengeStats}
+        myChallenges={myChallenges}
+        myHistory={myHistory}
+        setSelectedDay={setSelectedDay}
+        setTab={setTab}
+      />
       <HomeShareProgressPanel
         handleProgressShare={handleProgressShare}
         handleShareTemplateSelect={handleShareTemplateSelect}

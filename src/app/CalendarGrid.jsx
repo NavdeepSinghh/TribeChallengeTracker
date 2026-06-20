@@ -2,7 +2,7 @@ import { ACTIVITY_TYPES, today, formatDate, getCalendarDays } from "./activityMo
 import CalendarDayCell from "./CalendarDayCell";
 import ChallengeTimeline from "./ChallengeTimeline";
 
-export default function CalendarGrid({ history, challenges = [], onDayClick }) {
+export default function CalendarGrid({ challengeStats, history, challenges = [], onDayClick, setTab }) {
   const days = getCalendarDays(history);
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
   const weeks = [];
@@ -48,7 +48,12 @@ export default function CalendarGrid({ history, challenges = [], onDayClick }) {
         </div>
       ))}
 
-      <ChallengeTimeline challenges={activeChallenges} windowStart={windowStart} />
+      <ChallengeTimeline
+        challengeStats={challengeStats}
+        challenges={activeChallenges}
+        setTab={setTab}
+        windowStart={windowStart}
+      />
     </div>
   );
 }

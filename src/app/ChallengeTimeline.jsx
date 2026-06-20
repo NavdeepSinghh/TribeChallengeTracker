@@ -1,12 +1,37 @@
-export default function ChallengeTimeline({ challenges, windowStart }) {
+export default function ChallengeTimeline({ challengeStats = { joined: 0, owned: 0 }, challenges, setTab, windowStart }) {
   if (!challenges.length) return null;
 
   return (
     <div style={{ marginTop: 16, borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 14 }}>
-      <p style={{ color: "#444", fontSize: 9, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 10px" }}>CHALLENGE TIMELINE</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginBottom: 10 }}>
+        <p style={{ color: "#444", fontSize: 9, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: 0 }}>ACTIVE CHALLENGES</p>
+        <span style={{ color: "#555", fontSize: 9, fontWeight: 700, fontFamily: "monospace" }}>
+          {challengeStats.joined} JOINED · {challengeStats.owned} STARTED
+        </span>
+      </div>
       {challenges.map(challenge => (
         <ChallengeTimelineRow key={challenge.id} challenge={challenge} windowStart={windowStart} />
       ))}
+      <button
+        onClick={() => setTab && setTab("challenges")}
+        style={{
+          width: "100%",
+          marginTop: 2,
+          padding: "10px 0 0",
+          border: 0,
+          borderTop: "1px solid rgba(255,255,255,0.05)",
+          background: "transparent",
+          color: "#FF6B35",
+          cursor: "pointer",
+          fontSize: 10,
+          fontFamily: "monospace",
+          fontWeight: 800,
+          letterSpacing: 1,
+          textAlign: "right",
+        }}
+      >
+        VIEW CHALLENGES →
+      </button>
     </div>
   );
 }
