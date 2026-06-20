@@ -1,6 +1,5 @@
 import HomeActivityBreakdown from "./HomeActivityBreakdown";
 import HomeCalendarSection from "./HomeCalendarSection";
-import HomeChallengesSummary from "./HomeChallengesSummary";
 import HomeHero from "./HomeHero";
 import HomeLogActivityButton from "./HomeLogActivityButton";
 import HomeMobilePitch from "./HomeMobilePitch";
@@ -35,11 +34,10 @@ export default function HomeTab({
         totalPts={totalPts}
         userProfile={userProfile}
       />
-      <HomeStatsCards myHistory={myHistory} streak={streak} totalPts={totalPts} />
+      <HomeStatsCards challengeStats={challengeStats} myHistory={myHistory} setTab={setTab} streak={streak} totalPts={totalPts} />
       <HomeLogActivityButton setShowLog={setShowLog} />
       <HomeActivityBreakdown actCounts={actCounts} />
       <HomeCalendarSection myChallenges={myChallenges} myHistory={myHistory} setSelectedDay={setSelectedDay} />
-      <HomeChallengesSummary challengeStats={challengeStats} setTab={setTab} />
       <HomeShareProgressPanel
         handleProgressShare={handleProgressShare}
         handleShareTemplateSelect={handleShareTemplateSelect}
