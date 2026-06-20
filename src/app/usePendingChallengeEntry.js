@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { safeSessionGet, safeSessionRemove, safeSessionSet } from "../browserStorage";
 
 function getInitialPendingParam(paramName, storageKey) {
   const params = new URLSearchParams(window.location.search);
-  return params.get(paramName) || sessionStorage.getItem(storageKey) || null;
+  return params.get(paramName) || safeSessionGet(storageKey) || null;
 }
 
 export default function usePendingChallengeEntry(setTab) {
@@ -11,16 +12,16 @@ export default function usePendingChallengeEntry(setTab) {
 
   useEffect(() => {
     if (!pendingJoinCode) return;
-    sessionStorage.setItem("pendingJoinCode", pendingJoinCode);
-    if (pendingReferralUid) sessionStorage.setItem("pendingReferralUid", pendingReferralUid);
+    safeSessionSet("pendingJoinCode", pendingJoinCode);
+    if (pendingReferralUid) safeSessionSet("pendingReferralUid", pendingReferralUid);
     setTab("challenges");
   }, [pendingJoinCode, pendingReferralUid, setTab]);
 
   const clearPendingChallengeEntry = () => {
     setPendingJoinCode(null);
     setPendingReferralUid(null);
-    sessionStorage.removeItem("pendingJoinCode");
-    sessionStorage.removeItem("pendingReferralUid");
+    safeSessionRemove("pendingJoinCode");
+    safeSessionRemove("pendingReferralUid");
   };
 
   return {

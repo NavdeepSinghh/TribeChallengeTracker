@@ -4,6 +4,7 @@ import AuthScreen from "./AuthScreen";
 import OnboardingScreen from "./OnboardingScreen";
 import AppAuthenticated from "./app/AppAuthenticated";
 import useOnboardingStatus from "./app/useOnboardingStatus";
+import { safeSessionSet } from "./browserStorage";
 
 function capturePendingChallengeInvite() {
   const params = new URLSearchParams(window.location.search);
@@ -13,10 +14,10 @@ function capturePendingChallengeInvite() {
   const sanitizedReferral = referralUid?.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 128);
 
   if (sanitizedCode) {
-    sessionStorage.setItem("pendingJoinCode", sanitizedCode);
+    safeSessionSet("pendingJoinCode", sanitizedCode);
   }
   if (sanitizedReferral) {
-    sessionStorage.setItem("pendingReferralUid", sanitizedReferral);
+    safeSessionSet("pendingReferralUid", sanitizedReferral);
   }
 }
 
