@@ -11,7 +11,8 @@ import { auth, googleProvider } from './firebase';
 import { isNative } from './platformService';
 
 export default function useAuthScreenState() {
-  const [mode, setMode] = useState('signin');
+  const hasInvite = new URLSearchParams(window.location.search).has('join');
+  const [mode, setMode] = useState(hasInvite ? 'signup' : 'signin');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

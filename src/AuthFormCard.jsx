@@ -20,11 +20,23 @@ export default function AuthFormCard({
 }) {
   return (
     <div style={{
-      width: '100%', maxWidth: 400,
-      background: 'rgba(255,255,255,0.03)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: 24, padding: 28,
+      width: '100%',
+      background: 'rgba(255,255,255,0.045)',
+      border: '1px solid rgba(255,255,255,0.1)',
+      borderRadius: 18,
+      padding: 22,
+      boxShadow: '0 24px 80px rgba(0,0,0,0.36)',
     }}>
+      <div style={{ marginBottom: 18 }}>
+        <p style={{ margin: '0 0 6px', color: '#fff', fontSize: 20, fontWeight: 900, fontFamily: "'Syne', sans-serif" }}>
+          {mode === 'signin' ? 'Welcome back' : 'Start your first challenge'}
+        </p>
+        <p style={{ margin: 0, color: '#777', fontSize: 13, lineHeight: 1.45 }}>
+          {mode === 'signin'
+            ? 'Sign in to log today, check your streak, and open invites.'
+            : 'Create your account, join the invite, and log your first activity.'}
+        </p>
+      </div>
       <AuthModeToggle mode={mode} onSwitchMode={onSwitchMode} />
       <GoogleAuthButton loading={loading} onGoogle={onGoogle} />
 
@@ -37,7 +49,7 @@ export default function AuthFormCard({
       {mode === 'signup' && (
         <input
           value={name} onChange={e => setName(e.target.value)}
-          placeholder="Full name" style={authInputStyle}
+          placeholder="Name" style={authInputStyle}
         />
       )}
       <input
@@ -78,7 +90,7 @@ export default function AuthFormCard({
         boxShadow: '0 4px 20px rgba(255,107,53,0.35)',
         opacity: loading ? 0.7 : 1, transition: 'opacity .2s',
       }}>
-        {loading ? '…' : mode === 'signin' ? 'Sign In' : 'Create Account'}
+        {loading ? '…' : mode === 'signin' ? 'Sign in' : 'Create account'}
       </button>
     </div>
   );
