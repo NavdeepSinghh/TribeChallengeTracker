@@ -28,13 +28,13 @@ describe("challenge share helpers", () => {
   it("builds stable referral invite links and campaign copy", () => {
     const shareLink = buildChallengeShareLink({
       inviteCode: challenge.inviteCode,
-      origin: "https://app.risewiththetribe.com",
+      origin: "https://tribechallengetracker.web.app",
       refUid: "user-123",
     });
 
-    expect(shareLink).toBe("https://app.risewiththetribe.com?join=ABCD12&ref=user-123");
+    expect(shareLink).toBe("https://tribechallengetracker.web.app?join=ABCD12&ref=user-123");
     expect(campaignShareText(challenge, shareLink)).toBe(
-      "Join my Summer Shred 21! challenge on Rise With The Tribe.\nBring your training partner.\n#TribeLaunch https://app.risewiththetribe.com?join=ABCD12&ref=user-123"
+      "Join my Summer Shred 21! challenge on Rise With The Tribe.\nBring your training partner.\n#TribeLaunch https://tribechallengetracker.web.app?join=ABCD12&ref=user-123"
     );
   });
 

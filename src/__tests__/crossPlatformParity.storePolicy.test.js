@@ -20,10 +20,10 @@ describe('cross-platform store policy parity source checks', () => {
       expect(source).toContain('Terms of Use');
       expect(source).toContain('Support');
       expect(source).toContain('Data Deletion');
-      expect(source).toContain('https://risewiththetribe.app/privacy.html');
-      expect(source).toContain('https://risewiththetribe.app/terms.html');
-      expect(source).toContain('https://risewiththetribe.app/support.html');
-      expect(source).toContain('https://risewiththetribe.app/data-deletion.html');
+      expect(source).toContain('https://tribechallengetracker.web.app/privacy.html');
+      expect(source).toContain('https://tribechallengetracker.web.app/terms.html');
+      expect(source).toContain('https://tribechallengetracker.web.app/support.html');
+      expect(source).toContain('https://tribechallengetracker.web.app/data-deletion.html');
       expect(source).toContain('account/data deletion resources');
     });
     expect(privacyPage).toContain('Privacy Policy');

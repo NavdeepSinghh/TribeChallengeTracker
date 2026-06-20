@@ -2,10 +2,10 @@ export const ACCENT = '#FF6B35';
 export const GOLD = '#FFD700';
 
 export const POLICY_LINKS = [
-  { id: 'privacy', label: 'Privacy Policy', url: 'https://risewiththetribe.app/privacy.html' },
-  { id: 'terms', label: 'Terms of Use', url: 'https://risewiththetribe.app/terms.html' },
-  { id: 'support', label: 'Support', url: 'https://risewiththetribe.app/support.html' },
-  { id: 'data_deletion', label: 'Data Deletion', url: 'https://risewiththetribe.app/data-deletion.html' },
+  { id: 'privacy', label: 'Privacy Policy', url: 'https://tribechallengetracker.web.app/privacy.html' },
+  { id: 'terms', label: 'Terms of Use', url: 'https://tribechallengetracker.web.app/terms.html' },
+  { id: 'support', label: 'Support', url: 'https://tribechallengetracker.web.app/support.html' },
+  { id: 'data_deletion', label: 'Data Deletion', url: 'https://tribechallengetracker.web.app/data-deletion.html' },
 ];
 
 export const GOAL_LABELS = {

@@ -13,7 +13,7 @@ export function buildCreatorHostingCopy({
   const creatorLaunchChallenge = creatorOwnedChallenges
     .filter(challenge => !challenge.endDate || new Date(challenge.endDate) >= new Date())
     .sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''))[0] || creatorOwnedChallenges[0];
-  const creatorLaunchLink = creatorLaunchChallenge?.inviteCode ? `https://risewiththetribe.app?join=${creatorLaunchChallenge.inviteCode}&ref=${userId}` : '';
+  const creatorLaunchLink = creatorLaunchChallenge?.inviteCode ? `https://tribechallengetracker.web.app?join=${creatorLaunchChallenge.inviteCode}&ref=${userId}` : '';
   const creatorLaunchCopy = creatorLaunchChallenge
     ? [
         `I am hosting ${creatorLaunchChallenge.name} inside Rise With The Tribe.`,
