@@ -1,16 +1,28 @@
 export function buildProfileUtilitySectionProps({
   disableReminder,
+  displayNameDraft,
+  displayNameMessage,
   handleReminder,
+  handleDisplayNameSave,
+  isSavingDisplayName,
   onSignOut,
+  profile,
   reminderError,
   reminderLabel,
+  setDisplayNameDraft,
   user,
 }) {
   return {
+    displayNameDraft,
+    displayNameMessage,
+    isSavingDisplayName,
     reminderLabel,
     reminderError,
+    onDisplayNameSave: handleDisplayNameSave,
     onReminder: handleReminder,
     onReminderOff: disableReminder,
+    profile,
+    setDisplayNameDraft,
     user,
     onSignOut,
   };

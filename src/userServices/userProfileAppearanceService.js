@@ -2,6 +2,7 @@ import {
   deleteField, doc, getDoc, serverTimestamp, setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
+import { normalizeDisplayName } from '../displayNameUtils';
 
 async function updateJoinedChallengeMembers(uid, payload) {
   const userRef = doc(db, 'users', uid);
@@ -43,6 +44,16 @@ export async function saveSocialProfile(uid, { instagramHandle }) {
     .slice(0, 30);
 
   const payload = { instagramHandle: normalized };
+  await setDoc(doc(db, 'users', uid), payload, { merge: true });
+  await updateJoinedChallengeMembers(uid, payload);
+  return normalized;
+}
+
+export async function saveDisplayName(uid, { displayName }) {
+  const normalized = normalizeDisplayName(displayName);
+  if (!normalized) throw new Error('Display name is required.');
+
+  const payload = { displayName: normalized };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
   await updateJoinedChallengeMembers(uid, payload);
   return normalized;

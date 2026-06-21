@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { isMember, joinChallenge } from '../challengeService';
+import { getUserProfile, saveDisplayName } from '../userService';
+import { isPlaceholderDisplayName, normalizeDisplayName } from '../displayNameUtils';
 import { buildChallengeShareLink, campaignShareText, shareChallengeLaunchCard } from './challengeShare';
 
 export default function useChallengeDetailActions({ challenge, onJoined, pendingReferralUid }) {
@@ -22,6 +24,13 @@ export default function useChallengeDetailActions({ challenge, onJoined, pending
 
     setLoading(true);
     try {
+      const profile = await getUserProfile(user.uid);
+      if (isPlaceholderDisplayName(profile?.displayName || user.displayName)) {
+        const enteredName = window.prompt('Enter the display name other members will see on challenge leaderboards:');
+        const displayName = normalizeDisplayName(enteredName);
+        if (!displayName) return;
+        await saveDisplayName(user.uid, { displayName });
+      }
       const referralUid = pendingReferralUid || sessionStorage.getItem('pendingReferralUid') || '';
       await joinChallenge(user.uid, challenge.id, referralUid);
       sessionStorage.removeItem('pendingReferralUid');

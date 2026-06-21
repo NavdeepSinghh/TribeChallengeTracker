@@ -6,6 +6,7 @@ export {
 export {
   saveProfileAppearance,
   saveProfileCosmetics,
+  saveDisplayName,
   saveSocialProfile,
 } from './userProfileAppearanceService';
 export {

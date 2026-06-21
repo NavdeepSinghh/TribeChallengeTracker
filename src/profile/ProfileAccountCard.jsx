@@ -1,4 +1,14 @@
-export default function ProfileAccountCard({ user, onSignOut, theme }) {
+export default function ProfileAccountCard({
+  displayNameDraft = '',
+  displayNameMessage = '',
+  isSavingDisplayName = false,
+  onDisplayNameSave,
+  onSignOut,
+  profile,
+  setDisplayNameDraft,
+  theme,
+  user,
+}) {
   const palette = theme || {
     cardBg: 'rgba(255,255,255,0.03)',
     cardBorder: 'rgba(255,255,255,0.06)',
@@ -19,6 +29,55 @@ export default function ProfileAccountCard({ user, onSignOut, theme }) {
         background: palette.cardBg, border: `1px solid ${palette.cardBorder}`,
         borderRadius: 16, padding: '0 16px 4px',
       }}>
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${palette.divider}` }}>
+          <span style={{ fontSize: 9, color: palette.mutedStrong, fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>DISPLAY NAME</span>
+          <input
+            aria-label="Display name"
+            maxLength={40}
+            onChange={e => setDisplayNameDraft?.(e.target.value)}
+            placeholder={profile?.displayName || user.displayName || 'Your public name'}
+            style={{
+              width: '100%',
+              boxSizing: 'border-box',
+              marginTop: 8,
+              border: `1px solid ${palette.cardBorder}`,
+              borderRadius: 12,
+              padding: '11px 12px',
+              background: palette.cardBg,
+              color: palette.textSoft,
+              fontSize: 14,
+              fontWeight: 700,
+              outline: 'none',
+            }}
+            value={displayNameDraft}
+          />
+          <p style={{ color: palette.mutedStrong, fontSize: 11, lineHeight: 1.45, margin: '8px 0 10px' }}>
+            This is the name other members see on challenge leaderboards and tribe activity.
+          </p>
+          <button
+            disabled={isSavingDisplayName}
+            onClick={onDisplayNameSave}
+            style={{
+              width: '100%',
+              padding: '11px',
+              borderRadius: 12,
+              border: 'none',
+              background: '#34D399',
+              color: '#07110C',
+              fontSize: 13,
+              fontWeight: 900,
+              cursor: isSavingDisplayName ? 'default' : 'pointer',
+              opacity: isSavingDisplayName ? 0.65 : 1,
+            }}
+          >
+            {isSavingDisplayName ? 'Saving...' : 'Save Display Name'}
+          </button>
+          {displayNameMessage && (
+            <p style={{ color: displayNameMessage.includes('saved') ? '#34D399' : '#FF6B35', fontSize: 11, fontWeight: 700, margin: '8px 0 0' }}>
+              {displayNameMessage}
+            </p>
+          )}
+        </div>
         {rows.map((row, i) => (
           <div key={row.label} style={{
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',

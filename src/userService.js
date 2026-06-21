@@ -138,6 +138,7 @@ export {
   saveOnboarding,
   saveProfileAppearance,
   saveProfileCosmetics,
+  saveDisplayName,
   saveSharePreferences,
   saveSocialProfile,
 } from './userServices/userProfileService';

@@ -3,10 +3,16 @@ import ProfilePolicyLinksCard from './ProfilePolicyLinksCard';
 import ProfileReminderCard from './ProfileReminderCard';
 
 export default function ProfileUtilitySection({
+  displayNameDraft,
+  displayNameMessage,
+  isSavingDisplayName,
   reminderLabel,
   reminderError,
+  onDisplayNameSave,
   onReminder,
   onReminderOff,
+  profile,
+  setDisplayNameDraft,
   user,
   onSignOut,
   theme,
@@ -21,7 +27,17 @@ export default function ProfileUtilitySection({
         theme={theme}
       />
       <ProfilePolicyLinksCard theme={theme} />
-      <ProfileAccountCard onSignOut={onSignOut} theme={theme} user={user} />
+      <ProfileAccountCard
+        displayNameDraft={displayNameDraft}
+        displayNameMessage={displayNameMessage}
+        isSavingDisplayName={isSavingDisplayName}
+        onDisplayNameSave={onDisplayNameSave}
+        onSignOut={onSignOut}
+        profile={profile}
+        setDisplayNameDraft={setDisplayNameDraft}
+        theme={theme}
+        user={user}
+      />
     </>
   );
 }

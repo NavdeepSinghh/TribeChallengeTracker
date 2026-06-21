@@ -1,16 +1,44 @@
-import { saveProfileAppearance } from '../userService';
+import { saveDisplayName, saveProfileAppearance } from '../userService';
+import { normalizeDisplayName } from '../displayNameUtils';
 import { resizeImageToBase64 } from './profileMedia';
 
 export function buildProfileAppearanceActionHandlers({
   avatarColor,
   avatarEmoji,
+  displayNameDraft,
   profile,
   setAppearanceError,
+  setDisplayNameDraft,
+  setDisplayNameMessage,
   setIsSavingAppearance,
+  setIsSavingDisplayName,
   setProfile,
   user,
   onProfileUpdated,
 }) {
+  const handleDisplayNameSave = async () => {
+    const normalized = normalizeDisplayName(displayNameDraft);
+    if (!normalized) {
+      setDisplayNameMessage('Please enter the name you want other challenge members to see.');
+      return;
+    }
+
+    setIsSavingDisplayName(true);
+    setDisplayNameMessage('');
+    try {
+      const savedName = await saveDisplayName(user.uid, { displayName: normalized });
+      setDisplayNameDraft(savedName);
+      const nextProfile = { ...(profile || {}), displayName: savedName };
+      setProfile(p => ({ ...(p || {}), displayName: savedName }));
+      onProfileUpdated?.(nextProfile);
+      setDisplayNameMessage('Display name saved for challenges.');
+    } catch (err) {
+      setDisplayNameMessage(err?.message || 'Could not save display name.');
+    } finally {
+      setIsSavingDisplayName(false);
+    }
+  };
+
   const persistAppearance = async ({ profileImageData = profile?.profileImageData, avatarEmoji: emoji = avatarEmoji, avatarColor: color = avatarColor }) => {
     setIsSavingAppearance(true);
     setAppearanceError('');
@@ -62,6 +90,7 @@ export function buildProfileAppearanceActionHandlers({
   };
 
   return {
+    handleDisplayNameSave,
     handlePhotoUpload,
     persistAppearance,
   };

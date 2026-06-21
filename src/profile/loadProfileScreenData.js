@@ -58,6 +58,7 @@ import {
 export function loadProfileScreenData(userUid, setters) {
   getUserProfile(userUid).then(profile => {
     setters.setProfile(profile);
+    setters.setDisplayNameDraft(profile?.displayName || '');
     setters.setInstagramHandle(profile?.instagramHandle || '');
     setters.setGoalActiveDays(profile?.goals?.weeklyActiveDaysTarget || 5);
     setters.setGoalPoints(profile?.goals?.weeklyPointsTarget || 250);
