@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "tribelog.appearance";
-const DAY_THEME_ENABLED = false;
+const DAY_THEME_ENABLED = true;
 
 const AppThemeContext = createContext({
   mode: "system",
@@ -61,7 +61,7 @@ function getSystemMode() {
 
 function getInitialMode() {
   if (!DAY_THEME_ENABLED || typeof window === "undefined") return "night";
-  return localStorage.getItem(STORAGE_KEY) || "night";
+  return localStorage.getItem(STORAGE_KEY) || "system";
 }
 
 export function AppThemeProvider({ children }) {
