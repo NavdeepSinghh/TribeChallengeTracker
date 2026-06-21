@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "tribelog.appearance";
+const DAY_THEME_ENABLED = false;
 
 const AppThemeContext = createContext({
   mode: "system",
@@ -53,19 +54,21 @@ const PALETTES = {
 };
 
 function getSystemMode() {
+  if (!DAY_THEME_ENABLED) return "night";
   if (typeof window === "undefined") return "night";
   return window.matchMedia?.("(prefers-color-scheme: light)")?.matches ? "day" : "night";
 }
 
 function getInitialMode() {
-  if (typeof window === "undefined") return "system";
-  return localStorage.getItem(STORAGE_KEY) || "system";
+  if (!DAY_THEME_ENABLED || typeof window === "undefined") return "night";
+  return localStorage.getItem(STORAGE_KEY) || "night";
 }
 
 export function AppThemeProvider({ children }) {
   const [mode, setModeState] = useState(getInitialMode);
   const [systemMode, setSystemMode] = useState(getSystemMode);
-  const resolvedMode = mode === "system" ? systemMode : mode;
+  const requestedMode = mode === "system" ? systemMode : mode;
+  const resolvedMode = DAY_THEME_ENABLED ? requestedMode : "night";
   const theme = PALETTES[resolvedMode] || PALETTES.night;
 
   useEffect(() => {
@@ -85,8 +88,9 @@ export function AppThemeProvider({ children }) {
     mode,
     resolvedMode,
     setMode: nextMode => {
-      setModeState(nextMode);
-      localStorage.setItem(STORAGE_KEY, nextMode);
+      const safeMode = DAY_THEME_ENABLED ? nextMode : "night";
+      setModeState(safeMode);
+      localStorage.setItem(STORAGE_KEY, safeMode);
     },
     theme,
   }), [mode, resolvedMode, theme]);
