@@ -17,13 +17,19 @@ export default function useChallengeDetailActions({ challenge, onJoined, pending
   }, [challenge.id, user.uid]);
 
   const handleJoin = async () => {
+    const confirmed = window.confirm(`Join ${challenge.name}? You can leave later from the challenge screen.`);
+    if (!confirmed) return;
+
     setLoading(true);
-    const referralUid = pendingReferralUid || sessionStorage.getItem('pendingReferralUid') || '';
-    await joinChallenge(user.uid, challenge.id, referralUid);
-    sessionStorage.removeItem('pendingReferralUid');
-    setJoined(true);
-    onJoined?.();
-    setLoading(false);
+    try {
+      const referralUid = pendingReferralUid || sessionStorage.getItem('pendingReferralUid') || '';
+      await joinChallenge(user.uid, challenge.id, referralUid);
+      sessionStorage.removeItem('pendingReferralUid');
+      setJoined(true);
+      onJoined?.();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCopy = () => {
