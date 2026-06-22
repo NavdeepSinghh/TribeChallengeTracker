@@ -16,6 +16,7 @@ export default function LogModal({ onClose, onDeleteActivity, onLog, todayActivi
     handleDeleteActivity,
     handleSync,
     isSubmitLocked,
+    lastAddedActivityId,
     loggedActivities,
     note,
     setNote,
@@ -33,7 +34,11 @@ export default function LogModal({ onClose, onDeleteActivity, onLog, todayActivi
     <div style={{ position: "fixed", inset: 0, background: theme.overlayBg, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
       <div style={{ background: theme.cardBgStrong, border: `1px solid ${theme.cardBorderStrong}`, borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 24px 80px rgba(0,0,0,0.24)" }}>
         <LogModalHeader loggedActivitiesCount={loggedActivities.length} onClose={onClose} />
-        <LogTodaySummary loggedActivities={loggedActivities} onDeleteActivity={handleDeleteActivity} />
+        <LogTodaySummary
+          lastAddedActivityId={lastAddedActivityId}
+          loggedActivities={loggedActivities}
+          onDeleteActivity={handleDeleteActivity}
+        />
         <LogActivityForm
           actInfo={actInfo}
           note={note}

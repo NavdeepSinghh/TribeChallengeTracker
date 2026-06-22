@@ -9,23 +9,29 @@ export default function LogModalActions({
   value,
 }) {
   const { theme } = useAppTheme();
+  const hasLoggedToday = loggedActivitiesCount > 0;
+  const canSubmit = Boolean(value && !isSubmitLocked);
+  const pointsText = value ? ` · +${Math.floor(parseFloat(value || 0) * 2 + 5)} pts` : "";
 
   return (
     <>
       <button onClick={handle} disabled={!value || isSubmitLocked} style={{
-        width: "100%", padding: "14px", borderRadius: 14, border: "none",
+        width: "100%", padding: "14px", borderRadius: 14,
         background: isSubmitLocked
           ? "rgba(52,211,153,0.16)"
-          : value && actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : theme.cardBg,
-        color: isSubmitLocked ? "#059669" : value ? theme.textInverse : theme.muted,
-        fontSize: 15, fontWeight: 800, cursor: value && !isSubmitLocked ? "pointer" : "default",
+          : hasLoggedToday
+            ? "rgba(255,255,255,0.07)"
+            : value && actInfo ? `linear-gradient(135deg, ${actInfo.color}, ${actInfo.color}88)` : theme.cardBg,
+        color: isSubmitLocked ? "#059669" : hasLoggedToday ? theme.text : value ? theme.textInverse : theme.muted,
+        border: hasLoggedToday && !isSubmitLocked ? `1px solid ${theme.cardBorderStrong}` : "none",
+        fontSize: 15, fontWeight: 800, cursor: canSubmit ? "pointer" : "default",
         fontFamily: "'Syne', sans-serif", letterSpacing: 0.5,
-        boxShadow: value && actInfo && !isSubmitLocked ? `0 4px 20px ${actInfo.color}55` : "none",
+        boxShadow: value && actInfo && !isSubmitLocked && !hasLoggedToday ? `0 4px 20px ${actInfo.color}55` : "none",
         transition: "all .2s",
       }}>
         {isSubmitLocked
           ? "✓ Activity logged"
-          : `${actInfo?.icon || ""} Add Activity${value ? ` · +${Math.floor(parseFloat(value || 0) * 2 + 5)} pts` : ""}`}
+          : `${actInfo?.icon || ""} ${hasLoggedToday ? "Add another entry" : "Add Activity"}${pointsText}`}
       </button>
 
       <button onClick={onClose} style={{

@@ -11,6 +11,7 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
   const [syncWorkouts, setSyncWorkouts] = useState([]);
   const [syncError, setSyncError] = useState("");
   const [isSubmitLocked, setIsSubmitLocked] = useState(false);
+  const [lastAddedActivityId, setLastAddedActivityId] = useState("");
   const submitLockRef = useRef(false);
 
   const actInfo = ACTIVITY_TYPES.find(a => a.id === type);
@@ -31,6 +32,7 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
       loggedAt: dateStr,
     };
     onLog(entry);
+    setLastAddedActivityId(entry.id);
     setLoggedActivities(prev => [...prev, entry]);
     setValue("");
     setNote("");
@@ -70,6 +72,9 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
   const handleDeleteActivity = async (activity, index) => {
     if (!onDeleteActivity) return;
     const updatedDay = await onDeleteActivity(activity, index);
+    if (activity?.id && activity.id === lastAddedActivityId) {
+      setLastAddedActivityId("");
+    }
     if (updatedDay) {
       setLoggedActivities(getEntryActivities(updatedDay));
       return;
@@ -87,6 +92,7 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
     handleDeleteActivity,
     handleSync,
     isSubmitLocked,
+    lastAddedActivityId,
     loggedActivities,
     note,
     setNote,
