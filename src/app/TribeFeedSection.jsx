@@ -24,8 +24,13 @@ export default function TribeFeedSection({ onLogActivity }) {
     <>
       <style>{`
         @keyframes tribeFeedSlideIn {
-          from { opacity: 0; transform: translateY(10px) scale(0.985); }
+          0% { opacity: 0; transform: translate3d(18px, 14px, 0) scale(0.94); }
+          70% { opacity: 1; transform: translate3d(-2px, -1px, 0) scale(1.015); }
           to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes tribeFeedLatestGlow {
+          0%, 100% { box-shadow: 0 0 0 rgba(255, 107, 53, 0), inset 0 0 0 rgba(255, 215, 0, 0); }
+          50% { box-shadow: 0 0 22px rgba(255, 107, 53, 0.22), inset 0 0 18px rgba(255, 215, 0, 0.08); }
         }
         @keyframes tribeFeedPulse {
           0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.34); }
@@ -36,35 +41,51 @@ export default function TribeFeedSection({ onLogActivity }) {
           50% { opacity: 1; transform: scale(1.08); }
         }
         @keyframes tribeWorkoutRun {
-          0%, 100% { transform: translate3d(-1px, 0, 0) rotate(-5deg); }
-          50% { transform: translate3d(2px, -2px, 0) rotate(6deg); }
+          0%, 100% { transform: translate3d(-4px, 2px, 0) rotate(-12deg) scale(0.92); }
+          50% { transform: translate3d(5px, -5px, 0) rotate(14deg) scale(1.16); }
         }
         @keyframes tribeWorkoutWalk {
-          0%, 100% { transform: translate3d(-1px, 0, 0) rotate(-3deg); }
-          50% { transform: translate3d(1px, -1px, 0) rotate(3deg); }
+          0%, 100% { transform: translate3d(-3px, 1px, 0) rotate(-8deg); }
+          50% { transform: translate3d(4px, -3px, 0) rotate(9deg); }
         }
         @keyframes tribeWorkoutCycle {
-          0%, 100% { transform: rotate(-8deg) translateY(0); }
-          50% { transform: rotate(8deg) translateY(-1px); }
+          0% { transform: rotate(-18deg) translateY(1px) scale(0.96); }
+          50% { transform: rotate(18deg) translateY(-4px) scale(1.12); }
+          100% { transform: rotate(-18deg) translateY(1px) scale(0.96); }
         }
         @keyframes tribeWorkoutSwim {
-          0%, 100% { transform: translate3d(-1px, 1px, 0) rotate(-4deg); }
-          50% { transform: translate3d(2px, -2px, 0) rotate(4deg); }
+          0%, 100% { transform: translate3d(-5px, 3px, 0) rotate(-10deg); }
+          50% { transform: translate3d(6px, -4px, 0) rotate(10deg); }
         }
         @keyframes tribeWorkoutYoga {
-          0%, 100% { transform: scale(0.96); opacity: 0.78; }
-          50% { transform: scale(1.08); opacity: 1; }
+          0%, 100% { transform: scale(0.88); opacity: 0.72; }
+          50% { transform: scale(1.18); opacity: 1; }
         }
         @keyframes tribeWorkoutGym {
-          0%, 100% { transform: scale(0.96) rotate(-6deg); }
-          50% { transform: scale(1.12) rotate(6deg); }
+          0%, 100% { transform: scale(0.88) rotate(-14deg); }
+          50% { transform: scale(1.24) rotate(14deg); }
         }
         @keyframes tribeWorkoutDefault {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-2px) scale(1.05); }
+          0%, 100% { transform: translateY(2px) scale(0.94); }
+          50% { transform: translateY(-5px) scale(1.14); }
+        }
+        @keyframes tribeBubbleAura {
+          0%, 100% { transform: scale(0.86); opacity: 0.2; }
+          50% { transform: scale(1.22); opacity: 0.52; }
+        }
+        @keyframes tribeSparkPop {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(0.55); opacity: 0.25; }
+          50% { transform: translate3d(var(--spark-x), var(--spark-y), 0) scale(1); opacity: 1; }
         }
         .tribe-feed-live-card {
           animation: tribeFeedSlideIn 420ms cubic-bezier(.2,.8,.2,1) both;
+        }
+        .tribe-feed-live-card-latest {
+          animation-name: tribeFeedSlideIn, tribeFeedLatestGlow;
+          animation-duration: 420ms, 2.4s;
+          animation-timing-function: cubic-bezier(.2,.8,.2,1), ease-in-out;
+          animation-fill-mode: both, none;
+          animation-iteration-count: 1, infinite;
         }
         .tribe-feed-live-avatar {
           animation: tribeFeedPulse 1.8s ease-in-out infinite;
@@ -74,11 +95,11 @@ export default function TribeFeedSection({ onLogActivity }) {
         }
         .tribe-workout-emoji {
           display: inline-block;
-          width: 1.45em;
-          min-width: 1.45em;
           text-align: center;
           transform-origin: 50% 72%;
           will-change: transform;
+          position: relative;
+          z-index: 2;
         }
         .tribe-workout-emoji-run { animation: tribeWorkoutRun 900ms ease-in-out infinite; }
         .tribe-workout-emoji-walk { animation: tribeWorkoutWalk 1150ms ease-in-out infinite; }
@@ -87,18 +108,56 @@ export default function TribeFeedSection({ onLogActivity }) {
         .tribe-workout-emoji-yoga { animation: tribeWorkoutYoga 1800ms ease-in-out infinite; }
         .tribe-workout-emoji-gym { animation: tribeWorkoutGym 1050ms ease-in-out infinite; }
         .tribe-workout-emoji-default { animation: tribeWorkoutDefault 1400ms ease-in-out infinite; }
+        .tribe-workout-bubble {
+          position: relative;
+          display: inline-grid;
+          place-items: center;
+          flex: 0 0 auto;
+          border-radius: 16px;
+          overflow: visible;
+          background: radial-gradient(circle at 32% 26%, rgba(255,255,255,0.72), rgba(255,215,0,0.18) 34%, rgba(255,107,53,0.2) 100%);
+          border: 1px solid rgba(255, 107, 53, 0.34);
+          box-shadow: 0 8px 20px rgba(255, 107, 53, 0.16);
+        }
+        .tribe-workout-bubble::before {
+          content: "";
+          position: absolute;
+          inset: -6px;
+          border-radius: 20px;
+          background: radial-gradient(circle, rgba(52, 211, 153, 0.34), rgba(52, 211, 153, 0));
+          animation: tribeBubbleAura 1.7s ease-in-out infinite;
+          z-index: 0;
+        }
+        .tribe-workout-spark {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          border-radius: 999px;
+          background: #FFD700;
+          animation: tribeSparkPop 1.35s ease-in-out infinite;
+          z-index: 3;
+        }
+        .tribe-workout-spark:nth-child(2) { --spark-x: 8px; --spark-y: -12px; right: 2px; top: 4px; }
+        .tribe-workout-spark:nth-child(3) { --spark-x: -10px; --spark-y: -8px; left: 4px; top: 8px; animation-delay: 160ms; background: #34D399; }
+        .tribe-workout-spark:nth-child(4) { --spark-x: 12px; --spark-y: 8px; right: 6px; bottom: 4px; animation-delay: 300ms; background: #FF6B35; }
         @media (prefers-reduced-motion: reduce) {
           .tribe-feed-live-card,
+          .tribe-feed-live-card-latest,
           .tribe-feed-live-avatar,
           .tribe-feed-live-dot,
-          .tribe-workout-emoji {
+          .tribe-workout-emoji,
+          .tribe-workout-bubble::before,
+          .tribe-workout-spark {
             animation: none !important;
           }
         }
       `}</style>
       <div style={{ padding: "0 20px 24px" }}>
         <button
-          onClick={() => setShowSheet(true)}
+          onClick={() => {
+            window.navigator?.vibrate?.(12);
+            setShowSheet(true);
+          }}
           style={{
             width: "100%",
             textAlign: "left",
@@ -134,7 +193,7 @@ export default function TribeFeedSection({ onLogActivity }) {
               </>
             ) : previewEntries.length ? (
               previewEntries.map((entry, index) => (
-                <TribeFeedCard key={entry.id} entry={entry} index={index} />
+                <TribeFeedCard key={entry.id} entry={entry} index={index} isLatest={index === 0} />
               ))
             ) : (
               <div>
@@ -212,7 +271,7 @@ export default function TribeFeedSection({ onLogActivity }) {
                 </>
               ) : entries.length ? (
                 entries.map((entry, index) => (
-                  <TribeFeedCard key={entry.id} entry={entry} index={index} />
+                  <TribeFeedCard key={entry.id} entry={entry} index={index} isLatest={index === 0} isExpanded />
                 ))
               ) : (
                 <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, borderRadius: 16, padding: 14 }}>
@@ -228,6 +287,7 @@ export default function TribeFeedSection({ onLogActivity }) {
 
             <button
               onClick={() => {
+                window.navigator?.vibrate?.(18);
                 setShowSheet(false);
                 onLogActivity?.();
               }}
@@ -265,7 +325,7 @@ function LoadingRow({ theme }) {
   );
 }
 
-function TribeFeedCard({ entry, index = 0 }) {
+function TribeFeedCard({ entry, index = 0, isLatest = false, isExpanded = false }) {
   const { theme } = useAppTheme();
   const displayName = entry.displayName || "Tribe member";
   const value = Number(entry.value || 0);
@@ -273,12 +333,14 @@ function TribeFeedCard({ entry, index = 0 }) {
   const streakText = entry.currentStreak > 0 ? ` · 🔥 ${entry.currentStreak} day streak` : "";
 
   return (
-    <div className="tribe-feed-live-card" style={{
+    <div className={`tribe-feed-live-card${isLatest ? " tribe-feed-live-card-latest" : ""}`} style={{
       display: "flex",
       gap: 10,
       alignItems: "flex-start",
-      background: theme.cardBgStrong,
-      border: `1px solid ${theme.cardBorder}`,
+      background: isLatest
+        ? `linear-gradient(135deg, ${theme.cardBgStrong}, rgba(255,107,53,0.10))`
+        : theme.cardBgStrong,
+      border: `1px solid ${isLatest ? "rgba(255,107,53,0.38)" : theme.cardBorder}`,
       borderRadius: 14,
       padding: 10,
       animationDelay: `${Math.min(index, 4) * 65}ms`,
@@ -304,8 +366,8 @@ function TribeFeedCard({ entry, index = 0 }) {
             {timeAgo(entry.loggedAt)}
           </span>
         </div>
-        <p style={{ margin: "3px 0 0", color: theme.textSoft, fontSize: 12, fontWeight: 700, lineHeight: 1.35, display: "flex", alignItems: "center", gap: 4 }}>
-          <AnimatedActivityEmoji entry={entry} />
+        <p style={{ margin: "5px 0 0", color: theme.textSoft, fontSize: isExpanded ? 13 : 12, fontWeight: 700, lineHeight: 1.35, display: "flex", alignItems: "center", gap: 8 }}>
+          <AnimatedActivityEmoji entry={entry} isLatest={isLatest} isExpanded={isExpanded} index={index} />
           <span style={{ minWidth: 0 }}>
             {entry.activityLabel} · {valueText} {entry.unit} · {entry.points || 0} pts{streakText}
           </span>
@@ -315,11 +377,29 @@ function TribeFeedCard({ entry, index = 0 }) {
   );
 }
 
-function AnimatedActivityEmoji({ entry }) {
+function AnimatedActivityEmoji({ entry, isLatest = false, isExpanded = false, index = 0 }) {
   const emoji = entry.activityEmoji || "🔥";
+  const size = isExpanded ? 42 : 34;
   return (
-    <span className={`tribe-workout-emoji ${workoutMotionClass(entry)}`} aria-hidden="true">
-      {emoji}
+    <span
+      className="tribe-workout-bubble"
+      style={{
+        width: size,
+        height: size,
+        animationDelay: `${Math.min(index, 4) * 120}ms`,
+      }}
+      aria-hidden="true"
+    >
+      <span className={`tribe-workout-emoji ${workoutMotionClass(entry)}`} style={{ fontSize: isExpanded ? 22 : 18 }}>
+        {emoji}
+      </span>
+      {isLatest && (
+        <>
+          <span className="tribe-workout-spark" />
+          <span className="tribe-workout-spark" />
+          <span className="tribe-workout-spark" />
+        </>
+      )}
     </span>
   );
 }
