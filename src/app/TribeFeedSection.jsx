@@ -35,6 +35,34 @@ export default function TribeFeedSection({ onLogActivity }) {
           0%, 100% { opacity: 0.5; transform: scale(0.88); }
           50% { opacity: 1; transform: scale(1.08); }
         }
+        @keyframes tribeWorkoutRun {
+          0%, 100% { transform: translate3d(-1px, 0, 0) rotate(-5deg); }
+          50% { transform: translate3d(2px, -2px, 0) rotate(6deg); }
+        }
+        @keyframes tribeWorkoutWalk {
+          0%, 100% { transform: translate3d(-1px, 0, 0) rotate(-3deg); }
+          50% { transform: translate3d(1px, -1px, 0) rotate(3deg); }
+        }
+        @keyframes tribeWorkoutCycle {
+          0%, 100% { transform: rotate(-8deg) translateY(0); }
+          50% { transform: rotate(8deg) translateY(-1px); }
+        }
+        @keyframes tribeWorkoutSwim {
+          0%, 100% { transform: translate3d(-1px, 1px, 0) rotate(-4deg); }
+          50% { transform: translate3d(2px, -2px, 0) rotate(4deg); }
+        }
+        @keyframes tribeWorkoutYoga {
+          0%, 100% { transform: scale(0.96); opacity: 0.78; }
+          50% { transform: scale(1.08); opacity: 1; }
+        }
+        @keyframes tribeWorkoutGym {
+          0%, 100% { transform: scale(0.96) rotate(-6deg); }
+          50% { transform: scale(1.12) rotate(6deg); }
+        }
+        @keyframes tribeWorkoutDefault {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-2px) scale(1.05); }
+        }
         .tribe-feed-live-card {
           animation: tribeFeedSlideIn 420ms cubic-bezier(.2,.8,.2,1) both;
         }
@@ -44,10 +72,26 @@ export default function TribeFeedSection({ onLogActivity }) {
         .tribe-feed-live-dot {
           animation: tribeFeedLiveDot 1.2s ease-in-out infinite;
         }
+        .tribe-workout-emoji {
+          display: inline-block;
+          width: 1.45em;
+          min-width: 1.45em;
+          text-align: center;
+          transform-origin: 50% 72%;
+          will-change: transform;
+        }
+        .tribe-workout-emoji-run { animation: tribeWorkoutRun 900ms ease-in-out infinite; }
+        .tribe-workout-emoji-walk { animation: tribeWorkoutWalk 1150ms ease-in-out infinite; }
+        .tribe-workout-emoji-cycle { animation: tribeWorkoutCycle 1050ms ease-in-out infinite; }
+        .tribe-workout-emoji-swim { animation: tribeWorkoutSwim 1300ms ease-in-out infinite; }
+        .tribe-workout-emoji-yoga { animation: tribeWorkoutYoga 1800ms ease-in-out infinite; }
+        .tribe-workout-emoji-gym { animation: tribeWorkoutGym 1050ms ease-in-out infinite; }
+        .tribe-workout-emoji-default { animation: tribeWorkoutDefault 1400ms ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) {
           .tribe-feed-live-card,
           .tribe-feed-live-avatar,
-          .tribe-feed-live-dot {
+          .tribe-feed-live-dot,
+          .tribe-workout-emoji {
             animation: none !important;
           }
         }
@@ -260,12 +304,35 @@ function TribeFeedCard({ entry, index = 0 }) {
             {timeAgo(entry.loggedAt)}
           </span>
         </div>
-        <p style={{ margin: "3px 0 0", color: theme.textSoft, fontSize: 12, fontWeight: 700, lineHeight: 1.35 }}>
-          {entry.activityEmoji} {entry.activityLabel} · {valueText} {entry.unit} · {entry.points || 0} pts{streakText}
+        <p style={{ margin: "3px 0 0", color: theme.textSoft, fontSize: 12, fontWeight: 700, lineHeight: 1.35, display: "flex", alignItems: "center", gap: 4 }}>
+          <AnimatedActivityEmoji entry={entry} />
+          <span style={{ minWidth: 0 }}>
+            {entry.activityLabel} · {valueText} {entry.unit} · {entry.points || 0} pts{streakText}
+          </span>
         </p>
       </div>
     </div>
   );
+}
+
+function AnimatedActivityEmoji({ entry }) {
+  const emoji = entry.activityEmoji || "🔥";
+  return (
+    <span className={`tribe-workout-emoji ${workoutMotionClass(entry)}`} aria-hidden="true">
+      {emoji}
+    </span>
+  );
+}
+
+function workoutMotionClass(entry) {
+  const descriptor = `${entry.activityType || ""} ${entry.activityLabel || ""} ${entry.activityEmoji || ""}`.toLowerCase();
+  if (descriptor.includes("run") || descriptor.includes("🏃")) return "tribe-workout-emoji-run";
+  if (descriptor.includes("walk") || descriptor.includes("🚶") || descriptor.includes("step")) return "tribe-workout-emoji-walk";
+  if (descriptor.includes("cycle") || descriptor.includes("bike") || descriptor.includes("biking") || descriptor.includes("🚴")) return "tribe-workout-emoji-cycle";
+  if (descriptor.includes("swim") || descriptor.includes("🏊")) return "tribe-workout-emoji-swim";
+  if (descriptor.includes("yoga") || descriptor.includes("🧘")) return "tribe-workout-emoji-yoga";
+  if (descriptor.includes("gym") || descriptor.includes("strength") || descriptor.includes("workout") || descriptor.includes("💪")) return "tribe-workout-emoji-gym";
+  return "tribe-workout-emoji-default";
 }
 
 function timeAgo(timestamp) {
