@@ -2,24 +2,56 @@ import { useEffect, useState } from "react";
 import { listenTodayTribeFeed } from "../userServices/tribeFeedService";
 import { useAppTheme } from "./AppThemeContext";
 
+const TODAY_TRIBE_FEED_LIMIT = 5;
+
 export default function TribeFeedSection({ onLogActivity }) {
   const { theme } = useAppTheme();
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
-  const previewEntries = entries.slice(0, 3);
+  const previewEntries = entries.slice(0, TODAY_TRIBE_FEED_LIMIT);
 
   useEffect(() => {
     setIsLoading(true);
     const unsubscribe = listenTodayTribeFeed(nextEntries => {
       setEntries(nextEntries);
       setIsLoading(false);
-    }, 10);
+    }, TODAY_TRIBE_FEED_LIMIT);
     return unsubscribe;
   }, []);
 
   return (
     <>
+      <style>{`
+        @keyframes tribeFeedSlideIn {
+          from { opacity: 0; transform: translateY(10px) scale(0.985); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes tribeFeedPulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.34); }
+          50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+        }
+        @keyframes tribeFeedLiveDot {
+          0%, 100% { opacity: 0.5; transform: scale(0.88); }
+          50% { opacity: 1; transform: scale(1.08); }
+        }
+        .tribe-feed-live-card {
+          animation: tribeFeedSlideIn 420ms cubic-bezier(.2,.8,.2,1) both;
+        }
+        .tribe-feed-live-avatar {
+          animation: tribeFeedPulse 1.8s ease-in-out infinite;
+        }
+        .tribe-feed-live-dot {
+          animation: tribeFeedLiveDot 1.2s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .tribe-feed-live-card,
+          .tribe-feed-live-avatar,
+          .tribe-feed-live-dot {
+            animation: none !important;
+          }
+        }
+      `}</style>
       <div style={{ padding: "0 20px 24px" }}>
         <button
           onClick={() => setShowSheet(true)}
@@ -40,10 +72,13 @@ export default function TribeFeedSection({ onLogActivity }) {
                 TRIBE ACTIVITY 🔥
               </p>
               <p style={{ color: theme.textSoft, fontSize: 12, fontWeight: 700, margin: 0 }}>
-                See who logged today, then add yours.
+                Latest 5 logs from today. Tap to add yours.
               </p>
             </div>
-            <span style={{ color: "#FF6B35", fontWeight: 900, fontSize: 18 }}>›</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#FF6B35", fontWeight: 900, fontSize: 18 }}>
+              <span className="tribe-feed-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "#34D399", display: "inline-block" }} />
+              ›
+            </span>
           </div>
 
           <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
@@ -54,14 +89,16 @@ export default function TribeFeedSection({ onLogActivity }) {
                 <LoadingRow theme={theme} />
               </>
             ) : previewEntries.length ? (
-              previewEntries.map(entry => <TribeFeedCard key={entry.id} entry={entry} compact />)
+              previewEntries.map((entry, index) => (
+                <TribeFeedCard key={entry.id} entry={entry} index={index} />
+              ))
             ) : (
               <div>
                 <p style={{ margin: "0 0 4px", color: theme.text, fontSize: 13, fontWeight: 800 }}>
                   No logs from the tribe yet today.
                 </p>
                 <p style={{ margin: 0, color: theme.textSoft, fontSize: 12 }}>
-                  Tap to open today’s feed and log your activity.
+                  Tap to open the live feed and log your activity.
                 </p>
               </div>
             )}
@@ -103,7 +140,7 @@ export default function TribeFeedSection({ onLogActivity }) {
                   TODAY IN THE TRIBE 🔥
                 </p>
                 <h2 style={{ color: theme.text, fontSize: 22, lineHeight: 1.1, fontFamily: "'Syne', sans-serif", margin: 0 }}>
-                  Last logs from different members today.
+                  Latest activity from today.
                 </h2>
               </div>
               <button
@@ -130,7 +167,9 @@ export default function TribeFeedSection({ onLogActivity }) {
                   <LoadingRow theme={theme} />
                 </>
               ) : entries.length ? (
-                entries.map(entry => <TribeFeedCard key={entry.id} entry={entry} />)
+                entries.map((entry, index) => (
+                  <TribeFeedCard key={entry.id} entry={entry} index={index} />
+                ))
               ) : (
                 <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, borderRadius: 16, padding: 14 }}>
                   <p style={{ margin: "0 0 4px", color: theme.text, fontSize: 16, fontWeight: 900 }}>
@@ -182,7 +221,7 @@ function LoadingRow({ theme }) {
   );
 }
 
-function TribeFeedCard({ entry }) {
+function TribeFeedCard({ entry, index = 0 }) {
   const { theme } = useAppTheme();
   const displayName = entry.displayName || "Tribe member";
   const value = Number(entry.value || 0);
@@ -190,7 +229,7 @@ function TribeFeedCard({ entry }) {
   const streakText = entry.currentStreak > 0 ? ` · 🔥 ${entry.currentStreak} day streak` : "";
 
   return (
-    <div style={{
+    <div className="tribe-feed-live-card" style={{
       display: "flex",
       gap: 10,
       alignItems: "flex-start",
@@ -198,8 +237,9 @@ function TribeFeedCard({ entry }) {
       border: `1px solid ${theme.cardBorder}`,
       borderRadius: 14,
       padding: 10,
+      animationDelay: `${Math.min(index, 4) * 65}ms`,
     }}>
-      <div style={{
+      <div className="tribe-feed-live-avatar" style={{
         width: 38,
         height: 38,
         borderRadius: "50%",

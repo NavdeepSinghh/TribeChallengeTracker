@@ -61,25 +61,12 @@ export function listenTodayTribeFeed(onChange, limitCount = 10) {
     collection(db, 'tribeFeed'),
     where('loggedAt', '>=', Timestamp.fromDate(start)),
     orderBy('loggedAt', 'desc'),
-    queryLimit(Math.max(limitCount * 3, limitCount))
+    queryLimit(limitCount)
   );
 
   return onSnapshot(
     q,
-    snap => onChange(uniqueByUser(snap.docs.map(d => ({ id: d.id, ...d.data() })), limitCount)),
+    snap => onChange(snap.docs.map(d => ({ id: d.id, ...d.data() }))),
     () => onChange([])
   );
-}
-
-function uniqueByUser(entries, limitCount) {
-  const seen = new Set();
-  const unique = [];
-  for (const entry of entries) {
-    const key = entry.uid || entry.id;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    unique.push(entry);
-    if (unique.length === limitCount) break;
-  }
-  return unique;
 }
