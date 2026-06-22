@@ -4,6 +4,7 @@ import ProfileScreenIdentityPanel from './ProfileScreenIdentityPanel';
 import ProfileScreenSheets from './ProfileScreenSheets';
 import ProfileScreenSupportSections from './ProfileScreenSupportSections';
 import ProfileTopBar from './ProfileTopBar';
+import ProfileVersionFooter from './ProfileVersionFooter';
 import { useAppTheme } from '../app/AppThemeContext';
 import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
@@ -45,6 +46,7 @@ export default function ProfileScreenView({ model, mode = 'profile' }) {
         ) : (
           <ProfileScreenGrowthSections model={themedModel} mode="profile" />
         )}
+        <ProfileVersionFooter theme={theme} />
       </div>
 
       <ProfileScreenSheets model={themedModel} />
