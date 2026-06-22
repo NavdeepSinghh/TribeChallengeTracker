@@ -1,10 +1,10 @@
-export default function DayActivityList({ actMap, acts }) {
+export default function DayActivityList({ actMap, acts, onDeleteActivity }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
       {acts.map((act, i) => {
-        const info = actMap[act.type] || {};
+        const info = actMap[act.activityId || act.type] || {};
         return (
-          <div key={i} style={{
+          <div key={act.id || i} style={{
             background: `${info.color || "#fff"}11`,
             border: `1px solid ${info.color || "#fff"}33`,
             borderRadius: 14, padding: "14px 16px",
@@ -20,6 +20,28 @@ export default function DayActivityList({ actMap, acts }) {
                 {act.value}{info.unit || ""}{act.note ? ` · "${act.note}"` : ""}
               </div>
             </div>
+            {onDeleteActivity && (
+              <button
+                onClick={() => {
+                  if (window.confirm("Delete this activity? This updates your points and removes its Tribe Activity post when linked.")) {
+                    onDeleteActivity(act, i);
+                  }
+                }}
+                style={{
+                  border: "1px solid rgba(239,68,68,0.35)",
+                  background: "rgba(239,68,68,0.12)",
+                  color: "#EF4444",
+                  borderRadius: 999,
+                  padding: "7px 10px",
+                  fontSize: 11,
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  fontFamily: "'Space Grotesk', sans-serif",
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
         );
       })}

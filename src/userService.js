@@ -1,4 +1,5 @@
 export {
+  deleteActivity,
   getActivityLog,
   getUserChallengePoints,
   saveActivity,

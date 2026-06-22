@@ -15,7 +15,17 @@ export default function useLogModalState({ onLog, todayActivities }) {
 
   const handle = () => {
     if (!value) return;
-    const entry = { type, value: parseFloat(value), note, points: Math.floor(parseFloat(value) * 2 + 5) };
+    const dateStr = new Date().toISOString().split("T")[0];
+    const id = globalThis.crypto?.randomUUID?.() || `${dateStr}_${Date.now()}`;
+    const entry = {
+      id,
+      type,
+      activityId: type,
+      value: parseFloat(value),
+      note,
+      points: Math.floor(parseFloat(value) * 2 + 5),
+      loggedAt: dateStr,
+    };
     onLog(entry);
     setLoggedActivities(prev => [...prev, entry]);
     setValue("");

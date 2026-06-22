@@ -11,6 +11,7 @@ export function buildAppAuthenticatedProps({
       badgeQueue: appState.badgeQueue,
       challengeStats: appState.challengeStats,
       earnedBadges: appState.earnedBadges,
+      handleDeleteActivity: appState.handleDeleteActivity,
       handleLog: appState.handleLog,
       myHistory: appState.myHistory,
       selectedDay: appState.selectedDay,

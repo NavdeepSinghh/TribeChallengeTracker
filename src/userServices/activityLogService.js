@@ -1,10 +1,13 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
+  query,
   serverTimestamp,
   setDoc,
+  where,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -13,6 +16,34 @@ export async function saveActivity(uid, dateStr, entry) {
     ...entry,
     savedAt: serverTimestamp(),
   });
+}
+
+export async function deleteActivity(uid, dateStr, activityId, activityIndex) {
+  const ref = doc(db, 'users', uid, 'activityLog', dateStr);
+  const snap = await getDoc(ref);
+  const existing = snap.exists() ? snap.data() : {};
+  const activities = existing.activities || (existing.type ? [existing] : []);
+  const nextActivities = activities.filter((activity, index) => {
+    if (activityId) return activity.id !== activityId;
+    return index !== activityIndex;
+  });
+  const totalPoints = nextActivities.reduce((sum, activity) => sum + (activity.points || 0), 0);
+  await setDoc(ref, {
+    activities: nextActivities,
+    points: totalPoints,
+    totalPoints,
+    date: dateStr,
+    savedAt: serverTimestamp(),
+  });
+
+  if (activityId) {
+    const feedSnap = await getDocs(query(
+      collection(db, 'tribeFeed'),
+      where('uid', '==', uid),
+      where('activityLogId', '==', activityId)
+    ));
+    await Promise.all(feedSnap.docs.map(feedDoc => deleteDoc(feedDoc.ref)));
+  }
 }
 
 export async function saveStreakRecovery(uid, dateStr) {

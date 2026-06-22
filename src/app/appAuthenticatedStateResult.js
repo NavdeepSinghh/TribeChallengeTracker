@@ -18,6 +18,7 @@ export function buildAppAuthenticatedStateResult({
     earnedBadges: badgeState.earnedBadges,
     handleChallengeJoinHandled: challengeRefreshHandlers.handleChallengeJoinHandled,
     handleChallengeStatsChanged: challengeRefreshHandlers.handleChallengeStatsChanged,
+    handleDeleteActivity: logState.handleDeleteActivity,
     handleLog: logState.handleLog,
     handleProgressShare: progressShareActions.handleProgressShare,
     handleShareTemplateSelect: progressShareActions.handleShareTemplateSelect,

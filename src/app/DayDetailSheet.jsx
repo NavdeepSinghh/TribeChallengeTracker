@@ -3,7 +3,7 @@ import DayDetailEmptyState from "./DayDetailEmptyState";
 import DayDetailHeader from "./DayDetailHeader";
 import DayDetailLoggedSummary from "./DayDetailLoggedSummary";
 
-export default function DayDetailSheet({ day, onClose, onLogMore }) {
+export default function DayDetailSheet({ day, onClose, onDeleteActivity, onLogMore }) {
   const actMap = Object.fromEntries(ACTIVITY_TYPES.map(a => [a.id, a]));
   const acts = getEntryActivities(day.activity);
   const total = acts.reduce((s, a) => s + (a.points || 0), 0);
@@ -37,6 +37,7 @@ export default function DayDetailSheet({ day, onClose, onLogMore }) {
             acts={acts}
             isPast={isPast}
             isToday={isToday}
+            onDeleteActivity={onDeleteActivity}
             onLogMore={onLogMore}
             total={total}
           />

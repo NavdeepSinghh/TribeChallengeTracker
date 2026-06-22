@@ -8,6 +8,7 @@ export default function AppOverlays({
   badgeQueue,
   challengeStats,
   earnedBadges,
+  handleDeleteActivity,
   handleLog,
   myHistory,
   selectedDay,
@@ -28,6 +29,10 @@ export default function AppOverlays({
         <DayDetailSheet
           day={selectedDay}
           onClose={() => setSelectedDay(null)}
+          onDeleteActivity={async (activity, index) => {
+            const updatedDay = await handleDeleteActivity(selectedDay.date, activity, index);
+            setSelectedDay(prev => prev ? { ...prev, activity: updatedDay } : prev);
+          }}
           onLogMore={() => { setSelectedDay(null); setShowLog(true); }}
         />
       )}

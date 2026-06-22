@@ -5,12 +5,13 @@ export default function DayDetailLoggedSummary({
   acts,
   isPast,
   isToday,
+  onDeleteActivity,
   onLogMore,
   total,
 }) {
   return (
     <>
-      <DayActivityList actMap={actMap} acts={acts} />
+      <DayActivityList actMap={actMap} acts={acts} onDeleteActivity={onDeleteActivity} />
 
       <div style={{
         background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: "12px 16px",
