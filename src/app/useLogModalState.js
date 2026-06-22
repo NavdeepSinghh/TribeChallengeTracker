@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { healthAvailable, requestHealthPerms, getTodayWorkouts } from "../healthService";
 import { ACTIVITY_TYPES, getEntryActivities } from "./activityModel";
 
@@ -10,11 +10,15 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
   const [syncState, setSyncState] = useState("idle");
   const [syncWorkouts, setSyncWorkouts] = useState([]);
   const [syncError, setSyncError] = useState("");
+  const [isSubmitLocked, setIsSubmitLocked] = useState(false);
+  const submitLockRef = useRef(false);
 
   const actInfo = ACTIVITY_TYPES.find(a => a.id === type);
 
   const handle = () => {
-    if (!value) return;
+    if (!value || submitLockRef.current) return;
+    submitLockRef.current = true;
+    setIsSubmitLocked(true);
     const dateStr = new Date().toISOString().split("T")[0];
     const id = globalThis.crypto?.randomUUID?.() || `${dateStr}_${Date.now()}`;
     const entry = {
@@ -30,6 +34,10 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
     setLoggedActivities(prev => [...prev, entry]);
     setValue("");
     setNote("");
+    window.setTimeout(() => {
+      submitLockRef.current = false;
+      setIsSubmitLocked(false);
+    }, 1600);
   };
 
   const handleSync = async () => {
@@ -78,6 +86,7 @@ export default function useLogModalState({ onDeleteActivity, onLog, todayActivit
     handle,
     handleDeleteActivity,
     handleSync,
+    isSubmitLocked,
     loggedActivities,
     note,
     setNote,

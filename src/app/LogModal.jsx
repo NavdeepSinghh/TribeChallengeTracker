@@ -15,6 +15,7 @@ export default function LogModal({ onClose, onDeleteActivity, onLog, todayActivi
     handle,
     handleDeleteActivity,
     handleSync,
+    isSubmitLocked,
     loggedActivities,
     note,
     setNote,
@@ -54,6 +55,7 @@ export default function LogModal({ onClose, onDeleteActivity, onLog, todayActivi
         <LogModalActions
           actInfo={actInfo}
           handle={handle}
+          isSubmitLocked={isSubmitLocked}
           loggedActivitiesCount={loggedActivities.length}
           onClose={onClose}
           value={value}
