@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { deleteActivity, getActivityLog, saveActivity } from "../userService";
-import { ACTIVITY_TYPES, formatDate, getEntryActivities, today } from "./activityModel";
+import { writeTribeFeedEntry } from "../userServices/tribeFeedService";
+import { ACTIVITY_TYPES, formatDate, getEntryActivities, getStreak, today } from "./activityModel";
 
 export default function useActivityHistory({
   challengeStats,
   showToast,
   triggerBadgeCheck,
   user,
+  userProfile,
 }) {
   const [myHistory, setMyHistory] = useState({});
 
@@ -37,6 +39,25 @@ export default function useActivityHistory({
     const updated = { ...myHistory, [key]: dayEntry };
     setMyHistory(updated);
     saveActivity(user.uid, key, dayEntry).catch(console.error);
+    const activityType = ACTIVITY_TYPES.find(a => a.id === normalizedEntry.activityId);
+    if (activityType) {
+      writeTribeFeedEntry({
+        uid: user.uid,
+        displayName: userProfile?.displayName || user.displayName || "Tribe member",
+        avatarEmoji: userProfile?.avatarEmoji || "💪",
+        avatarColor: userProfile?.avatarColor || "#FF6B35",
+        instagramHandle: userProfile?.instagramHandle || null,
+        activityType: activityType.id,
+        activityLabel: activityType.label,
+        activityEmoji: activityType.icon,
+        value: normalizedEntry.value,
+        unit: activityType.unit,
+        points: normalizedEntry.points,
+        currentStreak: getStreak(updated),
+        activityLogId: normalizedEntry.id,
+        activityDate: normalizedEntry.loggedAt,
+      });
+    }
     showToast(`${ACTIVITY_TYPES.find(a => a.id === normalizedEntry.type)?.icon} +${normalizedEntry.points} pts logged!`);
     triggerBadgeCheck(updated, challengeStats);
   };

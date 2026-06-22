@@ -35,6 +35,7 @@ export default function useAppAuthenticatedState(user) {
     showToast,
     triggerBadgeCheck,
     user,
+    userProfile,
   });
   const {
     myHistory,

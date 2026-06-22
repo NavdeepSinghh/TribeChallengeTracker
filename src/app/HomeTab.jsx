@@ -5,6 +5,8 @@ import HomeLogActivityButton from "./HomeLogActivityButton";
 import HomeMobilePitch from "./HomeMobilePitch";
 import HomeShareProgressPanel from "./HomeShareProgressPanel";
 import HomeStatsCards from "./HomeStatsCards";
+import TribeFeedSection from "./TribeFeedSection";
+import { FEATURE_FLAGS } from "../featureFlags";
 
 export default function HomeTab({
   actCounts,
@@ -56,6 +58,9 @@ export default function HomeTab({
         savingShareTemplate={savingShareTemplate}
         shareTemplateId={shareTemplateId}
       />
+      {FEATURE_FLAGS.TRIBE_FEED_ENABLED && (
+        <TribeFeedSection onLogActivity={() => setShowLog(true)} />
+      )}
       <HomeMobilePitch />
     </div>
   );
