@@ -62,6 +62,7 @@ export default function AppOverlays({
       {showLog && (
         <LogModal
           onClose={() => setShowLog(false)}
+          onDeleteActivity={(activity, index) => handleDeleteActivity(activity?.loggedAt || formatDate(today), activity, index)}
           onLog={handleLog}
           todayActivities={getEntryActivities(myHistory[formatDate(today)])}
         />

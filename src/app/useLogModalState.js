@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { healthAvailable, requestHealthPerms, getTodayWorkouts } from "../healthService";
-import { ACTIVITY_TYPES } from "./activityModel";
+import { ACTIVITY_TYPES, getEntryActivities } from "./activityModel";
 
-export default function useLogModalState({ onLog, todayActivities }) {
+export default function useLogModalState({ onDeleteActivity, onLog, todayActivities }) {
   const [type, setType] = useState("run");
   const [value, setValue] = useState("");
   const [note, setNote] = useState("");
@@ -59,10 +59,24 @@ export default function useLogModalState({ onLog, todayActivities }) {
     setSyncState("idle");
   };
 
+  const handleDeleteActivity = async (activity, index) => {
+    if (!onDeleteActivity) return;
+    const updatedDay = await onDeleteActivity(activity, index);
+    if (updatedDay) {
+      setLoggedActivities(getEntryActivities(updatedDay));
+      return;
+    }
+    setLoggedActivities(prev => prev.filter((candidate, candidateIndex) => {
+      if (activity?.id) return candidate.id !== activity.id;
+      return candidateIndex !== index;
+    }));
+  };
+
   return {
     actInfo,
     applyWorkout,
     handle,
+    handleDeleteActivity,
     handleSync,
     loggedActivities,
     note,

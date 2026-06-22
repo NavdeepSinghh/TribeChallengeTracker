@@ -7,12 +7,13 @@ import LogTodaySummary from "./LogTodaySummary";
 import WearableSyncPanel from "./WearableSyncPanel";
 import useLogModalState from "./useLogModalState";
 
-export default function LogModal({ onClose, onLog, todayActivities = [] }) {
+export default function LogModal({ onClose, onDeleteActivity, onLog, todayActivities = [] }) {
   const { theme } = useAppTheme();
   const {
     actInfo,
     applyWorkout,
     handle,
+    handleDeleteActivity,
     handleSync,
     loggedActivities,
     note,
@@ -25,13 +26,13 @@ export default function LogModal({ onClose, onLog, todayActivities = [] }) {
     syncWorkouts,
     type,
     value,
-  } = useLogModalState({ onLog, todayActivities });
+  } = useLogModalState({ onDeleteActivity, onLog, todayActivities });
 
   return (
     <div style={{ position: "fixed", inset: 0, background: theme.overlayBg, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, padding: 20 }}>
       <div style={{ background: theme.cardBgStrong, border: `1px solid ${theme.cardBorderStrong}`, borderRadius: 24, padding: 28, width: "100%", maxWidth: 380, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 24px 80px rgba(0,0,0,0.24)" }}>
         <LogModalHeader loggedActivitiesCount={loggedActivities.length} onClose={onClose} />
-        <LogTodaySummary loggedActivities={loggedActivities} />
+        <LogTodaySummary loggedActivities={loggedActivities} onDeleteActivity={handleDeleteActivity} />
         <LogActivityForm
           actInfo={actInfo}
           note={note}
