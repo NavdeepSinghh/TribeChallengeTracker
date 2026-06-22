@@ -17,7 +17,79 @@ export const progressShareText = ({ totalPts, streak, daysActive, instagramHandl
   return `Rise With The Tribe: ${totalPts} pts · ${streak}-day streak · ${daysActive} days active${userTag}\nTag @risewiththetribe and join the next challenge.`;
 };
 
-export const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank, templateId = "classic" }) => new Promise((resolve) => {
+const drawStoryShareImage = (ctx, canvas, { totalPts, streak, daysActive, rank, palette }) => {
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, "#07100D");
+  gradient.addColorStop(1, "#050505");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "rgba(255,107,53,0.20)";
+  ctx.beginPath();
+  ctx.arc(930, 140, 290, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(52,211,153,0.16)";
+  ctx.beginPath();
+  ctx.arc(80, 1580, 330, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "rgba(255,255,255,0.78)";
+  ctx.font = "900 32px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("RISE WITH THE TRIBE", 540, 190);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 92px Arial";
+  ctx.fillText("I SHOWED UP", 540, 440);
+  ctx.fillText("TODAY", 540, 540);
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  ctx.font = "800 32px Arial";
+  ctx.fillText(`${streak || 0} days strong. Keep rising.`, 540, 620);
+
+  ctx.fillStyle = "rgba(255,255,255,0.08)";
+  roundRect(ctx, 96, 710, 888, 560, 46);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(255,107,53,0.28)";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  ctx.fillStyle = palette.secondary;
+  ctx.font = "900 78px Arial";
+  ctx.fillText(`${totalPts || 0}`, 540, 875);
+  ctx.fillStyle = "rgba(255,255,255,0.62)";
+  ctx.font = "900 24px Arial";
+  ctx.fillText("TRIBE SCORE", 540, 930);
+  ctx.fillStyle = palette.primary;
+  ctx.font = "900 60px Arial";
+  ctx.fillText(`${streak || 0}`, 330, 1070);
+  ctx.fillStyle = "rgba(255,255,255,0.62)";
+  ctx.font = "900 22px Arial";
+  ctx.fillText("DAY STREAK", 330, 1118);
+  ctx.fillStyle = palette.third;
+  ctx.font = "900 60px Arial";
+  ctx.fillText(`${daysActive || 0}`, 750, 1070);
+  ctx.fillStyle = "rgba(255,255,255,0.62)";
+  ctx.font = "900 22px Arial";
+  ctx.fillText("ACTIVE DAYS", 750, 1118);
+  ctx.fillStyle = rank?.color || "#FFD700";
+  ctx.font = "900 42px Arial";
+  ctx.fillText(`${rank?.icon || "✨"} ${rank?.label || "Rookie"}`, 540, 1212);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "900 46px Arial";
+  ctx.fillText("Log yours. Keep rising.", 540, 1508);
+  ctx.fillStyle = palette.primary;
+  roundRect(ctx, 230, 1588, 620, 96, 48);
+  ctx.fill();
+  ctx.fillStyle = "#000000";
+  ctx.font = "900 28px Arial";
+  ctx.fillText("OPEN TRIBELOG", 540, 1648);
+  ctx.fillStyle = palette.secondary;
+  ctx.font = "900 32px Arial";
+  ctx.fillText("@risewiththetribe", 540, 1782);
+  ctx.textAlign = "left";
+};
+
+export const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank, templateId = "classic", variant = "progress" }) => new Promise((resolve) => {
   const canvas = document.createElement("canvas");
   canvas.width = 1080;
   canvas.height = 1920;
@@ -28,6 +100,12 @@ export const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank,
     neon: { bg0: "#05070d", bg1: "#111827", bg2: "#071611", primary: "#34D399", secondary: "#60A5FA", third: "#A78BFA", card: "rgba(52,211,153,0.09)" },
   };
   const palette = palettes[templateId] || palettes.classic;
+  if (variant === "story") {
+    drawStoryShareImage(ctx, canvas, { totalPts, streak, daysActive, rank, palette });
+    canvas.toBlob(resolve, "image/png", 0.94);
+    return;
+  }
+
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
   gradient.addColorStop(0, palette.bg0);
   gradient.addColorStop(0.5, palette.bg1);

@@ -29,6 +29,7 @@ export function buildWinCardShareConfig({
       rank,
       streak: currentStreak,
       user,
+      variant: 'win',
     }),
     downloadName: 'rise-with-the-tribe-win-card.png',
     errorMessage: 'Could not create win card.',

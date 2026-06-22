@@ -49,8 +49,12 @@ export default function useProgressShareActions({
         return;
       }
 
-      const blob = await makeProgressShareImageBlob(shareStats);
-      const file = blob ? new File([blob], "rise-with-the-tribe-progress.png", { type: "image/png" }) : null;
+      const blob = await makeProgressShareImageBlob({
+        ...shareStats,
+        variant: target === "story" ? "story" : "progress",
+      });
+      const fileName = target === "story" ? "rise-with-the-tribe-story.png" : "rise-with-the-tribe-progress.png";
+      const file = blob ? new File([blob], fileName, { type: "image/png" }) : null;
       if (navigator.share && file && navigator.canShare?.({ files: [file] })) {
         await navigator.share({ title: "Rise With The Tribe", text, files: [file] });
         showToast(target === "story" ? "Choose Instagram Story" : "Progress shared");
@@ -66,7 +70,7 @@ export default function useProgressShareActions({
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "rise-with-the-tribe-progress.png";
+        a.download = fileName;
         a.click();
         URL.revokeObjectURL(url);
       }
