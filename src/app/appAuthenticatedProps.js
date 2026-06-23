@@ -42,6 +42,7 @@ export function buildAppAuthenticatedProps({
       myHistory: appState.myHistory,
       pendingJoinCode: appState.pendingJoinCode,
       pendingReferralUid: appState.pendingReferralUid,
+      rankRules: appState.rankRules,
       savingShareTemplate: appState.savingShareTemplate,
       setBadgeCat: appState.setBadgeCat,
       setMyHistory: appState.setMyHistory,

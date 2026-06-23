@@ -1,3 +1,5 @@
+import { DEFAULT_TRIBE_RANK_LEVELS } from './rankRules';
+
 export const BADGE_CATEGORIES = [
   { id: "all",       label: "All",        icon: "✨" },
   { id: "streak",    label: "Streak",     icon: "🔥" },
@@ -46,10 +48,13 @@ export const BADGES = [
   { id: "pro_finisher",      cat: "special", icon: "🏁", label: "Pro Finisher",       desc: "Tribe Pro: complete a full challenge",     color: "#FFD700", xp: 180 },
 ];
 
-export const TRIBE_RANKS = [
-  { label: "Rookie",    min: 0,    icon: "🌱", color: "#34D399" },
-  { label: "Warrior",   min: 100,  icon: "⚔️",  color: "#60A5FA" },
-  { label: "Elite",     min: 300,  icon: "🚀", color: "#F59E0B" },
-  { label: "Legend",    min: 700,  icon: "💫", color: "#FFD700" },
-  { label: "Tribe God", min: 1500, icon: "👑", color: "#C084FC" },
-];
+export const TRIBE_RANKS = DEFAULT_TRIBE_RANK_LEVELS.map(level => ({
+  id: level.id,
+  label: level.label,
+  min: level.minScore,
+  icon: level.icon,
+  color: level.color,
+  minActiveDays: level.minActiveDays,
+  minStreak: level.minStreak,
+  completedChallenges: level.completedChallenges,
+}));

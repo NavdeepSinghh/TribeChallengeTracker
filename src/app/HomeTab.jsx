@@ -11,12 +11,12 @@ import { FEATURE_FLAGS } from "../featureFlags";
 export default function HomeTab({
   actCounts,
   challengeStats,
-  earnedBadges,
   handleProgressShare,
   handleShareTemplateSelect,
   hasActivePro,
   myChallenges,
   myHistory,
+  rankRules,
   savingShareTemplate,
   setSelectedDay,
   setShowLog,
@@ -30,7 +30,8 @@ export default function HomeTab({
   return (
     <div>
       <HomeHero
-        earnedBadges={earnedBadges}
+        myHistory={myHistory}
+        rankRules={rankRules}
         setShowProfile={setShowProfile}
         streak={streak}
         totalPts={totalPts}

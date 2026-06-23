@@ -1,17 +1,21 @@
-import { calcBadgeXP, getTribeRank } from "../badgeService";
 import { useAppTheme } from "./AppThemeContext";
 import HomeHeroProfileButton from "./HomeHeroProfileButton";
 import { getStreakMotivator } from "./homeHeroCopy";
+import { calculateRankScore, getTribeStatus, rankRequirementText } from "../rankRules";
 
 export default function HomeHero({
-  earnedBadges,
+  myHistory,
+  rankRules,
   setShowProfile,
   streak,
   totalPts,
   userProfile,
 }) {
   const { theme } = useAppTheme();
-  const rank = getTribeRank(calcBadgeXP(earnedBadges));
+  const activeDays = Object.values(myHistory || {}).filter(day => (day?.activities || []).length > 0).length;
+  const completedChallenges = userProfile?.stats?.challengesCompleted || 0;
+  const rankScore = calculateRankScore(myHistory, rankRules?.dailyRankPointCap);
+  const { rank, next } = getTribeStatus({ score: rankScore, activeDays, streak, completedChallenges }, rankRules);
   const avatarColor = userProfile?.avatarColor || rank.color;
   const frameId = userProfile?.cosmetics?.profileFrameId || "none";
   const frame = {
@@ -49,6 +53,26 @@ export default function HomeHero({
           </div>
         </div>
       </div>
+      {next && (
+        <div style={{ marginTop: 14 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 6 }}>
+            <span style={{ color: theme.textSoft, fontSize: 10, fontWeight: 800, fontFamily: "monospace" }}>
+              Next: {next.icon} {next.label}
+            </span>
+            <span style={{ color: rank.color, fontSize: 10, fontWeight: 800, fontFamily: "monospace", textAlign: "right" }}>
+              {rankRequirementText(next)}
+            </span>
+          </div>
+          <div style={{ height: 5, borderRadius: 999, background: theme.progressTrack, overflow: "hidden" }}>
+            <div style={{
+              height: "100%",
+              width: `${Math.min(100, Math.max(0, ((rankScore - rank.minScore) / Math.max(1, next.minScore - rank.minScore)) * 100))}%`,
+              background: `linear-gradient(90deg, ${rank.color}, ${next.color})`,
+              borderRadius: 999,
+            }} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

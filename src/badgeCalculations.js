@@ -1,12 +1,8 @@
-import { BADGES, TRIBE_RANKS } from './badgeCatalog';
+import { BADGES } from './badgeCatalog';
+import { getRankForScore } from './rankRules';
 
-export function getTribeRank(xp) {
-  let rank = TRIBE_RANKS[0];
-  for (const r of TRIBE_RANKS) {
-    if (xp >= r.min) rank = r;
-  }
-  const idx = TRIBE_RANKS.indexOf(rank);
-  return { ...rank, next: TRIBE_RANKS[idx + 1] || null };
+export function getTribeRank(xp, rules) {
+  return getRankForScore(xp, rules);
 }
 
 export function calcBadgeXP(earned) {

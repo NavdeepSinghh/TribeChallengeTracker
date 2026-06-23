@@ -6,6 +6,7 @@ export function buildAppAuthenticatedStateResult({
   pendingChallengeEntry,
   progressShareActions,
   publicShellState,
+  rankRules,
   userChallengeData,
 }) {
   return {
@@ -27,6 +28,7 @@ export function buildAppAuthenticatedStateResult({
     myHistory: logState.myHistory,
     pendingJoinCode: pendingChallengeEntry.pendingJoinCode,
     pendingReferralUid: pendingChallengeEntry.pendingReferralUid,
+    rankRules,
     savingShareTemplate: progressShareActions.savingShareTemplate,
     setBadgeQueue: badgeState.setBadgeQueue,
     setMyHistory: logState.setMyHistory,

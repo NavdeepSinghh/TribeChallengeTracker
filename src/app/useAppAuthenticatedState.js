@@ -8,6 +8,7 @@ import useAppShellState from "./useAppShellState";
 import useChallengeRefreshHandlers from "./useChallengeRefreshHandlers";
 import usePendingChallengeEntry from "./usePendingChallengeEntry";
 import useProgressShareActions from "./useProgressShareActions";
+import useRankRules from "./useRankRules";
 import useUserChallengeData from "./useUserChallengeData";
 
 export default function useAppAuthenticatedState(user) {
@@ -15,6 +16,7 @@ export default function useAppAuthenticatedState(user) {
   const { showToast, ...publicShellState } = shellState;
   const { setTab } = publicShellState;
   const pendingChallengeEntry = usePendingChallengeEntry(setTab);
+  const rankRules = useRankRules();
   const {
     clearPendingChallengeEntry,
   } = pendingChallengeEntry;
@@ -26,10 +28,7 @@ export default function useAppAuthenticatedState(user) {
     userProfile,
   } = userChallengeData;
   const badgeState = useAppBadges({ user, userProfile });
-  const {
-    earnedBadges,
-    triggerBadgeCheck,
-  } = badgeState;
+  const { triggerBadgeCheck } = badgeState;
   const logState = useActivityHistory({
     challengeStats,
     showToast,
@@ -40,7 +39,7 @@ export default function useAppAuthenticatedState(user) {
   const {
     myHistory,
   } = logState;
-  const activitySummary = buildAppActivitySummary({ earnedBadges, myHistory, userProfile });
+  const activitySummary = buildAppActivitySummary({ myHistory, rankRules, userProfile });
   const {
     hasActivePro,
     shareStats,
@@ -74,6 +73,7 @@ export default function useAppAuthenticatedState(user) {
     pendingChallengeEntry,
     progressShareActions,
     publicShellState,
+    rankRules,
     userChallengeData,
   });
 }

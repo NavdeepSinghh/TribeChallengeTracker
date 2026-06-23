@@ -65,6 +65,6 @@ describe("badge progress and rank service", () => {
   it("calculates badge XP and tribe rank from earned badge IDs", () => {
     const xp = calcBadgeXP(new Set(["first_log", "streak7", "champion"]));
     expect(xp).toBe(360);
-    expect(getTribeRank(xp).label).toBe("Elite");
+    expect(getTribeRank(xp).label).toBe("Rookie");
   });
 });

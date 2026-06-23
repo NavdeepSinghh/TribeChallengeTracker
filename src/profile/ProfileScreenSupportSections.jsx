@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { buildProfileScreenSupportSectionsProps } from './profileScreenSupportSectionProps';
 import ProfileUtilitySection from './ProfileUtilitySection';
+import RankRulesAdminSection from './RankRulesAdminSection';
 import SupportAccountSection from './SupportAccountSection';
 
 export default function ProfileScreenSupportSections({ model }) {
@@ -15,6 +16,8 @@ export default function ProfileScreenSupportSections({ model }) {
   return (
     <>
       <ProfileUtilitySection {...utilitySectionProps} theme={model.theme} />
+
+      <RankRulesAdminSection isAdmin={model.isAdmin} theme={model.theme} user={model.user} />
 
       <SupportAccountSection {...supportAccountSectionProps} theme={model.theme} />
     </>
