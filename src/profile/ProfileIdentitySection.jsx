@@ -4,6 +4,7 @@ import { V1_PAID_FEATURES_ENABLED } from '../proFeatures';
 
 export default function ProfileIdentitySection({
   rank,
+  statusRank,
   user,
   memberYear,
   fileInputId,
@@ -39,6 +40,7 @@ export default function ProfileIdentitySection({
         onPhotoUpload={onPhotoUpload}
         profileImageSrc={profileImageSrc}
         rank={rank}
+        statusRank={statusRank}
         user={user}
         theme={theme}
       />

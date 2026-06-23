@@ -12,6 +12,7 @@ export default function useProfileComputedData({
   earnedBadges,
   myHistory,
   challengeStats,
+  rankRules,
 }) {
   const {
     challengePoints,
@@ -33,6 +34,7 @@ export default function useProfileComputedData({
     goalPoints,
     goalStreak,
     onChallengePointsClick: () => setShowBreakdown(true),
+    rankRules,
   });
 
   const shareActions = useProfileShareActions(buildProfileShareActionInputs({

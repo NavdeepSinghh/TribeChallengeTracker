@@ -6,6 +6,7 @@ export function buildAppAuthenticatedStateResult({
   pendingChallengeEntry,
   progressShareActions,
   publicShellState,
+  levelUpState,
   rankRules,
   userChallengeData,
 }) {
@@ -24,6 +25,8 @@ export function buildAppAuthenticatedStateResult({
     handleProgressShare: progressShareActions.handleProgressShare,
     handleShareTemplateSelect: progressShareActions.handleShareTemplateSelect,
     hasActivePro: activitySummary.hasActivePro,
+    dismissLevelUp: levelUpState.dismissLevelUp,
+    levelUp: levelUpState.levelUp,
     myChallenges: userChallengeData.myChallenges,
     myHistory: logState.myHistory,
     pendingJoinCode: pendingChallengeEntry.pendingJoinCode,

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { startDailyReminderLoop } from "../reminderService";
 import { buildAppActivitySummary } from "./appActivitySummary";
 import { buildAppAuthenticatedStateResult } from "./appAuthenticatedStateResult";
@@ -29,8 +29,11 @@ export default function useAppAuthenticatedState(user) {
   } = userChallengeData;
   const badgeState = useAppBadges({ user, userProfile });
   const { triggerBadgeCheck } = badgeState;
+  const [levelUp, setLevelUp] = useState(null);
   const logState = useActivityHistory({
     challengeStats,
+    onLevelUp: setLevelUp,
+    rankRules,
     showToast,
     triggerBadgeCheck,
     user,
@@ -73,6 +76,10 @@ export default function useAppAuthenticatedState(user) {
     pendingChallengeEntry,
     progressShareActions,
     publicShellState,
+    levelUpState: {
+      dismissLevelUp: () => setLevelUp(null),
+      levelUp,
+    },
     rankRules,
     userChallengeData,
   });

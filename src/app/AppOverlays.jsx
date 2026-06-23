@@ -1,6 +1,7 @@
 import ProfileScreen from "../ProfileScreen";
 import BadgeUnlockOverlay from "./BadgeUnlockOverlay";
 import DayDetailSheet from "./DayDetailSheet";
+import LevelUpCelebration from "./LevelUpCelebration";
 import LogModal from "./LogModal";
 import { today, formatDate, getEntryActivities } from "./activityModel";
 
@@ -10,7 +11,10 @@ export default function AppOverlays({
   earnedBadges,
   handleDeleteActivity,
   handleLog,
+  dismissLevelUp,
+  levelUp,
   myHistory,
+  rankRules,
   selectedDay,
   setBadgeQueue,
   setMyHistory,
@@ -22,6 +26,7 @@ export default function AppOverlays({
   showProfile,
   triggerBadgeCheck,
   user,
+  userProfile,
 }) {
   return (
     <>
@@ -44,12 +49,25 @@ export default function AppOverlays({
         />
       )}
 
+      {levelUp && (
+        <LevelUpCelebration
+          levelUp={levelUp}
+          onDismiss={dismissLevelUp}
+          onLogMore={() => {
+            dismissLevelUp();
+            setSelectedDay(null);
+            setShowLog(true);
+          }}
+        />
+      )}
+
       {showProfile && (
         <ProfileScreen
           user={user}
           earnedBadges={earnedBadges}
           myHistory={myHistory}
           challengeStats={challengeStats}
+          rankRules={rankRules}
           onProfileUpdated={setUserProfile}
           onHistoryUpdated={updated => {
             setMyHistory(updated);

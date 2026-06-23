@@ -3,6 +3,7 @@ import { buildProfileScreenBadgeData } from './profileScreenBadgeData';
 import { buildProfileReportData } from './profileReportData';
 import { buildProfileScreenStatsResult } from './profileScreenStatsResult';
 import { buildProfileScreenStatsPresentation } from './profileScreenStatsPresentation';
+import { calculateRankScore, getTribeStatus } from '../rankRules';
 
 export function buildProfileScreenStats({
   profile,
@@ -15,6 +16,7 @@ export function buildProfileScreenStats({
   goalPoints,
   goalStreak,
   onChallengePointsClick,
+  rankRules,
 }) {
   const {
     badgeXP,
@@ -41,6 +43,12 @@ export function buildProfileScreenStats({
     totalWinPoints,
     weeklyRecap,
   } = activityStats;
+  const statusRank = getTribeStatus({
+    score: calculateRankScore(myHistory, rankRules?.dailyRankPointCap),
+    activeDays: daysActive,
+    streak: currentStreak,
+    completedChallenges: profile?.stats?.challengesCompleted || 0,
+  }, rankRules).rank;
   const reportData = buildProfileReportData({
     allActivities,
     currentStreak,
@@ -73,6 +81,7 @@ export function buildProfileScreenStats({
   return buildProfileScreenStatsResult({
     badgeXP,
     rank,
+    statusRank,
     activityStats,
     reportData,
     rankedPct,

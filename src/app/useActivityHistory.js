@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
 import { deleteActivity, getActivityLog, saveActivity } from "../userService";
 import { writeTribeFeedEntry } from "../userServices/tribeFeedService";
+import { calculateRankScore, getTribeStatus, normalizeRankRules } from "../rankRules";
 import { ACTIVITY_TYPES, formatDate, getEntryActivities, getStreak, today } from "./activityModel";
+
+const rankMetricsForHistory = (history, rankRules, userProfile) => {
+  const normalizedRules = normalizeRankRules(rankRules);
+  const daysActive = Object.keys(history || {}).filter(d => getEntryActivities(history[d]).length > 0).length;
+  const streak = getStreak(history);
+  const rankScore = calculateRankScore(history, normalizedRules.dailyRankPointCap);
+  const completedChallenges = userProfile?.stats?.challengesCompleted || 0;
+  const { rank } = getTribeStatus({ score: rankScore, activeDays: daysActive, streak, completedChallenges }, normalizedRules);
+  return { daysActive, rank, rankScore, streak };
+};
+
+const rankIndex = (rank, rankRules) => normalizeRankRules(rankRules)
+  .levels
+  .findIndex(level => level.id === rank?.id);
 
 export default function useActivityHistory({
   challengeStats,
+  onLevelUp,
+  rankRules,
   showToast,
   triggerBadgeCheck,
   user,
@@ -36,7 +53,9 @@ export default function useActivityHistory({
       totalPoints: activities.reduce((s, a) => s + (a.points || 0), 0),
       date: key,
     };
+    const previousRankMetrics = rankMetricsForHistory(myHistory, rankRules, userProfile);
     const updated = { ...myHistory, [key]: dayEntry };
+    const nextRankMetrics = rankMetricsForHistory(updated, rankRules, userProfile);
     setMyHistory(updated);
     saveActivity(user.uid, key, dayEntry).catch(console.error);
     const activityType = ACTIVITY_TYPES.find(a => a.id === normalizedEntry.activityId);
@@ -56,6 +75,12 @@ export default function useActivityHistory({
         currentStreak: getStreak(updated),
         activityLogId: normalizedEntry.id,
         activityDate: normalizedEntry.loggedAt,
+      });
+    }
+    if (rankIndex(nextRankMetrics.rank, rankRules) > rankIndex(previousRankMetrics.rank, rankRules)) {
+      onLevelUp?.({
+        ...nextRankMetrics,
+        previousRank: previousRankMetrics.rank,
       });
     }
     showToast(`${ACTIVITY_TYPES.find(a => a.id === normalizedEntry.type)?.icon} +${normalizedEntry.points} pts logged!`);

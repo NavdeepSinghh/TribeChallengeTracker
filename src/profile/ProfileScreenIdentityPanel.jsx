@@ -17,6 +17,7 @@ export default function ProfileScreenIdentityPanel({ model }) {
     proActive,
     profileImageSrc,
     rank,
+    statusRank,
     selectedFrameId,
     setSelectedFrameId,
     setShowAvatarPicker,
@@ -27,6 +28,7 @@ export default function ProfileScreenIdentityPanel({ model }) {
   return (
     <ProfileIdentitySection
       rank={rank}
+      statusRank={statusRank}
       user={user}
       memberYear={memberYear}
       fileInputId={fileInputRef.current}

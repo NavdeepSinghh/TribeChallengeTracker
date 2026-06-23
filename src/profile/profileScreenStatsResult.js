@@ -1,6 +1,7 @@
 export function buildProfileScreenStatsResult({
   badgeXP,
   rank,
+  statusRank,
   activityStats,
   reportData,
   rankedPct,
@@ -31,6 +32,7 @@ export function buildProfileScreenStatsResult({
   return {
     badgeXP,
     rank,
+    statusRank,
     daysActive,
     onboarding,
     totalChallengePoints,

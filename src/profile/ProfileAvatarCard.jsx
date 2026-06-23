@@ -15,6 +15,7 @@ export default function ProfileAvatarCard({
   onPhotoUpload,
   profileImageSrc,
   rank,
+  statusRank,
   theme,
   user,
 }) {
@@ -46,8 +47,9 @@ export default function ProfileAvatarCard({
           frameGradient={frameGradient}
           onAvatarPickerOpen={onAvatarPickerOpen}
           profileImageSrc={profileImageSrc}
+          rank={statusRank || rank}
         />
-        <ProfileAvatarIdentity memberYear={memberYear} rank={rank} theme={theme} user={user} />
+        <ProfileAvatarIdentity memberYear={memberYear} rank={statusRank || rank} theme={theme} user={user} />
         {isSavingAppearance && <ProfileAppearanceSavingSpinner />}
       </div>
       <ProfileAppearanceError appearanceError={appearanceError} />

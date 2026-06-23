@@ -7,6 +7,7 @@ export default function useProfileScreenController({
   earnedBadges,
   myHistory,
   challengeStats,
+  rankRules,
   onProfileUpdated,
   onHistoryUpdated,
   onClose,
@@ -18,6 +19,7 @@ export default function useProfileScreenController({
     earnedBadges,
     myHistory,
     challengeStats,
+    rankRules,
   });
   const profileActions = useProfileActions({
     computedData,

@@ -13,7 +13,10 @@ export function buildAppAuthenticatedProps({
       earnedBadges: appState.earnedBadges,
       handleDeleteActivity: appState.handleDeleteActivity,
       handleLog: appState.handleLog,
+      dismissLevelUp: appState.dismissLevelUp,
+      levelUp: appState.levelUp,
       myHistory: appState.myHistory,
+      rankRules: appState.rankRules,
       selectedDay: appState.selectedDay,
       setBadgeQueue: appState.setBadgeQueue,
       setMyHistory: appState.setMyHistory,
@@ -25,6 +28,7 @@ export function buildAppAuthenticatedProps({
       showProfile: appState.showProfile,
       triggerBadgeCheck: appState.triggerBadgeCheck,
       user,
+      userProfile: appState.userProfile,
     },
     tabContentProps: {
       actCounts: appState.actCounts,

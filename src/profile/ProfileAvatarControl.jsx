@@ -1,4 +1,5 @@
 import { ACCENT } from './profileConstants';
+import RankBadge from '../app/RankBadge';
 
 export default function ProfileAvatarControl({
   activeFrame,
@@ -8,6 +9,7 @@ export default function ProfileAvatarControl({
   frameGradient,
   onAvatarPickerOpen,
   profileImageSrc,
+  rank,
 }) {
   return (
     <div style={{ position: 'relative', flexShrink: 0 }}>
@@ -29,6 +31,7 @@ export default function ProfileAvatarControl({
           <img src={profileImageSrc} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         ) : avatarEmoji}
       </button>
+      <RankBadge rank={rank} size={22} style={{ top: -6, bottom: 'auto', right: -6 }} />
       <label
         htmlFor={fileInputId}
         title="Upload photo"
