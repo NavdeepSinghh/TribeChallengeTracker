@@ -7,6 +7,8 @@ import LeaderboardTab from './challengeTracker/LeaderboardTab';
 import ProgressTab from './challengeTracker/ProgressTab';
 import LeaveDialog from './challengeTracker/LeaveDialog';
 import ChallengeTrackerHeader from './challengeTracker/ChallengeTrackerHeader';
+import ChallengePulseCard from './challengeTracker/ChallengePulseCard';
+import ChallengeUpdatesCard from './challengeTracker/ChallengeUpdatesCard';
 
 export default function ChallengeTrackerScreen({ challenge, onBack, onLeft }) {
   const { user } = useAuth();
@@ -56,6 +58,9 @@ export default function ChallengeTrackerScreen({ challenge, onBack, onLeft }) {
         onLeave={() => setShowLeave(true)}
         setInnerTab={setInnerTab}
       />
+
+      <ChallengePulseCard challenge={challenge} memberData={memberData} />
+      <ChallengeUpdatesCard challenge={challenge} memberData={memberData} user={user} />
 
       {innerTab === 'today' && (
         <TodayTab challenge={challenge} memberData={memberData} onLogged={loadMember} />

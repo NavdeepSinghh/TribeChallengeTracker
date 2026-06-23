@@ -1,11 +1,6 @@
 import {
-  doc,
-  increment,
   serverTimestamp,
-  setDoc,
-  updateDoc,
 } from 'firebase/firestore';
-import { db } from './firebase';
 
 export function normalizeChallengeReferralUid(uid, referralUid = '') {
   return referralUid && referralUid !== uid ? referralUid : '';
@@ -51,15 +46,7 @@ export function buildChallengeMemberRecord({
 
 export async function recordReferralChallengeJoin(referralUid) {
   if (!referralUid) return;
-
-  const referrerRef = doc(db, 'users', referralUid);
-  try {
-    await updateDoc(referrerRef, {
-      'stats.referralJoins': increment(1),
-    });
-  } catch {
-    await setDoc(referrerRef, {
-      stats: { referralJoins: increment(1) },
-    }, { merge: true });
-  }
+  // Referral counts are updated by the Firebase backend when a challenge
+  // member record with referredBy is created. Client-side writes would require
+  // one user to edit another user's profile, which Firestore rules block.
 }

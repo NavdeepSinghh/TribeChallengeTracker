@@ -19,6 +19,7 @@ export function buildProfileCommunityReferralDerivedData({
   weeklyCampaignPrompt,
 }) {
   const referralJoins = profile?.stats?.referralJoins || 0;
+  const appReferralSignups = profile?.stats?.appReferralSignups || 0;
   const referralState = referralTierState(referralJoins);
   const unlockedReferralRewardTier = [...REFERRAL_TIERS].reverse().find(tier => referralJoins >= tier.target) || null;
   const {
@@ -53,6 +54,7 @@ export function buildProfileCommunityReferralDerivedData({
   return {
     communityHighlightRoundupCopy,
     communityHighlightRoundupItems,
+    appReferralSignups,
     referralJoins,
     referralLaunchCopy,
     referralRewardDecisionReplyCopy,

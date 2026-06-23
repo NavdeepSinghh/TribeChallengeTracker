@@ -27,6 +27,7 @@ export function buildStreakComebackSectionProps({
 }
 
 export function buildReferralRewardsSectionProps({
+  appReferralSignups,
   approvedReferralRewardHandoffAuditReviews,
   copyText,
   handleReferralRewardClaim,
@@ -55,8 +56,15 @@ export function buildReferralRewardsSectionProps({
   setReferralRewardHandoffAuditReviewNotes,
   setReferralRewardReviewNotes,
   unlockedReferralRewardTier,
+  user,
 }) {
+  const appInviteLink = user?.uid
+    ? `https://tribechallengetracker.web.app?ref=${encodeURIComponent(user.uid)}`
+    : '';
+
   return {
+    appInviteLink,
+    appReferralSignups,
     approvedReferralRewardHandoffAuditReviews,
     referralState,
     referralJoins,

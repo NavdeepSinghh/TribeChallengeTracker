@@ -2,16 +2,39 @@ import { REFERRAL_TIERS } from './profileConstants';
 import { ReferralMetric } from './ReferralRewardCards';
 
 export default function ReferralRewardProgressPanel({
+  appInviteLink,
+  appReferralSignups = 0,
   referralJoins,
   referralState,
 }) {
+  const shareAppInvite = async () => {
+    if (!appInviteLink) return;
+    const text = `Join me on TribeLog and start building consistency with the tribe.\n${appInviteLink}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Join me on TribeLog',
+          text: 'Join me on TribeLog and start building consistency with the tribe.',
+          url: appInviteLink,
+        });
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+    } catch {
+      await navigator.clipboard?.writeText(text);
+    }
+  };
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start' }}>
         <div>
-          <p style={{ margin: 0, color: '#fff', fontSize: 13, fontWeight: 900 }}>Referral rewards</p>
+          <p style={{ margin: 0, color: '#fff', fontSize: 13, fontWeight: 900 }}>Invite progress</p>
           <p style={{ margin: '4px 0 0', color: '#666', fontSize: 10, fontFamily: 'monospace' }}>
-            {referralJoins} attributed challenge join{referralJoins === 1 ? '' : 's'}
+            {referralJoins} friend{referralJoins === 1 ? '' : 's'} joined challenges from your invite links
+          </p>
+          <p style={{ margin: '4px 0 0', color: '#777', fontSize: 10, fontFamily: 'monospace' }}>
+            {appReferralSignups} app signup{appReferralSignups === 1 ? '' : 's'} from your general app invite
           </p>
         </div>
         <span style={{ color: referralState.achieved?.color || '#34D399', fontSize: 11, fontWeight: 900, fontFamily: 'monospace' }}>
@@ -27,9 +50,20 @@ export default function ReferralRewardProgressPanel({
       </div>
       <p style={{ margin: '10px 0 0', color: '#bbb', fontSize: 11, lineHeight: 1.35 }}>
         {referralState.next
-          ? `Next: ${referralState.next.label} at ${referralState.next.target} joins · ${referralState.next.reward}`
-          : 'All current referral tiers unlocked. Keep building the tribe.'}
+          ? `Next: ${referralState.next.label} at ${referralState.next.target} friends joined · ${referralState.next.reward}`
+          : 'All current invite tiers unlocked. Keep building the tribe.'}
       </p>
+      {appInviteLink && (
+        <button
+          onClick={shareAppInvite}
+          style={{
+            marginTop: 12, width: '100%', border: 'none', borderRadius: 12, padding: '11px 10px',
+            background: '#A78BFA', color: '#111', fontSize: 11, fontWeight: 900, cursor: 'pointer',
+          }}
+        >
+          SHARE APP INVITE
+        </button>
+      )}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginTop: 12 }}>
         {[
           ['TIERS EARNED', `${referralState.earnedCount}/${REFERRAL_TIERS.length}`],
@@ -40,7 +74,7 @@ export default function ReferralRewardProgressPanel({
         ))}
       </div>
       <p style={{ margin: '10px 0 0', color: '#777', fontSize: 10, lineHeight: 1.45, fontFamily: 'monospace' }}>
-        Best next action: share a challenge launch card after creating or opening a challenge.
+        Best next action: share a challenge invite or your app invite link. This counts completed challenge joins, not link clicks.
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 12 }}>
         {REFERRAL_TIERS.map(tier => {

@@ -3,16 +3,22 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../firebase';
+import { safeSessionGet } from '../browserStorage';
 
 export async function createUserIfNew(user) {
   const ref  = doc(db, 'users', user.uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) {
+    const pendingReferralUid = safeSessionGet('pendingReferralUid');
+    const appReferredBy = pendingReferralUid && pendingReferralUid !== user.uid
+      ? pendingReferralUid
+      : '';
     await setDoc(ref, {
       uid:         user.uid,
       email:       user.email,
       displayName: user.displayName || '',
       createdAt:   serverTimestamp(),
+      appReferredBy,
       avatarEmoji: '✨',
       avatarColor: '#FFD700',
       instagramHandle: '',

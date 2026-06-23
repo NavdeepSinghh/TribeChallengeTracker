@@ -5,6 +5,7 @@ export function buildBoardTabProps({
   setTab,
   streak,
   totalPts,
+  user,
 }) {
   return {
     actCounts,
@@ -13,5 +14,6 @@ export function buildBoardTabProps({
     setTab,
     streak,
     totalPts,
+    user,
   };
 }

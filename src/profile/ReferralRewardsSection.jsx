@@ -6,6 +6,8 @@ import ReferralRewardHandoffAuditReviewCard from './ReferralRewardHandoffAuditRe
 import ReferralRewardProgressPanel from './ReferralRewardProgressPanel';
 
 export default function ReferralRewardsSection({
+  appInviteLink,
+  appReferralSignups,
   approvedReferralRewardHandoffAuditReviews,
   referralState,
   referralJoins,
@@ -52,6 +54,8 @@ export default function ReferralRewardsSection({
         background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
       }}>
         <ReferralRewardProgressPanel
+          appInviteLink={appInviteLink}
+          appReferralSignups={appReferralSignups}
           referralJoins={referralJoins}
           referralState={referralState}
         />

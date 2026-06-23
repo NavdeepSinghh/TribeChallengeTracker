@@ -1,3 +1,4 @@
+import ChallengeCompletionCelebration from './ChallengeCompletionCelebration';
 import TodayHeader from './TodayHeader';
 import TodayLogAction from './TodayLogAction';
 import TodayPointsCard from './TodayPointsCard';
@@ -6,7 +7,7 @@ import TodayToast from './TodayToast';
 import useTodayTabState from './useTodayTabState';
 
 export default function TodayTab({ challenge, memberData, onLogged }) {
-  const { allDone, checked, dayNum, handleLog, loading, preview, saving, todayLog, toast, toggle } = useTodayTabState({
+  const { allDone, checked, completion, dayNum, dismissCompletion, handleLog, loading, preview, saving, todayLog, toast, toggle } = useTodayTabState({
     challenge,
     onLogged,
   });
@@ -15,6 +16,7 @@ export default function TodayTab({ challenge, memberData, onLogged }) {
 
   return (
     <div style={{ padding: '20px 20px 100px' }}>
+      <ChallengeCompletionCelebration completion={completion} onDismiss={dismissCompletion} />
       <TodayToast toast={toast} />
       <TodayHeader allDone={allDone} challenge={challenge} dayNum={dayNum} memberData={memberData} todayLog={todayLog} />
       <TodayTaskList checked={checked} tasks={challenge.tasks} todayLog={todayLog} toggle={toggle} />

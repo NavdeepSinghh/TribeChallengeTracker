@@ -1,5 +1,6 @@
 import { ACTIVITY_TYPES } from "./activityModel";
 import { useAppTheme } from "./AppThemeContext";
+import TrainingJournalSection from "./TrainingJournalSection";
 
 export default function BoardTab({
   actCounts,
@@ -8,6 +9,7 @@ export default function BoardTab({
   setTab,
   streak,
   totalPts,
+  user,
 }) {
   const { resolvedMode, theme } = useAppTheme();
   const isDay = resolvedMode === "day";
@@ -39,6 +41,8 @@ export default function BoardTab({
           View Challenges →
         </button>
       </div>
+
+      <TrainingJournalSection user={user} />
 
       <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>ACTIVITY BREAKDOWN</p>
       {Object.values(actCounts).some(value => value > 0) ? (

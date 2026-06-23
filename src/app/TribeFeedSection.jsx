@@ -3,6 +3,7 @@ import { listenTodayTribeFeed } from "../userServices/tribeFeedService";
 import { useAppTheme } from "./AppThemeContext";
 
 const TODAY_TRIBE_FEED_LIMIT = 5;
+const TODAY_TRIBE_PULSE_LIMIT = 50;
 
 export default function TribeFeedSection({ onLogActivity }) {
   const { theme } = useAppTheme();
@@ -10,13 +11,14 @@ export default function TribeFeedSection({ onLogActivity }) {
   const [isLoading, setIsLoading] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
   const previewEntries = entries.slice(0, TODAY_TRIBE_FEED_LIMIT);
+  const pulse = buildTribePulse(entries);
 
   useEffect(() => {
     setIsLoading(true);
     const unsubscribe = listenTodayTribeFeed(nextEntries => {
       setEntries(nextEntries);
       setIsLoading(false);
-    }, TODAY_TRIBE_FEED_LIMIT);
+    }, TODAY_TRIBE_PULSE_LIMIT);
     return unsubscribe;
   }, []);
 
@@ -184,6 +186,8 @@ export default function TribeFeedSection({ onLogActivity }) {
             </span>
           </div>
 
+          <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} />
+
           <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
             {isLoading ? (
               <>
@@ -263,6 +267,8 @@ export default function TribeFeedSection({ onLogActivity }) {
             </div>
 
             <div style={{ display: "grid", gap: 8 }}>
+              <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} isExpanded />
+
               {isLoading ? (
                 <>
                   <LoadingRow theme={theme} />
@@ -320,6 +326,69 @@ function LoadingRow({ theme }) {
       <div style={{ flex: 1 }}>
         <div style={{ width: "50%", height: 9, borderRadius: 99, background: theme.cardBorderStrong, marginBottom: 7 }} />
         <div style={{ width: "84%", height: 9, borderRadius: 99, background: theme.cardBorder }} />
+      </div>
+    </div>
+  );
+}
+
+function TribePulseSummary({ pulse, theme, isLoading, isExpanded = false }) {
+  const metrics = [
+    { label: "Workout hours", value: pulse.hoursText, accent: "#FFD700" },
+    { label: "Distance", value: pulse.distanceText, accent: "#34D399" },
+    { label: "Steps", value: pulse.stepsText, accent: "#14B8A6" },
+    { label: "Logs", value: pulse.logsText, accent: "#FF6B35" },
+  ];
+
+  return (
+    <div style={{
+      marginTop: isExpanded ? 0 : 14,
+      marginBottom: isExpanded ? 10 : 0,
+      padding: isExpanded ? 12 : 10,
+      borderRadius: 16,
+      background: theme.cardBgStrong,
+      border: `1px solid ${theme.cardBorder}`,
+    }}>
+      <p style={{ margin: "0 0 8px", color: theme.mutedStrong, fontSize: 10, fontWeight: 900, letterSpacing: 1, fontFamily: "monospace" }}>
+        TODAY'S TRIBE PULSE
+      </p>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+        gap: 8,
+      }}>
+        {metrics.map(metric => (
+          <div key={metric.label} style={{
+            minWidth: 0,
+            borderRadius: 12,
+            padding: "9px 8px",
+            background: isLoading ? theme.cardBorder : theme.cardBg,
+            border: `1px solid ${theme.cardBorder}`,
+          }}>
+            <p style={{
+              margin: "0 0 4px",
+              color: metric.accent,
+              fontSize: isExpanded ? 16 : 15,
+              lineHeight: 1.05,
+              fontWeight: 950,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}>
+              {isLoading ? "..." : metric.value}
+            </p>
+            <p style={{
+              margin: 0,
+              color: theme.textSoft,
+              fontSize: 9,
+              lineHeight: 1.15,
+              fontWeight: 800,
+              fontFamily: "monospace",
+              textTransform: "uppercase",
+            }}>
+              {metric.label}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -413,6 +482,64 @@ function workoutMotionClass(entry) {
   if (descriptor.includes("yoga") || descriptor.includes("🧘")) return "tribe-workout-emoji-yoga";
   if (descriptor.includes("gym") || descriptor.includes("strength") || descriptor.includes("workout") || descriptor.includes("💪")) return "tribe-workout-emoji-gym";
   return "tribe-workout-emoji-default";
+}
+
+function buildTribePulse(entries) {
+  return entries.reduce((pulse, entry) => {
+    const value = Number(entry.value || 0);
+    const unit = String(entry.unit || "").trim().toLowerCase();
+
+    if (unit === "km" || unit === "kms" || unit.includes("kilomet")) {
+      pulse.distanceKm += value;
+    } else if (unit === "m" || unit === "meter" || unit === "meters" || unit === "metre" || unit === "metres") {
+      pulse.distanceKm += value / 1000;
+    }
+
+    if (unit === "min" || unit === "mins" || unit.includes("minute")) {
+      pulse.workoutMinutes += value;
+    } else if (unit === "hr" || unit === "hrs" || unit.includes("hour")) {
+      pulse.workoutMinutes += value * 60;
+    }
+
+    if (unit === "step" || unit === "steps") {
+      pulse.steps += value;
+    }
+
+    pulse.logs += 1;
+    pulse.hoursText = formatHours(pulse.workoutMinutes);
+    pulse.distanceText = `${formatCompactNumber(pulse.distanceKm, 1)} km`;
+    pulse.stepsText = formatCompactNumber(pulse.steps, 0);
+    pulse.logsText = String(pulse.logs);
+    return pulse;
+  }, {
+    workoutMinutes: 0,
+    distanceKm: 0,
+    steps: 0,
+    logs: 0,
+    hoursText: "0h",
+    distanceText: "0 km",
+    stepsText: "0",
+    logsText: "0",
+  });
+}
+
+function formatHours(minutes) {
+  const hours = minutes / 60;
+  if (hours === 0) return "0h";
+  if (hours < 1) return `${Math.round(minutes)}m`;
+  return `${formatCompactNumber(hours, 1)}h`;
+}
+
+function formatCompactNumber(value, fractionDigits = 0) {
+  if (!Number.isFinite(value) || value <= 0) return "0";
+  if (value >= 1000000) return `${trimNumber(value / 1000000, 1)}m`;
+  if (value >= 10000) return `${trimNumber(value / 1000, 1)}k`;
+  return trimNumber(value, fractionDigits);
+}
+
+function trimNumber(value, fractionDigits) {
+  const fixed = value.toFixed(fractionDigits);
+  return fixed.replace(/\.0$/, "");
 }
 
 function timeAgo(timestamp) {

@@ -11,22 +11,56 @@ export default function HomeStatsCards({ myHistory, streak, totalPts }) {
   ];
 
   return (
-    <div style={{ padding: "0 20px 20px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+    <div style={{ padding: "0 20px 20px", display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 }}>
       {stats.map(stat => {
         const content = (
           <>
-          <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: stat.color }}>{stat.value}<span style={{ fontSize: 14 }}>{stat.suffix}</span></div>
-          <div style={{ fontSize: 9, color: "#555", fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", marginTop: 2 }}>{stat.label}</div>
+          <div style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "center",
+            gap: 3,
+            maxWidth: "100%",
+            minWidth: 0,
+            color: stat.color,
+            fontFamily: "'Syne', sans-serif",
+            fontWeight: 900,
+            lineHeight: 1,
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}>
+            <span style={{
+              display: "block",
+              minWidth: 0,
+              maxWidth: "100%",
+              fontSize: "clamp(18px, 5.2vw, 24px)",
+              overflow: "hidden",
+              textOverflow: "clip",
+            }}>
+              {stat.value}
+            </span>
+            {stat.suffix && (
+              <span style={{
+                flex: "0 0 auto",
+                fontSize: "clamp(10px, 2.8vw, 13px)",
+                lineHeight: 1,
+              }}>
+                {stat.suffix}
+              </span>
+            )}
+          </div>
+          <div style={{ fontSize: 9, color: theme.mutedStrong, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", marginTop: 5, lineHeight: 1.15 }}>{stat.label}</div>
           </>
         );
 
         const style = {
           background: theme.cardBgStrong,
           borderRadius: 16,
-          padding: "14px 12px",
+          padding: "14px 8px",
           border: `1px solid ${theme.cardBorder}`,
           textAlign: "center",
           minWidth: 0,
+          overflow: "hidden",
         };
 
         return <div key={stat.label} style={style}>{content}</div>;

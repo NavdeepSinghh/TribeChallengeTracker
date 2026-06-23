@@ -10,6 +10,7 @@ export default function useTodayTabState({ challenge, onLogged }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState(null);
+  const [completion, setCompletion] = useState(null);
 
   useEffect(() => {
     getTodayLog(user.uid, challenge.id).then(log => {
@@ -33,8 +34,9 @@ export default function useTodayTabState({ challenge, onLogged }) {
   const handleLog = async () => {
     if (!checked.size || saving) return;
     setSaving(true);
-    const result = await logDay(user.uid, challenge.id, [...checked], challenge.tasks.length);
+    const result = await logDay(user.uid, challenge, [...checked], challenge.tasks.length);
     setTodayLog({ completedTasks: [...checked], points: result.points, allComplete: result.allComplete });
+    if (result.completion?.isNew) setCompletion(result.completion.record);
     setToast(`🎉 +${result.points} pts${result.allComplete ? ' · Full day!' : ''}${result.newStreak > 1 ? ` · 🔥 ${result.newStreak} streak` : ''}`);
     setTimeout(() => setToast(null), 3500);
     onLogged?.();
@@ -48,6 +50,8 @@ export default function useTodayTabState({ challenge, onLogged }) {
   return {
     allDone,
     checked,
+    completion,
+    dismissCompletion: () => setCompletion(null),
     dayNum,
     handleLog,
     loading,

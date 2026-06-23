@@ -36,7 +36,7 @@ export function buildStatsGrid({
   return [
     { label: 'CHALLENGES JOINED', value: profile?.stats?.challengesJoined ?? challengeStats.joined, icon: '\u{1F3AF}', color: accent },
     { label: 'CHALLENGES STARTED', value: profile?.stats?.challengesOwned ?? challengeStats.owned, icon: '\u{1F3C6}', color: gold },
-    { label: 'REFERRAL JOINS', value: referralJoins, icon: '\u{1F91D}', color: '#34D399' },
+    { label: 'FRIENDS JOINED', value: referralJoins, icon: '\u{1F91D}', color: '#34D399' },
     { label: 'BADGES EARNED', value: earnedBadges.size, icon: '\u2B50', color: '#A78BFA' },
     { label: 'TOTAL XP', value: badgeXP, icon: rank.icon, color: rank.color },
     {

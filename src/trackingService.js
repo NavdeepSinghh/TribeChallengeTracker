@@ -1,6 +1,6 @@
 import {
   doc, setDoc, getDoc, getDocs, updateDoc,
-  collection, serverTimestamp, increment,
+  collection, serverTimestamp, increment, arrayUnion,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -21,7 +21,8 @@ export async function getTodayLog(uid, challengeId) {
   return snap.exists() ? snap.data() : null;
 }
 
-export async function logDay(uid, challengeId, completedTaskIds, totalTaskCount) {
+export async function logDay(uid, challenge, completedTaskIds, totalTaskCount) {
+  const challengeId = typeof challenge === 'string' ? challenge : challenge.id;
   const today      = todayStr();
   const logRef     = doc(db, 'challenges', challengeId, 'members', uid, 'dailyLogs', today);
   const memberRef  = doc(db, 'challenges', challengeId, 'members', uid);
@@ -58,7 +59,60 @@ export async function logDay(uid, challengeId, completedTaskIds, totalTaskCount)
     lastLogDate:   today,
   });
 
-  return { points, allComplete, newStreak };
+  const updatedMember = {
+    uid,
+    ...memberData,
+    totalPoints: (memberData.totalPoints || 0) + points,
+    daysCompleted: (memberData.daysCompleted || 0) + (allComplete ? 1 : 0),
+    currentStreak: newStreak,
+    longestStreak: newLongest,
+  };
+  const completion = typeof challenge === 'object' && allComplete
+    ? await recordChallengeCompletion(uid, challenge, updatedMember)
+    : null;
+
+  return { points, allComplete, newStreak, completion };
+}
+
+export async function recordChallengeCompletion(uid, challenge, memberData) {
+  if (!uid || !challenge?.id) return null;
+  const duration = Math.max(1, Number(challenge.duration || 0));
+  if ((memberData.daysCompleted || 0) < duration) return null;
+
+  const completionRef = doc(db, 'users', uid, 'challengeCompletions', challenge.id);
+  const existing = await getDoc(completionRef);
+  if (existing.exists()) return { isNew: false, record: existing.data() };
+
+  const membersSnap = await getDocs(collection(db, 'challenges', challenge.id, 'members'));
+  const members = membersSnap.docs
+    .map(d => ({ uid: d.id, ...d.data() }))
+    .filter(m => (m.status || 'active') === 'active')
+    .sort((a, b) => (b.totalPoints || 0) - (a.totalPoints || 0));
+  const rank = Math.max(1, members.findIndex(m => m.uid === uid) + 1);
+  const shareText = `I completed ${challenge.name} on TribeLog: ${memberData.totalPoints || 0} pts · ${memberData.daysCompleted || 0}/${duration} days · ${memberData.currentStreak || 0} day streak.\nTag @risewiththetribe and join the next challenge.`;
+  const record = {
+    challengeId: challenge.id,
+    challengeName: challenge.name,
+    emoji: challenge.emoji || '🏁',
+    color: challenge.color || '#34D399',
+    duration,
+    daysCompleted: memberData.daysCompleted || 0,
+    totalPoints: memberData.totalPoints || 0,
+    currentStreak: memberData.currentStreak || 0,
+    longestStreak: memberData.longestStreak || 0,
+    rank,
+    memberCount: members.length,
+    badgeId: 'finisher',
+    shareText,
+    completedAt: serverTimestamp(),
+  };
+
+  await setDoc(completionRef, record, { merge: true });
+  await updateDoc(doc(db, 'users', uid), {
+    earnedBadges: arrayUnion('finisher'),
+    'stats.challengesCompleted': increment(1),
+  });
+  return { isNew: true, record: { ...record, completedAt: new Date() } };
 }
 
 // ── Progress calendar ─────────────────────────────────────────────────────────
