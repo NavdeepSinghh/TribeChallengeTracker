@@ -52,7 +52,7 @@ export function drawWinCardHeader(ctx, { displayName, instagramHandle }) {
 
 export function drawWinCardStats(ctx, { totalPoints, streak, daysActive, referralJoins }) {
   const stats = [
-    ['POINTS', `${totalPoints}`, '#FFD700'],
+    ['ACTIVITY PTS', `${totalPoints}`, '#FFD700'],
     ['STREAK', `${streak}d`, '#FF6B35'],
     ['DAYS ACTIVE', `${daysActive}`, '#34D399'],
     ['REFERRAL JOINS', `${referralJoins}`, '#60A5FA'],

@@ -18,7 +18,7 @@ export default function DayDetailLoggedSummary({
         display: "flex", justifyContent: "space-between", alignItems: "center",
         border: "1px solid rgba(255,255,255,0.06)", marginBottom: 20,
       }}>
-        <span style={{ fontSize: 11, color: "#555", fontWeight: 700, letterSpacing: 1, fontFamily: "monospace" }}>TOTAL POINTS TODAY</span>
+        <span style={{ fontSize: 11, color: "#555", fontWeight: 700, letterSpacing: 1, fontFamily: "monospace" }}>ACTIVITY POINTS TODAY</span>
         <span style={{ fontSize: 20, fontWeight: 900, color: "#FFD700", fontFamily: "'Syne', sans-serif" }}>{total} pts</span>
       </div>
 

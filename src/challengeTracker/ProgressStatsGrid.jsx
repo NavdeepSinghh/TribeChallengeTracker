@@ -2,7 +2,7 @@ import { ACCENT, GOLD } from './challengeTrackerTheme';
 
 export default function ProgressStatsGrid({ memberData }) {
   const stats = [
-    { label: 'POINTS', value: memberData?.totalPoints || 0, color: GOLD },
+    { label: 'CHALLENGE PTS', value: memberData?.totalPoints || 0, color: GOLD },
     { label: 'DAYS', value: memberData?.daysCompleted || 0, color: '#34D399' },
     { label: 'BEST STK', value: memberData?.longestStreak || 0, color: ACCENT },
   ];

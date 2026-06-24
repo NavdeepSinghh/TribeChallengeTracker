@@ -95,10 +95,9 @@ export function getTribeStatus(metrics = {}, rules = DEFAULT_TRIBE_RANK_RULES) {
 
 export function rankRequirementText(level) {
   if (!level) return "Highest status reached";
-  const parts = [`${level.minScore.toLocaleString()} pts`];
+  const parts = [`${level.minScore.toLocaleString()} Tribe Score`];
   if (level.minActiveDays > 0) parts.push(`${level.minActiveDays} active days`);
   if (level.minStreak > 0) parts.push(`${level.minStreak}-day streak`);
   if (level.completedChallenges > 0) parts.push(`${level.completedChallenges} completed challenge${level.completedChallenges === 1 ? "" : "s"}`);
   return parts.join(" + ");
 }
-

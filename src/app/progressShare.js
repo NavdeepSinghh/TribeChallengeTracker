@@ -57,7 +57,7 @@ const drawStoryShareImage = (ctx, canvas, { totalPts, streak, daysActive, rank, 
   ctx.fillText(`${totalPts || 0}`, 540, 875);
   ctx.fillStyle = "rgba(255,255,255,0.62)";
   ctx.font = "900 24px Arial";
-  ctx.fillText("TRIBE SCORE", 540, 930);
+  ctx.fillText("ACTIVITY POINTS", 540, 930);
   ctx.fillStyle = palette.primary;
   ctx.font = "900 60px Arial";
   ctx.fillText(`${streak || 0}`, 330, 1070);
@@ -134,7 +134,7 @@ export const makeProgressShareImageBlob = ({ totalPts, streak, daysActive, rank,
 
   const stats = [
     ["STREAK", `${streak}d`, palette.primary],
-    ["POINTS", `${totalPts}`, palette.secondary],
+    ["ACTIVITY PTS", `${totalPts}`, palette.secondary],
     ["DAYS ACTIVE", `${daysActive}`, palette.third],
   ];
   stats.forEach(([label, value, color], index) => {

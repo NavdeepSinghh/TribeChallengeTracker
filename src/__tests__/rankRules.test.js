@@ -36,7 +36,7 @@ describe("rank rules CMS core", () => {
 
     expect(getTribeStatus({ score: 4500, activeDays: 45, streak: 13, completedChallenges: 1 }, rules).rank.label).toBe("Rookie");
     expect(getTribeStatus({ score: 4500, activeDays: 45, streak: 14, completedChallenges: 1 }, rules).rank.label).toBe("Legend");
-    expect(rankRequirementText(rules.levels[1])).toContain("4,000 pts");
+    expect(rankRequirementText(rules.levels[1])).toContain("4,000 Tribe Score");
     expect(rankRequirementText(rules.levels[1])).toContain("45 active days");
   });
 

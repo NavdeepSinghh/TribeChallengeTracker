@@ -8,7 +8,7 @@ export default function TodayPointsCard({ checked, preview, tasks, todayLog }) {
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
     }}>
       <div>
-        <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>TODAY'S POINTS</p>
+        <p style={{ margin: 0, fontSize: 10, color: '#555', fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1 }}>TODAY'S CHALLENGE PTS</p>
         <p style={{ margin: '4px 0 0', fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: GOLD }}>
           +{todayLog ? todayLog.points : preview}
         </p>

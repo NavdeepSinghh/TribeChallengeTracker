@@ -11,7 +11,7 @@ export default function ChallengePointsBreakdownHeader({ totalChallengePoints })
         <div style={{ fontSize: 28, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: '#34D399' }}>
           {totalChallengePoints}
         </div>
-        <div style={{ fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700 }}>TOTAL PTS</div>
+        <div style={{ fontSize: 9, color: '#555', fontFamily: 'monospace', fontWeight: 700 }}>CHALLENGE PTS</div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function BadgeRankCard({ badgeXP, rank }) {
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
           <div>
-            <p style={{ margin: "0 0 4px", fontSize: 10, color: "#555", fontFamily: "monospace", fontWeight: 700, letterSpacing: 2 }}>TRIBE RANK</p>
+            <p style={{ margin: "0 0 4px", fontSize: 10, color: "#555", fontFamily: "monospace", fontWeight: 700, letterSpacing: 2 }}>BADGE STATUS</p>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 28 }}>{rank.icon}</span>
               <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: rank.color }}>{rank.label}</span>
@@ -36,7 +36,7 @@ export default function BadgeRankCard({ badgeXP, rank }) {
           </>
         ) : (
           <div style={{ padding: "8px 14px", borderRadius: 10, background: `${rank.color}22`, textAlign: "center" }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: rank.color, fontFamily: "'Syne', sans-serif" }}>👑 Maximum Rank Achieved!</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: rank.color, fontFamily: "'Syne', sans-serif" }}>👑 Maximum Badge Status Achieved!</span>
           </div>
         )}
       </div>

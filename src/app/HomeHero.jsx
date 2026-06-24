@@ -8,7 +8,6 @@ export default function HomeHero({
   rankRules,
   setShowProfile,
   streak,
-  totalPts,
   userProfile,
 }) {
   const { theme } = useAppTheme();
@@ -48,8 +47,8 @@ export default function HomeHero({
             userProfile={userProfile}
           />
           <div>
-            <div style={{ fontSize: 11, color: theme.mutedStrong, fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>POINTS</div>
-            <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#FFD700" }}>{totalPts}</div>
+            <div style={{ fontSize: 11, color: theme.mutedStrong, fontFamily: "monospace", fontWeight: 700, letterSpacing: 1 }}>TRIBE SCORE</div>
+            <div style={{ fontSize: 36, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: "#FFD700" }}>{rankScore}</div>
           </div>
         </div>
       </div>

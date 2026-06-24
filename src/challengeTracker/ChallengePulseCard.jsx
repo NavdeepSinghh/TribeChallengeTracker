@@ -70,7 +70,7 @@ export default function ChallengePulseCard({ challenge, memberData, progress: pr
               textAlign: 'center',
             }}>
               <div style={{ fontSize: 18, lineHeight: 1 }}>{metric.icon}</div>
-              <div style={{ color: metric.label === 'POINTS' ? GOLD : '#fff', fontSize: 17, fontWeight: 900, fontFamily: "'Syne', sans-serif", marginTop: 4 }}>
+              <div style={{ color: metric.id === 'points' ? GOLD : '#fff', fontSize: 17, fontWeight: 900, fontFamily: "'Syne', sans-serif", marginTop: 4 }}>
                 {metric.value}
               </div>
               <div style={{ color: '#666', fontSize: 8, fontFamily: 'monospace', fontWeight: 800, letterSpacing: 0.4, marginTop: 2 }}>

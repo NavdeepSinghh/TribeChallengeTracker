@@ -21,7 +21,7 @@ export default function BoardTab({
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
         {[
-          { label: "TOTAL POINTS", value: totalPts, suffix: " pts", color: "#FFD700", icon: "⭐" },
+          { label: "ACTIVITY POINTS", value: totalPts, suffix: " pts", color: "#FFD700", icon: "⭐" },
           { label: "CURRENT STREAK", value: streak, suffix: " days", color: "#FF6B35", icon: "🔥" },
           { label: "DAYS ACTIVE", value: daysActive, suffix: " days", color: "#34D399", icon: "📅" },
           { label: "ACTIVITIES", value: allActivities.length, suffix: " total", color: "#60A5FA", icon: "💪" },

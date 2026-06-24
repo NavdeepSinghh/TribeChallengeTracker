@@ -125,7 +125,7 @@ export function buildChallengePulse({ challenge = {}, tasks = [], progress = {},
     : hydrationChecks > 0
       ? { icon: '💧', label: 'HYDRATION', value: String(hydrationChecks), caption: 'water check-ins' }
       : null);
-  addMetric(primaryMetrics, totalPoints > 0 ? { icon: '⭐', label: 'POINTS', value: String(totalPoints), caption: 'earned here' } : null);
+  addMetric(primaryMetrics, totalPoints > 0 ? { icon: '⭐', label: 'CHALLENGE PTS', value: String(totalPoints), caption: 'earned here' } : null);
   addMetric(primaryMetrics, completedDays > 0 ? { icon: '✅', label: 'FULL DAYS', value: String(completedDays), caption: 'all tasks done' } : null);
   addMetric(primaryMetrics, checkIns > 0 ? { icon: '📌', label: 'CHECK-INS', value: String(checkIns), caption: 'supporting habits' } : null);
   addMetric(primaryMetrics, taskCompletions > 0 ? { icon: '🎯', label: 'TASKS', value: String(taskCompletions), caption: 'total completions' } : null);

@@ -6,7 +6,7 @@ export default function HomeStatsCards({ myHistory, streak, totalPts }) {
   const daysActive = Object.keys(myHistory).filter(d => getEntryActivities(myHistory[d]).length > 0).length;
   const stats = [
     { label: "STREAK", value: streak, suffix: "🔥", color: "#FF6B35" },
-    { label: "POINTS", value: totalPts, suffix: "pts", color: "#FFD700" },
+    { label: "ACTIVITY PTS", value: totalPts, suffix: "pts", color: "#FFD700" },
     { label: "DAYS ACTIVE", value: daysActive, suffix: "", color: "#34D399" },
   ];
 

@@ -19,7 +19,7 @@ describe("challenge pulse", () => {
       expect.objectContaining({ label: "WORKOUT", value: "1.5h" }),
       expect.objectContaining({ label: "STEPS", value: "8k" }),
       expect.objectContaining({ label: "WATER", value: "6 L" }),
-      expect.objectContaining({ label: "POINTS", value: "80" }),
+      expect.objectContaining({ label: "CHALLENGE PTS", value: "80" }),
     ]));
     expect(pulse.focus).toEqual(expect.arrayContaining(["movement", "water", "steps", "check-ins"]));
     expect(pulse.hasLogs).toBe(true);
@@ -40,7 +40,7 @@ describe("challenge pulse", () => {
     expect(pulse.metrics).toEqual(expect.arrayContaining([
       expect.objectContaining({ label: "SESSIONS", value: "1" }),
       expect.objectContaining({ label: "HYDRATION", value: "1" }),
-      expect.objectContaining({ label: "POINTS", value: "20" }),
+      expect.objectContaining({ label: "CHALLENGE PTS", value: "20" }),
     ]));
   });
 });

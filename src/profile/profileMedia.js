@@ -71,7 +71,7 @@ function renderModernWinCardCanvas({
 
   panel(ctx, 92, 430, 896, 720, 'rgba(255,215,0,0.34)');
   text(ctx, `${totalPoints || 0}`, 540, 720, 170, '#FFD700', 900, 'center');
-  text(ctx, 'TRIBE SCORE', 540, 800, 30, 'rgba(255,255,255,0.62)', 900, 'center');
+  text(ctx, 'ACTIVITY POINTS', 540, 800, 30, 'rgba(255,255,255,0.62)', 900, 'center');
   text(ctx, `${rank?.icon || '✨'} ${(rank?.label || 'Rookie').toUpperCase()}`, 540, 920, 46, rank?.color || '#FFD700', 900, 'center');
 
   pill(ctx, `${streak || 0} DAY STREAK`, 146, 994, 370, 92, 'rgba(255,107,53,0.18)', '#FF6B35');
@@ -147,7 +147,7 @@ function renderWeeklyRecapCanvas({
   text(ctx, 'SESSIONS', 304, 1238, 24, 'rgba(255,255,255,0.62)', 900, 'center');
   panel(ctx, 564, 1060, 424, 220, 'rgba(255,215,0,0.3)');
   text(ctx, `${totalPoints || 0}`, 776, 1192, 70, '#FFD700', 900, 'center');
-  text(ctx, 'POINTS', 776, 1238, 24, 'rgba(255,255,255,0.62)', 900, 'center');
+  text(ctx, 'ACTIVITY PTS', 776, 1238, 24, 'rgba(255,255,255,0.62)', 900, 'center');
 
   text(ctx, `${streak || 0}-day streak going into next week.`, 540, 1488, 42, '#FFFFFF', 900, 'center');
   text(ctx, 'Share the week. Start the next one.', 540, 1570, 30, 'rgba(255,255,255,0.72)', 800, 'center');
