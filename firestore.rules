@@ -67,6 +67,12 @@ service cloud.firestore {
           && ["ios", "android", "web"].hasAny([request.resource.data.platform]);
         allow delete: if request.auth != null && (request.auth.uid == uid || isAdmin());
       }
+
+      // Blocked users - owned by the signed-in user. Apps use this to hide
+      // community feed entries, challenge messages, and leaderboard members.
+      match /blockedUsers/{blockedUid} {
+        allow read, create, update, delete: if request.auth != null && request.auth.uid == uid;
+      }
     }
 
     // ── Tribe activity feed ─────────────────────────────────────────────────
@@ -117,6 +123,25 @@ service cloud.firestore {
       allow update: if request.auth != null
         && isAdmin()
         && ["open", "waiting", "resolved", "closed"].hasAny([request.resource.data.status]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // ── Community safety reports ───────────────────────────────────────────
+    // Members can report visible community content. Admins review the queue
+    // separately; client apps do not moderate or delete other users' content.
+    match /contentReports/{reportId} {
+      allow read: if request.auth != null && (resource.data.reporterUid == request.auth.uid || isAdmin());
+      allow create: if request.auth != null
+        && request.resource.data.reporterUid == request.auth.uid
+        && request.resource.data.status == "open"
+        && request.resource.data.keys().hasAll(["reporterUid", "contentType", "contentId", "reason", "status", "source"])
+        && ["tribe_feed", "challenge_message", "challenge_member", "profile"].hasAny([request.resource.data.contentType])
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() >= 3
+        && request.resource.data.reason.size() <= 500;
+      allow update: if request.auth != null
+        && isAdmin()
+        && ["open", "reviewing", "resolved", "dismissed"].hasAny([request.resource.data.status]);
       allow delete: if request.auth != null && isAdmin();
     }
 
