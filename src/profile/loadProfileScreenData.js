@@ -56,22 +56,28 @@ import {
 } from '../userService';
 
 export function loadProfileScreenData(userUid, setters) {
+  const setIfPresent = (name, value) => {
+    if (typeof setters[name] === 'function') {
+      setters[name](value);
+    }
+  };
+
   getUserProfile(userUid).then(profile => {
-    setters.setProfile(profile);
-    setters.setDisplayNameDraft(profile?.displayName || '');
-    setters.setInstagramHandle(profile?.instagramHandle || '');
-    setters.setGoalActiveDays(profile?.goals?.weeklyActiveDaysTarget || 5);
-    setters.setGoalPoints(profile?.goals?.weeklyPointsTarget || 250);
-    setters.setGoalStreak(profile?.goals?.streakTarget || 30);
-    setters.setSelectedFrameId(profile?.cosmetics?.profileFrameId || 'none');
-    setters.setCreatorEnabled(profile?.creatorProfile?.enabled || false);
-    setters.setCreatorSpecialty(profile?.creatorProfile?.specialty || '');
-    setters.setCreatorBio(profile?.creatorProfile?.bio || '');
-    setters.setCreatorCtaUrl(profile?.creatorProfile?.ctaUrl || '');
-    setters.setCreatorRevenueShareInterest(profile?.creatorProfile?.revenueShareInterest || false);
-    setters.setSelectedPartnerPerkIds(profile?.partnerPerkInterest?.selectedIds || []);
-    setters.setSelectedCommunityEventInterestIds(profile?.communityEventInterest?.selectedIds || []);
-    setters.setSelectedProTrialReasonIds(profile?.proTrialInterest?.selectedIds || []);
+    setIfPresent('setProfile', profile);
+    setIfPresent('setDisplayNameDraft', profile?.displayName || '');
+    setIfPresent('setInstagramHandle', profile?.instagramHandle || '');
+    setIfPresent('setGoalActiveDays', profile?.goals?.weeklyActiveDaysTarget || 5);
+    setIfPresent('setGoalPoints', profile?.goals?.weeklyPointsTarget || 250);
+    setIfPresent('setGoalStreak', profile?.goals?.streakTarget || 30);
+    setIfPresent('setSelectedFrameId', profile?.cosmetics?.profileFrameId || 'none');
+    setIfPresent('setCreatorEnabled', profile?.creatorProfile?.enabled || false);
+    setIfPresent('setCreatorSpecialty', profile?.creatorProfile?.specialty || '');
+    setIfPresent('setCreatorBio', profile?.creatorProfile?.bio || '');
+    setIfPresent('setCreatorCtaUrl', profile?.creatorProfile?.ctaUrl || '');
+    setIfPresent('setCreatorRevenueShareInterest', profile?.creatorProfile?.revenueShareInterest || false);
+    setIfPresent('setSelectedPartnerPerkIds', profile?.partnerPerkInterest?.selectedIds || []);
+    setIfPresent('setSelectedCommunityEventInterestIds', profile?.communityEventInterest?.selectedIds || []);
+    setIfPresent('setSelectedProTrialReasonIds', profile?.proTrialInterest?.selectedIds || []);
 
     const ids = profile?.joinedChallengeIds || [];
     if (ids.length) {
