@@ -51,6 +51,7 @@ import {
   getSupportRefundReadinessReviewQueue,
   getStoreReviewResponseReviewQueue,
   getSupportReviewQueue,
+  getContentReportQueue,
   getUserChallengePoints,
   getUserProfile,
 } from '../userService';
@@ -89,6 +90,7 @@ export function loadProfileScreenData(userUid, setters) {
       getFeatureReviewQueue().then(setters.setFeatureReviewQueue).catch(() => setters.setFeatureReviewQueue([]));
       getAccountDeletionReviewQueue().then(setters.setAccountDeletionReviewQueue).catch(() => setters.setAccountDeletionReviewQueue([]));
       getSupportReviewQueue().then(setters.setSupportReviewQueue).catch(() => setters.setSupportReviewQueue([]));
+      getContentReportQueue().then(setters.setContentReportQueue).catch(() => setters.setContentReportQueue([]));
       getEntitlementRecoveryReviewQueue().then(setters.setEntitlementRecoveryReviewQueue).catch(() => setters.setEntitlementRecoveryReviewQueue([]));
       getStoreTestPurchaseEvidenceLog().then(setters.setStoreTestEvidenceLog).catch(() => setters.setStoreTestEvidenceLog([]));
       getSupportRefundReadinessReviewQueue().then(setters.setSupportRefundReadinessReviewQueue).catch(() => setters.setSupportRefundReadinessReviewQueue([]));

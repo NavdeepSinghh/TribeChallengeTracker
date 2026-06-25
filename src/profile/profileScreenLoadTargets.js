@@ -14,6 +14,7 @@ export function buildProfileScreenLoadTargets({
     setCampaignPerformanceSummary: revenueState.setCampaignPerformanceSummary,
     setChallengePoints,
     setCommunityEventInterestSummary: revenueState.setCommunityEventInterestSummary,
+    setContentReportQueue: reviewState.setContentReportQueue,
     setCreatorBio: revenueState.setCreatorBio,
     setCreatorCtaUrl: revenueState.setCreatorCtaUrl,
     setCreatorEnabled: revenueState.setCreatorEnabled,

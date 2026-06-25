@@ -38,6 +38,22 @@ export function buildSupportReviewAdminSectionProps({
   };
 }
 
+export function buildContentReportReviewSectionProps({
+  contentReportQueue,
+  contentReportReviewNotes,
+  onContentReportReview,
+  reviewingContentReportId,
+  setContentReportReviewNotes,
+}) {
+  return {
+    contentReportQueue,
+    contentReportReviewNotes,
+    onContentReportReview,
+    reviewingContentReportId,
+    setContentReportReviewNotes,
+  };
+}
+
 export function buildAccountDeletionRequestCardProps({
   accountDeletionRequested,
   deletionRequestMessage,
@@ -78,6 +94,7 @@ export function buildSupportAccountProps(props) {
   return {
     accountDeletionAdminReviewSectionProps: buildAccountDeletionAdminReviewSectionProps(props),
     accountDeletionRequestCardProps: buildAccountDeletionRequestCardProps(props),
+    contentReportReviewSectionProps: buildContentReportReviewSectionProps(props),
     isAdmin: props.isAdmin,
     supportRequestCardProps: buildSupportRequestCardProps(props),
     supportReviewAdminSectionProps: buildSupportReviewAdminSectionProps(props),

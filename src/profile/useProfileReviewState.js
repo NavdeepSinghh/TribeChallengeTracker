@@ -7,6 +7,9 @@ export default function useProfileReviewState() {
   const [supportReviewQueue, setSupportReviewQueue] = useState([]);
   const [supportReviewNotes, setSupportReviewNotes] = useState({});
   const [reviewingSupportRequestId, setReviewingSupportRequestId] = useState('');
+  const [contentReportQueue, setContentReportQueue] = useState([]);
+  const [contentReportReviewNotes, setContentReportReviewNotes] = useState({});
+  const [reviewingContentReportId, setReviewingContentReportId] = useState('');
   const [referralRewardReviewQueue, setReferralRewardReviewQueue] = useState([]);
   const [referralRewardReviewNotes, setReferralRewardReviewNotes] = useState({});
   const [reviewingReferralRewardClaimId, setReviewingReferralRewardClaimId] = useState('');
@@ -22,6 +25,8 @@ export default function useProfileReviewState() {
     accountDeletionReviewNotes,
     accountDeletionReviewQueue,
     approvedReferralRewardHandoffAuditReviews,
+    contentReportQueue,
+    contentReportReviewNotes,
     isSubmittingReferralRewardHandoffAuditReview,
     referralRewardHandoffAuditReviewMessage,
     referralRewardHandoffAuditReviewNotes,
@@ -30,12 +35,15 @@ export default function useProfileReviewState() {
     referralRewardReviewQueue,
     reviewMessage,
     reviewingAccountDeletionRequestId,
+    reviewingContentReportId,
     reviewingReferralRewardHandoffAuditReviewId,
     reviewingReferralRewardClaimId,
     reviewingSupportRequestId,
     setAccountDeletionReviewNotes,
     setAccountDeletionReviewQueue,
     setApprovedReferralRewardHandoffAuditReviews,
+    setContentReportQueue,
+    setContentReportReviewNotes,
     setIsSubmittingReferralRewardHandoffAuditReview,
     setReferralRewardHandoffAuditReviewMessage,
     setReferralRewardHandoffAuditReviewNotes,
@@ -44,6 +52,7 @@ export default function useProfileReviewState() {
     setReferralRewardReviewQueue,
     setReviewMessage,
     setReviewingAccountDeletionRequestId,
+    setReviewingContentReportId,
     setReviewingReferralRewardHandoffAuditReviewId,
     setReviewingReferralRewardClaimId,
     setReviewingSupportRequestId,

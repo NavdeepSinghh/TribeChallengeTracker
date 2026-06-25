@@ -1,22 +1,27 @@
 import { buildAccountDeletionActionHandlers } from './accountDeletionActionHandlers';
+import { buildContentReportActionHandlers } from './contentReportActionHandlers';
 import { buildSupportRequestActionHandlers } from './supportRequestActionHandlers';
 
 export default function useAccountSupportActions({
   accountDeletionRequested,
   accountDeletionReviewNotes,
+  contentReportReviewNotes,
   isAdmin,
   isRequestingDeletion,
   isSubmittingSupport,
   profile,
   reviewingAccountDeletionRequestId,
+  reviewingContentReportId,
   reviewingSupportRequestId,
   setAccountDeletionReviewQueue,
+  setContentReportQueue,
   setDeletionRequestMessage,
   setIsRequestingDeletion,
   setIsSubmittingSupport,
   setProfile,
   setReviewMessage,
   setReviewingAccountDeletionRequestId,
+  setReviewingContentReportId,
   setReviewingSupportRequestId,
   setSupportMessage,
   setSupportReviewQueue,
@@ -59,8 +64,18 @@ export default function useAccountSupportActions({
     user,
   });
 
+  const contentReportHandlers = buildContentReportActionHandlers({
+    contentReportReviewNotes,
+    profile,
+    reviewingContentReportId,
+    setContentReportQueue,
+    setReviewingContentReportId,
+    setSupportStatusMessage,
+  });
+
   return {
     ...accountDeletionHandlers,
     ...supportRequestHandlers,
+    ...contentReportHandlers,
   };
 }

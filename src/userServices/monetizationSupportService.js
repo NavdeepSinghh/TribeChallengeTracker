@@ -14,6 +14,12 @@ export {
   submitSupportRequest,
 } from './supportRequestService';
 export {
+  canRemoveReportedContent,
+  contentReportLabel,
+  getContentReportQueue,
+  reviewContentReport,
+} from './contentReportService';
+export {
   getStoreTestPurchaseEvidenceLog,
   recordStoreTestPurchaseEvidence,
   reviewStoreTestPurchaseEvidence,

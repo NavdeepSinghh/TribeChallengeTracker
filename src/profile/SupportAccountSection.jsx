@@ -1,5 +1,6 @@
 import AccountDeletionAdminReviewSection from './AccountDeletionAdminReviewSection';
 import AccountDeletionRequestCard from './AccountDeletionRequestCard';
+import ContentReportReviewSection from './ContentReportReviewSection';
 import { buildSupportAccountProps } from './supportAccountSectionProps';
 import SupportRequestCard from './SupportRequestCard';
 import SupportReviewAdminSection from './SupportReviewAdminSection';
@@ -8,6 +9,7 @@ export default function SupportAccountSection(props) {
   const {
     accountDeletionAdminReviewSectionProps,
     accountDeletionRequestCardProps,
+    contentReportReviewSectionProps,
     isAdmin,
     supportRequestCardProps,
     supportReviewAdminSectionProps,
@@ -19,7 +21,10 @@ export default function SupportAccountSection(props) {
       <SupportRequestCard {...supportRequestCardProps} theme={theme} />
 
       {isAdmin && (
-        <SupportReviewAdminSection {...supportReviewAdminSectionProps} />
+        <>
+          <SupportReviewAdminSection {...supportReviewAdminSectionProps} />
+          <ContentReportReviewSection {...contentReportReviewSectionProps} />
+        </>
       )}
 
       <AccountDeletionRequestCard {...accountDeletionRequestCardProps} theme={theme} />
