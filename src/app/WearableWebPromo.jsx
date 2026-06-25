@@ -25,7 +25,7 @@ export default function WearableWebPromo() {
         <div>
           <p style={{ margin: "0 0 3px", fontSize: 11, fontWeight: 700, color: "#FF6B35" }}>Available on iOS &amp; Android</p>
           <p style={{ margin: 0, fontSize: 10, color: "#666", lineHeight: 1.5 }}>
-            The mobile app auto-imports workouts from Apple Health (iPhone) and Health Connect (Android) so you never log manually again.
+            The mobile app imports workouts and steps from Apple Health (iPhone) and Health Connect (Android) after permission. It is optional and not medical advice.
           </p>
         </div>
       </div>

@@ -40,6 +40,9 @@ export default function WearableIdleSyncOptions({ handleSync }) {
           {syncHintText}
         </p>
       )}
+      <p style={{ color: "#555", fontSize: 9, margin: "6px 0 0", fontFamily: "monospace", lineHeight: 1.5 }}>
+        Optional. TribeLog uses wearable sync only to help fill activity logs. It is not medical advice.
+      </p>
     </>
   );
 }
