@@ -3,7 +3,7 @@ import { useAppTheme } from "./AppThemeContext";
 const NAV_ITEMS = [
   { id: "home", icon: "🏠", label: "Home" },
   { id: "challenges", icon: "🎯", label: "Challenges" },
-  { id: "board", icon: "🏆", label: "Board" },
+  { id: "board", icon: "📊", label: "Activity" },
   { id: "badges", icon: "⭐", label: "Badges" },
   { id: "settings", icon: "⚙️", label: "Settings" },
 ];

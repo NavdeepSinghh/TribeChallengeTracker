@@ -16,8 +16,8 @@ export default function BoardTab({
 
   return (
     <div style={{ padding: "52px 20px 20px" }}>
-      <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>YOUR STATS</p>
-      <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: theme.text }}>Performance 📊</h2>
+      <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>ACTIVITY</p>
+      <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: theme.text }}>Activity 📊</h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
         {[
@@ -36,7 +36,7 @@ export default function BoardTab({
 
       <div style={{ padding: "20px", borderRadius: 18, background: isDay ? "linear-gradient(135deg, rgba(255,107,53,0.14), rgba(255,255,255,0.96))" : "linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,215,0,0.08))", border: `1px solid ${isDay ? "rgba(255,107,53,0.28)" : "rgba(255,107,53,0.2)"}`, marginBottom: 24 }}>
         <p style={{ margin: "0 0 6px", fontSize: 14, fontWeight: 800, color: isDay ? "#B84418" : "#FFD700", fontFamily: "'Syne', sans-serif" }}>Challenge Leaderboards 🏆</p>
-        <p style={{ margin: "0 0 14px", fontSize: 12, color: theme.textSoft }}>Join or create a challenge to compete with the tribe and climb the leaderboard.</p>
+        <p style={{ margin: "0 0 14px", fontSize: 12, color: theme.textSoft }}>Challenge rankings still live here, below your personal training and activity progress.</p>
         <button onClick={() => setTab("challenges")} style={{ padding: "10px 18px", borderRadius: 12, background: "linear-gradient(135deg, #FF6B35, #FFD700)", border: "none", color: "#000", fontSize: 13, fontWeight: 800, cursor: "pointer", fontFamily: "'Syne', sans-serif" }}>
           View Challenges →
         </button>

@@ -1,0 +1,143 @@
+export const WORKOUT_TEMPLATES = [
+  {
+    id: "pull_day",
+    name: "Pull Day",
+    emoji: "🧲",
+    focus: "Back, biceps, rear delts",
+    minutes: 55,
+    summary: "Rows, pulldowns, curls, and rear-delt work.",
+    guidance: [
+      "Start with one heavy pull, then move to controlled rows and curls.",
+      "Keep shoulders down on pulldowns and pause briefly on rows.",
+    ],
+    exercises: [
+      { name: "Lat Pulldown", sets: 3, reps: 10, weightKg: 35, tip: "Pull elbows toward your ribs, not behind your body." },
+      { name: "Seated Cable Row", sets: 3, reps: 10, weightKg: 35, tip: "Pause with chest tall and shoulder blades squeezed." },
+      { name: "Dumbbell Row", sets: 3, reps: 10, weightKg: 18, tip: "Keep hips square and avoid twisting." },
+      { name: "Face Pull", sets: 3, reps: 12, weightKg: 15, tip: "Aim toward your eyebrows for rear delts." },
+      { name: "Barbell Curl", sets: 3, reps: 10, weightKg: 20, tip: "Control the lowering phase." },
+    ],
+  },
+  {
+    id: "push_day",
+    name: "Push Day",
+    emoji: "🚀",
+    focus: "Chest, shoulders, triceps",
+    minutes: 55,
+    summary: "Pressing strength plus shoulder and triceps finishers.",
+    guidance: [
+      "Do presses first while fresh, then finish with isolation work.",
+      "Keep reps clean and stop a set before form breaks.",
+    ],
+    exercises: [
+      { name: "Bench Press", sets: 3, reps: 8, weightKg: 50, tip: "Keep feet planted and shoulder blades tucked." },
+      { name: "Incline Dumbbell Press", sets: 3, reps: 10, weightKg: 18, tip: "Use a controlled angle and avoid bouncing." },
+      { name: "Shoulder Press", sets: 3, reps: 8, weightKg: 25, tip: "Brace ribs down before pressing overhead." },
+      { name: "Lateral Raise", sets: 3, reps: 12, weightKg: 7.5, tip: "Lead with elbows and keep traps relaxed." },
+      { name: "Triceps Pushdown", sets: 3, reps: 12, weightKg: 20, tip: "Pin elbows by your sides." },
+    ],
+  },
+  {
+    id: "legs",
+    name: "Legs",
+    emoji: "🦵",
+    focus: "Quads, glutes, hamstrings, calves",
+    minutes: 60,
+    summary: "Squat or press, hinge, extensions, curls, calves.",
+    guidance: [
+      "Leg press foot placement: lower/narrow biases quads, higher/wider biases glutes and hamstrings, middle is balanced.",
+      "Use controlled depth, keep knees tracking with toes, and do not lock knees hard at the top.",
+    ],
+    exercises: [
+      { name: "Leg Press", sets: 4, reps: 10, weightKg: 80, tip: "Low/narrow = quads. High/wide = glutes and hamstrings." },
+      { name: "Romanian Deadlift", sets: 3, reps: 8, weightKg: 50, tip: "Hinge back with a flat back and soft knees." },
+      { name: "Leg Extension", sets: 3, reps: 12, weightKg: 35, tip: "Pause at the top without swinging." },
+      { name: "Hamstring Curl", sets: 3, reps: 12, weightKg: 30, tip: "Control both directions." },
+      { name: "Calf Raise", sets: 3, reps: 15, weightKg: 40, tip: "Use a full stretch and full squeeze." },
+    ],
+  },
+  {
+    id: "chest",
+    name: "Chest",
+    emoji: "🛡️",
+    focus: "Chest and pressing volume",
+    minutes: 45,
+    summary: "Flat press, incline press, fly, and push-up finisher.",
+    guidance: [
+      "Use one primary press, one angled press, then one stretch-focused movement.",
+      "Keep shoulders packed and avoid turning every set into a max attempt.",
+    ],
+    exercises: [
+      { name: "Bench Press", sets: 4, reps: 8, weightKg: 50, tip: "Keep bar path steady and feet planted." },
+      { name: "Incline Dumbbell Press", sets: 3, reps: 10, weightKg: 18, tip: "Press slightly back toward your face." },
+      { name: "Cable Fly", sets: 3, reps: 12, weightKg: 12.5, tip: "Hug around the chest, keep elbows soft." },
+      { name: "Push-up", sets: 3, reps: 12, weightKg: 0, tip: "Stop before your hips sag." },
+    ],
+  },
+  {
+    id: "back",
+    name: "Back",
+    emoji: "🌊",
+    focus: "Lats, mid-back, rear delts",
+    minutes: 50,
+    summary: "Vertical pull, horizontal row, single-arm row, rear delts.",
+    guidance: [
+      "Mix vertical and horizontal pulling for a more complete back session.",
+      "Think elbows first and keep the neck relaxed.",
+    ],
+    exercises: [
+      { name: "Lat Pulldown", sets: 3, reps: 10, weightKg: 35, tip: "Drive elbows down and keep ribs stacked." },
+      { name: "Chest-supported Row", sets: 3, reps: 10, weightKg: 30, tip: "Let the bench remove momentum." },
+      { name: "One-arm Dumbbell Row", sets: 3, reps: 10, weightKg: 18, tip: "Pull toward the hip pocket." },
+      { name: "Face Pull", sets: 3, reps: 12, weightKg: 15, tip: "Finish with hands beside ears." },
+    ],
+  },
+  {
+    id: "arms",
+    name: "Arms",
+    emoji: "💥",
+    focus: "Biceps and triceps",
+    minutes: 40,
+    summary: "Simple arm volume with curls and extensions.",
+    guidance: [
+      "Pair biceps and triceps to keep the session moving.",
+      "Use strict reps; arm days are easy to cheat when tired.",
+    ],
+    exercises: [
+      { name: "Dumbbell Curl", sets: 3, reps: 10, weightKg: 10, tip: "Keep elbows still." },
+      { name: "Hammer Curl", sets: 3, reps: 10, weightKg: 10, tip: "Thumbs up grip for brachialis and forearms." },
+      { name: "Cable Curl", sets: 3, reps: 12, weightKg: 15, tip: "Keep constant cable tension." },
+      { name: "Triceps Pushdown", sets: 3, reps: 12, weightKg: 20, tip: "Lock out without leaning over the stack." },
+      { name: "Overhead Triceps Extension", sets: 3, reps: 12, weightKg: 15, tip: "Feel the long head stretch behind you." },
+    ],
+  },
+  {
+    id: "full_body",
+    name: "Full Body",
+    emoji: "⚡",
+    focus: "Squat, pull, press, hinge, core",
+    minutes: 55,
+    summary: "Balanced session when you want one efficient workout.",
+    guidance: [
+      "Keep the main lifts moderate so the whole body gets quality work.",
+      "This is a strong default when you missed a split day.",
+    ],
+    exercises: [
+      { name: "Goblet Squat", sets: 3, reps: 10, weightKg: 24, tip: "Stay tall and sit between the hips." },
+      { name: "Seated Cable Row", sets: 3, reps: 10, weightKg: 35, tip: "Control the squeeze." },
+      { name: "Dumbbell Bench Press", sets: 3, reps: 10, weightKg: 18, tip: "Press evenly with both sides." },
+      { name: "Romanian Deadlift", sets: 3, reps: 8, weightKg: 45, tip: "Hips back, spine neutral." },
+      { name: "Plank", sets: 3, reps: 30, weightKg: 0, tip: "Record seconds in reps for now." },
+    ],
+  },
+];
+
+export function buildExerciseDraftsFromTemplate(template) {
+  return template.exercises.map(exercise => ({
+    name: exercise.name,
+    sets: Array.from({ length: exercise.sets }, () => ({
+      reps: String(exercise.reps),
+      weightKg: exercise.weightKg > 0 ? String(exercise.weightKg) : "",
+    })),
+  }));
+}

@@ -5,6 +5,7 @@ import {
   saveTrainingSession,
 } from "../userServices/trainingJournalService";
 import { useAppTheme } from "./AppThemeContext";
+import { WORKOUT_TEMPLATES, buildExerciseDraftsFromTemplate } from "./workoutTemplates";
 
 const SESSION_TYPES = [
   { id: "gym", label: "Gym", icon: "💪", color: "#F59E0B" },
@@ -40,6 +41,7 @@ export default function TrainingJournalSection({ user }) {
   const [showBuilder, setShowBuilder] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
   const [selectedType, setSelectedType] = useState("gym");
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [dateStr, setDateStr] = useState(localDateStr());
   const [planName, setPlanName] = useState("");
   const [intensity, setIntensity] = useState("steady");
@@ -87,6 +89,7 @@ export default function TrainingJournalSection({ user }) {
 
   const copySessionToDraft = (session) => {
     if (!session) return;
+    setSelectedTemplate(null);
     setSelectedType(session.type || "gym");
     setDateStr(localDateStr());
     setPlanName(session.planName || defaultPlanName(session.type));
@@ -106,6 +109,7 @@ export default function TrainingJournalSection({ user }) {
   };
 
   const resetDraft = (type = selectedType) => {
+    setSelectedTemplate(null);
     setDateStr(localDateStr());
     setPlanName("");
     setIntensity("steady");
@@ -128,6 +132,25 @@ export default function TrainingJournalSection({ user }) {
     } else if (type === "yoga") {
       setYogaMinutes("30");
     }
+  };
+
+  const applyWorkoutTemplate = (template) => {
+    setSelectedTemplate(template);
+    setSelectedType("gym");
+    setDateStr(localDateStr());
+    setPlanName(template.name);
+    setIntensity("steady");
+    setNotes("");
+    setExercises(buildExerciseDraftsFromTemplate(template).map(createExerciseDraft));
+    setRunDistance("");
+    setRunMinutes("");
+    setSwimDistanceMeters("");
+    setSwimMinutes("");
+    setSwimStroke("Freestyle");
+    setSwimLocation("Pool");
+    setYogaMinutes("");
+    setYogaStyle("Flow");
+    setShowBuilder(true);
   };
 
   const handleSave = async () => {
@@ -233,6 +256,8 @@ export default function TrainingJournalSection({ user }) {
           </button>
         </div>
 
+        <WorkoutTemplateStrip templates={WORKOUT_TEMPLATES} onSelect={applyWorkoutTemplate} theme={theme} />
+
         {!!sessions.length && (
           <div style={{ marginTop: 14, display: "grid", gap: 8 }}>
             {sessions.slice(0, 3).map(session => (
@@ -245,6 +270,13 @@ export default function TrainingJournalSection({ user }) {
       {showBuilder && (
         <ModalShell title="Log Training Session" onClose={() => setShowBuilder(false)} theme={theme}>
           <TypePicker selectedType={selectedType} onSelect={(type) => { setSelectedType(type); resetDraft(type); }} theme={theme} />
+
+          {selectedType === "gym" && (
+            <TemplateGuidance
+              template={selectedTemplate || WORKOUT_TEMPLATES.find(template => template.name === planName)}
+              theme={theme}
+            />
+          )}
 
           {!!sessions.length && (
             <div style={{ marginBottom: 14 }}>
@@ -326,6 +358,78 @@ export default function TrainingJournalSection({ user }) {
         </ModalShell>
       )}
     </>
+  );
+}
+
+function WorkoutTemplateStrip({ onSelect, templates, theme }) {
+  return (
+    <div style={{ marginTop: 14 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center", marginBottom: 9 }}>
+        <p style={eyebrowStyle(theme)}>WORKOUT TEMPLATES</p>
+        <span style={{ color: theme.textSoft, fontSize: 11, fontWeight: 800 }}>Tap to prefill</span>
+      </div>
+      <div style={{
+        display: "flex",
+        gap: 9,
+        overflowX: "auto",
+        paddingBottom: 4,
+        WebkitOverflowScrolling: "touch",
+      }}>
+        {templates.map(template => (
+          <button
+            key={template.id}
+            onClick={() => onSelect(template)}
+            style={{
+              flex: "0 0 154px",
+              textAlign: "left",
+              border: `1px solid ${theme.cardBorder}`,
+              borderRadius: 14,
+              background: theme.cardBgStrong,
+              color: theme.text,
+              padding: 12,
+              cursor: "pointer",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "center", marginBottom: 8 }}>
+              <span style={{ fontSize: 24 }}>{template.emoji}</span>
+              <span style={{ color: "#FF6B35", fontSize: 10, fontFamily: "monospace", fontWeight: 900 }}>{template.minutes} MIN</span>
+            </div>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 950, fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {template.name}
+            </p>
+            <p style={{ margin: "4px 0 0", color: theme.textSoft, fontSize: 11, lineHeight: 1.25 }}>
+              {template.focus}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TemplateGuidance({ template, theme }) {
+  if (!template) return null;
+  return (
+    <div style={{ padding: 12, borderRadius: 14, background: theme.cardBgStrong, border: `1px solid ${theme.cardBorder}`, marginBottom: 14 }}>
+      <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+        <span style={{ fontSize: 24 }}>{template.emoji}</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <p style={{ margin: 0, color: theme.text, fontSize: 14, fontWeight: 950, fontFamily: "'Syne', sans-serif" }}>
+            {template.name} template
+          </p>
+          <p style={{ margin: "3px 0 8px", color: theme.textSoft, fontSize: 12 }}>
+            {template.summary}
+          </p>
+          <div style={{ display: "grid", gap: 6 }}>
+            {template.guidance.map(item => (
+              <p key={item} style={{ margin: 0, color: theme.textSoft, fontSize: 11, lineHeight: 1.35 }}>
+                • {item}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
