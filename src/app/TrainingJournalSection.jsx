@@ -28,6 +28,10 @@ const createSetDraft = (set = {}) => ({
 const createExerciseDraft = (exercise = {}) => ({
   id: `${Date.now()}_${Math.random().toString(16).slice(2)}`,
   name: exercise.name || "Main lift",
+  focus: exercise.focus || "",
+  repRange: exercise.repRange || "",
+  setRange: exercise.setRange || "",
+  tip: exercise.tip || "",
   sets: exercise.sets?.length
     ? exercise.sets.map(createSetDraft)
     : [createSetDraft(), createSetDraft(), createSetDraft()],
@@ -427,10 +431,29 @@ function TemplateGuidance({ template, theme }) {
               </p>
             ))}
           </div>
+          {!!template.exercises?.length && (
+            <div style={{ display: "grid", gap: 7, marginTop: 10 }}>
+              {template.exercises.map(exercise => (
+                <div key={exercise.name} style={{ padding: "8px 9px", borderRadius: 10, background: theme.cardBg, border: `1px solid ${theme.cardBorder}` }}>
+                  <p style={{ margin: 0, color: theme.text, fontSize: 11, fontWeight: 900 }}>{exercise.name}</p>
+                  <p style={{ margin: "3px 0 0", color: theme.textSoft, fontSize: 10, lineHeight: 1.3 }}>
+                    {exerciseTargetText(exercise)}
+                    {exercise.focus ? ` · ${exercise.focus}` : ""}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
+}
+
+function exerciseTargetText(exercise) {
+  const setLabel = exercise.setRange || exercise.sets;
+  const repLabel = exercise.repRange || exercise.reps;
+  return `${setLabel} sets x ${repLabel} reps`;
 }
 
 function ModalShell({ children, onClose, theme, title }) {
@@ -541,6 +564,22 @@ function GymSessionBuilder({ exercises, setExercises, theme }) {
               <button onClick={() => removeExercise(exercise.id)} style={tinyButtonStyle(theme)}>Remove</button>
             )}
           </div>
+          {(exercise.setRange || exercise.repRange || exercise.focus || exercise.tip) && (
+            <div style={{ margin: "-2px 0 10px", display: "grid", gap: 4 }}>
+              {(exercise.setRange || exercise.repRange || exercise.focus) && (
+                <p style={{ margin: 0, color: theme.textSoft, fontSize: 11, lineHeight: 1.35 }}>
+                  Target: {exercise.setRange ? `${exercise.setRange} sets` : "sets as needed"}
+                  {exercise.repRange ? ` x ${exercise.repRange} reps` : ""}
+                  {exercise.focus ? ` · ${exercise.focus}` : ""}
+                </p>
+              )}
+              {exercise.tip && (
+                <p style={{ margin: 0, color: theme.mutedStrong, fontSize: 10, lineHeight: 1.35 }}>
+                  Tip: {exercise.tip}
+                </p>
+              )}
+            </div>
+          )}
 
           <div style={{ display: "grid", gap: 7 }}>
             {exercise.sets.map((set, setIndex) => (

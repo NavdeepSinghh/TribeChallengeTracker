@@ -4,18 +4,21 @@ export const WORKOUT_TEMPLATES = [
     name: "Pull Day",
     emoji: "🧲",
     focus: "Back, biceps, rear delts",
-    minutes: 55,
-    summary: "Rows, pulldowns, curls, and rear-delt work.",
+    minutes: 60,
+    summary: "Back width, mid-back thickness, rear delts, and biceps in one editable pull session.",
     guidance: [
-      "Start with one heavy pull, then move to controlled rows and curls.",
-      "Keep shoulders down on pulldowns and pause briefly on rows.",
+      "Perform this routine 1-2 times a week, resting 60-120 seconds between sets based on exercise intensity.",
+      "Warm up with dynamic shoulder prep like Y-T-W holds or arm circles.",
+      "When you hit the top of the rep range with clean form, add 1.25-2.5 kg next time.",
+      "Control the lowering phase on pulldowns and rows, and squeeze shoulder blades together on rows.",
     ],
     exercises: [
-      { name: "Lat Pulldown", sets: 3, reps: 10, weightKg: 35, tip: "Pull elbows toward your ribs, not behind your body." },
-      { name: "Seated Cable Row", sets: 3, reps: 10, weightKg: 35, tip: "Pause with chest tall and shoulder blades squeezed." },
-      { name: "Dumbbell Row", sets: 3, reps: 10, weightKg: 18, tip: "Keep hips square and avoid twisting." },
-      { name: "Face Pull", sets: 3, reps: 12, weightKg: 15, tip: "Aim toward your eyebrows for rear delts." },
-      { name: "Barbell Curl", sets: 3, reps: 10, weightKg: 20, tip: "Control the lowering phase." },
+      { name: "Pull-Ups or Lat Pulldowns", sets: 3, setRange: "3-4", reps: 10, repRange: "8-10", weightKg: 35, focus: "Back width (lats)", tip: "Choose assisted pull-ups or pulldowns if needed. Pull elbows down toward your ribs." },
+      { name: "Barbell or Dumbbell Row", sets: 3, setRange: "3-4", reps: 12, repRange: "8-12", weightKg: 30, focus: "Mid-back thickness", tip: "Keep the torso controlled and squeeze shoulder blades together at the top." },
+      { name: "Chest-Supported Row", sets: 3, setRange: "3", reps: 12, repRange: "10-12", weightKg: 30, focus: "Upper/mid-back isolation", tip: "Let the bench remove momentum so the upper back does the work." },
+      { name: "Cable Face Pulls", sets: 3, setRange: "3", reps: 15, repRange: "12-15", weightKg: 15, focus: "Rear delts and posture", tip: "Aim toward your eyebrows and finish with hands beside your ears." },
+      { name: "Incline or Cable Bicep Curls", sets: 3, setRange: "3", reps: 15, repRange: "10-15", weightKg: 10, focus: "Bicep peak and stretch", tip: "Use a full stretch and avoid swinging the elbows forward." },
+      { name: "Hammer Curls", sets: 2, setRange: "2-3", reps: 15, repRange: "12-15", weightKg: 10, focus: "Forearms and outer bicep", tip: "Keep a neutral grip and control the lowering phase." },
     ],
   },
   {
@@ -135,6 +138,10 @@ export const WORKOUT_TEMPLATES = [
 export function buildExerciseDraftsFromTemplate(template) {
   return template.exercises.map(exercise => ({
     name: exercise.name,
+    focus: exercise.focus || "",
+    setRange: exercise.setRange || `${exercise.sets}`,
+    repRange: exercise.repRange || `${exercise.reps}`,
+    tip: exercise.tip || "",
     sets: Array.from({ length: exercise.sets }, () => ({
       reps: String(exercise.reps),
       weightKg: exercise.weightKg > 0 ? String(exercise.weightKg) : "",
