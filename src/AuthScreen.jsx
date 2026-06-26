@@ -1,6 +1,8 @@
 import AuthBrandHeader from './AuthBrandHeader';
 import AuthFormCard from './AuthFormCard';
+import AuthWelcomeCarousel from './AuthWelcomeCarousel';
 import useAuthScreenState from './useAuthScreenState';
+import { useState } from 'react';
 
 function getInviteCode() {
   const code = new URLSearchParams(window.location.search).get('join');
@@ -91,6 +93,25 @@ export default function AuthScreen() {
     switchMode,
   } = useAuthScreenState();
   const inviteCode = getInviteCode();
+  const [showWelcomeCarousel, setShowWelcomeCarousel] = useState(() => {
+    if (inviteCode) return false;
+    return window.localStorage.getItem('tribelog.authWelcomeSeen') !== '1';
+  });
+
+  const openAuth = (nextMode) => {
+    window.localStorage.setItem('tribelog.authWelcomeSeen', '1');
+    switchMode(nextMode);
+    setShowWelcomeCarousel(false);
+  };
+
+  if (showWelcomeCarousel) {
+    return (
+      <AuthWelcomeCarousel
+        onJoin={() => openAuth('signup')}
+        onLogin={() => openAuth('signin')}
+      />
+    );
+  }
 
   return (
     <div style={{
@@ -142,6 +163,25 @@ export default function AuthScreen() {
             setName={setName}
             setPassword={setPassword}
           />
+
+          <button
+            onClick={() => setShowWelcomeCarousel(true)}
+            style={{
+              width: '100%',
+              marginTop: 14,
+              padding: '13px 14px',
+              borderRadius: 14,
+              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'rgba(255,255,255,0.06)',
+              color: '#cfcfcf',
+              fontSize: 13,
+              fontWeight: 800,
+              cursor: 'pointer',
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+          >
+            See how TribeLog works
+          </button>
 
           <p style={{ color: '#555', fontSize: 11, margin: '18px 4px 0', textAlign: 'center', lineHeight: 1.55 }}>
             By continuing, you agree to keep challenge logs honest and community-first.
