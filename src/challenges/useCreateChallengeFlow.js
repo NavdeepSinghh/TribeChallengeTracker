@@ -5,6 +5,11 @@ import { canCreateChallengeTemplate, canUseProFeature, PRO_FEATURES } from '../p
 import { getPublishedCreatorChallengeTemplates } from '../userServices/creatorChallengeTemplateDraftService';
 import { todayStr } from './challengeTheme';
 import { buildChallengeShareLink } from './challengeShare';
+import {
+  DEFAULT_COMMUNITY_SETTINGS,
+  DEFAULT_CUSTOM_CHALLENGE_TASKS,
+  DEFAULT_REMINDER_SETTINGS,
+} from './customChallengeModel';
 import useCreatedChallengeShareActions from './useCreatedChallengeShareActions';
 
 const DEFAULT_CREATOR_TEMPLATE_RULES = [
@@ -18,6 +23,18 @@ const DEFAULT_CREATOR_TEMPLATE_TASKS = [
   { id: 'logged', label: 'Logged in app', emoji: '📱' },
   { id: 'support', label: 'Encouraged the tribe', emoji: '📣' },
 ];
+
+function defaultCustomChallengeState() {
+  return {
+    description: 'Build consistency together with a custom set of tasks.',
+    duration: 30,
+    emoji: '🎯',
+    color: '#A78BFA',
+    tasks: DEFAULT_CUSTOM_CHALLENGE_TASKS,
+    reminders: DEFAULT_REMINDER_SETTINGS,
+    community: DEFAULT_COMMUNITY_SETTINGS,
+  };
+}
 
 function normalizePublishedCreatorTemplate(template = {}) {
   return {
@@ -51,6 +68,7 @@ export default function useCreateChallengeFlow({ onCreate, profile }) {
   const [publishedCreatorTemplates, setPublishedCreatorTemplates] = useState([]);
   const [publishedCreatorTemplateMessage, setPublishedCreatorTemplateMessage] = useState('');
   const [customName, setCustomName] = useState('');
+  const [customChallenge, setCustomChallenge] = useState(defaultCustomChallengeState);
   const [startDate, setStartDate] = useState(todayStr());
   const [isPublic, setIsPublic] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -87,7 +105,9 @@ export default function useCreateChallengeFlow({ onCreate, profile }) {
     setLoading(true);
     const effectiveIsPublic = canCreatePrivate ? isPublic : true;
     try {
-      const challenge = await createChallenge(user.uid, template, customName, startDate, effectiveIsPublic);
+      const challenge = await createChallenge(user.uid, template, customName, startDate, effectiveIsPublic, {
+        customChallenge: template?.id === 'custom' ? customChallenge : null,
+      });
       setCreated(challenge);
       setStep(3);
       onCreate?.();
@@ -106,6 +126,9 @@ export default function useCreateChallengeFlow({ onCreate, profile }) {
     setProMessage('');
     setTemplate(selectedTemplate);
     setCustomName(selectedTemplate.name);
+    if (selectedTemplate.id === 'custom') {
+      setCustomChallenge(defaultCustomChallengeState());
+    }
     setStep(2);
   };
 
@@ -114,6 +137,7 @@ export default function useCreateChallengeFlow({ onCreate, profile }) {
     copied,
     created,
     createdCampaignShareText,
+    customChallenge,
     customName,
     handleCopy,
     handleCreate,
@@ -125,6 +149,7 @@ export default function useCreateChallengeFlow({ onCreate, profile }) {
     publishedCreatorTemplates,
     proMessage,
     setCustomName,
+    setCustomChallenge,
     setIsPublic,
     setProMessage,
     setStartDate,

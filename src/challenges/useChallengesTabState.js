@@ -14,6 +14,8 @@ export default function useChallengesTabState({
   const [detailChallenge, setDetailChallenge] = useState(null);
   const [trackerChallenge, setTrackerChallenge] = useState(null);
   const {
+    activeChallenges,
+    completedChallenges,
     joinedIds,
     load,
     loading,
@@ -56,6 +58,8 @@ export default function useChallengesTabState({
 
   return {
     detailChallenge,
+    activeChallenges,
+    completedChallenges,
     handleCreate,
     handleJoined,
     handleLeft,

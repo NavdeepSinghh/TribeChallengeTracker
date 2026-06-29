@@ -50,12 +50,14 @@ export function buildStatsGrid({
   ];
 }
 
-export function buildPreferenceRows({ onboarding, goalLabels, levelLabels, frequencyLabels }) {
+export function buildPreferenceRows({ onboarding, goalLabels, levelLabels, frequencyLabels, motivationLabels, dataSourceLabels = {}, healthSyncLabels }) {
   return [
     onboarding?.goal && { label: 'GOAL', value: goalLabels[onboarding.goal] || onboarding.goal },
     onboarding?.level && { label: 'LEVEL', value: levelLabels[onboarding.level] || onboarding.level },
     onboarding?.frequency && { label: 'FREQUENCY', value: frequencyLabels[onboarding.frequency] || onboarding.frequency },
-    onboarding?.motivation && { label: 'DRIVEN BY', value: onboarding.motivation.replace('_', ' ').toUpperCase() },
+    onboarding?.motivation && { label: 'DRIVEN BY', value: motivationLabels[onboarding.motivation] || onboarding.motivation.replace('_', ' ').toUpperCase() },
+    onboarding?.dataSource && { label: 'SOURCE', value: dataSourceLabels[onboarding.dataSource] || onboarding.dataSource.replace('_', ' ').toUpperCase() },
+    onboarding?.healthSync && { label: 'SYNC', value: healthSyncLabels[onboarding.healthSync] || onboarding.healthSync.replace('_', ' ').toUpperCase() },
   ].filter(Boolean);
 }
 

@@ -4,7 +4,7 @@ const slides = [
   {
     accent: '#FF6B35',
     glow: '#FFD700',
-    title: 'Log workouts. Build consistency with your people.',
+    title: 'Join challenges that make the next action obvious.',
     mockup: 'log',
   },
   {
@@ -20,10 +20,22 @@ const slides = [
     mockup: 'tribe',
   },
   {
+    accent: '#14B8A6',
+    glow: '#60A5FA',
+    title: 'Sync workouts and steps when you choose. Manual logging still works.',
+    mockup: 'health',
+  },
+  {
     accent: '#60A5FA',
     glow: '#A78BFA',
     title: 'Turn your effort into badges, share cards, and proof.',
     mockup: 'proof',
+  },
+  {
+    accent: '#111827',
+    glow: '#FF6B35',
+    title: 'You control what you share. Health sync stays optional.',
+    mockup: 'privacy',
   },
 ];
 
@@ -50,6 +62,47 @@ function CarouselDots({ active, onSelect }) {
   );
 }
 
+function CarouselFloatingNextButton({ accent, glow, onClick }) {
+  return (
+    <button
+      aria-label="Show next onboarding preview"
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        right: 'clamp(18px, 5vw, 70px)',
+        top: '50%',
+        zIndex: 3,
+        width: 66,
+        height: 66,
+        borderRadius: 999,
+        border: `2px solid ${accent}`,
+        background: '#fff',
+        color: '#121212',
+        cursor: 'pointer',
+        boxShadow: `0 18px 44px rgba(0,0,0,0.24), 0 0 0 8px ${glow}22`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: 'translateY(-50%)',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          width: 16,
+          height: 16,
+          borderRight: '4px solid currentColor',
+          borderBottom: '4px solid currentColor',
+          transform: 'rotate(-45deg)',
+          marginLeft: -4,
+        }}
+      />
+    </button>
+  );
+}
+
 function AppMockup({ type, accent, glow }) {
   const rows = {
     log: [
@@ -67,10 +120,20 @@ function AppMockup({ type, accent, glow }) {
       ['⚡', 'Navdeep joined 30-Day Tribe', '18m'],
       ['💪', 'Amrit logged Gym', '1h'],
     ],
+    health: [
+      ['⌚', 'Apple Health', 'Optional'],
+      ['💚', 'Health Connect', 'Ready'],
+      ['👟', 'Steps + workouts', 'Import'],
+    ],
     proof: [
       ['⭐', 'Elite', '610 XP'],
       ['🔥', '4 day streak', 'Live'],
       ['🏆', 'Challenge finished', 'Share'],
+    ],
+    privacy: [
+      ['🔒', 'Manual mode', 'Always'],
+      ['✅', 'Permission only when asked', 'Clear'],
+      ['🧾', 'No medical claims', 'Honest'],
     ],
   };
 
@@ -78,7 +141,9 @@ function AppMockup({ type, accent, glow }) {
     log: 'Today',
     training: 'Training',
     tribe: 'Tribe Activity',
+    health: 'Health Sync',
     proof: 'Progress',
+    privacy: 'Privacy',
   }[type];
 
   return (
@@ -131,6 +196,18 @@ function AppMockup({ type, accent, glow }) {
               <p style={{ margin: 0, fontSize: 12, color: '#6a625a', fontWeight: 900, textTransform: 'uppercase' }}>Status</p>
               <h3 style={{ margin: '8px 0 4px', fontSize: 34, fontWeight: 900, letterSpacing: 0 }}>Elite</h3>
               <p style={{ margin: 0, color: '#6a625a', fontSize: 13, fontWeight: 800 }}>90 pts to Legend</p>
+            </>
+          ) : type === 'health' ? (
+            <>
+              <p style={{ margin: 0, fontSize: 12, color: '#6a625a', fontWeight: 900, textTransform: 'uppercase' }}>Optional</p>
+              <h3 style={{ margin: '8px 0 4px', fontSize: 30, fontWeight: 900, letterSpacing: 0 }}>Sync later</h3>
+              <p style={{ margin: 0, color: '#6a625a', fontSize: 13, fontWeight: 800 }}>Workouts and steps only.</p>
+            </>
+          ) : type === 'privacy' ? (
+            <>
+              <p style={{ margin: 0, fontSize: 12, color: '#6a625a', fontWeight: 900, textTransform: 'uppercase' }}>Control</p>
+              <h3 style={{ margin: '8px 0 4px', fontSize: 30, fontWeight: 900, letterSpacing: 0 }}>Your data</h3>
+              <p style={{ margin: 0, color: '#6a625a', fontSize: 13, fontWeight: 800 }}>Skip any permission.</p>
             </>
           ) : (
             <>
@@ -245,6 +322,7 @@ export default function AuthWelcomeCarousel({ onJoin, onLogin }) {
           </h1>
           <AppMockup type={slide.mockup} accent={slide.accent} glow={slide.glow} />
         </div>
+        <CarouselFloatingNextButton accent={slide.accent} glow={slide.glow} onClick={nextSlide} />
       </div>
 
       <div style={{

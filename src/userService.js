@@ -19,6 +19,7 @@ export {
   canRemoveReportedContent,
   contentReportLabel,
   getContentReportQueue,
+  processAccountDeletion,
   recordStoreTestPurchaseEvidence,
   requestAccountDeletion,
   requestEntitlementRecovery,
@@ -147,3 +148,16 @@ export {
   saveSharePreferences,
   saveSocialProfile,
 } from './userServices/userProfileService';
+export {
+  FOLLOW_PROFILE_VISIBILITY,
+  ROUTINE_VISIBILITY,
+  fetchDiscoverProfiles,
+  fetchPublicRoutinesForProfile,
+  followUser,
+  getFollowStatus,
+  getPublicProfile,
+  publishRoutine,
+  saveFollowProfileSettings,
+  unpublishRoutine,
+  unfollowUser,
+} from './userServices/followService';

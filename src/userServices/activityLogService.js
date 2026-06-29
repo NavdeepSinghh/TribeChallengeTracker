@@ -10,12 +10,28 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from '../firebase';
+import {
+  cachedRead,
+  getCachedRead,
+  invalidateCachedRead,
+  setCachedRead,
+} from './readCache';
+
+const activityLogCacheKey = uid => `activityLog:${uid}`;
+const ACTIVITY_LOG_TTL_MS = 5 * 60 * 1000;
 
 export async function saveActivity(uid, dateStr, entry) {
   await setDoc(doc(db, 'users', uid, 'activityLog', dateStr), {
     ...entry,
     savedAt: serverTimestamp(),
   });
+  const cached = getCachedActivityLog(uid);
+  if (cached) {
+    setCachedRead(activityLogCacheKey(uid), {
+      ...cached,
+      [dateStr]: entry,
+    }, ACTIVITY_LOG_TTL_MS);
+  }
 }
 
 export async function deleteActivity(uid, dateStr, activityId, activityIndex) {
@@ -35,6 +51,18 @@ export async function deleteActivity(uid, dateStr, activityId, activityIndex) {
     date: dateStr,
     savedAt: serverTimestamp(),
   });
+  const cached = getCachedActivityLog(uid);
+  if (cached) {
+    setCachedRead(activityLogCacheKey(uid), {
+      ...cached,
+      [dateStr]: {
+        activities: nextActivities,
+        points: totalPoints,
+        totalPoints,
+        date: dateStr,
+      },
+    }, ACTIVITY_LOG_TTL_MS);
+  }
 
   if (activityId) {
     const feedSnap = await getDocs(query(
@@ -81,35 +109,51 @@ export async function saveStreakRecovery(uid, dateStr) {
       updatedAt: serverTimestamp(),
     },
   }, { merge: true });
+  const cached = getCachedActivityLog(uid);
+  if (cached) {
+    setCachedRead(activityLogCacheKey(uid), {
+      ...cached,
+      [dateStr]: next,
+    }, ACTIVITY_LOG_TTL_MS);
+  }
   return next;
 }
 
 export async function getActivityLog(uid) {
-  const snap = await getDocs(collection(db, 'users', uid, 'activityLog'));
-  return snap.docs.reduce((acc, d) => ({ ...acc, [d.id]: d.data() }), {});
+  return cachedRead(activityLogCacheKey(uid), async () => {
+    const snap = await getDocs(collection(db, 'users', uid, 'activityLog'));
+    return snap.docs.reduce((acc, d) => ({ ...acc, [d.id]: d.data() }), {});
+  }, ACTIVITY_LOG_TTL_MS);
+}
+
+function getCachedActivityLog(uid) {
+  return getCachedRead(activityLogCacheKey(uid));
 }
 
 export async function getUserChallengePoints(uid, challengeIds) {
   if (!challengeIds?.length) return [];
-  const results = await Promise.all(
-    challengeIds.map(async (id) => {
-      const [memberSnap, challengeSnap] = await Promise.all([
-        getDoc(doc(db, 'challenges', id, 'members', uid)),
-        getDoc(doc(db, 'challenges', id)),
-      ]);
-      if (!memberSnap.exists() || !challengeSnap.exists()) return null;
-      const m = memberSnap.data();
-      const c = challengeSnap.data();
-      return {
-        challengeId: id,
-        name: c.name || 'Unknown Challenge',
-        emoji: c.emoji || '🎯',
-        color: c.color || '#FF6B35',
-        totalPoints: m.totalPoints || 0,
-        daysCompleted: m.daysCompleted || 0,
-        currentStreak: m.currentStreak || 0,
-      };
-    })
-  );
-  return results.filter(Boolean);
+  const key = `userChallengePoints:${uid}:${challengeIds.slice().sort().join('|')}`;
+  return cachedRead(key, async () => {
+    const results = await Promise.all(
+      challengeIds.map(async (id) => {
+        const [memberSnap, challengeSnap] = await Promise.all([
+          getDoc(doc(db, 'challenges', id, 'members', uid)),
+          getDoc(doc(db, 'challenges', id)),
+        ]);
+        if (!memberSnap.exists() || !challengeSnap.exists()) return null;
+        const m = memberSnap.data();
+        const c = challengeSnap.data();
+        return {
+          challengeId: id,
+          name: c.name || 'Unknown Challenge',
+          emoji: c.emoji || '🎯',
+          color: c.color || '#FF6B35',
+          totalPoints: m.totalPoints || 0,
+          daysCompleted: m.daysCompleted || 0,
+          currentStreak: m.currentStreak || 0,
+        };
+      })
+    );
+    return results.filter(Boolean);
+  }, 2 * 60 * 1000);
 }

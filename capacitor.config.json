@@ -1,6 +1,6 @@
 {
   "appId": "com.risewiththetribe.challengetracker",
-  "appName": "Tribe Challenge",
+  "appName": "TribeLog",
   "webDir": "build",
   "server": {
     "url": "http://192.168.1.113:3000",

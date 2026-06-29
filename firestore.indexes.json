@@ -39,7 +39,26 @@
         { "fieldPath": "status",    "order": "ASCENDING" },
         { "fieldPath": "endDate",   "order": "ASCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "creatorChallengeTemplates",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status",   "order": "ASCENDING" },
+        { "fieldPath": "isPublic", "order": "ASCENDING" }
+      ]
     }
   ],
-  "fieldOverrides": []
+  "fieldOverrides": [
+    {
+      "collectionGroup": "blockedUsers",
+      "fieldPath": "blockedUid",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
 }

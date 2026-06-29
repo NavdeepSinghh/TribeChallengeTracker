@@ -100,7 +100,11 @@ export async function getCreatorChallengeTemplateDraftReviewQueue() {
 }
 
 export async function getPublishedCreatorChallengeTemplates() {
-  const snap = await getDocs(query(collection(db, 'creatorChallengeTemplates'), where('status', '==', 'published')));
+  const snap = await getDocs(query(
+    collection(db, 'creatorChallengeTemplates'),
+    where('status', '==', 'published'),
+    where('isPublic', '==', true)
+  ));
   return sortByCreatedAtDesc(snap.docs.map(templateDoc => ({
     id: templateDoc.id,
     ...templateDoc.data(),

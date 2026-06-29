@@ -8,7 +8,9 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore';
+import { httpsCallable } from 'firebase/functions';
 import { db } from '../firebase';
+import { functions } from '../firebase';
 import { getUserProfile } from './firestoreServiceUtils';
 
 const sortByRequestedAtDesc = items => items.sort((a, b) => {
@@ -42,11 +44,15 @@ export async function requestAccountDeletion(uid) {
 }
 
 export async function getAccountDeletionReviewQueue() {
-  const snap = await getDocs(query(collection(db, 'accountDeletionRequests'), where('status', '==', 'requested')));
-  return sortByRequestedAtDesc(snap.docs.map(requestDoc => ({
+  const statuses = ['requested', 'contacted', 'verified', 'blocked'];
+  const snapshots = await Promise.all(
+    statuses.map(status => getDocs(query(collection(db, 'accountDeletionRequests'), where('status', '==', status)))),
+  );
+  const requests = snapshots.flatMap(snap => snap.docs.map(requestDoc => ({
     id: requestDoc.id,
     ...requestDoc.data(),
   })));
+  return sortByRequestedAtDesc(Array.from(new Map(requests.map(req => [req.id, req])).values()));
 }
 
 export async function reviewAccountDeletionRequest(uid, { status, reviewNote = '', reviewedBy = 'admin' }) {
@@ -70,4 +76,14 @@ export async function reviewAccountDeletionRequest(uid, { status, reviewNote = '
   await setDoc(doc(db, 'users', uid), {
     accountDeletionRequest: reviewStatus,
   }, { merge: true });
+}
+
+export async function processAccountDeletion(uid, { reviewNote = '' } = {}) {
+  const callable = httpsCallable(functions, 'processAccountDeletion');
+  const result = await callable({
+    confirm: true,
+    reviewNote: String(reviewNote || '').trim().slice(0, 500),
+    targetUid: uid,
+  });
+  return result.data;
 }

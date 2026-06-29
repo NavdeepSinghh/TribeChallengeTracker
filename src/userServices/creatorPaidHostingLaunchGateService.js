@@ -18,7 +18,7 @@ async function buildCreatorPaidHostingLaunchGatePayload(uid) {
     getUserProfile(uid),
     getDocs(query(collection(db, 'challenges'), where('createdBy', '==', uid))),
     getDoc(doc(db, 'creatorHostingApplications', uid)),
-    getDocs(query(collection(db, 'creatorChallengeTemplates'), where('status', '==', 'published'))),
+    getDocs(query(collection(db, 'creatorChallengeTemplates'), where('status', '==', 'published'), where('isPublic', '==', true))),
     getDocs(query(collection(db, 'creatorBrandedPages'), where('uid', '==', uid))),
     getDocs(query(collection(db, 'creatorPrivateInviteLaunches'), where('uid', '==', uid))),
   ]);

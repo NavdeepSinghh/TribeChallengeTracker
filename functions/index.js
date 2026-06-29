@@ -2,6 +2,9 @@ const { onCall } = require('firebase-functions/v2/https');
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
 const admin = require('firebase-admin');
 const {
+  processAccountDeletion,
+} = require('./accountDeletionCallableHandlers');
+const {
   handlePurchaseValidationReadinessRequest,
   handleVerifyPurchaseRequest,
 } = require('./purchaseCallableHandlers');
@@ -19,6 +22,10 @@ exports.verifyPurchase = onCall({ region: 'us-central1' }, async (request) => {
 
 exports.getPurchaseValidationReadiness = onCall({ region: 'us-central1' }, async (request) => {
   return handlePurchaseValidationReadinessRequest({ request });
+});
+
+exports.processAccountDeletion = onCall({ region: 'us-central1' }, async (request) => {
+  return processAccountDeletion({ admin, request });
 });
 
 exports.recordChallengeReferralJoin = onDocumentCreated(

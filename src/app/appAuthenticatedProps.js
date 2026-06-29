@@ -4,6 +4,7 @@ export function buildAppAuthenticatedProps({
 }) {
   return {
     bottomNavProps: {
+      isAdmin: appState.isAdmin,
       setTab: appState.setTab,
       tab: appState.tab,
     },
@@ -62,6 +63,7 @@ export function buildAppAuthenticatedProps({
       triggerBadgeCheck: appState.triggerBadgeCheck,
       user,
       userProfile: appState.userProfile,
+      isAdmin: appState.isAdmin,
     },
   };
 }

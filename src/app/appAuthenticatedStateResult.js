@@ -7,6 +7,7 @@ export function buildAppAuthenticatedStateResult({
   progressShareActions,
   publicShellState,
   levelUpState,
+  isAdmin,
   rankRules,
   userChallengeData,
 }) {
@@ -25,6 +26,7 @@ export function buildAppAuthenticatedStateResult({
     handleProgressShare: progressShareActions.handleProgressShare,
     handleShareTemplateSelect: progressShareActions.handleShareTemplateSelect,
     hasActivePro: activitySummary.hasActivePro,
+    isAdmin,
     dismissLevelUp: levelUpState.dismissLevelUp,
     levelUp: levelUpState.levelUp,
     myChallenges: userChallengeData.myChallenges,

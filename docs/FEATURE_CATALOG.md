@@ -99,6 +99,10 @@ Release checks:
 - Re-importing the same source activity does not duplicate the log.
 - Auto-sync can be toggled off.
 
+Future feature candidate:
+
+- Recovery-aware challenge recommendations can use sleep, HRV, resting heart rate, and similar signals only after the app has visible recovery surfaces, explicit opt-in permission, updated store privacy disclosures, and clear copy that this is guidance for challenge fit rather than medical screening, diagnosis, or risk scoring.
+
 ## Sharing and Reward Surface Index
 
 Progress sharing, win cards, weekly recaps, and referral reward badges now live in `docs/feature-catalog/sharing-reward-surfaces.md` so the main feature catalog stays easier to scan while preserving the same social-proof, referral, claim, and no-entitlement contracts.

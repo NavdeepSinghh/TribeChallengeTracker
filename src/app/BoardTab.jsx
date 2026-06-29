@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { ACTIVITY_TYPES } from "./activityModel";
 import { useAppTheme } from "./AppThemeContext";
+import { isFollowFeatureEnabledForUser } from "../featureFlags";
+import FollowDiscoverySection from "./FollowDiscoverySection";
 import TrainingJournalSection from "./TrainingJournalSection";
 
 export default function BoardTab({
@@ -10,9 +13,12 @@ export default function BoardTab({
   streak,
   totalPts,
   user,
+  userProfile,
 }) {
   const { resolvedMode, theme } = useAppTheme();
   const isDay = resolvedMode === "day";
+  const [routineToUse, setRoutineToUse] = useState(null);
+  const followFeatureEnabled = isFollowFeatureEnabledForUser(user);
 
   return (
     <div style={{ padding: "52px 20px 20px" }}>
@@ -42,7 +48,17 @@ export default function BoardTab({
         </button>
       </div>
 
-      <TrainingJournalSection user={user} />
+      {followFeatureEnabled && (
+        <FollowDiscoverySection onUseRoutine={setRoutineToUse} user={user} />
+      )}
+
+      <TrainingJournalSection
+        onRoutineUsed={() => setRoutineToUse(null)}
+        routineToUse={routineToUse}
+        followFeatureEnabled={followFeatureEnabled}
+        user={user}
+        userProfile={userProfile}
+      />
 
       <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 12px" }}>ACTIVITY BREAKDOWN</p>
       {Object.values(actCounts).some(value => value > 0) ? (

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   sendChallengeAnnouncement,
   sendChallengeLogReminder,
+  sendChallengeMemberMessage,
   subscribeChallengeMessages,
 } from '../challengeMessageService';
 
@@ -24,11 +25,13 @@ function timeAgo(value) {
 
 function typeLabel(type) {
   if (type === 'log_reminder') return 'LOG REMINDER';
+  if (type === 'member_message') return 'MESSAGE';
   return 'ANNOUNCEMENT';
 }
 
 function typeIcon(type) {
   if (type === 'log_reminder') return '⏰';
+  if (type === 'member_message') return '💬';
   return '📣';
 }
 
@@ -37,7 +40,11 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const isAdmin = memberData?.role === 'admin' || challenge.createdBy === user.uid;
-  const senderName = memberData?.displayName || user.displayName || user.email || 'Challenge admin';
+  const community = challenge.community || {};
+  const announcementsEnabled = community.announcementsEnabled !== false;
+  const memberMessagesEnabled = community.memberMessagesEnabled === true;
+  const canPostMemberMessage = memberMessagesEnabled && !!memberData;
+  const senderName = memberData?.displayName || user.displayName || user.email || (isAdmin ? 'Challenge admin' : 'Tribe member');
 
   useEffect(() => {
     if (!challenge?.id) return undefined;
@@ -50,6 +57,18 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
     setSending(true);
     try {
       await sendChallengeAnnouncement({ challenge, message, senderUid: user.uid, senderName });
+      setDraft('');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const sendMemberMessage = async () => {
+    const message = draft.trim();
+    if (!message) return;
+    setSending(true);
+    try {
+      await sendChallengeMemberMessage({ challenge, message, senderUid: user.uid, senderName });
       setDraft('');
     } finally {
       setSending(false);
@@ -85,13 +104,13 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
         <span style={{ fontSize: 24 }}>📣</span>
       </div>
 
-      {isAdmin && (
+      {(isAdmin || canPostMemberMessage) && (
         <div style={{ marginTop: 14 }}>
           <textarea
             value={draft}
             onChange={event => setDraft(event.target.value)}
             maxLength={280}
-            placeholder="Post a quick update for this challenge..."
+            placeholder={isAdmin ? 'Post a quick update for this challenge...' : 'Message the challenge...'}
             style={{
               width: '100%',
               minHeight: 72,
@@ -106,12 +125,49 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
               outline: 'none',
             }}
           />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
+          {isAdmin ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
+              <button
+                type="button"
+                onClick={announcementsEnabled ? sendAnnouncement : sendMemberMessage}
+                disabled={sending || !draft.trim()}
+                style={{
+                  border: 0,
+                  borderRadius: 12,
+                  padding: '11px 10px',
+                  background: draft.trim() ? '#FF6B35' : 'rgba(255,255,255,0.08)',
+                  color: draft.trim() ? '#050505' : '#777',
+                  fontWeight: 900,
+                  cursor: draft.trim() && !sending ? 'pointer' : 'default',
+                }}
+              >
+                {announcementsEnabled ? 'Send Update' : 'Send Message'}
+              </button>
+              <button
+                type="button"
+                onClick={sendReminder}
+                disabled={sending}
+                style={{
+                  border: '1px solid rgba(255,215,0,0.32)',
+                  borderRadius: 12,
+                  padding: '11px 10px',
+                  background: 'rgba(255,215,0,0.12)',
+                  color: '#FFD700',
+                  fontWeight: 900,
+                  cursor: sending ? 'default' : 'pointer',
+                }}
+              >
+                Remind to Log
+              </button>
+            </div>
+          ) : (
             <button
               type="button"
-              onClick={sendAnnouncement}
+              onClick={sendMemberMessage}
               disabled={sending || !draft.trim()}
               style={{
+                width: '100%',
+                marginTop: 8,
                 border: 0,
                 borderRadius: 12,
                 padding: '11px 10px',
@@ -121,25 +177,9 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
                 cursor: draft.trim() && !sending ? 'pointer' : 'default',
               }}
             >
-              Send Update
+              Send Message
             </button>
-            <button
-              type="button"
-              onClick={sendReminder}
-              disabled={sending}
-              style={{
-                border: '1px solid rgba(255,215,0,0.32)',
-                borderRadius: 12,
-                padding: '11px 10px',
-                background: 'rgba(255,215,0,0.12)',
-                color: '#FFD700',
-                fontWeight: 900,
-                cursor: sending ? 'default' : 'pointer',
-              }}
-            >
-              Remind to Log
-            </button>
-          </div>
+          )}
         </div>
       )}
 
@@ -154,7 +194,9 @@ export default function ChallengeUpdatesCard({ challenge, memberData, user }) {
             lineHeight: 1.45,
             fontWeight: 700,
           }}>
-            No updates yet. Admins can post a reminder when the tribe needs a push.
+            {memberMessagesEnabled
+              ? 'No updates yet. Admins can post reminders and members can share a quick message.'
+              : 'No updates yet. Admins can post a reminder when the tribe needs a push.'}
           </div>
         ) : messages.map(item => (
           <div key={item.id} style={{

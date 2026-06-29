@@ -1,5 +1,6 @@
 import ChallengesTab from "../ChallengesTab";
 import ProfileScreen from "../ProfileScreen";
+import AdminConsole from "./AdminConsole";
 import BadgesTab from "./BadgesTab";
 import BoardTab from "./BoardTab";
 import HomeTab from "./HomeTab";
@@ -43,6 +44,16 @@ export function renderAppTabContent({ tab, ...props }) {
           props.triggerBadgeCheck(updated, props.challengeStats);
         }}
         onClose={() => props.setTab("home")}
+      />
+    );
+  }
+
+  if (tab === "admin") {
+    return (
+      <AdminConsole
+        isAdmin={props.isAdmin}
+        user={props.user}
+        userProfile={props.userProfile}
       />
     );
   }

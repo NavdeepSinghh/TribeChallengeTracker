@@ -4,6 +4,11 @@ import {
   getTrainingSessions,
   saveTrainingSession,
 } from "../userServices/trainingJournalService";
+import {
+  ROUTINE_VISIBILITY,
+  publishRoutine,
+  unpublishRoutine,
+} from "../userServices/followService";
 import { useAppTheme } from "./AppThemeContext";
 import { WORKOUT_TEMPLATES, buildExerciseDraftsFromTemplate } from "./workoutTemplates";
 
@@ -37,7 +42,13 @@ const createExerciseDraft = (exercise = {}) => ({
     : [createSetDraft(), createSetDraft(), createSetDraft()],
 });
 
-export default function TrainingJournalSection({ user }) {
+export default function TrainingJournalSection({
+  followFeatureEnabled = false,
+  onRoutineUsed,
+  routineToUse,
+  user,
+  userProfile,
+}) {
   const { theme } = useAppTheme();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,6 +70,7 @@ export default function TrainingJournalSection({ user }) {
   const [swimLocation, setSwimLocation] = useState("Pool");
   const [yogaMinutes, setYogaMinutes] = useState("");
   const [yogaStyle, setYogaStyle] = useState("Flow");
+  const [routineShareMessage, setRoutineShareMessage] = useState("");
 
   const loadSessions = () => {
     if (!user?.uid) return;
@@ -71,6 +83,12 @@ export default function TrainingJournalSection({ user }) {
   useEffect(() => {
     loadSessions();
   }, [user?.uid]);
+
+  useEffect(() => {
+    if (!routineToUse) return;
+    copyRoutineToDraft(routineToUse);
+    onRoutineUsed?.();
+  }, [routineToUse, onRoutineUsed]);
 
   const activeType = typeMeta(selectedType);
   const sessionsForType = useMemo(
@@ -109,6 +127,28 @@ export default function TrainingJournalSection({ user }) {
     setSwimLocation(session.location || "Pool");
     setYogaMinutes(session.durationMinutes ? String(session.durationMinutes) : "");
     setYogaStyle(session.style || "Flow");
+    setShowBuilder(true);
+  };
+
+  const copyRoutineToDraft = (routine) => {
+    if (!routine) return;
+    const type = routine.type || "gym";
+    setSelectedTemplate(null);
+    setSelectedType(type);
+    setDateStr(localDateStr());
+    setPlanName(routine.planName || defaultPlanName(type));
+    setIntensity("steady");
+    setNotes("");
+    setExercises(routine.exercises?.length ? routine.exercises.map(createExerciseDraft) : [createExerciseDraft()]);
+    setRunDistance(routine.distanceKm ? String(routine.distanceKm) : "");
+    setRunMinutes(routine.durationMinutes ? String(routine.durationMinutes) : "");
+    const meters = Number(routine.distanceMeters) || (Number(routine.distanceKm) || 0) * 1000;
+    setSwimDistanceMeters(meters ? String(Math.round(meters)) : "");
+    setSwimMinutes(routine.durationMinutes ? String(routine.durationMinutes) : "");
+    setSwimStroke(routine.style || "Freestyle");
+    setSwimLocation(routine.location || "Pool");
+    setYogaMinutes(routine.durationMinutes ? String(routine.durationMinutes) : "");
+    setYogaStyle(routine.style || "Flow");
     setShowBuilder(true);
   };
 
@@ -194,6 +234,43 @@ export default function TrainingJournalSection({ user }) {
     setSessions(current => current.filter(session => session.id !== sessionId));
   };
 
+  const handlePublishRoutine = async (session) => {
+    if (!user?.uid || !session?.id) return;
+    setRoutineShareMessage("");
+    try {
+      const profile = userProfile || user || {};
+      const preferredVisibility = profile?.followProfile?.routineDefaultVisibility;
+      const visibility = preferredVisibility && preferredVisibility !== ROUTINE_VISIBILITY.PRIVATE
+        ? preferredVisibility
+        : ROUTINE_VISIBILITY.PUBLIC;
+      const published = await publishRoutine(user.uid, profile, session, visibility);
+      setSessions(current => current.map(item => (
+        item.id === session.id
+          ? { ...item, routineVisibility: visibility, publicRoutineId: published.publicRoutineId || published.id }
+          : item
+      )));
+      setRoutineShareMessage(visibility === ROUTINE_VISIBILITY.FOLLOWERS ? "Routine is visible to followers." : "Routine is public on your profile.");
+    } catch (error) {
+      setRoutineShareMessage(error.message || "Could not share this routine.");
+    }
+  };
+
+  const handleUnpublishRoutine = async (session) => {
+    if (!user?.uid || !session?.id) return;
+    setRoutineShareMessage("");
+    try {
+      await unpublishRoutine(user.uid, session);
+      setSessions(current => current.map(item => (
+        item.id === session.id
+          ? { ...item, routineVisibility: ROUTINE_VISIBILITY.PRIVATE, publicRoutineId: null }
+          : item
+      )));
+      setRoutineShareMessage("Routine is private again.");
+    } catch (error) {
+      setRoutineShareMessage(error.message || "Could not update routine privacy.");
+    }
+  };
+
   return (
     <>
       <section style={cardStyle(theme, 20, 18)}>
@@ -261,11 +338,25 @@ export default function TrainingJournalSection({ user }) {
         </div>
 
         <WorkoutTemplateStrip templates={WORKOUT_TEMPLATES} onSelect={applyWorkoutTemplate} theme={theme} />
+        {followFeatureEnabled && routineShareMessage && (
+          <p style={{ margin: "12px 0 0", color: "#FF6B35", fontSize: 12, fontWeight: 850 }}>
+            {routineShareMessage}
+          </p>
+        )}
 
         {!!sessions.length && (
           <div style={{ marginTop: 14, display: "grid", gap: 8 }}>
             {sessions.slice(0, 3).map(session => (
-              <RecentSessionRow key={session.id} session={session} onCopy={copySessionToDraft} onDelete={handleDelete} theme={theme} />
+              <RecentSessionRow
+                key={session.id}
+                onCopy={copySessionToDraft}
+                onDelete={handleDelete}
+                onPublish={handlePublishRoutine}
+                onUnpublish={handleUnpublishRoutine}
+                session={session}
+                showRoutineSharing={followFeatureEnabled}
+                theme={theme}
+              />
             ))}
           </div>
         )}
@@ -353,7 +444,16 @@ export default function TrainingJournalSection({ user }) {
           <TrainingChart sessions={sessionsForType.slice(0, 12).reverse()} type={selectedType} color={activeType.color} theme={theme} />
           <div style={{ display: "grid", gap: 8 }}>
             {sessionsForType.slice(0, 10).map(session => (
-              <RecentSessionRow key={session.id} session={session} onCopy={copySessionToDraft} onDelete={handleDelete} theme={theme} />
+              <RecentSessionRow
+                key={session.id}
+                onCopy={copySessionToDraft}
+                onDelete={handleDelete}
+                onPublish={handlePublishRoutine}
+                onUnpublish={handleUnpublishRoutine}
+                session={session}
+                showRoutineSharing={followFeatureEnabled}
+                theme={theme}
+              />
             ))}
             {!sessionsForType.length && (
               <p style={{ margin: 0, color: theme.textSoft, fontSize: 12 }}>No {activeType.label.toLowerCase()} sessions yet.</p>
@@ -703,7 +803,17 @@ function TrainingChart({ sessions, type, color, theme }) {
   );
 }
 
-function RecentSessionRow({ onCopy, onDelete, session, theme }) {
+function RecentSessionRow({
+  onCopy,
+  onDelete,
+  onPublish,
+  onUnpublish,
+  session,
+  showRoutineSharing = false,
+  theme,
+}) {
+  const isShared = session.routineVisibility && session.routineVisibility !== ROUTINE_VISIBILITY.PRIVATE;
+  const sharedLabel = session.routineVisibility === ROUTINE_VISIBILITY.FOLLOWERS ? "Followers" : "Public";
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, padding: 10, borderRadius: 12, background: theme.cardBgStrong, border: `1px solid ${theme.cardBorder}` }}>
       <span style={{ fontSize: 18 }}>{typeMeta(session.type).icon}</span>
@@ -715,8 +825,18 @@ function RecentSessionRow({ onCopy, onDelete, session, theme }) {
           {sessionSummary(session)}
         </p>
       </div>
-      <button onClick={() => onCopy(session)} style={tinyButtonStyle(theme)}>Copy</button>
-      <button onClick={() => onDelete(session.id)} style={iconButtonStyle(theme)}>×</button>
+      <div style={{ display: "flex", gap: 6, alignItems: "center", justifyContent: "flex-end", flexWrap: "wrap" }}>
+        {showRoutineSharing && (
+          <button
+            onClick={() => isShared ? onUnpublish(session) : onPublish(session)}
+            style={isShared ? tinyButtonStyle(theme) : shareButtonStyle(theme)}
+          >
+            {isShared ? sharedLabel : "Share"}
+          </button>
+        )}
+        <button onClick={() => onCopy(session)} style={tinyButtonStyle(theme)}>Copy</button>
+        <button onClick={() => onDelete(session.id)} style={iconButtonStyle(theme)}>×</button>
+      </div>
     </div>
   );
 }
@@ -743,6 +863,7 @@ function buildSessionPayload({
     planName: (planName || defaultPlanName(selectedType)).trim(),
     notes: notes.trim(),
     intensity: intensity.trim(),
+    routineVisibility: ROUTINE_VISIBILITY.PRIVATE,
   };
 
   if (selectedType === "gym") {
@@ -1002,6 +1123,19 @@ function tinyButtonStyle(theme) {
     padding: "7px 9px",
     fontSize: 11,
     fontWeight: 850,
+    cursor: "pointer",
+  };
+}
+
+function shareButtonStyle(theme) {
+  return {
+    border: "none",
+    background: "linear-gradient(135deg, #FF6B35, #FFD700)",
+    color: "#111",
+    borderRadius: 999,
+    padding: "7px 9px",
+    fontSize: 11,
+    fontWeight: 900,
     cursor: "pointer",
   };
 }

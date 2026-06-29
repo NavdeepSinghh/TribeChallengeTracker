@@ -73,6 +73,75 @@ service cloud.firestore {
       match /blockedUsers/{blockedUid} {
         allow read, create, update, delete: if request.auth != null && request.auth.uid == uid;
       }
+
+      // People this user follows. The signed-in owner controls only their own
+      // following list; this keeps the social graph opt-in and reversible.
+      match /following/{targetUid} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow create, update: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.targetUid == targetUid
+          && request.resource.data.status == "following";
+        allow delete: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      }
+
+      // People following this user. A signed-in member can create/remove only
+      // their own follower edge on another user's profile.
+      match /followers/{followerUid} {
+        allow read: if request.auth != null && (request.auth.uid == uid || request.auth.uid == followerUid || isAdmin());
+        allow create, update: if request.auth != null
+          && request.auth.uid == followerUid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.followerUid == followerUid
+          && request.resource.data.targetUid == uid
+          && request.resource.data.status == "following";
+        allow delete: if request.auth != null && (request.auth.uid == followerUid || request.auth.uid == uid || isAdmin());
+      }
+    }
+
+    // ── Public/follower profile discovery ─────────────────────────────────
+    // Users publish a small profile card separate from private account data.
+    // Public cards can be discovered by signed-in members; follower-only cards
+    // are readable by the owner, admins, or existing followers.
+    match /publicProfiles/{uid} {
+      allow read: if request.auth != null
+        && (
+          resource.data.profileVisibility == "public"
+          || request.auth.uid == uid
+          || isAdmin()
+          || (
+            resource.data.profileVisibility == "followers"
+            && exists(/databases/$(database)/documents/users/$(uid)/followers/$(request.auth.uid))
+          )
+        );
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.uid == request.auth.uid
+        && ["public", "followers", "private"].hasAny([request.resource.data.profileVisibility])
+        && ["public", "followers", "private"].hasAny([request.resource.data.routineDefaultVisibility]);
+      allow delete: if request.auth != null && (request.auth.uid == uid || isAdmin());
+    }
+
+    // ── Public routine library for the follow beta ─────────────────────────
+    // Training sessions remain private under /users/{uid}/trainingSessions.
+    // This collection stores only routines a member explicitly shares.
+    match /publicRoutines/{routineId} {
+      allow read: if request.auth != null
+        && (
+          resource.data.visibility == "public"
+          || resource.data.ownerUid == request.auth.uid
+          || isAdmin()
+          || (
+            resource.data.visibility == "followers"
+            && exists(/databases/$(database)/documents/users/$(resource.data.ownerUid)/followers/$(request.auth.uid))
+          )
+        );
+      allow create, update: if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid
+        && ["public", "followers", "private"].hasAny([request.resource.data.visibility]);
+      allow delete: if request.auth != null
+        && (resource.data.ownerUid == request.auth.uid || isAdmin());
     }
 
     // ── Tribe activity feed ─────────────────────────────────────────────────
@@ -1011,21 +1080,30 @@ service cloud.firestore {
         }
       }
 
-      // Challenge updates — V1 supports admin announcements and admin log reminders.
-      // Members can read updates for their challenge; only challenge admins/creators
-      // can create them. Push delivery can later consume notificationRequested.
+      // Challenge updates — admins can post announcements/reminders. Custom
+      // challenges can also enable plain member messages without push delivery.
       match /messages/{messageId} {
         allow read: if request.auth != null && (isChallengeMember() || isChallengeOwner() || isAdmin());
         allow create: if request.auth != null
-          && isChallengeAdmin()
           && request.resource.data.senderUid == request.auth.uid
           && request.resource.data.challengeId == challengeId
-          && ["announcement", "log_reminder"].hasAny([request.resource.data.type])
-          && request.resource.data.notificationRequested == true
-          && request.resource.data.notificationSent == false
           && request.resource.data.message is string
           && request.resource.data.message.size() > 0
-          && request.resource.data.message.size() <= 280;
+          && request.resource.data.message.size() <= 280
+          && request.resource.data.notificationSent == false
+          && (
+            (
+              isChallengeAdmin()
+              && ["announcement", "log_reminder"].hasAny([request.resource.data.type])
+              && request.resource.data.notificationRequested == true
+            ) ||
+            (
+              isChallengeMember()
+              && request.resource.data.type == "member_message"
+              && request.resource.data.notificationRequested == false
+              && get(/databases/$(database)/documents/challenges/$(challengeId)).data.community.memberMessagesEnabled == true
+            )
+          );
         allow update: if false;
         allow delete: if request.auth != null && isChallengeAdmin();
       }

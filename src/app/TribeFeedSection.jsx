@@ -1,21 +1,32 @@
 import { useEffect, useState } from "react";
-import { listenTodayTribeFeed } from "../userServices/tribeFeedService";
+import { listenRecentTribeFeed } from "../userServices/tribeFeedService";
 import { useAppTheme } from "./AppThemeContext";
 
 const TODAY_TRIBE_FEED_LIMIT = 5;
 const TODAY_TRIBE_PULSE_LIMIT = 50;
+
+function isLoggedToday(entry) {
+  const value = entry?.loggedAt?.toDate?.() || entry?.loggedAt;
+  const date = value instanceof Date ? value : value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) return false;
+  return date.toDateString() === new Date().toDateString();
+}
 
 export default function TribeFeedSection({ onLogActivity }) {
   const { theme } = useAppTheme();
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
-  const previewEntries = entries.slice(0, TODAY_TRIBE_FEED_LIMIT);
-  const pulse = buildTribePulse(entries);
+  const todayEntries = entries.filter(isLoggedToday);
+  const visibleEntries = todayEntries.length ? todayEntries : entries;
+  const isShowingRecentFallback = !todayEntries.length && entries.length > 0;
+  const previewEntries = visibleEntries.slice(0, TODAY_TRIBE_FEED_LIMIT);
+  const pulse = buildTribePulse(visibleEntries);
+  const pulseTitle = isShowingRecentFallback ? "RECENT TRIBE PULSE" : "TODAY'S TRIBE PULSE";
 
   useEffect(() => {
     setIsLoading(true);
-    const unsubscribe = listenTodayTribeFeed(nextEntries => {
+    const unsubscribe = listenRecentTribeFeed(nextEntries => {
       setEntries(nextEntries);
       setIsLoading(false);
     }, TODAY_TRIBE_PULSE_LIMIT);
@@ -177,7 +188,7 @@ export default function TribeFeedSection({ onLogActivity }) {
                 TRIBE ACTIVITY 🔥
               </p>
               <p style={{ color: theme.textSoft, fontSize: 12, fontWeight: 700, margin: 0 }}>
-                Latest 5 logs from today. Tap to add yours.
+                {isShowingRecentFallback ? "No logs yet today. Recent tribe activity is below." : "Latest 5 logs from today. Tap to add yours."}
               </p>
             </div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#FF6B35", fontWeight: 900, fontSize: 18 }}>
@@ -186,7 +197,7 @@ export default function TribeFeedSection({ onLogActivity }) {
             </span>
           </div>
 
-          <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} />
+          <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} title={pulseTitle} />
 
           <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
             {isLoading ? (
@@ -244,10 +255,10 @@ export default function TribeFeedSection({ onLogActivity }) {
             <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 14 }}>
               <div style={{ flex: 1 }}>
                 <p style={{ color: theme.mutedStrong, fontSize: 10, fontWeight: 800, letterSpacing: 1, fontFamily: "monospace", margin: "0 0 4px" }}>
-                  TODAY IN THE TRIBE 🔥
+                  {isShowingRecentFallback ? "RECENT TRIBE ACTIVITY 🔥" : "TODAY IN THE TRIBE 🔥"}
                 </p>
                 <h2 style={{ color: theme.text, fontSize: 22, lineHeight: 1.1, fontFamily: "'Syne', sans-serif", margin: 0 }}>
-                  Latest activity from today.
+                  {isShowingRecentFallback ? "No logs yet today, so here are recent logs." : "Latest activity from today."}
                 </h2>
               </div>
               <button
@@ -267,7 +278,7 @@ export default function TribeFeedSection({ onLogActivity }) {
             </div>
 
             <div style={{ display: "grid", gap: 8 }}>
-              <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} isExpanded />
+              <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} isExpanded title={pulseTitle} />
 
               {isLoading ? (
                 <>
@@ -275,8 +286,8 @@ export default function TribeFeedSection({ onLogActivity }) {
                   <LoadingRow theme={theme} />
                   <LoadingRow theme={theme} />
                 </>
-              ) : entries.length ? (
-                entries.map((entry, index) => (
+              ) : visibleEntries.length ? (
+                visibleEntries.map((entry, index) => (
                   <TribeFeedCard key={entry.id} entry={entry} index={index} isLatest={index === 0} isExpanded />
                 ))
               ) : (
@@ -331,7 +342,7 @@ function LoadingRow({ theme }) {
   );
 }
 
-function TribePulseSummary({ pulse, theme, isLoading, isExpanded = false }) {
+function TribePulseSummary({ pulse, theme, isLoading, isExpanded = false, title = "TODAY'S TRIBE PULSE" }) {
   const metrics = [
     { label: "Workout hours", value: pulse.hoursText, accent: "#FFD700" },
     { label: "Distance", value: pulse.distanceText, accent: "#34D399" },
@@ -349,7 +360,7 @@ function TribePulseSummary({ pulse, theme, isLoading, isExpanded = false }) {
       border: `1px solid ${theme.cardBorder}`,
     }}>
       <p style={{ margin: "0 0 8px", color: theme.mutedStrong, fontSize: 10, fontWeight: 900, letterSpacing: 1, fontFamily: "monospace" }}>
-        TODAY'S TRIBE PULSE
+        {title}
       </p>
       <div style={{
         display: "grid",

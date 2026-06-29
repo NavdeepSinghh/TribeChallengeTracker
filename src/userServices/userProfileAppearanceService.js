@@ -3,6 +3,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { normalizeDisplayName } from '../displayNameUtils';
+import { invalidateCachedRead, userProfileCacheKey } from './readCache';
 
 async function updateJoinedChallengeMembers(uid, payload) {
   const userRef = doc(db, 'users', uid);
@@ -11,6 +12,7 @@ async function updateJoinedChallengeMembers(uid, payload) {
   await Promise.all(joinedChallengeIds.map(challengeId =>
     setDoc(doc(db, 'challenges', challengeId, 'members', uid), payload, { merge: true })
   ));
+  joinedChallengeIds.forEach(challengeId => invalidateCachedRead(`challengeLeaderboard:${challengeId}`));
 }
 
 export async function saveProfileAppearance(uid, { profileImageData, avatarEmoji, avatarColor }) {
@@ -21,6 +23,7 @@ export async function saveProfileAppearance(uid, { profileImageData, avatarEmoji
   };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
   await updateJoinedChallengeMembers(uid, payload);
+  invalidateCachedRead(userProfileCacheKey(uid));
 }
 
 export async function saveProfileCosmetics(uid, { profileFrameId }) {
@@ -33,6 +36,7 @@ export async function saveProfileCosmetics(uid, { profileFrameId }) {
   };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
   await updateJoinedChallengeMembers(uid, { profileFrameId: frameId });
+  invalidateCachedRead(userProfileCacheKey(uid));
   return payload.cosmetics;
 }
 
@@ -46,6 +50,7 @@ export async function saveSocialProfile(uid, { instagramHandle }) {
   const payload = { instagramHandle: normalized };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
   await updateJoinedChallengeMembers(uid, payload);
+  invalidateCachedRead(userProfileCacheKey(uid));
   return normalized;
 }
 
@@ -56,5 +61,6 @@ export async function saveDisplayName(uid, { displayName }) {
   const payload = { displayName: normalized };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
   await updateJoinedChallengeMembers(uid, payload);
+  invalidateCachedRead(userProfileCacheKey(uid));
   return normalized;
 }

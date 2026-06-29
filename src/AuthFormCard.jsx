@@ -1,5 +1,6 @@
 import AuthModeToggle from './AuthModeToggle';
 import GoogleAuthButton from './GoogleAuthButton';
+import { getAuthEmailError, normalizeAuthEmail } from './authEmailValidation';
 import { authInputStyle } from './authScreenStyles';
 
 export default function AuthFormCard({
@@ -18,6 +19,12 @@ export default function AuthFormCard({
   setName,
   setPassword,
 }) {
+  const normalizedEmail = normalizeAuthEmail(email);
+  const emailValidationMessage = email ? getAuthEmailError(normalizedEmail) : '';
+  const canSubmitWithEmail = !emailValidationMessage && normalizedEmail && password;
+  const submitDisabled = loading || !canSubmitWithEmail;
+  const emailBorderColor = emailValidationMessage ? 'rgba(255,107,53,0.55)' : authInputStyle.border;
+
   return (
     <div style={{
       width: '100%',
@@ -34,7 +41,7 @@ export default function AuthFormCard({
         <p style={{ margin: 0, color: '#777', fontSize: 13, lineHeight: 1.45 }}>
           {mode === 'signin'
             ? 'Sign in to log today, check your streak, and open invites.'
-            : 'Create your account, join the invite, and log your first activity.'}
+            : 'Create your account, verify your email, and log your first activity.'}
         </p>
       </div>
       <AuthModeToggle mode={mode} onSwitchMode={onSwitchMode} />
@@ -54,11 +61,18 @@ export default function AuthFormCard({
       )}
       <input
         value={email} onChange={e => setEmail(e.target.value)}
-        placeholder="Email" type="email" style={authInputStyle}
+        placeholder="Email" type="email" inputMode="email" autoComplete="email"
+        aria-invalid={Boolean(emailValidationMessage)}
+        style={{ ...authInputStyle, marginBottom: emailValidationMessage ? 6 : 12, border: emailBorderColor }}
       />
+      {emailValidationMessage && (
+        <p style={{ color: '#FF8A5C', fontSize: 11, margin: '0 0 12px', fontFamily: 'monospace', lineHeight: 1.4 }}>
+          {emailValidationMessage}
+        </p>
+      )}
       <input
         value={password} onChange={e => setPassword(e.target.value)}
-        placeholder="Password" type="password" style={authInputStyle}
+        placeholder="Password" type="password" autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} style={authInputStyle}
       />
 
       {mode === 'signin' && (
@@ -82,13 +96,13 @@ export default function AuthFormCard({
         </p>
       )}
 
-      <button onClick={onEmail} disabled={loading} style={{
+      <button onClick={onEmail} disabled={submitDisabled} style={{
         width: '100%', padding: '14px', borderRadius: 14, border: 'none',
         background: 'linear-gradient(135deg, #FF6B35 0%, #FFD700 100%)',
-        color: '#000', fontSize: 15, fontWeight: 800, cursor: 'pointer',
+        color: '#000', fontSize: 15, fontWeight: 800, cursor: submitDisabled ? 'not-allowed' : 'pointer',
         fontFamily: "'Syne', sans-serif", letterSpacing: 0.5,
         boxShadow: '0 4px 20px rgba(255,107,53,0.35)',
-        opacity: loading ? 0.7 : 1, transition: 'opacity .2s',
+        opacity: submitDisabled ? 0.55 : 1, transition: 'opacity .2s',
       }}>
         {loading ? '…' : mode === 'signin' ? 'Sign in' : 'Create account'}
       </button>

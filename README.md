@@ -104,6 +104,7 @@ public/
 ## Roadmap
 - [ ] HealthKit integration (Apple Watch sync)
 - [ ] Google Fit integration (Samsung/Android sync)
+- [ ] Recovery-aware challenge recommendations using future opt-in sleep, HRV, and resting heart rate signals, framed as guidance rather than medical screening
 - [ ] Firebase backend for real leaderboard
 - [ ] Push notifications for streak reminders
 - [ ] React Native mobile app build

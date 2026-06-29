@@ -8,6 +8,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { invalidateCachedRead, userProfileCacheKey } from './userServices/readCache';
 import {
   buildLeaveChallengeUserStats,
   selectReplacementChallengeAdmin,
@@ -35,6 +36,11 @@ export async function leaveChallenge(uid, challengeId) {
       challengeId,
       isAdmin: true,
     }));
+    invalidateCachedRead(userProfileCacheKey(uid));
+    invalidateCachedRead(`userChallenges:`);
+    invalidateCachedRead(`challenge:${challengeId}`);
+    invalidateCachedRead(`challengeLeaderboard:${challengeId}`);
+    invalidateCachedRead(`isMember:${challengeId}:${uid}`);
     return { deleted: true };
   }
 
@@ -63,6 +69,11 @@ export async function leaveChallenge(uid, challengeId) {
 
   await deleteDoc(memberRef);
   await updateDoc(challengeRef, { memberCount: increment(-1) });
+  invalidateCachedRead(userProfileCacheKey(uid));
+  invalidateCachedRead(`userChallenges:`);
+  invalidateCachedRead(`challenge:${challengeId}`);
+  invalidateCachedRead(`challengeLeaderboard:${challengeId}`);
+  invalidateCachedRead(`isMember:${challengeId}:${uid}`);
 
   return { deleted: false };
 }

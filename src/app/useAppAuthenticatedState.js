@@ -5,6 +5,7 @@ import { buildAppAuthenticatedStateResult } from "./appAuthenticatedStateResult"
 import useActivityHistory from "./useActivityHistory";
 import useAppBadges from "./useAppBadges";
 import useAppShellState from "./useAppShellState";
+import useAdminAccess from "./useAdminAccess";
 import useChallengeRefreshHandlers from "./useChallengeRefreshHandlers";
 import usePendingChallengeEntry from "./usePendingChallengeEntry";
 import useProgressShareActions from "./useProgressShareActions";
@@ -13,6 +14,7 @@ import useUserChallengeData from "./useUserChallengeData";
 
 export default function useAppAuthenticatedState(user) {
   const shellState = useAppShellState();
+  const isAdmin = useAdminAccess(user);
   const { showToast, ...publicShellState } = shellState;
   const { setTab } = publicShellState;
   const pendingChallengeEntry = usePendingChallengeEntry(setTab);
@@ -80,6 +82,7 @@ export default function useAppAuthenticatedState(user) {
       dismissLevelUp: () => setLevelUp(null),
       levelUp,
     },
+    isAdmin,
     rankRules,
     userChallengeData,
   });

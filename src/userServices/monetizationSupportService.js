@@ -1,5 +1,6 @@
 export {
   getAccountDeletionReviewQueue,
+  processAccountDeletion,
   requestAccountDeletion,
   reviewAccountDeletionRequest,
 } from './accountDeletionService';

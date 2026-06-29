@@ -7,6 +7,7 @@ Shared behavior:
 - Profile includes an "ACCOUNT DELETION REQUEST" card near policy and support links.
 - Submitting writes `accountDeletionRequests/{uid}` with `status: requested`, platform `source`, denormalized email/display name, and request timestamps.
 - Submitting also mirrors `users/{uid}.accountDeletionRequest.status` so all platforms can show the request as recorded.
+- On iOS, users signed in with Apple are asked to confirm with Apple before the request is recorded. TribeLog calls Firebase Auth's Apple token revocation path with the fresh Apple authorization code, records `appleSignInRevocation.status`, and Apple may send the user its own revocation confirmation email.
 - Admin profiles include an "ACCOUNT DELETION REVIEW QUEUE" card that lists pending requests for support follow-up.
 - Account Deletion Admin Review Updates let admins mark requests `verified`, `contacted`, `blocked`, or `closed` with `reviewNote`, `reviewedBy`, and `reviewedAt`, while keeping deletion itself as a manual support operation.
 - Admin profiles include an Account Deletion Decision Reply Kit that copies verified, contacted, blocked, and closed support-reviewed replies while keeping destructive deletion work manual.
@@ -17,6 +18,7 @@ Release checks:
 
 - Request button writes the shared Firestore document and profile marker.
 - Re-opening profile shows the recorded status.
+- iOS Sign in with Apple accounts show the Apple confirmation prompt before request recording, then save the revocation outcome for admin review.
 - Admin profiles can see pending requested entries without any destructive delete action.
 - Firestore rules allow only the signed-in user to create/update their own request and admins to review.
 - Support/data deletion hosted pages remain linked from the Profile Policy and Support hub.

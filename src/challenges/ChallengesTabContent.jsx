@@ -4,6 +4,8 @@ import ChallengesListView from './ChallengesListView';
 import CreateChallenge from './CreateChallenge';
 
 export default function ChallengesTabContent({
+  activeChallenges,
+  completedChallenges,
   detailChallenge,
   handleCreate,
   handleJoined,
@@ -18,7 +20,6 @@ export default function ChallengesTabContent({
   searchResults,
   searching,
   setDetailChallenge,
-  setTrackerChallenge,
   setView,
   trackerChallenge,
   user,
@@ -28,13 +29,14 @@ export default function ChallengesTabContent({
     return (
       <ChallengesListView
         handleSearch={handleSearch}
+        activeChallenges={activeChallenges}
+        completedChallenges={completedChallenges}
         myChallenges={myChallenges}
         openChallenge={openChallenge}
         searchQuery={searchQuery}
         searchResults={searchResults}
         searching={searching}
         setDetailChallenge={setDetailChallenge}
-        setTrackerChallenge={setTrackerChallenge}
         setView={setView}
         user={user}
       />

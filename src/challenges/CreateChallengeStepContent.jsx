@@ -7,6 +7,7 @@ export default function CreateChallengeStepContent({
   copied,
   created,
   createdCampaignShareText,
+  customChallenge,
   customName,
   handleCopy,
   handleCreate,
@@ -20,6 +21,7 @@ export default function CreateChallengeStepContent({
   proMessage,
   profile,
   setCustomName,
+  setCustomChallenge,
   setIsPublic,
   setProMessage,
   setStartDate,
@@ -44,12 +46,14 @@ export default function CreateChallengeStepContent({
     return (
       <CreateChallengeCustomiseStep
         canCreatePrivate={canCreatePrivate}
+        customChallenge={customChallenge}
         customName={customName}
         handleCreate={handleCreate}
         isPublic={isPublic}
         loading={loading}
         proMessage={proMessage}
         setCustomName={setCustomName}
+        setCustomChallenge={setCustomChallenge}
         setIsPublic={setIsPublic}
         setProMessage={setProMessage}
         setStartDate={setStartDate}

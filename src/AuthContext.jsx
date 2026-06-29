@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { disableNetwork, enableNetwork } from 'firebase/firestore';
+import { requiresEmailVerification } from './authEmailValidation';
 import { auth } from './firebase';
 import { db } from './firebase';
 import { createUserIfNew } from './userService';
@@ -22,6 +23,14 @@ export function AuthProvider({ children }) {
       resolved = true;
       clearTimeout(fallback);
       if (firebaseUser) {
+        await firebaseUser.reload().catch(() => {});
+        if (requiresEmailVerification(firebaseUser)) {
+          await signOut(auth).catch(() => {});
+          disableNetwork(db).catch(() => {});
+          setUser(null);
+          return;
+        }
+
         // Re-enable Firestore network (may have been disabled on previous sign-out)
         enableNetwork(db).catch(() => {});
         await createUserIfNew(firebaseUser);

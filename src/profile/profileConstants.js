@@ -3,10 +3,13 @@ import { REFERRAL_TIERS } from './profileEngagementConstants';
 export {
   ACCENT,
   AVATAR_OPTIONS,
+  DATA_SOURCE_LABELS,
   FREQ_LABELS,
   GOAL_LABELS,
   GOLD,
+  HEALTH_SYNC_LABELS,
   LEVEL_LABELS,
+  MOTIVATION_LABELS,
   POLICY_LINKS,
   PROFILE_FRAMES,
   reminderButtonStyle,

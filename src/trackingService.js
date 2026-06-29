@@ -3,6 +3,7 @@ import {
   collection, serverTimestamp, increment, arrayUnion,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { cachedRead, invalidateCachedRead, setCachedRead } from './userServices/readCache';
 
 const todayStr = () => new Date().toISOString().split('T')[0];
 
@@ -15,10 +16,13 @@ export function calcPoints(completedCount, totalCount) {
 
 // ── Daily log ─────────────────────────────────────────────────────────────────
 export async function getTodayLog(uid, challengeId) {
-  const snap = await getDoc(
-    doc(db, 'challenges', challengeId, 'members', uid, 'dailyLogs', todayStr())
-  );
-  return snap.exists() ? snap.data() : null;
+  const today = todayStr();
+  return cachedRead(`todayLog:${challengeId}:${uid}:${today}`, async () => {
+    const snap = await getDoc(
+      doc(db, 'challenges', challengeId, 'members', uid, 'dailyLogs', today)
+    );
+    return snap.exists() ? snap.data() : null;
+  }, 60 * 1000);
 }
 
 export async function logDay(uid, challenge, completedTaskIds, totalTaskCount) {
@@ -38,6 +42,12 @@ export async function logDay(uid, challenge, completedTaskIds, totalTaskCount) {
     date: today, completedTasks: completedTaskIds,
     allComplete, points, loggedAt: serverTimestamp(),
   });
+  setCachedRead(`todayLog:${challengeId}:${uid}:${today}`, {
+    date: today,
+    completedTasks: completedTaskIds,
+    allComplete,
+    points,
+  }, 5 * 60 * 1000);
 
   // Recalculate streak
   const yesterday = new Date();
@@ -58,6 +68,9 @@ export async function logDay(uid, challenge, completedTaskIds, totalTaskCount) {
     longestStreak: newLongest,
     lastLogDate:   today,
   });
+  invalidateCachedRead(`memberData:${challengeId}:${uid}`);
+  invalidateCachedRead(`challengeLeaderboard:${challengeId}`);
+  invalidateCachedRead(`progress:${challengeId}:${uid}`);
 
   const updatedMember = {
     uid,
@@ -117,23 +130,29 @@ export async function recordChallengeCompletion(uid, challenge, memberData) {
 
 // ── Progress calendar ─────────────────────────────────────────────────────────
 export async function getAllProgress(uid, challengeId) {
-  const snap = await getDocs(
-    collection(db, 'challenges', challengeId, 'members', uid, 'dailyLogs')
-  );
-  return snap.docs.reduce((acc, d) => ({ ...acc, [d.id]: d.data() }), {});
+  return cachedRead(`progress:${challengeId}:${uid}`, async () => {
+    const snap = await getDocs(
+      collection(db, 'challenges', challengeId, 'members', uid, 'dailyLogs')
+    );
+    return snap.docs.reduce((acc, d) => ({ ...acc, [d.id]: d.data() }), {});
+  }, 5 * 60 * 1000);
 }
 
 // ── Member data ───────────────────────────────────────────────────────────────
 export async function getMemberData(uid, challengeId) {
-  const snap = await getDoc(doc(db, 'challenges', challengeId, 'members', uid));
-  return snap.exists() ? snap.data() : null;
+  return cachedRead(`memberData:${challengeId}:${uid}`, async () => {
+    const snap = await getDoc(doc(db, 'challenges', challengeId, 'members', uid));
+    return snap.exists() ? snap.data() : null;
+  }, 2 * 60 * 1000);
 }
 
 // ── Challenge leaderboard ─────────────────────────────────────────────────────
 export async function getChallengeLeaderboard(challengeId) {
-  const snap = await getDocs(collection(db, 'challenges', challengeId, 'members'));
-  return snap.docs
-    .map(d => ({ uid: d.id, ...d.data() }))
-    .filter(m => m.status === 'active')
-    .sort((a, b) => (b.totalPoints || 0) - (a.totalPoints || 0));
+  return cachedRead(`challengeLeaderboard:${challengeId}`, async () => {
+    const snap = await getDocs(collection(db, 'challenges', challengeId, 'members'));
+    return snap.docs
+      .map(d => ({ uid: d.id, ...d.data() }))
+      .filter(m => m.status === 'active')
+      .sort((a, b) => (b.totalPoints || 0) - (a.totalPoints || 0));
+  }, 2 * 60 * 1000);
 }

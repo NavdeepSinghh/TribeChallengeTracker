@@ -10,7 +10,9 @@ export const POLICY_LINKS = [
 
 export const GOAL_LABELS = {
   lose_weight: 'Lose Weight 🔥', build_muscle: 'Build Muscle 💪',
+  consistency: 'Build an Exercise Habit 🔥', strength: 'Get Stronger 💪',
   endurance: 'Endurance 🏃', stress: 'Reduce Stress 🧘', energy: 'Boost Energy ⚡',
+  wellbeing: 'Feel Healthier 🌿',
 };
 export const LEVEL_LABELS = {
   beginner: 'Just Starting 🌱', moderate: 'Somewhat Active 🚶',
@@ -18,6 +20,26 @@ export const LEVEL_LABELS = {
 };
 export const FREQ_LABELS = {
   '2_3': '2–3× / week', '4_5': '4–5× / week', daily: 'Every day 🔥', flexible: 'Flexible 🎯',
+};
+export const MOTIVATION_LABELS = {
+  progress: 'Progress Tracking 📈',
+  community: 'Moving With Others 🔥',
+  accountability: 'Helpful Reminders 🔔',
+  competition: 'Friendly Competition 🏆',
+};
+export const DATA_SOURCE_LABELS = {
+  manual: 'Manual Logging',
+  apple_watch: 'Apple Watch',
+  health_connect: 'Health Connect',
+  garmin: 'Garmin',
+  oura: 'Oura',
+  other_health: 'Other Health Source',
+};
+export const HEALTH_SYNC_LABELS = {
+  workouts_steps: 'Workouts + Steps Sync',
+  advanced_later: 'Advanced Sync Later',
+  manual_first: 'Manual Logging First',
+  connect_later: 'Connect Watch Later',
 };
 
 export const AVATAR_OPTIONS = [

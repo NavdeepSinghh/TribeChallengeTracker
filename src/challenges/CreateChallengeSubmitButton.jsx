@@ -1,12 +1,15 @@
 import { ACCENT, GOLD } from './challengeTheme';
 
 export default function CreateChallengeSubmitButton({
+  customChallenge,
   customName,
   handleCreate,
   loading,
   template,
 }) {
-  const canSubmit = customName.trim();
+  const customTasksValid = template.id !== 'custom'
+    || (customChallenge?.tasks || []).some(task => String(task.label || '').trim());
+  const canSubmit = customName.trim() && customTasksValid;
 
   return (
     <button onClick={handleCreate} disabled={loading || !canSubmit} style={{
@@ -18,7 +21,7 @@ export default function CreateChallengeSubmitButton({
       boxShadow: canSubmit ? `0 4px 20px rgba(255,107,53,0.35)` : 'none',
       opacity: loading ? 0.7 : 1,
     }}>
-      {loading ? '…' : `Create ${template.emoji} Challenge`}
+      {loading ? '…' : `Create ${(template.id === 'custom' ? customChallenge?.emoji : template.emoji) || template.emoji} Challenge`}
     </button>
   );
 }

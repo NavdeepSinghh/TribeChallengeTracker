@@ -7,7 +7,6 @@ export default function ChallengeDiscoverySection({
   searchResults,
   searching,
   setDetailChallenge,
-  setTrackerChallenge,
   setView,
   user,
 }) {
@@ -35,35 +34,27 @@ export default function ChallengeDiscoverySection({
         )}
       </div>
 
-      {searchQuery.trim() && !searching && searchResults.length === 0 && (
+      {!searching && searchResults.length === 0 && (
         <div style={{ ...card, textAlign: 'center', padding: '24px' }}>
-          <p style={{ margin: 0, fontSize: 13, color: '#555' }}>No public challenges found for "{searchQuery}"</p>
+          <p style={{ margin: 0, fontSize: 13, color: '#555' }}>
+            {searchQuery.trim() ? `No public challenges found for "${searchQuery}"` : 'No new public challenges to discover right now.'}
+          </p>
         </div>
       )}
 
       {searchResults.length > 0 && (
         <div>
           <p style={{ color: '#444', fontSize: 9, fontFamily: 'monospace', fontWeight: 700, letterSpacing: 1, margin: '0 0 10px' }}>
-            {searchResults.length} RESULT{searchResults.length !== 1 ? 'S' : ''}
+            TOP {searchResults.length} {searchQuery.trim() ? 'MATCHES' : 'BY MEMBERS'}
           </p>
           {searchResults.map(c => (
             <ChallengeCard
               key={c.id}
               challenge={c}
               isOwner={c.createdBy === user.uid}
-              alreadyJoined={c.alreadyJoined}
-              onClick={() => { setDetailChallenge(c); setView(c.alreadyJoined ? 'tracker' : 'detail'); if (c.alreadyJoined) setTrackerChallenge(c); }}
+              onClick={() => { setDetailChallenge(c); setView('detail'); }}
             />
           ))}
-        </div>
-      )}
-
-      {!searchQuery.trim() && (
-        <div style={{ ...card, padding: '20px', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <p style={{ margin: '0 0 4px', fontSize: 13, fontWeight: 700, color: '#ccc' }}>Find your next challenge</p>
-          <p style={{ margin: 0, fontSize: 12, color: '#555' }}>
-            Search by name to discover public challenges from the community. Private challenges require an invite link.
-          </p>
         </div>
       )}
     </div>

@@ -1,6 +1,10 @@
 import { card } from './challengeTheme';
 
 export default function ChallengeDetailTasks({ challenge }) {
+  const isCustom = challenge.challengeKind === 'custom' || challenge.templateId === 'custom';
+  const reminders = challenge.reminders || {};
+  const community = challenge.community || {};
+
   return (
     <>
       <div style={{ marginBottom: 16 }}>
@@ -19,15 +23,42 @@ export default function ChallengeDetailTasks({ challenge }) {
 
       {challenge.tasks?.length > 0 && (
         <div style={{ marginBottom: 16 }}>
-          <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: 'monospace', margin: '0 0 10px' }}>DAILY TASKS</p>
+          <p style={{ color: '#555', fontSize: 10, fontWeight: 700, letterSpacing: 1, fontFamily: 'monospace', margin: '0 0 10px' }}>
+            {isCustom ? 'CHALLENGE TASKS' : 'DAILY TASKS'}
+          </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {challenge.tasks.map(task => (
               <div key={task.id} style={{ ...card, display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px' }}>
                 <span style={{ fontSize: 20 }}>{task.emoji}</span>
-                <span style={{ fontSize: 13, color: '#ccc', fontWeight: 600 }}>{task.label}</span>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <span style={{ fontSize: 13, color: '#ccc', fontWeight: 700 }}>{task.label}</span>
+                  {isCustom && (
+                    <p style={{ margin: '3px 0 0', color: '#666', fontSize: 11, fontFamily: 'monospace' }}>
+                      {task.targetValue} {task.unit} · {task.frequency} · {task.points || 0} pts
+                    </p>
+                  )}
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {isCustom && (
+        <div style={{ ...card, marginBottom: 16, border: '1px solid rgba(52,211,153,0.16)', background: 'rgba(52,211,153,0.045)' }}>
+          <p style={{ margin: '0 0 8px', color: '#34D399', fontSize: 10, fontFamily: 'monospace', fontWeight: 900, letterSpacing: 1 }}>
+            CHALLENGE SETTINGS
+          </p>
+          <p style={{ margin: '0 0 6px', color: '#bbb', fontSize: 12, lineHeight: 1.5 }}>
+            {reminders.enabled
+              ? `Members can get ${reminders.cadence || 'daily'} reminders around ${reminders.timeOfDay || '19:00'}.`
+              : 'Scheduled reminders are off for this challenge.'}
+          </p>
+          <p style={{ margin: 0, color: '#777', fontSize: 12, lineHeight: 1.5 }}>
+            {community.memberMessagesEnabled
+              ? 'Announcements and member messages are enabled.'
+              : 'Admin announcements are enabled; member chat is off.'}
+          </p>
         </div>
       )}
 

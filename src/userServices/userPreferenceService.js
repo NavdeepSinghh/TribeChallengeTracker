@@ -1,5 +1,6 @@
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { invalidateCachedRead, userProfileCacheKey } from './readCache';
 
 export async function saveCustomGoals(uid, goals) {
   const weeklyActiveDaysTarget = Math.min(7, Math.max(1, Number(goals.weeklyActiveDaysTarget) || 5));
@@ -14,6 +15,7 @@ export async function saveCustomGoals(uid, goals) {
     },
   };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
+  invalidateCachedRead(userProfileCacheKey(uid));
   return payload.goals;
 }
 
@@ -27,5 +29,6 @@ export async function saveSharePreferences(uid, { templateId }) {
     },
   };
   await setDoc(doc(db, 'users', uid), payload, { merge: true });
+  invalidateCachedRead(userProfileCacheKey(uid));
   return payload.sharePreferences;
 }

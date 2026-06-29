@@ -33,6 +33,29 @@ export async function fetchChallengeMessages(challengeId, limitCount = 10) {
   return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
+export async function sendChallengeMemberMessage({
+  challenge,
+  message,
+  senderUid,
+  senderName,
+}) {
+  const cleaned = cleanMessage(message);
+  if (!cleaned) return null;
+  return addDoc(messagesRef(challenge.id), {
+    challengeId: challenge.id,
+    challengeName: challenge.name,
+    senderUid,
+    senderName: senderName || 'Tribe member',
+    senderRole: 'member',
+    type: 'member_message',
+    message: cleaned,
+    targetDate: todayStr(),
+    notificationRequested: false,
+    notificationSent: false,
+    createdAt: serverTimestamp(),
+  });
+}
+
 export async function sendChallengeAnnouncement({
   challenge,
   message,

@@ -8,8 +8,9 @@ const NAV_ITEMS = [
   { id: "settings", icon: "⚙️", label: "Settings" },
 ];
 
-export default function AppBottomNav({ setTab, tab }) {
+export default function AppBottomNav({ isAdmin, setTab, tab }) {
   const { theme } = useAppTheme();
+  const navItems = isAdmin ? [...NAV_ITEMS, { id: "admin", icon: "A", label: "Admin" }] : NAV_ITEMS;
 
   return (
     <div style={{
@@ -19,7 +20,7 @@ export default function AppBottomNav({ setTab, tab }) {
       display: "flex", padding: "10px 0",
       paddingBottom: "max(env(safe-area-inset-bottom), 16px)",
     }}>
-      {NAV_ITEMS.map(n => (
+      {navItems.map(n => (
         <button key={n.id} onClick={() => setTab(n.id)} style={{
           flex: 1, background: "none", border: "none", color: tab === n.id ? "#FF6B35" : theme.navInactive,
           cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4,

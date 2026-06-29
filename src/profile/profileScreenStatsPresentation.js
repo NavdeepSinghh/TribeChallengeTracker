@@ -5,10 +5,13 @@ import {
 } from './profileDerivedState';
 import {
   ACCENT,
+  DATA_SOURCE_LABELS,
+  FREQ_LABELS,
   GOLD,
   GOAL_LABELS,
+  HEALTH_SYNC_LABELS,
   LEVEL_LABELS,
-  FREQ_LABELS,
+  MOTIVATION_LABELS,
 } from './profileConstants';
 
 export function buildProfileScreenStatsPresentation({
@@ -49,6 +52,9 @@ export function buildProfileScreenStatsPresentation({
     goalLabels: GOAL_LABELS,
     levelLabels: LEVEL_LABELS,
     frequencyLabels: FREQ_LABELS,
+    motivationLabels: MOTIVATION_LABELS,
+    dataSourceLabels: DATA_SOURCE_LABELS,
+    healthSyncLabels: HEALTH_SYNC_LABELS,
   });
   const goalProgress = buildGoalProgress({
     weeklyRecap,

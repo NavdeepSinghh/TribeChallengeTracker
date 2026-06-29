@@ -11,13 +11,24 @@ import {
 import { db } from './firebase';
 import { canCreateChallengeTemplate, canUseProFeature, PRO_FEATURES } from './proFeatures';
 import { buildChallengeMemberRecord } from './challengeMembershipJoinHelpers';
+import {
+  buildCustomChallengeRules,
+  normalizeCustomChallengeSettings,
+} from './challenges/customChallengeModel';
 
 const genInviteCode = () => Math.random().toString(36).substring(2, 8).toUpperCase();
 
-export async function createChallenge(uid, template, customName, startDateStr, isPublic = true) {
+export async function createChallenge(uid, template, customName, startDateStr, isPublic = true, options = {}) {
   const ref = doc(collection(db, 'challenges'));
+  const isCustomChallenge = template?.id === 'custom';
+  const customSettings = isCustomChallenge
+    ? normalizeCustomChallengeSettings(options.customChallenge)
+    : null;
+  const duration = customSettings?.duration || template.duration;
+  const tasks = customSettings?.tasks || template.tasks || [];
+  const rules = isCustomChallenge ? buildCustomChallengeRules(tasks) : template.rules;
   const end = new Date(startDateStr);
-  end.setDate(end.getDate() + template.duration);
+  end.setDate(end.getDate() + duration);
 
   const creatorSnap = await getDoc(doc(db, 'users', uid));
   const creator = creatorSnap.data() || {};
@@ -31,14 +42,25 @@ export async function createChallenge(uid, template, customName, startDateStr, i
   const data = {
     id: ref.id,
     templateId: template.id,
+    challengeKind: isCustomChallenge ? 'custom' : 'template',
     name: customName.trim() || template.name,
-    emoji: template.emoji,
-    color: template.color,
-    duration: template.duration,
-    tagline: template.tagline,
+    emoji: customSettings?.emoji || template.emoji,
+    color: customSettings?.color || template.color,
+    duration,
+    tagline: customSettings?.description || template.tagline,
     difficulty: template.difficulty,
-    rules: template.rules,
-    tasks: template.tasks,
+    rules,
+    tasks,
+    reminders: customSettings?.reminders || {
+      enabled: false,
+      cadence: 'manual',
+      timeOfDay: '',
+      onlyIfNotLogged: false,
+    },
+    community: customSettings?.community || {
+      announcementsEnabled: true,
+      memberMessagesEnabled: false,
+    },
     dailyPrompts: template.dailyPrompts || [],
     disclaimer: template.disclaimer,
     campaignId: template.campaignId || '',

@@ -11,6 +11,7 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
     copied,
     created,
     createdCampaignShareText,
+    customChallenge,
     customName,
     handleCopy,
     handleCreate,
@@ -22,6 +23,7 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
     publishedCreatorTemplates,
     proMessage,
     setCustomName,
+    setCustomChallenge,
     setIsPublic,
     setProMessage,
     setStartDate,
@@ -42,6 +44,7 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
         copied={copied}
         created={created}
         createdCampaignShareText={createdCampaignShareText}
+        customChallenge={customChallenge}
         customName={customName}
         handleCopy={handleCopy}
         handleCreate={handleCreate}
@@ -55,6 +58,7 @@ export default function CreateChallenge({ onBack, onCreate, profile }) {
         proMessage={proMessage}
         profile={profile}
         setCustomName={setCustomName}
+        setCustomChallenge={setCustomChallenge}
         setIsPublic={setIsPublic}
         setProMessage={setProMessage}
         setStartDate={setStartDate}

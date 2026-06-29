@@ -7,6 +7,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { invalidateCachedRead, userProfileCacheKey } from './userServices/readCache';
 import {
   buildChallengeMemberRecord,
   normalizeChallengeReferralUid,
@@ -32,5 +33,9 @@ export async function joinChallenge(uid, challengeId, referralUid = '') {
     joinedChallengeIds: arrayUnion(challengeId),
     'stats.challengesJoined': increment(1),
   });
+  invalidateCachedRead(userProfileCacheKey(uid));
+  invalidateCachedRead(`userChallenges:`);
+  invalidateCachedRead(`isMember:${challengeId}:${uid}`);
+  invalidateCachedRead(`challengeLeaderboard:${challengeId}`);
   await recordReferralChallengeJoin(normalizedReferral);
 }

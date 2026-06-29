@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { cleanFirebaseError, nativeGoogleSignIn } from './authHelpers';
+import { getAuthEmailError, normalizeAuthEmail, requiresEmailVerification } from './authEmailValidation';
 import { auth, googleProvider } from './firebase';
 import { isNative } from './platformService';
+
+const VERIFY_EMAIL_INFO = 'Check your inbox and verify your email before signing in.';
 
 export default function useAuthScreenState() {
   const params = new URLSearchParams(window.location.search);
@@ -24,19 +29,34 @@ export default function useAuthScreenState() {
   const switchMode = (m) => { setMode(m); setError(''); setInfo(''); };
 
   const handleEmail = async () => {
-    if (!email || !password) { setError('Please fill in all fields.'); return; }
+    const normalizedEmail = normalizeAuthEmail(email);
+    const emailError = getAuthEmailError(normalizedEmail);
+
+    if (emailError) { setError(emailError); return; }
+    if (!password) { setError('Enter your password.'); return; }
+
     setError(''); setInfo(''); setLoading(true);
     try {
       if (mode === 'signup') {
-        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const cred = await createUserWithEmailAndPassword(auth, normalizedEmail, password);
         if (name.trim()) await updateProfile(cred.user, { displayName: name.trim() });
+        await sendEmailVerification(cred.user);
+        await signOut(auth);
+        setInfo(VERIFY_EMAIL_INFO);
       } else {
-        await signInWithEmailAndPassword(auth, email, password);
+        const cred = await signInWithEmailAndPassword(auth, normalizedEmail, password);
+        if (requiresEmailVerification(cred.user)) {
+          await sendEmailVerification(cred.user);
+          await signOut(auth);
+          setInfo(VERIFY_EMAIL_INFO);
+        }
       }
     } catch (e) {
       setError(cleanFirebaseError(e.message));
+      setInfo('');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleGoogle = async () => {
@@ -56,10 +76,14 @@ export default function useAuthScreenState() {
   };
 
   const handleForgotPassword = async () => {
-    if (!email) { setError('Enter your email above first.'); return; }
+    const normalizedEmail = normalizeAuthEmail(email);
+    const emailError = getAuthEmailError(normalizedEmail);
+
+    if (emailError) { setError(emailError); return; }
+
     setError(''); setLoading(true);
     try {
-      await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, normalizedEmail);
       setInfo('Password reset email sent — check your inbox.');
     } catch (e) {
       setError(cleanFirebaseError(e.message));

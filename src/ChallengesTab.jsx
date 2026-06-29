@@ -7,6 +7,8 @@ import useChallengesTabState from './challenges/useChallengesTabState';
 export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJoinHandled, onStatsChanged }) {
   const { user }                              = useAuth();
   const {
+    activeChallenges,
+    completedChallenges,
     detailChallenge,
     handleCreate,
     handleJoined,
@@ -21,7 +23,6 @@ export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJ
     searchResults,
     searching,
     setDetailChallenge,
-    setTrackerChallenge,
     setView,
     trackerChallenge,
     view,
@@ -41,6 +42,8 @@ export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJ
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
       <ChallengesTabContent
+        activeChallenges={activeChallenges}
+        completedChallenges={completedChallenges}
         detailChallenge={detailChallenge}
         handleCreate={handleCreate}
         handleJoined={handleJoined}
@@ -55,7 +58,6 @@ export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJ
         searchResults={searchResults}
         searching={searching}
         setDetailChallenge={setDetailChallenge}
-        setTrackerChallenge={setTrackerChallenge}
         setView={setView}
         trackerChallenge={trackerChallenge}
         user={user}
