@@ -386,14 +386,12 @@ function equipmentLayers(profile, color) {
 }
 
 function shapeLayer(name, color, points, width = 6) {
-  return {
-    ddd: 0,
-    ind: currentLayerIndex++,
-    ty: 4,
-    nm: name,
-    ks: transform(),
-    shapes: [{
+  return shapeGroupLayer(name, transform(), [{
       ty: 'sh',
+      ix: 1,
+      nm: `${name} Path`,
+      mn: 'ADBE Vector Shape - Group',
+      hd: false,
       ks: {
         a: 0,
         k: {
@@ -405,37 +403,47 @@ function shapeLayer(name, color, points, width = 6) {
       },
     }, {
       ty: 'st',
+      nm: `${name} Stroke`,
+      mn: 'ADBE Vector Graphic - Stroke',
+      hd: false,
       c: { a: 0, k: hex(color) },
       w: { a: 0, k: width },
       lc: 2,
       lj: 2,
-    }],
-  };
+      o: { a: 0, k: 100 },
+    }]);
 }
 
 function capsuleLayer(name, color, position, size, startRot = 0, midRot = startRot, radius = Math.min(size[0], size[1]) / 2, opacity = 100) {
-  return {
-    ddd: 0,
-    ind: currentLayerIndex++,
-    ty: 4,
-    nm: name,
-    ks: transform(position, startRot, midRot),
-    shapes: [{
+  return shapeGroupLayer(name, transform(position, startRot, midRot), [{
       ty: 'rc',
+      d: 1,
+      nm: `${name} Capsule`,
+      mn: 'ADBE Vector Shape - Rect',
+      hd: false,
       p: { a: 0, k: [0, size[1] / 2] },
       s: { a: 0, k: size },
       r: { a: 0, k: radius },
     }, {
       ty: 'fl',
+      nm: `${name} Fill`,
+      mn: 'ADBE Vector Graphic - Fill',
+      hd: false,
       c: { a: 0, k: hex(color) },
       o: { a: 0, k: opacity },
+      r: 1,
+      bm: 0,
     }, {
       ty: 'st',
+      nm: `${name} Stroke`,
+      mn: 'ADBE Vector Graphic - Stroke',
+      hd: false,
       c: { a: 0, k: hex('#040404') },
       o: { a: 0, k: 10 },
       w: { a: 0, k: 1 },
-    }],
-  };
+      lc: 2,
+      lj: 2,
+    }]);
 }
 
 function limbLayer(name, color, position, points, startRot, midRot) {
@@ -467,56 +475,106 @@ function limbLayer(name, color, position, points, startRot, midRot) {
 }
 
 function ellipseStrokeLayer(name, color, position, size, width = 4) {
-  return {
-    ddd: 0,
-    ind: currentLayerIndex++,
-    ty: 4,
-    nm: name,
-    ks: transform(position),
-    shapes: [{
+  return shapeGroupLayer(name, transform(position), [{
       ty: 'el',
+      d: 1,
+      nm: `${name} Ellipse`,
+      mn: 'ADBE Vector Shape - Ellipse',
+      hd: false,
       p: { a: 0, k: [0, 0] },
       s: { a: 0, k: size },
     }, {
       ty: 'st',
+      nm: `${name} Stroke`,
+      mn: 'ADBE Vector Graphic - Stroke',
+      hd: false,
       c: { a: 0, k: hex(color) },
       w: { a: 0, k: width },
+      o: { a: 0, k: 100 },
       lc: 2,
       lj: 2,
-    }],
-  };
+    }]);
 }
 
 function ellipseLayer(name, color, position, size) {
+  return shapeGroupLayer(name, transform(position), [{
+      ty: 'el',
+      d: 1,
+      nm: `${name} Ellipse`,
+      mn: 'ADBE Vector Shape - Ellipse',
+      hd: false,
+      p: { a: 0, k: [0, 0] },
+      s: { a: 0, k: size },
+    }, {
+      ty: 'fl',
+      nm: `${name} Fill`,
+      mn: 'ADBE Vector Graphic - Fill',
+      hd: false,
+      c: { a: 0, k: hex(color) },
+      o: { a: 0, k: 100 },
+      r: 1,
+      bm: 0,
+    }]);
+}
+
+function shapeGroupLayer(name, ks, items) {
   return {
     ddd: 0,
     ind: currentLayerIndex++,
     ty: 4,
     nm: name,
-    ks: transform(position),
+    sr: 1,
+    ks,
+    ao: 0,
     shapes: [{
-      ty: 'el',
-      p: { a: 0, k: [0, 0] },
-      s: { a: 0, k: size },
-    }, {
-      ty: 'fl',
-      c: { a: 0, k: hex(color) },
-      o: { a: 0, k: 100 },
+      ty: 'gr',
+      it: [...items, groupTransform()],
+      nm: `${name} Group`,
+      np: items.length + 1,
+      cix: 2,
+      bm: 0,
+      ix: 1,
+      mn: 'ADBE Vector Group',
+      hd: false,
     }],
+    ip: 0,
+    op: 90,
+    st: 0,
+    bm: 0,
   };
 }
 
 function transform(position = [0, 0], startRot = 0, midRot = startRot) {
-  return {
-    o: { a: 0, k: 100 },
-    r: { a: startRot === midRot ? 0 : 1, k: startRot === midRot ? startRot : [
-      { t: 0, s: [startRot] },
-      { t: 45, s: [midRot] },
+  const point = [position[0] || 0, position[1] || 0, 0];
+  const rotation = startRot === midRot ? { a: 0, k: startRot, ix: 10 } : {
+    a: 1,
+    k: [
+      { t: 0, s: [startRot], e: [midRot], i: { x: [0.667], y: [1] }, o: { x: [0.333], y: [0] } },
+      { t: 45, s: [midRot], e: [startRot], i: { x: [0.667], y: [1] }, o: { x: [0.333], y: [0] } },
       { t: 90, s: [startRot] },
-    ] },
-    p: { a: 0, k: position },
-    a: { a: 0, k: [0, 0, 0] },
-    s: { a: 0, k: [100, 100, 100] },
+    ],
+    ix: 10,
+  };
+  return {
+    o: { a: 0, k: 100, ix: 11 },
+    r: rotation,
+    p: { a: 0, k: point, ix: 2 },
+    a: { a: 0, k: [0, 0, 0], ix: 1 },
+    s: { a: 0, k: [100, 100, 100], ix: 6 },
+  };
+}
+
+function groupTransform() {
+  return {
+    ty: 'tr',
+    p: { a: 0, k: [0, 0], ix: 2 },
+    a: { a: 0, k: [0, 0], ix: 1 },
+    s: { a: 0, k: [100, 100], ix: 3 },
+    r: { a: 0, k: 0, ix: 6 },
+    o: { a: 0, k: 100, ix: 7 },
+    sk: { a: 0, k: 0, ix: 4 },
+    sa: { a: 0, k: 0, ix: 5 },
+    nm: 'Transform',
   };
 }
 

@@ -40,7 +40,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/bench_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/bench_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:397ece7c225975da:b753f2b70115412e"
+      "assetHash": "sha256:f3f3d4b9d11d543a:b753f2b70115412e"
     }
   },
   {
@@ -84,7 +84,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:93eff86007ce1d27:47517114487709f3"
+      "assetHash": "sha256:af679b7d4f19108c:47517114487709f3"
     }
   },
   {
@@ -128,7 +128,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:1e146a9aef85f558:9a6fb21962792a08"
+      "assetHash": "sha256:eaaa2d70bec17aaa:9a6fb21962792a08"
     }
   },
   {
@@ -172,7 +172,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/push_up/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/push_up/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:f45e4c5a00f8dadd:a3ef1e70b6a8c978"
+      "assetHash": "sha256:46f0e366d72b770b:a3ef1e70b6a8c978"
     }
   },
   {
@@ -215,7 +215,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/machine_chest_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/machine_chest_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:943c01adfe05b550:79ae9b14bafac537"
+      "assetHash": "sha256:362daf028d09f134:79ae9b14bafac537"
     }
   },
   {
@@ -258,7 +258,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:e8d50a3422df1269:271b9c36591838a9"
+      "assetHash": "sha256:8921378f881175eb:271b9c36591838a9"
     }
   },
   {
@@ -300,7 +300,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/lateral_raise/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/lateral_raise/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:8fe9f6c5424e9031:a1fd465a5103e4d0"
+      "assetHash": "sha256:c02ed41cf4f8b03c:a1fd465a5103e4d0"
     }
   },
   {
@@ -343,7 +343,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:d8db8efb75e4cf66:2918d55d89e3f700"
+      "assetHash": "sha256:4e23dd95cc8a9b6f:2918d55d89e3f700"
     }
   },
   {
@@ -385,7 +385,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/triceps_pushdown/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/triceps_pushdown/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:56a29d8162a4529a:fb8200646afd8010"
+      "assetHash": "sha256:82b30c614a1f26d5:fb8200646afd8010"
     }
   },
   {
@@ -429,7 +429,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/bench_dip/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/bench_dip/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:2cf900f63d2b895c:a6810da4c2cdc505"
+      "assetHash": "sha256:bf10daf9a9572ffc:a6810da4c2cdc505"
     }
   }
 ]

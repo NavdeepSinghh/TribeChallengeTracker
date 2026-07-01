@@ -4,7 +4,7 @@
     "localPath": "generated/workouts/exercises/v1/treadmill_run/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/treadmill_run/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "1bfab2fe51a6b23bc18151605e180b212d1a49b026395803c0578a884cd4a13e"
+    "sha256": "d03d2489ebbf0d89a29c5bea94b0538a04636d545b03b1f696f5e531b34fd6e1"
   },
   {
     "exerciseId": "treadmill_run",
@@ -32,7 +32,7 @@
     "localPath": "generated/workouts/exercises/v1/incline_walk/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/incline_walk/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "303893efbb6bafc3104ce0e572036cb4d906b5c8da6e0321242659f23e4f875e"
+    "sha256": "0c7aaa8cec0ea517fcb8727962b0e2db775d1525cca850121749e02a9aa4016e"
   },
   {
     "exerciseId": "incline_walk",
@@ -60,7 +60,7 @@
     "localPath": "generated/workouts/exercises/v1/stationary_bike/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/stationary_bike/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "8caedbc8319d31ebeb7062db035fa817d30bbeee74ed54f9e17962739c3640cb"
+    "sha256": "d73204870a3ea00c9f6cfad4df458c16dd436425a5fefcfc932a340d43f125ff"
   },
   {
     "exerciseId": "stationary_bike",
@@ -88,7 +88,7 @@
     "localPath": "generated/workouts/exercises/v1/rowing_machine/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/rowing_machine/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "f7aa33ecb92592222a64cf24641d272c94e0afccf327d4f0e52fce83ad17c077"
+    "sha256": "5783eb4ce1bf3b985226d5aa06b62ca05edc59284432da4cc591e63e44c6e7ab"
   },
   {
     "exerciseId": "rowing_machine",
@@ -116,7 +116,7 @@
     "localPath": "generated/workouts/exercises/v1/cat_cow/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/cat_cow/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "048edff214183666d87c3ca93e0f60362f6a2146d4d685893849b1cd64ada6e8"
+    "sha256": "5c4a13c3b461c93571412b27dda3b1f155ead0aecdfc407e185c3712ebec6ca2"
   },
   {
     "exerciseId": "cat_cow",
@@ -144,7 +144,7 @@
     "localPath": "generated/workouts/exercises/v1/downward_dog/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/downward_dog/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "6cd73ce3ac2917975bd1ebf3c72243dc29c3836e7ad412e0e0e7c205784104a6"
+    "sha256": "959c4c252de80ec977a810f3e91f90a5d21ab83f669da5faeb43e82f41d342f5"
   },
   {
     "exerciseId": "downward_dog",
@@ -172,7 +172,7 @@
     "localPath": "generated/workouts/exercises/v1/childs_pose/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/childs_pose/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "ec609af30a8154dce84b686514b7958d33594659932481901c322e86afc3d325"
+    "sha256": "dc45ee0abdd1a78650991011f5882d0c8629bbca3e69f5c83a8eab22cf8bbb19"
   },
   {
     "exerciseId": "childs_pose",
@@ -200,7 +200,7 @@
     "localPath": "generated/workouts/exercises/v1/worlds_greatest_stretch/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/worlds_greatest_stretch/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "0e0f407e456e339f1733c84a56e4a4dcc02207aabc44abe415ca5f3be50b0590"
+    "sha256": "a46e08f2a8f8cb6aba5459a618e332d5848d210bf6beb6b35902bd259a9dab3e"
   },
   {
     "exerciseId": "worlds_greatest_stretch",

@@ -4,7 +4,7 @@
     "localPath": "generated/workouts/exercises/v1/bench_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/bench_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "397ece7c225975da5e9a476a4a736c29b0b400867dcdec4a40b53bf3ef3e1cda"
+    "sha256": "f3f3d4b9d11d543a86b858ef860901ca6e9e3d9803ca76a469bf5e78c17e6bb7"
   },
   {
     "exerciseId": "bench_press",
@@ -32,7 +32,7 @@
     "localPath": "generated/workouts/exercises/v1/dumbbell_bench_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/dumbbell_bench_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "93eff86007ce1d27d6f4f5bdfb0a7535d274ad07a415001e1ff8b6a5284c84c9"
+    "sha256": "af679b7d4f19108c0bc732fdf04134061c05e1a0a5a0beeab1b5002434b333e9"
   },
   {
     "exerciseId": "dumbbell_bench_press",
@@ -60,7 +60,7 @@
     "localPath": "generated/workouts/exercises/v1/incline_dumbbell_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/incline_dumbbell_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "1e146a9aef85f5581985fe0a6df8a3145bba841620e3ab036037e29ed953fa73"
+    "sha256": "eaaa2d70bec17aaa6b7b9de0df93a2b8112c249e8d054257a9cad0a417c2d7ad"
   },
   {
     "exerciseId": "incline_dumbbell_press",
@@ -88,7 +88,7 @@
     "localPath": "generated/workouts/exercises/v1/push_up/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/push_up/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "f45e4c5a00f8dadd407ff799c074e8297203021b3611b9b3d72a508442a96cdd"
+    "sha256": "46f0e366d72b770b30a7ea72d29b658325611fcb8161695d2e30a7af7a4d98f4"
   },
   {
     "exerciseId": "push_up",
@@ -116,7 +116,7 @@
     "localPath": "generated/workouts/exercises/v1/machine_chest_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/machine_chest_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "943c01adfe05b550774b5d0b5be3d4502c11a13d0aa73d6f30afa63a58720681"
+    "sha256": "362daf028d09f1345e6718ef70ae14964d3c3d114e53c8438d351b51c21f9c2e"
   },
   {
     "exerciseId": "machine_chest_press",
@@ -144,7 +144,7 @@
     "localPath": "generated/workouts/exercises/v1/dumbbell_shoulder_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/dumbbell_shoulder_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "e8d50a3422df1269da77ecc7ab2477a523e568cd2bdf8a750e59517b8fd901d2"
+    "sha256": "8921378f881175ebfbc082d8d23cf9a551262a51ed7d5dcf936ab9af2d37f2ef"
   },
   {
     "exerciseId": "dumbbell_shoulder_press",
@@ -172,7 +172,7 @@
     "localPath": "generated/workouts/exercises/v1/lateral_raise/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/lateral_raise/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "8fe9f6c5424e9031c27308edaa5acc348b935fb28ec4f606f75a1000b3c43edf"
+    "sha256": "c02ed41cf4f8b03c00561bbcc01d3a8f4ecd4bcb85a8ae785d80a6fb3883685e"
   },
   {
     "exerciseId": "lateral_raise",
@@ -200,7 +200,7 @@
     "localPath": "generated/workouts/exercises/v1/dumbbell_chest_fly/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/dumbbell_chest_fly/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "d8db8efb75e4cf662f26b35525d912fa637de9f8e9f3601aa7497c7bbc03adfd"
+    "sha256": "4e23dd95cc8a9b6ff0b2b9966b7433278099438600f83fb5755fe14a16db9e93"
   },
   {
     "exerciseId": "dumbbell_chest_fly",
@@ -228,7 +228,7 @@
     "localPath": "generated/workouts/exercises/v1/triceps_pushdown/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/triceps_pushdown/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "56a29d8162a4529a3f70f5382b05befca6463f9c0239d5ec6d23125030721aca"
+    "sha256": "82b30c614a1f26d5c636ad3e37531264698bafeba12c03b14ff5f8cc1f05d7ab"
   },
   {
     "exerciseId": "triceps_pushdown",
@@ -256,7 +256,7 @@
     "localPath": "generated/workouts/exercises/v1/bench_dip/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/bench_dip/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "2cf900f63d2b895ce6d54f111fee6c32612a6117e557e51039556dfc5f27eb22"
+    "sha256": "bf10daf9a9572ffcd06dd1acbf25febf369d7ea7377c849c935a4b9ece4aca5e"
   },
   {
     "exerciseId": "bench_dip",

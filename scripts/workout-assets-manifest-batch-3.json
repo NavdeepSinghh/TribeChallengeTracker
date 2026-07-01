@@ -4,7 +4,7 @@
     "localPath": "generated/workouts/exercises/v1/back_squat/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/back_squat/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "ec8a39999a343bd3ce3c8564667562b56f9873a88c0b0031e78de3ac01fb6303"
+    "sha256": "1aa18be02e0a75289c81932c4a5485ec397235c41d8e011a3469b14b9e2f2f3d"
   },
   {
     "exerciseId": "back_squat",
@@ -32,7 +32,7 @@
     "localPath": "generated/workouts/exercises/v1/goblet_squat/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/goblet_squat/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "58d393bdb547d0b4b0b447daef540f3881e2c7f779bc2f6f017c00ed245de083"
+    "sha256": "5723927d519fd4b9f9dfe47d9b670ed6c038c5154e533c8661de0a94da4d87ea"
   },
   {
     "exerciseId": "goblet_squat",
@@ -60,7 +60,7 @@
     "localPath": "generated/workouts/exercises/v1/leg_press/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/leg_press/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "ad32f538cedb37e78151bf16583427336c754911f234389a39404bacd0487aaf"
+    "sha256": "cd45bb863ecc3075ff206cf239da48a65accfe06b597c67cef0280173b06fa81"
   },
   {
     "exerciseId": "leg_press",
@@ -88,7 +88,7 @@
     "localPath": "generated/workouts/exercises/v1/romanian_deadlift/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/romanian_deadlift/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "4ac19522602a8fb5061ba96f592d17a3d2835e3ca265c9328ed67250a8628a9c"
+    "sha256": "9b9383446b0e4503f7750dbd6218b4f29e1298b0b3a3ee00825c904519a88f81"
   },
   {
     "exerciseId": "romanian_deadlift",
@@ -116,7 +116,7 @@
     "localPath": "generated/workouts/exercises/v1/conventional_deadlift/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/conventional_deadlift/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "5661a6b9abe4c2db16408b1fd3b7ec3ccc4d6fb376afac96f0b6f60a92446fde"
+    "sha256": "1a3d0ff8301490556cd39e16e9a59aa9ad1291b8b9e09bb6cd115669ea4e372a"
   },
   {
     "exerciseId": "conventional_deadlift",
@@ -144,7 +144,7 @@
     "localPath": "generated/workouts/exercises/v1/hip_thrust/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/hip_thrust/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "57dc403f1d6c519686bb69af9e03db42385337f70f875424ee8395526aeb4522"
+    "sha256": "35441f84f7b0dddd6c96d129880c1906216d7ad80ca9f373b12cfed028be5640"
   },
   {
     "exerciseId": "hip_thrust",
@@ -172,7 +172,7 @@
     "localPath": "generated/workouts/exercises/v1/walking_lunge/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/walking_lunge/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "3d63ee9a4b7a44260b01e81f1919aeaa9bc94259f688073b0649b465f3899d06"
+    "sha256": "e6e9396c38680ad31d385f8c9b5c292a07928ef75319e12e92c391dc9c960fd8"
   },
   {
     "exerciseId": "walking_lunge",
@@ -200,7 +200,7 @@
     "localPath": "generated/workouts/exercises/v1/bulgarian_split_squat/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/bulgarian_split_squat/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "b26fbdc8c515ca87eb6b4baf04957b26bb39ae136ecfea8b42cb5329eb859c5b"
+    "sha256": "01f39d754692b458b26800b10d407cc0c1d85fae6bedb63bbdb432a81439894a"
   },
   {
     "exerciseId": "bulgarian_split_squat",
@@ -228,7 +228,7 @@
     "localPath": "generated/workouts/exercises/v1/step_up/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/step_up/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "cc1906ed3b9b10b570213434ab9805255e5aff35e01746eca70240a174ef0b53"
+    "sha256": "ad5e8e799e67cd57cc0f014181a56870ca9526edf714775d13f05acfc8d97e8a"
   },
   {
     "exerciseId": "step_up",
@@ -256,7 +256,7 @@
     "localPath": "generated/workouts/exercises/v1/leg_extension/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/leg_extension/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "f02ddc577ddde600496adbac21bc15bbfa3efea4265067780281b82d79ec8ac1"
+    "sha256": "9284607e0298356bc5572ea56ddb5c4fb2e9c2d2dc9a5d00d724837d4c66f851"
   },
   {
     "exerciseId": "leg_extension",
@@ -284,7 +284,7 @@
     "localPath": "generated/workouts/exercises/v1/seated_leg_curl/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/seated_leg_curl/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "74977f1995b3d3ee90044df8b714dda51f3c399de34ca00160c50234e12e746c"
+    "sha256": "f90d35b408a4f57f5bb35178c9c4227a3ab4c24905c5dad91040a0b8e1df5e16"
   },
   {
     "exerciseId": "seated_leg_curl",
@@ -312,7 +312,7 @@
     "localPath": "generated/workouts/exercises/v1/standing_calf_raise/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/standing_calf_raise/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "aa0c386a78da0c699113fe2a2a2b07bd6311a969dffd42ed9a7c232d209d4090"
+    "sha256": "ddf2cedac5439cd28ff85df9f60e08a021085600a33c9053b87f36fa6d3ce51e"
   },
   {
     "exerciseId": "standing_calf_raise",
@@ -340,7 +340,7 @@
     "localPath": "generated/workouts/exercises/v1/glute_bridge/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/glute_bridge/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "c9bf4486a77f2570f63d89ed1a1f3b88ba45b42c59c30aca44c2eaadcdaf2fae"
+    "sha256": "273a433b92ea55e54dde0c20630adb2a20d1cd5591c1916e8abcd900c7c2eb09"
   },
   {
     "exerciseId": "glute_bridge",
@@ -368,7 +368,7 @@
     "localPath": "generated/workouts/exercises/v1/kettlebell_swing/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/kettlebell_swing/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "7c92a94c1b90de8a44e012a8f72d80d0ee91e2373bced6b7b8142132ff2982b1"
+    "sha256": "7da05b68ebaa0052f07599a78b21fe1fd49553b27ca166cecd61f699ee6a2d99"
   },
   {
     "exerciseId": "kettlebell_swing",

@@ -41,7 +41,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/back_squat/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/back_squat/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:ec8a39999a343bd3:140e0ff3672d4518"
+      "assetHash": "sha256:1aa18be02e0a7528:140e0ff3672d4518"
     }
   },
   {
@@ -86,7 +86,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/goblet_squat/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/goblet_squat/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:58d393bdb547d0b4:ada118d4e45cd6e2"
+      "assetHash": "sha256:5723927d519fd4b9:ada118d4e45cd6e2"
     }
   },
   {
@@ -129,7 +129,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/leg_press/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/leg_press/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:ad32f538cedb37e7:660bffeab54d66dc"
+      "assetHash": "sha256:cd45bb863ecc3075:660bffeab54d66dc"
     }
   },
   {
@@ -173,7 +173,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/romanian_deadlift/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/romanian_deadlift/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:4ac19522602a8fb5:dd3a28fa228fd871"
+      "assetHash": "sha256:9b9383446b0e4503:dd3a28fa228fd871"
     }
   },
   {
@@ -218,7 +218,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/conventional_deadlift/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/conventional_deadlift/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:5661a6b9abe4c2db:7a3c69890d7b17a6"
+      "assetHash": "sha256:1a3d0ff830149055:7a3c69890d7b17a6"
     }
   },
   {
@@ -261,7 +261,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/hip_thrust/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/hip_thrust/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:57dc403f1d6c5196:83540beeb8acb44e"
+      "assetHash": "sha256:35441f84f7b0dddd:83540beeb8acb44e"
     }
   },
   {
@@ -306,7 +306,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/walking_lunge/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/walking_lunge/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:3d63ee9a4b7a4426:9390cff67032a38e"
+      "assetHash": "sha256:e6e9396c38680ad3:9390cff67032a38e"
     }
   },
   {
@@ -351,7 +351,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:b26fbdc8c515ca87:a52c1115f809a843"
+      "assetHash": "sha256:01f39d754692b458:a52c1115f809a843"
     }
   },
   {
@@ -396,7 +396,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/step_up/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/step_up/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:cc1906ed3b9b10b5:0f8328fcdd3cc87c"
+      "assetHash": "sha256:ad5e8e799e67cd57:0f8328fcdd3cc87c"
     }
   },
   {
@@ -436,7 +436,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/leg_extension/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/leg_extension/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:f02ddc577ddde600:87955f28631e5b8a"
+      "assetHash": "sha256:9284607e0298356b:87955f28631e5b8a"
     }
   },
   {
@@ -476,7 +476,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/seated_leg_curl/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/seated_leg_curl/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:74977f1995b3d3ee:897892079b5056dc"
+      "assetHash": "sha256:f90d35b408a4f57f:897892079b5056dc"
     }
   },
   {
@@ -517,7 +517,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/standing_calf_raise/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/standing_calf_raise/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:aa0c386a78da0c69:0e93c386af8a8764"
+      "assetHash": "sha256:ddf2cedac5439cd2:0e93c386af8a8764"
     }
   },
   {
@@ -560,7 +560,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/glute_bridge/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/glute_bridge/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:c9bf4486a77f2570:d64196e0d8813b26"
+      "assetHash": "sha256:273a433b92ea55e5:d64196e0d8813b26"
     }
   },
   {
@@ -604,7 +604,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/kettlebell_swing/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/kettlebell_swing/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:7c92a94c1b90de8a:f1b5ebf29a5f7dd4"
+      "assetHash": "sha256:7da05b68ebaa0052:f1b5ebf29a5f7dd4"
     }
   }
 ]
