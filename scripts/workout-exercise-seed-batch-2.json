@@ -40,7 +40,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/lat_pulldown/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/lat_pulldown/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:0f884336ca059921:444acec5a8c827cc"
+      "assetHash": "sha256:2aadf644441ef856:444acec5a8c827cc"
     }
   },
   {
@@ -85,7 +85,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/pull_up/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/pull_up/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:56f6261f3f9f8c93:e8e2ca875769c068"
+      "assetHash": "sha256:1b470f8c50d234e5:e8e2ca875769c068"
     }
   },
   {
@@ -128,7 +128,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/assisted_pull_up/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/assisted_pull_up/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:77be6c0709eb9cda:b5623aff9d9dbe3a"
+      "assetHash": "sha256:61ceb699adcd47d5:b5623aff9d9dbe3a"
     }
   },
   {
@@ -172,7 +172,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/seated_cable_row/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/seated_cable_row/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:2ca6a35835f0e793:450a70d823c5a57a"
+      "assetHash": "sha256:fc8427da29182a81:450a70d823c5a57a"
     }
   },
   {
@@ -217,7 +217,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/one_arm_dumbbell_row/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/one_arm_dumbbell_row/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:4a0b1960c3943a3f:7bf0db7b05452159"
+      "assetHash": "sha256:84db757884953e46:7bf0db7b05452159"
     }
   },
   {
@@ -262,7 +262,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/barbell_bent_over_row/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/barbell_bent_over_row/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:8fa87cbb135878cb:cb3401fcf13d74ff"
+      "assetHash": "sha256:df6dc171c662f701:cb3401fcf13d74ff"
     }
   },
   {
@@ -305,7 +305,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/face_pull/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/face_pull/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:cdcc19f5e7123f0b:38e7453461cb7d8d"
+      "assetHash": "sha256:af36339e71ebd81b:38e7453461cb7d8d"
     }
   },
   {
@@ -348,7 +348,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/rear_delt_fly/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/rear_delt_fly/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:55061730e652252a:d177113691d11739"
+      "assetHash": "sha256:99552a4448d9e289:d177113691d11739"
     }
   },
   {
@@ -390,7 +390,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_biceps_curl/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/dumbbell_biceps_curl/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:2418bb4fe9acc337:ec7247ed52376c88"
+      "assetHash": "sha256:3fe0e9cee42e2ad4:ec7247ed52376c88"
     }
   },
   {
@@ -431,7 +431,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/hammer_curl/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/hammer_curl/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:adaef94966e3d5d6:195bab1233176ace"
+      "assetHash": "sha256:4b25ad494aac934c:195bab1233176ace"
     }
   }
 ]

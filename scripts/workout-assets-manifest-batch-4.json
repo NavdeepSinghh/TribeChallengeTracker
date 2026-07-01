@@ -4,7 +4,7 @@
     "localPath": "generated/workouts/exercises/v1/plank/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/plank/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "9ea747b6726a0f9cee2f497feec85b61de700b1e2e6eee04fd90e552d8d2d261"
+    "sha256": "a1c8ed38101845a52a3bd11d02a8307e7df9da78e6a822b5ea64af334620cc16"
   },
   {
     "exerciseId": "plank",
@@ -32,7 +32,7 @@
     "localPath": "generated/workouts/exercises/v1/side_plank/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/side_plank/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "e3a3a8fd059781401539804a2c0486772a1cf59c11fdffb51e7fb8599c59c50b"
+    "sha256": "dcb4629ee30c39166643ce796f4945aeacdd2ef901c143bea0528ae9aaff23fa"
   },
   {
     "exerciseId": "side_plank",
@@ -60,7 +60,7 @@
     "localPath": "generated/workouts/exercises/v1/dead_bug/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/dead_bug/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "4b9bfc44570835bae1c886e25f3844a10ec582e761b7edb6b0b1e83e8147aced"
+    "sha256": "41325d07f2447b210240d34ecaa26b3d8e72fe98701bc656ce907717bdfbdec3"
   },
   {
     "exerciseId": "dead_bug",
@@ -88,7 +88,7 @@
     "localPath": "generated/workouts/exercises/v1/bird_dog/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/bird_dog/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "2dfae7d977133776dbe5732865795dd5577a0c5e311818ef336d0f0120d43fd1"
+    "sha256": "aad4722a481c5c21fe36c8d2ac036341d7e2f83f3cce2788605d299cd922c477"
   },
   {
     "exerciseId": "bird_dog",
@@ -116,7 +116,7 @@
     "localPath": "generated/workouts/exercises/v1/bicycle_crunch/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/bicycle_crunch/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "7d36cb33139c5a0b934f0ef94d6cbc42616901b15695f72853bf8692e410328b"
+    "sha256": "42fee5f3e1216186376eace2df04441437d55e63edcf1a2912cf99261ec01a76"
   },
   {
     "exerciseId": "bicycle_crunch",
@@ -144,7 +144,7 @@
     "localPath": "generated/workouts/exercises/v1/hanging_knee_raise/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/hanging_knee_raise/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "52b3d75634f8c48e9d687801ed217531eb3d303c04168dc276119104906cd185"
+    "sha256": "4392f5b75636f3afc73ad0ee4d53dcc3db52144659497164a7e557ebaff890d5"
   },
   {
     "exerciseId": "hanging_knee_raise",
@@ -172,7 +172,7 @@
     "localPath": "generated/workouts/exercises/v1/russian_twist/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/russian_twist/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "543bace7d7f30463aee169ea90135ea4ded41477480dd60fc2a6100b4228538a"
+    "sha256": "1b44e2ff3f6a64945454f13bea9c4243c8a6cfae1643eafca2a735ea3875ceb5"
   },
   {
     "exerciseId": "russian_twist",
@@ -200,7 +200,7 @@
     "localPath": "generated/workouts/exercises/v1/mountain_climber/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/mountain_climber/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "e400d32eb99df37811289a6b4a82b8564130368a90c679952e99a3980a62b8fb"
+    "sha256": "f3e63e3e33eda56c4194d50acfdb54b310cd6c20d18f2d031356d372e1658144"
   },
   {
     "exerciseId": "mountain_climber",

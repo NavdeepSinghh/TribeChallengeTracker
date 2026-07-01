@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import lottie from "lottie-web";
 import { useAppTheme } from "../../app/AppThemeContext";
+import { buildExerciseCoachingCues, selectExerciseMotionSource } from "../domain/workoutCatalogModels";
 import { resolveWorkoutAssetUrl as resolveAssetUrl } from "../domain/workoutAssetUrls";
 import { ALL_FILTER_VALUE, useWorkoutCatalogViewModel } from "./useWorkoutCatalogViewModel";
 
@@ -188,8 +190,110 @@ function ExerciseCard({ exercise, isSelected, onSelect }) {
 }
 
 function ExerciseMotionPreview({ exercise }) {
-  const asset = useLazyJsonAsset(exercise?.assetManifest?.lottiePath);
-  const frameCount = getLottieFrameCount(asset.data);
+  const containerRef = useRef(null);
+  const motionSource = selectExerciseMotionSource(exercise);
+  const asset = useLazyJsonAsset(motionSource.type === "lottie" ? motionSource.path : "");
+  const [renderStatus, setRenderStatus] = useState("idle");
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+    container.innerHTML = "";
+
+    if (asset.status !== "loaded" || !asset.data) {
+      setRenderStatus(asset.status === "failed" ? "failed" : "idle");
+      return undefined;
+    }
+
+    let animation;
+    let didCancel = false;
+    const markRendered = () => {
+      if (!didCancel) setRenderStatus("rendered");
+    };
+    const markFailed = () => {
+      if (!didCancel) setRenderStatus("failed");
+    };
+
+    setRenderStatus("loading");
+    try {
+      animation = lottie.loadAnimation({
+        animationData: asset.data,
+        autoplay: true,
+        container,
+        loop: true,
+        renderer: "svg",
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid meet",
+        },
+      });
+      animation.addEventListener("DOMLoaded", markRendered);
+      animation.addEventListener("data_failed", markFailed);
+      animation.addEventListener("error", markFailed);
+      window.setTimeout(() => {
+        if (!didCancel && container.querySelector("svg")) {
+          markRendered();
+        }
+      }, 250);
+    } catch (error) {
+      markFailed();
+    }
+
+    return () => {
+      didCancel = true;
+      try {
+        animation?.removeEventListener?.("DOMLoaded", markRendered);
+        animation?.removeEventListener?.("data_failed", markFailed);
+        animation?.removeEventListener?.("error", markFailed);
+        animation?.destroy?.();
+      } catch (error) {
+        // Best-effort cleanup for the third-party player.
+      }
+      container.innerHTML = "";
+    };
+  }, [asset.status, asset.data, exercise?.id]);
+
+  if (motionSource.type === "video") {
+    return (
+      <div style={{
+        background: "radial-gradient(circle at 50% 25%, rgba(255,107,53,0.18), rgba(255,255,255,0.04) 56%, rgba(0,0,0,0.22))",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 16,
+        minHeight: 210,
+        overflow: "hidden",
+        position: "relative",
+      }}>
+        <video
+          aria-label={`${exercise.name} animated demo`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={motionSource.posterPath ? resolveWorkoutAssetUrl(motionSource.posterPath) : undefined}
+          src={resolveWorkoutAssetUrl(motionSource.path)}
+          style={{ height: "100%", inset: 0, objectFit: "contain", position: "absolute", width: "100%" }}
+        />
+        <div style={{
+          bottom: 12,
+          color: "#34D399",
+          fontFamily: "monospace",
+          fontSize: 10,
+          fontWeight: 800,
+          left: 14,
+          letterSpacing: 1,
+          position: "absolute",
+        }}>
+          ANIMATED DEMO READY
+        </div>
+      </div>
+    );
+  }
+
+  const statusLabel = (() => {
+    if (asset.status === "failed" || renderStatus === "failed") return "MOTION UNAVAILABLE";
+    if (asset.status === "loaded" && renderStatus === "rendered") return "ANIMATED DEMO READY";
+    if (asset.status === "loaded") return "RENDERING ANIMATED DEMO";
+    return "LOADING ANIMATED DEMO";
+  })();
 
   return (
     <div style={{
@@ -200,18 +304,15 @@ function ExerciseMotionPreview({ exercise }) {
       overflow: "hidden",
       position: "relative",
     }}>
-      <div aria-hidden="true" className="tribe-workout-figure">
-        <span className="head" />
-        <span className="torso" />
-        <span className="arm left" />
-        <span className="arm right" />
-        <span className="leg left" />
-        <span className="leg right" />
-        <span className="floor" />
-      </div>
+      <div ref={containerRef} aria-hidden="true" className="tribe-lottie-preview" />
+      {renderStatus !== "rendered" ? (
+        <div className="tribe-motion-fallback">
+          {asset.status === "failed" || renderStatus === "failed" ? "Motion preview unavailable" : "Loading motion preview..."}
+        </div>
+      ) : null}
       <div style={{
         bottom: 12,
-        color: asset.status === "loaded" ? "#34D399" : asset.status === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
+        color: asset.status === "loaded" && renderStatus === "rendered" ? "#34D399" : asset.status === "failed" || renderStatus === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
         fontFamily: "monospace",
         fontSize: 10,
         fontWeight: 800,
@@ -219,7 +320,7 @@ function ExerciseMotionPreview({ exercise }) {
         letterSpacing: 1,
         position: "absolute",
       }}>
-        {asset.status === "loaded" ? `LOTTIE READY · ${frameCount} FRAMES` : asset.status === "failed" ? "LOTTIE FALLBACK" : "LOADING LOTTIE"}
+        {statusLabel}
       </div>
     </div>
   );
@@ -283,16 +384,122 @@ function ExerciseDetail({ exercise }) {
       <h3 style={{ color: "#FFFFFF", fontFamily: "'Syne', sans-serif", fontSize: 24, fontWeight: 900, margin: "0 0 6px" }}>{exercise.name}</h3>
       <p style={{ color: "rgba(255,255,255,0.66)", fontSize: 13, fontWeight: 700, margin: "0 0 14px" }}>{labelFor(exercise.level)} · {exercise.equipment.map(labelFor).join(", ")}</p>
 
-      <ExerciseMotionPreview exercise={exercise} />
+      <ExerciseCoachMode exercise={exercise} />
 
       <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
         <MuscleMap exercise={exercise} />
 
-        <DetailList title="FORM CUES" items={exercise.formCues} />
         <DetailList title="COMMON MISTAKES" items={exercise.commonMistakes} muted />
-        <DetailList title="INSTRUCTIONS" items={exercise.instructions} numbered />
+        {exercise.substitutions.length > 0 ? <DetailList title="SUBSTITUTIONS" items={exercise.substitutions} /> : null}
       </div>
     </aside>
+  );
+}
+
+function ExerciseCoachMode({ exercise }) {
+  const cues = useMemo(() => buildExerciseCoachingCues(exercise), [exercise]);
+  const [activeCueId, setActiveCueId] = useState(cues[0]?.id || "");
+  const [hasManualCueSelection, setHasManualCueSelection] = useState(false);
+  const activeIndex = Math.max(0, cues.findIndex(cue => cue.id === activeCueId));
+  const activeCue = cues[activeIndex] || cues[0];
+
+  useEffect(() => {
+    setActiveCueId(cues[0]?.id || "");
+    setHasManualCueSelection(false);
+  }, [exercise.id, cues]);
+
+  useEffect(() => {
+    if (cues.length < 2 || hasManualCueSelection) return undefined;
+    const timer = window.setInterval(() => {
+      setActiveCueId(current => {
+        const index = Math.max(0, cues.findIndex(cue => cue.id === current));
+        return cues[(index + 1) % cues.length]?.id || current;
+      });
+    }, 3800);
+    return () => window.clearInterval(timer);
+  }, [cues, hasManualCueSelection]);
+
+  return (
+    <div style={{
+      background: "linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,255,255,0.035))",
+      border: "1px solid rgba(255,107,53,0.24)",
+      borderRadius: 18,
+      padding: 14,
+    }}>
+      <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+        <div>
+          <p style={{ ...sectionEyebrowStyle, color: "#FF6B35", marginBottom: 5 }}>MOVEMENT COACH</p>
+          <p style={{ color: "#FFFFFF", fontFamily: "'Syne', sans-serif", fontSize: 18, fontWeight: 900, margin: 0 }}>Watch the demo with the active cue.</p>
+        </div>
+        <span style={{
+          background: "rgba(255,107,53,0.16)",
+          border: "1px solid rgba(255,107,53,0.24)",
+          borderRadius: 999,
+          color: "#FF6B35",
+          fontFamily: "monospace",
+          fontSize: 10,
+          fontWeight: 900,
+          padding: "7px 9px",
+          whiteSpace: "nowrap",
+        }}>
+          {String(activeIndex + 1).padStart(2, "0")} / {String(cues.length || 1).padStart(2, "0")}
+        </span>
+      </div>
+
+      <ExerciseMotionPreview exercise={exercise} />
+
+      {activeCue ? (
+        <div style={{
+          background: "rgba(255,107,53,0.16)",
+          border: "1px solid rgba(255,107,53,0.36)",
+          borderRadius: 16,
+          marginTop: 12,
+          padding: 14,
+        }}>
+          <p style={{ color: "#FF6B35", fontFamily: "monospace", fontSize: 10, fontWeight: 900, letterSpacing: 1.2, margin: "0 0 8px" }}>
+            {labelFor(activeCue.phase).toUpperCase()} · {activeCue.view.toUpperCase()} VIEW
+          </p>
+          <p style={{ color: "#FFFFFF", fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 900, margin: "0 0 8px" }}>{activeCue.title}</p>
+          <p style={{ color: "rgba(255,255,255,0.74)", fontSize: 13, fontWeight: 700, lineHeight: 1.48, margin: 0 }}>{activeCue.body}</p>
+          {activeCue.focusMuscles.length > 0 ? (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
+              {activeCue.focusMuscles.map(muscle => (
+                <span key={muscle} style={{ ...chipStyle, borderColor: "rgba(255,107,53,0.30)", color: "#FFB199" }}>{labelFor(muscle)}</span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div style={{ display: "flex", gap: 8, marginTop: 12, overflowX: "auto", paddingBottom: 2 }}>
+        {cues.map((cue, index) => {
+          const selected = cue.id === activeCue?.id;
+          return (
+            <button
+              key={cue.id}
+              onClick={() => {
+                setHasManualCueSelection(true);
+                setActiveCueId(cue.id);
+              }}
+              style={{
+                background: selected ? "rgba(255,107,53,0.20)" : "rgba(255,255,255,0.05)",
+                border: selected ? "1px solid rgba(255,107,53,0.62)" : "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 12,
+                color: selected ? "#FFFFFF" : "rgba(255,255,255,0.68)",
+                cursor: "pointer",
+                flex: "0 0 148px",
+                minHeight: 62,
+                padding: 10,
+                textAlign: "left",
+              }}
+            >
+              <span style={{ color: selected ? "#FF6B35" : "rgba(255,255,255,0.40)", display: "block", fontFamily: "monospace", fontSize: 10, fontWeight: 900, marginBottom: 5 }}>0{index + 1}</span>
+              <span style={{ display: "block", fontFamily: "'Syne', sans-serif", fontSize: 13, fontWeight: 900, lineHeight: 1.15 }}>{cue.title}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -479,71 +686,32 @@ const workoutLibraryCss = `
     100% { transform: translateX(260%); }
   }
 
-  @keyframes tribeWorkoutPulse {
-    0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
-    50% { transform: translate(-50%, -50%) translateY(18px) rotate(-5deg); }
-  }
-
-  .tribe-workout-figure {
-    animation: tribeWorkoutPulse 1.8s ease-in-out infinite;
-    height: 150px;
-    left: 50%;
+  .tribe-lottie-preview {
+    height: 100%;
     position: absolute;
-    top: 50%;
-    width: 112px;
+    inset: 0;
+    width: 100%;
   }
 
-  .tribe-workout-figure span {
+  .tribe-lottie-preview svg {
     display: block;
+    height: 100% !important;
+    margin: auto;
+    max-width: 100%;
+    width: 100% !important;
+  }
+
+  .tribe-motion-fallback {
+    align-items: center;
+    color: rgba(255,255,255,0.62);
+    display: flex;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    inset: 0;
+    justify-content: center;
+    padding: 24px;
     position: absolute;
-  }
-
-  .tribe-workout-figure .head {
-    background: #F4C8B5;
-    border-radius: 999px;
-    height: 30px;
-    left: 41px;
-    top: 0;
-    width: 30px;
-  }
-
-  .tribe-workout-figure .torso {
-    background: #FF6B35;
-    border-radius: 20px;
-    height: 66px;
-    left: 34px;
-    top: 34px;
-    width: 44px;
-  }
-
-  .tribe-workout-figure .arm {
-    background: #F4C8B5;
-    border-radius: 999px;
-    height: 64px;
-    top: 42px;
-    width: 13px;
-  }
-
-  .tribe-workout-figure .arm.left { left: 18px; transform: rotate(20deg); }
-  .tribe-workout-figure .arm.right { right: 18px; transform: rotate(-20deg); }
-
-  .tribe-workout-figure .leg {
-    background: #F4C8B5;
-    border-radius: 999px;
-    height: 70px;
-    top: 92px;
-    width: 15px;
-  }
-
-  .tribe-workout-figure .leg.left { left: 33px; transform: rotate(28deg); transform-origin: top center; }
-  .tribe-workout-figure .leg.right { right: 33px; transform: rotate(-28deg); transform-origin: top center; }
-
-  .tribe-workout-figure .floor {
-    background: rgba(255,255,255,0.24);
-    border-radius: 999px;
-    height: 2px;
-    left: 2px;
-    top: 166px;
-    width: 108px;
+    text-align: center;
   }
 `;

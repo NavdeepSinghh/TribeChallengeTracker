@@ -136,13 +136,16 @@ function lottieFor(exerciseId, primary, secondary = []) {
     }
     return inactive;
   };
-  const shoulderLift = primary.includes('side_delts') || primary.includes('shoulders') ? -36 : -14;
-  const elbowBend = isArmFocused ? -55 : -28;
-  const torsoColor = isLegFocused ? '#2B2B2B' : highlight;
+  const profile = motionProfile(exerciseId);
+  const torsoColor = isLegFocused || profile.darkTorso ? '#2B2B2B' : highlight;
   const upperArmColor = limbColor(['biceps', 'triceps']);
   const forearmColor = limbColor(['forearms']);
   const thighColor = limbColor(['quads', 'hamstrings', 'glutes']);
   const calfColor = limbColor(['calves']);
+  const shoulderColor = limbColor(['shoulders', 'side_delts', 'front_delts', 'rear_delts'], '#F3C9A8');
+  const coreColor = limbColor(['core', 'obliques', 'lower_abs', 'lower_back'], torsoColor);
+  const equipmentColor = '#2A2A2A';
+
   return {
     v: '5.7.4',
     fr: 30,
@@ -153,21 +156,233 @@ function lottieFor(exerciseId, primary, secondary = []) {
     nm: `${exerciseId} anatomical demo`,
     assets: [],
     layers: [
-      shapeLayer('floor', '#2A2A2A', [[120, 336], [300, 336]], 4),
-      ellipseLayer('head', '#F3C9A8', [210, 92], [36, 36]),
-      shapeLayer('torso', torsoColor, [[210, 118], [192, 198], [228, 198], [210, 118]], 18),
-      limbLayer('leftUpperArm', upperArmColor, [190, 138], [[0, 0], [-42, 28]], shoulderLift, shoulderLift + 10),
-      limbLayer('rightUpperArm', upperArmColor, [230, 138], [[0, 0], [42, 28]], -shoulderLift, -shoulderLift - 10),
-      limbLayer('leftForearm', forearmColor, [150, 166], [[0, 0], [-28, 52]], elbowBend, elbowBend + 16),
-      limbLayer('rightForearm', forearmColor, [270, 166], [[0, 0], [28, 52]], -elbowBend, -elbowBend - 16),
-      shapeLayer('leftThigh', thighColor, [[196, 198], [181, 276]], 16),
-      shapeLayer('rightThigh', thighColor, [[224, 198], [239, 276]], 16),
-      shapeLayer('leftLowerLeg', calfColor, [[181, 276], [190, 334]], 14),
-      shapeLayer('rightLowerLeg', calfColor, [[239, 276], [230, 334]], 14),
-      ellipseLayer('leftShoulder', '#FFFFFF', [190, 138], [9, 9]),
-      ellipseLayer('rightShoulder', '#FFFFFF', [230, 138], [9, 9]),
+      shapeLayer('floor', '#C7BFB5', [[118, 344], [302, 344]], 4),
+      ...equipmentLayers(profile, equipmentColor),
+      ellipseLayer('head', '#F3C9A8', [210, 78], [36, 36]),
+      capsuleLayer('torso', torsoColor, [210, 108], [56, 92], profile.torso[0], profile.torso[1]),
+      capsuleLayer('corePanel', coreColor, [210, 132], [34, 56], profile.torso[0], profile.torso[1], 16, 72),
+      capsuleLayer('leftUpperArm', upperArmColor, [184, 128], [15, 70], profile.leftUpperArm[0], profile.leftUpperArm[1]),
+      capsuleLayer('rightUpperArm', upperArmColor, [236, 128], [15, 70], profile.rightUpperArm[0], profile.rightUpperArm[1]),
+      capsuleLayer('leftForearm', forearmColor, profile.leftForearmJoint, [14, 62], profile.leftForearm[0], profile.leftForearm[1]),
+      capsuleLayer('rightForearm', forearmColor, profile.rightForearmJoint, [14, 62], profile.rightForearm[0], profile.rightForearm[1]),
+      capsuleLayer('leftThigh', thighColor, [196, 198], [18, 82], profile.leftThigh[0], profile.leftThigh[1]),
+      capsuleLayer('rightThigh', thighColor, [224, 198], [18, 82], profile.rightThigh[0], profile.rightThigh[1]),
+      capsuleLayer('leftLowerLeg', calfColor, profile.leftLowerLegJoint, [16, 70], profile.leftLowerLeg[0], profile.leftLowerLeg[1]),
+      capsuleLayer('rightLowerLeg', calfColor, profile.rightLowerLegJoint, [16, 70], profile.rightLowerLeg[0], profile.rightLowerLeg[1]),
+      ellipseLayer('leftShoulder', shoulderColor, [184, 128], [10, 10]),
+      ellipseLayer('rightShoulder', shoulderColor, [236, 128], [10, 10]),
     ],
   };
+}
+
+function motionProfile(exerciseId) {
+  const base = {
+    darkTorso: false,
+    torso: [0, 0],
+    leftUpperArm: [16, 22],
+    rightUpperArm: [-16, -22],
+    leftForearmJoint: [173, 190],
+    rightForearmJoint: [247, 190],
+    leftForearm: [12, 18],
+    rightForearm: [-12, -18],
+    leftThigh: [8, 12],
+    rightThigh: [-8, -12],
+    leftLowerLegJoint: [184, 276],
+    rightLowerLegJoint: [236, 276],
+    leftLowerLeg: [-6, -10],
+    rightLowerLeg: [6, 10],
+    equipment: 'none',
+  };
+
+  const withProfile = (overrides) => ({ ...base, ...overrides });
+  if (/curl/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: true,
+      leftUpperArm: [8, 8],
+      rightUpperArm: [-8, -8],
+      leftForearmJoint: [174, 190],
+      rightForearmJoint: [246, 190],
+      leftForearm: [72, -28],
+      rightForearm: [-72, 28],
+      equipment: 'dumbbells',
+    });
+  }
+  if (/pull_up|pulldown/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: true,
+      leftUpperArm: [-146, -116],
+      rightUpperArm: [146, 116],
+      leftForearmJoint: [144, 124],
+      rightForearmJoint: [276, 124],
+      leftForearm: [-90, -122],
+      rightForearm: [90, 122],
+      leftThigh: [4, 8],
+      rightThigh: [-4, -8],
+      equipment: 'bar',
+    });
+  }
+  if (/row|face_pull|rear_delt/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: true,
+      torso: [18, 32],
+      leftUpperArm: [72, 38],
+      rightUpperArm: [-72, -38],
+      leftForearmJoint: [160, 170],
+      rightForearmJoint: [260, 170],
+      leftForearm: [82, 54],
+      rightForearm: [-82, -54],
+      leftThigh: [18, 18],
+      rightThigh: [-18, -18],
+      equipment: 'rowHandle',
+    });
+  }
+  if (/press|push|dip|fly|raise/.test(exerciseId)) {
+    const overhead = /shoulder_press|lateral_raise/.test(exerciseId);
+    return withProfile({
+      leftUpperArm: overhead ? [-72, -128] : [-36, -58],
+      rightUpperArm: overhead ? [72, 128] : [36, 58],
+      leftForearmJoint: [164, overhead ? 118 : 166],
+      rightForearmJoint: [256, overhead ? 118 : 166],
+      leftForearm: overhead ? [-42, -82] : [-26, -48],
+      rightForearm: overhead ? [42, 82] : [26, 48],
+      equipment: /dumbbell|raise|fly/.test(exerciseId) ? 'dumbbells' : /bench_press|chest_press/.test(exerciseId) ? 'bar' : 'none',
+    });
+  }
+  if (/squat|leg_press|lunge|split_squat|step_up/.test(exerciseId)) {
+    const split = /lunge|split_squat|step_up/.test(exerciseId);
+    return withProfile({
+      darkTorso: true,
+      torso: [0, split ? -8 : 0],
+      leftUpperArm: [12, 12],
+      rightUpperArm: [-12, -12],
+      leftThigh: split ? [-46, -18] : [22, 48],
+      rightThigh: split ? [50, 18] : [-22, -48],
+      leftLowerLegJoint: [178, 276],
+      rightLowerLegJoint: [242, 276],
+      leftLowerLeg: split ? [44, 18] : [-28, -44],
+      rightLowerLeg: split ? [-36, -14] : [28, 44],
+      equipment: /goblet/.test(exerciseId) ? 'goblet' : 'none',
+    });
+  }
+  if (/deadlift|hinge|thrust|bridge|swing|leg_curl/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: true,
+      torso: /thrust|bridge/.test(exerciseId) ? [82, 64] : [24, 48],
+      leftUpperArm: [32, 36],
+      rightUpperArm: [-32, -36],
+      leftThigh: /thrust|bridge/.test(exerciseId) ? [64, 36] : [10, 22],
+      rightThigh: /thrust|bridge/.test(exerciseId) ? [-64, -36] : [-10, -22],
+      leftLowerLeg: /thrust|bridge/.test(exerciseId) ? [-58, -32] : [-12, -22],
+      rightLowerLeg: /thrust|bridge/.test(exerciseId) ? [58, 32] : [12, 22],
+      equipment: /swing|deadlift|romanian/.test(exerciseId) ? 'weight' : 'none',
+    });
+  }
+  if (/plank|crunch|bug|bird|twist|mountain|knee_raise/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: false,
+      torso: [86, 76],
+      leftUpperArm: [96, 82],
+      rightUpperArm: [96, 82],
+      leftForearmJoint: [154, 244],
+      rightForearmJoint: [260, 244],
+      leftForearm: [78, 96],
+      rightForearm: [78, 96],
+      leftThigh: [74, /mountain|bicycle|knee_raise/.test(exerciseId) ? 34 : 64],
+      rightThigh: [104, /mountain|bicycle|knee_raise/.test(exerciseId) ? 138 : 104],
+      leftLowerLegJoint: [178, 286],
+      rightLowerLegJoint: [242, 286],
+      leftLowerLeg: [82, /mountain|bicycle|knee_raise/.test(exerciseId) ? 38 : 82],
+      rightLowerLeg: [98, /mountain|bicycle|knee_raise/.test(exerciseId) ? 138 : 98],
+    });
+  }
+  if (/run|walk|bike|rowing/.test(exerciseId)) {
+    if (/bike/.test(exerciseId)) {
+      return withProfile({
+        darkTorso: true,
+        torso: [28, 28],
+        leftUpperArm: [54, 54],
+        rightUpperArm: [54, 54],
+        leftThigh: [46, 116],
+        rightThigh: [116, 46],
+        leftLowerLeg: [-54, -124],
+        rightLowerLeg: [-124, -54],
+        equipment: 'bike',
+      });
+    }
+    if (/rowing/.test(exerciseId)) {
+      return withProfile({
+        darkTorso: true,
+        torso: [34, 8],
+        leftUpperArm: [74, 34],
+        rightUpperArm: [-74, -34],
+        leftForearmJoint: [158, 172],
+        rightForearmJoint: [262, 172],
+        leftForearm: [82, 42],
+        rightForearm: [-82, -42],
+        leftThigh: [54, 36],
+        rightThigh: [-54, -36],
+        equipment: 'rowHandle',
+      });
+    }
+    return withProfile({
+      darkTorso: true,
+      leftUpperArm: [42, -34],
+      rightUpperArm: [-42, 34],
+      leftForearm: [28, -28],
+      rightForearm: [-28, 28],
+      leftThigh: [-34, 34],
+      rightThigh: [34, -34],
+      leftLowerLeg: [28, -28],
+      rightLowerLeg: [-28, 28],
+    });
+  }
+  if (/cat_cow|dog|pose|stretch/.test(exerciseId)) {
+    return withProfile({
+      darkTorso: false,
+      torso: /downward|childs/.test(exerciseId) ? [68, 48] : [44, 14],
+      leftUpperArm: /downward|childs/.test(exerciseId) ? [102, 82] : [72, 54],
+      rightUpperArm: /downward|childs/.test(exerciseId) ? [102, 82] : [72, 54],
+      leftForearmJoint: [154, 236],
+      rightForearmJoint: [260, 236],
+      leftForearm: [88, 100],
+      rightForearm: [88, 100],
+      leftThigh: /stretch/.test(exerciseId) ? [24, -38] : [62, 44],
+      rightThigh: /stretch/.test(exerciseId) ? [112, 54] : [-62, -44],
+      leftLowerLeg: /stretch/.test(exerciseId) ? [-34, -74] : [34, 22],
+      rightLowerLeg: /stretch/.test(exerciseId) ? [82, 46] : [-34, -22],
+    });
+  }
+  return base;
+}
+
+function equipmentLayers(profile, color) {
+  if (profile.equipment === 'bar') {
+    return [
+      shapeLayer('bar', color, [[118, 116], [302, 116]], 8),
+      shapeLayer('leftPlate', color, [[124, 102], [124, 130]], 8),
+      shapeLayer('rightPlate', color, [[296, 102], [296, 130]], 8),
+    ];
+  }
+  if (profile.equipment === 'dumbbells') {
+    return [
+      shapeLayer('leftDumbbell', color, [[122, 178], [154, 178]], 8),
+      shapeLayer('rightDumbbell', color, [[266, 178], [298, 178]], 8),
+    ];
+  }
+  if (profile.equipment === 'goblet' || profile.equipment === 'weight') {
+    return [ellipseLayer('weight', color, [210, profile.equipment === 'goblet' ? 164 : 272], [32, 32])];
+  }
+  if (profile.equipment === 'rowHandle') {
+    return [shapeLayer('rowHandle', color, [[156, 184], [264, 184]], 8)];
+  }
+  if (profile.equipment === 'bike') {
+    return [
+      ellipseStrokeLayer('leftWheel', color, [154, 318], [58, 58], 6),
+      ellipseStrokeLayer('rightWheel', color, [266, 318], [58, 58], 6),
+      shapeLayer('bikeFrame', color, [[154, 318], [210, 250], [266, 318], [204, 318], [210, 250]], 5),
+    ];
+  }
+  return [];
 }
 
 function shapeLayer(name, color, points, width = 6) {
@@ -198,6 +413,31 @@ function shapeLayer(name, color, points, width = 6) {
   };
 }
 
+function capsuleLayer(name, color, position, size, startRot = 0, midRot = startRot, radius = Math.min(size[0], size[1]) / 2, opacity = 100) {
+  return {
+    ddd: 0,
+    ind: currentLayerIndex++,
+    ty: 4,
+    nm: name,
+    ks: transform(position, startRot, midRot),
+    shapes: [{
+      ty: 'rc',
+      p: { a: 0, k: [0, size[1] / 2] },
+      s: { a: 0, k: size },
+      r: { a: 0, k: radius },
+    }, {
+      ty: 'fl',
+      c: { a: 0, k: hex(color) },
+      o: { a: 0, k: opacity },
+    }, {
+      ty: 'st',
+      c: { a: 0, k: hex('#040404') },
+      o: { a: 0, k: 10 },
+      w: { a: 0, k: 1 },
+    }],
+  };
+}
+
 function limbLayer(name, color, position, points, startRot, midRot) {
   return {
     ddd: 0,
@@ -220,6 +460,27 @@ function limbLayer(name, color, position, points, startRot, midRot) {
       ty: 'st',
       c: { a: 0, k: hex(color) },
       w: { a: 0, k: 14 },
+      lc: 2,
+      lj: 2,
+    }],
+  };
+}
+
+function ellipseStrokeLayer(name, color, position, size, width = 4) {
+  return {
+    ddd: 0,
+    ind: currentLayerIndex++,
+    ty: 4,
+    nm: name,
+    ks: transform(position),
+    shapes: [{
+      ty: 'el',
+      p: { a: 0, k: [0, 0] },
+      s: { a: 0, k: size },
+    }, {
+      ty: 'st',
+      c: { a: 0, k: hex(color) },
+      w: { a: 0, k: width },
       lc: 2,
       lj: 2,
     }],

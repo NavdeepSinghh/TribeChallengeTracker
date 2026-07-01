@@ -1,0 +1,227 @@
+[
+  {
+    "id": "goblet_squat",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Chest tall, weight close",
+        "body": "Hold the weight tight to your chest. Stack ribs over hips before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": ["core", "upper_back"],
+        "view": "front"
+      },
+      {
+        "id": "descent",
+        "phase": "lowering",
+        "title": "Hips down, knees track",
+        "body": "Sit between the knees with control. Let knees follow the toes instead of collapsing in.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": ["quads", "glutes"],
+        "view": "side"
+      },
+      {
+        "id": "depth",
+        "phase": "bottom",
+        "title": "Stay braced at depth",
+        "body": "Keep heels grounded and the torso proud at the bottom before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": ["core", "glutes"],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "lifting",
+        "title": "Drive through mid-foot",
+        "body": "Push the floor away and stand tall without letting the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": ["quads", "glutes"],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "push_up",
+    "coachingCues": [
+      {
+        "id": "plank",
+        "phase": "setup",
+        "title": "Lock in a strong plank",
+        "body": "Hands under shoulders, ribs tucked, glutes lightly squeezed. Keep one long line.",
+        "startPercent": 0,
+        "endPercent": 20,
+        "focusMuscles": ["core", "chest"],
+        "view": "side"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower as one piece",
+        "body": "Bend the elbows with control. Chest and hips travel together toward the floor.",
+        "startPercent": 21,
+        "endPercent": 55,
+        "focusMuscles": ["chest", "triceps"],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Pause without sagging",
+        "body": "Stay braced near the bottom. Avoid shrugging or letting the hips drop.",
+        "startPercent": 56,
+        "endPercent": 70,
+        "focusMuscles": ["core", "front_delts"],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Press the floor away",
+        "body": "Drive through the hands until elbows extend and the shoulder blades move naturally.",
+        "startPercent": 71,
+        "endPercent": 100,
+        "focusMuscles": ["chest", "triceps"],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "lat_pulldown",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Brace, then reach tall",
+        "body": "Sit tall with ribs stacked. Let the shoulders reach up without losing control.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": ["lats", "core"],
+        "view": "front"
+      },
+      {
+        "id": "initiate",
+        "phase": "pulling",
+        "title": "Pull elbows down first",
+        "body": "Start by driving elbows toward the ribs. Keep the chest lifted and neck relaxed.",
+        "startPercent": 19,
+        "endPercent": 52,
+        "focusMuscles": ["lats", "rhomboids"],
+        "view": "back"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Squeeze without leaning back",
+        "body": "Finish with the bar near upper chest. Avoid turning the rep into a backward swing.",
+        "startPercent": 53,
+        "endPercent": 72,
+        "focusMuscles": ["lats", "rear_delts"],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the stretch",
+        "body": "Let arms lengthen under control so the lats stretch before the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": ["lats", "biceps"],
+        "view": "back"
+      }
+    ]
+  },
+  {
+    "id": "dumbbell_biceps_curl",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Stand tall, elbows quiet",
+        "body": "Brace lightly and keep elbows close to the sides before starting the curl.",
+        "startPercent": 0,
+        "endPercent": 20,
+        "focusMuscles": ["biceps", "core"],
+        "view": "front"
+      },
+      {
+        "id": "curl",
+        "phase": "lifting",
+        "title": "Curl without swinging",
+        "body": "Lift the dumbbells by bending the elbows. Keep shoulders relaxed and still.",
+        "startPercent": 21,
+        "endPercent": 55,
+        "focusMuscles": ["biceps"],
+        "view": "front"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Squeeze at the top",
+        "body": "Pause briefly with the forearms high. Do not let elbows drift forward.",
+        "startPercent": 56,
+        "endPercent": 70,
+        "focusMuscles": ["biceps", "forearms"],
+        "view": "side"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Own the way down",
+        "body": "Lower slowly until arms are long again. Keep tension through the whole rep.",
+        "startPercent": 71,
+        "endPercent": 100,
+        "focusMuscles": ["biceps", "forearms"],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "romanian_deadlift",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Soft knees, long spine",
+        "body": "Start tall with a small knee bend. Keep the weight close and spine long.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": ["hamstrings", "lower_back"],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips. The weight travels down close to the legs, not away from you.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": ["hamstrings", "glutes"],
+        "view": "side"
+      },
+      {
+        "id": "stretch",
+        "phase": "bottom",
+        "title": "Find hamstring tension",
+        "body": "Stop when you feel the hamstrings load while the back position stays strong.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": ["hamstrings", "glutes"],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": ["glutes", "hamstrings"],
+        "view": "side"
+      }
+    ]
+  }
+]

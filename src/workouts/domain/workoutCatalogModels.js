@@ -33,11 +33,62 @@ function cleanList(value) {
     : [];
 }
 
+function numberOrDefault(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function cleanOptionalInt(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 0 ? number : null;
+}
+
+function cleanCoachingCues(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item, index) => {
+      if (!item || typeof item !== "object") return null;
+      const title = cleanString(item.title);
+      const body = cleanString(item.body || item.description);
+      if (!title && !body) return null;
+      const startPercent = Math.min(100, Math.max(0, numberOrDefault(item.startPercent ?? item.startFramePercent, index * 25)));
+      const endPercent = Math.min(100, Math.max(startPercent, numberOrDefault(item.endPercent ?? item.endFramePercent, startPercent + 25)));
+      const startFrame = cleanOptionalInt(item.startFrame);
+      const endFrame = cleanOptionalInt(item.endFrame);
+      return {
+        id: cleanString(item.id) || `cue_${index + 1}`,
+        phase: cleanString(item.phase) || `phase_${index + 1}`,
+        title: title || body,
+        body,
+        startPercent,
+        endPercent,
+        ...(startFrame !== null && endFrame !== null && endFrame >= startFrame ? { startFrame, endFrame } : {}),
+        focusMuscles: cleanList(item.focusMuscles),
+        view: cleanString(item.view || "front"),
+      };
+    })
+    .filter(Boolean);
+}
+
 function readTimestamp(value) {
   if (!value) return null;
   if (typeof value.toDate === "function") return value.toDate().toISOString();
   if (typeof value === "string") return value;
   return null;
+}
+
+function cleanMediaManifest(value = {}) {
+  return {
+    preferredMotion: cleanString(value.preferredMotion || "lottie"),
+    videoPath: cleanString(value.videoPath),
+    posterPath: cleanString(value.posterPath),
+    previewPath: cleanString(value.previewPath),
+    styleVersion: cleanString(value.styleVersion),
+    mediaVersion: Number(value.mediaVersion || 0),
+    mediaHash: cleanString(value.mediaHash),
+    durationMs: Number(value.durationMs || 0),
+    frameRate: Number(value.frameRate || 0),
+  };
 }
 
 export function mapExerciseDocument(id, data = {}) {
@@ -56,6 +107,7 @@ export function mapExerciseDocument(id, data = {}) {
     instructions: cleanList(data.instructions),
     formCues: cleanList(data.formCues),
     commonMistakes: cleanList(data.commonMistakes),
+    coachingCues: cleanCoachingCues(data.coachingCues),
     substitutions: cleanList(data.substitutions),
     assetManifest: {
       lottiePath: cleanString(data.assetManifest?.lottiePath),
@@ -65,9 +117,65 @@ export function mapExerciseDocument(id, data = {}) {
       assetVersion: Number(data.assetManifest?.assetVersion || 1),
       assetHash: cleanString(data.assetManifest?.assetHash),
     },
+    mediaManifest: cleanMediaManifest(data.mediaManifest),
     updatedAt: readTimestamp(data.updatedAt),
     updatedBy: cleanString(data.updatedBy),
   };
+}
+
+export function selectExerciseMotionSource(exercise = {}) {
+  const mediaManifest = exercise.mediaManifest || {};
+  const videoPath = cleanString(mediaManifest.videoPath);
+  const preferredMotion = cleanString(mediaManifest.preferredMotion || "lottie");
+  if (preferredMotion === "video" && videoPath) {
+    return {
+      type: "video",
+      path: videoPath,
+      posterPath: cleanString(mediaManifest.posterPath),
+      mediaHash: cleanString(mediaManifest.mediaHash),
+      styleVersion: cleanString(mediaManifest.styleVersion),
+    };
+  }
+  return {
+    type: "lottie",
+    path: cleanString(exercise.assetManifest?.lottiePath),
+    posterPath: cleanString(exercise.assetManifest?.thumbnailPath),
+    mediaHash: cleanString(exercise.assetManifest?.assetHash),
+    styleVersion: "",
+  };
+}
+
+export function buildExerciseCoachingCues(exercise = {}) {
+  if (Array.isArray(exercise.coachingCues) && exercise.coachingCues.length > 0) {
+    return exercise.coachingCues;
+  }
+
+  const source = [
+    ...(exercise.formCues || []),
+    ...(exercise.instructions || []),
+  ].filter(Boolean);
+
+  const fallbackTitles = [
+    "Set your position",
+    "Move with control",
+    "Hold the target line",
+    "Finish strong",
+  ];
+
+  return source.slice(0, 4).map((body, index) => {
+    const startPercent = index === 0 ? 0 : index * 25;
+    const endPercent = index === 3 ? 100 : startPercent + 25;
+    return {
+      id: `fallback_${index + 1}`,
+      phase: ["setup", "lowering", "target", "finish"][index] || `phase_${index + 1}`,
+      title: fallbackTitles[index] || `Cue ${index + 1}`,
+      body,
+      startPercent,
+      endPercent,
+      focusMuscles: index < 2 ? (exercise.primaryMuscles || []) : (exercise.secondaryMuscles || exercise.primaryMuscles || []),
+      view: index === 1 ? "side" : "front",
+    };
+  });
 }
 
 export function normalizeWorkoutSearch(value) {

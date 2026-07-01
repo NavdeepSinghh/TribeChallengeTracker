@@ -41,7 +41,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/treadmill_run/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/treadmill_run/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:9f73fcee92c3af7c:2c481c0787f60ad0"
+      "assetHash": "sha256:1bfab2fe51a6b23b:2c481c0787f60ad0"
     }
   },
   {
@@ -86,7 +86,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/incline_walk/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/incline_walk/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:36074ba04df2b2d2:9c3521d5cdd41812"
+      "assetHash": "sha256:303893efbb6bafc3:9c3521d5cdd41812"
     }
   },
   {
@@ -130,7 +130,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/stationary_bike/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/stationary_bike/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:6b29b0bfe3bdfc2a:c172df037218f597"
+      "assetHash": "sha256:8caedbc8319d31eb:c172df037218f597"
     }
   },
   {
@@ -177,7 +177,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/rowing_machine/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/rowing_machine/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:048a03d704494873:b3bf6b6bd2a4bf11"
+      "assetHash": "sha256:f7aa33ecb9259222:b3bf6b6bd2a4bf11"
     }
   },
   {
@@ -222,7 +222,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/cat_cow/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/cat_cow/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:f409406b7b9fc229:e2bff498a09cbca4"
+      "assetHash": "sha256:048edff214183666:e2bff498a09cbca4"
     }
   },
   {
@@ -268,7 +268,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/downward_dog/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/downward_dog/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:4cd89b77770bbba1:71e6ed6e3b3e778f"
+      "assetHash": "sha256:6cd73ce3ac291797:71e6ed6e3b3e778f"
     }
   },
   {
@@ -313,7 +313,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/childs_pose/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/childs_pose/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:bbc17dddff12512f:7968d0bb86b65ceb"
+      "assetHash": "sha256:ec609af30a8154dc:7968d0bb86b65ceb"
     }
   },
   {
@@ -359,7 +359,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:6ceb236e8301ccd6:ede791c6fa360e89"
+      "assetHash": "sha256:0e0f407e456e339f:ede791c6fa360e89"
     }
   }
 ]

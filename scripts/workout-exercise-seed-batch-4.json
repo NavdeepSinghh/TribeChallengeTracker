@@ -39,7 +39,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/plank/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/plank/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:9ea747b6726a0f9c:50ba90dd76c1e245"
+      "assetHash": "sha256:a1c8ed38101845a5:50ba90dd76c1e245"
     }
   },
   {
@@ -82,7 +82,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/side_plank/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/side_plank/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:e3a3a8fd05978140:72cc5fe09781429e"
+      "assetHash": "sha256:dcb4629ee30c3916:72cc5fe09781429e"
     }
   },
   {
@@ -125,7 +125,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/dead_bug/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/dead_bug/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:4b9bfc44570835ba:4c13a1e81fcd914e"
+      "assetHash": "sha256:41325d07f2447b21:4c13a1e81fcd914e"
     }
   },
   {
@@ -169,7 +169,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/bird_dog/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/bird_dog/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:2dfae7d977133776:9d21877a7d61d62d"
+      "assetHash": "sha256:aad4722a481c5c21:9d21877a7d61d62d"
     }
   },
   {
@@ -212,7 +212,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/bicycle_crunch/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/bicycle_crunch/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:7d36cb33139c5a0b:9a155356461b86ee"
+      "assetHash": "sha256:42fee5f3e1216186:9a155356461b86ee"
     }
   },
   {
@@ -256,7 +256,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:52b3d75634f8c48e:3a5addc5cdf323ea"
+      "assetHash": "sha256:4392f5b75636f3af:3a5addc5cdf323ea"
     }
   },
   {
@@ -300,7 +300,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/russian_twist/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/russian_twist/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:543bace7d7f30463:136df1877f0af62b"
+      "assetHash": "sha256:1b44e2ff3f6a6494:136df1877f0af62b"
     }
   },
   {
@@ -344,7 +344,7 @@
       "muscleMapFrontPath": "workouts/exercises/v1/mountain_climber/muscle-map-front.svg",
       "muscleMapBackPath": "workouts/exercises/v1/mountain_climber/muscle-map-back.svg",
       "assetVersion": 1,
-      "assetHash": "sha256:e400d32eb99df378:2916274ac4dfbfec"
+      "assetHash": "sha256:f3e63e3e33eda56c:2916274ac4dfbfec"
     }
   }
 ]

@@ -4,7 +4,7 @@
     "localPath": "generated/workouts/exercises/v1/lat_pulldown/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/lat_pulldown/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "0f884336ca0599215c16910591020a06d23fa9649a5e6355769957ea67b60b63"
+    "sha256": "2aadf644441ef8564c3a14233bc2abc2eef73c52983c187f867aea8776c0c4b3"
   },
   {
     "exerciseId": "lat_pulldown",
@@ -32,7 +32,7 @@
     "localPath": "generated/workouts/exercises/v1/pull_up/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/pull_up/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "56f6261f3f9f8c93e7d2a76b65b7381f58ee47bb529f3e54a770cd35060c60e1"
+    "sha256": "1b470f8c50d234e5c07c65366ba76ba135d4b6d0f8cdba5e4fc76198c331b834"
   },
   {
     "exerciseId": "pull_up",
@@ -60,7 +60,7 @@
     "localPath": "generated/workouts/exercises/v1/assisted_pull_up/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/assisted_pull_up/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "77be6c0709eb9cdae825124cb7fb8723306086b23daa34025fb317daaf0797f9"
+    "sha256": "61ceb699adcd47d5450f74fe36d8576976a66ac1d3c68037d0ec27848df6ea03"
   },
   {
     "exerciseId": "assisted_pull_up",
@@ -88,7 +88,7 @@
     "localPath": "generated/workouts/exercises/v1/seated_cable_row/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/seated_cable_row/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "2ca6a35835f0e793b2b778b31cf51df004a58aa56ca681ae03fe718c70b247ae"
+    "sha256": "fc8427da29182a81555cc479b20c8d15d19d54ea32d4ce13091dac5c311bbeae"
   },
   {
     "exerciseId": "seated_cable_row",
@@ -116,7 +116,7 @@
     "localPath": "generated/workouts/exercises/v1/one_arm_dumbbell_row/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/one_arm_dumbbell_row/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "4a0b1960c3943a3ff73d1e00b7f1061ab0a0772e07047016bdbaf3fa88636390"
+    "sha256": "84db757884953e46f678fd4c56835c42cfe114142771d9c9dcce849ae9d6d49e"
   },
   {
     "exerciseId": "one_arm_dumbbell_row",
@@ -144,7 +144,7 @@
     "localPath": "generated/workouts/exercises/v1/barbell_bent_over_row/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/barbell_bent_over_row/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "8fa87cbb135878cb473db79a35fa65db242bb30efc7f2d071dfbb93d80a04ca6"
+    "sha256": "df6dc171c662f70169bffd4a8885b8150c4414d59fbf9d33d7547da405beb74e"
   },
   {
     "exerciseId": "barbell_bent_over_row",
@@ -172,7 +172,7 @@
     "localPath": "generated/workouts/exercises/v1/face_pull/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/face_pull/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "cdcc19f5e7123f0bb65b65a3834d7c694184f5c465e235a9949c3b9983b24322"
+    "sha256": "af36339e71ebd81b7aefdf1ccd7e688324c75a05c59a4f6c5faa5524c1355a04"
   },
   {
     "exerciseId": "face_pull",
@@ -200,7 +200,7 @@
     "localPath": "generated/workouts/exercises/v1/rear_delt_fly/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/rear_delt_fly/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "55061730e652252ad8b2fd306fd2c0f52c169a35af7f2464fc6a7aa757d8e1e3"
+    "sha256": "99552a4448d9e289c9b019400d9a317243217a68cb06203d40c7e6ac74859701"
   },
   {
     "exerciseId": "rear_delt_fly",
@@ -228,7 +228,7 @@
     "localPath": "generated/workouts/exercises/v1/dumbbell_biceps_curl/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/dumbbell_biceps_curl/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "2418bb4fe9acc337e450e03b1a4a1af07f839aadfc1a0bfa467502c5eb45045f"
+    "sha256": "3fe0e9cee42e2ad479386804f71a157d3bea3398b56334fa972bcadadea44fa1"
   },
   {
     "exerciseId": "dumbbell_biceps_curl",
@@ -256,7 +256,7 @@
     "localPath": "generated/workouts/exercises/v1/hammer_curl/demo.lottie.json",
     "storagePath": "workouts/exercises/v1/hammer_curl/demo.lottie.json",
     "contentType": "application/json",
-    "sha256": "adaef94966e3d5d692e51c1512bc51b81f426aad9bc3693399130d79b7a1d85b"
+    "sha256": "4b25ad494aac934c75befe3d20f190556a9edf955f906019f72a89025d97c1d7"
   },
   {
     "exerciseId": "hammer_curl",

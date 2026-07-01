@@ -1,0 +1,2886 @@
+[
+  {
+    "id": "bench_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set your grip and brace before the first rep. Keep chest ready to do the work.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "chest",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower with control",
+        "body": "Let the weight travel in a steady path. Keep shoulders packed and ribs quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "chest",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Drive smoothly",
+        "body": "Press without bouncing or twisting. Finish with strong arms and a steady torso.",
+        "startPercent": 56,
+        "endPercent": 78,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top before the next rep. Keep tension instead of rushing into the next descent.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "dumbbell_bench_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set your grip and brace before the first rep. Keep chest ready to do the work.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "chest",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower with control",
+        "body": "Let the weight travel in a steady path. Keep shoulders packed and ribs quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "chest",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Drive smoothly",
+        "body": "Press without bouncing or twisting. Finish with strong arms and a steady torso.",
+        "startPercent": 56,
+        "endPercent": 78,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top before the next rep. Keep tension instead of rushing into the next descent.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "incline_dumbbell_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set your grip and brace before the first rep. Keep upper chest ready to do the work.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "upper_chest",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower with control",
+        "body": "Let the weight travel in a steady path. Keep shoulders packed and ribs quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "upper_chest",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Drive smoothly",
+        "body": "Press without bouncing or twisting. Finish with strong arms and a steady torso.",
+        "startPercent": 56,
+        "endPercent": 78,
+        "focusMuscles": [
+          "upper_chest",
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top before the next rep. Keep tension instead of rushing into the next descent.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "upper_chest",
+          "front_delts"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "push_up",
+    "coachingCues": [
+      {
+        "id": "plank",
+        "phase": "setup",
+        "title": "Lock in a strong plank",
+        "body": "Hands under shoulders, ribs tucked, glutes lightly squeezed. Keep one long line.",
+        "startPercent": 0,
+        "endPercent": 20,
+        "focusMuscles": [
+          "core",
+          "chest"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower as one piece",
+        "body": "Bend the elbows with control. Chest and hips travel together toward the floor.",
+        "startPercent": 21,
+        "endPercent": 55,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Pause without sagging",
+        "body": "Stay braced near the bottom. Avoid shrugging or letting the hips drop.",
+        "startPercent": 56,
+        "endPercent": 70,
+        "focusMuscles": [
+          "core",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Press the floor away",
+        "body": "Drive through the hands until elbows extend and the shoulder blades move naturally.",
+        "startPercent": 71,
+        "endPercent": 100,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "machine_chest_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set your grip and brace before the first rep. Keep chest ready to do the work.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "chest",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower with control",
+        "body": "Let the weight travel in a steady path. Keep shoulders packed and ribs quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "chest",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Drive smoothly",
+        "body": "Press without bouncing or twisting. Finish with strong arms and a steady torso.",
+        "startPercent": 56,
+        "endPercent": 78,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top before the next rep. Keep tension instead of rushing into the next descent.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "chest",
+          "triceps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "dumbbell_shoulder_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set your grip and brace before the first rep. Keep shoulders ready to do the work.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "shoulders",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Lower with control",
+        "body": "Let the weight travel in a steady path. Keep shoulders packed and ribs quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "shoulders",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Drive smoothly",
+        "body": "Press without bouncing or twisting. Finish with strong arms and a steady torso.",
+        "startPercent": 56,
+        "endPercent": 78,
+        "focusMuscles": [
+          "shoulders",
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top before the next rep. Keep tension instead of rushing into the next descent.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "shoulders",
+          "triceps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "lateral_raise",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Stand tall with dumbbells by your sides. Keep ribs down and shoulders relaxed.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "side_delts",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "raise",
+        "phase": "lifting",
+        "title": "Lead with elbows",
+        "body": "Raise arms out to the sides with control. Keep wrists and elbows moving together.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "side_delts",
+          "upper_traps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Pause at shoulder height",
+        "body": "Hold the top briefly without shrugging hard or swinging the torso.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "side_delts"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Lower slowly until arms return to the sides. Keep tension through the last few inches.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "side_delts",
+          "upper_traps"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "dumbbell_chest_fly",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set a small bend in the elbows and keep shoulder blades settled before opening the arms.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "chest",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "open",
+        "phase": "lowering",
+        "title": "Open wide, stay controlled",
+        "body": "Move through the chest with a smooth arc. Stop before the shoulders roll forward.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "chest",
+          "front_delts"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "squeeze",
+        "phase": "lifting",
+        "title": "Bring the arms together",
+        "body": "Think about hugging the space in front of you. Keep the elbows softly bent.",
+        "startPercent": 57,
+        "endPercent": 82,
+        "focusMuscles": [
+          "chest"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Pause with control, then open again without letting the weights pull you out of position.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "chest",
+          "front_delts"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "triceps_pushdown",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set elbows near your ribs and stand tall. Keep shoulders quiet before pressing down.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "triceps",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Extend from the elbows",
+        "body": "Press the handle down by straightening the arms. Avoid leaning your body into the rep.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "triceps",
+          "forearms"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Lock in the squeeze",
+        "body": "Finish with arms long and triceps tight. Keep wrists stacked and neck relaxed.",
+        "startPercent": 59,
+        "endPercent": 76,
+        "focusMuscles": [
+          "triceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Let the handle rise under control. Keep elbows in place for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "triceps",
+          "forearms"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "bench_dip",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Hands secure on the bench, chest tall, feet planted. Start with elbows softly bent.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "triceps",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Bend elbows back",
+        "body": "Lower with the upper arms moving behind you. Keep the chest open and shoulders controlled.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "triceps",
+          "front_delts"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "press",
+        "phase": "pressing",
+        "title": "Press through the hands",
+        "body": "Drive up by extending the elbows. Keep hips close to the bench.",
+        "startPercent": 57,
+        "endPercent": 82,
+        "focusMuscles": [
+          "triceps",
+          "chest"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reset at the top with steady shoulders before the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "triceps",
+          "chest"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "lat_pulldown",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Brace, then reach tall",
+        "body": "Sit tall with ribs stacked. Let the shoulders reach up without losing control.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "initiate",
+        "phase": "pulling",
+        "title": "Pull elbows down first",
+        "body": "Start by driving elbows toward the ribs. Keep the chest lifted and neck relaxed.",
+        "startPercent": 19,
+        "endPercent": 52,
+        "focusMuscles": [
+          "lats",
+          "rhomboids"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Squeeze without leaning back",
+        "body": "Finish with the bar near upper chest. Avoid turning the rep into a backward swing.",
+        "startPercent": 53,
+        "endPercent": 72,
+        "focusMuscles": [
+          "lats",
+          "rear_delts"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the stretch",
+        "body": "Let arms lengthen under control so the lats stretch before the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      }
+    ]
+  },
+  {
+    "id": "pull_up",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Brace lightly and reach tall. Let the shoulders lengthen without losing control.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "pull",
+        "phase": "pulling",
+        "title": "Elbows drive down",
+        "body": "Start the pull by moving elbows toward the ribs. Keep chest lifted and neck relaxed.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Finish strong, no swing",
+        "body": "Pause when the pull is complete. Keep the torso steady instead of turning it into a lean.",
+        "startPercent": 56,
+        "endPercent": 74,
+        "focusMuscles": [
+          "lats",
+          "rhomboids"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reach back to the start with control so the lats lengthen before the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      }
+    ]
+  },
+  {
+    "id": "assisted_pull_up",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Brace lightly and reach tall. Let the shoulders lengthen without losing control.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "pull",
+        "phase": "pulling",
+        "title": "Elbows drive down",
+        "body": "Start the pull by moving elbows toward the ribs. Keep chest lifted and neck relaxed.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Finish strong, no swing",
+        "body": "Pause when the pull is complete. Keep the torso steady instead of turning it into a lean.",
+        "startPercent": 56,
+        "endPercent": 74,
+        "focusMuscles": [
+          "lats",
+          "rhomboids"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reach back to the start with control so the lats lengthen before the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      }
+    ]
+  },
+  {
+    "id": "seated_cable_row",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Brace the torso and set the shoulders before the first pull. Keep the neck long.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "pull",
+        "phase": "pulling",
+        "title": "Row elbows back",
+        "body": "Pull elbows toward the hips or ribs. Keep the weight close and avoid twisting.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "squeeze",
+        "phase": "finish",
+        "title": "Squeeze the upper back",
+        "body": "Pause with shoulder blades moving together. Keep ribs from flaring up.",
+        "startPercent": 56,
+        "endPercent": 74,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "rear_delts"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reach forward under control. Keep the spine position steady for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "biceps"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "one_arm_dumbbell_row",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Brace the torso and set the shoulders before the first pull. Keep the neck long.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "pull",
+        "phase": "pulling",
+        "title": "Row elbows back",
+        "body": "Pull elbows toward the hips or ribs. Keep the weight close and avoid twisting.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "biceps"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "squeeze",
+        "phase": "finish",
+        "title": "Squeeze the upper back",
+        "body": "Pause with shoulder blades moving together. Keep ribs from flaring up.",
+        "startPercent": 56,
+        "endPercent": 74,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "rear_delts"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reach forward under control. Keep the spine position steady for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "biceps"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "barbell_bent_over_row",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Brace the torso and set the shoulders before the first pull. Keep the neck long.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "pull",
+        "phase": "pulling",
+        "title": "Row elbows back",
+        "body": "Pull elbows toward the hips or ribs. Keep the weight close and avoid twisting.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "biceps"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "squeeze",
+        "phase": "finish",
+        "title": "Squeeze the upper back",
+        "body": "Pause with shoulder blades moving together. Keep ribs from flaring up.",
+        "startPercent": 56,
+        "endPercent": 74,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "rear_delts"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Reach forward under control. Keep the spine position steady for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "rhomboids",
+          "lats",
+          "biceps"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "face_pull",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set a steady torso and soft elbows. Start with shoulders relaxed, not shrugged.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "rear_delts",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "open",
+        "phase": "lifting",
+        "title": "Open from the shoulders",
+        "body": "Move the arms apart with control. Let rear shoulders do the work, not momentum.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "rear_delts",
+          "rhomboids"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Hold the wide position",
+        "body": "Pause briefly with arms wide and shoulder blades controlled.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "rear_delts"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return slowly and keep tension instead of letting the weight snap back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "rear_delts",
+          "rhomboids"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "rear_delt_fly",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set a steady torso and soft elbows. Start with shoulders relaxed, not shrugged.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "rear_delts",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "open",
+        "phase": "lifting",
+        "title": "Open from the shoulders",
+        "body": "Move the arms apart with control. Let rear shoulders do the work, not momentum.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "rear_delts",
+          "rhomboids"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Hold the wide position",
+        "body": "Pause briefly with arms wide and shoulder blades controlled.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "rear_delts"
+        ],
+        "view": "back"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return slowly and keep tension instead of letting the weight snap back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "rear_delts",
+          "rhomboids"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "dumbbell_biceps_curl",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Stand tall, elbows quiet",
+        "body": "Brace lightly and keep elbows close to the sides before starting the curl.",
+        "startPercent": 0,
+        "endPercent": 20,
+        "focusMuscles": [
+          "biceps",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "curl",
+        "phase": "lifting",
+        "title": "Curl without swinging",
+        "body": "Lift the dumbbells by bending the elbows. Keep shoulders relaxed and still.",
+        "startPercent": 21,
+        "endPercent": 55,
+        "focusMuscles": [
+          "biceps"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Squeeze at the top",
+        "body": "Pause briefly with the forearms high. Do not let elbows drift forward.",
+        "startPercent": 56,
+        "endPercent": 70,
+        "focusMuscles": [
+          "biceps",
+          "forearms"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "lower",
+        "phase": "lowering",
+        "title": "Own the way down",
+        "body": "Lower slowly until arms are long again. Keep tension through the whole rep.",
+        "startPercent": 71,
+        "endPercent": 100,
+        "focusMuscles": [
+          "biceps",
+          "forearms"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "hammer_curl",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Stand tall and keep elbows close to your sides before the first curl.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "biceps",
+          "forearms",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "curl",
+        "phase": "lifting",
+        "title": "Bend elbows, stay still",
+        "body": "Curl the weight without swinging. Keep shoulders relaxed and upper arms quiet.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "biceps",
+          "forearms"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Squeeze at the top",
+        "body": "Pause briefly with forearms high. Keep elbows from drifting forward.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "biceps",
+          "forearms"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Lower slowly until arms are long again. Keep control through the whole range.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "biceps",
+          "forearms",
+          "core"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "back_squat",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Feet planted, ribs stacked, brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descend",
+        "phase": "lowering",
+        "title": "Sit down with control",
+        "body": "Send hips down and let knees track with toes. Keep pressure through the mid-foot.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Stay strong at depth",
+        "body": "Keep the torso organized and heels grounded before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive the floor away",
+        "body": "Stand tall without letting knees collapse inward or the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "goblet_squat",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Chest tall, weight close",
+        "body": "Hold the weight tight to your chest. Stack ribs over hips before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "core",
+          "upper_back"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descent",
+        "phase": "lowering",
+        "title": "Hips down, knees track",
+        "body": "Sit between the knees with control. Let knees follow the toes instead of collapsing in.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "depth",
+        "phase": "bottom",
+        "title": "Stay braced at depth",
+        "body": "Keep heels grounded and the torso proud at the bottom before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "core",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "lifting",
+        "title": "Drive through mid-foot",
+        "body": "Push the floor away and stand tall without letting the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "leg_press",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Feet planted, ribs stacked, brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descend",
+        "phase": "lowering",
+        "title": "Sit down with control",
+        "body": "Send hips down and let knees track with toes. Keep pressure through the mid-foot.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Stay strong at depth",
+        "body": "Keep the torso organized and heels grounded before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive the floor away",
+        "body": "Stand tall without letting knees collapse inward or the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "romanian_deadlift",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Soft knees, long spine",
+        "body": "Start tall with a small knee bend. Keep the weight close and spine long.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "hamstrings",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips. The weight travels down close to the legs, not away from you.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stretch",
+        "phase": "bottom",
+        "title": "Find hamstring tension",
+        "body": "Stop when you feel the hamstrings load while the back position stays strong.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "conventional_deadlift",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Start tall with ribs stacked and a small knee bend. Keep the load close.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips while the torso follows. Keep the weight close to the body.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "loaded",
+        "phase": "bottom",
+        "title": "Find the loaded position",
+        "body": "Pause when hamstrings feel ready to work and the spine stays long.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "hamstrings",
+          "glutes",
+          "quads"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "hip_thrust",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Start tall with ribs stacked and a small knee bend. Keep the load close.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips while the torso follows. Keep the weight close to the body.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "glutes",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "loaded",
+        "phase": "bottom",
+        "title": "Find the loaded position",
+        "body": "Pause when glutes feel ready to work and the spine stays long.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": [
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "walking_lunge",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Feet planted, ribs stacked, brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descend",
+        "phase": "lowering",
+        "title": "Sit down with control",
+        "body": "Send hips down and let knees track with toes. Keep pressure through the mid-foot.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Stay strong at depth",
+        "body": "Keep the torso organized and heels grounded before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive the floor away",
+        "body": "Stand tall without letting knees collapse inward or the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "bulgarian_split_squat",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Feet planted, ribs stacked, brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descend",
+        "phase": "lowering",
+        "title": "Sit down with control",
+        "body": "Send hips down and let knees track with toes. Keep pressure through the mid-foot.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Stay strong at depth",
+        "body": "Keep the torso organized and heels grounded before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive the floor away",
+        "body": "Stand tall without letting knees collapse inward or the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "step_up",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Feet planted, ribs stacked, brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "descend",
+        "phase": "lowering",
+        "title": "Sit down with control",
+        "body": "Send hips down and let knees track with toes. Keep pressure through the mid-foot.",
+        "startPercent": 19,
+        "endPercent": 55,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "bottom",
+        "phase": "bottom",
+        "title": "Stay strong at depth",
+        "body": "Keep the torso organized and heels grounded before driving up.",
+        "startPercent": 56,
+        "endPercent": 72,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive the floor away",
+        "body": "Stand tall without letting knees collapse inward or the weight drift forward.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "leg_extension",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set the machine position and keep hips anchored before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "move",
+        "phase": "extending",
+        "title": "Extend the knees",
+        "body": "Straighten the legs smoothly without kicking or bouncing.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "quads"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "squeeze",
+        "phase": "finish",
+        "title": "Pause with control",
+        "body": "Hold the finish briefly so the target muscles do the work.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "quads"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return slowly and keep the machine path steady.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "core"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "seated_leg_curl",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set the machine position and keep hips anchored before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "hamstrings",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "move",
+        "phase": "curling",
+        "title": "Curl the pad back",
+        "body": "Bend the knees smoothly and keep the upper body still.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "squeeze",
+        "phase": "finish",
+        "title": "Pause with control",
+        "body": "Hold the finish briefly so the target muscles do the work.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "hamstrings"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return slowly and keep the machine path steady.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "hamstrings",
+          "core"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "standing_calf_raise",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Stand tall with feet planted and balance steady before lifting the heels.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "calves",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "lift",
+        "phase": "lifting",
+        "title": "Rise onto the toes",
+        "body": "Lift heels smoothly and keep ankles tracking straight.",
+        "startPercent": 19,
+        "endPercent": 58,
+        "focusMuscles": [
+          "calves"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "top",
+        "phase": "top",
+        "title": "Pause high",
+        "body": "Hold the top briefly with control instead of bouncing.",
+        "startPercent": 59,
+        "endPercent": 74,
+        "focusMuscles": [
+          "calves"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Lower heels slowly until the calves lengthen again.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "calves",
+          "core"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "glute_bridge",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Start tall with ribs stacked and a small knee bend. Keep the load close.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips while the torso follows. Keep the weight close to the body.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "glutes",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "loaded",
+        "phase": "bottom",
+        "title": "Find the loaded position",
+        "body": "Pause when glutes feel ready to work and the spine stays long.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": [
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "kettlebell_swing",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Start tall with ribs stacked and a small knee bend. Keep the load close.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hinge",
+        "phase": "lowering",
+        "title": "Push hips back",
+        "body": "Hinge from the hips while the torso follows. Keep the weight close to the body.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "loaded",
+        "phase": "bottom",
+        "title": "Find the loaded position",
+        "body": "Pause when glutes feel ready to work and the spine stays long.",
+        "startPercent": 57,
+        "endPercent": 72,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "stand",
+        "phase": "lifting",
+        "title": "Drive hips through",
+        "body": "Stand by bringing hips forward. Finish tall without leaning back.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "glutes",
+          "hamstrings",
+          "core"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "plank",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set elbows under shoulders and create one long line from head to heels.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "brace",
+        "phase": "hold",
+        "title": "Brace and breathe",
+        "body": "Keep steady tension while taking controlled breaths. Do not rush the hold.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "core",
+          "shoulders"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "align",
+        "phase": "hold",
+        "title": "Keep hips level",
+        "body": "Keep hips from hiking up or dropping down.",
+        "startPercent": 49,
+        "endPercent": 76,
+        "focusMuscles": [
+          "core",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Finish with control",
+        "body": "End the set by lowering with control and keeping position until the last second.",
+        "startPercent": 77,
+        "endPercent": 100,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "side_plank",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Stack elbow under shoulder and line up ankles, hips, and ribs.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "obliques",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "brace",
+        "phase": "hold",
+        "title": "Brace and breathe",
+        "body": "Keep steady tension while taking controlled breaths. Do not rush the hold.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "obliques",
+          "shoulders"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "align",
+        "phase": "hold",
+        "title": "Keep hips lifted",
+        "body": "Hold the side line without rotating forward or backward.",
+        "startPercent": 49,
+        "endPercent": 76,
+        "focusMuscles": [
+          "obliques",
+          "glutes"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "finish",
+        "phase": "finish",
+        "title": "Finish with control",
+        "body": "End the set by lowering with control and keeping position until the last second.",
+        "startPercent": 77,
+        "endPercent": 100,
+        "focusMuscles": [
+          "obliques"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "dead_bug",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "bird_dog",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "core",
+          "glutes"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "bicycle_crunch",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "obliques",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "obliques",
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "obliques",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "obliques",
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "hanging_knee_raise",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lower_abs",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "lower_abs",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "lower_abs"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lower_abs",
+          "hip_flexors"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "russian_twist",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "obliques",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "obliques",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "obliques"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "obliques",
+          "core"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "mountain_climber",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set ribs down and brace lightly before the first rep.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "move",
+        "phase": "working",
+        "title": "Move with control",
+        "body": "Let the target muscles guide the motion. Keep the lower back and hips steady.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "peak",
+        "phase": "finish",
+        "title": "Own the finish",
+        "body": "Pause briefly at the hardest point without rushing or swinging.",
+        "startPercent": 57,
+        "endPercent": 74,
+        "focusMuscles": [
+          "core",
+          "hip_flexors"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Return to the start slowly and keep tension ready for the next rep.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "core",
+          "hip_flexors",
+          "shoulders"
+        ],
+        "view": "front"
+      }
+    ]
+  },
+  {
+    "id": "treadmill_run",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set posture and rhythm before increasing effort. Keep breathing steady.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "hamstrings",
+          "calves"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "working",
+        "title": "Find a smooth rhythm",
+        "body": "Move with repeatable steps or strokes. Keep effort steady instead of jerky.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "quads",
+          "hamstrings",
+          "calves"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "posture",
+        "phase": "working",
+        "title": "Hold posture under effort",
+        "body": "Stay tall through the torso and keep shoulders relaxed as the pace continues.",
+        "startPercent": 57,
+        "endPercent": 78,
+        "focusMuscles": [
+          "quads",
+          "hamstrings",
+          "calves"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Ease back with control and keep movement smooth through the final seconds.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "hamstrings",
+          "calves"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "incline_walk",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set posture and rhythm before increasing effort. Keep breathing steady.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "working",
+        "title": "Find a smooth rhythm",
+        "body": "Move with repeatable steps or strokes. Keep effort steady instead of jerky.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "calves"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "posture",
+        "phase": "working",
+        "title": "Hold posture under effort",
+        "body": "Stay tall through the torso and keep shoulders relaxed as the pace continues.",
+        "startPercent": 57,
+        "endPercent": 78,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Ease back with control and keep movement smooth through the final seconds.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "glutes",
+          "calves"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "stationary_bike",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set posture and rhythm before increasing effort. Keep breathing steady.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "quads",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "working",
+        "title": "Find a smooth rhythm",
+        "body": "Move with repeatable steps or strokes. Keep effort steady instead of jerky.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "quads",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "posture",
+        "phase": "working",
+        "title": "Hold posture under effort",
+        "body": "Stay tall through the torso and keep shoulders relaxed as the pace continues.",
+        "startPercent": 57,
+        "endPercent": 78,
+        "focusMuscles": [
+          "quads",
+          "core"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Ease back with control and keep movement smooth through the final seconds.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "quads",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "rowing_machine",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Set posture and rhythm before increasing effort. Keep breathing steady.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "drive",
+        "phase": "working",
+        "title": "Find a smooth rhythm",
+        "body": "Move with repeatable steps or strokes. Keep effort steady instead of jerky.",
+        "startPercent": 19,
+        "endPercent": 56,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "posture",
+        "phase": "working",
+        "title": "Hold posture under effort",
+        "body": "Stay tall through the torso and keep shoulders relaxed as the pace continues.",
+        "startPercent": 57,
+        "endPercent": 78,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "hamstrings"
+        ],
+        "view": "front"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Ease back with control and keep movement smooth through the final seconds.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "rhomboids",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "cat_cow",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Move into the starting position slowly and keep breathing calm.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lower_back",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "enter",
+        "phase": "moving",
+        "title": "Ease into range",
+        "body": "Move gradually until the target area feels loaded, not forced.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "lower_back",
+          "core",
+          "shoulders"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hold",
+        "phase": "hold",
+        "title": "Breathe in the position",
+        "body": "Stay relaxed enough to breathe while keeping the position organized.",
+        "startPercent": 49,
+        "endPercent": 78,
+        "focusMuscles": [
+          "lower_back",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Come out of the position slowly and reset before repeating.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lower_back",
+          "core",
+          "shoulders"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "downward_dog",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Move into the starting position slowly and keep breathing calm.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "hamstrings",
+          "calves",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "enter",
+        "phase": "moving",
+        "title": "Ease into range",
+        "body": "Move gradually until the target area feels loaded, not forced.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "hamstrings",
+          "calves",
+          "shoulders"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hold",
+        "phase": "hold",
+        "title": "Breathe in the position",
+        "body": "Stay relaxed enough to breathe while keeping the position organized.",
+        "startPercent": 49,
+        "endPercent": 78,
+        "focusMuscles": [
+          "hamstrings",
+          "calves"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Come out of the position slowly and reset before repeating.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "hamstrings",
+          "calves",
+          "shoulders"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "childs_pose",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Move into the starting position slowly and keep breathing calm.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "lats",
+          "lower_back",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "enter",
+        "phase": "moving",
+        "title": "Ease into range",
+        "body": "Move gradually until the target area feels loaded, not forced.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "lats",
+          "lower_back",
+          "shoulders"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hold",
+        "phase": "hold",
+        "title": "Breathe in the position",
+        "body": "Stay relaxed enough to breathe while keeping the position organized.",
+        "startPercent": 49,
+        "endPercent": 78,
+        "focusMuscles": [
+          "lats",
+          "lower_back"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Come out of the position slowly and reset before repeating.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "lats",
+          "lower_back",
+          "shoulders"
+        ],
+        "view": "side"
+      }
+    ]
+  },
+  {
+    "id": "worlds_greatest_stretch",
+    "coachingCues": [
+      {
+        "id": "setup",
+        "phase": "setup",
+        "title": "Set the base first",
+        "body": "Move into the starting position slowly and keep breathing calm.",
+        "startPercent": 0,
+        "endPercent": 18,
+        "focusMuscles": [
+          "hip_flexors",
+          "core"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "enter",
+        "phase": "moving",
+        "title": "Ease into range",
+        "body": "Move gradually until the target area feels loaded, not forced.",
+        "startPercent": 19,
+        "endPercent": 48,
+        "focusMuscles": [
+          "hip_flexors",
+          "hamstrings"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "hold",
+        "phase": "hold",
+        "title": "Breathe in the position",
+        "body": "Stay relaxed enough to breathe while keeping the position organized.",
+        "startPercent": 49,
+        "endPercent": 78,
+        "focusMuscles": [
+          "hip_flexors"
+        ],
+        "view": "side"
+      },
+      {
+        "id": "return",
+        "phase": "return",
+        "title": "Control the reset",
+        "body": "Come out of the position slowly and reset before repeating.",
+        "startPercent": 73,
+        "endPercent": 100,
+        "focusMuscles": [
+          "hip_flexors",
+          "hamstrings"
+        ],
+        "view": "side"
+      }
+    ]
+  }
+]
