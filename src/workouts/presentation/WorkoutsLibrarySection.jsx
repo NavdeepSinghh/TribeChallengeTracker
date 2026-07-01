@@ -194,6 +194,11 @@ function ExerciseMotionPreview({ exercise }) {
   const motionSource = selectExerciseMotionSource(exercise);
   const asset = useLazyJsonAsset(motionSource.type === "lottie" ? motionSource.path : "");
   const [renderStatus, setRenderStatus] = useState("idle");
+  const [videoStatus, setVideoStatus] = useState("idle");
+
+  useEffect(() => {
+    setVideoStatus(motionSource.type === "video" ? "loading" : "idle");
+  }, [motionSource.type, motionSource.path, motionSource.previewPath]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -253,6 +258,12 @@ function ExerciseMotionPreview({ exercise }) {
   }, [asset.status, asset.data, exercise?.id]);
 
   if (motionSource.type === "video") {
+    const videoStatusLabel = (() => {
+      if (videoStatus === "failed") return "MOTION UNAVAILABLE";
+      if (videoStatus === "ready") return "REALISTIC DEMO READY";
+      return "LOADING REALISTIC DEMO";
+    })();
+
     return (
       <div style={{
         background: "radial-gradient(circle at 50% 25%, rgba(255,107,53,0.18), rgba(255,255,255,0.04) 56%, rgba(0,0,0,0.22))",
@@ -267,14 +278,25 @@ function ExerciseMotionPreview({ exercise }) {
           autoPlay
           loop
           muted
+          onCanPlay={() => setVideoStatus("ready")}
+          onError={() => setVideoStatus("failed")}
           playsInline
           poster={motionSource.posterPath ? resolveWorkoutAssetUrl(motionSource.posterPath) : undefined}
-          src={resolveWorkoutAssetUrl(motionSource.path)}
           style={{ height: "100%", inset: 0, objectFit: "contain", position: "absolute", width: "100%" }}
-        />
+        >
+          {motionSource.previewPath ? (
+            <source src={resolveWorkoutAssetUrl(motionSource.previewPath)} type="video/webm" />
+          ) : null}
+          <source src={resolveWorkoutAssetUrl(motionSource.path)} type="video/mp4" />
+        </video>
+        {videoStatus === "failed" ? (
+          <div className="tribe-motion-fallback">
+            Motion preview unavailable
+          </div>
+        ) : null}
         <div style={{
           bottom: 12,
-          color: "#34D399",
+          color: videoStatus === "ready" ? "#34D399" : videoStatus === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
           fontFamily: "monospace",
           fontSize: 10,
           fontWeight: 800,
@@ -282,7 +304,7 @@ function ExerciseMotionPreview({ exercise }) {
           letterSpacing: 1,
           position: "absolute",
         }}>
-          ANIMATED DEMO READY
+          {videoStatusLabel}
         </div>
       </div>
     );

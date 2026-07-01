@@ -1,0 +1,117 @@
+[
+  {
+    "id": "goblet_squat",
+    "status": "planned",
+    "mediaManifest": {
+      "preferredMotion": "video",
+      "videoPath": "workouts/exercises/v2/goblet_squat/demo.mp4",
+      "posterPath": "workouts/exercises/v2/goblet_squat/poster.webp",
+      "previewPath": "workouts/exercises/v2/goblet_squat/demo.webm",
+      "styleVersion": "tribelog-3d-v1",
+      "mediaVersion": 1,
+      "mediaHash": "pending",
+      "durationMs": 3400,
+      "frameRate": 30
+    },
+    "renderBrief": {
+      "cameraAngle": "side-three-quarter",
+      "primaryMuscles": ["quads", "glutes"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["kettlebell"],
+      "movementFocus": "Chest tall, hips descend, knees track over toes.",
+      "avoid": ["knee collapse", "excessive forward fold", "hypersexualized body proportions"]
+    }
+  },
+  {
+    "id": "push_up",
+    "status": "planned",
+    "mediaManifest": {
+      "preferredMotion": "video",
+      "videoPath": "workouts/exercises/v2/push_up/demo.mp4",
+      "posterPath": "workouts/exercises/v2/push_up/poster.webp",
+      "previewPath": "workouts/exercises/v2/push_up/demo.webm",
+      "styleVersion": "tribelog-3d-v1",
+      "mediaVersion": 1,
+      "mediaHash": "pending",
+      "durationMs": 3000,
+      "frameRate": 30
+    },
+    "renderBrief": {
+      "cameraAngle": "side",
+      "primaryMuscles": ["chest", "triceps"],
+      "secondaryMuscles": ["core", "shoulders"],
+      "equipment": ["bodyweight"],
+      "movementFocus": "One straight line from shoulders to heels, controlled lower and press.",
+      "avoid": ["sagging hips", "head craning", "rushed reps"]
+    }
+  },
+  {
+    "id": "lat_pulldown",
+    "status": "planned",
+    "mediaManifest": {
+      "preferredMotion": "video",
+      "videoPath": "workouts/exercises/v2/lat_pulldown/demo.mp4",
+      "posterPath": "workouts/exercises/v2/lat_pulldown/poster.webp",
+      "previewPath": "workouts/exercises/v2/lat_pulldown/demo.webm",
+      "styleVersion": "tribelog-3d-v1",
+      "mediaVersion": 1,
+      "mediaHash": "pending",
+      "durationMs": 3600,
+      "frameRate": 30
+    },
+    "renderBrief": {
+      "cameraAngle": "front-three-quarter",
+      "primaryMuscles": ["lats"],
+      "secondaryMuscles": ["biceps", "upper_back"],
+      "equipment": ["lat_pulldown_machine"],
+      "movementFocus": "Elbows drive down, ribs stay stacked, shoulders stay away from ears.",
+      "avoid": ["leaning far back", "yanking the bar", "shrugging into the neck"]
+    }
+  },
+  {
+    "id": "romanian_deadlift",
+    "status": "planned",
+    "mediaManifest": {
+      "preferredMotion": "video",
+      "videoPath": "workouts/exercises/v2/romanian_deadlift/demo.mp4",
+      "posterPath": "workouts/exercises/v2/romanian_deadlift/poster.webp",
+      "previewPath": "workouts/exercises/v2/romanian_deadlift/demo.webm",
+      "styleVersion": "tribelog-3d-v1",
+      "mediaVersion": 1,
+      "mediaHash": "pending",
+      "durationMs": 3800,
+      "frameRate": 30
+    },
+    "renderBrief": {
+      "cameraAngle": "side",
+      "primaryMuscles": ["hamstrings", "glutes"],
+      "secondaryMuscles": ["core", "lower_back"],
+      "equipment": ["barbell"],
+      "movementFocus": "Hips hinge back, spine stays neutral, soft knees throughout.",
+      "avoid": ["rounded back", "squat-like knee bend", "neck overextension"]
+    }
+  },
+  {
+    "id": "bulgarian_split_squat",
+    "status": "planned",
+    "mediaManifest": {
+      "preferredMotion": "video",
+      "videoPath": "workouts/exercises/v2/bulgarian_split_squat/demo.mp4",
+      "posterPath": "workouts/exercises/v2/bulgarian_split_squat/poster.webp",
+      "previewPath": "workouts/exercises/v2/bulgarian_split_squat/demo.webm",
+      "styleVersion": "tribelog-3d-v1",
+      "mediaVersion": 1,
+      "mediaHash": "pending",
+      "durationMs": 4000,
+      "frameRate": 30
+    },
+    "renderBrief": {
+      "cameraAngle": "side-three-quarter",
+      "primaryMuscles": ["quads", "glutes"],
+      "secondaryMuscles": ["hamstrings", "core"],
+      "equipment": ["bench", "dumbbells"],
+      "movementFocus": "Front foot planted, back foot elevated, controlled vertical descent.",
+      "avoid": ["front heel lifting", "knee collapse", "excessive forward lean"]
+    }
+  }
+]

@@ -5,12 +5,14 @@ import { isFollowFeatureEnabledForUser } from "../featureFlags";
 import TrainingJournalSection from "./TrainingJournalSection";
 import GuidedWorkoutSection from "../workouts/presentation/GuidedWorkoutSection";
 import PublicWorkoutDiscoverySection from "../workouts/presentation/PublicWorkoutDiscoverySection";
+import TrainingPlansSection from "../workouts/presentation/TrainingPlansSection";
 import WorkoutHistorySection from "../workouts/presentation/WorkoutHistorySection";
 import WorkoutsLibrarySection from "../workouts/presentation/WorkoutsLibrarySection";
 import { createWorkoutCatalogUseCases } from "../workouts/workoutCatalogComposition";
 import { createGuidedWorkoutUseCases } from "../workouts/workoutGuidedComposition";
 import { createWorkoutHistoryUseCases } from "../workouts/workoutHistoryComposition";
 import { createWorkoutSocialUseCases } from "../workouts/workoutSocialComposition";
+import { createTrainingPlanUseCases } from "../workouts/workoutTrainingPlanComposition";
 
 export default function BoardTab({
   actCounts,
@@ -31,6 +33,7 @@ export default function BoardTab({
   const guidedWorkoutUseCases = useMemo(() => createGuidedWorkoutUseCases(), []);
   const workoutHistoryUseCases = useMemo(() => createWorkoutHistoryUseCases(), []);
   const workoutSocialUseCases = useMemo(() => createWorkoutSocialUseCases(), []);
+  const trainingPlanUseCases = useMemo(() => createTrainingPlanUseCases(), []);
 
   useEffect(() => {
     try {
@@ -75,6 +78,8 @@ export default function BoardTab({
         catalogUseCases={workoutCatalogUseCases}
         guidedUseCases={guidedWorkoutUseCases}
       />
+
+      <TrainingPlansSection useCases={trainingPlanUseCases} />
 
       <WorkoutHistorySection useCases={workoutHistoryUseCases} />
 

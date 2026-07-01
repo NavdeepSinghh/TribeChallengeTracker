@@ -30,13 +30,23 @@ The product goal is to move TribeLog from an activity logger toward a guided tra
 | Milestone 6 | Implemented and hardened with native guided tests; awaiting Claude checkpoint |
 | Milestone 7 | Claude approved |
 | Milestone 8 | Claude approved after native parity and callable deploy |
-| Milestone 9 | Batches 1-4 approved; Batch 5 generated and awaiting Claude review |
-| Milestone 10 | Release readiness stoplight created; not ready |
+| Milestone 9 | Complete; all 50 exercises approved and storage/live-seed release gates cleared |
+| Milestone 10 | Claude approved; Phase 1 ready to ship pending manual native screenshots |
+| Coach Mode v1 | Implemented across Web, iOS, Android; ready for Claude checkpoint |
+| Full Cue Draft v1 | Implemented locally for 50 exercises; ready for Claude copy/content review |
+| High-Fidelity Animation Spec | Created for Claude Design; optional mediaManifest support, five-exercise planned POC manifest, and client video playback prep implemented locally |
 
 Current review pack:
 
 ```text
-docs/workouts/review-packs/workouts-m9-batch1-revision-review-pack.zip
+docs/workouts/coach-mode-v1-claude-checkpoint-2026-07-01.md
+docs/workouts/coach-mode-full-cues-claude-checkpoint-2026-07-01.md
+```
+
+Current review queue:
+
+```text
+docs/workouts/CLAUDE_REVIEW_QUEUE.md
 ```
 
 ## Operating Rules
@@ -416,7 +426,7 @@ docs/workouts/milestone-8/CLAUDE_REVIEW_PACKET.md
 
 ### Checkpoint 9: 50 Exercise Library Expansion
 
-Status: Batch 1 was blocked by Claude for visual regression and placeholder thumbnails, revised, and approved. Batch 2 upper-pull assets were approved after the curl anatomy fix. Batch 3 lower-body assets were approved. Batch 4 core assets were approved. Batch 5 cardio/mobility assets are generated for review.
+Status: Complete. Batch 1 was blocked by Claude for visual regression and placeholder thumbnails, revised, and approved. Batch 2 upper-pull assets were approved after the curl anatomy fix. Batch 3 lower-body assets were approved. Batch 4 core assets were approved. Batch 5 cardio/mobility assets were approved. All 50 exercises are complete.
 
 Build scope:
 
@@ -458,8 +468,8 @@ Current checkpoint note:
 - Batch 3 adds lower-body quads, hamstrings, glutes, calves, and lower-back support regions.
 - Batch 4 adds core, obliques, lower abs, and hip-flexor support regions.
 - Batch 5 adds cardio movement-chain highlights and mobility stretch-target highlights.
-- All 50 exercise seed records and 200 local asset entries are generated locally.
-- Firebase Storage upload has not been run.
+- All 50 exercise seed records and 200 local asset entries are generated and approved.
+- Firebase Storage upload and live Firestore seed were completed during M10 release readiness.
 
 Review packet:
 
@@ -469,7 +479,7 @@ docs/workouts/milestone-9/CLAUDE_REVIEW_PACKET.md
 
 ### Checkpoint 10: Phase 1 Release Pack
 
-Status: Release readiness stoplight created; Phase 1 not ready.
+Status: Claude approved. Phase 1 is ready to ship pending manual iOS and Android screenshot capture.
 
 Build scope:
 
@@ -502,6 +512,320 @@ Current readiness packet:
 docs/workouts/milestone-10/PHASE_1_RELEASE_READINESS.md
 docs/workouts/milestone-10/CLAUDE_REVIEW_PACKET.md
 ```
+
+## Phase 1.1: Coach Mode And Better Exercise Education
+
+Phase 1.1 goal: Make exercise detail feel like a guided movement coach instead of a static reference sheet.
+
+This is the direct follow-up to Navdeep's request to show the animation with selected explanatory text instead of static instructions.
+
+### Checkpoint 1.1.0: Coach Mode v1
+
+Status: Implemented; ready for Claude review.
+
+Build scope:
+
+- Optional backend `coachingCues` field on exercise documents.
+- Cross-platform parsing of `coachingCues`.
+- Optional `startFrame/endFrame` parsing and validation for later exact Lottie sync, while v1 cue data can remain percent-based.
+- Fallback cue generation from existing `formCues + instructions`.
+- Web detail view with `MOVEMENT COACH`, active cue card, cue selector cards, and focus muscle chips.
+- Web cue selector locks the selected cue after a user tap instead of continuing to auto-rotate.
+- iOS detail sheet with matching Coach Mode card.
+- iOS motion preview copy uses user-facing animated-demo language instead of cache/frame/link status.
+- iOS cue selector locks the selected cue after a user tap instead of continuing to auto-rotate.
+- Android detail dialog with matching Coach Mode section.
+- Android fallback copy uses user-facing animated-demo language instead of Storage path/hash status.
+- Pilot cue content for five exercises.
+- Admin-scoped dry-run/apply utility for cue updates.
+
+Claude checks:
+
+- Detail screen feels like coaching, not a static data sheet.
+- iOS does not expose raw asset paths, cache state, frame counts, or other developer-oriented labels in the motion preview.
+- Web and Android do not expose raw frame counts, Firebase Storage paths, asset hashes, or developer-oriented asset labels in the motion preview.
+- Selected cue behavior is correct: auto-advance before interaction, then respect the user's tapped cue for the current exercise.
+- Cue contract is flexible enough for later frame sync.
+- Percent-based cue ranges are acceptable for v1, or Claude identifies where exact frame ranges must be authored before live apply.
+- Auto-rotation is acceptable or should become tap-only until exact Lottie progress is available.
+- Pilot cue language is safe, clear, and free of unsupported health/medical claims.
+- Apply utility cannot accidentally overwrite exercise assets or metadata.
+- Clean Architecture boundaries remain intact across all three platforms.
+
+Hard blockers:
+
+- Firestore write script can overwrite unrelated exercise fields.
+- Cue copy makes medical, injury, recovery, or guaranteed outcome claims.
+- ViewModels begin depending directly on Firebase SDKs.
+- Static instructions remain the primary visual hierarchy above movement coaching.
+
+Review packet:
+
+```text
+docs/workouts/coach-mode-v1-claude-checkpoint-2026-07-01.md
+```
+
+Exit criteria:
+
+- Claude approves the interaction model.
+- Navdeep approves the look and feel.
+- Pilot cue records can be applied to Firestore.
+- Screenshot pass captures Web/iOS/Android pilot exercise details.
+
+### Checkpoint 1.1.1: Pilot Cue Live QA
+
+Build scope:
+
+- Apply the five pilot cue records to live Firestore.
+- Verify all three clients read backend-authored cues instead of fallback cues.
+- Capture screenshots or short recordings for `goblet_squat`, `push_up`, `lat_pulldown`, `dumbbell_biceps_curl`, and `romanian_deadlift`.
+
+Claude checks:
+
+- Backend-authored cues render consistently across Web, iOS, Android.
+- Text hierarchy is readable on real mobile devices.
+- Cue cards do not crowd or obscure the animation.
+- Fallback still works for exercises without authored cues.
+
+Hard blockers:
+
+- Live cue apply changes assets, names, instructions, or non-cue metadata.
+- One platform fails to parse cue records while another succeeds.
+
+### Checkpoint 1.1.2: Remaining 45 Exercise Cue Authoring
+
+Status: Implemented locally as a 50-exercise draft; ready for Claude review.
+
+Build scope:
+
+- Author `coachingCues` for all remaining official exercises.
+- Add validation tests for full cue coverage.
+- Keep optional `startFrame/endFrame` support available without requiring frame-specific authoring for every generated draft cue.
+- Keep live Firestore apply blocked until Claude copy/UX review.
+
+Claude checks:
+
+- Cue language is concise, movement-specific, and avoids claims.
+- Cues describe movement phases consistently.
+- Similar movement families share a coherent coaching style without feeling copy-pasted.
+
+Hard blockers:
+
+- Generic filler copy that does not teach the movement.
+- Unsupported claims or injury language.
+- Missing cue coverage for official exercises.
+
+Review packet:
+
+```text
+docs/workouts/coach-mode-full-cues-claude-checkpoint-2026-07-01.md
+```
+
+### Checkpoint 1.1.3: Frame-Aware Cue Sync
+
+Build scope:
+
+- Connect cue activation to actual Lottie progress/frame where supported.
+- Store cue ranges as `startPercent/endPercent` or exact `startFrame/endFrame` depending on Claude/Codex decision.
+- Pause auto-rotation when the user manually selects a cue.
+
+Claude checks:
+
+- Cue changes line up with visible motion.
+- Tap and auto behavior are predictable.
+- Accessibility/readability remains good for users who do not watch the animation.
+
+Hard blockers:
+
+- Cue text changes out of sync with movement.
+- Animation playback is required to understand safety-critical instructions.
+
+## Phase 1.2: High-Fidelity Exercise Animations
+
+Phase 1.2 goal: Upgrade the exercise animation quality from lightweight vector demos to a realistic TribeLog trainer style, while preserving the current Lottie/SVG asset system as the fallback.
+
+### Checkpoint 1.2.0: Claude Design Animation Style Spec
+
+Status: Spec created; ready for Claude Design review.
+
+Build scope:
+
+- Define TribeLog's high-fidelity animation direction.
+- Separate quality inspiration from competitor copying risk.
+- Pick five POC exercises before scaling.
+- Define asset formats and backend contract.
+- Keep current Lottie/SVG assets untouched.
+
+Claude Design checks:
+
+- Visual style is distinct from competitor references.
+- Body proportions, muscle highlighting, lighting, and equipment treatment are appropriate.
+- The five POC exercises are the right coverage set.
+- Rendered video vs Lottie decision is correct.
+- Text remains in Coach Mode UI rather than baked into animation assets.
+
+Hard blockers:
+
+- Style is too close to a competitor's ad/product artwork.
+- Assets become sexualized, medicalized, or unrealistic.
+- Codex starts generating all 50 high-fidelity animations before five POC assets are approved.
+
+Review packet:
+
+```text
+docs/workouts/high-fidelity-animation-claude-design-spec-2026-07-01.md
+```
+
+### Checkpoint 1.2.1: Media Manifest Contract
+
+Status: Implemented locally; ready for Claude review.
+
+Build scope:
+
+- Add optional `mediaManifest` to exercise documents across Web, iOS, and Android.
+- Keep existing `assetManifest` as required fallback.
+- Add Web source selection so approved future video demos can render when `preferredMotion` is `video`.
+- Keep iOS/Android native playback on the current approved path until Claude approves the new style.
+
+Claude checks:
+
+- Contract is additive and backward-compatible.
+- Current 50 exercise Lottie/SVG assets still work.
+- Video paths, posters, media hash, duration, and style version are enough for asset versioning.
+- Native clients can parse the new contract without playback regressions.
+
+Hard blockers:
+
+- `assetManifest` becomes optional before all 50 high-fidelity videos exist.
+- Clients require video assets to load the workout detail.
+- Live Firestore records are updated before Claude approves the POC style.
+
+### Checkpoint 1.2.2: Five-Exercise High-Fidelity POC Manifest
+
+Status: Implemented locally; ready for Claude review.
+
+Build scope:
+
+- Create a local planned media manifest for:
+  - `goblet_squat`
+  - `push_up`
+  - `lat_pulldown`
+  - `romanian_deadlift`
+  - `bulgarian_split_squat`
+- Validate planned `mediaManifest` paths and metadata.
+- Prepare a strict apply script that only accepts release-ready records with real `sha256` hashes.
+- Generate a local review checklist board for Claude Design.
+- Keep every record marked `planned` with `mediaHash: pending`.
+- Do not apply these records to live Firestore yet.
+
+Claude checks:
+
+- Five exercises are the right POC set.
+- Planned storage convention is acceptable.
+- Render briefs are specific enough for realistic asset creation.
+- Validator correctly blocks release-ready mode until real assets are hashed.
+- Apply script refuses planned records.
+
+Hard blockers:
+
+- Planned media records are applied to live catalog.
+- `assetManifest` fallback is weakened.
+- Validator allows release-ready status without real `sha256` hashes.
+- Apply script writes records that are still `planned`.
+
+Review packet:
+
+```text
+docs/workouts/review-packs/high-fidelity-animation-poc-checklist-2026-07-01.html
+scripts/workout-high-fidelity-media-poc.json
+scripts/validate-workout-high-fidelity-media.js
+scripts/apply-workout-high-fidelity-media.js
+scripts/render-workout-high-fidelity-poc-checklist.js
+```
+
+### Checkpoint 1.2.3: Five-Exercise High-Fidelity POC Assets
+
+Build scope:
+
+- Produce high-fidelity POC assets for:
+  - `goblet_squat`
+  - `push_up`
+  - `lat_pulldown`
+  - `romanian_deadlift`
+  - `bulgarian_split_squat`
+- Include `demo.mp4`, optional `demo.webm`, and `poster.webp`.
+- Build a local review board for Claude.
+- Do not apply to live Firestore yet.
+
+Claude checks:
+
+- Motion clarity.
+- Muscle highlight accuracy.
+- Mobile readability.
+- Brand fit.
+- Competitor-copy risk.
+- File size and loading posture.
+
+Hard blockers:
+
+- POC assets look like copied competitor materials.
+- Form is visually misleading.
+- Muscle highlights are inaccurate.
+- File sizes are too large for mobile use.
+
+### Checkpoint 1.2.4: High-Fidelity Client Playback
+
+Status: Web/iOS/Android playback prep implemented locally; real video QA pending actual POC assets and Claude review.
+
+Build scope:
+
+- Web video playback with poster fallback.
+- iOS video playback or cached preview playback.
+- Android video playback or cached preview playback.
+- Preserve Lottie fallback.
+- Add real-device screenshots/videos.
+
+Claude checks:
+
+- Playback is smooth.
+- No layout jumps.
+- Offline/cache behavior is acceptable.
+- Coach Mode cue text still dominates the teaching experience.
+- Current Lottie fallback remains intact.
+
+Hard blockers:
+
+- Video playback blocks workout detail load.
+- Users lose current Lottie fallback.
+- Native playback drains battery or performs poorly.
+
+Review packet:
+
+```text
+docs/workouts/high-fidelity-client-video-playback-checkpoint-2026-07-01.md
+```
+
+### Checkpoint 1.2.5: Rollout To 50 Exercises
+
+Build scope:
+
+- Generate/import high-fidelity assets in batches.
+- Review in batches before upload.
+- Upload to Firebase Storage.
+- Apply `mediaManifest` only after each batch is approved.
+
+Claude checks:
+
+- Batch consistency.
+- Anatomy accuracy.
+- Equipment accuracy.
+- File-size budget.
+- No unsupported claims or unsafe visual cues.
+
+Hard blockers:
+
+- Batch drift from approved POC style.
+- Applying unreviewed media to live exercises.
 
 ## Phase 2: Training Plans
 

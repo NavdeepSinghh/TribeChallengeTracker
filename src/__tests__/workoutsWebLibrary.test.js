@@ -15,7 +15,9 @@ import { LoadWorkoutExerciseCatalogUseCase } from '../workouts/domain/workoutCat
 import seedExercises from '../../scripts/workout-exercise-seed.json';
 import pilotCoachingCues from '../../scripts/workout-coaching-cues-pilot.json';
 const { loadCueFile, validateCueCoverage, validateCueRecord } = require('../../scripts/apply-workout-coaching-cues');
+const { loadMediaApplyFile, mediaManifestPayload } = require('../../scripts/apply-workout-high-fidelity-media');
 const { loadOfficialExerciseSeed } = require('../../scripts/generate-workout-coaching-cues-draft');
+const { loadMediaManifest, validateRecords: validateHighFidelityMediaRecords } = require('../../scripts/validate-workout-high-fidelity-media');
 
 jest.mock('lottie-web', () => ({
   __esModule: true,
@@ -117,7 +119,7 @@ describe('web workouts read-only library', () => {
         preferredMotion: 'video',
         videoPath: 'workouts/exercises/v2/goblet_squat/demo.mp4',
         posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
-        previewPath: 'workouts/exercises/v2/goblet_squat/preview.webm',
+        previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
         styleVersion: 'tribelog-3d-v1',
         mediaVersion: 2,
         mediaHash: 'sha256:media',
@@ -154,6 +156,7 @@ describe('web workouts read-only library', () => {
       type: 'video',
       path: 'workouts/exercises/v2/goblet_squat/demo.mp4',
       posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
+      previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
       mediaHash: 'sha256:media',
       styleVersion: 'tribelog-3d-v1',
     });
@@ -201,6 +204,105 @@ describe('web workouts read-only library', () => {
       'pressing',
       'return',
     ]);
+  });
+
+  it('validates the planned high-fidelity media POC manifest before asset generation', () => {
+    const records = loadMediaManifest(require.resolve('../../scripts/workout-high-fidelity-media-poc.json'));
+
+    expect(records).toHaveLength(5);
+    expect(records.map(record => record.id)).toEqual([
+      'goblet_squat',
+      'push_up',
+      'lat_pulldown',
+      'romanian_deadlift',
+      'bulgarian_split_squat',
+    ]);
+    expect(records[0].mediaManifest).toMatchObject({
+      preferredMotion: 'video',
+      videoPath: 'workouts/exercises/v2/goblet_squat/demo.mp4',
+      posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
+      previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
+      styleVersion: 'tribelog-3d-v1',
+      mediaHash: 'pending',
+    });
+    expect(() => validateHighFidelityMediaRecords(records, { requireReady: true })).toThrow(/planned media/);
+    expect(() => loadMediaApplyFile(require.resolve('../../scripts/workout-high-fidelity-media-poc.json'))).toThrow(/planned media/);
+    expect(mediaManifestPayload({
+      mediaManifest: {
+        preferredMotion: 'video',
+        videoPath: 'workouts/exercises/v2/goblet_squat/demo.mp4',
+        posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
+        previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
+        styleVersion: 'tribelog-3d-v1',
+        mediaVersion: 1,
+        mediaHash: 'sha256:abcdef1234567890',
+        durationMs: 3400,
+        frameRate: 30,
+      },
+    })).toEqual({
+      preferredMotion: 'video',
+      videoPath: 'workouts/exercises/v2/goblet_squat/demo.mp4',
+      posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
+      previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
+      styleVersion: 'tribelog-3d-v1',
+      mediaVersion: 1,
+      mediaHash: 'sha256:abcdef1234567890',
+      durationMs: 3400,
+      frameRate: 30,
+    });
+  });
+
+  it('renders future high-fidelity video demos with current Lottie fallback preserved', async () => {
+    const [firstExercise, ...rest] = seedExercises.map(exercise => mapExerciseDocument(exercise.id, exercise));
+    const videoExercise = mapExerciseDocument(firstExercise.id, {
+      ...firstExercise,
+      mediaManifest: {
+        preferredMotion: 'video',
+        videoPath: 'workouts/exercises/v2/goblet_squat/demo.mp4',
+        posterPath: 'workouts/exercises/v2/goblet_squat/poster.webp',
+        previewPath: 'workouts/exercises/v2/goblet_squat/demo.webm',
+        styleVersion: 'tribelog-3d-v1',
+        mediaVersion: 1,
+        mediaHash: 'sha256:media',
+        durationMs: 3400,
+        frameRate: 30,
+      },
+    });
+    const viewModel = buildLoadedViewModel({
+      selectedExercise: videoExercise,
+      selectedExerciseId: videoExercise.id,
+      visibleExercises: [videoExercise, ...rest],
+    });
+
+    const { container, root } = await renderWithTheme(
+      <WorkoutsLibrarySection
+        onQuickLog={() => {}}
+        viewModel={viewModel}
+      />
+    );
+
+    const video = container.querySelector('video');
+    const sources = [...container.querySelectorAll('video source')].map(source => ({
+      src: source.getAttribute('src'),
+      type: source.getAttribute('type'),
+    }));
+
+    expect(video).not.toBeNull();
+    expect(video.getAttribute('poster')).toBe('https://firebasestorage.googleapis.com/v0/b/tribechallengetracker.firebasestorage.app/o/workouts%2Fexercises%2Fv2%2Fgoblet_squat%2Fposter.webp?alt=media');
+    expect(sources).toEqual([
+      {
+        src: 'https://firebasestorage.googleapis.com/v0/b/tribechallengetracker.firebasestorage.app/o/workouts%2Fexercises%2Fv2%2Fgoblet_squat%2Fdemo.webm?alt=media',
+        type: 'video/webm',
+      },
+      {
+        src: 'https://firebasestorage.googleapis.com/v0/b/tribechallengetracker.firebasestorage.app/o/workouts%2Fexercises%2Fv2%2Fgoblet_squat%2Fdemo.mp4?alt=media',
+        type: 'video/mp4',
+      },
+    ]);
+    expect(container.textContent).toContain('LOADING REALISTIC DEMO');
+
+    await act(async () => root.unmount());
+    container.remove();
   });
 
   it('renders empty and error states for Claude visual review coverage', async () => {

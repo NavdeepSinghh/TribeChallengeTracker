@@ -132,6 +132,7 @@ export function selectExerciseMotionSource(exercise = {}) {
       type: "video",
       path: videoPath,
       posterPath: cleanString(mediaManifest.posterPath),
+      previewPath: cleanString(mediaManifest.previewPath),
       mediaHash: cleanString(mediaManifest.mediaHash),
       styleVersion: cleanString(mediaManifest.styleVersion),
     };

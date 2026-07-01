@@ -101,6 +101,24 @@
       ]
     },
     {
+      "collectionGroup": "trainingPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status",     "order": "ASCENDING" },
+        { "fieldPath": "visibility", "order": "ASCENDING" },
+        { "fieldPath": "updatedAt",  "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "trainingPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "goal",   "order": "ASCENDING" },
+        { "fieldPath": "level",  "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "publicWorkouts",
       "queryScope": "COLLECTION",
       "fields": [

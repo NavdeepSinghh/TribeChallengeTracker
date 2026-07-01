@@ -1,0 +1,255 @@
+[
+  {
+    "id": "beginner_strength_foundation",
+    "slug": "beginner-strength-foundation",
+    "name": "Beginner Strength Foundation",
+    "status": "published",
+    "source": "official",
+    "visibility": "public",
+    "version": 1,
+    "goal": "strength",
+    "level": "beginner",
+    "frequencyDaysPerWeek": 3,
+    "durationWeeks": 4,
+    "estimatedMinutesPerSession": 38,
+    "equipment": ["bodyweight", "dumbbell", "kettlebell"],
+    "focusMuscles": ["quads", "glutes", "chest", "back", "core"],
+    "tags": ["starter", "full_body", "strength"],
+    "description": "A simple three-day strength plan built around full-body basics, steady practice, and short sessions.",
+    "attribution": {
+      "creatorUid": "tribelog",
+      "displayName": "TribeLog Official"
+    },
+    "progression": {
+      "type": "linear_practice",
+      "notes": "Repeat the week for four rounds. Add a small amount of weight or one rep when all sets feel controlled."
+    },
+    "schedule": [
+      {
+        "dayIndex": 1,
+        "label": "Day 1",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Full Body A",
+          "estimatedMinutes": 38,
+          "exercises": [
+            { "exerciseId": "goblet_squat", "targetSets": 3, "targetReps": "8-10", "restSeconds": 75, "notes": "Keep the weight close and own the bottom position." },
+            { "exerciseId": "push_up", "targetSets": 3, "targetReps": "6-10", "restSeconds": 75, "notes": "Use an incline if needed to keep reps crisp." },
+            { "exerciseId": "one_arm_dumbbell_row", "targetSets": 3, "targetReps": "8-10 each side", "restSeconds": 75, "notes": "Pull the elbow toward the hip." },
+            { "exerciseId": "plank", "targetSets": 3, "targetReps": "25-40 sec", "restSeconds": 45, "notes": "Ribs down, glutes on." }
+          ]
+        }
+      },
+      { "dayIndex": 2, "label": "Day 2", "type": "rest", "notes": "Walk, stretch, or keep it easy." },
+      {
+        "dayIndex": 3,
+        "label": "Day 3",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Full Body B",
+          "estimatedMinutes": 40,
+          "exercises": [
+            { "exerciseId": "romanian_deadlift", "targetSets": 3, "targetReps": "8-10", "restSeconds": 90, "notes": "Hinge from the hips and keep the spine long." },
+            { "exerciseId": "dumbbell_shoulder_press", "targetSets": 3, "targetReps": "8-10", "restSeconds": 75, "notes": "Press without shrugging." },
+            { "exerciseId": "lat_pulldown", "targetSets": 3, "targetReps": "8-12", "restSeconds": 75, "notes": "Drive elbows down and keep shoulders away from ears." },
+            { "exerciseId": "dead_bug", "targetSets": 3, "targetReps": "6-8 each side", "restSeconds": 45, "notes": "Move slowly and keep your lower back quiet." }
+          ]
+        }
+      },
+      { "dayIndex": 4, "label": "Day 4", "type": "rest", "notes": "Optional easy walk." },
+      {
+        "dayIndex": 5,
+        "label": "Day 5",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Full Body C",
+          "estimatedMinutes": 36,
+          "exercises": [
+            { "exerciseId": "walking_lunge", "targetSets": 3, "targetReps": "8 each side", "restSeconds": 75, "notes": "Step long enough to keep the front foot planted." },
+            { "exerciseId": "dumbbell_bench_press", "targetSets": 3, "targetReps": "8-10", "restSeconds": 75, "notes": "Control the lower, press with intent." },
+            { "exerciseId": "seated_cable_row", "targetSets": 3, "targetReps": "8-12", "restSeconds": 75, "notes": "Pause briefly with shoulder blades together." },
+            { "exerciseId": "side_plank", "targetSets": 2, "targetReps": "20-35 sec each side", "restSeconds": 40, "notes": "Stack shoulder, hip, and ankle." }
+          ]
+        }
+      },
+      { "dayIndex": 6, "label": "Day 6", "type": "mobility", "notes": "Optional Cat-Cow and Child's Pose for easy movement." },
+      { "dayIndex": 7, "label": "Day 7", "type": "rest", "notes": "Reset for the next week." }
+    ]
+  },
+  {
+    "id": "upper_lower_strength_builder",
+    "slug": "upper-lower-strength-builder",
+    "name": "Upper / Lower Strength Builder",
+    "status": "published",
+    "source": "official",
+    "visibility": "public",
+    "version": 1,
+    "goal": "strength",
+    "level": "intermediate",
+    "frequencyDaysPerWeek": 4,
+    "durationWeeks": 6,
+    "estimatedMinutesPerSession": 48,
+    "equipment": ["barbell", "dumbbell", "machine", "cable"],
+    "focusMuscles": ["chest", "back", "shoulders", "quads", "hamstrings", "glutes"],
+    "tags": ["upper_lower", "strength", "gym"],
+    "description": "A four-day upper/lower split for members who want more structure without losing simple tracking.",
+    "attribution": {
+      "creatorUid": "tribelog",
+      "displayName": "TribeLog Official"
+    },
+    "progression": {
+      "type": "double_progression",
+      "notes": "Use the same load until the top of the rep range is controlled across all sets, then increase slightly."
+    },
+    "schedule": [
+      {
+        "dayIndex": 1,
+        "label": "Upper 1",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Upper Push + Pull",
+          "estimatedMinutes": 48,
+          "exercises": [
+            { "exerciseId": "bench_press", "targetSets": 4, "targetReps": "5-8", "restSeconds": 120, "notes": "Keep shoulder blades set." },
+            { "exerciseId": "seated_cable_row", "targetSets": 4, "targetReps": "8-10", "restSeconds": 90, "notes": "Match each press set with a strong pull." },
+            { "exerciseId": "dumbbell_shoulder_press", "targetSets": 3, "targetReps": "8-10", "restSeconds": 90, "notes": "Press in a smooth path." },
+            { "exerciseId": "face_pull", "targetSets": 3, "targetReps": "12-15", "restSeconds": 60, "notes": "Lead with elbows and control the return." }
+          ]
+        }
+      },
+      {
+        "dayIndex": 2,
+        "label": "Lower 1",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Squat Focus",
+          "estimatedMinutes": 50,
+          "exercises": [
+            { "exerciseId": "back_squat", "targetSets": 4, "targetReps": "5-8", "restSeconds": 120, "notes": "Brace before each rep." },
+            { "exerciseId": "romanian_deadlift", "targetSets": 3, "targetReps": "8-10", "restSeconds": 105, "notes": "Feel the hinge through glutes and hamstrings." },
+            { "exerciseId": "leg_extension", "targetSets": 3, "targetReps": "10-12", "restSeconds": 75, "notes": "Pause at the top." },
+            { "exerciseId": "standing_calf_raise", "targetSets": 3, "targetReps": "10-15", "restSeconds": 60, "notes": "Use a full controlled range." }
+          ]
+        }
+      },
+      { "dayIndex": 3, "label": "Day 3", "type": "rest", "notes": "Easy movement only." },
+      {
+        "dayIndex": 4,
+        "label": "Upper 2",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Back + Shoulders",
+          "estimatedMinutes": 46,
+          "exercises": [
+            { "exerciseId": "pull_up", "targetSets": 4, "targetReps": "4-8", "restSeconds": 120, "notes": "Use assisted pull-ups if needed." },
+            { "exerciseId": "incline_dumbbell_press", "targetSets": 3, "targetReps": "8-10", "restSeconds": 90, "notes": "Keep elbows slightly tucked." },
+            { "exerciseId": "lateral_raise", "targetSets": 3, "targetReps": "12-15", "restSeconds": 60, "notes": "Lift with control, not momentum." },
+            { "exerciseId": "dumbbell_biceps_curl", "targetSets": 3, "targetReps": "10-12", "restSeconds": 60, "notes": "Keep upper arms still." }
+          ]
+        }
+      },
+      {
+        "dayIndex": 5,
+        "label": "Lower 2",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Hinge + Glutes",
+          "estimatedMinutes": 48,
+          "exercises": [
+            { "exerciseId": "conventional_deadlift", "targetSets": 3, "targetReps": "4-6", "restSeconds": 150, "notes": "Set the bar close before the pull." },
+            { "exerciseId": "hip_thrust", "targetSets": 4, "targetReps": "8-10", "restSeconds": 90, "notes": "Finish with ribs down." },
+            { "exerciseId": "bulgarian_split_squat", "targetSets": 3, "targetReps": "8 each side", "restSeconds": 90, "notes": "Keep pressure through the front foot." },
+            { "exerciseId": "seated_leg_curl", "targetSets": 3, "targetReps": "10-12", "restSeconds": 75, "notes": "Control the return." }
+          ]
+        }
+      },
+      { "dayIndex": 6, "label": "Day 6", "type": "mobility", "notes": "Optional Downward Dog and World's Greatest Stretch." },
+      { "dayIndex": 7, "label": "Day 7", "type": "rest", "notes": "Rest before the next week." }
+    ]
+  },
+  {
+    "id": "run_walk_base_builder",
+    "slug": "run-walk-base-builder",
+    "name": "Run / Walk Base Builder",
+    "status": "published",
+    "source": "official",
+    "visibility": "public",
+    "version": 1,
+    "goal": "endurance",
+    "level": "beginner",
+    "frequencyDaysPerWeek": 4,
+    "durationWeeks": 4,
+    "estimatedMinutesPerSession": 32,
+    "equipment": ["bodyweight", "treadmill", "stationary_bike"],
+    "focusMuscles": ["quads", "hamstrings", "calves", "glutes", "core"],
+    "tags": ["endurance", "run_walk", "base"],
+    "description": "A low-friction endurance plan that mixes run/walk sessions, bike options, mobility, and simple strength support.",
+    "attribution": {
+      "creatorUid": "tribelog",
+      "displayName": "TribeLog Official"
+    },
+    "progression": {
+      "type": "time_on_feet",
+      "notes": "Add a few minutes to the work blocks only when the current week feels repeatable."
+    },
+    "schedule": [
+      {
+        "dayIndex": 1,
+        "label": "Run / Walk 1",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Easy Intervals",
+          "estimatedMinutes": 30,
+          "exercises": [
+            { "exerciseId": "treadmill_run", "targetSets": 6, "targetReps": "1 min run / 2 min walk", "restSeconds": 0, "notes": "Keep the run smooth enough to repeat." },
+            { "exerciseId": "cat_cow", "targetSets": 2, "targetReps": "6 slow reps", "restSeconds": 30, "notes": "Move gently after the session." }
+          ]
+        }
+      },
+      {
+        "dayIndex": 2,
+        "label": "Strength Support",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Legs + Core",
+          "estimatedMinutes": 32,
+          "exercises": [
+            { "exerciseId": "step_up", "targetSets": 3, "targetReps": "8 each side", "restSeconds": 60, "notes": "Stand tall at the top." },
+            { "exerciseId": "glute_bridge", "targetSets": 3, "targetReps": "10-12", "restSeconds": 60, "notes": "Pause at full hip extension." },
+            { "exerciseId": "bird_dog", "targetSets": 2, "targetReps": "6 each side", "restSeconds": 40, "notes": "Reach long without rotating." },
+            { "exerciseId": "plank", "targetSets": 2, "targetReps": "25-35 sec", "restSeconds": 40, "notes": "Stay stacked and steady." }
+          ]
+        }
+      },
+      { "dayIndex": 3, "label": "Day 3", "type": "rest", "notes": "Keep steps easy." },
+      {
+        "dayIndex": 4,
+        "label": "Run / Walk 2",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Slightly Longer Blocks",
+          "estimatedMinutes": 34,
+          "exercises": [
+            { "exerciseId": "incline_walk", "targetSets": 4, "targetReps": "3 min steady", "restSeconds": 60, "notes": "Walk tall and keep steps relaxed." },
+            { "exerciseId": "treadmill_run", "targetSets": 5, "targetReps": "90 sec easy", "restSeconds": 90, "notes": "Stop each interval while form still feels good." }
+          ]
+        }
+      },
+      {
+        "dayIndex": 5,
+        "label": "Bike Option",
+        "type": "workout",
+        "workoutTemplate": {
+          "name": "Bike Flush",
+          "estimatedMinutes": 28,
+          "exercises": [
+            { "exerciseId": "stationary_bike", "targetSets": 1, "targetReps": "20-25 min easy", "restSeconds": 0, "notes": "Keep the effort conversational." },
+            { "exerciseId": "childs_pose", "targetSets": 2, "targetReps": "30 sec", "restSeconds": 20, "notes": "Breathe slowly." }
+          ]
+        }
+      },
+      { "dayIndex": 6, "label": "Day 6", "type": "mobility", "notes": "Optional World's Greatest Stretch." },
+      { "dayIndex": 7, "label": "Day 7", "type": "rest", "notes": "Rest and repeat." }
+    ]
+  }
+]

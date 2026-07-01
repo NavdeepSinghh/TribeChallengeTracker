@@ -263,6 +263,36 @@ service cloud.firestore {
         && (isAdmin() || resource.data.ownerUid == request.auth.uid);
     }
 
+    // Official training plans are admin-authored templates for Phase 2. Client
+    // apps can read published public plans only; enrollment/customization ships
+    // in a later checkpoint under user-owned documents.
+    match /trainingPlans/{planId} {
+      allow read: if request.auth != null
+        && (
+          isAdmin()
+          || (
+            resource.data.status == "published"
+            && resource.data.visibility == "public"
+          )
+        );
+      allow create, update: if request.auth != null
+        && isAdmin()
+        && request.resource.data.id == planId
+        && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+        && ["official", "community", "coach"].hasAny([request.resource.data.source])
+        && ["public", "tribe", "private"].hasAny([request.resource.data.visibility])
+        && ["strength", "endurance", "mobility", "general"].hasAny([request.resource.data.goal])
+        && ["beginner", "intermediate", "advanced"].hasAny([request.resource.data.level])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.schedule is list
+        && request.resource.data.frequencyDaysPerWeek is int
+        && request.resource.data.frequencyDaysPerWeek >= 1
+        && request.resource.data.frequencyDaysPerWeek <= 7;
+      allow delete: if request.auth != null && isAdmin();
+    }
+
     // Completed workout shares are sanitized mirrors of private training
     // sessions. They enforce public/tribe visibility and bidirectional blocks
     // at the rules layer so direct Firestore reads cannot bypass blocking.
