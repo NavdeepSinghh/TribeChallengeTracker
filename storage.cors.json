@@ -1,0 +1,15 @@
+[
+  {
+    "origin": [
+      "https://tribechallengetracker.web.app",
+      "https://tribechallengetracker.firebaseapp.com",
+      "https://risewiththetribe.app",
+      "https://www.risewiththetribe.app",
+      "http://localhost:3000",
+      "http://127.0.0.1:3000"
+    ],
+    "method": ["GET"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]

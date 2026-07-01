@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TribeLog Workouts Milestone 3 State Preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background: #080808;
+      color: #ffffff;
+      font-family: "Space Grotesk", Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 18px;
+    }
+    main { margin: 0 auto; max-width: 430px; }
+    .eyebrow {
+      color: #ffb199;
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      margin: 0 0 8px;
+    }
+    h1 {
+      color: #ffffff;
+      font-family: "Syne", Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      margin: 0 0 10px;
+    }
+    .shell {
+      background: #040404;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(255,107,53,.28), rgba(255,215,0,.08) 52%, rgba(255,255,255,.03));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: 18px;
+    }
+    .hero p { color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.45; margin: 0 0 16px; }
+    .actions { display: flex; gap: 10px; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      cursor: default;
+      font-family: "Syne", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      min-height: 40px;
+      padding: 0 16px;
+    }
+    .primary { background: linear-gradient(135deg, #ff6b35, #ffd700); color: #040404; }
+    .secondary { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); color: #fff; }
+    .body { padding: 16px; }
+    input, select {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 44px;
+      padding: 0 14px;
+      width: 100%;
+    }
+    .filters { display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 12px 0 16px; }
+    .label { color: rgba(255,255,255,.52); font-family: monospace; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; margin: 0 0 6px; }
+    .row { display: grid; gap: 10px; }
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .selected { background: linear-gradient(135deg, rgba(255,107,53,.20), rgba(255,215,0,.08)); border-color: rgba(255,107,53,.56); }
+    .exercise { align-items: center; display: flex; gap: 12px; }
+    .avatar {
+      align-items: center;
+      background: rgba(255,107,53,.14);
+      border: 1px solid rgba(255,107,53,.24);
+      border-radius: 12px;
+      color: #ff6b35;
+      display: flex;
+      font-family: "Syne", Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      height: 48px;
+      justify-content: center;
+      width: 48px;
+    }
+    h2 { font-family: "Syne", Arial, sans-serif; font-size: 15px; font-weight: 900; margin: 0 0 4px; }
+    .muted { color: rgba(255,255,255,.62); font-size: 12px; font-weight: 700; margin: 0; }
+    .detail {
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      margin-top: 14px;
+      padding: 16px;
+    }
+    .motion {
+      background: radial-gradient(circle at 50% 25%, rgba(255,107,53,.18), rgba(255,255,255,.04) 56%, rgba(0,0,0,.22));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      height: 210px;
+      margin-top: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .person { animation: pulse 1.8s ease-in-out infinite; height: 150px; left: 50%; position: absolute; top: 52%; transform: translate(-50%, -50%); width: 112px; }
+    .person span { display: block; position: absolute; }
+    .head { background: #f4c8b5; border-radius: 999px; height: 30px; left: 41px; top: 0; width: 30px; }
+    .torso { background: #ff6b35; border-radius: 20px; height: 66px; left: 34px; top: 34px; width: 44px; }
+    .limb { background: #f4c8b5; border-radius: 999px; }
+    .arm { height: 64px; top: 42px; width: 13px; }
+    .arm.left { left: 18px; transform: rotate(20deg); }
+    .arm.right { right: 18px; transform: rotate(-20deg); }
+    .leg { height: 70px; top: 92px; width: 15px; }
+    .leg.left { left: 33px; transform: rotate(28deg); transform-origin: top center; }
+    .leg.right { right: 33px; transform: rotate(-28deg); transform-origin: top center; }
+    .asset { bottom: 12px; color: #34d399; font-family: monospace; font-size: 10px; font-weight: 800; left: 14px; letter-spacing: 1px; position: absolute; }
+    .empty, .error {
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .empty { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
+    .error { background: rgba(255,107,53,.08); border: 1px solid rgba(255,107,53,.28); }
+    .skeleton {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      height: 88px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .skeleton::before {
+      animation: shimmer 1.2s ease-in-out infinite;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      content: "";
+      height: 100%;
+      position: absolute;
+      width: 45%;
+    }
+    @keyframes shimmer { from { transform: translateX(-120%); } to { transform: translateX(260%); } }
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+      50% { transform: translate(-50%, -50%) translateY(18px) rotate(-5deg); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">MILESTONE 3 WEB</p>
+    <h1 id="title">Workouts</h1>
+    <section class="shell">
+      <div class="hero">
+        <p class="eyebrow">BACKEND LIBRARY</p>
+        <h1>Exercise Library</h1>
+        <p>Browse official exercises, inspect target muscles, and keep Quick Log one tap away.</p>
+        <div class="actions">
+          <button class="primary">Quick Log</button>
+          <button class="secondary">Refresh</button>
+        </div>
+      </div>
+      <div class="body">
+        <p class="label">SEARCH</p>
+        <input value="goblet" readonly />
+        <div class="filters">
+          <div><p class="label">MUSCLE</p><select><option>All</option></select></div>
+          <div><p class="label">EQUIPMENT</p><select><option>All</option></select></div>
+          <div><p class="label">LEVEL</p><select><option>All</option></select></div>
+        </div>
+        <div id="state"></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const state = new URLSearchParams(location.search).get("state") || "loaded";
+    const target = document.getElementById("state");
+    document.getElementById("title").textContent = `Workouts · ${state}`;
+    if (state === "loading") {
+      target.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+    } else if (state === "empty") {
+      target.innerHTML = '<div class="empty"><h1>No exercises found</h1><p class="muted">Adjust the filters or keep the fast logger moving while the official catalog is seeded.</p></div>';
+    } else if (state === "error") {
+      target.innerHTML = '<div class="error"><h1>Catalog unavailable</h1><p class="muted">Permission denied</p><br><button class="primary">Retry</button></div>';
+    } else {
+      target.innerHTML = `
+        <div class="row">
+          <div class="card selected"><div class="exercise"><div class="avatar">G</div><div><h2>Goblet Squat</h2><p class="muted">Beginner · Squat</p></div></div></div>
+          <div class="card"><div class="exercise"><div class="avatar">P</div><div><h2>Push-Up</h2><p class="muted">Beginner · Push</p></div></div></div>
+          <div class="card"><div class="exercise"><div class="avatar">P</div><div><h2>Plank</h2><p class="muted">Beginner · Core</p></div></div></div>
+        </div>
+        <div class="detail">
+          <p class="eyebrow">EXERCISE DETAIL</p>
+          <h1>Goblet Squat</h1>
+          <p class="muted">Beginner · Dumbbell, Kettlebell</p>
+          <div class="motion">
+            <div class="person">
+              <span class="head"></span><span class="torso"></span>
+              <span class="limb arm left"></span><span class="limb arm right"></span>
+              <span class="limb leg left"></span><span class="limb leg right"></span>
+            </div>
+            <span class="asset">LOTTIE READY · 120 FRAMES</span>
+          </div>
+        </div>`;
+    }
+  </script>
+</body>
+</html>

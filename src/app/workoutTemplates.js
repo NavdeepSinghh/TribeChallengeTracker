@@ -6,6 +6,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Back, biceps, rear delts",
     minutes: 60,
     summary: "Back width, mid-back thickness, rear delts, and biceps in one editable pull session.",
+    imageUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 42%",
     guidance: [
       "Perform this routine 1-2 times a week, resting 60-120 seconds between sets based on exercise intensity.",
       "Warm up with dynamic shoulder prep like Y-T-W holds or arm circles.",
@@ -28,6 +30,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Chest, shoulders, triceps",
     minutes: 55,
     summary: "Pressing strength plus shoulder and triceps finishers.",
+    imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 45%",
     guidance: [
       "Do presses first while fresh, then finish with isolation work.",
       "Keep reps clean and stop a set before form breaks.",
@@ -47,6 +51,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Quads, glutes, hamstrings, calves",
     minutes: 60,
     summary: "Squat or press, hinge, extensions, curls, calves.",
+    imageUrl: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 42%",
     guidance: [
       "Leg press foot placement: lower/narrow biases quads, higher/wider biases glutes and hamstrings, middle is balanced.",
       "Use controlled depth, keep knees tracking with toes, and do not lock knees hard at the top.",
@@ -66,6 +72,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Chest and pressing volume",
     minutes: 45,
     summary: "Flat press, incline press, fly, and push-up finisher.",
+    imageUrl: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 40%",
     guidance: [
       "Use one primary press, one angled press, then one stretch-focused movement.",
       "Keep shoulders packed and avoid turning every set into a max attempt.",
@@ -84,6 +92,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Lats, mid-back, rear delts",
     minutes: 50,
     summary: "Vertical pull, horizontal row, single-arm row, rear delts.",
+    imageUrl: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 48%",
     guidance: [
       "Mix vertical and horizontal pulling for a more complete back session.",
       "Think elbows first and keep the neck relaxed.",
@@ -102,6 +112,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Biceps and triceps",
     minutes: 40,
     summary: "Simple arm volume with curls and extensions.",
+    imageUrl: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 44%",
     guidance: [
       "Pair biceps and triceps to keep the session moving.",
       "Use strict reps; arm days are easy to cheat when tired.",
@@ -121,6 +133,8 @@ export const WORKOUT_TEMPLATES = [
     focus: "Squat, pull, press, hinge, core",
     minutes: 55,
     summary: "Balanced session when you want one efficient workout.",
+    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1000&q=82",
+    imagePosition: "center 45%",
     guidance: [
       "Keep the main lifts moderate so the whole body gets quality work.",
       "This is a strong default when you missed a split day.",

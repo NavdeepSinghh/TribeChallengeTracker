@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TribeLog iOS Workouts State Preview</title>
+  <style>
+    :root {
+      --brand: #ff6b35;
+      --gold: #ffd700;
+      --green: #34d399;
+      --bg: #080808;
+      --panel: #141414;
+      --panel-strong: #1a1a1a;
+      --border: #2a2a2a;
+      --muted: #8a8a8a;
+      --text: #ffffff;
+      --subtext: #d4d4d4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 390px; min-height: 844px; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Space Grotesk", sans-serif; }
+    body { padding: 52px 16px 22px; overflow: hidden; }
+    .nav-title { font-size: 34px; line-height: 1; font-weight: 900; letter-spacing: 0; margin: 4px 0 16px; }
+    .stack { display: flex; flex-direction: column; gap: 20px; }
+    .hero, .card { border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: var(--panel); padding: 18px; overflow: hidden; }
+    .hero { background: linear-gradient(135deg, rgba(255,107,53,.16), rgba(52,211,153,.1), #141414); border-color: rgba(255,107,53,.22); }
+    .row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+    .eyebrow { font: 900 11px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+    h1, h2, h3 { font-family: -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: 0; margin: 0; }
+    h1 { font-size: 31px; line-height: 1.04; font-weight: 950; margin: 6px 0; }
+    h2 { font-size: 25px; line-height: 1.08; font-weight: 950; margin: 6px 0; }
+    h3 { font-size: 16px; line-height: 1.1; font-weight: 950; }
+    p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.35; font-weight: 650; }
+    .emoji { font-size: 26px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: 14px; }
+    .metric { background: var(--panel-strong); border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+    .metric strong { display: block; font-size: 15px; font-weight: 950; }
+    .metric span { color: var(--muted); font: 900 8px/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .search { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; padding: 12px; background: var(--panel-strong); border: 1px solid var(--border); border-radius: 14px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .filter-row { margin-top: 8px; }
+    .chips { display: flex; gap: 7px; overflow: hidden; margin-top: 6px; }
+    .chip { white-space: nowrap; border-radius: 999px; border: 1px solid var(--border); padding: 7px 10px; background: var(--panel-strong); color: var(--text); font: 900 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; }
+    .chip.active { background: linear-gradient(90deg, var(--brand), var(--gold)); color: #000; border-color: transparent; }
+    .moves { display: flex; justify-content: space-between; align-items: center; margin: 12px 0 8px; }
+    .count { color: var(--green); font: 900 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .exercise { display: flex; gap: 12px; align-items: center; padding: 12px; background: var(--panel-strong); border: 1px solid var(--border); border-radius: 16px; margin-top: 9px; }
+    .icon { width: 44px; height: 44px; border-radius: 999px; background: rgba(255,107,53,.16); display: grid; place-items: center; color: var(--brand); font-weight: 900; }
+    .meta { flex: 1; min-width: 0; }
+    .meta p { font-size: 12px; margin-top: 4px; }
+    .tags { display: flex; gap: 5px; margin-top: 6px; }
+    .tag { border-radius: 5px; padding: 3px 6px; background: rgba(255,107,53,.12); border: 1px solid rgba(255,107,53,.3); color: var(--brand); font: 900 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; }
+    .tag.green { background: rgba(52,211,153,.12); border-color: rgba(52,211,153,.3); color: var(--green); }
+    .skeleton { height: 84px; border-radius: 16px; background: linear-gradient(90deg, #141414, #202020, #141414); border: 1px solid var(--border); margin-top: 10px; }
+    .empty, .error { padding: 14px; background: var(--panel-strong); border: 1px solid var(--border); border-radius: 14px; margin-top: 12px; }
+    .action { color: var(--brand); font-weight: 900; margin-top: 8px; font-size: 12px; }
+    .bottom-nav { position: fixed; left: 22px; right: 22px; bottom: 12px; height: 68px; border-radius: 24px; background: rgba(20,20,20,.94); border: 1px solid #2a2a2a; display: grid; grid-template-columns: repeat(4,1fr); align-items: center; text-align: center; color: var(--muted); font-size: 10px; font-weight: 800; }
+    .bottom-nav .active { color: var(--brand); }
+  </style>
+</head>
+<body>
+  <div class="nav-title">Workouts 💪</div>
+  <div class="stack">
+    <section class="hero">
+      <div class="row">
+        <div>
+          <div class="eyebrow">Workouts</div>
+          <h1>Train with a plan.</h1>
+          <p>Choose a template, start the session, then log the finished workout in one focused flow.</p>
+        </div>
+        <div class="emoji">💪</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><strong style="color:var(--green)">2</strong><span>THIS WEEK</span></div>
+        <div class="metric"><strong style="color:var(--gold)">18</strong><span>TOTAL</span></div>
+        <div class="metric"><strong>HISTORY</strong><span>CHARTS</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <div>
+          <div class="eyebrow">Exercise Library</div>
+          <h2>Backend-driven moves.</h2>
+          <p>Search official exercises, check target muscles, and review form cues before logging a workout.</p>
+        </div>
+        <div class="emoji">⚡</div>
+      </div>
+      <div class="search">⌕ Search exercise, muscle, equipment</div>
+      <div class="filter-row"><div class="eyebrow">Muscle</div><div class="chips"><span class="chip active">All</span><span class="chip">Chest</span><span class="chip">Quads</span><span class="chip">Core</span></div></div>
+      <div class="filter-row"><div class="eyebrow">Equipment</div><div class="chips"><span class="chip active">All</span><span class="chip">Bodyweight</span><span class="chip">Dumbbell</span></div></div>
+      <div class="filter-row"><div class="eyebrow">Level</div><div class="chips"><span class="chip active">All</span><span class="chip">Beginner</span></div></div>
+      <div id="state"></div>
+    </section>
+  </div>
+  <nav class="bottom-nav"><div>Home</div><div>Challenges</div><div class="active">Workouts</div><div>Profile</div></nav>
+  <script>
+    const state = new URLSearchParams(location.search).get("state") || "loaded";
+    const root = document.getElementById("state");
+    const exercises = [
+      ["Goblet Squat", "Quads, Glutes", "Beginner", "Dumbbell", "figure"],
+      ["Push-Up", "Chest", "Beginner", "Bodyweight", "arrow.up.heart"],
+      ["Plank", "Core", "Beginner", "Bodyweight", "figure.core"]
+    ];
+    if (state === "loading") {
+      root.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+    } else if (state === "empty") {
+      root.innerHTML = '<div class="empty"><h3>No exercises match those filters.</h3><p style="margin-top:6px">Clear filters or try a broader search.</p><div class="action">Clear filters</div></div>';
+    } else if (state === "error") {
+      root.innerHTML = '<div class="error"><h3>Workout library unavailable.</h3><p style="margin-top:6px">Workout library could not load.</p><div class="action">Try again</div></div>';
+    } else {
+      root.innerHTML = '<div class="moves"><span class="count">3 MOVES</span></div>' + exercises.map(([name, muscles, level, equipment]) => `
+        <div class="exercise"><div class="icon">⌁</div><div class="meta"><h3>${name}</h3><p>${muscles}</p><div class="tags"><span class="tag">${level}</span><span class="tag green">${equipment}</span></div></div><div style="color:var(--muted)">›</div></div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

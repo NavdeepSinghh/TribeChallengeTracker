@@ -1,0 +1,350 @@
+[
+  {
+    "id": "plank",
+    "slug": "plank",
+    "name": "Plank",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "core"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "glutes"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the plank with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/plank/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/plank/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/plank/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/plank/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:9ea747b6726a0f9c:50ba90dd76c1e245"
+    }
+  },
+  {
+    "id": "side_plank",
+    "slug": "side-plank",
+    "name": "Side Plank",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "core",
+      "shoulders"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "intermediate",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the side plank with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/side_plank/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/side_plank/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/side_plank/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/side_plank/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:e3a3a8fd05978140:72cc5fe09781429e"
+    }
+  },
+  {
+    "id": "dead_bug",
+    "slug": "dead-bug",
+    "name": "Dead Bug",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "core"
+    ],
+    "secondaryMuscles": [
+      "hip_flexors",
+      "lower_back"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the dead bug with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/dead_bug/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/dead_bug/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/dead_bug/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/dead_bug/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:4b9bfc44570835ba:4c13a1e81fcd914e"
+    }
+  },
+  {
+    "id": "bird_dog",
+    "slug": "bird-dog",
+    "name": "Bird Dog",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "core"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "lower_back",
+      "shoulders"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the bird dog with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/bird_dog/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/bird_dog/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/bird_dog/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/bird_dog/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:2dfae7d977133776:9d21877a7d61d62d"
+    }
+  },
+  {
+    "id": "bicycle_crunch",
+    "slug": "bicycle-crunch",
+    "name": "Bicycle Crunch",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "obliques",
+      "core"
+    ],
+    "secondaryMuscles": [
+      "hip_flexors"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "intermediate",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the bicycle crunch with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/bicycle_crunch/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/bicycle_crunch/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/bicycle_crunch/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/bicycle_crunch/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:7d36cb33139c5a0b:9a155356461b86ee"
+    }
+  },
+  {
+    "id": "hanging_knee_raise",
+    "slug": "hanging-knee-raise",
+    "name": "Hanging Knee Raise",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lower_abs"
+    ],
+    "secondaryMuscles": [
+      "hip_flexors",
+      "forearms"
+    ],
+    "equipment": [
+      "pull_up_bar",
+      "bodyweight"
+    ],
+    "level": "intermediate",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the hanging knee raise with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/hanging_knee_raise/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/hanging_knee_raise/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:52b3d75634f8c48e:3a5addc5cdf323ea"
+    }
+  },
+  {
+    "id": "russian_twist",
+    "slug": "russian-twist",
+    "name": "Russian Twist",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "core",
+      "hip_flexors"
+    ],
+    "equipment": [
+      "bodyweight",
+      "medicine_ball"
+    ],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the russian twist with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/russian_twist/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/russian_twist/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/russian_twist/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/russian_twist/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:543bace7d7f30463:136df1877f0af62b"
+    }
+  },
+  {
+    "id": "mountain_climber",
+    "slug": "mountain-climber",
+    "name": "Mountain Climber",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "core",
+      "hip_flexors"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "quads"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set up for the mountain climber with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/mountain_climber/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/mountain_climber/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/mountain_climber/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/mountain_climber/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:e400d32eb99df378:2916274ac4dfbfec"
+    }
+  }
+]

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TribeLog Android Workouts States</title>
+  <style>
+    :root {
+      --brand: #ff6b35;
+      --gold: #ffd700;
+      --bg: #040404;
+      --card: #151515;
+      --line: rgba(255,255,255,.1);
+      --muted: rgba(255,255,255,.62);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #202020;
+      color: white;
+      font-family: Inter, Arial, sans-serif;
+      display: grid;
+      grid-template-columns: repeat(4, 360px);
+      gap: 24px;
+      padding: 24px;
+    }
+    .phone {
+      width: 360px;
+      height: 780px;
+      background: var(--bg);
+      border: 10px solid #111;
+      border-radius: 42px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+    }
+    .screen {
+      height: 100%;
+      overflow: hidden;
+      padding: 34px 18px 18px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+    .sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stats {
+      margin-top: 16px;
+      background: #171717;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+    }
+    .stats-title, .eyebrow {
+      color: #8f8f8f;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .stat {
+      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .stat strong { display:block; font-size: 18px; margin-top: 6px; }
+    .library {
+      margin-top: 14px;
+      padding: 17px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), #151515);
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .head-main { flex: 1; }
+    .head h2 {
+      margin: 5px 0 2px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+    .bubble {
+      width: 38px;
+      height: 38px;
+      border-radius: 99px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,107,53,.16);
+    }
+    .search {
+      margin-top: 14px;
+      height: 48px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.045);
+      color: rgba(255,255,255,.48);
+      padding: 15px;
+      font-size: 13px;
+    }
+    .chips {
+      display: flex;
+      gap: 8px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .chip {
+      white-space: nowrap;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .chip.sel {
+      color: var(--brand);
+      background: rgba(255,107,53,.18);
+      border-color: rgba(255,107,53,.72);
+    }
+    .filter-label {
+      margin-top: 11px;
+      color: #8f8f8f;
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .list {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+    .list > .row:nth-child(n+2),
+    .list > .skeleton:nth-child(n+3) {
+      display: none;
+    }
+    .row, .skeleton {
+      min-height: 74px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.055);
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: rgba(255,107,53,.16);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      flex: none;
+    }
+    .row-title {
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .row-meta {
+      margin-top: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,.54);
+    }
+    .target {
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 900;
+      width: 82px;
+      text-align: right;
+    }
+    .line1, .line2 {
+      height: 12px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.08);
+    }
+    .line1 { width: 150px; }
+    .line2 { width: 92px; height: 9px; margin-top: 9px; background: rgba(255,255,255,.06); }
+    .panel {
+      margin-top: 14px;
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255,255,255,.045);
+    }
+    .panel.error {
+      background: #2a130d;
+      border: 1px solid rgba(255,107,53,.36);
+    }
+    .panel h3 {
+      margin: 0 0 5px;
+      font-size: 15px;
+    }
+    .panel p {
+      margin: 0 0 12px;
+      color: rgba(255,255,255,.58);
+      font-size: 12px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #000;
+      background: var(--brand);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .nav {
+      position: absolute;
+      bottom: 18px;
+      left: 20px;
+      right: 20px;
+      height: 62px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: rgba(255,255,255,.6);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .phone { position: relative; }
+    .nav .active { color: white; background: rgba(255,255,255,.13); padding: 10px 16px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <main class="phone" data-state="loading">
+    <section class="screen">
+      <h1>Workouts</h1>
+      <div class="sub">Training, progress, and challenge rankings</div>
+      <div class="stats">
+        <div class="stats-title">PERSONAL STATS</div>
+        <div class="stat-grid">
+          <div class="stat">ACTIVITY PTS<strong>240</strong></div>
+          <div class="stat">STREAK<strong>5🔥</strong></div>
+        </div>
+      </div>
+      <div class="library">
+        <div class="head"><div class="head-main"><div class="eyebrow">EXERCISE LIBRARY</div><h2>Backend-driven workouts</h2><div class="sub">Search official moves, muscle targets, and form cues.</div></div><div class="bubble">💪</div></div>
+        <div class="search">Search exercises</div>
+        <div class="filter-label">MUSCLE</div><div class="chips"><span class="chip sel">All</span><span class="chip">Chest</span><span class="chip">Quads</span></div>
+        <div class="list"><div class="skeleton"><div class="icon"></div><div><div class="line1"></div><div class="line2"></div></div></div><div class="skeleton"><div class="icon"></div><div><div class="line1"></div><div class="line2"></div></div></div><div class="skeleton"><div class="icon"></div><div><div class="line1"></div><div class="line2"></div></div></div></div>
+      </div>
+      <div class="nav"><span>Home</span><span>Challenges</span><span class="active">💪 Workouts</span><span>Profile</span></div>
+    </section>
+  </main>
+
+  <main class="phone" data-state="loaded">
+    <section class="screen">
+      <h1>Workouts</h1>
+      <div class="sub">Training, progress, and challenge rankings</div>
+      <div class="stats"><div class="stats-title">PERSONAL STATS</div><div class="stat-grid"><div class="stat">ACTIVITY PTS<strong>240</strong></div><div class="stat">STREAK<strong>5🔥</strong></div></div></div>
+      <div class="library">
+        <div class="head"><div class="head-main"><div class="eyebrow">EXERCISE LIBRARY</div><h2>Backend-driven workouts</h2><div class="sub">Search official moves, muscle targets, and form cues.</div></div><div class="bubble">💪</div></div>
+        <div class="search">Search exercises</div>
+        <div class="filter-label">MUSCLE</div><div class="chips"><span class="chip sel">All</span><span class="chip">Chest</span><span class="chip">Core</span></div>
+        <div class="filter-label">EQUIPMENT</div><div class="chips"><span class="chip sel">All</span><span class="chip">Dumbbell</span><span class="chip">Bodyweight</span></div>
+        <div class="list">
+          <div class="row"><div class="icon">🏋️</div><div style="flex:1"><div class="row-title">Goblet Squat</div><div class="row-meta">Beginner • Dumbbell</div></div><div class="target">Quads</div></div>
+          <div class="row"><div class="icon">🔥</div><div style="flex:1"><div class="row-title">Push-Up</div><div class="row-meta">Beginner • Bodyweight</div></div><div class="target">Chest</div></div>
+          <div class="row"><div class="icon">◉</div><div style="flex:1"><div class="row-title">Plank</div><div class="row-meta">Beginner • Bodyweight</div></div><div class="target">Core</div></div>
+        </div>
+      </div>
+      <div class="nav"><span>Home</span><span>Challenges</span><span class="active">💪 Workouts</span><span>Profile</span></div>
+    </section>
+  </main>
+
+  <main class="phone" data-state="empty">
+    <section class="screen">
+      <h1>Workouts</h1>
+      <div class="sub">Training, progress, and challenge rankings</div>
+      <div class="stats"><div class="stats-title">PERSONAL STATS</div><div class="stat-grid"><div class="stat">ACTIVITY PTS<strong>240</strong></div><div class="stat">STREAK<strong>5🔥</strong></div></div></div>
+      <div class="library">
+        <div class="head"><div class="head-main"><div class="eyebrow">EXERCISE LIBRARY</div><h2>Backend-driven workouts</h2><div class="sub">Search official moves, muscle targets, and form cues.</div></div><div class="bubble">💪</div></div>
+        <div class="search">rear delt kettlebell</div>
+        <div class="filter-label">MUSCLE</div><div class="chips"><span class="chip">All</span><span class="chip sel">Chest</span></div>
+        <div class="panel"><h3>No exercises found</h3><p>Clear filters or try another muscle group.</p><span class="btn">Clear filters</span></div>
+      </div>
+      <div class="nav"><span>Home</span><span>Challenges</span><span class="active">💪 Workouts</span><span>Profile</span></div>
+    </section>
+  </main>
+
+  <main class="phone" data-state="error">
+    <section class="screen">
+      <h1>Workouts</h1>
+      <div class="sub">Training, progress, and challenge rankings</div>
+      <div class="stats"><div class="stats-title">PERSONAL STATS</div><div class="stat-grid"><div class="stat">ACTIVITY PTS<strong>240</strong></div><div class="stat">STREAK<strong>5🔥</strong></div></div></div>
+      <div class="library">
+        <div class="head"><div class="head-main"><div class="eyebrow">EXERCISE LIBRARY</div><h2>Backend-driven workouts</h2><div class="sub">Search official moves, muscle targets, and form cues.</div></div><div class="bubble">💪</div></div>
+        <div class="search">Search exercises</div>
+        <div class="panel error"><h3 style="color:var(--brand)">Workout library unavailable</h3><p>Sign in to load the workout library.</p><span class="btn">Retry</span></div>
+      </div>
+      <div class="nav"><span>Home</span><span>Challenges</span><span class="active">💪 Workouts</span><span>Profile</span></div>
+    </section>
+  </main>
+</body>
+</html>

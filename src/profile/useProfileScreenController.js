@@ -11,6 +11,7 @@ export default function useProfileScreenController({
   onProfileUpdated,
   onHistoryUpdated,
   onClose,
+  onOpenBadges,
 }) {
   const screenState = useProfileScreenState(user);
   const computedData = useProfileComputedData({
@@ -35,6 +36,7 @@ export default function useProfileScreenController({
     ...computedData,
     ...profileActions,
     onClose,
+    onOpenBadges,
     user,
   };
 }

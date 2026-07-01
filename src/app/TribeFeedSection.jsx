@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
-import { listenRecentTribeFeed } from "../userServices/tribeFeedService";
+import { auth } from "../firebase";
+import { FEATURE_FLAGS, isFollowFeatureEnabledForUser } from "../featureFlags";
+import {
+  fetchPublicProfilesByUid,
+  followUser,
+  getFollowStatus,
+  unfollowUser,
+} from "../userServices/followService";
+import { listenRecentTribeFeed, setTribeFeedReaction, TRIBE_FEED_REACTIONS } from "../userServices/tribeFeedService";
 import { useAppTheme } from "./AppThemeContext";
+import PublicProfileSheet from "./PublicProfileSheet";
 
 const TODAY_TRIBE_FEED_LIMIT = 5;
 const TODAY_TRIBE_PULSE_LIMIT = 50;
+const TRENDING_REACTION_THRESHOLD = 2;
 
 function isLoggedToday(entry) {
-  const value = entry?.loggedAt?.toDate?.() || entry?.loggedAt;
-  const date = value instanceof Date ? value : value ? new Date(value) : null;
+  const date = feedDate(entry?.loggedAt);
   if (!date || Number.isNaN(date.getTime())) return false;
   return date.toDateString() === new Date().toDateString();
+}
+
+function feedDate(value) {
+  const raw = value?.toDate?.() || value;
+  const date = raw instanceof Date ? raw : raw ? new Date(raw) : new Date(0);
+  return Number.isNaN(date.getTime()) ? new Date(0) : date;
 }
 
 export default function TribeFeedSection({ onLogActivity }) {
@@ -17,12 +32,18 @@ export default function TribeFeedSection({ onLogActivity }) {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
+  const [publicProfilesByUid, setPublicProfilesByUid] = useState({});
+  const [followingIds, setFollowingIds] = useState(new Set());
+  const [selectedProfile, setSelectedProfile] = useState(null);
   const todayEntries = entries.filter(isLoggedToday);
   const visibleEntries = todayEntries.length ? todayEntries : entries;
   const isShowingRecentFallback = !todayEntries.length && entries.length > 0;
   const previewEntries = visibleEntries.slice(0, TODAY_TRIBE_FEED_LIMIT);
   const pulse = buildTribePulse(visibleEntries);
   const pulseTitle = isShowingRecentFallback ? "RECENT TRIBE PULSE" : "TODAY'S TRIBE PULSE";
+  const currentUid = auth.currentUser?.uid || "";
+  const trendingEntry = topTrendingTribeFeedEntry(todayEntries);
+  const followFeatureEnabled = isFollowFeatureEnabledForUser(auth.currentUser || currentUid);
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,6 +53,87 @@ export default function TribeFeedSection({ onLogActivity }) {
     }, TODAY_TRIBE_PULSE_LIMIT);
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadPublicProfiles() {
+      if (!followFeatureEnabled || !currentUid || !entries.length) {
+        setPublicProfilesByUid({});
+        setFollowingIds(new Set());
+        return;
+      }
+
+      const feedUids = Array.from(new Set(
+        entries
+          .map(entry => entry.uid)
+          .filter(uid => uid && uid !== currentUid)
+      )).slice(0, 40);
+
+      if (!feedUids.length) {
+        setPublicProfilesByUid({});
+        setFollowingIds(new Set());
+        return;
+      }
+
+      try {
+        const profiles = await fetchPublicProfilesByUid(currentUid, feedUids);
+        const statuses = await Promise.all(profiles.map(profile => getFollowStatus(currentUid, profile.uid)));
+        if (cancelled) return;
+
+        setPublicProfilesByUid(Object.fromEntries(profiles.map(profile => [profile.uid, profile])));
+        setFollowingIds(new Set(profiles.filter((_, index) => statuses[index] === "following").map(profile => profile.uid)));
+      } catch (error) {
+        if (!cancelled) {
+          setPublicProfilesByUid({});
+          setFollowingIds(new Set());
+        }
+      }
+    }
+
+    loadPublicProfiles();
+    return () => { cancelled = true; };
+  }, [currentUid, entries, followFeatureEnabled]);
+
+  const openSheet = () => {
+    window.navigator?.vibrate?.(12);
+    setShowSheet(true);
+  };
+
+  const handleReaction = async (entry, reaction) => {
+    const uid = auth.currentUser?.uid;
+    if (!uid) return;
+    window.navigator?.vibrate?.(10);
+    await setTribeFeedReaction(entry, uid, reaction);
+  };
+
+  const handleToggleFollow = async (profile) => {
+    if (!currentUid || !profile?.uid || profile.uid === currentUid) return;
+    const wasFollowing = followingIds.has(profile.uid);
+    setFollowingIds(previous => {
+      const next = new Set(previous);
+      if (wasFollowing) next.delete(profile.uid);
+      else next.add(profile.uid);
+      return next;
+    });
+
+    try {
+      if (wasFollowing) await unfollowUser(currentUid, profile.uid);
+      else await followUser(currentUid, profile);
+    } catch (error) {
+      setFollowingIds(previous => {
+        const next = new Set(previous);
+        if (wasFollowing) next.add(profile.uid);
+        else next.delete(profile.uid);
+        return next;
+      });
+    }
+  };
+
+  const openPublicProfile = (profile) => {
+    setShowSheet(false);
+    setSelectedProfile(profile);
+  };
 
   return (
     <>
@@ -166,10 +268,15 @@ export default function TribeFeedSection({ onLogActivity }) {
         }
       `}</style>
       <div style={{ padding: "0 20px 24px" }}>
-        <button
-          onClick={() => {
-            window.navigator?.vibrate?.(12);
-            setShowSheet(true);
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={openSheet}
+          onKeyDown={event => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openSheet();
+            }
           }}
           style={{
             width: "100%",
@@ -199,6 +306,10 @@ export default function TribeFeedSection({ onLogActivity }) {
 
           <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} title={pulseTitle} />
 
+          {trendingEntry && (
+            <TribeTrendingActivityBanner entry={trendingEntry} theme={theme} />
+          )}
+
           <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
             {isLoading ? (
               <>
@@ -208,7 +319,19 @@ export default function TribeFeedSection({ onLogActivity }) {
               </>
             ) : previewEntries.length ? (
               previewEntries.map((entry, index) => (
-                <TribeFeedCard key={entry.id} entry={entry} index={index} isLatest={index === 0} />
+                <TribeFeedCard
+                  key={entry.id}
+                  entry={entry}
+                  index={index}
+                  isLatest={index === 0}
+                  currentUid={currentUid}
+                  followProfile={followFeatureEnabled ? publicProfilesByUid[entry.uid] : null}
+                  isFollowing={followingIds.has(entry.uid)}
+                  isTrending={trendingEntry?.id === entry.id}
+                  onReact={handleReaction}
+                  onToggleFollow={handleToggleFollow}
+                  onViewProfile={openPublicProfile}
+                />
               ))
             ) : (
               <div>
@@ -221,7 +344,7 @@ export default function TribeFeedSection({ onLogActivity }) {
               </div>
             )}
           </div>
-        </button>
+        </div>
       </div>
 
       {showSheet && (
@@ -280,6 +403,10 @@ export default function TribeFeedSection({ onLogActivity }) {
             <div style={{ display: "grid", gap: 8 }}>
               <TribePulseSummary pulse={pulse} theme={theme} isLoading={isLoading} isExpanded title={pulseTitle} />
 
+              {!isShowingRecentFallback && trendingEntry && (
+                <TribeTrendingActivityBanner entry={trendingEntry} theme={theme} isExpanded />
+              )}
+
               {isLoading ? (
                 <>
                   <LoadingRow theme={theme} />
@@ -288,7 +415,20 @@ export default function TribeFeedSection({ onLogActivity }) {
                 </>
               ) : visibleEntries.length ? (
                 visibleEntries.map((entry, index) => (
-                  <TribeFeedCard key={entry.id} entry={entry} index={index} isLatest={index === 0} isExpanded />
+                  <TribeFeedCard
+                    key={entry.id}
+                    entry={entry}
+                    index={index}
+                    isLatest={index === 0}
+                    isExpanded
+                    currentUid={currentUid}
+                    followProfile={followFeatureEnabled ? publicProfilesByUid[entry.uid] : null}
+                    isFollowing={followingIds.has(entry.uid)}
+                    isTrending={trendingEntry?.id === entry.id}
+                    onReact={handleReaction}
+                    onToggleFollow={handleToggleFollow}
+                    onViewProfile={openPublicProfile}
+                  />
                 ))
               ) : (
                 <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, borderRadius: 16, padding: 14 }}>
@@ -325,6 +465,13 @@ export default function TribeFeedSection({ onLogActivity }) {
             </button>
           </div>
         </div>
+      )}
+      {selectedProfile && (
+        <PublicProfileSheet
+          currentUser={auth.currentUser}
+          onClose={() => setSelectedProfile(null)}
+          profile={selectedProfile}
+        />
       )}
     </>
   );
@@ -405,22 +552,35 @@ function TribePulseSummary({ pulse, theme, isLoading, isExpanded = false, title 
   );
 }
 
-function TribeFeedCard({ entry, index = 0, isLatest = false, isExpanded = false }) {
+function TribeFeedCard({
+  entry,
+  followProfile,
+  index = 0,
+  isLatest = false,
+  isExpanded = false,
+  currentUid = "",
+  isFollowing = false,
+  isTrending = false,
+  onReact,
+  onToggleFollow,
+  onViewProfile,
+}) {
   const { theme } = useAppTheme();
   const displayName = entry.displayName || "Tribe member";
   const value = Number(entry.value || 0);
   const valueText = Number.isInteger(value) ? String(value) : value.toFixed(1);
   const streakText = entry.currentStreak > 0 ? ` · 🔥 ${entry.currentStreak} day streak` : "";
+  const selectedReaction = entry?.reactionUsers?.[currentUid];
 
   return (
     <div className={`tribe-feed-live-card${isLatest ? " tribe-feed-live-card-latest" : ""}`} style={{
       display: "flex",
       gap: 10,
       alignItems: "flex-start",
-      background: isLatest
-        ? `linear-gradient(135deg, ${theme.cardBgStrong}, rgba(255,107,53,0.10))`
+      background: isLatest || isTrending
+        ? `linear-gradient(135deg, ${theme.cardBgStrong}, rgba(255,215,0,0.12), rgba(255,107,53,0.10))`
         : theme.cardBgStrong,
-      border: `1px solid ${isLatest ? "rgba(255,107,53,0.38)" : theme.cardBorder}`,
+      border: `1px solid ${isTrending ? "rgba(255,215,0,0.46)" : isLatest ? "rgba(255,107,53,0.38)" : theme.cardBorder}`,
       borderRadius: 14,
       padding: 10,
       animationDelay: `${Math.min(index, 4) * 65}ms`,
@@ -452,7 +612,167 @@ function TribeFeedCard({ entry, index = 0, isLatest = false, isExpanded = false 
             {entry.activityLabel} · {valueText} {entry.unit} · {entry.points || 0} pts{streakText}
           </span>
         </p>
+        {isTrending && (
+          <span style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 5,
+            marginTop: 7,
+            borderRadius: 999,
+            padding: "5px 9px",
+            background: "linear-gradient(90deg,#FFD700,#FF6B35)",
+            color: "#080808",
+            fontSize: 10,
+            fontFamily: "monospace",
+            fontWeight: 950,
+          }}>
+            🔥 Trending today
+          </span>
+        )}
+        {FEATURE_FLAGS.TRIBE_FEED_REACTIONS_ENABLED && (
+          <ReactionBar
+            entry={entry}
+            selectedReaction={selectedReaction}
+            onReact={reaction => onReact?.(entry, reaction)}
+            theme={theme}
+          />
+        )}
+        {followProfile && entry.uid !== currentUid && (
+          <div style={{ display: "flex", gap: 8, marginTop: 9, flexWrap: "wrap" }}>
+            <button
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                onViewProfile?.(followProfile);
+              }}
+              style={feedSocialButtonStyle(theme)}
+            >
+              View profile
+            </button>
+            <button
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                onToggleFollow?.(followProfile);
+              }}
+              style={{
+                ...feedSocialButtonStyle(theme),
+                borderColor: isFollowing ? theme.cardBorder : "transparent",
+                background: isFollowing ? theme.cardBg : "linear-gradient(135deg,#FF6B35,#FFD700)",
+                color: isFollowing ? theme.text : "#080808",
+              }}
+            >
+              {isFollowing ? "Following" : "Follow"}
+            </button>
+          </div>
+        )}
       </div>
+    </div>
+  );
+}
+
+function feedSocialButtonStyle(theme) {
+  return {
+    border: `1px solid ${theme.cardBorder}`,
+    borderRadius: 999,
+    background: theme.cardBg,
+    color: theme.text,
+    padding: "7px 10px",
+    fontSize: 10,
+    fontWeight: 950,
+    cursor: "pointer",
+  };
+}
+
+function ReactionBar({ entry, selectedReaction, onReact, theme }) {
+  const total = Number(entry.reactionTotal || 0);
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
+      {TRIBE_FEED_REACTIONS.map(reaction => {
+        const count = Number(entry?.reactionCounts?.[reaction] || 0);
+        const selected = selectedReaction === reaction;
+        return (
+          <button
+            key={reaction}
+            type="button"
+            onClick={event => {
+              event.stopPropagation();
+              onReact(reaction);
+            }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 3,
+              border: `1px solid ${selected ? "rgba(255,215,0,0.8)" : theme.cardBorder}`,
+              background: selected ? "#FFD700" : theme.cardBg,
+              color: selected ? "#080808" : theme.textSoft,
+              borderRadius: 999,
+              padding: "5px 8px",
+              fontSize: 12,
+              fontWeight: 900,
+              cursor: "pointer",
+            }}
+            aria-label={`${reaction} reaction, ${count} total`}
+          >
+            <span>{reaction}</span>
+            {count > 0 && <span style={{ fontSize: 10, fontFamily: "monospace" }}>{count}</span>}
+          </button>
+        );
+      })}
+      {total > 0 && (
+        <span style={{ color: theme.muted, fontSize: 10, fontFamily: "monospace", fontWeight: 900 }}>
+          {total}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function TribeTrendingActivityBanner({ entry, theme, isExpanded = false }) {
+  const topReactions = Object.entries(entry.reactionCounts || {})
+    .filter(([, count]) => Number(count) > 0)
+    .sort((a, b) => Number(b[1]) - Number(a[1]))
+    .slice(0, 3)
+    .map(([emoji, count]) => `${emoji} ${count}`)
+    .join(" ");
+
+  return (
+    <div style={{
+      marginTop: 12,
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      borderRadius: 16,
+      padding: isExpanded ? 12 : 10,
+      background: "linear-gradient(135deg, rgba(255,215,0,0.16), rgba(255,107,53,0.10), rgba(255,255,255,0.02))",
+      border: "1px solid rgba(255,215,0,0.28)",
+    }}>
+      <div style={{
+        width: isExpanded ? 46 : 40,
+        height: isExpanded ? 46 : 40,
+        borderRadius: "50%",
+        display: "grid",
+        placeItems: "center",
+        background: "rgba(255,215,0,0.20)",
+        fontSize: isExpanded ? 24 : 20,
+        flexShrink: 0,
+      }}>
+        {entry.activityEmoji || "🔥"}
+      </div>
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <p style={{ margin: "0 0 3px", color: "#DFAE00", fontSize: 10, fontFamily: "monospace", fontWeight: 950 }}>
+          TRENDING TODAY
+        </p>
+        <p style={{ margin: 0, color: theme.text, fontSize: isExpanded ? 14 : 12, fontWeight: 900, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {entry.displayName || "Tribe member"} sparked {entry.reactionTotal || 0} reactions
+        </p>
+        {topReactions && (
+          <p style={{ margin: "3px 0 0", color: theme.textSoft, fontSize: 10, fontFamily: "monospace", fontWeight: 800 }}>
+            {topReactions}
+          </p>
+        )}
+      </div>
+      <span style={{ color: "#FF6B35", fontWeight: 950 }}>🔥</span>
     </div>
   );
 }
@@ -493,6 +813,16 @@ function workoutMotionClass(entry) {
   if (descriptor.includes("yoga") || descriptor.includes("🧘")) return "tribe-workout-emoji-yoga";
   if (descriptor.includes("gym") || descriptor.includes("strength") || descriptor.includes("workout") || descriptor.includes("💪")) return "tribe-workout-emoji-gym";
   return "tribe-workout-emoji-default";
+}
+
+function topTrendingTribeFeedEntry(entries) {
+  return entries
+    .filter(entry => Number(entry.reactionTotal || 0) >= TRENDING_REACTION_THRESHOLD)
+    .sort((a, b) => {
+      const reactionDelta = Number(b.reactionTotal || 0) - Number(a.reactionTotal || 0);
+      if (reactionDelta !== 0) return reactionDelta;
+      return feedDate(b.loggedAt).getTime() - feedDate(a.loggedAt).getTime();
+    })[0] || null;
 }
 
 function buildTribePulse(entries) {

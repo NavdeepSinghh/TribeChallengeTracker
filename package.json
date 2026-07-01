@@ -18,7 +18,10 @@
   "devDependencies": {
     "@capacitor/android": "^6.0.0",
     "@capacitor/cli": "^6.0.0",
-    "@capacitor/ios": "^6.0.0"
+    "@capacitor/ios": "^6.0.0",
+    "@firebase/rules-unit-testing": "^5.0.1",
+    "firebase-tools": "^15.22.4",
+    "sharp": "^0.33.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -55,7 +58,8 @@
     "cap:ios": "npm run build && npx cap sync ios && node scripts/patch-native-plugins.js && npx cap open ios",
     "cap:android": "npm run build && npx cap sync android && npx cap open android",
     "test:profile-share": "react-scripts test --runTestsByPath src/__tests__/profileShareCards.test.js src/__tests__/profileShareCardSharing.test.js --watchAll=false --runInBand",
-    "test:weekly-campaign": "react-scripts test --runTestsByPath src/__tests__/weeklyCampaignDerivedData.test.js src/__tests__/weeklyCampaignMarketingProps.test.js --watchAll=false --runInBand"
+    "test:weekly-campaign": "react-scripts test --runTestsByPath src/__tests__/weeklyCampaignDerivedData.test.js src/__tests__/weeklyCampaignMarketingProps.test.js --watchAll=false --runInBand",
+    "test:workouts-rules": "JAVA_HOME=\"/Applications/Android Studio.app/Contents/jbr/Contents/Home\" firebase emulators:exec --only firestore \"react-scripts test --runTestsByPath src/__tests__/workoutsSocialRules.test.js --watchAll=false --runInBand\""
   },
   "browserslist": {
     "production": [

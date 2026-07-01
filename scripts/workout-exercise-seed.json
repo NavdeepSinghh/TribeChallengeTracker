@@ -1,0 +1,111 @@
+[
+  {
+    "id": "goblet_squat",
+    "slug": "goblet-squat",
+    "name": "Goblet Squat",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": ["quads", "glutes"],
+    "secondaryMuscles": ["hamstrings", "core"],
+    "equipment": ["dumbbell", "kettlebell"],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Hold one weight close to the chest.",
+      "Sit the hips down between the knees.",
+      "Stand tall with steady control."
+    ],
+    "formCues": [
+      "Keep the chest tall.",
+      "Track knees in line with toes.",
+      "Keep the weight close."
+    ],
+    "commonMistakes": [
+      "Letting the weight drift forward.",
+      "Rushing the bottom position.",
+      "Collapsing knees inward."
+    ],
+    "substitutions": ["bodyweight_squat", "leg_press", "back_squat"],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/goblet_squat/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/goblet_squat/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/goblet_squat/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/goblet_squat/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "poc-goblet-squat-v1"
+    }
+  },
+  {
+    "id": "push_up",
+    "slug": "push-up",
+    "name": "Push-Up",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": ["chest"],
+    "secondaryMuscles": ["triceps", "front_delts", "core"],
+    "equipment": ["bodyweight"],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Start in a strong plank position.",
+      "Lower the chest toward the floor with control.",
+      "Press back to the start position."
+    ],
+    "formCues": [
+      "Keep a straight line from shoulders to heels.",
+      "Move the elbows with control.",
+      "Press the floor away."
+    ],
+    "commonMistakes": [
+      "Dropping the hips.",
+      "Shrugging the shoulders.",
+      "Cutting the range of motion short."
+    ],
+    "substitutions": ["incline_push_up", "machine_chest_press", "dumbbell_bench_press"],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/push_up/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/push_up/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/push_up/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/push_up/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "poc-push-up-v1"
+    }
+  },
+  {
+    "id": "plank",
+    "slug": "plank",
+    "name": "Plank",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": ["core"],
+    "secondaryMuscles": ["shoulders", "glutes"],
+    "equipment": ["bodyweight"],
+    "level": "beginner",
+    "movementPattern": "core",
+    "instructions": [
+      "Set elbows under shoulders.",
+      "Extend the legs behind you.",
+      "Hold a steady line while breathing."
+    ],
+    "formCues": [
+      "Keep ribs and hips stacked.",
+      "Squeeze glutes lightly.",
+      "Breathe steadily."
+    ],
+    "commonMistakes": [
+      "Letting hips sag.",
+      "Holding the breath.",
+      "Pushing shoulders too far forward."
+    ],
+    "substitutions": ["dead_bug", "side_plank", "bird_dog"],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/plank/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/plank/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/plank/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/plank/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "poc-plank-v1"
+    }
+  }
+]
+

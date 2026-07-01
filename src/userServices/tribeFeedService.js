@@ -2,11 +2,15 @@ import {
   Timestamp,
   addDoc,
   collection,
+  deleteField,
+  doc,
+  increment,
   limit as queryLimit,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -14,6 +18,7 @@ import { getCachedRead, invalidateCachedRead, setCachedRead } from './readCache'
 
 const feedCacheKey = (scope, limitCount) => `tribeFeed:${scope}:${limitCount}`;
 const FEED_CACHE_TTL_MS = 60 * 1000;
+export const TRIBE_FEED_REACTIONS = ['🔥', '💪', '👏', '❤️'];
 
 export async function writeTribeFeedEntry({
   uid,
@@ -49,6 +54,9 @@ export async function writeTribeFeedEntry({
       challengeName: challengeName || null,
       challengeId: challengeId || null,
       currentStreak: currentStreak || 0,
+      reactionCounts: {},
+      reactionUsers: {},
+      reactionTotal: 0,
       activityLogId: activityLogId || null,
       activityDate: activityDate || null,
       loggedAt: serverTimestamp(),
@@ -56,6 +64,39 @@ export async function writeTribeFeedEntry({
     invalidateCachedRead('tribeFeed:');
   } catch (e) {
     // The feed mirrors activity logs; activity logging itself should never fail because of it.
+  }
+}
+
+export async function setTribeFeedReaction(entry, uid, reaction) {
+  if (!entry?.id || !uid || !TRIBE_FEED_REACTIONS.includes(reaction)) return false;
+  try {
+    const previousReaction = entry?.reactionUsers?.[uid];
+    const updates = {
+      lastReactionAt: serverTimestamp(),
+    };
+
+    if (previousReaction === reaction) {
+      updates[`reactionUsers.${uid}`] = deleteField();
+      updates[`reactionCounts.${reaction}`] = increment(-1);
+      updates.reactionTotal = increment(-1);
+    } else {
+      updates[`reactionUsers.${uid}`] = reaction;
+      updates[`reactionCounts.${reaction}`] = increment(1);
+      if (previousReaction) {
+        updates[`reactionCounts.${previousReaction}`] = increment(-1);
+      } else {
+        updates.reactionTotal = increment(1);
+      }
+    }
+
+    await updateDoc(doc(db, 'tribeFeed', entry.id), updates);
+    invalidateCachedRead('tribeFeed:');
+    return true;
+  } catch (e) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('Tribe feed reaction failed', e);
+    }
+    return false;
   }
 }
 

@@ -1,0 +1,435 @@
+[
+  {
+    "id": "bench_press",
+    "slug": "bench-press",
+    "name": "Bench Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "equipment": [
+      "barbell",
+      "bench"
+    ],
+    "level": "intermediate",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the bench press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/bench_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/bench_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/bench_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/bench_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:05b053176882e466:b753f2b70115412e"
+    }
+  },
+  {
+    "id": "dumbbell_bench_press",
+    "slug": "dumbbell-bench-press",
+    "name": "Dumbbell Bench Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "equipment": [
+      "dumbbell",
+      "bench"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the dumbbell bench press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/dumbbell_bench_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/dumbbell_bench_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:3b885ccad3ae2d64:47517114487709f3"
+    }
+  },
+  {
+    "id": "incline_dumbbell_press",
+    "slug": "incline-dumbbell-press",
+    "name": "Incline Dumbbell Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "upper_chest"
+    ],
+    "secondaryMuscles": [
+      "front_delts",
+      "triceps"
+    ],
+    "equipment": [
+      "dumbbell",
+      "incline_bench"
+    ],
+    "level": "intermediate",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the incline dumbbell press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/incline_dumbbell_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/incline_dumbbell_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:33aec685581c3136:9a6fb21962792a08"
+    }
+  },
+  {
+    "id": "push_up",
+    "slug": "push-up",
+    "name": "Push-Up",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "triceps",
+      "front_delts",
+      "core"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the push-up with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/push_up/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/push_up/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/push_up/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/push_up/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:7adfb6ef883ab6f8:a3ef1e70b6a8c978"
+    }
+  },
+  {
+    "id": "machine_chest_press",
+    "slug": "machine-chest-press",
+    "name": "Machine Chest Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "triceps",
+      "front_delts"
+    ],
+    "equipment": [
+      "machine"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the machine chest press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/machine_chest_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/machine_chest_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/machine_chest_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/machine_chest_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:adbd4abf78dd541e:79ae9b14bafac537"
+    }
+  },
+  {
+    "id": "dumbbell_shoulder_press",
+    "slug": "dumbbell-shoulder-press",
+    "name": "Dumbbell Shoulder Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "shoulders"
+    ],
+    "secondaryMuscles": [
+      "triceps",
+      "upper_chest"
+    ],
+    "equipment": [
+      "dumbbell"
+    ],
+    "level": "intermediate",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the dumbbell shoulder press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/dumbbell_shoulder_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/dumbbell_shoulder_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:1effd9c217993098:271b9c36591838a9"
+    }
+  },
+  {
+    "id": "lateral_raise",
+    "slug": "lateral-raise",
+    "name": "Lateral Raise",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "side_delts"
+    ],
+    "secondaryMuscles": [
+      "upper_traps"
+    ],
+    "equipment": [
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the lateral raise with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/lateral_raise/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/lateral_raise/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/lateral_raise/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/lateral_raise/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:ad364ac6ef1ef022:a1fd465a5103e4d0"
+    }
+  },
+  {
+    "id": "dumbbell_chest_fly",
+    "slug": "dumbbell-chest-fly",
+    "name": "Dumbbell Chest Fly",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "front_delts"
+    ],
+    "equipment": [
+      "dumbbell",
+      "bench"
+    ],
+    "level": "intermediate",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the dumbbell chest fly with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/dumbbell_chest_fly/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/dumbbell_chest_fly/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:cdcfe6fa49b38ec7:2918d55d89e3f700"
+    }
+  },
+  {
+    "id": "triceps_pushdown",
+    "slug": "triceps-pushdown",
+    "name": "Triceps Pushdown",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "triceps"
+    ],
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "equipment": [
+      "cable"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the triceps pushdown with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/triceps_pushdown/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/triceps_pushdown/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/triceps_pushdown/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/triceps_pushdown/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:f7a9c08b68a64145:fb8200646afd8010"
+    }
+  },
+  {
+    "id": "bench_dip",
+    "slug": "bench-dip",
+    "name": "Bench Dip",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "triceps"
+    ],
+    "secondaryMuscles": [
+      "chest",
+      "front_delts"
+    ],
+    "equipment": [
+      "bench",
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "push",
+    "instructions": [
+      "Set up for the bench dip with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/bench_dip/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/bench_dip/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/bench_dip/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/bench_dip/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:909208e9276df1e1:a6810da4c2cdc505"
+    }
+  }
+]

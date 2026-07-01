@@ -17,4 +17,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
+export const workoutsFunctions = getFunctions(app, 'australia-southeast1');
 export const googleProvider = new GoogleAuthProvider();

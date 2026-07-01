@@ -1,5 +1,6 @@
 export const FEATURE_FLAGS = {
   TRIBE_FEED_ENABLED: true,
+  TRIBE_FEED_REACTIONS_ENABLED: true,
   FOLLOW_FEATURE_ENABLED: true,
 };
 

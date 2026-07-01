@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="520" viewBox="0 0 360 520" role="img" aria-label="Face Pull back muscle map">
+  <defs>
+    <style>
+      .label { fill: #FFFFFF; font-family: Space Grotesk, Arial, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0; }
+      .small { fill: rgba(255,255,255,.62); font-family: Space Grotesk, Arial, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0; }
+      .body { fill: #2B2B2B; stroke: rgba(255,255,255,.24); stroke-width: 3; }
+      .skin { fill: #F3C9A8; stroke: rgba(255,255,255,.18); stroke-width: 2; }
+      .joint { fill: #1E1E1E; stroke: rgba(255,255,255,.22); stroke-width: 2; }
+      .center { stroke: rgba(255,255,255,.16); stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+  <rect width="360" height="520" rx="28" fill="#040404"/>
+  <text x="24" y="38" class="label">Face Pull</text>
+  <text x="24" y="62" class="small">BACK VIEW</text>
+
+  <g transform="translate(180 92) scale(.86)">
+    <circle class="skin" cx="0" cy="0" r="34"/>
+    <rect class="skin" x="-15" y="32" width="30" height="22" rx="10"/>
+    <path class="body" d="M-68 62 C-42 42 42 42 68 62 C83 107 77 172 51 223 C21 241 -21 241 -51 223 C-77 172 -83 107 -68 62 Z"/>
+
+    
+    <path d="M-72 64 C-109 75 -133 105 -143 150 C-130 163 -110 166 -97 154 C-90 118 -77 93 -55 77 Z" fill="#FF6B35" stroke="rgba(4,4,4,.24)" stroke-width="2"/>
+    <path d="M72 64 C109 75 133 105 143 150 C130 163 110 166 97 154 C90 118 77 93 55 77 Z" fill="#FF6B35" stroke="rgba(4,4,4,.24)" stroke-width="2"/>
+    <path d="M-54 72 C-27 57 27 57 54 72 C44 105 28 129 0 145 C-28 129 -44 105 -54 72 Z" fill="#FFB199" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+    <path d="M-58 101 C-30 88 30 88 58 101 C52 137 34 167 0 188 C-34 167 -52 137 -58 101 Z" fill="#FFB199" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+    <path d="M-66 113 C-88 143 -89 186 -51 222 C-35 196 -28 157 -35 122 Z" fill="#242424" stroke="rgba(4,4,4,.22)" stroke-width="2"/>
+    <path d="M66 113 C88 143 89 186 51 222 C35 196 28 157 35 122 Z" fill="#242424" stroke="rgba(4,4,4,.22)" stroke-width="2"/>
+    <path d="M-47 154 C-21 169 21 169 47 154 C48 186 37 209 23 225 C8 231 -8 231 -23 225 C-37 209 -48 186 -47 154 Z" fill="#242424" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+    
+    
+
+    <path d="M-76 79 C-113 88 -137 117 -144 153 C-131 168 -111 172 -98 160 C-93 125 -86 96 -76 79 Z" fill="#2B2B2B" stroke="rgba(4,4,4,.24)" stroke-width="2"/>
+    <path d="M76 79 C113 88 137 117 144 153 C131 168 111 172 98 160 C93 125 86 96 76 79 Z" fill="#2B2B2B" stroke="rgba(4,4,4,.24)" stroke-width="2"/>
+    <path d="M-101 160 C-117 206 -118 258 -105 303 C-88 306 -77 293 -82 275 C-91 235 -90 194 -98 160 Z" fill="#2B2B2B" stroke="rgba(4,4,4,.2)" stroke-width="2"/>
+    <path d="M101 160 C117 206 118 258 105 303 C88 306 77 293 82 275 C91 235 90 194 98 160 Z" fill="#2B2B2B" stroke="rgba(4,4,4,.2)" stroke-width="2"/>
+    <path class="skin" d="M-43 227 C-62 274 -70 333 -62 405 C-42 418 -20 412 -15 390 C-19 332 -11 284 8 238 Z"/>
+    <path class="skin" d="M43 227 C62 274 70 333 62 405 C42 418 20 412 15 390 C19 332 11 284 -8 238 Z"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    <circle class="joint" cx="-73" cy="68" r="8"/>
+    <circle class="joint" cx="73" cy="68" r="8"/>
+    <circle class="joint" cx="-100" cy="160" r="7"/>
+    <circle class="joint" cx="100" cy="160" r="7"/>
+    <path class="center" d="M0 58 L0 232"/>
+  </g>
+
+  <rect x="24" y="474" width="18" height="18" rx="5" fill="#FF6B35"/>
+  <text x="50" y="488" fill="#FFFFFF" font-family="Space Grotesk, Arial, sans-serif" font-size="12" font-weight="800">Primary</text>
+  <rect x="124" y="474" width="18" height="18" rx="5" fill="#FFB199"/>
+  <text x="150" y="488" fill="#FFFFFF" font-family="Space Grotesk, Arial, sans-serif" font-size="12" font-weight="800">Secondary</text>
+  <rect x="244" y="474" width="18" height="18" rx="5" fill="#2B2B2B" stroke="rgba(255,255,255,.22)"/>
+  <text x="270" y="488" fill="#FFFFFF" font-family="Space Grotesk, Arial, sans-serif" font-size="12" font-weight="800">Inactive</text>
+</svg>

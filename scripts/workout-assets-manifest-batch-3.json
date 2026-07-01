@@ -1,0 +1,394 @@
+[
+  {
+    "exerciseId": "back_squat",
+    "localPath": "generated/workouts/exercises/v1/back_squat/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/back_squat/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "8a73bbc8f0430601ec39621124a5c1b11c93b73123bbf6e781235d31ef2968a1"
+  },
+  {
+    "exerciseId": "back_squat",
+    "localPath": "generated/workouts/exercises/v1/back_squat/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/back_squat/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "140e0ff3672d4518630b98a7b130ba7d7140450e96eb125c26f5bf9857735f7e"
+  },
+  {
+    "exerciseId": "back_squat",
+    "localPath": "generated/workouts/exercises/v1/back_squat/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/back_squat/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "f6da3510d446b28f9fa5fc6f8a9168bc462944fae52cc8b540e1737e417c545e"
+  },
+  {
+    "exerciseId": "back_squat",
+    "localPath": "generated/workouts/exercises/v1/back_squat/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/back_squat/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "f716eb8bf1d44899dba9692c62f4323e3d796dbee484d1e353203d5594ec66d3"
+  },
+  {
+    "exerciseId": "goblet_squat",
+    "localPath": "generated/workouts/exercises/v1/goblet_squat/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/goblet_squat/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "97c7ea784c44cd9c2144b9c72ac1b010c2d7dcaf0ba34aab5b0f691d634ee82e"
+  },
+  {
+    "exerciseId": "goblet_squat",
+    "localPath": "generated/workouts/exercises/v1/goblet_squat/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/goblet_squat/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "ada118d4e45cd6e2481ef50fb731b88474baff9c3288644211a6f90c66c53530"
+  },
+  {
+    "exerciseId": "goblet_squat",
+    "localPath": "generated/workouts/exercises/v1/goblet_squat/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/goblet_squat/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "35c7d9c35a6698ea210fbc4c1c547ccba4e06ff6ed3f7fc5367b91660c5f6712"
+  },
+  {
+    "exerciseId": "goblet_squat",
+    "localPath": "generated/workouts/exercises/v1/goblet_squat/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/goblet_squat/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "4248389796b1794214809a54831b19f42891c6efe5422ac273994fb4ccdc1d5b"
+  },
+  {
+    "exerciseId": "leg_press",
+    "localPath": "generated/workouts/exercises/v1/leg_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/leg_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "04c3d1c57eb7e3f6308b1ff219b45af9dbfb6582c67f6912029ec2c666ffc1d4"
+  },
+  {
+    "exerciseId": "leg_press",
+    "localPath": "generated/workouts/exercises/v1/leg_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/leg_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "660bffeab54d66dcc07c992f975dbb0d86b114f6cd2410a9f03b7b24f04fe034"
+  },
+  {
+    "exerciseId": "leg_press",
+    "localPath": "generated/workouts/exercises/v1/leg_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/leg_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "625c7660871fb35b6ee7d284f73edfc93373d63d95e6d73e66a5af1c61649037"
+  },
+  {
+    "exerciseId": "leg_press",
+    "localPath": "generated/workouts/exercises/v1/leg_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/leg_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "c0db8b6fb31730831a71b6dd3150277d4ab26fb2731aa272ce952267ab14587f"
+  },
+  {
+    "exerciseId": "romanian_deadlift",
+    "localPath": "generated/workouts/exercises/v1/romanian_deadlift/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/romanian_deadlift/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "82284d016918e6efaa781e25a6e0dd2014d21ae11338e0e2b45b4dc968b58bdc"
+  },
+  {
+    "exerciseId": "romanian_deadlift",
+    "localPath": "generated/workouts/exercises/v1/romanian_deadlift/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/romanian_deadlift/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "dd3a28fa228fd871e77ebb328751bdf81233c58e17657bd20b9bc21a95cbfcf3"
+  },
+  {
+    "exerciseId": "romanian_deadlift",
+    "localPath": "generated/workouts/exercises/v1/romanian_deadlift/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/romanian_deadlift/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "645ebaa6db0340dcaaac95653c7a0c40dce07de41cc2b2b527f14c089b91b06e"
+  },
+  {
+    "exerciseId": "romanian_deadlift",
+    "localPath": "generated/workouts/exercises/v1/romanian_deadlift/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/romanian_deadlift/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "dd8cb4b6d3c0db64dbed32899da12cbace753c924758122b176dd7dcb4222292"
+  },
+  {
+    "exerciseId": "conventional_deadlift",
+    "localPath": "generated/workouts/exercises/v1/conventional_deadlift/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/conventional_deadlift/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "1b4a310f7a42b12885c23bf0d656810a548be8d645eb42457381268ae88df2b7"
+  },
+  {
+    "exerciseId": "conventional_deadlift",
+    "localPath": "generated/workouts/exercises/v1/conventional_deadlift/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/conventional_deadlift/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "7a3c69890d7b17a6627038fcd6179c6e5dbd9cac665d5f42b6a5c1f1cd903f82"
+  },
+  {
+    "exerciseId": "conventional_deadlift",
+    "localPath": "generated/workouts/exercises/v1/conventional_deadlift/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/conventional_deadlift/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "e9d9db1951fe00e869db4c27665dd8c94d90ec13d527c400523c2389b45538b2"
+  },
+  {
+    "exerciseId": "conventional_deadlift",
+    "localPath": "generated/workouts/exercises/v1/conventional_deadlift/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/conventional_deadlift/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "5a3fee02e6862cc8f1819fe0a9974c30d9e96ba33d20cf6a4ff086972a86cd51"
+  },
+  {
+    "exerciseId": "hip_thrust",
+    "localPath": "generated/workouts/exercises/v1/hip_thrust/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/hip_thrust/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "a79a593ba633fe945978fd3b60d1ca5ff0a15ae3e82d3eaf8484db8e1fa85157"
+  },
+  {
+    "exerciseId": "hip_thrust",
+    "localPath": "generated/workouts/exercises/v1/hip_thrust/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/hip_thrust/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "83540beeb8acb44e00597bf4388b2fdf05d05ab637c9efb9278d3b0731daf48c"
+  },
+  {
+    "exerciseId": "hip_thrust",
+    "localPath": "generated/workouts/exercises/v1/hip_thrust/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/hip_thrust/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "7eac9539ff27811baf279e7eb2ff4ec94dbcf6dc894225c014fddece15c02ebd"
+  },
+  {
+    "exerciseId": "hip_thrust",
+    "localPath": "generated/workouts/exercises/v1/hip_thrust/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/hip_thrust/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "93adfedafc5c29feb70fa4aa6420053202b856b25415743c5febe4d8b010816e"
+  },
+  {
+    "exerciseId": "walking_lunge",
+    "localPath": "generated/workouts/exercises/v1/walking_lunge/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/walking_lunge/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "4c232e373747cd75789f4a51fb27253a46adefb4022155e4c3ebb65f793d192c"
+  },
+  {
+    "exerciseId": "walking_lunge",
+    "localPath": "generated/workouts/exercises/v1/walking_lunge/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/walking_lunge/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "9390cff67032a38e254efe199de359971673a89cf6d36496c5b5d9cd756ae365"
+  },
+  {
+    "exerciseId": "walking_lunge",
+    "localPath": "generated/workouts/exercises/v1/walking_lunge/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/walking_lunge/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "5f5d8bd881184fa9e1c3746558dbd9d23e5b89dbe409079b8a4760a4c95b522f"
+  },
+  {
+    "exerciseId": "walking_lunge",
+    "localPath": "generated/workouts/exercises/v1/walking_lunge/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/walking_lunge/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "4d3133b79ea71d81a18f16b2a7e0d89de81cabbb386023ee997853b50af7016c"
+  },
+  {
+    "exerciseId": "bulgarian_split_squat",
+    "localPath": "generated/workouts/exercises/v1/bulgarian_split_squat/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/bulgarian_split_squat/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "a926237c0d24890c233464b62ba0b9ce0b4f09ab3dbed7ae943b227b3ef992b4"
+  },
+  {
+    "exerciseId": "bulgarian_split_squat",
+    "localPath": "generated/workouts/exercises/v1/bulgarian_split_squat/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a52c1115f809a8435e529d67a41acfd5dbab10e91f2ce888713fc6b9d80d9d87"
+  },
+  {
+    "exerciseId": "bulgarian_split_squat",
+    "localPath": "generated/workouts/exercises/v1/bulgarian_split_squat/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "bef54a2c6aa9df61e68947216611770e21bd873f5df401d2e8494a8633ece5e1"
+  },
+  {
+    "exerciseId": "bulgarian_split_squat",
+    "localPath": "generated/workouts/exercises/v1/bulgarian_split_squat/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/bulgarian_split_squat/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "9daf595bfe0047d379883a52e6fcf5784b5cfba7b44997e1b65784514c945ac7"
+  },
+  {
+    "exerciseId": "step_up",
+    "localPath": "generated/workouts/exercises/v1/step_up/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/step_up/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "29095c4eb33e730b30ea5cf6dbe0a4510183953fbd22216d16d34aad02e3b32f"
+  },
+  {
+    "exerciseId": "step_up",
+    "localPath": "generated/workouts/exercises/v1/step_up/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/step_up/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "0f8328fcdd3cc87c808dc05eb86c9c531d30333a93a400ff0e90142b4d213924"
+  },
+  {
+    "exerciseId": "step_up",
+    "localPath": "generated/workouts/exercises/v1/step_up/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/step_up/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "7bfeb5d479761ae2012ad598f3e20b2581c0ef7fc690eacf859daa956d48b4f9"
+  },
+  {
+    "exerciseId": "step_up",
+    "localPath": "generated/workouts/exercises/v1/step_up/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/step_up/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "56dcd3949d611be6b0715b13dfa93e7b0444059bcd3dff490dd7719d01323167"
+  },
+  {
+    "exerciseId": "leg_extension",
+    "localPath": "generated/workouts/exercises/v1/leg_extension/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/leg_extension/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "08ef06f4b9d6bb3a81cd387ea79ebbf464e0132b3a4c29effb62a3d033833246"
+  },
+  {
+    "exerciseId": "leg_extension",
+    "localPath": "generated/workouts/exercises/v1/leg_extension/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/leg_extension/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "87955f28631e5b8a0ca9c880ca0834f05fa6644fc816e282ca0b3373bf8a46fa"
+  },
+  {
+    "exerciseId": "leg_extension",
+    "localPath": "generated/workouts/exercises/v1/leg_extension/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/leg_extension/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "165f78b10cc94f11e655bb378d802116a299e6e22b200235e38349183dfa1894"
+  },
+  {
+    "exerciseId": "leg_extension",
+    "localPath": "generated/workouts/exercises/v1/leg_extension/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/leg_extension/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "ce4577de784ce91e64461354cbb07ff312f49c391d9841e9d0dd221b295fa906"
+  },
+  {
+    "exerciseId": "seated_leg_curl",
+    "localPath": "generated/workouts/exercises/v1/seated_leg_curl/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/seated_leg_curl/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "f4cd1baca5af8bce0a9b1fecc02afda6688eab043273cb20b97af6dd1bf54119"
+  },
+  {
+    "exerciseId": "seated_leg_curl",
+    "localPath": "generated/workouts/exercises/v1/seated_leg_curl/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/seated_leg_curl/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "897892079b5056dc946fc97185558596fd4d2549a866aa5722c828e1fff31d7e"
+  },
+  {
+    "exerciseId": "seated_leg_curl",
+    "localPath": "generated/workouts/exercises/v1/seated_leg_curl/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/seated_leg_curl/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a53d0a317005906805025eeb00e6afa126171fe1e9d2c97990e436e164e31225"
+  },
+  {
+    "exerciseId": "seated_leg_curl",
+    "localPath": "generated/workouts/exercises/v1/seated_leg_curl/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/seated_leg_curl/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "81b1429a7f62afaffb82c697c3090ba0160860063451d46cc524f8b0cfdb5a42"
+  },
+  {
+    "exerciseId": "standing_calf_raise",
+    "localPath": "generated/workouts/exercises/v1/standing_calf_raise/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/standing_calf_raise/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "3d6e3730cbaeedd5b1ba13fa5bfe30f4c764d13e5d9bb8898c41f51c8201108b"
+  },
+  {
+    "exerciseId": "standing_calf_raise",
+    "localPath": "generated/workouts/exercises/v1/standing_calf_raise/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/standing_calf_raise/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "0e93c386af8a8764f22e21c52b72a7ea44778ca59ae6fde5fddc97f3debf97c7"
+  },
+  {
+    "exerciseId": "standing_calf_raise",
+    "localPath": "generated/workouts/exercises/v1/standing_calf_raise/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/standing_calf_raise/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "fc8451a5a90e67f2ace83b7ecbab7c024bbc3daa8570aa80fdd2cac699118fcc"
+  },
+  {
+    "exerciseId": "standing_calf_raise",
+    "localPath": "generated/workouts/exercises/v1/standing_calf_raise/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/standing_calf_raise/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "b15fb4c59105150802e528a731525bb25995d0220bf2e4bfbace4de5172bb7df"
+  },
+  {
+    "exerciseId": "glute_bridge",
+    "localPath": "generated/workouts/exercises/v1/glute_bridge/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/glute_bridge/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "989adc3205378db221009a7969bc4f45ff4ac6b3faeffaffcafd6c17df91c94b"
+  },
+  {
+    "exerciseId": "glute_bridge",
+    "localPath": "generated/workouts/exercises/v1/glute_bridge/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/glute_bridge/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "d64196e0d8813b264fc3bfeee19b2167a5dd0e8a811652adef66eb446053a467"
+  },
+  {
+    "exerciseId": "glute_bridge",
+    "localPath": "generated/workouts/exercises/v1/glute_bridge/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/glute_bridge/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "2652f072f49938367315e86342258b0eb4a0e379a552e875b3e29730b406f8ab"
+  },
+  {
+    "exerciseId": "glute_bridge",
+    "localPath": "generated/workouts/exercises/v1/glute_bridge/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/glute_bridge/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "ebbc1749e7ca7007d68b35c3271c0b012831b5c9f9dd99e9dc05f4b920333b30"
+  },
+  {
+    "exerciseId": "kettlebell_swing",
+    "localPath": "generated/workouts/exercises/v1/kettlebell_swing/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/kettlebell_swing/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "a99068b8868d9b5e484724e7bf9d7b7fa21acf12dac8ae1997fe3aa410fde377"
+  },
+  {
+    "exerciseId": "kettlebell_swing",
+    "localPath": "generated/workouts/exercises/v1/kettlebell_swing/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/kettlebell_swing/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "f1b5ebf29a5f7dd4ad80fd9603defa867ed7b974e63dab15c1a51db5d24b6696"
+  },
+  {
+    "exerciseId": "kettlebell_swing",
+    "localPath": "generated/workouts/exercises/v1/kettlebell_swing/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/kettlebell_swing/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "93819a19bae3308095a95a44d10f8b39028f66f7af3859c2232e96383f0d55ed"
+  },
+  {
+    "exerciseId": "kettlebell_swing",
+    "localPath": "generated/workouts/exercises/v1/kettlebell_swing/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/kettlebell_swing/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "036933afc276a5ef4c0a0816e052aaf7399cbe88e3e28d087a73d9d87baff870"
+  }
+]

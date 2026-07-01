@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Bench Press Muscle Map Proof Of Concept</title>
+  <desc id="desc">Front and back anatomical-style body diagrams with pectorals highlighted as primary and shoulders and triceps highlighted as secondary.</desc>
+  <defs>
+    <style>
+      .bg { fill: #040404; }
+      .panel { fill: #101010; stroke: rgba(255,255,255,.13); stroke-width: 3; }
+      .body { fill: #2B2B2B; stroke: rgba(255,255,255,.24); stroke-width: 3; }
+      .joint { fill: #1E1E1E; stroke: rgba(255,255,255,.18); stroke-width: 2; }
+      .primary { fill: #FF6B35; stroke: rgba(4,4,4,.28); stroke-width: 2; }
+      .secondary { fill: #FFB199; stroke: rgba(4,4,4,.22); stroke-width: 2; }
+      .inactive { fill: #2B2B2B; }
+      .center { stroke: rgba(255,255,255,.16); stroke-width: 2; fill: none; }
+      .label { fill: #FFFFFF; font-family: Space Grotesk, Arial, sans-serif; font-size: 26px; font-weight: 700; }
+      .small { fill: rgba(255,255,255,.66); font-family: Space Grotesk, Arial, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+      .headline { fill: #FFFFFF; font-family: Syne, Space Grotesk, Arial, sans-serif; font-size: 44px; font-weight: 900; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="720"/>
+  <text class="headline" x="60" y="78">Bench Press</text>
+  <text class="small" x="62" y="114">Primary: pectorals · Secondary: anterior delts, triceps</text>
+
+  <rect class="panel" x="60" y="152" width="500" height="508" rx="28"/>
+  <rect class="panel" x="640" y="152" width="500" height="508" rx="28"/>
+  <text class="label" x="263" y="200">Front</text>
+  <text class="label" x="852" y="200">Back</text>
+
+  <!-- Front body -->
+  <g transform="translate(310 238)">
+    <circle class="body" cx="0" cy="0" r="34"/>
+    <rect class="body" x="-15" y="32" width="30" height="22" rx="10"/>
+    <path class="body" d="M-68 62 C-42 42 42 42 68 62 C83 107 77 172 51 223 C21 241 -21 241 -51 223 C-77 172 -83 107 -68 62 Z"/>
+    <path class="secondary" d="M-72 64 C-109 75 -133 105 -143 150 C-130 163 -110 166 -97 154 C-90 118 -77 93 -55 77 Z"/>
+    <path class="secondary" d="M72 64 C109 75 133 105 143 150 C130 163 110 166 97 154 C90 118 77 93 55 77 Z"/>
+    <path class="primary" d="M-57 78 C-33 63 -9 62 -1 82 C-9 122 -37 139 -64 124 C-72 105 -70 90 -57 78 Z"/>
+    <path class="primary" d="M57 78 C33 63 9 62 1 82 C9 122 37 139 64 124 C72 105 70 90 57 78 Z"/>
+    <path class="inactive" d="M-48 130 C-20 145 20 145 48 130 C50 168 39 203 25 224 C8 231 -8 231 -25 224 C-39 203 -50 168 -48 130 Z"/>
+    <path class="secondary" d="M-135 153 C-146 207 -136 265 -111 303 C-93 300 -82 286 -87 269 C-101 229 -101 190 -96 157 Z"/>
+    <path class="secondary" d="M135 153 C146 207 136 265 111 303 C93 300 82 286 87 269 C101 229 101 190 96 157 Z"/>
+    <path class="body" d="M-43 227 C-62 274 -70 333 -62 405 C-42 418 -20 412 -15 390 C-19 332 -11 284 8 238 Z"/>
+    <path class="body" d="M43 227 C62 274 70 333 62 405 C42 418 20 412 15 390 C19 332 11 284 -8 238 Z"/>
+    <circle class="joint" cx="-73" cy="68" r="8"/>
+    <circle class="joint" cx="73" cy="68" r="8"/>
+    <circle class="joint" cx="-100" cy="160" r="7"/>
+    <circle class="joint" cx="100" cy="160" r="7"/>
+    <path class="center" d="M0 58 L0 232"/>
+  </g>
+
+  <!-- Back body -->
+  <g transform="translate(890 238)">
+    <circle class="body" cx="0" cy="0" r="34"/>
+    <rect class="body" x="-15" y="32" width="30" height="22" rx="10"/>
+    <path class="body" d="M-68 62 C-42 42 42 42 68 62 C83 107 77 172 51 223 C21 241 -21 241 -51 223 C-77 172 -83 107 -68 62 Z"/>
+    <path class="secondary" d="M-72 64 C-109 75 -133 105 -143 150 C-130 163 -110 166 -97 154 C-90 118 -77 93 -55 77 Z"/>
+    <path class="secondary" d="M72 64 C109 75 133 105 143 150 C130 163 110 166 97 154 C90 118 77 93 55 77 Z"/>
+    <path class="inactive" d="M-55 76 C-28 59 28 59 55 76 C48 116 32 150 0 169 C-32 150 -48 116 -55 76 Z"/>
+    <path class="inactive" d="M-47 139 C-21 155 21 155 47 139 C48 176 37 205 23 225 C8 231 -8 231 -23 225 C-37 205 -48 176 -47 139 Z"/>
+    <path class="secondary" d="M-135 153 C-146 207 -136 265 -111 303 C-93 300 -82 286 -87 269 C-101 229 -101 190 -96 157 Z"/>
+    <path class="secondary" d="M135 153 C146 207 136 265 111 303 C93 300 82 286 87 269 C101 229 101 190 96 157 Z"/>
+    <path class="body" d="M-43 227 C-62 274 -70 333 -62 405 C-42 418 -20 412 -15 390 C-19 332 -11 284 8 238 Z"/>
+    <path class="body" d="M43 227 C62 274 70 333 62 405 C42 418 20 412 15 390 C19 332 11 284 -8 238 Z"/>
+    <circle class="joint" cx="-73" cy="68" r="8"/>
+    <circle class="joint" cx="73" cy="68" r="8"/>
+    <circle class="joint" cx="-100" cy="160" r="7"/>
+    <circle class="joint" cx="100" cy="160" r="7"/>
+    <path class="center" d="M0 58 L0 232"/>
+  </g>
+
+  <rect x="62" y="676" width="22" height="22" rx="6" fill="#FF6B35"/>
+  <text class="small" x="96" y="694">Primary</text>
+  <rect x="222" y="676" width="22" height="22" rx="6" fill="#FFB199"/>
+  <text class="small" x="256" y="694">Secondary</text>
+  <rect x="430" y="676" width="22" height="22" rx="6" fill="#2B2B2B" stroke="rgba(255,255,255,.22)"/>
+  <text class="small" x="464" y="694">Inactive</text>
+</svg>
+

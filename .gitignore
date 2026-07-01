@@ -18,3 +18,9 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# local release/review artifacts
+docs/workouts/review-packs/
+tribelog-workouts-*.zip
+release-apks/
+public/downloads/*.apk

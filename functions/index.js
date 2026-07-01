@@ -8,6 +8,10 @@ const {
   handlePurchaseValidationReadinessRequest,
   handleVerifyPurchaseRequest,
 } = require('./purchaseCallableHandlers');
+const {
+  copyPublicWorkout,
+  finishWorkoutSession,
+} = require('./workoutSessionCallableHandlers');
 
 admin.initializeApp();
 
@@ -27,6 +31,37 @@ exports.getPurchaseValidationReadiness = onCall({ region: 'us-central1' }, async
 exports.processAccountDeletion = onCall({ region: 'us-central1' }, async (request) => {
   return processAccountDeletion({ admin, request });
 });
+
+exports.finishWorkoutSession = onCall({ region: 'australia-southeast1' }, async (request) => {
+  return finishWorkoutSession({ admin, request });
+});
+
+exports.copyPublicWorkout = onCall({ region: 'australia-southeast1' }, async (request) => {
+  return copyPublicWorkout({ admin, request });
+});
+
+exports.mirrorChallengeMembershipToUser = onDocumentCreated(
+  {
+    document: 'challenges/{challengeId}/members/{memberUid}',
+    region: 'australia-southeast1',
+  },
+  async (event) => {
+    const challengeId = event.params.challengeId;
+    const memberUid = event.params.memberUid;
+    const member = event.data?.data() || {};
+    const status = String(member.status || 'active').toLowerCase();
+
+    if (!challengeId || !memberUid || ['left', 'removed', 'deleted', 'inactive'].includes(status)) {
+      return null;
+    }
+
+    await admin.firestore().collection('users').doc(memberUid).set({
+      joinedChallengeIds: admin.firestore.FieldValue.arrayUnion(challengeId),
+    }, { merge: true });
+
+    return null;
+  },
+);
 
 exports.recordChallengeReferralJoin = onDocumentCreated(
   {

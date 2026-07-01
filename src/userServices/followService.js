@@ -2,6 +2,7 @@ import {
   collection,
   doc,
   deleteField,
+  documentId,
   getDoc,
   getDocs,
   limit,
@@ -96,6 +97,41 @@ export async function getPublicProfile(uid) {
     const snap = await getDoc(doc(db, 'publicProfiles', uid));
     return snap.exists() ? { id: snap.id, ...snap.data() } : null;
   }, 5 * 60 * 1000);
+}
+
+export async function fetchPublicProfilesByUid(currentUid, uids = []) {
+  assertFollowFeatureEnabled(currentUid);
+  const uniqueUids = Array.from(new Set(uids.filter(Boolean))).slice(0, 40);
+  if (!uniqueUids.length) return [];
+
+  const cachedProfiles = await Promise.all(uniqueUids.map(uid => getPublicProfile(uid).catch(() => null)));
+  const cachedByUid = new Map(cachedProfiles.filter(Boolean).map(profile => [profile.uid || profile.id, profile]));
+  const missingUids = uniqueUids.filter(uid => !cachedByUid.has(uid));
+  if (!missingUids.length) return Array.from(cachedByUid.values());
+
+  const chunks = [];
+  for (let index = 0; index < missingUids.length; index += 10) {
+    chunks.push(missingUids.slice(index, index + 10));
+  }
+
+  const snaps = await Promise.all(chunks.map(chunk => getDocs(query(
+    collection(db, 'publicProfiles'),
+    where(documentId(), 'in', chunk)
+  ))));
+
+  snaps.forEach(snap => {
+    snap.docs.forEach(profileDoc => {
+      const profile = { id: profileDoc.id, ...profileDoc.data() };
+      if (profile.profileVisibility === FOLLOW_PROFILE_VISIBILITY.PUBLIC) {
+        cachedByUid.set(profile.uid || profileDoc.id, profile);
+        setCachedRead(`publicProfile:${profileDoc.id}`, profile, 5 * 60 * 1000);
+      }
+    });
+  });
+
+  return Array.from(cachedByUid.values())
+    .filter(profile => profile.profileVisibility === FOLLOW_PROFILE_VISIBILITY.PUBLIC)
+    .filter(profile => shouldShowDiscoverProfile(profile, currentUid));
 }
 
 export async function publishRoutine(uid, profile, session, visibility = ROUTINE_VISIBILITY.PUBLIC) {

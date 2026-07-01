@@ -24,6 +24,7 @@ export function buildAppAuthenticatedProps({
       setSelectedDay: appState.setSelectedDay,
       setShowLog: appState.setShowLog,
       setShowProfile: appState.setShowProfile,
+      setTab: appState.setTab,
       setUserProfile: appState.setUserProfile,
       showLog: appState.showLog,
       showProfile: appState.showProfile,

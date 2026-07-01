@@ -9,6 +9,33 @@ service cloud.firestore {
       return exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isFollowerOf(ownerUid) {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(ownerUid)/followers/$(request.auth.uid));
+    }
+
+    function hasBlocked(leftUid, rightUid) {
+      return exists(/databases/$(database)/documents/users/$(leftUid)/blockedUsers/$(rightUid));
+    }
+
+    function noBlockBetween(ownerUid) {
+      return isSignedIn()
+        && !hasBlocked(request.auth.uid, ownerUid)
+        && !hasBlocked(ownerUid, request.auth.uid);
+    }
+
+    function hasWorkoutOwner(data) {
+      return data.ownerUid is string && data.ownerUid.size() > 0;
+    }
+
     // ── Admins collection ─────────────────────────────────────────────────────
     // Only existing admins can read or write this collection.
     match /admins/{uid} {
@@ -42,6 +69,13 @@ service cloud.firestore {
       // Training journal — detailed gym/run/yoga performance logs owned by the user.
       match /trainingSessions/{sessionId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Trusted exercise PR summaries. Members can read their own PRs; writes
+      // are handled by Cloud Functions with Admin SDK privileges or admins.
+      match /exercisePRs/{exerciseId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow write: if request.auth != null && isAdmin();
       }
 
       // Earned badges — set when badges are awarded; read by the owner.
@@ -128,18 +162,134 @@ service cloud.firestore {
     // This collection stores only routines a member explicitly shares.
     match /publicRoutines/{routineId} {
       allow read: if request.auth != null
+        && hasWorkoutOwner(resource.data)
         && (
-          resource.data.visibility == "public"
-          || resource.data.ownerUid == request.auth.uid
+          resource.data.ownerUid == request.auth.uid
           || isAdmin()
           || (
-            resource.data.visibility == "followers"
-            && exists(/databases/$(database)/documents/users/$(resource.data.ownerUid)/followers/$(request.auth.uid))
+            noBlockBetween(resource.data.ownerUid)
+            && resource.data.visibility == "public"
+          )
+          || (
+            noBlockBetween(resource.data.ownerUid)
+            && resource.data.visibility == "followers"
+            && isFollowerOf(resource.data.ownerUid)
           )
         );
       allow create, update: if request.auth != null
         && request.resource.data.ownerUid == request.auth.uid
         && ["public", "followers", "private"].hasAny([request.resource.data.visibility]);
+      allow delete: if request.auth != null
+        && (resource.data.ownerUid == request.auth.uid || isAdmin());
+    }
+
+    // ── Workouts backend-driven catalog and social foundation ───────────────
+    // Official exercise content is backend/admin-authored. Clients can read
+    // only published exercises; draft and archived content stay admin-only.
+    match /exerciseCatalog/{exerciseId} {
+      allow read: if request.auth != null
+        && (resource.data.status == "published" || isAdmin());
+      allow create, update: if request.auth != null
+        && isAdmin()
+        && request.resource.data.id == exerciseId
+        && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.primaryMuscles is list
+        && request.resource.data.equipment is list
+        && ["beginner", "intermediate", "advanced"].hasAny([request.resource.data.level])
+        && ["push", "pull", "squat", "hinge", "carry", "core", "cardio", "mobility"].hasAny([request.resource.data.movementPattern]);
+      allow delete: if request.auth != null && isAdmin();
+    }
+
+    // Workout templates cover official/user-authored reusable workouts. Phase
+    // 1 uses this as backend foundation; production clients should still save
+    // completed sessions under users/{uid}/trainingSessions.
+    match /workoutTemplates/{templateId} {
+      allow read: if request.auth != null
+        && (
+          isAdmin()
+          || (
+            resource.data.status == "published"
+            && resource.data.visibility == "system"
+          )
+          || (
+            hasWorkoutOwner(resource.data)
+            && resource.data.ownerUid == request.auth.uid
+          )
+          || (
+            hasWorkoutOwner(resource.data)
+            && noBlockBetween(resource.data.ownerUid)
+            && resource.data.status == "published"
+            && resource.data.visibility == "public"
+          )
+          || (
+            hasWorkoutOwner(resource.data)
+            && noBlockBetween(resource.data.ownerUid)
+            && resource.data.status == "published"
+            && resource.data.visibility == "tribe"
+            && isFollowerOf(resource.data.ownerUid)
+          )
+        );
+      allow create: if request.auth != null
+        && (
+          (
+            isAdmin()
+            && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+            && ["system", "public", "tribe", "private"].hasAny([request.resource.data.visibility])
+          )
+          || (
+            request.resource.data.ownerUid == request.auth.uid
+            && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+            && ["public", "tribe", "private"].hasAny([request.resource.data.visibility])
+          )
+        );
+      allow update: if request.auth != null
+        && (
+          (
+            isAdmin()
+            && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+            && ["system", "public", "tribe", "private"].hasAny([request.resource.data.visibility])
+          )
+          || (
+            resource.data.ownerUid == request.auth.uid
+            && request.resource.data.ownerUid == request.auth.uid
+            && ["draft", "published", "archived"].hasAny([request.resource.data.status])
+            && ["public", "tribe", "private"].hasAny([request.resource.data.visibility])
+          )
+        );
+      allow delete: if request.auth != null
+        && (isAdmin() || resource.data.ownerUid == request.auth.uid);
+    }
+
+    // Completed workout shares are sanitized mirrors of private training
+    // sessions. They enforce public/tribe visibility and bidirectional blocks
+    // at the rules layer so direct Firestore reads cannot bypass blocking.
+    match /publicWorkouts/{publicWorkoutId} {
+      allow read: if request.auth != null
+        && hasWorkoutOwner(resource.data)
+        && (
+          resource.data.ownerUid == request.auth.uid
+          || isAdmin()
+          || (
+            noBlockBetween(resource.data.ownerUid)
+            && resource.data.visibility == "public"
+          )
+          || (
+            noBlockBetween(resource.data.ownerUid)
+            && resource.data.visibility == "tribe"
+            && isFollowerOf(resource.data.ownerUid)
+          )
+        );
+      allow create, update: if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid
+        && ["public", "tribe"].hasAny([request.resource.data.visibility])
+        && request.resource.data.sourceSessionId is string
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid)/trainingSessions/$(request.resource.data.sourceSessionId))
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120;
       allow delete: if request.auth != null
         && (resource.data.ownerUid == request.auth.uid || isAdmin());
     }
@@ -151,6 +301,13 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow create: if request.auth != null
         && request.resource.data.uid == request.auth.uid;
+      allow update: if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(["reactionCounts", "reactionUsers", "reactionTotal", "lastReactionAt"])
+        && request.resource.data.reactionTotal is int
+        && request.resource.data.reactionTotal >= 0
+        && request.resource.data.reactionTotal <= 100000
+        && request.resource.data.lastReactionAt == request.time;
       allow delete: if request.auth != null
         && (resource.data.uid == request.auth.uid || isAdmin());
     }

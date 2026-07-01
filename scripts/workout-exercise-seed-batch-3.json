@@ -1,0 +1,610 @@
+[
+  {
+    "id": "back_squat",
+    "slug": "back-squat",
+    "name": "Back Squat",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "core"
+    ],
+    "equipment": [
+      "barbell",
+      "rack"
+    ],
+    "level": "intermediate",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the back squat with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/back_squat/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/back_squat/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/back_squat/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/back_squat/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:8a73bbc8f0430601:140e0ff3672d4518"
+    }
+  },
+  {
+    "id": "goblet_squat",
+    "slug": "goblet-squat",
+    "name": "Goblet Squat",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "core"
+    ],
+    "equipment": [
+      "dumbbell",
+      "kettlebell"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the goblet squat with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/goblet_squat/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/goblet_squat/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/goblet_squat/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/goblet_squat/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:97c7ea784c44cd9c:ada118d4e45cd6e2"
+    }
+  },
+  {
+    "id": "leg_press",
+    "slug": "leg-press",
+    "name": "Leg Press",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "equipment": [
+      "machine"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the leg press with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/leg_press/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/leg_press/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/leg_press/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/leg_press/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:04c3d1c57eb7e3f6:660bffeab54d66dc"
+    }
+  },
+  {
+    "id": "romanian_deadlift",
+    "slug": "romanian-deadlift",
+    "name": "Romanian Deadlift",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "lower_back"
+    ],
+    "equipment": [
+      "barbell",
+      "dumbbell"
+    ],
+    "level": "intermediate",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the romanian deadlift with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/romanian_deadlift/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/romanian_deadlift/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/romanian_deadlift/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/romanian_deadlift/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:82284d016918e6ef:dd3a28fa228fd871"
+    }
+  },
+  {
+    "id": "conventional_deadlift",
+    "slug": "conventional-deadlift",
+    "name": "Conventional Deadlift",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "quads",
+      "lower_back",
+      "core"
+    ],
+    "equipment": [
+      "barbell"
+    ],
+    "level": "advanced",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the conventional deadlift with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/conventional_deadlift/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/conventional_deadlift/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/conventional_deadlift/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/conventional_deadlift/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:1b4a310f7a42b128:7a3c69890d7b17a6"
+    }
+  },
+  {
+    "id": "hip_thrust",
+    "slug": "hip-thrust",
+    "name": "Hip Thrust",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "equipment": [
+      "barbell",
+      "bench"
+    ],
+    "level": "intermediate",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the hip thrust with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/hip_thrust/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/hip_thrust/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/hip_thrust/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/hip_thrust/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:a79a593ba633fe94:83540beeb8acb44e"
+    }
+  },
+  {
+    "id": "walking_lunge",
+    "slug": "walking-lunge",
+    "name": "Walking Lunge",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "equipment": [
+      "bodyweight",
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the walking lunge with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/walking_lunge/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/walking_lunge/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/walking_lunge/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/walking_lunge/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:4c232e373747cd75:9390cff67032a38e"
+    }
+  },
+  {
+    "id": "bulgarian_split_squat",
+    "slug": "bulgarian-split-squat",
+    "name": "Bulgarian Split Squat",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "core"
+    ],
+    "equipment": [
+      "bench",
+      "dumbbell"
+    ],
+    "level": "intermediate",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the bulgarian split squat with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/bulgarian_split_squat/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/bulgarian_split_squat/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/bulgarian_split_squat/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:a926237c0d24890c:a52c1115f809a843"
+    }
+  },
+  {
+    "id": "step_up",
+    "slug": "step-up",
+    "name": "Step-Up",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "equipment": [
+      "box",
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the step-up with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/step_up/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/step_up/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/step_up/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/step_up/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:29095c4eb33e730b:0f8328fcdd3cc87c"
+    }
+  },
+  {
+    "id": "leg_extension",
+    "slug": "leg-extension",
+    "name": "Leg Extension",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads"
+    ],
+    "secondaryMuscles": [],
+    "equipment": [
+      "machine"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the leg extension with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/leg_extension/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/leg_extension/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/leg_extension/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/leg_extension/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:08ef06f4b9d6bb3a:87955f28631e5b8a"
+    }
+  },
+  {
+    "id": "seated_leg_curl",
+    "slug": "seated-leg-curl",
+    "name": "Seated Leg Curl",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [],
+    "equipment": [
+      "machine"
+    ],
+    "level": "beginner",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the seated leg curl with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/seated_leg_curl/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/seated_leg_curl/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/seated_leg_curl/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/seated_leg_curl/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:f4cd1baca5af8bce:897892079b5056dc"
+    }
+  },
+  {
+    "id": "standing_calf_raise",
+    "slug": "standing-calf-raise",
+    "name": "Standing Calf Raise",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "calves"
+    ],
+    "secondaryMuscles": [],
+    "equipment": [
+      "machine",
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "squat",
+    "instructions": [
+      "Set up for the standing calf raise with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/standing_calf_raise/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/standing_calf_raise/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/standing_calf_raise/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/standing_calf_raise/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:3d6e3730cbaeedd5:0e93c386af8a8764"
+    }
+  },
+  {
+    "id": "glute_bridge",
+    "slug": "glute-bridge",
+    "name": "Glute Bridge",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "core"
+    ],
+    "equipment": [
+      "bodyweight"
+    ],
+    "level": "beginner",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the glute bridge with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/glute_bridge/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/glute_bridge/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/glute_bridge/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/glute_bridge/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:989adc3205378db2:d64196e0d8813b26"
+    }
+  },
+  {
+    "id": "kettlebell_swing",
+    "slug": "kettlebell-swing",
+    "name": "Kettlebell Swing",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "core",
+      "lower_back"
+    ],
+    "equipment": [
+      "kettlebell"
+    ],
+    "level": "intermediate",
+    "movementPattern": "hinge",
+    "instructions": [
+      "Set up for the kettlebell swing with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/kettlebell_swing/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/kettlebell_swing/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/kettlebell_swing/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/kettlebell_swing/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:a99068b8868d9b5e:f1b5ebf29a5f7dd4"
+    }
+  }
+]

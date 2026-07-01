@@ -1,0 +1,365 @@
+[
+  {
+    "id": "treadmill_run",
+    "slug": "treadmill-run",
+    "name": "Treadmill Run",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "hamstrings",
+      "calves"
+    ],
+    "secondaryMuscles": [
+      "core",
+      "glutes"
+    ],
+    "equipment": [
+      "treadmill"
+    ],
+    "level": "beginner",
+    "movementPattern": "cardio",
+    "instructions": [
+      "Set up for the treadmill run with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/treadmill_run/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/treadmill_run/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/treadmill_run/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/treadmill_run/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:9f73fcee92c3af7c:2c481c0787f60ad0"
+    }
+  },
+  {
+    "id": "incline_walk",
+    "slug": "incline-walk",
+    "name": "Incline Walk",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "hamstrings",
+      "core"
+    ],
+    "equipment": [
+      "treadmill"
+    ],
+    "level": "beginner",
+    "movementPattern": "cardio",
+    "instructions": [
+      "Set up for the incline walk with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/incline_walk/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/incline_walk/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/incline_walk/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/incline_walk/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:36074ba04df2b2d2:9c3521d5cdd41812"
+    }
+  },
+  {
+    "id": "stationary_bike",
+    "slug": "stationary-bike",
+    "name": "Stationary Bike",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "quads"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "calves",
+      "glutes"
+    ],
+    "equipment": [
+      "stationary_bike"
+    ],
+    "level": "beginner",
+    "movementPattern": "cardio",
+    "instructions": [
+      "Set up for the stationary bike with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/stationary_bike/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/stationary_bike/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/stationary_bike/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/stationary_bike/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:6b29b0bfe3bdfc2a:c172df037218f597"
+    }
+  },
+  {
+    "id": "rowing_machine",
+    "slug": "rowing-machine",
+    "name": "Rowing Machine",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats",
+      "rhomboids",
+      "hamstrings",
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "core",
+      "calves"
+    ],
+    "equipment": [
+      "rowing_machine"
+    ],
+    "level": "intermediate",
+    "movementPattern": "cardio",
+    "instructions": [
+      "Set up for the rowing machine with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/rowing_machine/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/rowing_machine/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/rowing_machine/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/rowing_machine/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:048a03d704494873:b3bf6b6bd2a4bf11"
+    }
+  },
+  {
+    "id": "cat_cow",
+    "slug": "cat-cow",
+    "name": "Cat-Cow",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lower_back",
+      "core"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "glutes"
+    ],
+    "equipment": [
+      "bodyweight",
+      "mat"
+    ],
+    "level": "beginner",
+    "movementPattern": "mobility",
+    "instructions": [
+      "Set up for the cat-cow with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/cat_cow/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/cat_cow/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/cat_cow/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/cat_cow/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:f409406b7b9fc229:e2bff498a09cbca4"
+    }
+  },
+  {
+    "id": "downward_dog",
+    "slug": "downward-dog",
+    "name": "Downward Dog",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "lats",
+      "lower_back"
+    ],
+    "equipment": [
+      "bodyweight",
+      "mat"
+    ],
+    "level": "beginner",
+    "movementPattern": "mobility",
+    "instructions": [
+      "Set up for the downward dog with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/downward_dog/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/downward_dog/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/downward_dog/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/downward_dog/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:4cd89b77770bbba1:71e6ed6e3b3e778f"
+    }
+  },
+  {
+    "id": "childs_pose",
+    "slug": "childs-pose",
+    "name": "Child's Pose",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats",
+      "lower_back"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "glutes"
+    ],
+    "equipment": [
+      "bodyweight",
+      "mat"
+    ],
+    "level": "beginner",
+    "movementPattern": "mobility",
+    "instructions": [
+      "Set up for the child's pose with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/childs_pose/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/childs_pose/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/childs_pose/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/childs_pose/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:bbc17dddff12512f:7968d0bb86b65ceb"
+    }
+  },
+  {
+    "id": "worlds_greatest_stretch",
+    "slug": "worlds-greatest-stretch",
+    "name": "World's Greatest Stretch",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "hip_flexors"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "core",
+      "shoulders"
+    ],
+    "equipment": [
+      "bodyweight",
+      "mat"
+    ],
+    "level": "intermediate",
+    "movementPattern": "mobility",
+    "instructions": [
+      "Set up for the world's greatest stretch with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/worlds_greatest_stretch/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/worlds_greatest_stretch/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:6ceb236e8301ccd6:ede791c6fa360e89"
+    }
+  }
+]

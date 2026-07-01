@@ -6,7 +6,8 @@ import HomeMobilePitch from "./HomeMobilePitch";
 import HomeShareProgressPanel from "./HomeShareProgressPanel";
 import HomeStatsCards from "./HomeStatsCards";
 import TribeFeedSection from "./TribeFeedSection";
-import { FEATURE_FLAGS } from "../featureFlags";
+import FollowDiscoverySection from "./FollowDiscoverySection";
+import { FEATURE_FLAGS, isFollowFeatureEnabledForUser } from "../featureFlags";
 
 export default function HomeTab({
   actCounts,
@@ -25,8 +26,19 @@ export default function HomeTab({
   shareTemplateId,
   streak,
   totalPts,
+  user,
   userProfile,
 }) {
+  const followFeatureEnabled = isFollowFeatureEnabledForUser(user);
+  const handOffRoutineToWorkouts = (routine) => {
+    try {
+      window.sessionStorage?.setItem("tribePendingRoutine", JSON.stringify(routine));
+    } catch (error) {
+      // Session storage is only a convenience bridge between tabs.
+    }
+    setTab("board");
+  };
+
   return (
     <div>
       <HomeHero
@@ -52,6 +64,14 @@ export default function HomeTab({
         setSelectedDay={setSelectedDay}
         setTab={setTab}
       />
+      {FEATURE_FLAGS.TRIBE_FEED_ENABLED && (
+        <TribeFeedSection onLogActivity={() => setShowLog(true)} />
+      )}
+      {followFeatureEnabled && (
+        <div style={{ padding: "0 20px" }}>
+          <FollowDiscoverySection onUseRoutine={handOffRoutineToWorkouts} user={user} />
+        </div>
+      )}
       <HomeShareProgressPanel
         handleProgressShare={handleProgressShare}
         handleShareTemplateSelect={handleShareTemplateSelect}
@@ -59,9 +79,6 @@ export default function HomeTab({
         savingShareTemplate={savingShareTemplate}
         shareTemplateId={shareTemplateId}
       />
-      {FEATURE_FLAGS.TRIBE_FEED_ENABLED && (
-        <TribeFeedSection onLogActivity={() => setShowLog(true)} />
-      )}
       <HomeMobilePitch />
     </div>
   );

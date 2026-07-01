@@ -1,0 +1,226 @@
+[
+  {
+    "exerciseId": "plank",
+    "localPath": "generated/workouts/exercises/v1/plank/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/plank/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "9ea747b6726a0f9cee2f497feec85b61de700b1e2e6eee04fd90e552d8d2d261"
+  },
+  {
+    "exerciseId": "plank",
+    "localPath": "generated/workouts/exercises/v1/plank/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/plank/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "50ba90dd76c1e24570d57c087467a64b9f498329ea4d978813b26b5e03d94e54"
+  },
+  {
+    "exerciseId": "plank",
+    "localPath": "generated/workouts/exercises/v1/plank/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/plank/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "f74258a51e0e728384e20b7714732bbc0c8da9b75b13b8f3ff950d95caa2264f"
+  },
+  {
+    "exerciseId": "plank",
+    "localPath": "generated/workouts/exercises/v1/plank/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/plank/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "745d5f39348f8994d05a389e460fcf91131d4b6108cedd1261ab858617a60f63"
+  },
+  {
+    "exerciseId": "side_plank",
+    "localPath": "generated/workouts/exercises/v1/side_plank/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/side_plank/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "e3a3a8fd059781401539804a2c0486772a1cf59c11fdffb51e7fb8599c59c50b"
+  },
+  {
+    "exerciseId": "side_plank",
+    "localPath": "generated/workouts/exercises/v1/side_plank/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/side_plank/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "72cc5fe09781429ece7c068607d61747defe8b9bc89cf4ae9a1aef36cc824285"
+  },
+  {
+    "exerciseId": "side_plank",
+    "localPath": "generated/workouts/exercises/v1/side_plank/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/side_plank/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "61d76413723a074150ddf4516623b3d431b63f6676ae3dd73a5fd032b218d643"
+  },
+  {
+    "exerciseId": "side_plank",
+    "localPath": "generated/workouts/exercises/v1/side_plank/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/side_plank/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "b71004c52d5924385cf20bfb2106177aa6cc5ec5d48d5c3e68f1a3b3df6824b8"
+  },
+  {
+    "exerciseId": "dead_bug",
+    "localPath": "generated/workouts/exercises/v1/dead_bug/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/dead_bug/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "4b9bfc44570835bae1c886e25f3844a10ec582e761b7edb6b0b1e83e8147aced"
+  },
+  {
+    "exerciseId": "dead_bug",
+    "localPath": "generated/workouts/exercises/v1/dead_bug/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/dead_bug/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "4c13a1e81fcd914ea0894420495bf303e23e3e93cb8d0effbf4906f25da95965"
+  },
+  {
+    "exerciseId": "dead_bug",
+    "localPath": "generated/workouts/exercises/v1/dead_bug/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/dead_bug/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "fefcb25beeb82110a41a51c00007a035bd1adcd371d8a28b4b073daf3994f30e"
+  },
+  {
+    "exerciseId": "dead_bug",
+    "localPath": "generated/workouts/exercises/v1/dead_bug/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/dead_bug/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "db07aae0a8dd83b33f8dad1fe5d1e1c841379bc7a7ef6b002663fa195b4f2bf0"
+  },
+  {
+    "exerciseId": "bird_dog",
+    "localPath": "generated/workouts/exercises/v1/bird_dog/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/bird_dog/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "2dfae7d977133776dbe5732865795dd5577a0c5e311818ef336d0f0120d43fd1"
+  },
+  {
+    "exerciseId": "bird_dog",
+    "localPath": "generated/workouts/exercises/v1/bird_dog/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/bird_dog/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "9d21877a7d61d62dac44a03ec43b319ade581897b6d13c6cb4aa8732610cb970"
+  },
+  {
+    "exerciseId": "bird_dog",
+    "localPath": "generated/workouts/exercises/v1/bird_dog/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/bird_dog/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "b42c31423671664dd0b11d50271ee068518689abd87e424a626cbc3e706a7be6"
+  },
+  {
+    "exerciseId": "bird_dog",
+    "localPath": "generated/workouts/exercises/v1/bird_dog/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/bird_dog/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "61b0d7397341ccbde1e7be7fe2e671a50f8c2192fc93217a8cb588f0cc07e44b"
+  },
+  {
+    "exerciseId": "bicycle_crunch",
+    "localPath": "generated/workouts/exercises/v1/bicycle_crunch/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/bicycle_crunch/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "7d36cb33139c5a0b934f0ef94d6cbc42616901b15695f72853bf8692e410328b"
+  },
+  {
+    "exerciseId": "bicycle_crunch",
+    "localPath": "generated/workouts/exercises/v1/bicycle_crunch/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/bicycle_crunch/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "9a155356461b86ee7afd10a417b8270c8c66b563b2f5335853cf97e1b68d5079"
+  },
+  {
+    "exerciseId": "bicycle_crunch",
+    "localPath": "generated/workouts/exercises/v1/bicycle_crunch/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/bicycle_crunch/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a0e5801a8c18e0a92aa1f4fbf06721e59cd3a56f483244e110298453ab7afef1"
+  },
+  {
+    "exerciseId": "bicycle_crunch",
+    "localPath": "generated/workouts/exercises/v1/bicycle_crunch/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/bicycle_crunch/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "3d965dcbe360cc2f150d9a7a016aedbdb1553abda385e97368ec34c8bc7b52bf"
+  },
+  {
+    "exerciseId": "hanging_knee_raise",
+    "localPath": "generated/workouts/exercises/v1/hanging_knee_raise/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/hanging_knee_raise/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "52b3d75634f8c48e9d687801ed217531eb3d303c04168dc276119104906cd185"
+  },
+  {
+    "exerciseId": "hanging_knee_raise",
+    "localPath": "generated/workouts/exercises/v1/hanging_knee_raise/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "3a5addc5cdf323eaf36754a7158ed0684daf7b19d1fe898d909b67fe7ff40666"
+  },
+  {
+    "exerciseId": "hanging_knee_raise",
+    "localPath": "generated/workouts/exercises/v1/hanging_knee_raise/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/hanging_knee_raise/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "6971037d1886d24bc6520745949e10ecdf2a48359a0d4e2e52e696aa5ccb0a8b"
+  },
+  {
+    "exerciseId": "hanging_knee_raise",
+    "localPath": "generated/workouts/exercises/v1/hanging_knee_raise/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/hanging_knee_raise/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "f1c66c551175582f9b3a892d99fdfb2da4e90ad8b096156fcea0d115e8c5a4c3"
+  },
+  {
+    "exerciseId": "russian_twist",
+    "localPath": "generated/workouts/exercises/v1/russian_twist/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/russian_twist/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "543bace7d7f30463aee169ea90135ea4ded41477480dd60fc2a6100b4228538a"
+  },
+  {
+    "exerciseId": "russian_twist",
+    "localPath": "generated/workouts/exercises/v1/russian_twist/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/russian_twist/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "136df1877f0af62b13cf3cf3fd32d9ca393a80f9e59b6b1a3fbb397df8de4056"
+  },
+  {
+    "exerciseId": "russian_twist",
+    "localPath": "generated/workouts/exercises/v1/russian_twist/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/russian_twist/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "d37f4c6b4c3c777950702cec3fbccdf114d2e60647148bbac7f00d1715b02eb4"
+  },
+  {
+    "exerciseId": "russian_twist",
+    "localPath": "generated/workouts/exercises/v1/russian_twist/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/russian_twist/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "d0f39dd2ef429325b693e96c05e532f2348bff386d41e8324e055410afbad7ad"
+  },
+  {
+    "exerciseId": "mountain_climber",
+    "localPath": "generated/workouts/exercises/v1/mountain_climber/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/mountain_climber/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "e400d32eb99df37811289a6b4a82b8564130368a90c679952e99a3980a62b8fb"
+  },
+  {
+    "exerciseId": "mountain_climber",
+    "localPath": "generated/workouts/exercises/v1/mountain_climber/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/mountain_climber/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "2916274ac4dfbfec0c5109812aad28d24b94ecb3d811d767d2e38433022a7c6e"
+  },
+  {
+    "exerciseId": "mountain_climber",
+    "localPath": "generated/workouts/exercises/v1/mountain_climber/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/mountain_climber/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "6bfa4a161462fd6f3a6e17550f7b28435f8adee195143680f69f11c6e96ae52d"
+  },
+  {
+    "exerciseId": "mountain_climber",
+    "localPath": "generated/workouts/exercises/v1/mountain_climber/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/mountain_climber/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "83c8c85836048c6d9fe3d21aea69ab7a760ba42d4ddf042fd240702e11d65ac4"
+  }
+]

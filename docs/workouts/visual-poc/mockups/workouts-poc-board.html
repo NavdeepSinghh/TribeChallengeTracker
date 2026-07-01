@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TribeLog Workouts POC Board</title>
+  <style>
+    :root {
+      --orange: #FF6B35;
+      --black: #040404;
+      --paper: #F7F3ED;
+      --panel: #111111;
+      --line: rgba(4,4,4,.12);
+      --muted: #706A64;
+      --soft: #FFF4EC;
+      --green: #34D399;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--black);
+      font-family: "Space Grotesk", Inter, Arial, sans-serif;
+    }
+
+    .board {
+      padding: 40px;
+      display: grid;
+      gap: 32px;
+    }
+
+    .board h1, .board h2, .brand {
+      font-family: "Syne", "Space Grotesk", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .intro {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .intro p {
+      max-width: 680px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 28px;
+      align-items: start;
+    }
+
+    .phone {
+      width: 310px;
+      min-height: 640px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 10px solid var(--black);
+      border-radius: 42px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(4,4,4,.18);
+      position: relative;
+    }
+
+    .android { border-radius: 30px; }
+
+    .screen {
+      min-height: 620px;
+      padding: 22px 18px 84px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dark {
+      background: var(--black);
+      color: #FFFFFF;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      border: 1px solid rgba(4,4,4,.12);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: #FFFFFF;
+    }
+
+    .dark .icon {
+      background: #171717;
+      color: #FFFFFF;
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #FF6B35 0%, #FFD166 100%);
+      border-radius: 24px;
+      padding: 20px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--black);
+    }
+
+    .hero h2 {
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .hero p, .card p {
+      margin: 8px 0 0;
+      color: rgba(4,4,4,.68);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 18px;
+      background: var(--black);
+      color: #FFFFFF;
+      padding: 13px 16px;
+      font: inherit;
+      font-weight: 900;
+      width: 100%;
+    }
+
+    .dark .button {
+      background: var(--orange);
+      color: var(--black);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--soft);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .dark .pill {
+      background: rgba(255,107,53,.16);
+      color: #FFD1C2;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(4,4,4,.06);
+    }
+
+    .dark .card {
+      background: #151515;
+      border-color: rgba(255,255,255,.12);
+      box-shadow: none;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .dark .card p {
+      color: rgba(255,255,255,.64);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .exercise {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 50% 40%, #FFB199 0 18%, #FF6B35 19% 44%, #201A17 45% 100%);
+    }
+
+    .bottom-nav {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      height: 58px;
+      background: var(--black);
+      color: #FFFFFF;
+      border-radius: 26px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(4,4,4,.24);
+    }
+
+    .bottom-nav span {
+      opacity: .62;
+    }
+
+    .bottom-nav .active {
+      opacity: 1;
+      color: #FFD166;
+    }
+
+    .web {
+      min-height: 620px;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: 0 22px 60px rgba(4,4,4,.12);
+      overflow: hidden;
+    }
+
+    .web-head {
+      height: 76px;
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .web-body {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 544px;
+    }
+
+    .side {
+      border-right: 1px solid var(--line);
+      padding: 22px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .main {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .session {
+      background: var(--black);
+      color: #FFFFFF;
+      border-radius: 28px;
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .timer {
+      height: 110px;
+      border-radius: 26px;
+      background: radial-gradient(circle, rgba(255,107,53,.38), rgba(255,107,53,.08) 62%, transparent 63%);
+      display: grid;
+      place-items: center;
+      font-family: "Syne", Arial, sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .discover-card {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) {
+      .board { padding: 20px; }
+      .intro { display: block; }
+      .web-body { grid-template-columns: 1fr; }
+      .side { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <section class="intro">
+      <div>
+        <h1>TribeLog Workouts POC</h1>
+        <p>Static review board for Phase 1. Content is backend-driven, workouts remain private by default, and public sharing keeps creator attribution visible.</p>
+      </div>
+      <div class="pill">#FF6B35 · #040404</div>
+    </section>
+
+    <section>
+      <h2>Workouts Tab</h2>
+      <div class="grid" style="margin-top: 18px;">
+        <div class="phone">
+          <div class="screen">
+            <div class="topbar"><span>Workouts</span><span class="icon">⌕</span></div>
+            <div class="hero">
+              <div>
+                <h2>Start strong today.</h2>
+                <p>Pick a guided session or log fast.</p>
+              </div>
+              <button class="button">Start workout</button>
+            </div>
+            <div class="row">
+              <span class="pill">Quick Log</span><span class="pill">Run</span><span class="pill">Gym</span><span class="pill">Yoga</span>
+            </div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Bench Press</h3><p>Chest · Barbell</p></div><strong>→</strong></div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Goblet Squat</h3><p>Quads · Dumbbell</p></div><strong>→</strong></div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Lat Pulldown</h3><p>Lats · Cable</p></div><strong>→</strong></div>
+          </div>
+          <nav class="bottom-nav"><span>Today</span><span>Challenges</span><span class="active">Workouts</span><span>Tribe</span><span>Profile</span></nav>
+        </div>
+
+        <div class="web">
+          <div class="web-head"><strong class="brand">TRIBELOG</strong><span class="pill">Workouts</span></div>
+          <div class="web-body">
+            <aside class="side">
+              <span class="pill">Today</span>
+              <span class="pill">Challenges</span>
+              <span class="pill">Workouts</span>
+              <span class="pill">Tribe</span>
+              <span class="pill">Profile</span>
+            </aside>
+            <section class="main">
+              <div class="hero">
+                <h2>Train with the tribe.</h2>
+                <p>Guided sessions, public workouts, and quick logs from one place.</p>
+              </div>
+              <div class="mini-grid">
+                <div class="card"><h3>Exercise Library</h3><p>50 official movements first.</p></div>
+                <div class="card"><h3>My Workouts</h3><p>Private by default.</p></div>
+                <div class="card"><h3>Public Workouts</h3><p>Copy with attribution.</p></div>
+                <div class="card"><h3>History</h3><p>Volume and PRs.</p></div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="phone android">
+          <div class="screen dark">
+            <div class="topbar"><span>Workouts</span><span class="icon">⌕</span></div>
+            <div class="hero">
+              <div>
+                <h2>Next set ready.</h2>
+                <p>Backend exercises, local-first sessions.</p>
+              </div>
+              <button class="button">Start workout</button>
+            </div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Push-Up</h3><p>Chest · Bodyweight</p></div><strong>→</strong></div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Plank</h3><p>Core · Bodyweight</p></div><strong>→</strong></div>
+            <div class="card exercise"><div class="thumb"></div><div><h3>Rowing Machine</h3><p>Cardio · Machine</p></div><strong>→</strong></div>
+          </div>
+          <nav class="bottom-nav"><span>Today</span><span>Challenges</span><span class="active">Workouts</span><span>Tribe</span><span>Profile</span></nav>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Start Workout Flow</h2>
+      <div class="grid" style="margin-top: 18px;">
+        <div class="phone">
+          <div class="screen dark">
+            <div class="topbar"><span>Upper Body</span><span class="pill">18:42</span></div>
+            <div class="session">
+              <div class="timer">00:58</div>
+              <div>
+                <h2>Bench Press</h2>
+                <p style="color: rgba(255,255,255,.64); font-weight: 800;">Chest · Triceps · Front delts</p>
+              </div>
+              <div class="card exercise"><span>Set 1</span><strong>10 × 50kg</strong><span>✓</span></div>
+              <div class="card exercise"><span>Set 2</span><strong>10 × 52.5kg</strong><span>Next</span></div>
+              <button class="button">Complete set</button>
+            </div>
+          </div>
+          <nav class="bottom-nav"><span>Today</span><span>Challenges</span><span class="active">Workouts</span><span>Tribe</span><span>Profile</span></nav>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="topbar"><span>Finish</span><span class="pill">PR</span></div>
+            <div class="hero">
+              <h2>Workout logged.</h2>
+              <p>6 exercises · 18 sets · 4,820kg volume</p>
+            </div>
+            <div class="card"><h3>Visibility</h3><p>Private is selected by default.</p></div>
+            <div class="mini-grid">
+              <button class="button">Private</button>
+              <button class="button" style="background:#FFE0D2;color:#040404;">Tribe</button>
+            </div>
+            <button class="button">Save and log</button>
+          </div>
+          <nav class="bottom-nav"><span>Today</span><span>Challenges</span><span class="active">Workouts</span><span>Tribe</span><span>Profile</span></nav>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Public Workout Discovery</h2>
+      <div class="grid" style="margin-top: 18px;">
+        <div class="web">
+          <div class="web-head"><strong class="brand">Public Workouts</strong><span class="pill">Copy with attribution</span></div>
+          <section class="main">
+            <div class="card discover-card">
+              <div class="thumb"></div>
+              <div>
+                <h3>Navdeep's Upper Body Builder</h3>
+                <p>Bench Press · Row · Shoulder Press · 42 min · 18 sets</p>
+                <div class="row" style="margin-top: 12px;">
+                  <span class="pill">by Navdeep</span>
+                  <span class="pill">Public</span>
+                  <button class="button" style="width:auto;">Copy workout</button>
+                </div>
+              </div>
+            </div>
+            <div class="card discover-card">
+              <div class="thumb"></div>
+              <div>
+                <h3>Beginner Full Body Reset</h3>
+                <p>Goblet Squat · Push-Up · Plank · 28 min · 12 sets</p>
+                <div class="row" style="margin-top: 12px;">
+                  <span class="pill">by TribeLog</span>
+                  <span class="pill">Official</span>
+                  <button class="button" style="width:auto;">Copy workout</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

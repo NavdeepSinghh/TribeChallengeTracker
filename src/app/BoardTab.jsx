@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ACTIVITY_TYPES } from "./activityModel";
 import { useAppTheme } from "./AppThemeContext";
 import { isFollowFeatureEnabledForUser } from "../featureFlags";
-import FollowDiscoverySection from "./FollowDiscoverySection";
 import TrainingJournalSection from "./TrainingJournalSection";
+import GuidedWorkoutSection from "../workouts/presentation/GuidedWorkoutSection";
+import PublicWorkoutDiscoverySection from "../workouts/presentation/PublicWorkoutDiscoverySection";
+import WorkoutHistorySection from "../workouts/presentation/WorkoutHistorySection";
+import WorkoutsLibrarySection from "../workouts/presentation/WorkoutsLibrarySection";
+import { createWorkoutCatalogUseCases } from "../workouts/workoutCatalogComposition";
+import { createGuidedWorkoutUseCases } from "../workouts/workoutGuidedComposition";
+import { createWorkoutHistoryUseCases } from "../workouts/workoutHistoryComposition";
+import { createWorkoutSocialUseCases } from "../workouts/workoutSocialComposition";
 
 export default function BoardTab({
   actCounts,
   allActivities,
   daysActive,
+  setShowLog,
   setTab,
   streak,
   totalPts,
@@ -19,11 +27,26 @@ export default function BoardTab({
   const isDay = resolvedMode === "day";
   const [routineToUse, setRoutineToUse] = useState(null);
   const followFeatureEnabled = isFollowFeatureEnabledForUser(user);
+  const workoutCatalogUseCases = useMemo(() => createWorkoutCatalogUseCases(), []);
+  const guidedWorkoutUseCases = useMemo(() => createGuidedWorkoutUseCases(), []);
+  const workoutHistoryUseCases = useMemo(() => createWorkoutHistoryUseCases(), []);
+  const workoutSocialUseCases = useMemo(() => createWorkoutSocialUseCases(), []);
+
+  useEffect(() => {
+    try {
+      const rawRoutine = window.sessionStorage?.getItem("tribePendingRoutine");
+      if (!rawRoutine) return;
+      window.sessionStorage?.removeItem("tribePendingRoutine");
+      setRoutineToUse(JSON.parse(rawRoutine));
+    } catch (error) {
+      window.sessionStorage?.removeItem("tribePendingRoutine");
+    }
+  }, []);
 
   return (
     <div style={{ padding: "52px 20px 20px" }}>
-      <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>ACTIVITY</p>
-      <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: theme.text }}>Activity 📊</h2>
+      <p style={{ color: theme.mutedStrong, fontSize: 11, fontWeight: 700, letterSpacing: 2, margin: "0 0 6px", fontFamily: "monospace" }}>WORKOUTS</p>
+      <h2 style={{ margin: "0 0 24px", fontSize: 26, fontWeight: 900, fontFamily: "'Syne', sans-serif", color: theme.text }}>Workouts 💪</h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
         {[
@@ -48,9 +71,19 @@ export default function BoardTab({
         </button>
       </div>
 
-      {followFeatureEnabled && (
-        <FollowDiscoverySection onUseRoutine={setRoutineToUse} user={user} />
-      )}
+      <GuidedWorkoutSection
+        catalogUseCases={workoutCatalogUseCases}
+        guidedUseCases={guidedWorkoutUseCases}
+      />
+
+      <WorkoutHistorySection useCases={workoutHistoryUseCases} />
+
+      <PublicWorkoutDiscoverySection useCases={workoutSocialUseCases} />
+
+      <WorkoutsLibrarySection
+        onQuickLog={() => setShowLog(true)}
+        useCases={workoutCatalogUseCases}
+      />
 
       <TrainingJournalSection
         onRoutineUsed={() => setRoutineToUse(null)}

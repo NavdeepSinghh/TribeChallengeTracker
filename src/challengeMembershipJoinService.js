@@ -1,10 +1,8 @@
 import {
   arrayUnion,
   doc,
-  getDoc,
   increment,
-  setDoc,
-  updateDoc,
+  runTransaction,
 } from 'firebase/firestore';
 import { db } from './firebase';
 import { invalidateCachedRead, userProfileCacheKey } from './userServices/readCache';
@@ -16,22 +14,38 @@ import {
 
 export async function joinChallenge(uid, challengeId, referralUid = '') {
   const memberRef = doc(db, 'challenges', challengeId, 'members', uid);
-  if ((await getDoc(memberRef)).exists()) return;
-
-  const userSnap = await getDoc(doc(db, 'users', uid));
-  const userData = userSnap.data() || {};
+  const challengeRef = doc(db, 'challenges', challengeId);
+  const userRef = doc(db, 'users', uid);
   const normalizedReferral = normalizeChallengeReferralUid(uid, referralUid);
 
-  await setDoc(memberRef, buildChallengeMemberRecord({
-    includeReferralFields: true,
-    uid,
-    userData,
-    referralUid: normalizedReferral,
-  }));
-  await setDoc(doc(db, 'challenges', challengeId), { memberCount: increment(1) }, { merge: true });
-  await updateDoc(doc(db, 'users', uid), {
-    joinedChallengeIds: arrayUnion(challengeId),
-    'stats.challengesJoined': increment(1),
+  await runTransaction(db, async transaction => {
+    const [memberSnap, userSnap] = await Promise.all([
+      transaction.get(memberRef),
+      transaction.get(userRef),
+    ]);
+    const userData = userSnap.data() || {};
+    const joinedIds = Array.isArray(userData.joinedChallengeIds) ? userData.joinedChallengeIds : [];
+    const alreadyListed = joinedIds.includes(challengeId);
+    const alreadyMember = memberSnap.exists();
+
+    if (!alreadyMember) {
+      transaction.set(memberRef, buildChallengeMemberRecord({
+        includeReferralFields: true,
+        uid,
+        userData,
+        referralUid: normalizedReferral,
+      }));
+      transaction.set(challengeRef, { memberCount: increment(1) }, { merge: true });
+    }
+
+    if (!alreadyListed) {
+      transaction.set(userRef, {
+        joinedChallengeIds: arrayUnion(challengeId),
+        stats: {
+          challengesJoined: increment(1),
+        },
+      }, { merge: true });
+    }
   });
   invalidateCachedRead(userProfileCacheKey(uid));
   invalidateCachedRead(`userChallenges:`);

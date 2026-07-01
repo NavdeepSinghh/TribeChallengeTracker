@@ -21,6 +21,7 @@ export default function AppOverlays({
   setSelectedDay,
   setShowLog,
   setShowProfile,
+  setTab,
   setUserProfile,
   showLog,
   showProfile,
@@ -72,6 +73,10 @@ export default function AppOverlays({
           onHistoryUpdated={updated => {
             setMyHistory(updated);
             triggerBadgeCheck(updated, challengeStats);
+          }}
+          onOpenBadges={() => {
+            setShowProfile(false);
+            setTab("badges");
           }}
           onClose={() => setShowProfile(false)}
         />

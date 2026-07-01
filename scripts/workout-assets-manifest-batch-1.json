@@ -1,0 +1,282 @@
+[
+  {
+    "exerciseId": "bench_press",
+    "localPath": "generated/workouts/exercises/v1/bench_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/bench_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "05b053176882e466a717819e0d4c8bdafdb49752b86440ba0efefe1e6b39f5e9"
+  },
+  {
+    "exerciseId": "bench_press",
+    "localPath": "generated/workouts/exercises/v1/bench_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/bench_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "b753f2b70115412e501c40be5b3577ae194b89e4ca6b91ea42c9f12d3f20ed8b"
+  },
+  {
+    "exerciseId": "bench_press",
+    "localPath": "generated/workouts/exercises/v1/bench_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/bench_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "fb0e09079198b6963b764ddcb5e3c24d61219ae8d4fd7d2aebb4286a6f7e5dc4"
+  },
+  {
+    "exerciseId": "bench_press",
+    "localPath": "generated/workouts/exercises/v1/bench_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/bench_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "7e6e70f0f740b4055ebbe3480dbee9bc1ead68d4651dd258ef0ca48e3a896d69"
+  },
+  {
+    "exerciseId": "dumbbell_bench_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_bench_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/dumbbell_bench_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "3b885ccad3ae2d64749b009e009d2c7651ae6e133abdc66b6fcb58d8bff02fe8"
+  },
+  {
+    "exerciseId": "dumbbell_bench_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_bench_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "47517114487709f3a69f0075bac3fbe1a3f452243b9a08e2147b909311c319ad"
+  },
+  {
+    "exerciseId": "dumbbell_bench_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_bench_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_bench_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "d727d88d77f10dba9bdbe22cc3a4cb41ecd1a03c1aa1a0e6451898da87d77b4e"
+  },
+  {
+    "exerciseId": "dumbbell_bench_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_bench_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/dumbbell_bench_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "98c2c29f9c89f531dfdd8b439121a99e56f3f971523d6e73191efe880100bc73"
+  },
+  {
+    "exerciseId": "incline_dumbbell_press",
+    "localPath": "generated/workouts/exercises/v1/incline_dumbbell_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/incline_dumbbell_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "33aec685581c31369e113b41420004e98f5582c0fe82ea2da1b2b872d0053358"
+  },
+  {
+    "exerciseId": "incline_dumbbell_press",
+    "localPath": "generated/workouts/exercises/v1/incline_dumbbell_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "9a6fb21962792a08b995856a3f935b277e04ae64822b2357d97505cd931de8f8"
+  },
+  {
+    "exerciseId": "incline_dumbbell_press",
+    "localPath": "generated/workouts/exercises/v1/incline_dumbbell_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/incline_dumbbell_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "5534d76d63fa9e027a1d6af087d144b42e2a0b3a2be61057835277a8cc1cb263"
+  },
+  {
+    "exerciseId": "incline_dumbbell_press",
+    "localPath": "generated/workouts/exercises/v1/incline_dumbbell_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/incline_dumbbell_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "011499b7994a57037cb7905e078f92f44e2132c8f94622d02ce00fe3cb147f14"
+  },
+  {
+    "exerciseId": "push_up",
+    "localPath": "generated/workouts/exercises/v1/push_up/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/push_up/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "7adfb6ef883ab6f8f9edd67e5c08e4836e2cf5101051b11dd5c39a2dc6507f0a"
+  },
+  {
+    "exerciseId": "push_up",
+    "localPath": "generated/workouts/exercises/v1/push_up/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/push_up/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a3ef1e70b6a8c978516e12bea30eea40f7ce3bdecc168e0042578ef51e5f9a3e"
+  },
+  {
+    "exerciseId": "push_up",
+    "localPath": "generated/workouts/exercises/v1/push_up/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/push_up/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "f9c8d72849459fbb7d1c1ab9803dc36efd7ba6fe019462f817a4fb53a34dc966"
+  },
+  {
+    "exerciseId": "push_up",
+    "localPath": "generated/workouts/exercises/v1/push_up/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/push_up/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "f353a423050c99273fd5bbefa2c244b16d8b2728539b43b8b639eb814dc51d8c"
+  },
+  {
+    "exerciseId": "machine_chest_press",
+    "localPath": "generated/workouts/exercises/v1/machine_chest_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/machine_chest_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "adbd4abf78dd541e34b2c5bfc4bcd94d95aca98e8294d938f3bac44542d6b7a4"
+  },
+  {
+    "exerciseId": "machine_chest_press",
+    "localPath": "generated/workouts/exercises/v1/machine_chest_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/machine_chest_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "79ae9b14bafac537f68604ebcd3f43df31e0d00f8d4c567dec3441bea5d98467"
+  },
+  {
+    "exerciseId": "machine_chest_press",
+    "localPath": "generated/workouts/exercises/v1/machine_chest_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/machine_chest_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "606c4c5b8cbd8ed664199daceb46195381595a988a034ac4399c78843af88ba7"
+  },
+  {
+    "exerciseId": "machine_chest_press",
+    "localPath": "generated/workouts/exercises/v1/machine_chest_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/machine_chest_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "f095d2318959621aee88f5382ccf638d9929392d324b443d372204b086e0f9e5"
+  },
+  {
+    "exerciseId": "dumbbell_shoulder_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_shoulder_press/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/dumbbell_shoulder_press/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "1effd9c217993098ed7b35d561b4f66ddb4cc7dc93f1001ac42dafee8743a336"
+  },
+  {
+    "exerciseId": "dumbbell_shoulder_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "271b9c36591838a9224244525ebf44c8bfaf68a74d98665dba116dfa4645c705"
+  },
+  {
+    "exerciseId": "dumbbell_shoulder_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_shoulder_press/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "b9bcd825c98769029c4b606ea8de499ee9cc52f6ced9c8e9c3e5fe0f8d7d612e"
+  },
+  {
+    "exerciseId": "dumbbell_shoulder_press",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_shoulder_press/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/dumbbell_shoulder_press/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "5348e3ff9179613b1e4c2943fdd3d6b1b29ab1507d761b328c2c8338871a7194"
+  },
+  {
+    "exerciseId": "lateral_raise",
+    "localPath": "generated/workouts/exercises/v1/lateral_raise/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/lateral_raise/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "ad364ac6ef1ef02202fc049271e98fc08a231753457195390bb3e011801fb053"
+  },
+  {
+    "exerciseId": "lateral_raise",
+    "localPath": "generated/workouts/exercises/v1/lateral_raise/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/lateral_raise/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a1fd465a5103e4d0da964009f4a49c38e429ed31f68b8a330b769f7a18881dd8"
+  },
+  {
+    "exerciseId": "lateral_raise",
+    "localPath": "generated/workouts/exercises/v1/lateral_raise/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/lateral_raise/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a612f4f2731b78ec2da1f0e64f957d767f4256c86603946ac62d5e81914bcede"
+  },
+  {
+    "exerciseId": "lateral_raise",
+    "localPath": "generated/workouts/exercises/v1/lateral_raise/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/lateral_raise/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "c84b412d3b26c7126c43246671d6aa73a46cb4b40a0a4d865ecac248e518d6c3"
+  },
+  {
+    "exerciseId": "dumbbell_chest_fly",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_chest_fly/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/dumbbell_chest_fly/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "cdcfe6fa49b38ec77c75e3c7e53f4938d9aac9c668c0463389aaa6ddc1a093f4"
+  },
+  {
+    "exerciseId": "dumbbell_chest_fly",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_chest_fly/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "2918d55d89e3f7005adc2100afcc856cebbf36d05ada9ac1c8b1812e70f3f9f1"
+  },
+  {
+    "exerciseId": "dumbbell_chest_fly",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_chest_fly/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/dumbbell_chest_fly/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "1dca0f813bfcf36c27ea7cf6b44f2a9e019824385883282d60c6a7a337344bc1"
+  },
+  {
+    "exerciseId": "dumbbell_chest_fly",
+    "localPath": "generated/workouts/exercises/v1/dumbbell_chest_fly/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/dumbbell_chest_fly/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "d1cc7df2dcfd2fcacb60bc29b05fe469532c25321e41d92853ebe95c1a8f6a25"
+  },
+  {
+    "exerciseId": "triceps_pushdown",
+    "localPath": "generated/workouts/exercises/v1/triceps_pushdown/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/triceps_pushdown/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "f7a9c08b68a641455fed5f612ae248164731d42ad901798715249cc7d839c3a1"
+  },
+  {
+    "exerciseId": "triceps_pushdown",
+    "localPath": "generated/workouts/exercises/v1/triceps_pushdown/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/triceps_pushdown/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "fb8200646afd801088a39730abb6bfd83b1ed61c25368b47025af839fb647d6e"
+  },
+  {
+    "exerciseId": "triceps_pushdown",
+    "localPath": "generated/workouts/exercises/v1/triceps_pushdown/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/triceps_pushdown/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "dc5a909f24bbbce63ac7e1a36f126389e1faa3a1dfb14aecc2cb7da9ecbfb617"
+  },
+  {
+    "exerciseId": "triceps_pushdown",
+    "localPath": "generated/workouts/exercises/v1/triceps_pushdown/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/triceps_pushdown/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "95bb0f22d666bec7fa0cd8fab2033d5aa68544139a3818e7ed51cbfa8338795e"
+  },
+  {
+    "exerciseId": "bench_dip",
+    "localPath": "generated/workouts/exercises/v1/bench_dip/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/bench_dip/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "909208e9276df1e12045181e867eac6effd3cdc86cfaec9a4255a124a88a223f"
+  },
+  {
+    "exerciseId": "bench_dip",
+    "localPath": "generated/workouts/exercises/v1/bench_dip/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/bench_dip/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "a6810da4c2cdc505bcbae372db23fa16c7abd18d865b718df13974723dfb18ab"
+  },
+  {
+    "exerciseId": "bench_dip",
+    "localPath": "generated/workouts/exercises/v1/bench_dip/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/bench_dip/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "f33511e801e278d2a54043b73fa367e7b6eb5ed5e841b498561ffce44b582a14"
+  },
+  {
+    "exerciseId": "bench_dip",
+    "localPath": "generated/workouts/exercises/v1/bench_dip/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/bench_dip/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "a83c7bd85f536db1d1808f060bf4bad6467b93f4adbbf8de9ce0644347c30db2"
+  }
+]

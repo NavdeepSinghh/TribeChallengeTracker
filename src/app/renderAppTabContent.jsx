@@ -37,12 +37,13 @@ export function renderAppTabContent({ tab, ...props }) {
         earnedBadges={props.earnedBadges}
         myHistory={props.myHistory}
         challengeStats={props.challengeStats}
-        mode="settings"
+        mode="profile"
         onProfileUpdated={props.setUserProfile}
         onHistoryUpdated={updated => {
           props.setMyHistory(updated);
           props.triggerBadgeCheck(updated, props.challengeStats);
         }}
+        onOpenBadges={() => props.setTab("badges")}
         onClose={() => props.setTab("home")}
       />
     );

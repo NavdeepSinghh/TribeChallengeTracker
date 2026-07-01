@@ -1,0 +1,226 @@
+[
+  {
+    "exerciseId": "treadmill_run",
+    "localPath": "generated/workouts/exercises/v1/treadmill_run/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/treadmill_run/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "9f73fcee92c3af7cafe24dce13b13acd38dbdd53a60284d1aa254a6a997c8fe8"
+  },
+  {
+    "exerciseId": "treadmill_run",
+    "localPath": "generated/workouts/exercises/v1/treadmill_run/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/treadmill_run/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "2c481c0787f60ad0d7dcacb003cbaa4ae534144fa5fbf11b66029599c54add00"
+  },
+  {
+    "exerciseId": "treadmill_run",
+    "localPath": "generated/workouts/exercises/v1/treadmill_run/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/treadmill_run/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "535a496f13253db512e6d9146f14476e6cbb9f56525cfd418b00daf192ace98e"
+  },
+  {
+    "exerciseId": "treadmill_run",
+    "localPath": "generated/workouts/exercises/v1/treadmill_run/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/treadmill_run/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "3da0bd5861f10af24c5666e8094ca053286275a1a1aa282ff59089d4486c52c7"
+  },
+  {
+    "exerciseId": "incline_walk",
+    "localPath": "generated/workouts/exercises/v1/incline_walk/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/incline_walk/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "36074ba04df2b2d23a6d8fe2b9ce73d6cf6511bb493ff504d7be8cadd48ec32b"
+  },
+  {
+    "exerciseId": "incline_walk",
+    "localPath": "generated/workouts/exercises/v1/incline_walk/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/incline_walk/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "9c3521d5cdd4181291268c91ca2b74aabde85992d59b5806ad582d4fb94614c0"
+  },
+  {
+    "exerciseId": "incline_walk",
+    "localPath": "generated/workouts/exercises/v1/incline_walk/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/incline_walk/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "fda4212db087f658b82f310256aa15e87354a3a2deb665aabab929d934541331"
+  },
+  {
+    "exerciseId": "incline_walk",
+    "localPath": "generated/workouts/exercises/v1/incline_walk/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/incline_walk/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "fdb15ba57504cf3a853f1cefd2bff565cb26741a399675d7a80486ba13ecbb82"
+  },
+  {
+    "exerciseId": "stationary_bike",
+    "localPath": "generated/workouts/exercises/v1/stationary_bike/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/stationary_bike/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "6b29b0bfe3bdfc2a6c24b739b5fe9d9f970faef64463a05f5acf2be639ecd755"
+  },
+  {
+    "exerciseId": "stationary_bike",
+    "localPath": "generated/workouts/exercises/v1/stationary_bike/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/stationary_bike/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "c172df037218f59720da688de7d31e384880f1aa438b1737a6e6597f76c31332"
+  },
+  {
+    "exerciseId": "stationary_bike",
+    "localPath": "generated/workouts/exercises/v1/stationary_bike/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/stationary_bike/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "073e13cc238265cfdba51fcbfb7de50e1e093a325eb386b0812322d5385c5f7f"
+  },
+  {
+    "exerciseId": "stationary_bike",
+    "localPath": "generated/workouts/exercises/v1/stationary_bike/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/stationary_bike/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "8be959d40ffec3a22a4ba5dd1673fb1fcf80326776ab2d5f5118f14c666e117c"
+  },
+  {
+    "exerciseId": "rowing_machine",
+    "localPath": "generated/workouts/exercises/v1/rowing_machine/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/rowing_machine/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "048a03d704494873f506bdd572c14bba46bd087d73b5b4f2883e3f77f359d6dd"
+  },
+  {
+    "exerciseId": "rowing_machine",
+    "localPath": "generated/workouts/exercises/v1/rowing_machine/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/rowing_machine/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "b3bf6b6bd2a4bf11c65c861b676409402a3a532f1a4a43b0b513835003629c5d"
+  },
+  {
+    "exerciseId": "rowing_machine",
+    "localPath": "generated/workouts/exercises/v1/rowing_machine/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/rowing_machine/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "d9ea382b6c5d1f03c25d6f1d2029826d39196d268ab10351d59270122786b00d"
+  },
+  {
+    "exerciseId": "rowing_machine",
+    "localPath": "generated/workouts/exercises/v1/rowing_machine/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/rowing_machine/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "ed432ae63351ca3002db4616dacdd9c299a409c160580735be28db9b3fbc9690"
+  },
+  {
+    "exerciseId": "cat_cow",
+    "localPath": "generated/workouts/exercises/v1/cat_cow/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/cat_cow/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "f409406b7b9fc229feb3e5c42fbe218320168656532d0889f9c6005a86f1cad5"
+  },
+  {
+    "exerciseId": "cat_cow",
+    "localPath": "generated/workouts/exercises/v1/cat_cow/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/cat_cow/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "e2bff498a09cbca425d5d5f8d3bcd81612e29d16bc65ebc5a5366d54ed66b2a4"
+  },
+  {
+    "exerciseId": "cat_cow",
+    "localPath": "generated/workouts/exercises/v1/cat_cow/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/cat_cow/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "1c4ecb1763c224d905c9692ba7e1c9502f7e2a810ab88c0b16c47a7b775ca0ab"
+  },
+  {
+    "exerciseId": "cat_cow",
+    "localPath": "generated/workouts/exercises/v1/cat_cow/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/cat_cow/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "dfa26e7a92b1050389c2cff30bc807bd5ab4e14c0e9d9673beda96daa140854f"
+  },
+  {
+    "exerciseId": "downward_dog",
+    "localPath": "generated/workouts/exercises/v1/downward_dog/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/downward_dog/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "4cd89b77770bbba1d101ca86c01fea602e86d94e841e4c86885a8b87f3d3653b"
+  },
+  {
+    "exerciseId": "downward_dog",
+    "localPath": "generated/workouts/exercises/v1/downward_dog/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/downward_dog/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "71e6ed6e3b3e778f1b02b58e8d53f441a535110f3bd0783842231b9db0571c07"
+  },
+  {
+    "exerciseId": "downward_dog",
+    "localPath": "generated/workouts/exercises/v1/downward_dog/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/downward_dog/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "be00abbbb96e42bd176de0f853344009e3abc6b91aefe2c12e461e0768b21fe8"
+  },
+  {
+    "exerciseId": "downward_dog",
+    "localPath": "generated/workouts/exercises/v1/downward_dog/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/downward_dog/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "0a869acc144d485f7a093837abe9a79b2501d6e97106f702f119b0d67740cbf5"
+  },
+  {
+    "exerciseId": "childs_pose",
+    "localPath": "generated/workouts/exercises/v1/childs_pose/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/childs_pose/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "bbc17dddff12512ffb74e2fe6bf0dc59c8916e6c69f67567cf2850b50bebcbf6"
+  },
+  {
+    "exerciseId": "childs_pose",
+    "localPath": "generated/workouts/exercises/v1/childs_pose/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/childs_pose/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "7968d0bb86b65ceb1440b041029b9d97042398145ea75e75b2177160df483655"
+  },
+  {
+    "exerciseId": "childs_pose",
+    "localPath": "generated/workouts/exercises/v1/childs_pose/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/childs_pose/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "7c254b2f5d43b1ac28e7bcbae1f4725a932907cdff665ce6322fa017dc015ae8"
+  },
+  {
+    "exerciseId": "childs_pose",
+    "localPath": "generated/workouts/exercises/v1/childs_pose/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/childs_pose/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "76ca7552ada27bb34a39cbd562af84df9049eb9b7b08499141785b2e97cec2c5"
+  },
+  {
+    "exerciseId": "worlds_greatest_stretch",
+    "localPath": "generated/workouts/exercises/v1/worlds_greatest_stretch/demo.lottie.json",
+    "storagePath": "workouts/exercises/v1/worlds_greatest_stretch/demo.lottie.json",
+    "contentType": "application/json",
+    "sha256": "6ceb236e8301ccd66dfe4e25ee0b8d6264aed0940b41d5b13ecf3875e8e9ad94"
+  },
+  {
+    "exerciseId": "worlds_greatest_stretch",
+    "localPath": "generated/workouts/exercises/v1/worlds_greatest_stretch/muscle-map-front.svg",
+    "storagePath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-front.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "ede791c6fa360e89a53378048dfbd7dd26c33d7c6340e6c508045e15d076edee"
+  },
+  {
+    "exerciseId": "worlds_greatest_stretch",
+    "localPath": "generated/workouts/exercises/v1/worlds_greatest_stretch/muscle-map-back.svg",
+    "storagePath": "workouts/exercises/v1/worlds_greatest_stretch/muscle-map-back.svg",
+    "contentType": "image/svg+xml",
+    "sha256": "312bf94f1dce056b6169b63dbc76a78e4ea7ddc2c3fd6ec5d75341be6774d4f2"
+  },
+  {
+    "exerciseId": "worlds_greatest_stretch",
+    "localPath": "generated/workouts/exercises/v1/worlds_greatest_stretch/thumbnail.webp",
+    "storagePath": "workouts/exercises/v1/worlds_greatest_stretch/thumbnail.webp",
+    "contentType": "image/webp",
+    "sha256": "713d6a9c4ad823d5900c63cc50b128f96d6672d9d9e4cea7d53a31421843a821"
+  }
+]

@@ -10,12 +10,13 @@ export default function ProfileActivitySummarySection({
   statsGrid,
   earnedList,
   prefRows,
+  onOpenBadges,
 }) {
   return (
     <>
-      <ProfileRankProgressCard badgeXP={badgeXP} rank={rank} rankedPct={rankedPct} />
+      <ProfileRankProgressCard badgeXP={badgeXP} onOpenBadges={onOpenBadges} rank={rank} rankedPct={rankedPct} />
       <ProfileStatsGrid statsGrid={statsGrid} />
-      <ProfileBadgeShowcase earnedList={earnedList} />
+      <ProfileBadgeShowcase earnedList={earnedList} onOpenBadges={onOpenBadges} />
       <ProfilePreferenceRows prefRows={prefRows} />
     </>
   );

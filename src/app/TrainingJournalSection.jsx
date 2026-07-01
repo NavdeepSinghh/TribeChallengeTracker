@@ -19,6 +19,8 @@ const SESSION_TYPES = [
   { id: "yoga", label: "Yoga", icon: "🧘", color: "#A78BFA" },
 ];
 
+const DEFAULT_TEMPLATE_ID = WORKOUT_TEMPLATES[0]?.id || "";
+
 const localDateStr = (date = new Date()) => {
   const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
   return local.toISOString().slice(0, 10);
@@ -57,6 +59,10 @@ export default function TrainingJournalSection({
   const [showProgress, setShowProgress] = useState(false);
   const [selectedType, setSelectedType] = useState("gym");
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedPlanId, setSelectedPlanId] = useState(DEFAULT_TEMPLATE_ID);
+  const [selectedPlanFlowId, setSelectedPlanFlowId] = useState("");
+  const [activeWorkout, setActiveWorkout] = useState(null);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [dateStr, setDateStr] = useState(localDateStr());
   const [planName, setPlanName] = useState("");
   const [intensity, setIntensity] = useState("steady");
@@ -91,6 +97,18 @@ export default function TrainingJournalSection({
   }, [routineToUse, onRoutineUsed]);
 
   const activeType = typeMeta(selectedType);
+  const selectedPlan = useMemo(
+    () => WORKOUT_TEMPLATES.find(template => template.id === selectedPlanId) || WORKOUT_TEMPLATES[0],
+    [selectedPlanId]
+  );
+  const activeWorkoutTemplate = useMemo(
+    () => WORKOUT_TEMPLATES.find(template => template.id === activeWorkout?.templateId),
+    [activeWorkout?.templateId]
+  );
+  const selectedPlanFlow = useMemo(
+    () => WORKOUT_TEMPLATES.find(template => template.id === selectedPlanFlowId),
+    [selectedPlanFlowId]
+  );
   const sessionsForType = useMemo(
     () => sessions.filter(session => session.type === selectedType),
     [sessions, selectedType]
@@ -102,6 +120,19 @@ export default function TrainingJournalSection({
     () => buildTrainingInsights(sessionsForType, selectedType),
     [sessionsForType, selectedType]
   );
+
+  useEffect(() => {
+    if (!activeWorkout?.startedAt) {
+      setElapsedSeconds(0);
+      return undefined;
+    }
+    const updateElapsed = () => {
+      setElapsedSeconds(Math.max(0, Math.floor((Date.now() - activeWorkout.startedAt) / 1000)));
+    };
+    updateElapsed();
+    const timer = window.setInterval(updateElapsed, 1000);
+    return () => window.clearInterval(timer);
+  }, [activeWorkout?.startedAt]);
 
   const openNewSession = (type = selectedType) => {
     setSelectedType(type);
@@ -197,6 +228,38 @@ export default function TrainingJournalSection({
     setShowBuilder(true);
   };
 
+  const openWorkoutPlanFlow = (planId = selectedPlanId) => {
+    const plan = WORKOUT_TEMPLATES.find(template => template.id === planId) || selectedPlan;
+    if (!plan) return;
+    setSelectedPlanId(plan.id);
+    setSelectedPlanFlowId(plan.id);
+  };
+
+  const startWorkoutFromTemplate = (template = selectedPlan) => {
+    if (!template) return;
+    setSelectedType("gym");
+    setSelectedTemplate(template);
+    setSelectedPlanId(template.id);
+    setActiveWorkout({
+      templateId: template.id,
+      startedAt: Date.now(),
+    });
+    setSelectedPlanFlowId("");
+  };
+
+  const stopActiveWorkout = () => {
+    setActiveWorkout(null);
+    setElapsedSeconds(0);
+  };
+
+  const finishActiveWorkout = () => {
+    const template = activeWorkoutTemplate || selectedPlan;
+    stopActiveWorkout();
+    if (template) {
+      applyWorkoutTemplate(template);
+    }
+  };
+
   const handleSave = async () => {
     if (!user?.uid || saving) return;
     const session = buildSessionPayload({
@@ -273,19 +336,37 @@ export default function TrainingJournalSection({
 
   return (
     <>
+      <TrainingJournalAnimationStyles />
       <section style={cardStyle(theme, 20, 18)}>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={eyebrowStyle(theme)}>TRAINING JOURNAL</p>
+            <p style={eyebrowStyle(theme)}>TRAINING PLAN</p>
             <h3 style={{ margin: 0, color: theme.text, fontSize: 19, fontWeight: 950, fontFamily: "'Syne', sans-serif" }}>
-              Save a full workout in one go.
+              Start focused sessions from your activity tab.
             </h3>
             <p style={{ margin: "7px 0 0", color: theme.textSoft, fontSize: 12, lineHeight: 1.35 }}>
-              Copy a previous session, tweak today’s numbers, and keep charts separate from logging.
+              Pick a plan, preview the target muscles, start the workout timer, then save the finished session.
             </p>
           </div>
-          <span style={{ fontSize: 26 }}>📓</span>
+          <span style={{ fontSize: 26 }}>🏋️</span>
         </div>
+
+        <TrainingPlanShowcase
+          activeWorkout={activeWorkout}
+          elapsedSeconds={elapsedSeconds}
+          onLogPlan={() => applyWorkoutTemplate(selectedPlan)}
+          onOpenPlan={openWorkoutPlanFlow}
+          onSelectPlan={(planId) => {
+            setSelectedPlanId(planId);
+            openWorkoutPlanFlow(planId);
+          }}
+          onStart={() => openWorkoutPlanFlow(selectedPlanId)}
+          onStop={stopActiveWorkout}
+          selectedPlan={selectedPlan}
+          selectedPlanId={selectedPlanId}
+          templates={WORKOUT_TEMPLATES}
+          theme={theme}
+        />
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 14 }}>
           <MiniMetric label="SESSIONS" value={overview.totalSessions} color="#FFD700" theme={theme} />
@@ -337,7 +418,6 @@ export default function TrainingJournalSection({
           </button>
         </div>
 
-        <WorkoutTemplateStrip templates={WORKOUT_TEMPLATES} onSelect={applyWorkoutTemplate} theme={theme} />
         {followFeatureEnabled && routineShareMessage && (
           <p style={{ margin: "12px 0 0", color: "#FF6B35", fontSize: 12, fontWeight: 850 }}>
             {routineShareMessage}
@@ -437,6 +517,22 @@ export default function TrainingJournalSection({
         </ModalShell>
       )}
 
+      {selectedPlanFlow && (
+        <WorkoutPlanFlow
+          activeWorkout={activeWorkout}
+          elapsedSeconds={elapsedSeconds}
+          onClose={() => setSelectedPlanFlowId("")}
+          onLogPlan={() => {
+            applyWorkoutTemplate(selectedPlanFlow);
+            setSelectedPlanFlowId("");
+          }}
+          onStart={() => startWorkoutFromTemplate(selectedPlanFlow)}
+          onStop={stopActiveWorkout}
+          template={selectedPlanFlow}
+          theme={theme}
+        />
+      )}
+
       {showProgress && (
         <ModalShell title="Training Progress" onClose={() => setShowProgress(false)} theme={theme}>
           <TypePicker selectedType={selectedType} onSelect={setSelectedType} theme={theme} />
@@ -461,17 +557,129 @@ export default function TrainingJournalSection({
           </div>
         </ModalShell>
       )}
+
+      {activeWorkout && (
+        <ActiveWorkoutDock
+          elapsedSeconds={elapsedSeconds}
+          onFinish={finishActiveWorkout}
+          onStop={stopActiveWorkout}
+          template={activeWorkoutTemplate || selectedPlan}
+          theme={theme}
+        />
+      )}
     </>
   );
 }
 
-function WorkoutTemplateStrip({ onSelect, templates, theme }) {
+function TrainingPlanShowcase({
+  activeWorkout,
+  elapsedSeconds,
+  onLogPlan,
+  onOpenPlan,
+  onSelectPlan,
+  onStart,
+  onStop,
+  selectedPlan,
+  selectedPlanId,
+  templates,
+  theme,
+}) {
+  if (!selectedPlan) return null;
+  const planStats = buildPlanStats(selectedPlan);
+  const activeThisPlan = activeWorkout?.templateId === selectedPlan.id;
   return (
-    <div style={{ marginTop: 14 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center", marginBottom: 9 }}>
-        <p style={eyebrowStyle(theme)}>WORKOUT TEMPLATES</p>
-        <span style={{ color: theme.textSoft, fontSize: 11, fontWeight: 800 }}>Tap to prefill</span>
+    <div style={{
+      marginBottom: 16,
+      borderRadius: 18,
+      border: `1px solid ${theme.cardBorder}`,
+      background: `linear-gradient(145deg, ${theme.cardBgStrong}, ${theme.cardBg})`,
+      overflow: "hidden",
+    }}>
+      <WorkoutTemplateStrip
+        onSelect={onSelectPlan}
+        selectedTemplateId={selectedPlanId}
+        templates={templates}
+        theme={theme}
+      />
+      <div style={{ padding: "0 13px 13px" }}>
+        <div
+          className="tribe-workout-plan-card-grid"
+          style={{
+            display: "grid",
+            gap: 12,
+            alignItems: "stretch",
+          }}
+        >
+          <div style={{
+            minWidth: 0,
+            padding: 13,
+            borderRadius: 15,
+            background: theme.cardBg,
+            border: `1px solid ${theme.cardBorder}`,
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
+              <div style={{ minWidth: 0 }}>
+                <p style={{ margin: "0 0 5px", color: "#34D399", fontSize: 10, fontWeight: 950, fontFamily: "monospace" }}>
+                  NEXT WORKOUT
+                </p>
+                <h4 style={{ margin: 0, color: theme.text, fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 950, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {selectedPlan.name}
+                </h4>
+                <p style={{ margin: "5px 0 0", color: theme.textSoft, fontSize: 12, lineHeight: 1.35 }}>
+                  {selectedPlan.focus}
+                </p>
+              </div>
+              <span style={{
+                flex: "0 0 auto",
+                borderRadius: 999,
+                background: "rgba(52,211,153,0.16)",
+                color: "#34D399",
+                fontSize: 10,
+                fontWeight: 950,
+                fontFamily: "monospace",
+                padding: "6px 8px",
+              }}>
+                {activeThisPlan ? formatElapsed(elapsedSeconds) : `${selectedPlan.minutes} MIN`}
+              </span>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 7, marginBottom: 11 }}>
+              <PlanMetric label="SETS" value={planStats.sets} theme={theme} />
+              <PlanMetric label="EXERCISES" value={planStats.exercises} theme={theme} />
+              <PlanMetric label="FOCUS" value={planStats.focusCount} theme={theme} />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: activeThisPlan ? "1fr auto" : "1fr 1fr", gap: 8 }}>
+              {activeThisPlan ? (
+                <>
+                  <button onClick={onLogPlan} style={primaryButtonStyle("#34D399")}>
+                    Open log
+                  </button>
+                  <button onClick={onStop} style={secondaryButtonStyle(theme)}>
+                    Stop
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={onStart} style={primaryButtonStyle("#34D399")}>
+                    Open workout
+                  </button>
+                  <button onClick={() => onOpenPlan(selectedPlan.id)} style={secondaryButtonStyle(theme)}>
+                    Preview
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+          <WorkoutPhotoHero compact template={selectedPlan} theme={theme} />
+        </div>
       </div>
+    </div>
+  );
+}
+
+function WorkoutTemplateStrip({ onSelect, selectedTemplateId, templates, theme }) {
+  return (
+    <div style={{ padding: "13px 13px 11px" }}>
+      <p style={eyebrowStyle(theme)}>WORKOUT TEMPLATES</p>
       <div style={{
         display: "flex",
         gap: 9,
@@ -482,32 +690,400 @@ function WorkoutTemplateStrip({ onSelect, templates, theme }) {
         {templates.map(template => (
           <button
             key={template.id}
-            onClick={() => onSelect(template)}
+            onClick={() => onSelect(template.id)}
+            className="tribe-workout-template-card"
             style={{
-              flex: "0 0 154px",
+              flex: "0 0 148px",
               textAlign: "left",
-              border: `1px solid ${theme.cardBorder}`,
+              border: `1px solid ${selectedTemplateId === template.id ? "#34D399" : theme.cardBorder}`,
               borderRadius: 14,
-              background: theme.cardBgStrong,
+              background: selectedTemplateId === template.id ? "rgba(52,211,153,0.13)" : theme.cardBgStrong,
               color: theme.text,
               padding: 12,
               cursor: "pointer",
+              boxShadow: selectedTemplateId === template.id ? "0 10px 26px rgba(52,211,153,0.12)" : "none",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "center", marginBottom: 8 }}>
-              <span style={{ fontSize: 24 }}>{template.emoji}</span>
-              <span style={{ color: "#FF6B35", fontSize: 10, fontFamily: "monospace", fontWeight: 900 }}>{template.minutes} MIN</span>
+            <div style={{
+              height: 76,
+              margin: "-4px -4px 9px",
+              borderRadius: 11,
+              overflow: "hidden",
+              border: `1px solid ${theme.cardBorder}`,
+            }}>
+              <WorkoutPhotoHero bare compact template={template} theme={theme} />
             </div>
             <p style={{ margin: 0, fontSize: 13, fontWeight: 950, fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {template.name}
             </p>
-            <p style={{ margin: "4px 0 0", color: theme.textSoft, fontSize: 11, lineHeight: 1.25 }}>
-              {template.focus}
+            <p style={{ margin: "4px 0 0", color: selectedTemplateId === template.id ? "#34D399" : "#FF6B35", fontSize: 10, fontFamily: "monospace", fontWeight: 900 }}>
+              {template.minutes} MIN · {template.exercises?.length || 0} MOVES
             </p>
           </button>
         ))}
       </div>
     </div>
+  );
+}
+
+function WorkoutPhotoHero({ bare = false, compact = false, template, theme }) {
+  const fallback = workoutFallbackGradient(template);
+  const backgroundImage = template?.imageUrl
+    ? `linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.70)), url("${template.imageUrl}")`
+    : fallback;
+  return (
+    <div
+      role="img"
+      aria-label={`${template?.name || "Workout"} preview`}
+      style={{
+        position: "relative",
+        minHeight: compact ? "100%" : 260,
+        width: "100%",
+        height: compact ? "100%" : "auto",
+        borderRadius: bare ? 0 : 15,
+        background: fallback,
+        backgroundImage,
+        backgroundSize: "cover",
+        backgroundPosition: template?.imagePosition || "center",
+        border: bare ? "none" : `1px solid ${theme.cardBorder}`,
+        overflow: "hidden",
+      }}
+    >
+      {!bare && (
+        <div style={{
+          position: "absolute",
+          inset: "auto 10px 10px",
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+          gap: 10,
+        }}>
+          <div style={{ minWidth: 0 }}>
+            <p style={{ margin: 0, color: "white", fontSize: compact ? 12 : 22, fontWeight: 950, fontFamily: "'Syne', sans-serif", textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
+              {template?.name}
+            </p>
+            {!compact && (
+              <p style={{ margin: "5px 0 0", color: "rgba(255,255,255,0.82)", fontSize: 12, fontWeight: 800 }}>
+                {template?.focus}
+              </p>
+            )}
+          </div>
+          <span style={{
+            flex: "0 0 auto",
+            borderRadius: 999,
+            background: "rgba(255,255,255,0.92)",
+            color: "#111",
+            fontSize: 10,
+            fontFamily: "monospace",
+            fontWeight: 950,
+            padding: "6px 8px",
+          }}>
+            {template?.minutes} MIN
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function workoutFallbackGradient(template) {
+  const muscles = inferTemplateMuscles(template);
+  const first = muscles[0] || "core";
+  const second = muscles[1] || "shoulders";
+  return `linear-gradient(145deg, ${muscleColor(first)}66, ${muscleColor(second)}33 45%, rgba(10,10,10,0.36))`;
+}
+
+function WorkoutPlanFlow({ activeWorkout, elapsedSeconds, onClose, onLogPlan, onStart, onStop, template, theme }) {
+  const stats = buildPlanStats(template);
+  const activeThisPlan = activeWorkout?.templateId === template.id;
+  return (
+    <ModalShell title={template.name} onClose={onClose} theme={theme}>
+      <div style={{ display: "grid", gap: 14 }}>
+        <WorkoutPhotoHero template={template} theme={theme} />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+          <PlanMetric label="SETS" value={stats.sets} theme={theme} />
+          <PlanMetric label="EXERCISES" value={stats.exercises} theme={theme} />
+          <PlanMetric label="FOCUS" value={stats.focusCount} theme={theme} />
+        </div>
+        <div style={{
+          padding: 12,
+          borderRadius: 14,
+          background: theme.cardBgStrong,
+          border: `1px solid ${theme.cardBorder}`,
+        }}>
+          <p style={{ margin: "0 0 5px", color: theme.text, fontSize: 14, fontWeight: 950, fontFamily: "'Syne', sans-serif" }}>
+            {template.summary}
+          </p>
+          <p style={{ margin: 0, color: theme.textSoft, fontSize: 12, lineHeight: 1.4 }}>
+            Review the plan, then start the timer or open the log to adjust sets, reps, and weight for today.
+          </p>
+        </div>
+        <WorkoutMuscleMap template={template} theme={theme} />
+        <ExercisePreviewList exercises={template.exercises || []} theme={theme} />
+        <TemplateGuidance template={template} theme={theme} />
+        <div style={{ display: "grid", gridTemplateColumns: activeThisPlan ? "1fr auto" : "1fr 1fr", gap: 9, position: "sticky", bottom: 0, paddingTop: 4, background: theme.bg }}>
+          {activeThisPlan ? (
+            <>
+              <button onClick={onLogPlan} style={primaryButtonStyle("#34D399")}>
+                Open log · {formatElapsed(elapsedSeconds)}
+              </button>
+              <button onClick={onStop} style={secondaryButtonStyle(theme)}>
+                Stop
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={onStart} style={primaryButtonStyle("#34D399")}>
+                Start workout
+              </button>
+              <button onClick={onLogPlan} style={secondaryButtonStyle(theme)}>
+                Log/edit sets
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </ModalShell>
+  );
+}
+
+function WorkoutMuscleMap({ template, theme }) {
+  const muscles = inferTemplateMuscles(template);
+  const active = (name) => muscles.includes(name);
+  return (
+    <div style={{
+      minHeight: 214,
+      borderRadius: 15,
+      background: "linear-gradient(180deg, rgba(10,10,10,0.16), rgba(52,211,153,0.08))",
+      border: `1px solid ${theme.cardBorder}`,
+      display: "grid",
+      placeItems: "center",
+      padding: 9,
+      overflow: "hidden",
+    }}>
+      <svg viewBox="0 0 132 206" role="img" aria-label={`${template.name} muscle targets`} style={{ width: "100%", height: "100%", minHeight: 190 }}>
+        <defs>
+          <filter id={`glow-${template.id}`} x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <BodySilhouette x={18} baseFill={theme.cardBgStrong} baseStroke={theme.cardBorder} />
+        <BodySilhouette x={72} baseFill={theme.cardBgStrong} baseStroke={theme.cardBorder} />
+        <MuscleShape active={active("shoulders")} d="M34 48 C27 50 24 58 26 65 L45 65 C46 57 43 50 34 48 Z" />
+        <MuscleShape active={active("chest")} d="M34 61 C28 62 27 70 28 78 C32 81 38 81 42 78 C43 70 41 62 34 61 Z" />
+        <MuscleShape active={active("core")} d="M34 80 C29 84 29 98 34 104 C39 98 39 84 34 80 Z" />
+        <MuscleShape active={active("biceps")} d="M21 69 C16 78 15 91 18 99 C23 91 25 80 24 70 Z" />
+        <MuscleShape active={active("triceps")} d="M47 69 C45 80 47 91 51 99 C55 90 53 78 48 69 Z" />
+        <MuscleShape active={active("quads")} d="M29 109 C24 123 24 141 29 153 C34 142 34 124 32 110 Z" />
+        <MuscleShape active={active("quads")} d="M39 109 C36 124 36 142 41 153 C46 141 46 123 40 109 Z" />
+        <MuscleShape active={active("calves")} d="M28 153 C24 164 24 177 29 187 C33 176 33 164 31 153 Z" />
+        <MuscleShape active={active("calves")} d="M40 153 C37 164 37 176 42 187 C46 177 45 164 41 153 Z" />
+        <MuscleShape active={active("back")} d="M88 56 C81 63 81 85 88 96 C95 86 95 64 88 56 Z" />
+        <MuscleShape active={active("back")} d="M88 48 C79 50 76 58 77 68 L99 68 C100 58 97 50 88 48 Z" />
+        <MuscleShape active={active("hamstrings")} d="M83 111 C79 125 79 144 84 155 C89 143 89 126 86 111 Z" />
+        <MuscleShape active={active("hamstrings")} d="M93 111 C90 126 90 143 95 155 C100 144 99 125 94 111 Z" />
+        <MuscleShape active={active("glutes")} d="M88 99 C80 100 78 108 81 115 C85 118 92 118 96 115 C99 108 96 100 88 99 Z" />
+        <text x="34" y="200" fill={theme.mutedStrong} fontSize="8" fontFamily="monospace" fontWeight="900" textAnchor="middle">FRONT</text>
+        <text x="88" y="200" fill={theme.mutedStrong} fontSize="8" fontFamily="monospace" fontWeight="900" textAnchor="middle">BACK</text>
+      </svg>
+    </div>
+  );
+}
+
+function BodySilhouette({ baseFill, baseStroke, x }) {
+  return (
+    <g transform={`translate(${x}, 0)`} fill={baseFill} stroke={baseStroke} strokeWidth="1.2" opacity="0.94">
+      <circle cx="16" cy="27" r="9" />
+      <path d="M16 38 C7 45 5 69 9 91 L12 108 L20 108 L23 91 C27 69 25 45 16 38 Z" />
+      <path d="M8 58 C-2 70 -3 92 1 114 L7 112 C5 95 7 79 13 68 Z" />
+      <path d="M24 58 C34 70 35 92 31 114 L25 112 C27 95 25 79 19 68 Z" />
+      <path d="M12 107 C6 128 6 160 10 187 L16 187 L17 110 Z" />
+      <path d="M20 107 C26 128 26 160 22 187 L16 187 L15 110 Z" />
+    </g>
+  );
+}
+
+function MuscleShape({ active, d }) {
+  if (!active) return null;
+  return (
+    <path
+      className="tribe-muscle-highlight"
+      d={d}
+      fill="#38BDF8"
+      opacity="0.9"
+    />
+  );
+}
+
+function ExercisePreviewList({ exercises, theme }) {
+  const visibleExercises = exercises.slice(0, 5);
+  return (
+    <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
+      {visibleExercises.map((exercise, index) => (
+        <div key={`${exercise.name}_${index}`} className="tribe-exercise-preview-card" style={{
+          display: "grid",
+          gridTemplateColumns: "54px minmax(0, 1fr) auto",
+          gap: 10,
+          alignItems: "center",
+          minHeight: 70,
+          padding: 9,
+          borderRadius: 14,
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
+        }}>
+          <ExerciseThumbnail exercise={exercise} />
+          <div style={{ minWidth: 0 }}>
+            <p style={{ margin: 0, color: theme.text, fontSize: 13, fontWeight: 900, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {exercise.name}
+            </p>
+            <p style={{ margin: "4px 0 0", color: theme.textSoft, fontSize: 11, lineHeight: 1.25, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {exercise.focus || inferExerciseFocus(exercise)}
+            </p>
+          </div>
+          <span style={{
+            color: "#38BDF8",
+            fontSize: 10,
+            fontFamily: "monospace",
+            fontWeight: 950,
+            whiteSpace: "nowrap",
+          }}>
+            {exerciseTargetText(exercise)}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ExerciseThumbnail({ exercise }) {
+  const muscles = inferExerciseMuscles(exercise);
+  const primary = muscles[0] || "core";
+  const color = muscleColor(primary);
+  return (
+    <div style={{
+      width: 54,
+      height: 54,
+      borderRadius: 13,
+      display: "grid",
+      placeItems: "center",
+      background: `linear-gradient(145deg, ${color}26, rgba(255,255,255,0.08))`,
+      border: `1px solid ${color}66`,
+      overflow: "hidden",
+    }}>
+      <svg viewBox="0 0 54 54" aria-hidden="true" style={{ width: 54, height: 54 }}>
+        <rect x="5" y="38" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.2)" />
+        <path d="M13 35 L24 24 L33 34" fill="none" stroke="rgba(255,255,255,0.44)" strokeWidth="4" strokeLinecap="round" />
+        <circle cx="25" cy="17" r="5" fill="rgba(255,255,255,0.72)" />
+        <path className="tribe-exercise-pulse" d="M17 24 C22 19 31 19 37 24 L34 34 L20 34 Z" fill={color} />
+        <path d="M9 15 H17 M37 15 H45 M13 11 V19 M41 11 V19" stroke="rgba(255,255,255,0.5)" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    </div>
+  );
+}
+
+function PlanMetric({ label, value, theme }) {
+  return (
+    <div style={{
+      borderRadius: 11,
+      background: theme.cardBgStrong,
+      border: `1px solid ${theme.cardBorder}`,
+      padding: "8px 7px",
+      minWidth: 0,
+    }}>
+      <p style={{ margin: 0, color: theme.text, fontSize: 14, fontWeight: 950, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{value}</p>
+      <p style={{ margin: "2px 0 0", color: theme.mutedStrong, fontSize: 8, fontFamily: "monospace", fontWeight: 900 }}>{label}</p>
+    </div>
+  );
+}
+
+function ActiveWorkoutDock({ elapsedSeconds, onFinish, onStop, template, theme }) {
+  return (
+    <div style={{
+      position: "fixed",
+      left: "50%",
+      bottom: "96px",
+      transform: "translateX(-50%)",
+      zIndex: 45,
+      width: "min(392px, calc(100% - 32px))",
+      borderRadius: 18,
+      border: "1px solid rgba(52,211,153,0.34)",
+      background: theme.navBg || theme.cardBgStrong,
+      boxShadow: "0 18px 50px rgba(0,0,0,0.32)",
+      backdropFilter: "blur(18px)",
+      padding: 10,
+      display: "grid",
+      gridTemplateColumns: "minmax(0, 1fr) auto auto",
+      gap: 8,
+      alignItems: "center",
+    }}>
+      <div style={{ minWidth: 0 }}>
+        <p style={{ margin: 0, color: "#34D399", fontSize: 10, fontFamily: "monospace", fontWeight: 950 }}>
+          ACTIVE {formatElapsed(elapsedSeconds)}
+        </p>
+        <p style={{ margin: "2px 0 0", color: theme.text, fontSize: 13, fontWeight: 950, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {template?.name || "Workout"}
+        </p>
+      </div>
+      <button onClick={onFinish} style={{ ...primaryButtonStyle("#34D399"), padding: "10px 12px", whiteSpace: "nowrap" }}>
+        Finish
+      </button>
+      <button onClick={onStop} style={{ ...secondaryButtonStyle(theme), padding: "10px 11px" }}>
+        End
+      </button>
+    </div>
+  );
+}
+
+function TrainingJournalAnimationStyles() {
+  return (
+    <style>{`
+      @keyframes tribeMusclePulse {
+        0%, 100% { opacity: 0.62; transform: scale(0.98); transform-origin: center; }
+        50% { opacity: 1; transform: scale(1.035); transform-origin: center; }
+      }
+      @keyframes tribeExercisePulse {
+        0%, 100% { opacity: 0.72; }
+        50% { opacity: 1; }
+      }
+      .tribe-muscle-highlight {
+        animation: tribeMusclePulse 1.9s ease-in-out infinite;
+        filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.64));
+      }
+      .tribe-exercise-pulse {
+        animation: tribeExercisePulse 1.7s ease-in-out infinite;
+      }
+      .tribe-workout-template-card,
+      .tribe-exercise-preview-card {
+        transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      }
+      .tribe-workout-plan-card-grid {
+        grid-template-columns: minmax(0, 1fr) 148px;
+      }
+      .tribe-workout-template-card:hover,
+      .tribe-exercise-preview-card:hover {
+        transform: translateY(-1px);
+      }
+      @media (max-width: 430px) {
+        .tribe-workout-plan-card-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .tribe-workout-plan-card-grid > [role="img"] {
+          min-height: 168px !important;
+        }
+      }
+      @media (max-width: 380px) {
+        .tribe-exercise-preview-card {
+          grid-template-columns: 48px minmax(0, 1fr);
+        }
+        .tribe-exercise-preview-card > span {
+          grid-column: 2;
+        }
+      }
+    `}</style>
   );
 }
 
@@ -981,6 +1557,90 @@ function chartLabel(type) {
   if (type === "run") return "DISTANCE TREND (KM)";
   if (type === "swim") return "SWIM DISTANCE TREND (M)";
   return "YOGA TIME TREND (MIN)";
+}
+
+function buildPlanStats(template) {
+  const exercises = template?.exercises || [];
+  const sets = exercises.reduce((sum, exercise) => sum + (Number(exercise.sets) || 0), 0);
+  return {
+    exercises: String(exercises.length),
+    sets: String(sets),
+    focusCount: String(inferTemplateMuscles(template).length),
+  };
+}
+
+function inferTemplateMuscles(template) {
+  const text = [
+    template?.name,
+    template?.focus,
+    ...(template?.exercises || []).flatMap(exercise => [exercise.name, exercise.focus, exercise.tip]),
+  ].join(" ").toLowerCase();
+  const muscles = [];
+  const add = (key, patterns) => {
+    if (patterns.some(pattern => text.includes(pattern))) muscles.push(key);
+  };
+  add("chest", ["chest", "bench", "press", "fly", "push-up"]);
+  add("shoulders", ["shoulder", "delt", "lateral", "overhead"]);
+  add("triceps", ["tricep", "pushdown", "extension"]);
+  add("back", ["back", "lat", "row", "pull", "rear delt"]);
+  add("biceps", ["bicep", "curl"]);
+  add("quads", ["quad", "squat", "leg press", "leg extension", "goblet"]);
+  add("hamstrings", ["hamstring", "deadlift", "hinge", "romanian"]);
+  add("glutes", ["glute", "hip", "squat", "leg press"]);
+  add("calves", ["calf"]);
+  add("core", ["core", "plank"]);
+  return [...new Set(muscles.length ? muscles : ["core"])];
+}
+
+function inferExerciseMuscles(exercise) {
+  return inferTemplateMuscles({
+    name: exercise?.name,
+    focus: exercise?.focus,
+    exercises: [exercise],
+  });
+}
+
+function inferExerciseFocus(exercise) {
+  const labels = {
+    back: "Back",
+    biceps: "Biceps",
+    calves: "Calves",
+    chest: "Chest",
+    core: "Core",
+    glutes: "Glutes",
+    hamstrings: "Hamstrings",
+    quads: "Quads",
+    shoulders: "Shoulders",
+    triceps: "Triceps",
+  };
+  return inferExerciseMuscles(exercise).map(muscle => labels[muscle] || muscle).join(", ");
+}
+
+function muscleColor(muscle) {
+  const colors = {
+    back: "#38BDF8",
+    biceps: "#A78BFA",
+    calves: "#34D399",
+    chest: "#FF6B35",
+    core: "#F59E0B",
+    glutes: "#F472B6",
+    hamstrings: "#60A5FA",
+    quads: "#FFD700",
+    shoulders: "#22D3EE",
+    triceps: "#FB7185",
+  };
+  return colors[muscle] || "#38BDF8";
+}
+
+function formatElapsed(seconds) {
+  const safeSeconds = Math.max(0, Number(seconds) || 0);
+  const hours = Math.floor(safeSeconds / 3600);
+  const minutes = Math.floor((safeSeconds % 3600) / 60);
+  const secs = safeSeconds % 60;
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  }
+  return `${minutes}:${String(secs).padStart(2, "0")}`;
 }
 
 function sessionSummary(session) {

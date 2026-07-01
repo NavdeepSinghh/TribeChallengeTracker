@@ -16,6 +16,7 @@ export function buildHomeTabProps({
   shareTemplateId,
   streak,
   totalPts,
+  user,
   userProfile,
 }) {
   return {
@@ -36,6 +37,7 @@ export function buildHomeTabProps({
     shareTemplateId,
     streak,
     totalPts,
+    user,
     userProfile,
   };
 }

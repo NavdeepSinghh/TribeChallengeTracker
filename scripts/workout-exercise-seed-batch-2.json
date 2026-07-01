@@ -1,0 +1,437 @@
+[
+  {
+    "id": "lat_pulldown",
+    "slug": "lat-pulldown",
+    "name": "Lat Pulldown",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rhomboids",
+      "rear_delts"
+    ],
+    "equipment": [
+      "cable"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the lat pulldown with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/lat_pulldown/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/lat_pulldown/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/lat_pulldown/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/lat_pulldown/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:0f884336ca059921:444acec5a8c827cc"
+    }
+  },
+  {
+    "id": "pull_up",
+    "slug": "pull-up",
+    "name": "Pull-Up",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rhomboids",
+      "rear_delts"
+    ],
+    "equipment": [
+      "pull_up_bar",
+      "bodyweight"
+    ],
+    "level": "intermediate",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the pull-up with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/pull_up/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/pull_up/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/pull_up/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/pull_up/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:56f6261f3f9f8c93:e8e2ca875769c068"
+    }
+  },
+  {
+    "id": "assisted_pull_up",
+    "slug": "assisted-pull-up",
+    "name": "Assisted Pull-Up",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rhomboids"
+    ],
+    "equipment": [
+      "assisted_pull_up_machine"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the assisted pull-up with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/assisted_pull_up/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/assisted_pull_up/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/assisted_pull_up/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/assisted_pull_up/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:77be6c0709eb9cda:b5623aff9d9dbe3a"
+    }
+  },
+  {
+    "id": "seated_cable_row",
+    "slug": "seated-cable-row",
+    "name": "Seated Cable Row",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "rhomboids",
+      "lats"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rear_delts"
+    ],
+    "equipment": [
+      "cable"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the seated cable row with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/seated_cable_row/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/seated_cable_row/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/seated_cable_row/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/seated_cable_row/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:2ca6a35835f0e793:450a70d823c5a57a"
+    }
+  },
+  {
+    "id": "one_arm_dumbbell_row",
+    "slug": "one-arm-dumbbell-row",
+    "name": "One-Arm Dumbbell Row",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "lats",
+      "rhomboids"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rear_delts"
+    ],
+    "equipment": [
+      "dumbbell",
+      "bench"
+    ],
+    "level": "intermediate",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the one-arm dumbbell row with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/one_arm_dumbbell_row/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/one_arm_dumbbell_row/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/one_arm_dumbbell_row/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/one_arm_dumbbell_row/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:4a0b1960c3943a3f:7bf0db7b05452159"
+    }
+  },
+  {
+    "id": "barbell_bent_over_row",
+    "slug": "barbell-bent-over-row",
+    "name": "Barbell Bent-Over Row",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "rhomboids",
+      "lats"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "rear_delts",
+      "core"
+    ],
+    "equipment": [
+      "barbell"
+    ],
+    "level": "intermediate",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the barbell bent-over row with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/barbell_bent_over_row/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/barbell_bent_over_row/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/barbell_bent_over_row/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/barbell_bent_over_row/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:8fa87cbb135878cb:cb3401fcf13d74ff"
+    }
+  },
+  {
+    "id": "face_pull",
+    "slug": "face-pull",
+    "name": "Face Pull",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "rear_delts"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "upper_traps"
+    ],
+    "equipment": [
+      "cable"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the face pull with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/face_pull/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/face_pull/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/face_pull/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/face_pull/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:cdcc19f5e7123f0b:38e7453461cb7d8d"
+    }
+  },
+  {
+    "id": "rear_delt_fly",
+    "slug": "rear-delt-fly",
+    "name": "Rear Delt Fly",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "rear_delts"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "upper_traps"
+    ],
+    "equipment": [
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the rear delt fly with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/rear_delt_fly/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/rear_delt_fly/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/rear_delt_fly/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/rear_delt_fly/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:55061730e652252a:d177113691d11739"
+    }
+  },
+  {
+    "id": "dumbbell_biceps_curl",
+    "slug": "dumbbell-biceps-curl",
+    "name": "Dumbbell Biceps Curl",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "biceps"
+    ],
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "equipment": [
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the dumbbell biceps curl with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/dumbbell_biceps_curl/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/dumbbell_biceps_curl/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/dumbbell_biceps_curl/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/dumbbell_biceps_curl/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:2418bb4fe9acc337:ec7247ed52376c88"
+    }
+  },
+  {
+    "id": "hammer_curl",
+    "slug": "hammer-curl",
+    "name": "Hammer Curl",
+    "status": "published",
+    "version": 1,
+    "primaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "secondaryMuscles": [],
+    "equipment": [
+      "dumbbell"
+    ],
+    "level": "beginner",
+    "movementPattern": "pull",
+    "instructions": [
+      "Set up for the hammer curl with control.",
+      "Move through the working range without rushing.",
+      "Finish each rep with the target muscles doing the work."
+    ],
+    "formCues": [
+      "Keep the ribs stacked over the hips.",
+      "Control the lowering phase.",
+      "Stop the set before form breaks down."
+    ],
+    "commonMistakes": [
+      "Rushing the rep.",
+      "Losing shoulder position.",
+      "Using momentum instead of control."
+    ],
+    "substitutions": [],
+    "assetManifest": {
+      "lottiePath": "workouts/exercises/v1/hammer_curl/demo.lottie.json",
+      "thumbnailPath": "workouts/exercises/v1/hammer_curl/thumbnail.webp",
+      "muscleMapFrontPath": "workouts/exercises/v1/hammer_curl/muscle-map-front.svg",
+      "muscleMapBackPath": "workouts/exercises/v1/hammer_curl/muscle-map-back.svg",
+      "assetVersion": 1,
+      "assetHash": "sha256:adaef94966e3d5d6:195bab1233176ace"
+    }
+  }
+]

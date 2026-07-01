@@ -1,0 +1,22 @@
+<svg width="320" height="360" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Push-up front muscle map">
+  <rect width="320" height="360" rx="28" fill="#070707"/>
+  <text x="24" y="34" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">Push-Up</text>
+  <text x="24" y="56" fill="#888888" font-family="Arial, sans-serif" font-size="11" font-weight="700">PRIMARY: CHEST</text>
+  <g transform="translate(96 66)" stroke="#2A2A2A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="26" r="20" fill="#D8B5A5" stroke="none"/>
+    <path d="M38 60 Q64 44 90 60 L82 142 Q64 158 46 142 Z" fill="#333333"/>
+    <path d="M43 76 Q55 66 64 80 Q73 66 85 76 L80 108 Q70 118 64 103 Q58 118 48 108 Z" fill="#FF6B35" stroke="none"/>
+    <path d="M36 66 Q20 72 12 96 L10 132" fill="#FFD700" stroke="#FFD700" opacity=".84"/>
+    <path d="M92 66 Q108 72 116 96 L118 132" fill="#FFD700" stroke="#FFD700" opacity=".84"/>
+    <path d="M38 66 L12 122" fill="none"/>
+    <path d="M90 66 L116 122" fill="none"/>
+    <path d="M47 142 L26 258" fill="none"/>
+    <path d="M81 142 L102 258" fill="none"/>
+  </g>
+  <g transform="translate(24 306)" font-family="Arial, sans-serif" font-size="11" font-weight="700">
+    <circle cx="7" cy="0" r="5" fill="#FF6B35"/>
+    <text x="18" y="4" fill="#FFFFFF">Primary</text>
+    <circle cx="88" cy="0" r="5" fill="#FFD700"/>
+    <text x="99" y="4" fill="#BBBBBB">Secondary</text>
+  </g>
+</svg>

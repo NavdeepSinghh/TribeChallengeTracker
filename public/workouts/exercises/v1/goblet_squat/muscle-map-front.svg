@@ -1,0 +1,24 @@
+<svg width="320" height="360" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Goblet squat front muscle map">
+  <rect width="320" height="360" rx="28" fill="#070707"/>
+  <text x="24" y="34" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">Goblet Squat</text>
+  <text x="24" y="56" fill="#888888" font-family="Arial, sans-serif" font-size="11" font-weight="700">PRIMARY: QUADS + GLUTES</text>
+  <g transform="translate(96 66)" stroke="#2A2A2A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="26" r="20" fill="#D8B5A5" stroke="none"/>
+    <path d="M38 60 Q64 44 90 60 L82 142 Q64 158 46 142 Z" fill="#333333"/>
+    <path d="M38 66 L12 122" fill="none"/>
+    <path d="M90 66 L116 122" fill="none"/>
+    <path d="M46 142 Q64 158 82 142" fill="#FF6B35" stroke="none" opacity=".72"/>
+    <path d="M47 142 L26 258" fill="none"/>
+    <path d="M81 142 L102 258" fill="none"/>
+    <path d="M26 170 Q42 166 50 178 L42 258 Q30 270 18 258 Z" fill="#FF6B35" stroke="none"/>
+    <path d="M78 178 Q86 166 102 170 L110 258 Q98 270 86 258 Z" fill="#FF6B35" stroke="none"/>
+    <path d="M18 258 L8 312" fill="none"/>
+    <path d="M110 258 L120 312" fill="none"/>
+  </g>
+  <g transform="translate(24 306)" font-family="Arial, sans-serif" font-size="11" font-weight="700">
+    <circle cx="7" cy="0" r="5" fill="#FF6B35"/>
+    <text x="18" y="4" fill="#FFFFFF">Primary</text>
+    <circle cx="88" cy="0" r="5" fill="#FFD700"/>
+    <text x="99" y="4" fill="#BBBBBB">Secondary</text>
+  </g>
+</svg>
