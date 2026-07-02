@@ -80,4 +80,3 @@ Planned indexes:
 - Admin console screens.
 - Full emulator security suite.
 - Generating the remaining 47 exercise animations.
-

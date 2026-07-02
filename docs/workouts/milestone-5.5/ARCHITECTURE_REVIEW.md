@@ -26,4 +26,3 @@ Pass. The tests exercise domain/data mappers and ViewModels without introducing 
 | Domain/presentation still avoid Firebase imports | Pass |
 | Data-layer mapper is testable without UI | Pass |
 | Tests do not require live Firebase | Pass |
-

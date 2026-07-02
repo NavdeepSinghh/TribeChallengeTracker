@@ -32,4 +32,3 @@ Both builds ended with `** BUILD SUCCEEDED **`.
 
 - Add lightweight XCTest coverage for `WorkoutExerciseMapper`, `WorkoutAssetPreviewViewModel.lottieFrameCount`, and ViewModel empty/filter behavior.
 - Run a real-device visual QA pass after production seed is applied.
-

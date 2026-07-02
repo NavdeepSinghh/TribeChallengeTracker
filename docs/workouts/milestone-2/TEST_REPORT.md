@@ -70,4 +70,3 @@ Covered:
 - Live Firestore seed apply.
 - Full emulator allow/deny rule suite.
 - Production app build. No production UI code was changed for Milestone 2.
-

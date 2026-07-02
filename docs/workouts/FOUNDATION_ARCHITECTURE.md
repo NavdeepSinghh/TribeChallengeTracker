@@ -85,7 +85,7 @@ exerciseCatalog/{exerciseId}
   updatedBy: uid
 ```
 
-Read: signed-in users.  
+Read: signed-in users.
 Write: admins only.
 
 ### Workout Templates

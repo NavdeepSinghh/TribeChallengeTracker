@@ -66,4 +66,3 @@ Records:
 - `publicWorkouts` direct writes require an owned source session.
 - Feed points match activity points when a session provides points.
 - Phase 1 plan tracks `@firebase/rules-unit-testing` before Milestone 8.
-

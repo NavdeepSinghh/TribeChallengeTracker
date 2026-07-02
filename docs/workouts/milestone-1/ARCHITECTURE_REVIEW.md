@@ -48,4 +48,3 @@ No UI layer was changed. Milestone 1 only adds backend rules, function foundatio
 ## Residual Risk
 
 The focused rule checks are static contract tests plus Firestore emulator parse validation. They do not execute allow/deny scenarios against the emulator. Add `@firebase/rules-unit-testing` before public-workout UI rollout if CI must verify rule behavior dynamically.
-

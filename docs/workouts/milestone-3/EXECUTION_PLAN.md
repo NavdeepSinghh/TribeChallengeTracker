@@ -57,4 +57,3 @@ Milestone 3 lazy-loads Lottie JSON and SVG muscle maps. It does not introduce a 
 6. Add static proof assets under `public/workouts/exercises/v1`.
 7. Add focused tests.
 8. Generate screenshot artifacts for Claude visual review.
-

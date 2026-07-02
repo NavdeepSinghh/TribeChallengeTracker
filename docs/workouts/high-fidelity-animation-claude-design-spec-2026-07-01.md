@@ -1,8 +1,8 @@
 # TribeLog High-Fidelity Workout Animation Design Spec
 
-Status date: 2026-07-01  
-Owner: Navdeep  
-Design review: Claude Design  
+Status date: 2026-07-01
+Owner: Navdeep
+Design review: Claude Design
 Implementation: Codex
 
 ## Purpose
@@ -65,6 +65,10 @@ The animation pairs with Coach Mode cue cards:
 - working/pressing/pulling cue
 - finish/reset cue
 
+Each POC brief now includes a `phaseTimeline` that maps those cues to `0-100%` motion progress. Claude Design should verify that the visible motion supports those cue ranges before Codex generates final assets. Text should still live in Coach Mode UI, not be baked into the video.
+
+The manifest validator now locks each POC exercise's `phaseTimeline.cueId` sequence to the approved Coach Mode cue draft. This prevents design handoff drift where a realistic animation is approved against labels that no longer match the selected cue text shown in the app.
+
 ## Proof Of Concept Scope
 
 Design and review only five exercises first:
@@ -97,6 +101,7 @@ For each of the five exercises, Claude Design should provide:
 5. Equipment requirements
 6. Form cue overlay recommendation
 7. What not to show
+8. Cue timeline review against the Coach Mode text phases
 
 ## Asset Format Recommendation
 
@@ -143,6 +148,23 @@ Fallback rule:
 - If `mediaManifest.preferredMotion == "video"` and `videoPath` exists, clients may render video.
 - Otherwise, clients render current `assetManifest.lottiePath`.
 - Existing `assetManifest` remains required until high-fidelity media coverage is complete.
+
+The POC render brief also carries non-release `phaseTimeline` metadata for design review:
+
+```json
+{
+  "renderBrief": {
+    "phaseTimeline": [
+      { "cueId": "setup", "label": "Set stance and brace", "startPercent": 0, "endPercent": 22 },
+      { "cueId": "lower", "label": "Hips descend under control", "startPercent": 22, "endPercent": 54 },
+      { "cueId": "drive", "label": "Drive through mid-foot", "startPercent": 54, "endPercent": 84 },
+      { "cueId": "reset", "label": "Stand tall and reset", "startPercent": 84, "endPercent": 100 }
+    ]
+  }
+}
+```
+
+This timeline helps Claude Design check whether the animation loop supports the selected text experience. It should not replace backend `coachingCues`; it is a render brief constraint.
 
 ## Motion Guidelines
 
@@ -243,6 +265,7 @@ Please answer:
 6. Should the animation include any baked-in labels, or should all text remain in Coach Mode UI?
 7. Are the five POC exercises the right review set?
 8. What are blockers before Codex builds the POC pipeline?
+9. Do the proposed cue timelines match the intended motion phases for each POC exercise?
 
 ## Acceptance Criteria Before Scaling
 
@@ -256,6 +279,7 @@ Claude Design must approve:
 - equipment treatment
 - no-copy risk from competitor references
 - accessibility and readability on mobile
+- cue timeline compatibility with Coach Mode
 
 Only after that should Codex generate or commission the remaining 45 high-fidelity animations.
 
@@ -285,6 +309,30 @@ Planned POC files:
 /Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/review-packs/high-fidelity-animation-poc-checklist-2026-07-01.html
 /Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/high-fidelity-client-video-playback-checkpoint-2026-07-01.md
 ```
+
+Additional motion-board checkpoint prepared after Claude approved frame-aware cue sync:
+
+```text
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/scripts/render-workout-high-fidelity-motion-board.js
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/high-fidelity-motion-poc-board-claude-checkpoint-2026-07-02.md
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/review-packs/high-fidelity-motion-poc-board-2026-07-02.html
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/review-packs/high-fidelity-motion-poc-board-screenshot-2026-07-02.png
+```
+
+The motion board is still a prototype and should not be treated as release media. It demonstrates the desired app experience: realistic motion direction paired with selected Coach Mode text, while real production media remains gated on Claude Design approval and final MP4/WebM/poster generation.
+
+### Production Asset Briefs Update (2026-07-02)
+
+Codex added a production-brief generator for the five high-fidelity POC exercises. This is the handoff layer between the prototype motion board and real media generation:
+
+```text
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/scripts/render-workout-high-fidelity-production-briefs.js
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/high-fidelity-production-asset-briefs-claude-checkpoint-2026-07-02.md
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/review-packs/high-fidelity-production-asset-briefs-2026-07-02.md
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/review-packs/high-fidelity-production-asset-briefs-2026-07-02.html
+```
+
+The briefs define exact MP4/WebM/poster storage paths, duration/fps targets, phase-aligned prompts, mobile file-size budgets, and QA checks. They explicitly keep text/cues in the app layer and reject competitor UI, logos, watermarks, unsupported claims, or sexualized body proportions.
 
 The POC manifest currently covers:
 

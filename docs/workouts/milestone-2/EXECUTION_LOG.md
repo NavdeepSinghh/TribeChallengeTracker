@@ -57,4 +57,3 @@ The proof seed records were validated locally but not written to live Firestore 
 ## Deviations
 
 None from Milestone 2 scope.
-
