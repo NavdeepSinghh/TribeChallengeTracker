@@ -3,22 +3,52 @@
 Status date: 2026-07-02
 Current next reviews:
 
-1. Phase 2 launch gates before CP22
-2. Shareable Insight Cards And Discovery
-3. Phase 3 Release And Creator-Layer Scope
-4. Training Plans Foundation
-5. Training Plan Enrollment Foundation
-6. Coach Mode v1
-7. Full Cue Draft v1
-8. High-Fidelity Animation Design Spec + POC Manifest
-9. High-Fidelity Motion POC Board
-10. High-Fidelity Production Asset Briefs
-11. High-Fidelity Asset File Gate
-12. High-Fidelity Client Video Playback Prep
-13. Frame-Aware Cue Sync Checkpoint
-14. iOS High-Fidelity Video Loop Parity
-15. Native High-Fidelity Poster Fallback
-16. High-Fidelity Real Asset Review Board
+1. Phase 3 native parity and share image export
+2. Phase 2 launch gates before CP22
+3. Shareable Insight Cards And Discovery
+4. Phase 3 Release And Creator-Layer Scope
+5. Training Plans Foundation
+6. Training Plan Enrollment Foundation
+7. Coach Mode v1
+8. Full Cue Draft v1
+9. High-Fidelity Animation Design Spec + POC Manifest
+10. High-Fidelity Motion POC Board
+11. High-Fidelity Production Asset Briefs
+12. High-Fidelity Asset File Gate
+13. High-Fidelity Client Video Playback Prep
+14. Frame-Aware Cue Sync Checkpoint
+15. iOS High-Fidelity Video Loop Parity
+16. Native High-Fidelity Poster Fallback
+17. High-Fidelity Real Asset Review Board
+
+## Phase 3 Native Parity And Share Image Export (2026-07-02)
+
+Review artifact:
+
+```text
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/phase-3-native-parity-share-export-claude-checkpoint-2026-07-02.md
+```
+
+Codex completed the native parity slice after the approved Web Phase 3 preview:
+
+- iOS and Android Progress insight cards.
+- iOS and Android weekly muscle-volume heat-map visual.
+- iOS and Android privacy-safe workout insight share cards.
+- iOS and Android app-generated 1080x1350 share-card image export.
+
+Verification:
+
+```text
+Web Phase 3 targeted tests: PASS, 37/37
+Web production build: PASS
+iOS WorkoutInsightTests: PASS, 10/10
+iOS generic build: PASS
+Android unit tests and assembleDebug: PASS
+```
+
+Remaining release gate:
+
+- real iPhone and Android screenshots for Progress insights, heat map, and share-image sheet.
 
 ## Phase 3 Progress Insights UI (2026-07-02)
 
