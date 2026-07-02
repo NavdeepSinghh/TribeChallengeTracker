@@ -182,3 +182,55 @@ export function buildMuscleVolumeInsight(aggregate = {}) {
     })),
   };
 }
+
+const MUSCLE_REGION_MAP = {
+  abs: { region: "core", label: "Core", view: "front" },
+  biceps: { region: "arms_front", label: "Arms", view: "front" },
+  calves: { region: "calves", label: "Calves", view: "both" },
+  chest: { region: "chest", label: "Chest", view: "front" },
+  core: { region: "core", label: "Core", view: "front" },
+  forearms: { region: "forearms", label: "Forearms", view: "both" },
+  glutes: { region: "glutes", label: "Glutes", view: "back" },
+  hamstrings: { region: "hamstrings", label: "Hamstrings", view: "back" },
+  hip_flexors: { region: "hips", label: "Hips", view: "front" },
+  lats: { region: "lats", label: "Lats", view: "back" },
+  lower_back: { region: "lower_back", label: "Lower back", view: "back" },
+  obliques: { region: "obliques", label: "Obliques", view: "front" },
+  quads: { region: "quads", label: "Quads", view: "front" },
+  rear_delts: { region: "upper_back", label: "Rear delts", view: "back" },
+  rhomboids: { region: "upper_back", label: "Upper back", view: "back" },
+  shoulders: { region: "shoulders", label: "Shoulders", view: "both" },
+  traps: { region: "upper_back", label: "Upper back", view: "back" },
+  triceps: { region: "arms_back", label: "Triceps", view: "back" },
+  upper_back: { region: "upper_back", label: "Upper back", view: "back" },
+  upper_chest: { region: "chest", label: "Chest", view: "front" },
+};
+
+export function buildMuscleHeatMapRegions(aggregate = {}) {
+  const muscles = Array.isArray(aggregate.muscles) ? aggregate.muscles : [];
+  const regions = muscles.reduce((acc, muscle) => {
+    const key = cleanString(muscle.muscle || muscle.label, "general").toLowerCase().replace(/\s+/g, "_");
+    const mapping = MUSCLE_REGION_MAP[key] || { region: key, label: titleCase(key), view: "front" };
+    const current = acc[mapping.region] || {
+      region: mapping.region,
+      label: mapping.label,
+      view: mapping.view,
+      volumeKg: 0,
+      setCount: 0,
+      muscles: [],
+    };
+    current.volumeKg += cleanNumber(muscle.volumeKg);
+    current.setCount += cleanNumber(muscle.setCount);
+    current.muscles.push(key);
+    acc[mapping.region] = current;
+    return acc;
+  }, {});
+  const maxVolumeKg = Math.max(1, ...Object.values(regions).map(region => region.volumeKg));
+
+  return Object.values(regions)
+    .map(region => ({
+      ...region,
+      intensity: Math.max(0.08, region.volumeKg / maxVolumeKg),
+    }))
+    .sort((left, right) => right.volumeKg - left.volumeKg || left.label.localeCompare(right.label));
+}

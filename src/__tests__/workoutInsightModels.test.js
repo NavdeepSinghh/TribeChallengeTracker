@@ -1,4 +1,5 @@
 import {
+  buildMuscleHeatMapRegions,
   buildMuscleVolumeInsight,
   buildProgressionInsightCopy,
   mapWorkoutInsightAggregateDocument,
@@ -74,6 +75,29 @@ describe("workout insight models", () => {
     expect(insight.maxVolumeKg).toBe(2400);
     expect(insight.topMuscles[0].intensity).toBe(1);
     expect(insight.topMuscles[1].intensity).toBe(0.5);
+  });
+
+  it("groups muscle volume into anatomical heat-map regions", () => {
+    const aggregate = mapWorkoutInsightAggregateDocument("weekly_2026-W27", {
+      muscles: {
+        upper_chest: { muscle: "upper_chest", volumeKg: 800, setCount: 6 },
+        chest: { muscle: "chest", volumeKg: 700, setCount: 5 },
+        quads: { muscle: "quads", volumeKg: 2400, setCount: 12 },
+        hamstrings: { muscle: "hamstrings", volumeKg: 1200, setCount: 8 },
+      },
+    });
+
+    const regions = buildMuscleHeatMapRegions(aggregate);
+
+    expect(regions.map(region => region.region)).toEqual(["quads", "chest", "hamstrings"]);
+    expect(regions.find(region => region.region === "chest")).toMatchObject({
+      label: "Chest",
+      volumeKg: 1500,
+      setCount: 11,
+      view: "front",
+    });
+    expect(regions[0].intensity).toBe(1);
+    expect(regions.find(region => region.region === "hamstrings").view).toBe("back");
   });
 
   it("keeps insufficient-data progression copy transparent", () => {
