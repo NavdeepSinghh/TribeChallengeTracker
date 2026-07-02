@@ -40,6 +40,7 @@ export default function ProgressFlow({
         <WorkoutHistorySection
           insightLevel={progressionLevelFromProfile(userProfile)}
           insightUseCases={insightUseCases}
+          profile={userProfile}
           useCases={historyUseCases}
         />
       ) : null}

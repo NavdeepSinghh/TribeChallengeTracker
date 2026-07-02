@@ -3,6 +3,7 @@ import { useWorkoutHistoryViewModel } from "./useWorkoutHistoryViewModel";
 import { useWorkoutInsightsViewModel } from "./useWorkoutInsightsViewModel";
 import MuscleVolumeHeatMapPanel from "./tab/progress/panels/MuscleVolumeHeatMapPanel";
 import ProgressiveOverloadInsightPanel from "./tab/progress/panels/ProgressiveOverloadInsightPanel";
+import WorkoutInsightSharePanel from "./tab/progress/panels/WorkoutInsightSharePanel";
 
 function formatDuration(seconds = 0) {
   const minutes = Math.round(Number(seconds || 0) / 60);
@@ -64,7 +65,7 @@ function PrRow({ record }) {
   );
 }
 
-export default function WorkoutHistorySection({ insightLevel = "beginner", insightUseCases, useCases }) {
+export default function WorkoutHistorySection({ insightLevel = "beginner", insightUseCases, profile, useCases }) {
   const { theme } = useAppTheme();
   const vm = useWorkoutHistoryViewModel({ useCases });
   const insightsVm = useWorkoutInsightsViewModel({
@@ -152,6 +153,15 @@ export default function WorkoutHistorySection({ insightLevel = "beginner", insig
                 <p style={eyebrowStyle}>PERSONAL RECORDS</p>
                 {vm.personalRecords.slice(0, 3).map(record => <PrRow key={record.exerciseId} record={record} />)}
               </div>
+            ) : null}
+
+            {insightUseCases ? (
+              <WorkoutInsightSharePanel
+                aggregate={insightsVm.aggregate}
+                personalRecords={vm.personalRecords}
+                profile={profile}
+                sessions={vm.sessions}
+              />
             ) : null}
           </>
         ) : null}
