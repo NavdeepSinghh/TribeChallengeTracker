@@ -53,6 +53,8 @@ The product goal is to move TribeLog from an activity logger toward a guided tra
 | Checkpoint 22 | Shareable Insight Cards And Discovery foundation implemented locally; review gated on Phase 2 launch smoke/screenshots |
 | Checkpoint 23 | Phase 3 Release And Creator-Layer Scope pack created; ready for Claude checkpoint |
 | Phase 3 Progress Insights UI | Web implementation added inside Progress > History; ready for Claude checkpoint; native parity and real-device screenshots still required before public release |
+| Phase 3 Native Parity And Share Image Export | iOS/Android parity implemented and pushed; Claude checkpoint created; real-device screenshots remain release gate |
+| Phase 3 Release Pack And Phase 4 Vote | Release checklist and tribe vote pack created; awaiting Claude checkpoint |
 
 Current review pack:
 

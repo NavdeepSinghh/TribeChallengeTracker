@@ -4,22 +4,23 @@ Status date: 2026-07-02
 Current next reviews:
 
 1. Phase 3 native parity and share image export
-2. Phase 2 launch gates before CP22
-3. Shareable Insight Cards And Discovery
-4. Phase 3 Release And Creator-Layer Scope
-5. Training Plans Foundation
-6. Training Plan Enrollment Foundation
-7. Coach Mode v1
-8. Full Cue Draft v1
-9. High-Fidelity Animation Design Spec + POC Manifest
-10. High-Fidelity Motion POC Board
-11. High-Fidelity Production Asset Briefs
-12. High-Fidelity Asset File Gate
-13. High-Fidelity Client Video Playback Prep
-14. Frame-Aware Cue Sync Checkpoint
-15. iOS High-Fidelity Video Loop Parity
-16. Native High-Fidelity Poster Fallback
-17. High-Fidelity Real Asset Review Board
+2. Phase 3 release pack and Phase 4 vote
+3. Phase 2 launch gates before CP22
+4. Shareable Insight Cards And Discovery
+5. Phase 3 Release And Creator-Layer Scope
+6. Training Plans Foundation
+7. Training Plan Enrollment Foundation
+8. Coach Mode v1
+9. Full Cue Draft v1
+10. High-Fidelity Animation Design Spec + POC Manifest
+11. High-Fidelity Motion POC Board
+12. High-Fidelity Production Asset Briefs
+13. High-Fidelity Asset File Gate
+14. High-Fidelity Client Video Playback Prep
+15. Frame-Aware Cue Sync Checkpoint
+16. iOS High-Fidelity Video Loop Parity
+17. Native High-Fidelity Poster Fallback
+18. High-Fidelity Real Asset Review Board
 
 ## Phase 3 Native Parity And Share Image Export (2026-07-02)
 
@@ -49,6 +50,23 @@ Android unit tests and assembleDebug: PASS
 Remaining release gate:
 
 - real iPhone and Android screenshots for Progress insights, heat map, and share-image sheet.
+
+## Phase 3 Release Pack And Phase 4 Vote (2026-07-02)
+
+Review artifact:
+
+```text
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/phase-3-release-pack-claude-checkpoint-2026-07-02.md
+```
+
+Codex prepared the Phase 3 public announcement gate and Phase 4 tribe vote:
+
+- Phase 3 release readiness checklist.
+- Remaining native screenshot/share-smoke gates.
+- Privacy and trust checklist.
+- Phase 3 announcement draft.
+- Phase 4 community/creator contribution vote options.
+- Phase 4 production-code guardrails.
 
 ## Phase 3 Progress Insights UI (2026-07-02)
 
