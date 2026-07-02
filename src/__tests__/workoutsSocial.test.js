@@ -20,6 +20,7 @@ describe("workouts social discovery", () => {
       totalVolumeKg: 2400.5,
       durationSeconds: 1500,
       copiedCount: 4,
+      reactionCounts: { fire: 2 },
       exercises: [
         {
           exerciseId: "bench_press",
@@ -41,6 +42,7 @@ describe("workouts social discovery", () => {
       exerciseCount: 1,
       totalVolumeKg: 2400.5,
       copiedCount: 4,
+      reactionCounts: { fire: 2 },
     });
     expect(workout.exercises[0]).toMatchObject({
       exerciseId: "bench_press",
@@ -62,13 +64,18 @@ describe("workouts social discovery", () => {
 
   it("delegates social use cases to the repository", async () => {
     const repository = {
-      fetchPublicWorkouts: jest.fn().mockResolvedValue([{ publicWorkoutId: "public_1" }]),
+      fetchPublicWorkouts: jest.fn().mockResolvedValue([
+        { publicWorkoutId: "older", id: "older", visibility: "public", copiedCount: 10, publishedAt: "2026-06-30T00:00:00.000Z" },
+        { publicWorkoutId: "fresh", id: "fresh", visibility: "public", copiedCount: 1, reactionCounts: { fire: 1 }, publishedAt: new Date().toISOString() },
+      ]),
       copyPublicWorkout: jest.fn().mockResolvedValue({ templateId: "template_1" }),
       followCreator: jest.fn().mockResolvedValue("following"),
       unfollowCreator: jest.fn().mockResolvedValue("none"),
     };
 
-    await expect(new LoadPublicWorkoutsUseCase(repository).execute({ limit: 3 })).resolves.toEqual([{ publicWorkoutId: "public_1" }]);
+    const ranked = await new LoadPublicWorkoutsUseCase(repository).execute({ limit: 3 });
+    expect(ranked.map(workout => workout.publicWorkoutId)).toEqual(["older", "fresh"]);
+    expect(ranked[0].trendScore).toBeGreaterThan(ranked[1].trendScore);
     await expect(new CopyPublicWorkoutUseCase(repository).execute("public_1")).resolves.toEqual({ templateId: "template_1" });
     await expect(new ToggleWorkoutCreatorFollowUseCase(repository).execute({ ownerUid: "creator_1" }, "none")).resolves.toBe("following");
     await expect(new ToggleWorkoutCreatorFollowUseCase(repository).execute({ ownerUid: "creator_1" }, "following")).resolves.toBe("none");

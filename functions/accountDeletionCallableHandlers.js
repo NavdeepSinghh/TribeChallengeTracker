@@ -7,6 +7,9 @@ const PRIVATE_USER_SUBCOLLECTIONS = [
   'challengeCompletions',
   'deviceTokens',
   'earnedBadges',
+  'workoutInsightAggregates',
+  'workoutInsightSyncRateLimits',
+  'workoutProgressionSuggestions',
   'trainingSessions',
 ];
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useAuth } from './AuthContext';
 import { getMemberData } from './trackingService';
 import { leaveChallenge } from './challengeService';
@@ -9,13 +9,15 @@ import LeaveDialog from './challengeTracker/LeaveDialog';
 import ChallengeTrackerHeader from './challengeTracker/ChallengeTrackerHeader';
 import ChallengePulseCard from './challengeTracker/ChallengePulseCard';
 import ChallengeUpdatesCard from './challengeTracker/ChallengeUpdatesCard';
+import { createTrainingPlanUseCases } from './workouts/workoutTrainingPlanComposition';
 
-export default function ChallengeTrackerScreen({ challenge, onBack, onLeft }) {
+export default function ChallengeTrackerScreen({ challenge, onBack, onLeft, onOpenWorkouts }) {
   const { user } = useAuth();
   const [innerTab, setInnerTab] = useState('today');
   const [memberData, setMemberData] = useState(null);
   const [showLeaveDialog, setShowLeave] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const trainingPlanUseCases = useMemo(() => createTrainingPlanUseCases(), []);
 
   const loadMember = useCallback(() => {
     getMemberData(user.uid, challenge.id).then(setMemberData);
@@ -63,7 +65,13 @@ export default function ChallengeTrackerScreen({ challenge, onBack, onLeft }) {
       <ChallengeUpdatesCard challenge={challenge} memberData={memberData} user={user} />
 
       {innerTab === 'today' && (
-        <TodayTab challenge={challenge} memberData={memberData} onLogged={loadMember} />
+        <TodayTab
+          challenge={challenge}
+          memberData={memberData}
+          onLogged={loadMember}
+          onOpenWorkouts={onOpenWorkouts}
+          trainingPlanUseCases={trainingPlanUseCases}
+        />
       )}
       {innerTab === 'leaderboard' && (
         <LeaderboardTab challenge={challenge} currentUid={user.uid} />

@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "status": "draft_pending_review",
+  "targetTotalOfficialExercises": 200,
+  "existingOfficialExerciseCount": 50,
+  "candidateCountTarget": 150,
+  "assetReviewPolicy": "Generate in batches of 10-15 and require visual review before upload.",
+  "metadataVocabulary": {
+    "equipment": [
+      "bodyweight",
+      "dumbbell",
+      "barbell",
+      "kettlebell",
+      "cable",
+      "machine",
+      "bench",
+      "band",
+      "medicine_ball",
+      "slam_ball",
+      "box",
+      "sled",
+      "smith_machine",
+      "trap_bar",
+      "landmine",
+      "rings",
+      "plate",
+      "ab_wheel",
+      "stability_ball",
+      "treadmill",
+      "stationary_bike",
+      "rowing_machine",
+      "elliptical",
+      "stair_climber",
+      "assault_bike",
+      "skierg",
+      "jump_rope",
+      "battle_rope",
+      "pool",
+      "outdoor"
+    ],
+    "levels": ["beginner", "intermediate", "advanced"],
+    "policy": "Equipment and level may be assigned per generation batch, but generated seed docs must use this locked vocabulary."
+  },
+  "deferredCandidates": {
+    "phase4CoachPro": {
+      "reason": "High-skill power and Olympic-style lifts need coach-authored cues, richer video, and stronger safety context before appearing in the free self-serve library.",
+      "exercises": ["Clean Pull", "Hang Power Clean", "Power Snatch", "Dumbbell Snatch", "Kettlebell Clean", "Kettlebell Snatch", "Broad Jump", "Slam Ball Overhead Throw"]
+    }
+  },
+  "groups": [
+    {
+      "id": "upper_push_expansion",
+      "category": "upper_push",
+      "assetBatchStart": 6,
+      "primaryMuscles": ["chest", "shoulders", "triceps"],
+      "exercises": ["Barbell Overhead Press", "Arnold Press", "Landmine Press", "Pike Push-Up", "Ring Push-Up", "Close-Grip Bench Press", "Decline Push-Up", "Dumbbell Pullover", "Cable Chest Fly", "Pec Deck Fly", "Skull Crusher", "Overhead Triceps Extension", "Dumbbell Kickback", "Cable Lateral Raise", "Front Raise", "Upright Row", "Push Press", "Single-Arm Dumbbell Press", "Svend Press", "Floor Press", "Incline Push-Up", "Diamond Push-Up", "Machine Shoulder Press", "Plate Press", "Chest Dip"]
+    },
+    {
+      "id": "upper_pull_expansion",
+      "category": "upper_pull",
+      "assetBatchStart": 8,
+      "primaryMuscles": ["lats", "upper_back", "biceps", "forearms"],
+      "exercises": ["Chin-Up", "Neutral-Grip Pulldown", "Straight-Arm Pulldown", "Chest-Supported Row", "T-Bar Row", "Inverted Row", "Machine Row", "Cable High Row", "Meadows Row", "Renegade Row", "Shrug", "Barbell Curl", "Preacher Curl", "Cable Curl", "Concentration Curl", "Zottman Curl", "Reverse Curl", "Wrist Curl", "Farmer Carry", "Scapular Pull-Up", "Band Pull-Apart", "Y Raise", "Prone Cobra", "Rope Face Pull", "Wide-Grip Row"]
+    },
+    {
+      "id": "lower_body_expansion",
+      "category": "lower_body",
+      "assetBatchStart": 10,
+      "primaryMuscles": ["quads", "hamstrings", "glutes", "calves"],
+      "exercises": ["Front Squat", "Hack Squat", "Box Squat", "Sumo Deadlift", "Trap Bar Deadlift", "Good Morning", "Single-Leg Romanian Deadlift", "Cable Pull-Through", "Nordic Curl", "Lying Leg Curl", "Donkey Calf Raise", "Seated Calf Raise", "Reverse Lunge", "Curtsy Lunge", "Cossack Squat", "Pistol Squat", "Wall Sit", "Sled Push", "Sled Pull", "Goblet Reverse Lunge", "Smith Machine Squat", "Machine Hack Squat", "Barbell Hip Hinge", "Cable Kickback", "Frog Pump", "Single-Leg Glute Bridge", "Clamshell", "Monster Walk", "Lateral Band Walk", "Box Step-Down", "Split Squat", "Front-Foot-Elevated Split Squat", "Heel-Elevated Squat", "Zercher Squat", "Jefferson Curl"]
+    },
+    {
+      "id": "core_expansion",
+      "category": "core",
+      "assetBatchStart": 13,
+      "primaryMuscles": ["abs", "obliques", "lower_back"],
+      "exercises": ["Ab Wheel Rollout", "Hollow Body Hold", "V-Up", "Toe Touch", "Reverse Crunch", "Cable Crunch", "Pallof Press", "Wood Chop", "Plank Shoulder Tap", "Plank Jack", "Bear Crawl", "Farmer March", "Suitcase Carry", "Copenhagen Plank", "L-Sit", "Flutter Kick", "Leg Raise", "Stability Ball Rollout", "Stir the Pot", "Seated Knee Tuck"]
+    },
+    {
+      "id": "cardio_expansion",
+      "category": "cardio",
+      "assetBatchStart": 15,
+      "primaryMuscles": ["cardio", "full_body"],
+      "exercises": ["Elliptical", "Stair Climber", "Assault Bike", "SkiErg", "Jump Rope", "Battle Ropes", "Burpee", "High Knees", "Jumping Jack", "Shuttle Run", "Sprint Intervals", "Hill Run", "Rower Sprint", "Bike Intervals", "Step Mill", "Outdoor Run", "Brisk Walk", "Tempo Run", "Recovery Ride", "Spin Bike", "Swimming", "Hiking", "Shadow Boxing"]
+    },
+    {
+      "id": "mobility_expansion",
+      "category": "mobility",
+      "assetBatchStart": 16,
+      "primaryMuscles": ["mobility", "hips", "shoulders", "spine"],
+      "exercises": ["90/90 Hip Switch", "Pigeon Stretch", "Couch Stretch", "Thoracic Rotation", "Thread the Needle", "Hip Airplane", "Ankle Rocker", "Shoulder Dislocate", "Wall Angel", "Hamstring Sweep", "Lizard Lunge", "Deep Squat Hold", "Scorpion Stretch", "Samson Stretch", "Calf Stretch", "Wrist Rocks", "Neck CARs", "Hip CARs", "Shoulder CARs", "World's Greatest Stretch Flow"]
+    },
+    {
+      "id": "power_expansion",
+      "category": "power",
+      "assetBatchStart": 18,
+      "primaryMuscles": ["full_body", "legs"],
+      "exercises": ["Medicine Ball Slam", "Box Jump"]
+    }
+  ]
+}

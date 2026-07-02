@@ -179,6 +179,19 @@ export function buildExerciseCoachingCues(exercise = {}) {
   });
 }
 
+export function findExerciseCueForMotionProgress(cues = [], progressPercent = 0, fallbackCueId = "") {
+  if (!Array.isArray(cues) || cues.length === 0) return null;
+  const progress = Math.min(100, Math.max(0, numberOrDefault(progressPercent, 0)));
+  const fallback = cues.find(cue => cue.id === fallbackCueId) || cues[0];
+  const matchedCue = cues.find(cue => {
+    const start = Math.min(100, Math.max(0, numberOrDefault(cue.startPercent, 0)));
+    const end = Math.min(100, Math.max(start, numberOrDefault(cue.endPercent, 100)));
+    if (progress >= 100) return progress >= start && progress <= end;
+    return progress >= start && progress < end;
+  });
+  return matchedCue || fallback;
+}
+
 export function normalizeWorkoutSearch(value) {
   return cleanString(value).toLowerCase();
 }

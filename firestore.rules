@@ -71,6 +71,74 @@ service cloud.firestore {
         allow read, write: if request.auth != null && request.auth.uid == uid;
       }
 
+      // Training plan enrollments are private user-owned state. They point at
+      // immutable admin-authored trainingPlans; clients never mutate official
+      // templates when starting/leaving a plan.
+      match /trainingPlanEnrollments/{planId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow create: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.planId == planId
+          && exists(/databases/$(database)/documents/trainingPlans/$(request.resource.data.planId))
+          && ["active", "paused", "completed", "left"].hasAny([request.resource.data.status])
+          && request.resource.data.startDate is string
+          && request.resource.data.startDate.size() == 10
+          && (!("completedDayKeys" in request.resource.data) || request.resource.data.completedDayKeys.size() == 0);
+        allow update: if request.auth != null
+          && request.auth.uid == uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.planId == planId
+          && exists(/databases/$(database)/documents/trainingPlans/$(request.resource.data.planId))
+          && ["active", "paused", "completed", "left"].hasAny([request.resource.data.status])
+          && request.resource.data.startDate is string
+          && request.resource.data.startDate.size() == 10
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            "id",
+            "uid",
+            "planId",
+            "planVersion",
+            "status",
+            "startDate",
+            "timezone",
+            "skippedDayKeys",
+            "customFrequencyDaysPerWeek",
+            "exerciseSwaps",
+            "currentDayIndex",
+            "createdAt",
+            "updatedAt"
+          ]);
+        allow delete: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      }
+
+      // Trusted training-plan adherence summaries. Cloud Functions write these
+      // when plan workouts finish or when progress is resynced.
+      match /trainingPlanAdherence/{planId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow write: if request.auth != null && isAdmin();
+      }
+
+      // Trusted training-plan badges. Members can read them; writes are handled
+      // by Cloud Functions with Admin SDK privileges or admins.
+      match /trainingPlanBadges/{badgeId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow write: if request.auth != null && isAdmin();
+      }
+
+      // Trusted workout insight aggregates. These summarize private training
+      // sessions for the owner only; writes come from Cloud Functions/admins.
+      match /workoutInsightAggregates/{aggregateId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow write: if request.auth != null && isAdmin();
+      }
+
+      // Trusted progression suggestions. These are private training guidance
+      // records derived from the owner's completed sessions.
+      match /workoutProgressionSuggestions/{exerciseId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+        allow write: if request.auth != null && isAdmin();
+      }
+
       // Trusted exercise PR summaries. Members can read their own PRs; writes
       // are handled by Cloud Functions with Admin SDK privileges or admins.
       match /exercisePRs/{exerciseId} {

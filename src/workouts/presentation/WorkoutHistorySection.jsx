@@ -1,5 +1,8 @@
 import { useAppTheme } from "../../app/AppThemeContext";
 import { useWorkoutHistoryViewModel } from "./useWorkoutHistoryViewModel";
+import { useWorkoutInsightsViewModel } from "./useWorkoutInsightsViewModel";
+import MuscleVolumeHeatMapPanel from "./tab/progress/panels/MuscleVolumeHeatMapPanel";
+import ProgressiveOverloadInsightPanel from "./tab/progress/panels/ProgressiveOverloadInsightPanel";
 
 function formatDuration(seconds = 0) {
   const minutes = Math.round(Number(seconds || 0) / 60);
@@ -61,9 +64,14 @@ function PrRow({ record }) {
   );
 }
 
-export default function WorkoutHistorySection({ useCases }) {
+export default function WorkoutHistorySection({ insightLevel = "beginner", insightUseCases, useCases }) {
   const { theme } = useAppTheme();
   const vm = useWorkoutHistoryViewModel({ useCases });
+  const insightsVm = useWorkoutInsightsViewModel({
+    level: insightLevel,
+    sessions: vm.sessions,
+    useCases: insightUseCases,
+  });
   const maxVolume = Math.max(...vm.volumeTrend.map(point => point.volumeKg), 1);
 
   return (
@@ -109,6 +117,13 @@ export default function WorkoutHistorySection({ useCases }) {
               <Metric label="Volume" value={formatVolume(vm.summary.totalVolumeKg)} color="#FFD700" />
               <Metric label="PRs" value={vm.summary.personalRecordCount} color="#34D399" />
             </div>
+
+            {insightUseCases ? (
+              <div style={{ display: "grid", gap: 10 }}>
+                <ProgressiveOverloadInsightPanel vm={insightsVm} />
+                <MuscleVolumeHeatMapPanel vm={insightsVm} />
+              </div>
+            ) : null}
 
             {vm.volumeTrend.length ? (
               <div style={panelStyle("rgba(255,255,255,0.035)", "rgba(255,255,255,0.08)")}>

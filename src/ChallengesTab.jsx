@@ -4,7 +4,7 @@ import ChallengesTabLoading from './challenges/ChallengesTabLoading';
 import useChallengesTabState from './challenges/useChallengesTabState';
 
 // ─── MAIN CHALLENGES TAB ──────────────────────────────────────────────────────
-export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJoinHandled, onStatsChanged }) {
+export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJoinHandled, onOpenWorkouts, onStatsChanged }) {
   const { user }                              = useAuth();
   const {
     activeChallenges,
@@ -50,6 +50,7 @@ export default function ChallengesTab({ pendingJoinCode, pendingReferralUid, onJ
         handleLeft={handleLeft}
         handleSearch={handleSearch}
         myChallenges={myChallenges}
+        onOpenWorkouts={onOpenWorkouts}
         openChallenge={openChallenge}
         pendingReferralUid={pendingReferralUid}
         profile={profile}

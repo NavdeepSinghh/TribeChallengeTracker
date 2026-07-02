@@ -1,10 +1,13 @@
+import { rankPublicWorkoutDiscovery } from "./workoutShareInsights";
+
 export class LoadPublicWorkoutsUseCase {
   constructor(repository) {
     this.repository = repository;
   }
 
-  execute({ limit = 12 } = {}) {
-    return this.repository.fetchPublicWorkouts({ limit });
+  async execute({ limit = 12 } = {}) {
+    const workouts = await this.repository.fetchPublicWorkouts({ limit });
+    return rankPublicWorkoutDiscovery(workouts);
   }
 }
 

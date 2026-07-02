@@ -1,9 +1,13 @@
 const { onCall } = require('firebase-functions/v2/https');
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
+const { defineSecret } = require('firebase-functions/params');
 const admin = require('firebase-admin');
 const {
   processAccountDeletion,
 } = require('./accountDeletionCallableHandlers');
+const {
+  handleRunAiGatewaySmokeTest,
+} = require('./aiGatewayCallableHandlers');
 const {
   handlePurchaseValidationReadinessRequest,
   handleVerifyPurchaseRequest,
@@ -12,8 +16,19 @@ const {
   copyPublicWorkout,
   finishWorkoutSession,
 } = require('./workoutSessionCallableHandlers');
+const {
+  syncTrainingPlanProgress,
+} = require('./trainingPlanProgressCallableHandlers');
+const {
+  syncWorkoutInsightAggregates,
+} = require('./workoutInsightAggregationHandlers');
+const {
+  syncWorkoutProgressionSuggestions,
+} = require('./workoutProgressionSuggestionHandlers');
 
 admin.initializeApp();
+
+const deepseekApiKey = defineSecret('DEEPSEEK_API_KEY');
 
 const storeLaunchCallableContract = {
   validationConfigured: 'validationConfigured',
@@ -39,6 +54,28 @@ exports.finishWorkoutSession = onCall({ region: 'australia-southeast1' }, async 
 exports.copyPublicWorkout = onCall({ region: 'australia-southeast1' }, async (request) => {
   return copyPublicWorkout({ admin, request });
 });
+
+exports.syncTrainingPlanProgress = onCall({ region: 'australia-southeast1' }, async (request) => {
+  return syncTrainingPlanProgress({ admin, request });
+});
+
+exports.syncWorkoutInsightAggregates = onCall({ region: 'australia-southeast1' }, async (request) => {
+  return syncWorkoutInsightAggregates({ admin, request });
+});
+
+exports.syncWorkoutProgressionSuggestions = onCall({ region: 'australia-southeast1' }, async (request) => {
+  return syncWorkoutProgressionSuggestions({ admin, request });
+});
+
+exports.runAiGatewaySmokeTest = onCall(
+  {
+    region: 'australia-southeast1',
+    secrets: [deepseekApiKey],
+  },
+  async (request) => {
+    return handleRunAiGatewaySmokeTest({ admin, request });
+  },
+);
 
 exports.mirrorChallengeMembershipToUser = onDocumentCreated(
   {

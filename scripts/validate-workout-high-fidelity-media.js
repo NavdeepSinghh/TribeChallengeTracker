@@ -6,6 +6,13 @@ const POC_IDS = new Set(['goblet_squat', 'push_up', 'lat_pulldown', 'romanian_de
 const VALID_STATUS = new Set(['planned', 'ready', 'approved']);
 const VALID_MOTION = new Set(['video']);
 const VALID_FRAME_RATE = new Set([24, 30, 60]);
+const EXPECTED_PHASE_CUE_IDS = {
+  goblet_squat: ['setup', 'descent', 'depth', 'drive'],
+  push_up: ['plank', 'lower', 'bottom', 'press'],
+  lat_pulldown: ['setup', 'initiate', 'finish', 'return'],
+  romanian_deadlift: ['setup', 'hinge', 'stretch', 'stand'],
+  bulgarian_split_squat: ['setup', 'descend', 'bottom', 'stand'],
+};
 const UNSUPPORTED_CLAIM_PATTERN = /\b(cure|treat|diagnose|heal|rehab|therapy|injury|pain[- ]?free|guarantee|medical|doctor|clinical)\b/i;
 
 function cleanString(value) {
@@ -53,6 +60,52 @@ function validateSafeText(id, label, value) {
     throw new Error(`${id}: ${label} contains medical or unsupported claim language.`);
   }
   return text;
+}
+
+function validatePhaseTimeline(id, value) {
+  if (!Array.isArray(value) || value.length < 3) {
+    throw new Error(`${id}: renderBrief.phaseTimeline must include at least 3 motion cue phases.`);
+  }
+  const expectedCueIds = EXPECTED_PHASE_CUE_IDS[id] || [];
+  if (value.length !== expectedCueIds.length) {
+    throw new Error(`${id}: renderBrief.phaseTimeline must include exactly these cue ids: ${expectedCueIds.join(', ')}.`);
+  }
+
+  let previousEnd = 0;
+  return value.map((phase, index) => {
+    const cueId = cleanString(phase && phase.cueId);
+    const label = validateSafeText(id, `renderBrief.phaseTimeline[${index}].label`, phase && phase.label);
+    const startPercent = Number(phase && phase.startPercent);
+    const endPercent = Number(phase && phase.endPercent);
+    if (!/^[a-z0-9_-]{2,40}$/.test(cueId)) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}].cueId must be a stable id.`);
+    }
+    if (expectedCueIds[index] && cueId !== expectedCueIds[index]) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}].cueId must be ${expectedCueIds[index]} to match the approved coach cue draft.`);
+    }
+    if (!label) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}].label is required.`);
+    }
+    if (!Number.isFinite(startPercent) || !Number.isFinite(endPercent)) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}] must include numeric startPercent/endPercent.`);
+    }
+    if (startPercent < 0 || endPercent > 100 || endPercent <= startPercent) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}] must be an ordered 0-100 percent range.`);
+    }
+    if (index === 0 && startPercent !== 0) {
+      throw new Error(`${id}: renderBrief.phaseTimeline must start at 0%.`);
+    }
+    if (index > 0 && startPercent !== previousEnd) {
+      throw new Error(`${id}: renderBrief.phaseTimeline[${index}] must start where the previous phase ended to preserve chronological playback order.`);
+    }
+    previousEnd = endPercent;
+    return { cueId, label, startPercent, endPercent };
+  }).map((phase, index, phases) => {
+    if (index === phases.length - 1 && phase.endPercent !== 100) {
+      throw new Error(`${id}: renderBrief.phaseTimeline must end at 100%.`);
+    }
+    return phase;
+  });
 }
 
 function validateMediaManifest(id, manifest, status, requireReady) {
@@ -128,6 +181,7 @@ function validateRenderBrief(id, brief) {
     secondaryMuscles: cleanStringList(brief.secondaryMuscles, id, 'secondaryMuscles'),
     equipment: cleanStringList(brief.equipment, id, 'equipment'),
     movementFocus,
+    phaseTimeline: validatePhaseTimeline(id, brief.phaseTimeline),
     avoid,
   };
 }

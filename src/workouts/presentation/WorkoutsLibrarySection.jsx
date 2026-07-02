@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import lottie from "lottie-web";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useAppTheme } from "../../app/AppThemeContext";
-import { buildExerciseCoachingCues, selectExerciseMotionSource } from "../domain/workoutCatalogModels";
+import { buildExerciseCoachingCues, findExerciseCueForMotionProgress, selectExerciseMotionSource } from "../domain/workoutCatalogModels";
 import { resolveWorkoutAssetUrl as resolveAssetUrl } from "../domain/workoutAssetUrls";
 import { ALL_FILTER_VALUE, useWorkoutCatalogViewModel } from "./useWorkoutCatalogViewModel";
+
+const TEMP_GEMINI_WORKOUT_POSTER_PATH = "workouts/exercises/v2/gemini_motion_placeholder/poster.webp";
 
 export function resolveWorkoutAssetUrl(path) {
   return resolveAssetUrl(path);
@@ -15,37 +16,36 @@ export function getLottieFrameCount(data) {
   return Math.max(0, Math.round(outPoint - inPoint));
 }
 
-function useLazyJsonAsset(path) {
-  const [state, setState] = useState({ status: "idle", data: null, error: "" });
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    if (!path) {
-      setState({ status: "idle", data: null, error: "" });
-      return undefined;
-    }
-    if (typeof fetch !== "function") {
-      setState({ status: "failed", data: null, error: "Fetch is unavailable" });
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
       return undefined;
     }
 
-    const controller = new AbortController();
-    setState({ status: "loading", data: null, error: "" });
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(Boolean(query.matches));
+    const handleChange = event => setPrefersReducedMotion(Boolean(event.matches));
 
-    fetch(resolveWorkoutAssetUrl(path), { signal: controller.signal })
-      .then(response => {
-        if (!response.ok) throw new Error(`Asset returned ${response.status}`);
-        return response.json();
-      })
-      .then(data => setState({ status: "loaded", data, error: "" }))
-      .catch(error => {
-        if (error.name === "AbortError") return;
-        setState({ status: "failed", data: null, error: error.message || "Asset failed to load" });
-      });
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", handleChange);
+      return () => query.removeEventListener("change", handleChange);
+    }
 
-    return () => controller.abort();
-  }, [path]);
+    if (typeof query.addListener === "function") {
+      query.addListener(handleChange);
+      return () => query.removeListener(handleChange);
+    }
 
-  return state;
+    return undefined;
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+export function getWorkoutMotionPlaybackMode({ prefersReducedMotion = false, forceMotion = false } = {}) {
+  return prefersReducedMotion && !forceMotion ? "paused" : "playing";
 }
 
 function labelFor(value) {
@@ -53,6 +53,14 @@ function labelFor(value) {
     .split("_")
     .map(part => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function selectStaticWorkoutPreviewSource(exercise = {}) {
+  return {
+    alt: `${exercise.name} temporary guided workout visual`,
+    label: "TEMP VISUAL READY",
+    path: TEMP_GEMINI_WORKOUT_POSTER_PATH,
+  };
 }
 
 function FilterSelect({ label, options, value, onChange }) {
@@ -189,132 +197,98 @@ function ExerciseCard({ exercise, isSelected, onSelect }) {
   );
 }
 
-function ExerciseMotionPreview({ exercise }) {
-  const containerRef = useRef(null);
-  const motionSource = selectExerciseMotionSource(exercise);
-  const asset = useLazyJsonAsset(motionSource.type === "lottie" ? motionSource.path : "");
-  const [renderStatus, setRenderStatus] = useState("idle");
+function StaticWorkoutVisualPreview({ autoPlay = true, exercise, onProgress }) {
+  const preview = selectStaticWorkoutPreviewSource(exercise);
+  const [failed, setFailed] = useState(false);
+  const progressRef = useRef(0);
+
+  useEffect(() => {
+    setFailed(false);
+    progressRef.current = 0;
+    onProgress?.(0);
+  }, [exercise?.id, preview.path, onProgress]);
+
+  useEffect(() => {
+    if (!autoPlay) return undefined;
+    const interval = window.setInterval(() => {
+      progressRef.current = (progressRef.current + 7) % 100;
+      onProgress?.(progressRef.current);
+    }, 360);
+    return () => window.clearInterval(interval);
+  }, [autoPlay, exercise?.id, onProgress]);
+
+  return (
+    <div style={{
+      background: "radial-gradient(circle at 50% 25%, rgba(255,107,53,0.18), rgba(255,255,255,0.04) 56%, rgba(0,0,0,0.22))",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 16,
+      minHeight: 210,
+      overflow: "hidden",
+      position: "relative",
+    }}>
+      {!failed && preview.path ? (
+        <img
+          alt={preview.alt}
+          className={autoPlay ? "tribe-static-motion-preview is-playing" : "tribe-static-motion-preview"}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          src={resolveWorkoutAssetUrl(preview.path)}
+        />
+      ) : (
+        <div className="tribe-motion-fallback">
+          Visual preview unavailable
+        </div>
+      )}
+      <div style={{
+        background: "linear-gradient(180deg, transparent, rgba(4,4,4,0.68))",
+        bottom: 0,
+        height: 88,
+        left: 0,
+        position: "absolute",
+        right: 0,
+      }} />
+      <div style={{
+        bottom: 12,
+        color: failed ? "#FF8A65" : "#34D399",
+        fontFamily: "monospace",
+        fontSize: 10,
+        fontWeight: 800,
+        left: 14,
+        letterSpacing: 1,
+        position: "absolute",
+      }}>
+        {failed ? "VISUAL UNAVAILABLE" : preview.label}
+      </div>
+      <div style={{
+        background: "rgba(255,107,53,0.16)",
+        border: "1px solid rgba(255,107,53,0.24)",
+        borderRadius: 999,
+        color: "#FFB199",
+        fontFamily: "monospace",
+        fontSize: 10,
+        fontWeight: 900,
+        padding: "7px 10px",
+        position: "absolute",
+        right: 12,
+        top: 12,
+      }}>
+        TEMP PREVIEW
+      </div>
+    </div>
+  );
+}
+
+function VideoWorkoutMotionPreview({ autoPlay = true, exercise, motionSource, onProgress }) {
   const [videoStatus, setVideoStatus] = useState("idle");
 
   useEffect(() => {
     setVideoStatus(motionSource.type === "video" ? "loading" : "idle");
   }, [motionSource.type, motionSource.path, motionSource.previewPath]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return undefined;
-    container.innerHTML = "";
-
-    if (asset.status !== "loaded" || !asset.data) {
-      setRenderStatus(asset.status === "failed" ? "failed" : "idle");
-      return undefined;
-    }
-
-    let animation;
-    let didCancel = false;
-    const markRendered = () => {
-      if (!didCancel) setRenderStatus("rendered");
-    };
-    const markFailed = () => {
-      if (!didCancel) setRenderStatus("failed");
-    };
-
-    setRenderStatus("loading");
-    try {
-      animation = lottie.loadAnimation({
-        animationData: asset.data,
-        autoplay: true,
-        container,
-        loop: true,
-        renderer: "svg",
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid meet",
-        },
-      });
-      animation.addEventListener("DOMLoaded", markRendered);
-      animation.addEventListener("data_failed", markFailed);
-      animation.addEventListener("error", markFailed);
-      window.setTimeout(() => {
-        if (!didCancel && container.querySelector("svg")) {
-          markRendered();
-        }
-      }, 250);
-    } catch (error) {
-      markFailed();
-    }
-
-    return () => {
-      didCancel = true;
-      try {
-        animation?.removeEventListener?.("DOMLoaded", markRendered);
-        animation?.removeEventListener?.("data_failed", markFailed);
-        animation?.removeEventListener?.("error", markFailed);
-        animation?.destroy?.();
-      } catch (error) {
-        // Best-effort cleanup for the third-party player.
-      }
-      container.innerHTML = "";
-    };
-  }, [asset.status, asset.data, exercise?.id]);
-
-  if (motionSource.type === "video") {
-    const videoStatusLabel = (() => {
-      if (videoStatus === "failed") return "MOTION UNAVAILABLE";
-      if (videoStatus === "ready") return "REALISTIC DEMO READY";
-      return "LOADING REALISTIC DEMO";
-    })();
-
-    return (
-      <div style={{
-        background: "radial-gradient(circle at 50% 25%, rgba(255,107,53,0.18), rgba(255,255,255,0.04) 56%, rgba(0,0,0,0.22))",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 16,
-        minHeight: 210,
-        overflow: "hidden",
-        position: "relative",
-      }}>
-        <video
-          aria-label={`${exercise.name} animated demo`}
-          autoPlay
-          loop
-          muted
-          onCanPlay={() => setVideoStatus("ready")}
-          onError={() => setVideoStatus("failed")}
-          playsInline
-          poster={motionSource.posterPath ? resolveWorkoutAssetUrl(motionSource.posterPath) : undefined}
-          style={{ height: "100%", inset: 0, objectFit: "contain", position: "absolute", width: "100%" }}
-        >
-          {motionSource.previewPath ? (
-            <source src={resolveWorkoutAssetUrl(motionSource.previewPath)} type="video/webm" />
-          ) : null}
-          <source src={resolveWorkoutAssetUrl(motionSource.path)} type="video/mp4" />
-        </video>
-        {videoStatus === "failed" ? (
-          <div className="tribe-motion-fallback">
-            Motion preview unavailable
-          </div>
-        ) : null}
-        <div style={{
-          bottom: 12,
-          color: videoStatus === "ready" ? "#34D399" : videoStatus === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
-          fontFamily: "monospace",
-          fontSize: 10,
-          fontWeight: 800,
-          left: 14,
-          letterSpacing: 1,
-          position: "absolute",
-        }}>
-          {videoStatusLabel}
-        </div>
-      </div>
-    );
-  }
-
-  const statusLabel = (() => {
-    if (asset.status === "failed" || renderStatus === "failed") return "MOTION UNAVAILABLE";
-    if (asset.status === "loaded" && renderStatus === "rendered") return "ANIMATED DEMO READY";
-    if (asset.status === "loaded") return "RENDERING ANIMATED DEMO";
-    return "LOADING ANIMATED DEMO";
+  const videoStatusLabel = (() => {
+    if (videoStatus === "failed") return "MOTION UNAVAILABLE";
+    if (videoStatus === "ready") return "REALISTIC DEMO READY";
+    return "LOADING REALISTIC DEMO";
   })();
 
   return (
@@ -326,15 +300,41 @@ function ExerciseMotionPreview({ exercise }) {
       overflow: "hidden",
       position: "relative",
     }}>
-      <div ref={containerRef} aria-hidden="true" className="tribe-lottie-preview" />
-      {renderStatus !== "rendered" ? (
+      <video
+        aria-label={`${exercise.name} animated demo`}
+        autoPlay={autoPlay}
+        loop
+        muted
+        onCanPlay={() => setVideoStatus("ready")}
+        onError={() => setVideoStatus("failed")}
+        onTimeUpdate={event => {
+          const video = event.currentTarget;
+          if (Number.isFinite(video.duration) && video.duration > 0) {
+            onProgress?.((video.currentTime / video.duration) * 100);
+          }
+        }}
+        playsInline
+        poster={motionSource.posterPath ? resolveWorkoutAssetUrl(motionSource.posterPath) : undefined}
+        style={{ height: "100%", inset: 0, objectFit: "contain", position: "absolute", width: "100%" }}
+      >
+        {motionSource.previewPath ? (
+          <source src={resolveWorkoutAssetUrl(motionSource.previewPath)} type="video/webm" />
+        ) : null}
+        <source src={resolveWorkoutAssetUrl(motionSource.path)} type="video/mp4" />
+      </video>
+      {videoStatus === "failed" ? (
         <div className="tribe-motion-fallback">
-          {asset.status === "failed" || renderStatus === "failed" ? "Motion preview unavailable" : "Loading motion preview..."}
+          Motion preview unavailable
+        </div>
+      ) : null}
+      {!autoPlay && videoStatus !== "failed" ? (
+        <div className="tribe-motion-fallback">
+          Motion paused for reduced motion
         </div>
       ) : null}
       <div style={{
         bottom: 12,
-        color: asset.status === "loaded" && renderStatus === "rendered" ? "#34D399" : asset.status === "failed" || renderStatus === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
+        color: videoStatus === "ready" ? "#34D399" : videoStatus === "failed" ? "#FF8A65" : "rgba(255,255,255,0.62)",
         fontFamily: "monospace",
         fontSize: 10,
         fontWeight: 800,
@@ -342,10 +342,20 @@ function ExerciseMotionPreview({ exercise }) {
         letterSpacing: 1,
         position: "absolute",
       }}>
-        {statusLabel}
+        {videoStatusLabel}
       </div>
     </div>
   );
+}
+
+function ExerciseMotionPreview({ autoPlay = true, exercise, onProgress }) {
+  const motionSource = selectExerciseMotionSource(exercise);
+
+  if (motionSource.type === "video") {
+    return <VideoWorkoutMotionPreview autoPlay={autoPlay} exercise={exercise} motionSource={motionSource} onProgress={onProgress} />;
+  }
+
+  return <StaticWorkoutVisualPreview autoPlay={autoPlay} exercise={exercise} onProgress={onProgress} />;
 }
 
 function MuscleMap({ exercise }) {
@@ -422,24 +432,28 @@ function ExerciseCoachMode({ exercise }) {
   const cues = useMemo(() => buildExerciseCoachingCues(exercise), [exercise]);
   const [activeCueId, setActiveCueId] = useState(cues[0]?.id || "");
   const [hasManualCueSelection, setHasManualCueSelection] = useState(false);
+  const [forceMotion, setForceMotion] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const playbackMode = getWorkoutMotionPlaybackMode({ prefersReducedMotion, forceMotion });
   const activeIndex = Math.max(0, cues.findIndex(cue => cue.id === activeCueId));
   const activeCue = cues[activeIndex] || cues[0];
+  const activeCueLiveMode = hasManualCueSelection || playbackMode === "paused" ? "polite" : "off";
 
   useEffect(() => {
     setActiveCueId(cues[0]?.id || "");
     setHasManualCueSelection(false);
+    setForceMotion(false);
   }, [exercise.id, cues]);
 
   useEffect(() => {
-    if (cues.length < 2 || hasManualCueSelection) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveCueId(current => {
-        const index = Math.max(0, cues.findIndex(cue => cue.id === current));
-        return cues[(index + 1) % cues.length]?.id || current;
-      });
-    }, 3800);
-    return () => window.clearInterval(timer);
+    if (cues.length < 2 || hasManualCueSelection) return;
+    setActiveCueId(current => findExerciseCueForMotionProgress(cues, 0, current)?.id || current);
   }, [cues, hasManualCueSelection]);
+
+  const handleMotionProgress = useCallback((progressPercent) => {
+    if (playbackMode !== "playing" || hasManualCueSelection || cues.length < 2) return;
+    setActiveCueId(current => findExerciseCueForMotionProgress(cues, progressPercent, current)?.id || current);
+  }, [cues, hasManualCueSelection, playbackMode]);
 
   return (
     <div style={{
@@ -453,31 +467,77 @@ function ExerciseCoachMode({ exercise }) {
           <p style={{ ...sectionEyebrowStyle, color: "#FF6B35", marginBottom: 5 }}>MOVEMENT COACH</p>
           <p style={{ color: "#FFFFFF", fontFamily: "'Syne', sans-serif", fontSize: 18, fontWeight: 900, margin: 0 }}>Watch the demo with the active cue.</p>
         </div>
-        <span style={{
-          background: "rgba(255,107,53,0.16)",
-          border: "1px solid rgba(255,107,53,0.24)",
-          borderRadius: 999,
-          color: "#FF6B35",
-          fontFamily: "monospace",
-          fontSize: 10,
-          fontWeight: 900,
-          padding: "7px 9px",
-          whiteSpace: "nowrap",
-        }}>
-          {String(activeIndex + 1).padStart(2, "0")} / {String(cues.length || 1).padStart(2, "0")}
-        </span>
+        <div style={{ alignItems: "center", display: "flex", flexShrink: 0, gap: 8 }}>
+          {playbackMode === "paused" ? (
+            <button
+              type="button"
+              onClick={() => setForceMotion(true)}
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,107,53,0.30)",
+                borderRadius: 999,
+                color: "#FFB199",
+                cursor: "pointer",
+                fontFamily: "monospace",
+                fontSize: 10,
+                fontWeight: 900,
+                padding: "7px 9px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              PLAY MOTION
+            </button>
+          ) : null}
+          {hasManualCueSelection ? (
+            <button
+              type="button"
+              onClick={() => setHasManualCueSelection(false)}
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,107,53,0.30)",
+                borderRadius: 999,
+                color: "#FFB199",
+                cursor: "pointer",
+                fontFamily: "monospace",
+                fontSize: 10,
+                fontWeight: 900,
+                padding: "7px 9px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              SYNC TO MOTION
+            </button>
+          ) : null}
+          <span style={{
+            background: "rgba(255,107,53,0.16)",
+            border: "1px solid rgba(255,107,53,0.24)",
+            borderRadius: 999,
+            color: "#FF6B35",
+            fontFamily: "monospace",
+            fontSize: 10,
+            fontWeight: 900,
+            padding: "7px 9px",
+            whiteSpace: "nowrap",
+          }}>
+            {String(activeIndex + 1).padStart(2, "0")} / {String(cues.length || 1).padStart(2, "0")}
+          </span>
+        </div>
       </div>
 
-      <ExerciseMotionPreview exercise={exercise} />
+      <ExerciseMotionPreview autoPlay={playbackMode === "playing"} exercise={exercise} onProgress={handleMotionProgress} />
 
       {activeCue ? (
-        <div style={{
-          background: "rgba(255,107,53,0.16)",
-          border: "1px solid rgba(255,107,53,0.36)",
-          borderRadius: 16,
-          marginTop: 12,
-          padding: 14,
-        }}>
+        <div
+          aria-atomic="true"
+          aria-live={activeCueLiveMode}
+          style={{
+            background: "rgba(255,107,53,0.16)",
+            border: "1px solid rgba(255,107,53,0.36)",
+            borderRadius: 16,
+            marginTop: 12,
+            padding: 14,
+          }}
+        >
           <p style={{ color: "#FF6B35", fontFamily: "monospace", fontSize: 10, fontWeight: 900, letterSpacing: 1.2, margin: "0 0 8px" }}>
             {labelFor(activeCue.phase).toUpperCase()} · {activeCue.view.toUpperCase()} VIEW
           </p>
@@ -708,6 +768,11 @@ const workoutLibraryCss = `
     100% { transform: translateX(260%); }
   }
 
+  @keyframes tribeStaticWorkoutPreviewPulse {
+    0%, 100% { transform: scale(1); filter: saturate(1.02) brightness(0.96); }
+    50% { transform: scale(1.035); filter: saturate(1.10) brightness(1.04); }
+  }
+
   .tribe-lottie-preview {
     height: 100%;
     position: absolute;
@@ -721,6 +786,20 @@ const workoutLibraryCss = `
     margin: auto;
     max-width: 100%;
     width: 100% !important;
+  }
+
+  .tribe-static-motion-preview {
+    display: block;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    transform-origin: 52% 48%;
+    width: 100%;
+  }
+
+  .tribe-static-motion-preview.is-playing {
+    animation: tribeStaticWorkoutPreviewPulse 3.2s ease-in-out infinite;
   }
 
   .tribe-motion-fallback {

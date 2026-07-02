@@ -46,6 +46,7 @@ export function mapPublicWorkoutDocument(id, data = {}) {
     totalVolumeKg: cleanNumber(data.totalVolumeKg),
     durationSeconds: cleanNumber(data.durationSeconds),
     copiedCount: cleanNumber(data.copiedCount),
+    reactionCounts: data.reactionCounts && typeof data.reactionCounts === "object" ? data.reactionCounts : {},
     publishedAt: timestampToIso(data.publishedAt),
     updatedAt: timestampToIso(data.updatedAt),
   };
