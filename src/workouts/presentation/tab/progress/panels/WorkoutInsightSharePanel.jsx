@@ -5,6 +5,7 @@ import {
   buildWorkoutShareCaption,
   buildWorkoutSummaryShareCard,
 } from "../../../../domain/workoutShareInsights";
+import { downloadWorkoutShareCardImage } from "../workoutShareCardImage";
 
 function exerciseNameForPr(pr = {}, sessions = []) {
   const exerciseId = pr.exerciseId;
@@ -52,6 +53,7 @@ export default function WorkoutInsightSharePanel({
   );
   const [selectedId, setSelectedId] = useState(options[0]?.id || "");
   const [message, setMessage] = useState("");
+  const [isExporting, setIsExporting] = useState(false);
   const selected = options.find(option => option.id === selectedId) || options[0];
   const card = selected?.card;
   const caption = card ? buildWorkoutShareCaption(card) : "";
@@ -82,6 +84,18 @@ export default function WorkoutInsightSharePanel({
         return;
       }
       setMessage("Could not share card.");
+    }
+  };
+
+  const downloadImage = async () => {
+    setIsExporting(true);
+    try {
+      await downloadWorkoutShareCardImage(card);
+      setMessage("Image downloaded.");
+    } catch {
+      setMessage("Could not create image.");
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -141,9 +155,17 @@ export default function WorkoutInsightSharePanel({
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
         <button onClick={shareCard} style={primaryButtonStyle} type="button">Share</button>
         <button onClick={copyCaption} style={secondaryButtonStyle} type="button">Copy caption</button>
+        <button
+          disabled={isExporting}
+          onClick={downloadImage}
+          style={isExporting ? disabledButtonStyle : secondaryButtonStyle}
+          type="button"
+        >
+          {isExporting ? "Creating..." : "Download image"}
+        </button>
       </div>
       {message ? <p style={messageStyle}>{message}</p> : null}
     </div>
@@ -256,6 +278,12 @@ const secondaryButtonStyle = {
   background: "rgba(255,255,255,0.06)",
   border: "1px solid rgba(255,255,255,0.10)",
   color: "#FFFFFF",
+};
+
+const disabledButtonStyle = {
+  ...secondaryButtonStyle,
+  cursor: "wait",
+  opacity: 0.58,
 };
 
 const messageStyle = {
