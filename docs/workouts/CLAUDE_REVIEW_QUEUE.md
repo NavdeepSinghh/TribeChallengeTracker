@@ -5,22 +5,23 @@ Current next reviews:
 
 1. Phase 3 native parity and share image export
 2. Phase 3 release pack and Phase 4 vote
-3. Phase 2 launch gates before CP22
-4. Shareable Insight Cards And Discovery
-5. Phase 3 Release And Creator-Layer Scope
-6. Training Plans Foundation
-7. Training Plan Enrollment Foundation
-8. Coach Mode v1
-9. Full Cue Draft v1
-10. High-Fidelity Animation Design Spec + POC Manifest
-11. High-Fidelity Motion POC Board
-12. High-Fidelity Production Asset Briefs
-13. High-Fidelity Asset File Gate
-14. High-Fidelity Client Video Playback Prep
-15. Frame-Aware Cue Sync Checkpoint
-16. iOS High-Fidelity Video Loop Parity
-17. Native High-Fidelity Poster Fallback
-18. High-Fidelity Real Asset Review Board
+3. Phase 4.0 Creator Policy And Moderation Plan
+4. Phase 2 launch gates before CP22
+5. Shareable Insight Cards And Discovery
+6. Phase 3 Release And Creator-Layer Scope
+7. Training Plans Foundation
+8. Training Plan Enrollment Foundation
+9. Coach Mode v1
+10. Full Cue Draft v1
+11. High-Fidelity Animation Design Spec + POC Manifest
+12. High-Fidelity Motion POC Board
+13. High-Fidelity Production Asset Briefs
+14. High-Fidelity Asset File Gate
+15. High-Fidelity Client Video Playback Prep
+16. Frame-Aware Cue Sync Checkpoint
+17. iOS High-Fidelity Video Loop Parity
+18. Native High-Fidelity Poster Fallback
+19. High-Fidelity Real Asset Review Board
 
 ## Phase 3 Native Parity And Share Image Export (2026-07-02)
 
@@ -67,6 +68,29 @@ Codex prepared the Phase 3 public announcement gate and Phase 4 tribe vote:
 - Phase 3 announcement draft.
 - Phase 4 community/creator contribution vote options.
 - Phase 4 production-code guardrails.
+
+## Phase 4.0 Creator Policy And Moderation Plan (2026-07-02)
+
+Review artifact:
+
+```text
+/Users/navdeepsmacbook/Documents/TribeChallengeTracker/docs/workouts/phase-4-creator-policy-moderation-plan-claude-checkpoint-2026-07-02.md
+```
+
+Codex prepared the pre-production Phase 4 gate:
+
+- creator eligibility
+- allowed content types
+- moderation states
+- report/takedown flow
+- creator attribution policy
+- free-user boundary
+- creator monetization boundary
+- proposed Firestore collections and implementation order
+
+Important boundary:
+
+- no Phase 4 creator publishing code should ship until Claude approves this plan and Navdeep captures a tribe vote/product decision.
 
 ## Phase 3 Progress Insights UI (2026-07-02)
 

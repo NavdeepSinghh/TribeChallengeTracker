@@ -55,6 +55,7 @@ The product goal is to move TribeLog from an activity logger toward a guided tra
 | Phase 3 Progress Insights UI | Web implementation added inside Progress > History; ready for Claude checkpoint; native parity and real-device screenshots still required before public release |
 | Phase 3 Native Parity And Share Image Export | iOS/Android parity implemented and pushed; Claude checkpoint created; real-device screenshots remain release gate |
 | Phase 3 Release Pack And Phase 4 Vote | Release checklist and tribe vote pack created; awaiting Claude checkpoint |
+| Phase 4.0 Creator Policy And Moderation Plan | Pre-production policy/moderation gate created; no creator publishing code starts before review/vote |
 
 Current review pack:
 
