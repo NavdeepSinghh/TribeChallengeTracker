@@ -1,8 +1,8 @@
 # TribeLog Workouts Coach Mode v1 - Claude Checkpoint
 
-Status date: 2026-07-01  
-Implementation owner: Codex  
-Review owner: Claude  
+Status date: 2026-07-01
+Implementation owner: Codex
+Review owner: Claude
 Product owner: Navdeep
 
 ## Verdict Requested

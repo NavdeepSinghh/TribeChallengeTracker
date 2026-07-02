@@ -19,6 +19,12 @@
       "secondaryMuscles": ["core"],
       "equipment": ["kettlebell"],
       "movementFocus": "Chest tall, hips descend, knees track over toes.",
+      "phaseTimeline": [
+        { "cueId": "setup", "label": "Set stance and brace", "startPercent": 0, "endPercent": 22 },
+        { "cueId": "descent", "label": "Hips descend under control", "startPercent": 22, "endPercent": 54 },
+        { "cueId": "depth", "label": "Find depth without collapse", "startPercent": 54, "endPercent": 84 },
+        { "cueId": "drive", "label": "Drive through mid-foot", "startPercent": 84, "endPercent": 100 }
+      ],
       "avoid": ["knee collapse", "excessive forward fold", "hypersexualized body proportions"]
     }
   },
@@ -42,6 +48,12 @@
       "secondaryMuscles": ["core", "shoulders"],
       "equipment": ["bodyweight"],
       "movementFocus": "One straight line from shoulders to heels, controlled lower and press.",
+      "phaseTimeline": [
+        { "cueId": "plank", "label": "Set straight body line", "startPercent": 0, "endPercent": 20 },
+        { "cueId": "lower", "label": "Lower chest with control", "startPercent": 20, "endPercent": 52 },
+        { "cueId": "bottom", "label": "Hold line at the bottom", "startPercent": 52, "endPercent": 84 },
+        { "cueId": "press", "label": "Press the floor away", "startPercent": 84, "endPercent": 100 }
+      ],
       "avoid": ["sagging hips", "head craning", "rushed reps"]
     }
   },
@@ -65,6 +77,12 @@
       "secondaryMuscles": ["biceps", "upper_back"],
       "equipment": ["lat_pulldown_machine"],
       "movementFocus": "Elbows drive down, ribs stay stacked, shoulders stay away from ears.",
+      "phaseTimeline": [
+        { "cueId": "setup", "label": "Grip bar and stack ribs", "startPercent": 0, "endPercent": 22 },
+        { "cueId": "initiate", "label": "Elbows drive down", "startPercent": 22, "endPercent": 56 },
+        { "cueId": "finish", "label": "Pause with lats active", "startPercent": 56, "endPercent": 72 },
+        { "cueId": "return", "label": "Control the return", "startPercent": 72, "endPercent": 100 }
+      ],
       "avoid": ["leaning far back", "yanking the bar", "shrugging into the neck"]
     }
   },
@@ -88,6 +106,12 @@
       "secondaryMuscles": ["core", "lower_back"],
       "equipment": ["barbell"],
       "movementFocus": "Hips hinge back, spine stays neutral, soft knees throughout.",
+      "phaseTimeline": [
+        { "cueId": "setup", "label": "Brace and soften knees", "startPercent": 0, "endPercent": 20 },
+        { "cueId": "hinge", "label": "Hips move back", "startPercent": 20, "endPercent": 56 },
+        { "cueId": "stretch", "label": "Feel hamstrings load", "startPercent": 56, "endPercent": 72 },
+        { "cueId": "stand", "label": "Stand by driving hips through", "startPercent": 72, "endPercent": 100 }
+      ],
       "avoid": ["rounded back", "squat-like knee bend", "neck overextension"]
     }
   },
@@ -111,6 +135,12 @@
       "secondaryMuscles": ["hamstrings", "core"],
       "equipment": ["bench", "dumbbells"],
       "movementFocus": "Front foot planted, back foot elevated, controlled vertical descent.",
+      "phaseTimeline": [
+        { "cueId": "setup", "label": "Set front foot and balance", "startPercent": 0, "endPercent": 24 },
+        { "cueId": "descend", "label": "Descend vertically", "startPercent": 24, "endPercent": 58 },
+        { "cueId": "bottom", "label": "Hold balance at depth", "startPercent": 58, "endPercent": 86 },
+        { "cueId": "stand", "label": "Drive through front foot", "startPercent": 86, "endPercent": 100 }
+      ],
       "avoid": ["front heel lifting", "knee collapse", "excessive forward lean"]
     }
   }

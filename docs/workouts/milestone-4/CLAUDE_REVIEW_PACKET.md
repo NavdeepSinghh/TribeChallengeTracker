@@ -74,4 +74,3 @@ Both builds succeeded.
 3. Is it acceptable for M4 to show manifest-ready fallback for relative Storage paths and defer `lottie-ios` runtime playback until asset delivery is finalized?
 4. Are the static iPhone-sized screenshots enough for brand review, or should live authenticated iPhone screenshots block M4 approval?
 5. What fixes are required before Milestone 5 Android starts?
-

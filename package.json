@@ -60,7 +60,16 @@
     "cap:android": "npm run build && npx cap sync android && npx cap open android",
     "test:profile-share": "react-scripts test --runTestsByPath src/__tests__/profileShareCards.test.js src/__tests__/profileShareCardSharing.test.js --watchAll=false --runInBand",
     "test:weekly-campaign": "react-scripts test --runTestsByPath src/__tests__/weeklyCampaignDerivedData.test.js src/__tests__/weeklyCampaignMarketingProps.test.js --watchAll=false --runInBand",
-    "test:workouts-rules": "JAVA_HOME=\"/Applications/Android Studio.app/Contents/jbr/Contents/Home\" firebase emulators:exec --only firestore \"react-scripts test --runTestsByPath src/__tests__/workoutsSocialRules.test.js --watchAll=false --runInBand\""
+    "test:workouts-rules": "JAVA_HOME=\"/Applications/Android Studio.app/Contents/jbr/Contents/Home\" firebase emulators:exec --only firestore \"react-scripts test --runTestsByPath src/__tests__/workoutsSocialRules.test.js --watchAll=false --runInBand\"",
+    "test:workouts-phase3-rules": "JAVA_HOME=\"/Applications/Android Studio.app/Contents/jbr/Contents/Home\" firebase emulators:exec --only firestore \"react-scripts test --runTestsByPath src/__tests__/workoutInsightRules.test.js --watchAll=false --runInBand\"",
+    "workouts:high-fidelity:validate": "node scripts/validate-workout-high-fidelity-media.js",
+    "workouts:high-fidelity:asset-gate": "node scripts/verify-workout-high-fidelity-asset-files.js",
+    "workouts:high-fidelity:review-board": "node scripts/render-workout-high-fidelity-asset-review-board.js && node scripts/write-workout-high-fidelity-readiness-report.js",
+    "workouts:phase2:smoke-contract": "react-scripts test --runTestsByPath src/__tests__/trainingPlanFinishSmoke.test.js src/__tests__/trainingPlanProgress.test.js --watchAll=false --runInBand",
+    "workouts:phase2:plans:validate": "node scripts/validate-workout-training-plans.js",
+    "workouts:phase2:plans:dry-run": "node scripts/apply-workout-training-plans.js --admin-uid dryrun_admin_123",
+    "workouts:phase2:release-check": "npm run workouts:phase2:plans:validate && npm run workouts:phase2:plans:dry-run && npm run workouts:phase2:smoke-contract && react-scripts test --runTestsByPath src/__tests__/trainingPlansFoundation.test.js src/__tests__/todayTrainingPlanCard.test.js --watchAll=false --runInBand",
+    "workouts:phase3:foundation-check": "node scripts/validate-workout-advanced-metrics-plan.js && node scripts/validate-workout-exercise-expansion-candidates.js && react-scripts test --runTestsByPath src/__tests__/workoutAdvancedMetricsPlan.test.js src/__tests__/workoutInsightAggregation.test.js src/__tests__/workoutProgressionSuggestions.test.js src/__tests__/workoutInsightRateLimit.test.js src/__tests__/workoutInsightModels.test.js src/__tests__/workoutInsightsViewModel.test.js src/__tests__/workoutExerciseExpansionCandidates.test.js src/__tests__/workoutShareInsights.test.js --watchAll=false --runInBand"
   },
   "browserslist": {
     "production": [

@@ -2,6 +2,8 @@ import { useAppTheme } from "../../app/AppThemeContext";
 import { publicWorkoutSummary } from "../domain/workoutSocialModels";
 import { useWorkoutSocialViewModel } from "./useWorkoutSocialViewModel";
 
+const TRENDING_PUBLIC_WORKOUT_SCORE = 20;
+
 function formatVolume(value = 0) {
   return `${Math.round(Number(value || 0)).toLocaleString()} kg`;
 }
@@ -53,7 +55,7 @@ function PublicWorkoutCard({ copiedTemplateId, isCopying, isFollowingUpdating, o
           fontWeight: 900,
           padding: "4px 7px",
         }}>
-          PUBLIC
+          {workout.trendScore > TRENDING_PUBLIC_WORKOUT_SCORE ? "TRENDING" : "PUBLIC"}
         </span>
       </div>
 

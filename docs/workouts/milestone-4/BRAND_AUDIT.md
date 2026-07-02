@@ -30,4 +30,3 @@ Preview source:
 - Screenshots are static iPhone-sized state previews, not live authenticated app captures.
 - Real-device visual QA should be repeated after the proof exercises are live-seeded into production Firestore.
 - The actual iOS build on Navdeep's iPhone succeeded after the catalog section was wired into the Workouts tab.
-

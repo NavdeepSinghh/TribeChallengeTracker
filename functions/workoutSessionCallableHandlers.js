@@ -1,4 +1,9 @@
 const crypto = require('crypto');
+const {
+  buildCompletedPlanDayPatch,
+  buildTrainingPlanAdherenceSummary,
+  trainingPlanBadgeAwards,
+} = require('./trainingPlanProgressCallableHandlers');
 
 const SHARE_VISIBILITIES = new Set(['private', 'tribe', 'public']);
 const DEFAULT_WORKOUT_POINTS = 40;
@@ -123,6 +128,10 @@ function sanitizeFinalSession(uid, sessionId, finalSession = {}) {
     copiedFromTemplateId: cleanString(finalSession.copiedFromTemplateId, '', 160) || null,
     originalCreatorUid: cleanString(finalSession.originalCreatorUid, '', 128) || null,
     originalCreatorDisplayName: cleanString(finalSession.originalCreatorDisplayName, '', 80) || null,
+    trainingPlanId: cleanString(finalSession.trainingPlanId || finalSession.planId, '', 160) || null,
+    trainingPlanDayKey: cleanString(finalSession.trainingPlanDayKey || finalSession.planDayKey, '', 80) || null,
+    trainingPlanWeekIndex: safeNumber(finalSession.trainingPlanWeekIndex, 0) || null,
+    trainingPlanDayIndex: safeNumber(finalSession.trainingPlanDayIndex, 0) || null,
     name: cleanString(finalSession.name || finalSession.planName, 'Guided workout', 100),
     type: cleanString(finalSession.type, 'gym', 40),
     dateStr: cleanDateStr(finalSession.dateStr),
@@ -397,23 +406,42 @@ async function finishWorkoutSession({ admin, request }) {
     exercise,
     ref: userRef.collection('exercisePRs').doc(exercise.exerciseId),
   }));
+  const shouldSyncTrainingPlan = Boolean(session.trainingPlanId && session.trainingPlanDayKey);
+  const trainingPlanRef = shouldSyncTrainingPlan
+    ? db.collection('trainingPlans').doc(session.trainingPlanId)
+    : null;
+  const trainingPlanEnrollmentRef = shouldSyncTrainingPlan
+    ? userRef.collection('trainingPlanEnrollments').doc(session.trainingPlanId)
+    : null;
+  const trainingPlanAdherenceRef = shouldSyncTrainingPlan
+    ? userRef.collection('trainingPlanAdherence').doc(session.trainingPlanId)
+    : null;
 
   let result = null;
 
   await db.runTransaction(async (transaction) => {
-    const [
-      userSnap,
-      existingSessionSnap,
-      activitySnap,
-      publicWorkoutSnap,
-      ...prSnaps
-    ] = await Promise.all([
+    const readSnaps = await Promise.all([
       transaction.get(userRef),
       transaction.get(sessionRef),
       transaction.get(activityRef),
       transaction.get(publicWorkoutRef),
       ...prRefs.map((entry) => transaction.get(entry.ref)),
+      ...(shouldSyncTrainingPlan
+        ? [
+          transaction.get(trainingPlanRef),
+          transaction.get(trainingPlanEnrollmentRef),
+        ]
+        : []),
     ]);
+    const [
+      userSnap,
+      existingSessionSnap,
+      activitySnap,
+      publicWorkoutSnap,
+    ] = readSnaps;
+    const prSnaps = readSnaps.slice(4, 4 + prRefs.length);
+    const trainingPlanSnap = shouldSyncTrainingPlan ? readSnaps[4 + prRefs.length] : null;
+    const trainingPlanEnrollmentSnap = shouldSyncTrainingPlan ? readSnaps[5 + prRefs.length] : null;
 
     const existingSession = existingSessionSnap.exists ? existingSessionSnap.data() || {} : {};
     if (existingSession.userId && existingSession.userId !== uid) {
@@ -476,11 +504,65 @@ async function finishWorkoutSession({ admin, request }) {
       }, { merge: true });
     });
 
+    let trainingPlanProgress = null;
+    if (shouldSyncTrainingPlan && trainingPlanSnap?.exists && trainingPlanEnrollmentSnap?.exists) {
+      const plan = { id: trainingPlanSnap.id, ...trainingPlanSnap.data() };
+      const enrollment = {
+        id: trainingPlanEnrollmentSnap.id,
+        ...trainingPlanEnrollmentSnap.data(),
+        uid,
+        planId: session.trainingPlanId,
+      };
+      const completionPatch = buildCompletedPlanDayPatch(enrollment, session.trainingPlanDayKey);
+      if (completionPatch) {
+        const nextEnrollment = {
+          ...enrollment,
+          ...completionPatch,
+        };
+        const summary = buildTrainingPlanAdherenceSummary(plan, nextEnrollment);
+        const awards = trainingPlanBadgeAwards(plan, nextEnrollment);
+        const completedPlan = summary.totalWorkoutDays > 0 && summary.completedCount >= summary.totalWorkoutDays;
+        const nextStatus = completedPlan ? 'completed' : (enrollment.status || 'active');
+
+        transaction.set(trainingPlanEnrollmentRef, {
+          ...completionPatch,
+          status: nextStatus,
+          currentDayIndex: session.trainingPlanDayIndex || enrollment.currentDayIndex || 1,
+          updatedAt: FieldValue.serverTimestamp(),
+        }, { merge: true });
+
+        transaction.set(trainingPlanAdherenceRef, {
+          ...summary,
+          status: nextStatus,
+          uid,
+          updatedAt: FieldValue.serverTimestamp(),
+        }, { merge: true });
+
+        awards.forEach((award) => {
+          transaction.set(userRef.collection('trainingPlanBadges').doc(award.id), {
+            ...award,
+            uid,
+            awardedAt: FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
+          }, { merge: true });
+        });
+
+        trainingPlanProgress = {
+          planId: session.trainingPlanId,
+          completedDayKey: session.trainingPlanDayKey,
+          status: nextStatus,
+          adherencePct: summary.adherencePct,
+          awardedBadgeIds: awards.map(award => award.badgeId),
+        };
+      }
+    }
+
     result = {
       sessionId,
       activityLogId: ids.activityLogId,
       feedId: ids.feedId,
       publicWorkoutId,
+      trainingPlanProgress,
       prUpdates: prUpdates.map((entry) => ({
         exerciseId: entry.data.exerciseId,
         bestWeightKg: entry.data.bestWeightKg,

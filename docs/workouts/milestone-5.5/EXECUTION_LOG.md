@@ -37,4 +37,3 @@ Implementation notes:
 ## Scope Boundary
 
 This milestone satisfies the M5 review gate for native catalog coverage. Guided workout-specific ViewModel/state-machine tests remain part of M6/M7 hardening and are documented in the M6 known gaps.
-

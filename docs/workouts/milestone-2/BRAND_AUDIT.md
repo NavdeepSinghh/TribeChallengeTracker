@@ -16,4 +16,3 @@ The three proof exercise records use neutral coaching language and avoid:
 - injury-prevention promises
 - guaranteed outcomes
 - paid feature claims
-

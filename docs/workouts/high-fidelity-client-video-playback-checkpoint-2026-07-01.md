@@ -1,8 +1,8 @@
 # TribeLog High-Fidelity Client Video Playback Checkpoint
 
-Status date: 2026-07-01  
-Owner: Navdeep  
-Implementation: Codex  
+Status date: 2026-07-01
+Owner: Navdeep
+Implementation: Codex
 Review partner: Claude
 
 ## Verdict Request

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "status": "draft_pending_tribe_vote",
+  "voteQuestion": "What should TribeLog build next for Workouts?",
+  "positioning": "Training insights only. No care-condition or guaranteed outcome claims.",
+  "privacyPrinciples": [
+    "Private workout details stay private by default.",
+    "Public share cards require explicit user action.",
+    "A shared card may remain saved outside TribeLog after a user shares it, even if the original card is later deleted.",
+    "Aggregates should show trends without exposing raw workout logs to other users.",
+    "Insufficient-data states should explain what is missing without shaming the user."
+  ],
+  "voteOptions": [
+    {
+      "id": "muscle_volume_heat_map",
+      "label": "Muscle volume heat maps",
+      "description": "Show weekly training distribution by muscle group using completed workout volume.",
+      "releaseShape": "Private insight first, shareable only by explicit export.",
+      "minimumData": {
+        "completed_sessions": 3,
+        "training_weeks": 1,
+        "sessions_per_muscle_group": 1
+      },
+      "insufficientDataCopy": "Log a few more workouts to unlock your first weekly muscle map."
+    },
+    {
+      "id": "progressive_overload_suggestions",
+      "label": "Progressive overload suggestions",
+      "description": "Offer conservative next-session reps or weight suggestions from the user's own history.",
+      "releaseShape": "Private suggestion with plain explanation and easy ignore.",
+      "minimumData": {
+        "completed_sessions": 4,
+        "sessions_per_exercise": 4,
+        "training_weeks_per_exercise": 2
+      },
+      "insufficientDataCopy": "Log this exercise across a couple of weeks before TribeLog suggests the next step."
+    },
+    {
+      "id": "expanded_exercise_library",
+      "label": "Bigger exercise library",
+      "description": "Expand the official library from 50 movements toward 200+ exercises with reviewed assets.",
+      "releaseShape": "Backend-driven catalog expansion in reviewed batches.",
+      "minimumData": {
+        "completed_sessions": 0
+      },
+      "insufficientDataCopy": "No personal workout history required."
+    },
+    {
+      "id": "shareable_workout_cards",
+      "label": "Shareable workout insight cards",
+      "description": "Create user-controlled screenshot cards for workouts, PRs, volume, and plan milestones.",
+      "releaseShape": "Private preview first, explicit user share only.",
+      "minimumData": {
+        "completed_sessions": 1
+      },
+      "insufficientDataCopy": "Finish one workout to create your first share card."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "weekly_muscle_volume_kg",
+      "featureId": "muscle_volume_heat_map",
+      "definition": "Sum of reps multiplied by weight for completed sets, grouped by primary muscle and calendar week.",
+      "dataSources": ["trainingSessions.exercises.sets", "exerciseCatalog.primaryMuscles"],
+      "trustBoundary": "Server aggregation recommended before public release.",
+      "privacy": "Owner-only read. Public cards must use rounded or bucketed values."
+    },
+    {
+      "id": "exercise_progression_delta",
+      "featureId": "progressive_overload_suggestions",
+      "definition": "Comparison of recent completed sets for one exercise against prior best or recent average.",
+      "dataSources": ["trainingSessions.exercises.sets", "exercisePRs"],
+      "trustBoundary": "Server or deterministic local preview; final trusted values should be reproducible.",
+      "privacy": "Owner-only read. No automatic public posting."
+    },
+    {
+      "id": "catalog_coverage",
+      "featureId": "expanded_exercise_library",
+      "definition": "Count of published official exercises by category, muscle, equipment, and level.",
+      "dataSources": ["exerciseCatalog"],
+      "trustBoundary": "Admin-seeded content with schema validation.",
+      "privacy": "Public catalog metadata only."
+    },
+    {
+      "id": "share_card_snapshot",
+      "featureId": "shareable_workout_cards",
+      "definition": "User-approved snapshot of selected workout summary fields.",
+      "dataSources": ["trainingSessions", "exercisePRs", "trainingPlanBadges"],
+      "trustBoundary": "Client renders preview; user explicitly shares.",
+      "privacy": "No precise timestamps, private notes, or unselected exercise details by default. Shared cards may remain saved outside TribeLog after sharing."
+    }
+  ]
+}

@@ -12,4 +12,3 @@
 - iOS tests cover catalog ViewModel behavior, not the full guided workout flow.
 - Android tests cover catalog ViewModel behavior, not the full guided workout flow.
 - Web currently has guided workout domain tests; native guided workout tests should be added before relying on M7/M8 behavior.
-

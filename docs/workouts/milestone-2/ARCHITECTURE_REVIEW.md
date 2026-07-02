@@ -35,4 +35,3 @@ Activity and feed mirrors now use the same point source.
 - Full runtime rules allow/deny tests remain deferred to the Milestone 8 gate.
 - Live seed apply has not been run.
 - No admin UI exists yet; this is a script-based seed/update path.
-

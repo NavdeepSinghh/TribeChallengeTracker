@@ -1,8 +1,8 @@
 # TribeLog Workouts Roadmap And Claude Checkpoints
 
-Status date: 2026-07-01  
-Owner: Navdeep  
-Implementation: Codex  
+Status date: 2026-07-01
+Owner: Navdeep
+Implementation: Codex
 Review partner: Claude
 
 ## Purpose
@@ -34,11 +34,47 @@ The product goal is to move TribeLog from an activity logger toward a guided tra
 | Milestone 10 | Claude approved; Phase 1 ready to ship pending manual native screenshots |
 | Coach Mode v1 | Implemented across Web, iOS, Android; ready for Claude checkpoint |
 | Full Cue Draft v1 | Implemented locally for 50 exercises; ready for Claude copy/content review |
+| Frame-Aware Cue Sync | Web/iOS/Android playback-progress sync implemented where available, with timer fallback; ready for Claude checkpoint |
 | High-Fidelity Animation Spec | Created for Claude Design; optional mediaManifest support, five-exercise planned POC manifest, and client video playback prep implemented locally |
+| High-Fidelity Native Playback Polish | iOS loop parity and native poster fallback implemented locally; ready for Claude checkpoint |
+| High-Fidelity Real Asset Review Board | Implemented locally; pending real MP4/WebM/poster files |
+| Checkpoint 11 | Training Plans Foundation implemented locally; ready for Claude checkpoint |
+| Checkpoint 12 | Training Plan Enrollment Foundation implemented locally; ready for Claude checkpoint |
+| Checkpoint 13 | Claude approved |
+| Checkpoint 14 | Claude approved; trusted-missed-count compatibility added for future server adherence |
+| Checkpoint 15 | Claude approved; neutral post-skip rest-day copy applied |
+| Checkpoint 16 | Claude approved; adherence badge scale refactor tracked for Phase 3/4 |
+| Checkpoint 16N | Claude approved; native plan customization/progress parity complete |
+| Checkpoint 17 | Claude documentation/copy fixes accepted; Phase 2 public announcement remains gated on signed-in production planned-workout smoke test and real native screenshots |
+| Checkpoint 18 | Claude approved after tightening progressive-overload thresholds and share-card privacy permanence |
+| Checkpoint 19 | Muscle Volume Aggregation implemented locally; ready for Claude checkpoint |
+| Checkpoint 20 | Claude approved with two strong recommendations; public progressive-overload UI prerequisites documented |
+| Checkpoint 21 | Claude approved with one deferral and one structural recommendation; safer candidate backlog and vocabulary lock applied |
+| Checkpoint 22 | Shareable Insight Cards And Discovery foundation implemented locally; review gated on Phase 2 launch smoke/screenshots |
+| Checkpoint 23 | Phase 3 Release And Creator-Layer Scope pack created; ready for Claude checkpoint |
+| Phase 3 Progress Insights UI | Web implementation added inside Progress > History; ready for Claude checkpoint; native parity and real-device screenshots still required before public release |
+| Phase 3 Native Parity And Share Image Export | iOS/Android parity implemented and pushed; Claude checkpoint created; real-device screenshots remain release gate |
+| Phase 3 Release Pack And Phase 4 Vote | Release checklist and tribe vote pack created; awaiting Claude checkpoint |
+| Phase 4.0 Creator Policy And Moderation Plan | Pre-production policy/moderation gate created; no creator publishing code starts before review/vote |
 
 Current review pack:
 
 ```text
+docs/workouts/training-plans-foundation-claude-checkpoint-2026-07-01.md
+docs/workouts/training-plan-enrollment-foundation-claude-checkpoint-2026-07-01.md
+docs/workouts/training-plan-native-parity-claude-checkpoint-2026-07-01.md
+docs/workouts/today-tab-training-plan-integration-claude-checkpoint-2026-07-01.md
+docs/workouts/plan-customization-substitutions-claude-checkpoint-2026-07-01.md
+docs/workouts/plan-badges-adherence-claude-checkpoint-2026-07-01.md
+docs/workouts/plan-customization-progress-native-parity-claude-checkpoint-2026-07-01.md
+docs/workouts/phase-2-release-and-phase-3-vote-claude-checkpoint-2026-07-01.md
+docs/workouts/advanced-feature-vote-and-metrics-plan-claude-checkpoint-2026-07-01.md
+docs/workouts/muscle-volume-aggregation-claude-checkpoint-2026-07-01.md
+docs/workouts/progressive-overload-intensity-claude-checkpoint-2026-07-01.md
+docs/workouts/library-expansion-200-plus-claude-checkpoint-2026-07-01.md
+docs/workouts/shareable-insight-cards-discovery-claude-checkpoint-2026-07-01.md
+docs/workouts/phase-3-release-creator-layer-scope-claude-checkpoint-2026-07-01.md
+docs/workouts/phase-3-progress-insights-ui-claude-checkpoint-2026-07-02.md
 docs/workouts/coach-mode-v1-claude-checkpoint-2026-07-01.md
 docs/workouts/coach-mode-full-cues-claude-checkpoint-2026-07-01.md
 ```
@@ -100,6 +136,17 @@ These cannot be bypassed without an explicit Navdeep decision:
 - No Phase 1 production release without `finishWorkoutSession` deployed and smoke-tested.
 - No 50-exercise expansion with assets served from `/public`; production assets must use Firebase Storage or equivalent CDN-backed storage.
 - No user-side premium gating in Phases 1-3.
+
+### Tracked Future Refactors From Claude Review
+
+These are not current blockers, but they should become explicit checkpoints before scale or social exposure increases:
+
+- **Adherence Badge Scale Refactor:** before 5,000+ active plan enrollments or $200+/month Firebase bill attributable to adherence writes, move repeated adherence recomputation into a more scalable path. Preferred direction: batched adherence computation in a scheduled Cloud Function, cached plan milestone thresholds at publish time, and one-shot badge reads with pull-to-refresh instead of persistent listeners.
+- **Badge-To-Feed Integration:** if training plan badges appear in tribe feed, become giftable/copyable, or power public adherence leaderboards, use a transactional callable/service path instead of direct client writes or client-derived ranking.
+- **Coach Pro Milestone Flexibility:** when Coach Pro launches, support custom milestone thresholds per coach plan rather than hardcoding the official plan badge thresholds.
+- **Phase 2 Launch Screenshot Gate:** public Training Plans announcement should use real iPhone screenshots for Today active plan, customization, and badge/progress state. Android screenshots may follow after launch only if a paired Android device is not available, and the launch copy should be honest about that.
+- **Phase 2 Planned Workout Smoke Gate:** before public Training Plans announcement, complete one signed-in planned workout in production and verify `completedDayKeys`, adherence recomputation, badge/progress card, tribe feed mirror, and no duplicate feed entries.
+- **CP22 Launch Gate:** do not send Shareable Insight Cards And Discovery for Claude review until the signed-in planned-workout smoke test and iPhone screenshots for Today active plan/card, customization panel, and badge/progress card are complete.
 - No health/medical claims in product copy or store notes.
 - No native guided-workout release without real device screenshots.
 
@@ -623,6 +670,8 @@ docs/workouts/coach-mode-full-cues-claude-checkpoint-2026-07-01.md
 
 ### Checkpoint 1.1.3: Frame-Aware Cue Sync
 
+Status: Web/iOS/Android playback-progress sync implemented where available, with timer fallback; ready for Claude checkpoint.
+
 Build scope:
 
 - Connect cue activation to actual Lottie progress/frame where supported.
@@ -639,6 +688,12 @@ Hard blockers:
 
 - Cue text changes out of sync with movement.
 - Animation playback is required to understand safety-critical instructions.
+
+Review packet:
+
+```text
+docs/workouts/frame-aware-cue-sync-web-checkpoint-2026-07-02.md
+```
 
 ## Phase 1.2: High-Fidelity Exercise Animations
 
@@ -743,6 +798,42 @@ scripts/apply-workout-high-fidelity-media.js
 scripts/render-workout-high-fidelity-poc-checklist.js
 ```
 
+### Checkpoint 1.2.3a: High-Fidelity Production Asset Briefs
+
+Status: Implemented locally; ready for Claude review.
+
+Build scope:
+
+- Generate production-ready prompts and QA checklists for the five POC assets.
+- Keep prompts tied to the validated POC manifest.
+- Define exact `demo.mp4`, `demo.webm`, and `poster.webp` storage paths.
+- Define file-size budgets and no-baked-text guardrails.
+- Keep current Lottie/SVG assets untouched.
+
+Claude checks:
+
+- Prompts are specific enough for realistic media generation.
+- Style direction is distinct from competitor references.
+- File-size budgets are realistic for mobile.
+- Cue text remains in Coach Mode UI, not in generated assets.
+- Guardrails prevent social-reel UI, logos, watermarks, medical claims, and sexualized body proportions.
+
+Hard blockers:
+
+- Prompts contain competitor brand/UI references.
+- Prompts instruct text, labels, or app UI to be baked into generated media.
+- Prompts include unsupported health or medical claims.
+- File budgets are too loose for mobile.
+
+Review packet:
+
+```text
+docs/workouts/high-fidelity-production-asset-briefs-claude-checkpoint-2026-07-02.md
+docs/workouts/review-packs/high-fidelity-production-asset-briefs-2026-07-02.md
+docs/workouts/review-packs/high-fidelity-production-asset-briefs-2026-07-02.html
+scripts/render-workout-high-fidelity-production-briefs.js
+```
+
 ### Checkpoint 1.2.3: Five-Exercise High-Fidelity POC Assets
 
 Build scope:
@@ -755,7 +846,9 @@ Build scope:
   - `bulgarian_split_squat`
 - Include `demo.mp4`, optional `demo.webm`, and `poster.webp`.
 - Build a local review board for Claude.
+- Build a real-media review board that plays only verified local MP4/WebM assets and shows missing files as pending.
 - Do not apply to live Firestore yet.
+- Run the asset file gate in `--require-files` mode before upload or Firestore apply.
 
 Claude checks:
 
@@ -773,15 +866,26 @@ Hard blockers:
 - Muscle highlights are inaccurate.
 - File sizes are too large for mobile use.
 
+Asset file gate:
+
+```text
+docs/workouts/high-fidelity-asset-file-gate-claude-checkpoint-2026-07-02.md
+scripts/verify-workout-high-fidelity-asset-files.js
+docs/workouts/high-fidelity-real-asset-review-board-checkpoint-2026-07-02.md
+scripts/render-workout-high-fidelity-asset-review-board.js
+```
+
 ### Checkpoint 1.2.4: High-Fidelity Client Playback
 
-Status: Web/iOS/Android playback prep implemented locally; real video QA pending actual POC assets and Claude review.
+Status: Web/iOS/Android playback prep implemented locally; iOS loop parity and native poster fallback implemented locally; real video QA pending actual POC assets and Claude review.
 
 Build scope:
 
 - Web video playback with poster fallback.
 - iOS video playback or cached preview playback.
 - Android video playback or cached preview playback.
+- iOS video loop parity with Coach Mode cue progress reset on loop completion.
+- Native poster imagery or branded fallback while video players prepare.
 - Preserve Lottie fallback.
 - Add real-device screenshots/videos.
 
@@ -803,6 +907,8 @@ Review packet:
 
 ```text
 docs/workouts/high-fidelity-client-video-playback-checkpoint-2026-07-01.md
+docs/workouts/ios-high-fidelity-video-loop-parity-checkpoint-2026-07-02.md
+docs/workouts/native-high-fidelity-poster-fallback-checkpoint-2026-07-02.md
 ```
 
 ### Checkpoint 1.2.5: Rollout To 50 Exercises
@@ -836,6 +942,26 @@ Start condition:
 - Phase 1 release pack approved.
 - Tribe vote completed for Phase 2 direction.
 - Navdeep approves first official plan themes.
+
+### Numbered Build Stream: Checkpoints 11-23
+
+Navdeep asked Codex to keep building the remaining Workouts roadmap with checkpoint packets Claude can review later. This table maps the compact checkpoint numbers to the existing phase plan.
+
+| # | Checkpoint | Existing Section | Status |
+|---|---|---|---|
+| 11 | Training Plans Foundation | 2.1 partial | Implemented locally; ready for Claude review |
+| 12 | Plan Enrollment Foundation | 2.1 | Implemented locally; ready for Claude review |
+| 13 | Plan Discovery And Enrollment UI Parity | 2.2 | Claude approved |
+| 14 | Today Tab Integration | 2.3 | Implemented locally; ready for Claude review |
+| 15 | Plan Customization And Substitutions | 2.4 | Implemented locally; ready for Claude review |
+| 16 | Plan Badges And Adherence | 2.5 | Implemented locally; ready for Claude review |
+| 17 | Phase 2 Release And Phase 3 Vote | 2.6 | Implemented locally; ready for Claude review |
+| 18 | Advanced Feature Vote And Metrics Plan | 3.0 | Implemented locally; ready for Claude review |
+| 19 | Muscle Volume Aggregation | 3.1 | Claude approved after summary-only aggregate privacy fix |
+| 20 | Progressive Overload And Intensity | 3.2 | Claude approved with UI prerequisites documented |
+| 21 | Library Expansion To 200+ | 3.3 | Claude approved after power deferral and vocabulary lock |
+| 22 | Shareable Insight Cards And Discovery | 3.4 / 3.5 | Implemented locally; Claude review gated on Phase 2 launch smoke/screenshots |
+| 23 | Phase 3 Release And Creator-Layer Scope | 3.6 / 4.0 | Implemented locally; ready for Claude review |
 
 ### Checkpoint 2.0: Tribe Vote And Plan Scope
 

@@ -3,10 +3,11 @@ import TodayHeader from './TodayHeader';
 import TodayLogAction from './TodayLogAction';
 import TodayPointsCard from './TodayPointsCard';
 import TodayTaskList from './TodayTaskList';
+import TodayTrainingPlanCard from './TodayTrainingPlanCard';
 import TodayToast from './TodayToast';
 import useTodayTabState from './useTodayTabState';
 
-export default function TodayTab({ challenge, memberData, onLogged }) {
+export default function TodayTab({ challenge, memberData, onLogged, onOpenWorkouts, todayTrainingPlanViewModel, trainingPlanUseCases }) {
   const { allDone, checked, completion, dayNum, dismissCompletion, handleLog, loading, preview, saving, todayLog, toast, toggle } = useTodayTabState({
     challenge,
     onLogged,
@@ -19,6 +20,11 @@ export default function TodayTab({ challenge, memberData, onLogged }) {
       <ChallengeCompletionCelebration completion={completion} onDismiss={dismissCompletion} />
       <TodayToast toast={toast} />
       <TodayHeader allDone={allDone} challenge={challenge} dayNum={dayNum} memberData={memberData} todayLog={todayLog} />
+      <TodayTrainingPlanCard
+        onOpenWorkouts={onOpenWorkouts}
+        useCases={trainingPlanUseCases}
+        viewModel={todayTrainingPlanViewModel}
+      />
       <TodayTaskList checked={checked} tasks={challenge.tasks} todayLog={todayLog} toggle={toggle} />
       <TodayPointsCard checked={checked} preview={preview} tasks={challenge.tasks} todayLog={todayLog} />
       <TodayLogAction

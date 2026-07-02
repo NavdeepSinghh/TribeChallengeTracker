@@ -24,6 +24,16 @@ function chipList(values, className = '') {
   return values.map((value) => `<span class="chip ${className}">${escapeHtml(label(value))}</span>`).join('');
 }
 
+function timelineList(phases = []) {
+  return phases.map((phase) => `
+    <li>
+      <strong>${escapeHtml(label(phase.cueId))}</strong>
+      <span>${escapeHtml(phase.label)}</span>
+      <em>${phase.startPercent}-${phase.endPercent}%</em>
+    </li>
+  `).join('');
+}
+
 function renderRecord(record) {
   return `
     <article class="card">
@@ -48,6 +58,10 @@ function renderRecord(record) {
       <section>
         <h3>Equipment</h3>
         <div class="chips">${chipList(record.renderBrief.equipment)}</div>
+      </section>
+      <section>
+        <h3>Coach Cue Timeline</h3>
+        <ol class="timeline">${timelineList(record.renderBrief.phaseTimeline)}</ol>
       </section>
       <section>
         <h3>Avoid</h3>
@@ -157,6 +171,39 @@ function html(records) {
     .chip.primary { border-color: rgba(255,107,53,0.54); color: #ffb199; }
     .chip.secondary { border-color: rgba(52,211,153,0.45); color: #a7f3d0; }
     ul { color: var(--muted); margin: 0; padding-left: 18px; }
+    .timeline {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline li {
+      background: rgba(0,0,0,0.22);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      gap: 4px;
+      padding: 10px;
+    }
+    .timeline strong {
+      color: var(--brand);
+      display: inline;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      margin: 0;
+    }
+    .timeline span {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .timeline em {
+      color: var(--muted);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 800;
+    }
     code {
       background: rgba(0,0,0,0.28);
       border: 1px solid var(--line);

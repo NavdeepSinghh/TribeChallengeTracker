@@ -21,4 +21,3 @@ Review these files:
 - `functions/workoutSessionCallableHandlers.js`
 - `src/__tests__/workoutsBackendFoundation.test.js`
 - `docs/workouts/milestone-2/TEST_REPORT.md`
-

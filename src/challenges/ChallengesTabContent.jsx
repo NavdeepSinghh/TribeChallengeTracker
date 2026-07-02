@@ -12,6 +12,7 @@ export default function ChallengesTabContent({
   handleLeft,
   handleSearch,
   myChallenges,
+  onOpenWorkouts,
   openChallenge,
   pendingReferralUid,
   profile,
@@ -71,6 +72,7 @@ export default function ChallengesTabContent({
           challenge={trackerChallenge}
           onBack={refreshList}
           onLeft={handleLeft}
+          onOpenWorkouts={onOpenWorkouts}
         />
       </div>
     );

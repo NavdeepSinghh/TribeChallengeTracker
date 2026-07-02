@@ -3,8 +3,10 @@ export function buildChallengesTabProps({
   handleChallengeStatsChanged,
   pendingJoinCode,
   pendingReferralUid,
+  setTab,
 }) {
   return {
+    onOpenWorkouts: setTab ? () => setTab("board") : undefined,
     pendingJoinCode,
     pendingReferralUid,
     onStatsChanged: handleChallengeStatsChanged,

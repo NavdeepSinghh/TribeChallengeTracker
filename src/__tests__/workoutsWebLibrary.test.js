@@ -1,12 +1,13 @@
 import React, { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AppThemeProvider } from '../app/AppThemeContext';
-import WorkoutsLibrarySection, { getLottieFrameCount, resolveWorkoutAssetUrl } from '../workouts/presentation/WorkoutsLibrarySection';
+import WorkoutsLibrarySection, { getLottieFrameCount, getWorkoutMotionPlaybackMode, resolveWorkoutAssetUrl } from '../workouts/presentation/WorkoutsLibrarySection';
 import { useWorkoutCatalogViewModel } from '../workouts/presentation/useWorkoutCatalogViewModel';
 import {
   buildExerciseCoachingCues,
   buildExerciseFilterOptions,
   filterExercises,
+  findExerciseCueForMotionProgress,
   mapExerciseDocument,
   selectExerciseMotionSource,
   selectBackendCatalogFilter,
@@ -90,6 +91,7 @@ describe('web workouts read-only library', () => {
     expect(container.textContent).toContain('Plank');
     expect(container.textContent).toContain('MOVEMENT COACH');
     expect(container.textContent).toContain('Watch the demo with the active cue.');
+    expect(container.querySelector('[aria-live="off"]')).not.toBeNull();
     expect(resolveWorkoutAssetUrl('workouts/exercises/v1/plank/demo.lottie.json')).toBe('https://firebasestorage.googleapis.com/v0/b/tribechallengetracker.firebasestorage.app/o/workouts%2Fexercises%2Fv1%2Fplank%2Fdemo.lottie.json?alt=media');
     expect(resolveWorkoutAssetUrl('https://cdn.example.com/plank.json')).toBe('https://cdn.example.com/plank.json');
     expect(resolveWorkoutAssetUrl('/workouts/local-preview.json')).toBe('/workouts/local-preview.json');
@@ -100,6 +102,58 @@ describe('web workouts read-only library', () => {
 
     await act(async () => root.unmount());
     container.remove();
+  });
+
+  it('only announces active cue text when cue changes are user-initiated or motion is paused', async () => {
+    const { container, root } = await renderWithTheme(
+      <WorkoutsLibrarySection
+        onQuickLog={jest.fn()}
+        viewModel={buildLoadedViewModel()}
+      />
+    );
+
+    expect(container.querySelector('[aria-live="off"]')).not.toBeNull();
+    expect(container.querySelector('[aria-live="polite"]')).toBeNull();
+
+    const cueButton = [...container.querySelectorAll('button')]
+      .find(button => button.textContent.includes('Hold') || button.textContent.includes('Sit') || button.textContent.includes('Stand'));
+    expect(cueButton).toBeTruthy();
+
+    await act(async () => {
+      cueButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+
+    expect(container.querySelector('[aria-live="polite"]')).not.toBeNull();
+
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  it('keeps reduced-motion cue text polite because playback changes require user action', async () => {
+    const previousMatchMedia = window.matchMedia;
+    window.matchMedia = jest.fn(() => ({
+      matches: true,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }));
+
+    const { container, root } = await renderWithTheme(
+      <WorkoutsLibrarySection
+        onQuickLog={jest.fn()}
+        viewModel={buildLoadedViewModel()}
+      />
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    expect(container.textContent).toContain('PLAY MOTION');
+    expect(container.querySelector('[aria-live="polite"]')).not.toBeNull();
+
+    await act(async () => root.unmount());
+    container.remove();
+    window.matchMedia = previousMatchMedia;
   });
 
   it('builds backend-driven coaching cues with fallback from published guidance', () => {
@@ -171,6 +225,25 @@ describe('web workouts read-only library', () => {
     });
   });
 
+  it('selects the coaching cue that matches motion playback progress', () => {
+    const cues = [
+      { id: 'setup', title: 'Setup', startPercent: 0, endPercent: 24 },
+      { id: 'lower', title: 'Lower', startPercent: 24, endPercent: 52 },
+      { id: 'drive', title: 'Drive', startPercent: 52, endPercent: 82 },
+      { id: 'reset', title: 'Reset', startPercent: 82, endPercent: 100 },
+    ];
+
+    expect(findExerciseCueForMotionProgress(cues, 0)?.id).toBe('setup');
+    expect(findExerciseCueForMotionProgress(cues, 24)?.id).toBe('lower');
+    expect(findExerciseCueForMotionProgress(cues, 63)?.id).toBe('drive');
+    expect(findExerciseCueForMotionProgress(cues, 100)?.id).toBe('reset');
+    expect(findExerciseCueForMotionProgress(cues, Number.NaN, 'drive')?.id).toBe('setup');
+    expect(findExerciseCueForMotionProgress([], 50)).toBeNull();
+    expect(getWorkoutMotionPlaybackMode({ prefersReducedMotion: true })).toBe('paused');
+    expect(getWorkoutMotionPlaybackMode({ prefersReducedMotion: true, forceMotion: true })).toBe('playing');
+    expect(getWorkoutMotionPlaybackMode({ prefersReducedMotion: false })).toBe('playing');
+  });
+
   it('validates the pilot coaching cue content before Firestore apply', () => {
     const loaded = loadCueFile(require.resolve('../../scripts/workout-coaching-cues-pilot.json'));
     expect(loaded).toHaveLength(5);
@@ -225,6 +298,57 @@ describe('web workouts read-only library', () => {
       styleVersion: 'tribelog-3d-v1',
       mediaHash: 'pending',
     });
+    expect(records[0].renderBrief.phaseTimeline.map(phase => phase.cueId)).toEqual([
+      'setup',
+      'descent',
+      'depth',
+      'drive',
+    ]);
+    expect(records[0].renderBrief.phaseTimeline.at(-1).endPercent).toBe(100);
+    expect(() => validateHighFidelityMediaRecords([
+      {
+        ...records[0],
+        renderBrief: {
+          ...records[0].renderBrief,
+          phaseTimeline: [
+            { ...records[0].renderBrief.phaseTimeline[0], startPercent: 4 },
+            ...records[0].renderBrief.phaseTimeline.slice(1),
+          ],
+        },
+      },
+      ...records.slice(1),
+    ])).toThrow(/must start at 0%/);
+    expect(() => validateHighFidelityMediaRecords([
+      {
+        ...records[0],
+        renderBrief: {
+          ...records[0].renderBrief,
+          phaseTimeline: [
+            records[0].renderBrief.phaseTimeline[0],
+            {
+              ...records[0].renderBrief.phaseTimeline[1],
+              startPercent: records[0].renderBrief.phaseTimeline[0].endPercent - 5,
+            },
+            ...records[0].renderBrief.phaseTimeline.slice(2),
+          ],
+        },
+      },
+      ...records.slice(1),
+    ])).toThrow(/chronological playback order/);
+    expect(() => validateHighFidelityMediaRecords([
+      {
+        ...records[0],
+        renderBrief: {
+          ...records[0].renderBrief,
+          phaseTimeline: [
+            { ...records[0].renderBrief.phaseTimeline[0] },
+            { ...records[0].renderBrief.phaseTimeline[1], cueId: 'lower' },
+            ...records[0].renderBrief.phaseTimeline.slice(2),
+          ],
+        },
+      },
+      ...records.slice(1),
+    ])).toThrow(/must be descent/);
     expect(() => validateHighFidelityMediaRecords(records, { requireReady: true })).toThrow(/planned media/);
     expect(() => loadMediaApplyFile(require.resolve('../../scripts/workout-high-fidelity-media-poc.json'))).toThrow(/planned media/);
     expect(mediaManifestPayload({

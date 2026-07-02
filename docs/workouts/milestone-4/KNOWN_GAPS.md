@@ -46,4 +46,3 @@ The app builds successfully, but these unit tests should be added before release
 `LeaderboardView.swift` is already a large file that owns existing workout templates, logging, history, follow/public routine flows, and now the catalog insertion point.
 
 Milestone 4 intentionally avoids refactoring that file. A later cleanup can split Workouts into smaller section files after Phase 1 behavior stabilizes.
-

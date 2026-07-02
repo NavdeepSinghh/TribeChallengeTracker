@@ -20,4 +20,3 @@ No production UI, copy, typography, colors, animations, or user-facing screens c
 ## Follow-Up
 
 Brand audit resumes in the first client milestone that renders Workouts UI or exercise assets.
-

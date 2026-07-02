@@ -26,4 +26,3 @@ Please verify that the M6 hard gate from the Milestone 5 review is now satisfied
 1. Confirm M5.5 satisfies the native ViewModel/unit-test hard gate.
 2. Confirm M6 may be reviewed next.
 3. Confirm guided workout-specific native tests can be tracked as an M6/M7 hardening item rather than blocking M6 review.
-

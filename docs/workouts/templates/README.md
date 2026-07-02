@@ -45,4 +45,3 @@ Data
 ## Implementation Rule
 
 When production implementation starts, copy the pattern, not necessarily these exact files. The domain layer must remain testable without SwiftUI, React, Compose, or Firebase UI dependencies.
-
